@@ -9,11 +9,14 @@
   "author": "Josh Balfour <josh@joshbalfour.co.uk>",
   "license": "ISC",
   "keywords": [
-  		"Microsoft",
-  		"Cognitive",
-  		"Services",
-  		"API",
-  		"SDK"
+    "Microsoft",
+    "Cognitive",
+    "Services",
+    "API",
+    "SDK"
   ],
-  "repository": "https://github.com/joshbalfour/node-cognitive-services"
+  "repository": "https://github.com/joshbalfour/node-cognitive-services",
+  "dependencies": {
+    "request-promise": "^3.0.0"
+  }
 }
