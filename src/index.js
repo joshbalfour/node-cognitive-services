@@ -1,3 +1,4 @@
 module.exports = {
-	textAnalytics : require('./apis/textAnalytics')
+	textAnalytics : require('./apis/textAnalytics'),
+	emotionRecognition : require('./apis/emotionRecognition')
 };
