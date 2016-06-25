@@ -38,6 +38,19 @@ function emotionRecognition({KEY}){
 		return this.makeRequest(options);
 	};
 
+
+	this.recognizeWithFaceRectangles = ({body, faceRectangles}) => {
+		
+		const options = {
+			method: 'POST',
+			uri: '/recognize',
+			body,
+			qs: { faceRectangles }
+		};
+
+		return this.makeRequest(options);
+	};
+
 	return this;
 }
 
