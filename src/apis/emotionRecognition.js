@@ -51,6 +51,16 @@ function emotionRecognition({KEY}){
 		return this.makeRequest(options);
 	};
 
+	this.operationStatus = ({operationId}) => {
+		
+		const options = {
+			method: 'GET',
+			uri: `/operations/${operationId}`,
+		};
+
+		return this.makeRequest(options);
+	};
+
 	return this;
 }
 
