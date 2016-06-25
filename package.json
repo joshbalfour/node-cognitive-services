@@ -1,0 +1,19 @@
+{
+  "name": "cognitive-services",
+  "version": "0.0.1",
+  "description": "Microsoft Cognitive Services API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Josh Balfour <josh@joshbalfour.co.uk>",
+  "license": "ISC",
+  "keywords": [
+  		"Microsoft",
+  		"Cognitive",
+  		"Services",
+  		"API",
+  		"SDK"
+  ],
+  "repository": "https://github.com/joshbalfour/node-cognitive-services"
+}
