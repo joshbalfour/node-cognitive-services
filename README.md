@@ -1,15 +1,24 @@
-# Microsoft Cognitive Services SDK for Node.JS
+# Microsoft® Cognitive Services SDK for Node.JS
 ### By [Josh Balfour](https://joshbalfour.co.uk)
 
 ## Description
 
-Unofficial SDK for [Microsoft Cognitive Services](https://www.microsoft.com/cognitive-services) written for Node.JS
+Unofficial SDK for [Microsoft® Cognitive Services](https://www.microsoft.com/cognitive-services) written for Node.JS.
+	Usage of Microsoft® Cognitive Services is bound by their [Terms and Conditions](http://research.microsoft.com/en-us/um/legal/CognitiveServicesTerms20160628.htm).
+	
 
 ## Installation
 
 `npm i cognitive-services --save`
 
-## Usage
+## Getting Started
+
+
+		To get started first [sign up](https://www.microsoft.com/cognitive-services/en-us/sign-up) and [grab your API keys](https://www.microsoft.com/cognitive-services/en-US/subscriptions).
+		Then figure out which API you want to use, you can find descriptions [here](https://www.microsoft.com/cognitive-services/en-us/apis).
+	
+
+## Reference
 
 ### Index
 
@@ -3981,3 +3990,29 @@ webLanguageModel.listAvailableModels()
 
 ```
 
+
+
+## License
+
+
+	Copyright (c) 2016, Josh Balfour
+
+Permission to use, copy, modify, and/or distribute this software for any purpose
+with or without fee is hereby granted, provided that the above copyright notice
+and this permission notice appear in all copies.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND
+FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS
+OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER
+TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF
+THIS SOFTWARE.
+
+
+## Legal
+
+
+	Microsoft, Microsoft Cognitive Services, and Windows are either registered trademarks or trademarks of Microsoft Corporation in the United States and/or other countries.
+	This project was done without the knowledge or endorsement of Microsoft®.
+	
