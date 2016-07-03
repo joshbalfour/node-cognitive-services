@@ -145,7 +145,7 @@ Unofficial SDK for [Microsoft Cognitive Services](https://www.microsoft.com/cogn
 
 #### Academic Knowledge - CalcHistogram
 
-[Original Microsoft Documentation](https://dev.projectoxford.ai/docs/services/56332331778daf02acc0a50b/operations/565d9001ca73072048922d97)
+[API Endpoint Documentation](https://dev.projectoxford.ai/docs/services/56332331778daf02acc0a50b/operations/565d9001ca73072048922d97)
 
 ##### Description
 
@@ -190,7 +190,7 @@ academicKnowledge.calcHistogram({
 
 #### Academic Knowledge - Evaluate
 
-[Original Microsoft Documentation](https://dev.projectoxford.ai/docs/services/56332331778daf02acc0a50b/operations/565d753be597ed16ac3ffc03)
+[API Endpoint Documentation](https://dev.projectoxford.ai/docs/services/56332331778daf02acc0a50b/operations/565d753be597ed16ac3ffc03)
 
 ##### Description
 
@@ -237,7 +237,7 @@ academicKnowledge.evaluate({
 
 #### Academic Knowledge - Interpret
 
-[Original Microsoft Documentation](https://dev.projectoxford.ai/docs/services/56332331778daf02acc0a50b/operations/56332331778daf06340c9666)
+[API Endpoint Documentation](https://dev.projectoxford.ai/docs/services/56332331778daf02acc0a50b/operations/56332331778daf06340c9666)
 
 ##### Description
 
@@ -288,7 +288,7 @@ academicKnowledge.interpret({
 
 #### Bing Autosuggest - Suggestions
 
-[Original Microsoft Documentation](https://dev.cognitive.microsoft.com/docs/services/56c7694ecf5ff801a090fbd1/operations/56c769a2cf5ff801a090fbd2)
+[API Endpoint Documentation](https://dev.cognitive.microsoft.com/docs/services/56c7694ecf5ff801a090fbd1/operations/56c769a2cf5ff801a090fbd2)
 
 ##### Description
 
@@ -331,7 +331,7 @@ bingAutosuggest.suggestions({
 
 #### Bing Image Search - Image Insights
 
-[Original Microsoft Documentation](https://dev.cognitive.microsoft.com/docs/services/56b43f0ccf5ff8098cef3808/operations/571fab09dbe2d933e891028f)
+[API Endpoint Documentation](https://dev.cognitive.microsoft.com/docs/services/56b43f0ccf5ff8098cef3808/operations/571fab09dbe2d933e891028f)
 
 ##### Description
 
@@ -365,7 +365,7 @@ bingImageSearch.imageInsights()
 
 #### Bing Image Search - Search
 
-[Original Microsoft Documentation](https://dev.cognitive.microsoft.com/docs/services/56b43f0ccf5ff8098cef3808/operations/56b4433fcf5ff8098cef380c)
+[API Endpoint Documentation](https://dev.cognitive.microsoft.com/docs/services/56b43f0ccf5ff8098cef3808/operations/56b4433fcf5ff8098cef380c)
 
 ##### Description
 
@@ -412,7 +412,7 @@ bingImageSearch.search({
 
 #### Bing Image Search - Trending
 
-[Original Microsoft Documentation](https://dev.cognitive.microsoft.com/docs/services/56b43f0ccf5ff8098cef3808/operations/56b44b8ccf5ff81038d15ce0)
+[API Endpoint Documentation](https://dev.cognitive.microsoft.com/docs/services/56b43f0ccf5ff8098cef3808/operations/56b44b8ccf5ff81038d15ce0)
 
 ##### Description
 
@@ -447,7 +447,7 @@ bingImageSearch.trending()
 
 #### Bing News Search - Category News
 
-[Original Microsoft Documentation](https://dev.cognitive.microsoft.com/docs/services/56b43f72cf5ff8098cef380a/operations/56f02400dbe2d91900c68553)
+[API Endpoint Documentation](https://dev.cognitive.microsoft.com/docs/services/56b43f72cf5ff8098cef380a/operations/56f02400dbe2d91900c68553)
 
 ##### Description
 
@@ -481,7 +481,7 @@ bingNewsSearch.categoryNews()
 
 #### Bing News Search - Search
 
-[Original Microsoft Documentation](https://dev.cognitive.microsoft.com/docs/services/56b43f72cf5ff8098cef380a/operations/56b449fbcf5ff81038d15cdf)
+[API Endpoint Documentation](https://dev.cognitive.microsoft.com/docs/services/56b43f72cf5ff8098cef380a/operations/56b449fbcf5ff81038d15cdf)
 
 ##### Description
 
@@ -528,7 +528,7 @@ bingNewsSearch.search({
 
 #### Bing News Search - Trending Topics
 
-[Original Microsoft Documentation](https://dev.cognitive.microsoft.com/docs/services/56b43f72cf5ff8098cef380a/operations/56c7a9a6cf5ff801a090fbdc)
+[API Endpoint Documentation](https://dev.cognitive.microsoft.com/docs/services/56b43f72cf5ff8098cef380a/operations/56c7a9a6cf5ff801a090fbdc)
 
 ##### Description
 
@@ -563,7 +563,7 @@ bingNewsSearch.trendingTopics()
 
 #### Bing Spell Check - Spell Check
 
-[Original Microsoft Documentation](https://dev.cognitive.microsoft.com/docs/services/56e73033cf5ff80c2008c679/operations/56e73036cf5ff81048ee6727)
+[API Endpoint Documentation](https://dev.cognitive.microsoft.com/docs/services/56e73033cf5ff80c2008c679/operations/56e73036cf5ff81048ee6727)
 
 ##### Description
 
@@ -601,7 +601,7 @@ bingSpellCheck.spellCheck()
 
 #### Bing Video Search - Search
 
-[Original Microsoft Documentation](https://dev.cognitive.microsoft.com/docs/services/56b43f3ccf5ff8098cef3809/operations/56b440d2cf5ff8098cef380b)
+[API Endpoint Documentation](https://dev.cognitive.microsoft.com/docs/services/56b43f3ccf5ff8098cef3809/operations/56b440d2cf5ff8098cef380b)
 
 ##### Description
 
@@ -648,7 +648,7 @@ bingVideoSearch.search({
 
 #### Bing Video Search - Trending
 
-[Original Microsoft Documentation](https://dev.cognitive.microsoft.com/docs/services/56b43f3ccf5ff8098cef3809/operations/56b44c36cf5ff81038d15ce1)
+[API Endpoint Documentation](https://dev.cognitive.microsoft.com/docs/services/56b43f3ccf5ff8098cef3809/operations/56b44c36cf5ff81038d15ce1)
 
 ##### Description
 
@@ -683,7 +683,7 @@ bingVideoSearch.trending()
 
 #### Bing Web Search - Search
 
-[Original Microsoft Documentation](https://dev.cognitive.microsoft.com/docs/services/56b43eeccf5ff8098cef3807/operations/56b4447dcf5ff8098cef380d)
+[API Endpoint Documentation](https://dev.cognitive.microsoft.com/docs/services/56b43eeccf5ff8098cef3807/operations/56b4447dcf5ff8098cef380d)
 
 ##### Description
 
@@ -734,7 +734,7 @@ bingWebSearch.search({
 
 #### Computer Vision - Analyze Image
 
-[Original Microsoft Documentation](https://dev.projectoxford.ai/docs/services/56f91f2d778daf23d8ec6739/operations/56f91f2e778daf14a499e1fa)
+[API Endpoint Documentation](https://dev.projectoxford.ai/docs/services/56f91f2d778daf23d8ec6739/operations/56f91f2e778daf14a499e1fa)
 
 ##### Description
 
@@ -783,7 +783,7 @@ computerVision.analyzeImage({
 
 #### Computer Vision - Describe Image
 
-[Original Microsoft Documentation](https://dev.projectoxford.ai/docs/services/56f91f2d778daf23d8ec6739/operations/56f91f2e778daf14a499e1fe)
+[API Endpoint Documentation](https://dev.projectoxford.ai/docs/services/56f91f2d778daf23d8ec6739/operations/56f91f2e778daf14a499e1fe)
 
 ##### Description
 
@@ -831,7 +831,7 @@ computerVision.describeImage({
 
 #### Computer Vision - Get Thumbnail
 
-[Original Microsoft Documentation](https://dev.projectoxford.ai/docs/services/56f91f2d778daf23d8ec6739/operations/56f91f2e778daf14a499e1fb)
+[API Endpoint Documentation](https://dev.projectoxford.ai/docs/services/56f91f2d778daf23d8ec6739/operations/56f91f2e778daf14a499e1fb)
 
 ##### Description
 
@@ -881,7 +881,7 @@ computerVision.getThumbnail({
 
 #### Computer Vision - List Domain Specific Models
 
-[Original Microsoft Documentation](https://dev.projectoxford.ai/docs/services/56f91f2d778daf23d8ec6739/operations/56f91f2e778daf14a499e1fd)
+[API Endpoint Documentation](https://dev.projectoxford.ai/docs/services/56f91f2d778daf23d8ec6739/operations/56f91f2e778daf14a499e1fd)
 
 ##### Description
 
@@ -918,7 +918,7 @@ computerVision.listDomainSpecificModels()
 
 #### Computer Vision - OCR
 
-[Original Microsoft Documentation](https://dev.projectoxford.ai/docs/services/56f91f2d778daf23d8ec6739/operations/56f91f2e778daf14a499e1fc)
+[API Endpoint Documentation](https://dev.projectoxford.ai/docs/services/56f91f2d778daf23d8ec6739/operations/56f91f2e778daf14a499e1fc)
 
 ##### Description
 
@@ -967,7 +967,7 @@ computerVision.ocr({
 
 #### Computer Vision - Recognize Domain Specific Content
 
-[Original Microsoft Documentation](https://dev.projectoxford.ai/docs/services/56f91f2d778daf23d8ec6739/operations/56f91f2e778daf14a499e200)
+[API Endpoint Documentation](https://dev.projectoxford.ai/docs/services/56f91f2d778daf23d8ec6739/operations/56f91f2e778daf14a499e200)
 
 ##### Description
 
@@ -1010,7 +1010,7 @@ computerVision.recognizeDomainSpecificContent()
 
 #### Computer Vision - Tag Image
 
-[Original Microsoft Documentation](https://dev.projectoxford.ai/docs/services/56f91f2d778daf23d8ec6739/operations/56f91f2e778daf14a499e1ff)
+[API Endpoint Documentation](https://dev.projectoxford.ai/docs/services/56f91f2d778daf23d8ec6739/operations/56f91f2e778daf14a499e1ff)
 
 ##### Description
 
@@ -1054,7 +1054,7 @@ computerVision.tagImage()
 
 #### Emotion - Emotion Recognition
 
-[Original Microsoft Documentation](https://dev.projectoxford.ai/docs/services/5639d931ca73072154c1ce89/operations/563b31ea778daf121cc3a5fa)
+[API Endpoint Documentation](https://dev.projectoxford.ai/docs/services/5639d931ca73072154c1ce89/operations/563b31ea778daf121cc3a5fa)
 
 ##### Description
 
@@ -1085,7 +1085,7 @@ emotion.emotionRecognition()
 
 #### Emotion - Emotion Recognition in Video
 
-[Original Microsoft Documentation](https://dev.projectoxford.ai/docs/services/5639d931ca73072154c1ce89/operations/56f8d40e1984551ec0a0984e)
+[API Endpoint Documentation](https://dev.projectoxford.ai/docs/services/5639d931ca73072154c1ce89/operations/56f8d40e1984551ec0a0984e)
 
 ##### Description
 
@@ -1124,7 +1124,7 @@ emotion.emotionRecognitionInVideo()
 
 #### Emotion - Emotion Recognition with Face Rectangles
 
-[Original Microsoft Documentation](https://dev.projectoxford.ai/docs/services/5639d931ca73072154c1ce89/operations/56f23eb019845524ec61c4d7)
+[API Endpoint Documentation](https://dev.projectoxford.ai/docs/services/5639d931ca73072154c1ce89/operations/56f23eb019845524ec61c4d7)
 
 ##### Description
 
@@ -1158,7 +1158,7 @@ emotion.emotionRecognitionWithFaceRectangles()
 
 #### Emotion - Get Recognition in Video Operation Result
 
-[Original Microsoft Documentation](https://dev.projectoxford.ai/docs/services/5639d931ca73072154c1ce89/operations/56f8d4471984551ec0a0984f)
+[API Endpoint Documentation](https://dev.projectoxford.ai/docs/services/5639d931ca73072154c1ce89/operations/56f8d4471984551ec0a0984f)
 
 ##### Description
 
@@ -1221,7 +1221,7 @@ emotion.getRecognitionInVideoOperationResult()
 
 #### Entity Linking - Link Entity
 
-[Original Microsoft Documentation](https://dev.projectoxford.ai/docs/services/56f0eabfca730713cc392442/operations/56f0eabfca73070e44d0f39c)
+[API Endpoint Documentation](https://dev.projectoxford.ai/docs/services/56f0eabfca730713cc392442/operations/56f0eabfca73070e44d0f39c)
 
 ##### Description
 
@@ -1260,7 +1260,7 @@ entityLinking.linkEntity()
 
 #### Face - Detect
 
-[Original Microsoft Documentation](https://dev.projectoxford.ai/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f30395236)
+[API Endpoint Documentation](https://dev.projectoxford.ai/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f30395236)
 
 ##### Description
 
@@ -1319,7 +1319,7 @@ face.detect({
 
 #### Face - Find Similar
 
-[Original Microsoft Documentation](https://dev.projectoxford.ai/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f30395237)
+[API Endpoint Documentation](https://dev.projectoxford.ai/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f30395237)
 
 ##### Description
 
@@ -1355,7 +1355,7 @@ face.findSimilar()
 
 #### Face - Group
 
-[Original Microsoft Documentation](https://dev.projectoxford.ai/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f30395238)
+[API Endpoint Documentation](https://dev.projectoxford.ai/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f30395238)
 
 ##### Description
 
@@ -1400,7 +1400,7 @@ face.group()
 
 #### Face - Identify
 
-[Original Microsoft Documentation](https://dev.projectoxford.ai/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f30395239)
+[API Endpoint Documentation](https://dev.projectoxford.ai/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f30395239)
 
 ##### Description
 
@@ -1449,7 +1449,7 @@ face.identify()
 
 #### Face - Verify
 
-[Original Microsoft Documentation](https://dev.projectoxford.ai/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f3039523a)
+[API Endpoint Documentation](https://dev.projectoxford.ai/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f3039523a)
 
 ##### Description
 
@@ -1490,7 +1490,7 @@ face.verify()
 
 #### Face - Add a Face to a Face List
 
-[Original Microsoft Documentation](https://dev.projectoxford.ai/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f30395250)
+[API Endpoint Documentation](https://dev.projectoxford.ai/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f30395250)
 
 ##### Description
 
@@ -1545,7 +1545,7 @@ face.addAFaceToAFaceList()
 
 #### Face - Create a Face List
 
-[Original Microsoft Documentation](https://dev.projectoxford.ai/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f3039524b)
+[API Endpoint Documentation](https://dev.projectoxford.ai/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f3039524b)
 
 ##### Description
 
@@ -1589,7 +1589,7 @@ face.createAFaceList()
 
 #### Face - Delete a Face from a Face List
 
-[Original Microsoft Documentation](https://dev.projectoxford.ai/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f30395251)
+[API Endpoint Documentation](https://dev.projectoxford.ai/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f30395251)
 
 ##### Description
 
@@ -1628,7 +1628,7 @@ face.deleteAFaceFromAFaceList()
 
 #### Face - Delete a Face List
 
-[Original Microsoft Documentation](https://dev.projectoxford.ai/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f3039524f)
+[API Endpoint Documentation](https://dev.projectoxford.ai/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f3039524f)
 
 ##### Description
 
@@ -1666,7 +1666,7 @@ face.deleteAFaceList()
 
 #### Face - Get a Face List
 
-[Original Microsoft Documentation](https://dev.projectoxford.ai/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f3039524c)
+[API Endpoint Documentation](https://dev.projectoxford.ai/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f3039524c)
 
 ##### Description
 
@@ -1705,7 +1705,7 @@ face.getAFaceList()
 
 #### Face - List Face Lists
 
-[Original Microsoft Documentation](https://dev.projectoxford.ai/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f3039524d)
+[API Endpoint Documentation](https://dev.projectoxford.ai/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f3039524d)
 
 ##### Description
 
@@ -1740,7 +1740,7 @@ face.listFaceLists()
 
 #### Face - Update a Face List
 
-[Original Microsoft Documentation](https://dev.projectoxford.ai/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f3039524e)
+[API Endpoint Documentation](https://dev.projectoxford.ai/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f3039524e)
 
 ##### Description
 
@@ -1779,7 +1779,7 @@ face.updateAFaceList()
 
 #### Face - Add a Person Face
 
-[Original Microsoft Documentation](https://dev.projectoxford.ai/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f3039523b)
+[API Endpoint Documentation](https://dev.projectoxford.ai/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f3039523b)
 
 ##### Description
 
@@ -1831,7 +1831,7 @@ face.addAPersonFace()
 
 #### Face - Create a Person
 
-[Original Microsoft Documentation](https://dev.projectoxford.ai/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f3039523c)
+[API Endpoint Documentation](https://dev.projectoxford.ai/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f3039523c)
 
 ##### Description
 
@@ -1871,7 +1871,7 @@ face.createAPerson()
 
 #### Face - Delete a Person
 
-[Original Microsoft Documentation](https://dev.projectoxford.ai/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f3039523d)
+[API Endpoint Documentation](https://dev.projectoxford.ai/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f3039523d)
 
 ##### Description
 
@@ -1910,7 +1910,7 @@ face.deleteAPerson()
 
 #### Face - Delete a Person Face
 
-[Original Microsoft Documentation](https://dev.projectoxford.ai/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f3039523e)
+[API Endpoint Documentation](https://dev.projectoxford.ai/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f3039523e)
 
 ##### Description
 
@@ -1950,7 +1950,7 @@ face.deleteAPersonFace()
 
 #### Face - Get a Person
 
-[Original Microsoft Documentation](https://dev.projectoxford.ai/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f3039523f)
+[API Endpoint Documentation](https://dev.projectoxford.ai/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f3039523f)
 
 ##### Description
 
@@ -1989,7 +1989,7 @@ face.getAPerson()
 
 #### Face - Get a Person Face
 
-[Original Microsoft Documentation](https://dev.projectoxford.ai/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f30395240)
+[API Endpoint Documentation](https://dev.projectoxford.ai/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f30395240)
 
 ##### Description
 
@@ -2029,7 +2029,7 @@ face.getAPersonFace()
 
 #### Face - List Persons in a Person Group
 
-[Original Microsoft Documentation](https://dev.projectoxford.ai/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f30395241)
+[API Endpoint Documentation](https://dev.projectoxford.ai/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f30395241)
 
 ##### Description
 
@@ -2067,7 +2067,7 @@ face.listPersonsInAPersonGroup()
 
 #### Face - Update a Person
 
-[Original Microsoft Documentation](https://dev.projectoxford.ai/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f30395242)
+[API Endpoint Documentation](https://dev.projectoxford.ai/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f30395242)
 
 ##### Description
 
@@ -2106,7 +2106,7 @@ face.updateAPerson()
 
 #### Face - Update a Person Face
 
-[Original Microsoft Documentation](https://dev.projectoxford.ai/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f30395243)
+[API Endpoint Documentation](https://dev.projectoxford.ai/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f30395243)
 
 ##### Description
 
@@ -2146,7 +2146,7 @@ face.updateAPersonFace()
 
 #### Face - Create a Person Group
 
-[Original Microsoft Documentation](https://dev.projectoxford.ai/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f30395244)
+[API Endpoint Documentation](https://dev.projectoxford.ai/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f30395244)
 
 ##### Description
 
@@ -2187,7 +2187,7 @@ face.createAPersonGroup()
 
 #### Face - Delete a Person Group
 
-[Original Microsoft Documentation](https://dev.projectoxford.ai/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f30395245)
+[API Endpoint Documentation](https://dev.projectoxford.ai/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f30395245)
 
 ##### Description
 
@@ -2225,7 +2225,7 @@ face.deleteAPersonGroup()
 
 #### Face - Get a Person Group
 
-[Original Microsoft Documentation](https://dev.projectoxford.ai/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f30395246)
+[API Endpoint Documentation](https://dev.projectoxford.ai/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f30395246)
 
 ##### Description
 
@@ -2263,7 +2263,7 @@ face.getAPersonGroup()
 
 #### Face - Get Person Group Training Status
 
-[Original Microsoft Documentation](https://dev.projectoxford.ai/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f30395247)
+[API Endpoint Documentation](https://dev.projectoxford.ai/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f30395247)
 
 ##### Description
 
@@ -2301,7 +2301,7 @@ face.getPersonGroupTrainingStatus()
 
 #### Face - List Person Groups
 
-[Original Microsoft Documentation](https://dev.projectoxford.ai/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f30395248)
+[API Endpoint Documentation](https://dev.projectoxford.ai/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f30395248)
 
 ##### Description
 
@@ -2336,7 +2336,7 @@ face.listPersonGroups()
 
 #### Face - Train Person Group
 
-[Original Microsoft Documentation](https://dev.projectoxford.ai/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f30395249)
+[API Endpoint Documentation](https://dev.projectoxford.ai/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f30395249)
 
 ##### Description
 
@@ -2377,7 +2377,7 @@ face.trainPersonGroup()
 
 #### Face - Update a Person Group
 
-[Original Microsoft Documentation](https://dev.projectoxford.ai/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f3039524a)
+[API Endpoint Documentation](https://dev.projectoxford.ai/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f3039524a)
 
 ##### Description
 
@@ -2419,7 +2419,7 @@ face.updateAPersonGroup()
 
 #### Recommendations - Create a model
 
-[Original Microsoft Documentation](https://westus.dev.cognitive.microsoft.com/docs/services/Recommendations.V4.0/operations/56f30d77eda5650db055a3d6)
+[API Endpoint Documentation](https://westus.dev.cognitive.microsoft.com/docs/services/Recommendations.V4.0/operations/56f30d77eda5650db055a3d6)
 
 ##### Description
 
@@ -2454,7 +2454,7 @@ recommendations.createAModel()
 
 #### Recommendations - Create/Trigger a build
 
-[Original Microsoft Documentation](https://westus.dev.cognitive.microsoft.com/docs/services/Recommendations.V4.0/operations/56f30d77eda5650db055a3d0)
+[API Endpoint Documentation](https://westus.dev.cognitive.microsoft.com/docs/services/Recommendations.V4.0/operations/56f30d77eda5650db055a3d0)
 
 ##### Description
 
@@ -2488,7 +2488,7 @@ recommendations.create / TriggerABuild()
 
 #### Recommendations - Delete a build
 
-[Original Microsoft Documentation](https://westus.dev.cognitive.microsoft.com/docs/services/Recommendations.V4.0/operations/56f30d77eda5650db055a3d2)
+[API Endpoint Documentation](https://westus.dev.cognitive.microsoft.com/docs/services/Recommendations.V4.0/operations/56f30d77eda5650db055a3d2)
 
 ##### Description
 
@@ -2525,7 +2525,7 @@ recommendations.deleteABuild()
 
 #### Recommendations - Delete a model
 
-[Original Microsoft Documentation](https://westus.dev.cognitive.microsoft.com/docs/services/Recommendations.V4.0/operations/56f30d77eda5650db055a3d8)
+[API Endpoint Documentation](https://westus.dev.cognitive.microsoft.com/docs/services/Recommendations.V4.0/operations/56f30d77eda5650db055a3d8)
 
 ##### Description
 
@@ -2559,7 +2559,7 @@ recommendations.deleteAModel()
 
 #### Recommendations - Delete/Cancel an ongoing operation
 
-[Original Microsoft Documentation](https://westus.dev.cognitive.microsoft.com/docs/services/Recommendations.V4.0/operations/56f30d77eda5650db055a3db)
+[API Endpoint Documentation](https://westus.dev.cognitive.microsoft.com/docs/services/Recommendations.V4.0/operations/56f30d77eda5650db055a3db)
 
 ##### Description
 
@@ -2593,7 +2593,7 @@ recommendations.delete / CancelAnOngoingOperation()
 
 #### Recommendations - Get a model by id
 
-[Original Microsoft Documentation](https://westus.dev.cognitive.microsoft.com/docs/services/Recommendations.V4.0/operations/56f30d77eda5650db055a3d7)
+[API Endpoint Documentation](https://westus.dev.cognitive.microsoft.com/docs/services/Recommendations.V4.0/operations/56f30d77eda5650db055a3d7)
 
 ##### Description
 
@@ -2627,7 +2627,7 @@ recommendations.getAModelById()
 
 #### Recommendations - Get all models
 
-[Original Microsoft Documentation](https://westus.dev.cognitive.microsoft.com/docs/services/Recommendations.V4.0/operations/56f30d77eda5650db055a3d5)
+[API Endpoint Documentation](https://westus.dev.cognitive.microsoft.com/docs/services/Recommendations.V4.0/operations/56f30d77eda5650db055a3d5)
 
 ##### Description
 
@@ -2658,7 +2658,7 @@ recommendations.getAllModels()
 
 #### Recommendations - Get build by id
 
-[Original Microsoft Documentation](https://westus.dev.cognitive.microsoft.com/docs/services/Recommendations.V4.0/operations/56f30d77eda5650db055a3d1)
+[API Endpoint Documentation](https://westus.dev.cognitive.microsoft.com/docs/services/Recommendations.V4.0/operations/56f30d77eda5650db055a3d1)
 
 ##### Description
 
@@ -2693,7 +2693,7 @@ recommendations.getBuildById()
 
 #### Recommendations - Get build metrics
 
-[Original Microsoft Documentation](https://westus.dev.cognitive.microsoft.com/docs/services/Recommendations.V4.0/operations/573e43bb3e9d4627a8c4bd3e)
+[API Endpoint Documentation](https://westus.dev.cognitive.microsoft.com/docs/services/Recommendations.V4.0/operations/573e43bb3e9d4627a8c4bd3e)
 
 ##### Description
 
@@ -2728,7 +2728,7 @@ recommendations.getBuildMetrics()
 
 #### Recommendations - Get details of all builds
 
-[Original Microsoft Documentation](https://westus.dev.cognitive.microsoft.com/docs/services/Recommendations.V4.0/operations/56f30d77eda5650db055a3cf)
+[API Endpoint Documentation](https://westus.dev.cognitive.microsoft.com/docs/services/Recommendations.V4.0/operations/56f30d77eda5650db055a3cf)
 
 ##### Description
 
@@ -2763,7 +2763,7 @@ recommendations.getDetailsOfAllBuilds()
 
 #### Recommendations - Get recommendations based on items (I2I)
 
-[Original Microsoft Documentation](https://westus.dev.cognitive.microsoft.com/docs/services/Recommendations.V4.0/operations/56f30d77eda5650db055a3d4)
+[API Endpoint Documentation](https://westus.dev.cognitive.microsoft.com/docs/services/Recommendations.V4.0/operations/56f30d77eda5650db055a3d4)
 
 ##### Description
 
@@ -2802,7 +2802,7 @@ recommendations.getRecommendationsBasedOnItems(I2I)()
 
 #### Recommendations - Get user recommendations (U2I)
 
-[Original Microsoft Documentation](https://westus.dev.cognitive.microsoft.com/docs/services/Recommendations.V4.0/operations/56f30d77eda5650db055a3dd)
+[API Endpoint Documentation](https://westus.dev.cognitive.microsoft.com/docs/services/Recommendations.V4.0/operations/56f30d77eda5650db055a3dd)
 
 ##### Description
 
@@ -2846,7 +2846,7 @@ recommendations.getUserRecommendations(U2I)()
 
 #### Recommendations - Retrieve the status of an operation
 
-[Original Microsoft Documentation](https://westus.dev.cognitive.microsoft.com/docs/services/Recommendations.V4.0/operations/56f30d77eda5650db055a3da)
+[API Endpoint Documentation](https://westus.dev.cognitive.microsoft.com/docs/services/Recommendations.V4.0/operations/56f30d77eda5650db055a3da)
 
 ##### Description
 
@@ -2880,7 +2880,7 @@ recommendations.retrieveTheStatusOfAnOperation()
 
 #### Recommendations - Update a model
 
-[Original Microsoft Documentation](https://westus.dev.cognitive.microsoft.com/docs/services/Recommendations.V4.0/operations/56f30d77eda5650db055a3d9)
+[API Endpoint Documentation](https://westus.dev.cognitive.microsoft.com/docs/services/Recommendations.V4.0/operations/56f30d77eda5650db055a3d9)
 
 ##### Description
 
@@ -2914,7 +2914,7 @@ recommendations.updateAModel()
 
 #### Recommendations - Upload a catalog file to a model
 
-[Original Microsoft Documentation](https://westus.dev.cognitive.microsoft.com/docs/services/Recommendations.V4.0/operations/56f316efeda5650db055a3e1)
+[API Endpoint Documentation](https://westus.dev.cognitive.microsoft.com/docs/services/Recommendations.V4.0/operations/56f316efeda5650db055a3e1)
 
 ##### Description
 
@@ -2950,7 +2950,7 @@ recommendations.uploadACatalogFileToAModel()
 
 #### Recommendations - Upload a usage file to a model
 
-[Original Microsoft Documentation](https://westus.dev.cognitive.microsoft.com/docs/services/Recommendations.V4.0/operations/56f316efeda5650db055a3e2)
+[API Endpoint Documentation](https://westus.dev.cognitive.microsoft.com/docs/services/Recommendations.V4.0/operations/56f316efeda5650db055a3e2)
 
 ##### Description
 
@@ -2989,7 +2989,7 @@ recommendations.uploadAUsageFileToAModel()
 
 #### Speaker Recognition - Create Enrollment
 
-[Original Microsoft Documentation](https://dev.projectoxford.ai/docs/services/563309b6778daf02acc0a508/operations/56406930e597ed20c8d8549c)
+[API Endpoint Documentation](https://dev.projectoxford.ai/docs/services/563309b6778daf02acc0a508/operations/56406930e597ed20c8d8549c)
 
 ##### Description
 
@@ -3024,7 +3024,7 @@ speakerRecognition.createEnrollment()
 
 #### Speaker Recognition - Create Profile
 
-[Original Microsoft Documentation](https://dev.projectoxford.ai/docs/services/563309b6778daf02acc0a508/operations/5645c068e597ed22ec38f42e)
+[API Endpoint Documentation](https://dev.projectoxford.ai/docs/services/563309b6778daf02acc0a508/operations/5645c068e597ed22ec38f42e)
 
 ##### Description
 
@@ -3056,7 +3056,7 @@ speakerRecognition.createProfile()
 
 #### Speaker Recognition - Delete Profile
 
-[Original Microsoft Documentation](https://dev.projectoxford.ai/docs/services/563309b6778daf02acc0a508/operations/563309b7778daf06340c9655)
+[API Endpoint Documentation](https://dev.projectoxford.ai/docs/services/563309b6778daf02acc0a508/operations/563309b7778daf06340c9655)
 
 ##### Description
 
@@ -3090,7 +3090,7 @@ speakerRecognition.deleteProfile()
 
 #### Speaker Recognition - Get All Profiles
 
-[Original Microsoft Documentation](https://dev.projectoxford.ai/docs/services/563309b6778daf02acc0a508/operations/563309b7778daf06340c9653)
+[API Endpoint Documentation](https://dev.projectoxford.ai/docs/services/563309b6778daf02acc0a508/operations/563309b7778daf06340c9653)
 
 ##### Description
 
@@ -3121,7 +3121,7 @@ speakerRecognition.getAllProfiles()
 
 #### Speaker Recognition - Get Profile
 
-[Original Microsoft Documentation](https://dev.projectoxford.ai/docs/services/563309b6778daf02acc0a508/operations/56409ee2778daf19706420de)
+[API Endpoint Documentation](https://dev.projectoxford.ai/docs/services/563309b6778daf02acc0a508/operations/56409ee2778daf19706420de)
 
 ##### Description
 
@@ -3160,7 +3160,7 @@ speakerRecognition.getProfile({
 
 #### Speaker Recognition - Reset Enrollments
 
-[Original Microsoft Documentation](https://dev.projectoxford.ai/docs/services/563309b6778daf02acc0a508/operations/56406930e597ed20c8d8549b)
+[API Endpoint Documentation](https://dev.projectoxford.ai/docs/services/563309b6778daf02acc0a508/operations/56406930e597ed20c8d8549b)
 
 ##### Description
 
@@ -3194,7 +3194,7 @@ speakerRecognition.resetEnrollments()
 
 #### Speaker Recognition - Get Operation Status
 
-[Original Microsoft Documentation](https://dev.projectoxford.ai/docs/services/563309b6778daf02acc0a508/operations/5645c725ca73070ee8845bd6)
+[API Endpoint Documentation](https://dev.projectoxford.ai/docs/services/563309b6778daf02acc0a508/operations/5645c725ca73070ee8845bd6)
 
 ##### Description
 
@@ -3233,7 +3233,7 @@ speakerRecognition.getOperationStatus({
 
 #### Speaker Recognition - Identification
 
-[Original Microsoft Documentation](https://dev.projectoxford.ai/docs/services/563309b6778daf02acc0a508/operations/5645c523778daf217c292592)
+[API Endpoint Documentation](https://dev.projectoxford.ai/docs/services/563309b6778daf02acc0a508/operations/5645c523778daf217c292592)
 
 ##### Description
 
@@ -3272,7 +3272,7 @@ speakerRecognition.identification({
 
 #### Speaker Recognition - Verification
 
-[Original Microsoft Documentation](https://dev.projectoxford.ai/docs/services/563309b6778daf02acc0a508/operations/56406930e597ed20c8d8549d)
+[API Endpoint Documentation](https://dev.projectoxford.ai/docs/services/563309b6778daf02acc0a508/operations/56406930e597ed20c8d8549d)
 
 ##### Description
 
@@ -3306,7 +3306,7 @@ speakerRecognition.verification()
 
 #### Speaker Recognition - List All Supported Verification Phrases
 
-[Original Microsoft Documentation](https://dev.projectoxford.ai/docs/services/563309b6778daf02acc0a508/operations/5652c0801984551c3859634d)
+[API Endpoint Documentation](https://dev.projectoxford.ai/docs/services/563309b6778daf02acc0a508/operations/5652c0801984551c3859634d)
 
 ##### Description
 
@@ -3349,7 +3349,7 @@ speakerRecognition.listAllSupportedVerificationPhrases({
 
 #### Text Analytics - Detect Language
 
-[Original Microsoft Documentation](https://westus.dev.cognitive.microsoft.com/docs/services/TextAnalytics.V2.0/operations/56f30ceeeda5650db055a3c7)
+[API Endpoint Documentation](https://westus.dev.cognitive.microsoft.com/docs/services/TextAnalytics.V2.0/operations/56f30ceeeda5650db055a3c7)
 
 ##### Description
 
@@ -3385,7 +3385,7 @@ textAnalytics.detectLanguage()
 
 #### Text Analytics - Detect Topics
 
-[Original Microsoft Documentation](https://westus.dev.cognitive.microsoft.com/docs/services/TextAnalytics.V2.0/operations/56f30ceeeda5650db055a3ca)
+[API Endpoint Documentation](https://westus.dev.cognitive.microsoft.com/docs/services/TextAnalytics.V2.0/operations/56f30ceeeda5650db055a3ca)
 
 ##### Description
 
@@ -3426,7 +3426,7 @@ textAnalytics.detectTopics()
 
 #### Text Analytics - Key Phrases
 
-[Original Microsoft Documentation](https://westus.dev.cognitive.microsoft.com/docs/services/TextAnalytics.V2.0/operations/56f30ceeeda5650db055a3c6)
+[API Endpoint Documentation](https://westus.dev.cognitive.microsoft.com/docs/services/TextAnalytics.V2.0/operations/56f30ceeeda5650db055a3c6)
 
 ##### Description
 
@@ -3459,7 +3459,7 @@ textAnalytics.keyPhrases()
 
 #### Text Analytics - Operation Status
 
-[Original Microsoft Documentation](https://westus.dev.cognitive.microsoft.com/docs/services/TextAnalytics.V2.0/operations/56f30ceeeda5650db055a3c8)
+[API Endpoint Documentation](https://westus.dev.cognitive.microsoft.com/docs/services/TextAnalytics.V2.0/operations/56f30ceeeda5650db055a3c8)
 
 ##### Description
 
@@ -3493,7 +3493,7 @@ textAnalytics.operationStatus()
 
 #### Text Analytics - Sentiment
 
-[Original Microsoft Documentation](https://westus.dev.cognitive.microsoft.com/docs/services/TextAnalytics.V2.0/operations/56f30ceeeda5650db055a3c9)
+[API Endpoint Documentation](https://westus.dev.cognitive.microsoft.com/docs/services/TextAnalytics.V2.0/operations/56f30ceeeda5650db055a3c9)
 
 ##### Description
 
@@ -3532,7 +3532,7 @@ textAnalytics.sentiment()
 
 #### Video - Face Detection and Tracking
 
-[Original Microsoft Documentation](https://dev.projectoxford.ai/docs/services/565d6516778daf15800928d5/operations/565d6517778daf0978c45e39)
+[API Endpoint Documentation](https://dev.projectoxford.ai/docs/services/565d6516778daf15800928d5/operations/565d6517778daf0978c45e39)
 
 ##### Description
 
@@ -3564,7 +3564,7 @@ video.faceDetectionAndTracking()
 
 #### Video - Get Operation Result
 
-[Original Microsoft Documentation](https://dev.projectoxford.ai/docs/services/565d6516778daf15800928d5/operations/565d6517778daf0978c45e36)
+[API Endpoint Documentation](https://dev.projectoxford.ai/docs/services/565d6516778daf15800928d5/operations/565d6517778daf0978c45e36)
 
 ##### Description
 
@@ -3632,7 +3632,7 @@ video.getOperationResult()
 
 #### Video - Get Result Video
 
-[Original Microsoft Documentation](https://dev.projectoxford.ai/docs/services/565d6516778daf15800928d5/operations/565d81f4ca73072048922d95)
+[API Endpoint Documentation](https://dev.projectoxford.ai/docs/services/565d6516778daf15800928d5/operations/565d81f4ca73072048922d95)
 
 ##### Description
 
@@ -3666,7 +3666,7 @@ video.getResultVideo()
 
 #### Video - Motion Detection
 
-[Original Microsoft Documentation](https://dev.projectoxford.ai/docs/services/565d6516778daf15800928d5/operations/565d6517778daf0978c45e3a)
+[API Endpoint Documentation](https://dev.projectoxford.ai/docs/services/565d6516778daf15800928d5/operations/565d6517778daf0978c45e3a)
 
 ##### Description
 
@@ -3705,7 +3705,7 @@ video.motionDetection()
 
 #### Video - Stabilization
 
-[Original Microsoft Documentation](https://dev.projectoxford.ai/docs/services/565d6516778daf15800928d5/operations/565d6517778daf0978c45e35)
+[API Endpoint Documentation](https://dev.projectoxford.ai/docs/services/565d6516778daf15800928d5/operations/565d6517778daf0978c45e35)
 
 ##### Description
 
@@ -3736,7 +3736,7 @@ video.stabilization()
 
 #### Video - Thumbnail
 
-[Original Microsoft Documentation](https://dev.projectoxford.ai/docs/services/565d6516778daf15800928d5/operations/56f8acb0778daf23d8ec6738)
+[API Endpoint Documentation](https://dev.projectoxford.ai/docs/services/565d6516778daf15800928d5/operations/56f8acb0778daf23d8ec6738)
 
 ##### Description
 
@@ -3808,7 +3808,7 @@ video.thumbnail()
 
 #### Web Language Model - Break Into Words
 
-[Original Microsoft Documentation](https://dev.projectoxford.ai/docs/services/55de9ca4e597ed1fd4e2f104/operations/55de9ca4e597ed19b0de8a51)
+[API Endpoint Documentation](https://dev.projectoxford.ai/docs/services/55de9ca4e597ed1fd4e2f104/operations/55de9ca4e597ed19b0de8a51)
 
 ##### Description
 
@@ -3845,7 +3845,7 @@ webLanguageModel.breakIntoWords()
 
 #### Web Language Model - Calculate Conditional Probability
 
-[Original Microsoft Documentation](https://dev.projectoxford.ai/docs/services/55de9ca4e597ed1fd4e2f104/operations/55de9ca4e597ed19b0de8a4e)
+[API Endpoint Documentation](https://dev.projectoxford.ai/docs/services/55de9ca4e597ed1fd4e2f104/operations/55de9ca4e597ed19b0de8a4e)
 
 ##### Description
 
@@ -3880,7 +3880,7 @@ webLanguageModel.calculateConditionalProbability()
 
 #### Web Language Model - Calculate Joint Probability
 
-[Original Microsoft Documentation](https://dev.projectoxford.ai/docs/services/55de9ca4e597ed1fd4e2f104/operations/55de9ca4e597ed19b0de8a4f)
+[API Endpoint Documentation](https://dev.projectoxford.ai/docs/services/55de9ca4e597ed1fd4e2f104/operations/55de9ca4e597ed19b0de8a4f)
 
 ##### Description
 
@@ -3915,7 +3915,7 @@ webLanguageModel.calculateJointProbability()
 
 #### Web Language Model - Generate Next Words
 
-[Original Microsoft Documentation](https://dev.projectoxford.ai/docs/services/55de9ca4e597ed1fd4e2f104/operations/55de9ca4e597ed19b0de8a50)
+[API Endpoint Documentation](https://dev.projectoxford.ai/docs/services/55de9ca4e597ed1fd4e2f104/operations/55de9ca4e597ed19b0de8a50)
 
 ##### Description
 
@@ -3952,7 +3952,7 @@ webLanguageModel.generateNextWords()
 
 #### Web Language Model - List Available Models
 
-[Original Microsoft Documentation](https://dev.projectoxford.ai/docs/services/55de9ca4e597ed1fd4e2f104/operations/565bf87b778daf12447f43c1)
+[API Endpoint Documentation](https://dev.projectoxford.ai/docs/services/55de9ca4e597ed1fd4e2f104/operations/565bf87b778daf12447f43c1)
 
 ##### Description
 
