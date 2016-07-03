@@ -12,22 +12,22 @@ Unofficial SDK for [Microsoft Cognitive Services](https://www.microsoft.com/cogn
 ## Usage
 
 ### Index
-* [Academic Knowledge](#Academic-Knowledge)
-* [Bing Autosuggest](#Bing-Autosuggest)
-* [Bing Image Search](#Bing-Image-Search)
-* [Bing News Search](#Bing-News-Search)
-* [Bing Spell Check](#Bing-Spell-Check)
-* [Bing Video Search](#Bing-Video-Search)
-* [Bing Web Search](#Bing-Web-Search)
-* [Computer Vision](#Computer-Vision)
-* [Emotion](#Emotion)
-* [Entity Linking](#Entity-Linking)
-* [Face](#Face)
-* [Recommendations](#Recommendations)
-* [Speaker Recognition](#Speaker-Recognition)
-* [Text Analytics](#Text-Analytics)
-* [Video](#Video)
-* [Web Language Model](#Web-Language-Model)
+* [Academic Knowledge](#academic-knowledge)
+* [Bing Autosuggest](#bing-autosuggest)
+* [Bing Image Search](#bing-image-search)
+* [Bing News Search](#bing-news-search)
+* [Bing Spell Check](#bing-spell-check)
+* [Bing Video Search](#bing-video-search)
+* [Bing Web Search](#bing-web-search)
+* [Computer Vision](#computer-vision)
+* [Emotion](#emotion)
+* [Entity Linking](#entity-linking)
+* [Face](#face)
+* [Recommendations](#recommendations)
+* [Speaker Recognition](#speaker-recognition)
+* [Text Analytics](#text-analytics)
+* [Video](#video)
+* [Web Language Model](#web-language-model)
 
 ### Academic Knowledge
 
