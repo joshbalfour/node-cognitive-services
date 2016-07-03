@@ -57,7 +57,7 @@ Once you have created a model, you can upload your catalog data, upload your usa
 	"modelId": null
 }
 */
-    self.create / TriggerABuild = ({
+    self.createOrTriggerABuild = ({
         parameters,
         body
     }) => {
@@ -207,7 +207,7 @@ Once you have created a model, you can upload your catalog data, upload your usa
 	"id": null
 }
 */
-    self.delete / CancelAnOngoingOperation = ({
+    self.deleteOrCancelAnOngoingOperation = ({
         parameters,
         body
     }) => {

@@ -2800,7 +2800,7 @@ const recommendations = new cognitiveServices.recommendations({
 })
 
 
-recommendations.create / TriggerABuild()
+recommendations.createOrTriggerABuild()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -2905,7 +2905,7 @@ const recommendations = new cognitiveServices.recommendations({
 })
 
 
-recommendations.delete / CancelAnOngoingOperation()
+recommendations.deleteOrCancelAnOngoingOperation()
     .then((response) => {
         console.log('Got response', response);
     })
