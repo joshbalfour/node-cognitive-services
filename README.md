@@ -52,18 +52,23 @@ offset | Index of the first result to return. | no | number | 0
 
 #### Example
 
+```javascript
 
-			const academicKnowledge = new cognitiveServices.academicKnowledge({API_KEY: yourApiKey})
-			
-		const parameters = {
-			model: "latest"
-			count: "10"
-			offset: "0"
-		};
+const academicKnowledge = new cognitiveServices.academicKnowledge({
+    API_KEY: yourApiKey
+})
 
-			academicKnowledge.calcHistogram({parameters})
-				.then((response) => {
-						/**
+const parameters = {
+    model: "latest"
+    count: "10"
+    offset: "0"
+};
+
+academicKnowledge.calcHistogram({
+        parameters
+    })
+    .then((response) => {
+        /**
 							Example response: {
 		"expr": "And(Composite(AA.AuN=='jaime teevan'),Y>2012)",
 		"num_entities": 37,
@@ -120,12 +125,13 @@ offset | Index of the first result to return. | no | number | 0
 		]
 	}
 							*/
-					console.log('Got response', response);
-				})
-				.catch((err) => {
-					console.error('Encountered error making request:', err);
-				});
-		
+        console.log('Got response', response);
+    })
+    .catch((err) => {
+        console.error('Encountered error making request:', err);
+    });
+
+```
 
 #### Academic Knowledge - Evaluate
 
@@ -149,19 +155,24 @@ attributes | A comma delimited list that specifies the attribute values that are
 
 #### Example
 
+```javascript
 
-			const academicKnowledge = new cognitiveServices.academicKnowledge({API_KEY: yourApiKey})
-			
-		const parameters = {
-			model: "latest"
-			count: "10"
-			offset: "0"
-			attributes: "Id"
-		};
+const academicKnowledge = new cognitiveServices.academicKnowledge({
+    API_KEY: yourApiKey
+})
 
-			academicKnowledge.evaluate({parameters})
-				.then((response) => {
-						/**
+const parameters = {
+    model: "latest"
+    count: "10"
+    offset: "0"
+    attributes: "Id"
+};
+
+academicKnowledge.evaluate({
+        parameters
+    })
+    .then((response) => {
+        /**
 							Example response: {
 		"expr": "Composite(AA.AuN=='jaime teevan')",
 		"entities": [
@@ -212,12 +223,13 @@ attributes | A comma delimited list that specifies the attribute values that are
 		]
 	}
 							*/
-					console.log('Got response', response);
-				})
-				.catch((err) => {
-					console.error('Encountered error making request:', err);
-				});
-		
+        console.log('Got response', response);
+    })
+    .catch((err) => {
+        console.error('Encountered error making request:', err);
+    });
+
+```
 
 #### Academic Knowledge - Interpret
 
@@ -242,18 +254,23 @@ model | Name of the model that you wish to query. Currently, the value defaults 
 
 #### Example
 
+```javascript
 
-			const academicKnowledge = new cognitiveServices.academicKnowledge({API_KEY: yourApiKey})
-			
-		const parameters = {
-			complete: "0"
-			count: "10"
-			model: "latest"
-		};
+const academicKnowledge = new cognitiveServices.academicKnowledge({
+    API_KEY: yourApiKey
+})
 
-			academicKnowledge.interpret({parameters})
-				.then((response) => {
-						/**
+const parameters = {
+    complete: "0"
+    count: "10"
+    model: "latest"
+};
+
+academicKnowledge.interpret({
+        parameters
+    })
+    .then((response) => {
+        /**
 							Example response: {
 		"query": "papers by jaime",
 		"interpretations": [
@@ -286,12 +303,13 @@ model | Name of the model that you wish to query. Currently, the value defaults 
 		]
 	}
 							*/
-					console.log('Got response', response);
-				})
-				.catch((err) => {
-					console.error('Encountered error making request:', err);
-				});
-		
+        console.log('Got response', response);
+    })
+    .catch((err) => {
+        console.error('Encountered error making request:', err);
+    });
+
+```
 
 
 
@@ -314,16 +332,21 @@ q | Query | yes | string | bill g
 
 #### Example
 
+```javascript
 
-			const bingAutosuggest = new cognitiveServices.bingAutosuggest({API_KEY: yourApiKey})
-			
-		const parameters = {
-			q: "bill g"
-		};
+const bingAutosuggest = new cognitiveServices.bingAutosuggest({
+    API_KEY: yourApiKey
+})
 
-			bingAutosuggest.suggestions({parameters})
-				.then((response) => {
-						/**
+const parameters = {
+    q: "bill g"
+};
+
+bingAutosuggest.suggestions({
+        parameters
+    })
+    .then((response) => {
+        /**
 							Example response: {
 		"_type": "Suggestions",
 		"instrumentation": {
@@ -356,12 +379,13 @@ q | Query | yes | string | bill g
 		]
 	}
 							*/
-					console.log('Got response', response);
-				})
-				.catch((err) => {
-					console.error('Encountered error making request:', err);
-				});
-		
+        console.log('Got response', response);
+    })
+    .catch((err) => {
+        console.error('Encountered error making request:', err);
+    });
+
+```
 
 
 
@@ -384,18 +408,24 @@ See full documentation for this API <a target="_blank" href="https://msdn.micros
 
 #### Example
 
+```javascript
 
-			const bingImageSearch = new cognitiveServices.bingImageSearch({API_KEY: yourApiKey})
-			
+const bingImageSearch = new cognitiveServices.bingImageSearch({
+    API_KEY: yourApiKey
+})
 
-			bingImageSearch.imageInsights({parameters})
-				.then((response) => {
-					console.log('Got response', response);
-				})
-				.catch((err) => {
-					console.error('Encountered error making request:', err);
-				});
-		
+
+bingImageSearch.imageInsights({
+        parameters
+    })
+    .then((response) => {
+        console.log('Got response', response);
+    })
+    .catch((err) => {
+        console.error('Encountered error making request:', err);
+    });
+
+```
 
 #### Bing Image Search - Search
 
@@ -418,20 +448,25 @@ safeSearch | A filter used to filter results for adult content. | no | string | 
 
 #### Example
 
+```javascript
 
-			const bingImageSearch = new cognitiveServices.bingImageSearch({API_KEY: yourApiKey})
-			
-		const parameters = {
-			q: "cats"
-			count: "10"
-			offset: "0"
-			mkt: "en-us"
-			safeSearch: "Moderate"
-		};
+const bingImageSearch = new cognitiveServices.bingImageSearch({
+    API_KEY: yourApiKey
+})
 
-			bingImageSearch.search({parameters})
-				.then((response) => {
-						/**
+const parameters = {
+    q: "cats"
+    count: "10"
+    offset: "0"
+    mkt: "en-us"
+    safeSearch: "Moderate"
+};
+
+bingImageSearch.search({
+        parameters
+    })
+    .then((response) => {
+        /**
 							Example response: {
 		"_type": "Images",
 		"instrumentation": {
@@ -576,12 +611,13 @@ safeSearch | A filter used to filter results for adult content. | no | string | 
 		"displayRecipeSourcesBadges": true
 	}
 							*/
-					console.log('Got response', response);
-				})
-				.catch((err) => {
-					console.error('Encountered error making request:', err);
-				});
-		
+        console.log('Got response', response);
+    })
+    .catch((err) => {
+        console.error('Encountered error making request:', err);
+    });
+
+```
 
 #### Bing Image Search - Trending
 
@@ -597,13 +633,18 @@ Get currently trending images.
 
 #### Example
 
+```javascript
 
-			const bingImageSearch = new cognitiveServices.bingImageSearch({API_KEY: yourApiKey})
-			
+const bingImageSearch = new cognitiveServices.bingImageSearch({
+    API_KEY: yourApiKey
+})
 
-			bingImageSearch.trending({parameters})
-				.then((response) => {
-						/**
+
+bingImageSearch.trending({
+        parameters
+    })
+    .then((response) => {
+        /**
 							Example response: {
 		"_type": "TrendingImages",
 		"instrumentation": {
@@ -848,12 +889,13 @@ Get currently trending images.
 		]
 	}
 							*/
-					console.log('Got response', response);
-				})
-				.catch((err) => {
-					console.error('Encountered error making request:', err);
-				});
-		
+        console.log('Got response', response);
+    })
+    .catch((err) => {
+        console.error('Encountered error making request:', err);
+    });
+
+```
 
 
 
@@ -876,21 +918,27 @@ Category | Specifies which category of news articles the caller wants returned. 
 
 #### Example
 
+```javascript
 
-			const bingNewsSearch = new cognitiveServices.bingNewsSearch({API_KEY: yourApiKey})
-			
-		const parameters = {
-			
-		};
+const bingNewsSearch = new cognitiveServices.bingNewsSearch({
+    API_KEY: yourApiKey
+})
 
-			bingNewsSearch.categoryNews({parameters})
-				.then((response) => {
-					console.log('Got response', response);
-				})
-				.catch((err) => {
-					console.error('Encountered error making request:', err);
-				});
-		
+const parameters = {
+
+};
+
+bingNewsSearch.categoryNews({
+        parameters
+    })
+    .then((response) => {
+        console.log('Got response', response);
+    })
+    .catch((err) => {
+        console.error('Encountered error making request:', err);
+    });
+
+```
 
 #### Bing News Search - Search
 
@@ -913,20 +961,25 @@ safeSearch | A filter used to filter results for adult content. | no | string | 
 
 #### Example
 
+```javascript
 
-			const bingNewsSearch = new cognitiveServices.bingNewsSearch({API_KEY: yourApiKey})
-			
-		const parameters = {
-			q: "microsoft"
-			count: "10"
-			offset: "0"
-			mkt: "en-us"
-			safeSearch: "Moderate"
-		};
+const bingNewsSearch = new cognitiveServices.bingNewsSearch({
+    API_KEY: yourApiKey
+})
 
-			bingNewsSearch.search({parameters})
-				.then((response) => {
-						/**
+const parameters = {
+    q: "microsoft"
+    count: "10"
+    offset: "0"
+    mkt: "en-us"
+    safeSearch: "Moderate"
+};
+
+bingNewsSearch.search({
+        parameters
+    })
+    .then((response) => {
+        /**
 							Example response: {
 		"_type": "News",
 		"instrumentation": {
@@ -1009,12 +1062,13 @@ safeSearch | A filter used to filter results for adult content. | no | string | 
 		]
 	}
 							*/
-					console.log('Got response', response);
-				})
-				.catch((err) => {
-					console.error('Encountered error making request:', err);
-				});
-		
+        console.log('Got response', response);
+    })
+    .catch((err) => {
+        console.error('Encountered error making request:', err);
+    });
+
+```
 
 #### Bing News Search - Trending Topics
 
@@ -1030,13 +1084,18 @@ Get trending topics identified by Bing.  These are the same topics shown in the 
 
 #### Example
 
+```javascript
 
-			const bingNewsSearch = new cognitiveServices.bingNewsSearch({API_KEY: yourApiKey})
-			
+const bingNewsSearch = new cognitiveServices.bingNewsSearch({
+    API_KEY: yourApiKey
+})
 
-			bingNewsSearch.trendingTopics({parameters})
-				.then((response) => {
-						/**
+
+bingNewsSearch.trendingTopics({
+        parameters
+    })
+    .then((response) => {
+        /**
 							Example response: {
 		"_type": "TrendingTopics",
 		"instrumentation": {
@@ -1677,12 +1736,13 @@ Get trending topics identified by Bing.  These are the same topics shown in the 
 		]
 	}
 							*/
-					console.log('Got response', response);
-				})
-				.catch((err) => {
-					console.error('Encountered error making request:', err);
-				});
-		
+        console.log('Got response', response);
+    })
+    .catch((err) => {
+        console.error('Encountered error making request:', err);
+    });
+
+```
 
 
 
@@ -1705,16 +1765,21 @@ mode | Mode of spellcheck:<ul><li>Proof - Meant to provide Office Word like spel
 
 #### Example
 
+```javascript
 
-			const bingSpellCheck = new cognitiveServices.bingSpellCheck({API_KEY: yourApiKey})
-			
-		const parameters = {
-			
-		};
+const bingSpellCheck = new cognitiveServices.bingSpellCheck({
+    API_KEY: yourApiKey
+})
 
-			bingSpellCheck.spellCheck({parameters})
-				.then((response) => {
-						/**
+const parameters = {
+
+};
+
+bingSpellCheck.spellCheck({
+        parameters
+    })
+    .then((response) => {
+        /**
 							Example response: {
 		"_type": "SpellCheck",
 		"flaggedTokens": [
@@ -1732,12 +1797,13 @@ mode | Mode of spellcheck:<ul><li>Proof - Meant to provide Office Word like spel
 		]
 	}
 							*/
-					console.log('Got response', response);
-				})
-				.catch((err) => {
-					console.error('Encountered error making request:', err);
-				});
-		
+        console.log('Got response', response);
+    })
+    .catch((err) => {
+        console.error('Encountered error making request:', err);
+    });
+
+```
 
 
 
@@ -1764,20 +1830,25 @@ safeSearch | A filter used to filter results for adult content. | no | string | 
 
 #### Example
 
+```javascript
 
-			const bingVideoSearch = new cognitiveServices.bingVideoSearch({API_KEY: yourApiKey})
-			
-		const parameters = {
-			q: "cats"
-			count: "10"
-			offset: "0"
-			mkt: "en-us"
-			safeSearch: "Moderate"
-		};
+const bingVideoSearch = new cognitiveServices.bingVideoSearch({
+    API_KEY: yourApiKey
+})
 
-			bingVideoSearch.search({parameters})
-				.then((response) => {
-						/**
+const parameters = {
+    q: "cats"
+    count: "10"
+    offset: "0"
+    mkt: "en-us"
+    safeSearch: "Moderate"
+};
+
+bingVideoSearch.search({
+        parameters
+    })
+    .then((response) => {
+        /**
 							Example response: {
 		"_type": "Videos",
 		"instrumentation": {
@@ -1951,12 +2022,13 @@ safeSearch | A filter used to filter results for adult content. | no | string | 
 		]
 	}
 							*/
-					console.log('Got response', response);
-				})
-				.catch((err) => {
-					console.error('Encountered error making request:', err);
-				});
-		
+        console.log('Got response', response);
+    })
+    .catch((err) => {
+        console.error('Encountered error making request:', err);
+    });
+
+```
 
 #### Bing Video Search - Trending
 
@@ -1972,13 +2044,18 @@ Get currently trending videos.
 
 #### Example
 
+```javascript
 
-			const bingVideoSearch = new cognitiveServices.bingVideoSearch({API_KEY: yourApiKey})
-			
+const bingVideoSearch = new cognitiveServices.bingVideoSearch({
+    API_KEY: yourApiKey
+})
 
-			bingVideoSearch.trending({parameters})
-				.then((response) => {
-						/**
+
+bingVideoSearch.trending({
+        parameters
+    })
+    .then((response) => {
+        /**
 							Example response: {
 		"_type": "TrendingVideos",
 		"instrumentation": {
@@ -2411,12 +2488,13 @@ Get currently trending videos.
 		]
 	}
 							*/
-					console.log('Got response', response);
-				})
-				.catch((err) => {
-					console.error('Encountered error making request:', err);
-				});
-		
+        console.log('Got response', response);
+    })
+    .catch((err) => {
+        console.error('Encountered error making request:', err);
+    });
+
+```
 
 
 
@@ -2443,20 +2521,25 @@ safesearch | A filter used to filter results for adult content. | no | string | 
 
 #### Example
 
+```javascript
 
-			const bingWebSearch = new cognitiveServices.bingWebSearch({API_KEY: yourApiKey})
-			
-		const parameters = {
-			q: "bill gates"
-			count: "10"
-			offset: "0"
-			mkt: "en-us"
-			safesearch: "Moderate"
-		};
+const bingWebSearch = new cognitiveServices.bingWebSearch({
+    API_KEY: yourApiKey
+})
 
-			bingWebSearch.search({parameters})
-				.then((response) => {
-						/**
+const parameters = {
+    q: "bill gates"
+    count: "10"
+    offset: "0"
+    mkt: "en-us"
+    safesearch: "Moderate"
+};
+
+bingWebSearch.search({
+        parameters
+    })
+    .then((response) => {
+        /**
 							Example response: {
 		"_type": "SearchResponse",
 		"instrumentation": {
@@ -2662,12 +2745,13 @@ safesearch | A filter used to filter results for adult content. | no | string | 
 		}
 	}
 							*/
-					console.log('Got response', response);
-				})
-				.catch((err) => {
-					console.error('Encountered error making request:', err);
-				});
-		
+        console.log('Got response', response);
+    })
+    .catch((err) => {
+        console.error('Encountered error making request:', err);
+    });
+
+```
 
 
 
@@ -2700,16 +2784,21 @@ details | A string indicating which domain-specific details to return. Multiple 
 
 #### Example
 
+```javascript
 
-			const computerVision = new cognitiveServices.computerVision({API_KEY: yourApiKey})
-			
-		const parameters = {
-			visualFeatures: "Categories"
-		};
+const computerVision = new cognitiveServices.computerVision({
+    API_KEY: yourApiKey
+})
 
-			computerVision.analyzeImage({parameters})
-				.then((response) => {
-						/**
+const parameters = {
+    visualFeatures: "Categories"
+};
+
+computerVision.analyzeImage({
+        parameters
+    })
+    .then((response) => {
+        /**
 							Example response: {
 		"categories": [
 			{
@@ -2808,12 +2897,13 @@ details | A string indicating which domain-specific details to return. Multiple 
 		}
 	}
 							*/
-					console.log('Got response', response);
-				})
-				.catch((err) => {
-					console.error('Encountered error making request:', err);
-				});
-		
+        console.log('Got response', response);
+    })
+    .catch((err) => {
+        console.error('Encountered error making request:', err);
+    });
+
+```
 
 #### Computer Vision - Describe Image
 
@@ -2841,16 +2931,21 @@ maxCandidates | Maximum number of candidate descriptions to be returned.  The de
 
 #### Example
 
+```javascript
 
-			const computerVision = new cognitiveServices.computerVision({API_KEY: yourApiKey})
-			
-		const parameters = {
-			maxCandidates: "1"
-		};
+const computerVision = new cognitiveServices.computerVision({
+    API_KEY: yourApiKey
+})
 
-			computerVision.describeImage({parameters})
-				.then((response) => {
-						/**
+const parameters = {
+    maxCandidates: "1"
+};
+
+computerVision.describeImage({
+        parameters
+    })
+    .then((response) => {
+        /**
 							Example response: {
 		"description": {
 			"tags": [
@@ -2883,12 +2978,13 @@ maxCandidates | Maximum number of candidate descriptions to be returned.  The de
 		}
 	}
 							*/
-					console.log('Got response', response);
-				})
-				.catch((err) => {
-					console.error('Encountered error making request:', err);
-				});
-		
+        console.log('Got response', response);
+    })
+    .catch((err) => {
+        console.error('Encountered error making request:', err);
+    });
+
+```
 
 #### Computer Vision - Get Thumbnail
 
@@ -2918,24 +3014,30 @@ smartCropping | Boolean flag for enabling smart cropping. | no | boolean | true
 
 #### Example
 
+```javascript
 
-			const computerVision = new cognitiveServices.computerVision({API_KEY: yourApiKey})
-			
-		const parameters = {
-			smartCropping: "true"
-		};
+const computerVision = new cognitiveServices.computerVision({
+    API_KEY: yourApiKey
+})
 
-			computerVision.getThumbnail({parameters})
-				.then((response) => {
-						/**
-							Example response: [Binary image data]
-							*/
-					console.log('Got response', response);
-				})
-				.catch((err) => {
-					console.error('Encountered error making request:', err);
-				});
-		
+const parameters = {
+    smartCropping: "true"
+};
+
+computerVision.getThumbnail({
+        parameters
+    })
+    .then((response) => {
+        /**
+        	Example response: [Binary image data]
+        	*/
+        console.log('Got response', response);
+    })
+    .catch((err) => {
+        console.error('Encountered error making request:', err);
+    });
+
+```
 
 #### Computer Vision - List Domain Specific Models
 
@@ -2957,13 +3059,18 @@ GET
 
 #### Example
 
+```javascript
 
-			const computerVision = new cognitiveServices.computerVision({API_KEY: yourApiKey})
-			
+const computerVision = new cognitiveServices.computerVision({
+    API_KEY: yourApiKey
+})
 
-			computerVision.listDomainSpecificModels({parameters})
-				.then((response) => {
-						/**
+
+computerVision.listDomainSpecificModels({
+        parameters
+    })
+    .then((response) => {
+        /**
 							Example response: {
 		"models": [
 			{
@@ -2975,12 +3082,13 @@ GET
 		]
 	}
 							*/
-					console.log('Got response', response);
-				})
-				.catch((err) => {
-					console.error('Encountered error making request:', err);
-				});
-		
+        console.log('Got response', response);
+    })
+    .catch((err) => {
+        console.error('Encountered error making request:', err);
+    });
+
+```
 
 #### Computer Vision - OCR
 
@@ -3008,17 +3116,22 @@ detectOrientation  | Whether detect the text orientation in the image. With dete
 
 #### Example
 
+```javascript
 
-			const computerVision = new cognitiveServices.computerVision({API_KEY: yourApiKey})
-			
-		const parameters = {
-			language: "unk"
-			detectOrientation : "true"
-		};
+const computerVision = new cognitiveServices.computerVision({
+    API_KEY: yourApiKey
+})
 
-			computerVision.ocr({parameters})
-				.then((response) => {
-						/**
+const parameters = {
+    language: "unk"
+    detectOrientation: "true"
+};
+
+computerVision.ocr({
+        parameters
+    })
+    .then((response) => {
+        /**
 							Example response: {
 		"language": "en",
 		"textAngle": -2.0000000000000338,
@@ -3083,12 +3196,13 @@ detectOrientation  | Whether detect the text orientation in the image. With dete
 		]
 	}
 							*/
-					console.log('Got response', response);
-				})
-				.catch((err) => {
-					console.error('Encountered error making request:', err);
-				});
-		
+        console.log('Got response', response);
+    })
+    .catch((err) => {
+        console.error('Encountered error making request:', err);
+    });
+
+```
 
 #### Computer Vision - Recognize Domain Specific Content
 
@@ -3116,16 +3230,21 @@ model | The domain-specific content to recognize. | yes | string |
 
 #### Example
 
+```javascript
 
-			const computerVision = new cognitiveServices.computerVision({API_KEY: yourApiKey})
-			
-		const parameters = {
-			
-		};
+const computerVision = new cognitiveServices.computerVision({
+    API_KEY: yourApiKey
+})
 
-			computerVision.recognizeDomainSpecificContent({parameters})
-				.then((response) => {
-						/**
+const parameters = {
+
+};
+
+computerVision.recognizeDomainSpecificContent({
+        parameters
+    })
+    .then((response) => {
+        /**
 							Example response: {
 		"requestId": "f0027b4b-dc0d-4082-9228-1545ed246b03",
 		"metadata": {
@@ -3149,12 +3268,13 @@ model | The domain-specific content to recognize. | yes | string |
 		}
 	}
 							*/
-					console.log('Got response', response);
-				})
-				.catch((err) => {
-					console.error('Encountered error making request:', err);
-				});
-		
+        console.log('Got response', response);
+    })
+    .catch((err) => {
+        console.error('Encountered error making request:', err);
+    });
+
+```
 
 #### Computer Vision - Tag Image
 
@@ -3179,13 +3299,18 @@ POST
 
 #### Example
 
+```javascript
 
-			const computerVision = new cognitiveServices.computerVision({API_KEY: yourApiKey})
-			
+const computerVision = new cognitiveServices.computerVision({
+    API_KEY: yourApiKey
+})
 
-			computerVision.tagImage({parameters})
-				.then((response) => {
-						/**
+
+computerVision.tagImage({
+        parameters
+    })
+    .then((response) => {
+        /**
 							Example response: {
 		"tags": [
 			{
@@ -3229,12 +3354,13 @@ POST
 		}
 	}
 							*/
-					console.log('Got response', response);
-				})
-				.catch((err) => {
-					console.error('Encountered error making request:', err);
-				});
-		
+        console.log('Got response', response);
+    })
+    .catch((err) => {
+        console.error('Encountered error making request:', err);
+    });
+
+```
 
 
 
@@ -3254,13 +3380,18 @@ POST
 
 #### Example
 
+```javascript
 
-			const emotion = new cognitiveServices.emotion({API_KEY: yourApiKey})
-			
+const emotion = new cognitiveServices.emotion({
+    API_KEY: yourApiKey
+})
 
-			emotion.emotionRecognition({parameters})
-				.then((response) => {
-						/**
+
+emotion.emotionRecognition({
+        parameters
+    })
+    .then((response) => {
+        /**
 							Example response: [
 		{
 			"faceRectangle": {
@@ -3282,12 +3413,13 @@ POST
 		}
 	]
 							*/
-					console.log('Got response', response);
-				})
-				.catch((err) => {
-					console.error('Encountered error making request:', err);
-				});
-		
+        console.log('Got response', response);
+    })
+    .catch((err) => {
+        console.error('Encountered error making request:', err);
+    });
+
+```
 
 #### Emotion - Emotion Recognition in Video
 
@@ -3311,18 +3443,24 @@ Returns aggregate emotions for the faces in a video.<br/>
 
 #### Example
 
+```javascript
 
-			const emotion = new cognitiveServices.emotion({API_KEY: yourApiKey})
-			
+const emotion = new cognitiveServices.emotion({
+    API_KEY: yourApiKey
+})
 
-			emotion.emotionRecognitionInVideo({parameters})
-				.then((response) => {
-					console.log('Got response', response);
-				})
-				.catch((err) => {
-					console.error('Encountered error making request:', err);
-				});
-		
+
+emotion.emotionRecognitionInVideo({
+        parameters
+    })
+    .then((response) => {
+        console.log('Got response', response);
+    })
+    .catch((err) => {
+        console.error('Encountered error making request:', err);
+    });
+
+```
 
 #### Emotion - Emotion Recognition with Face Rectangles
 
@@ -3341,16 +3479,21 @@ faceRectangles | A face rectangle is in the form “left,top,width,height”. De
 
 #### Example
 
+```javascript
 
-			const emotion = new cognitiveServices.emotion({API_KEY: yourApiKey})
-			
-		const parameters = {
-			
-		};
+const emotion = new cognitiveServices.emotion({
+    API_KEY: yourApiKey
+})
 
-			emotion.emotionRecognitionWithFaceRectangles({parameters})
-				.then((response) => {
-						/**
+const parameters = {
+
+};
+
+emotion.emotionRecognitionWithFaceRectangles({
+        parameters
+    })
+    .then((response) => {
+        /**
 							Example response: [
 		{
 			"faceRectangle": {
@@ -3372,12 +3515,13 @@ faceRectangles | A face rectangle is in the form “left,top,width,height”. De
 		}
 	]
 							*/
-					console.log('Got response', response);
-				})
-				.catch((err) => {
-					console.error('Encountered error making request:', err);
-				});
-		
+        console.log('Got response', response);
+    })
+    .catch((err) => {
+        console.error('Encountered error making request:', err);
+    });
+
+```
 
 #### Emotion - Get Recognition in Video Operation Result
 
@@ -3421,16 +3565,21 @@ oid |  | yes | string |
 
 #### Example
 
+```javascript
 
-			const emotion = new cognitiveServices.emotion({API_KEY: yourApiKey})
-			
-		const parameters = {
-			
-		};
+const emotion = new cognitiveServices.emotion({
+    API_KEY: yourApiKey
+})
 
-			emotion.getRecognitionInVideoOperationResult({parameters})
-				.then((response) => {
-						/**
+const parameters = {
+
+};
+
+emotion.getRecognitionInVideoOperationResult({
+        parameters
+    })
+    .then((response) => {
+        /**
 							Example response: {
 		"status": "running",
 		"createdDateTime":	"2015-09-30T01:28:23Z",
@@ -3438,12 +3587,13 @@ oid |  | yes | string |
 	}
 	
 							*/
-					console.log('Got response', response);
-				})
-				.catch((err) => {
-					console.error('Encountered error making request:', err);
-				});
-		
+        console.log('Got response', response);
+    })
+    .catch((err) => {
+        console.error('Encountered error making request:', err);
+    });
+
+```
 
 
 
@@ -3467,16 +3617,21 @@ offset | The location (in offset by characters) of the selected word or phrase w
 
 #### Example
 
+```javascript
 
-			const entityLinking = new cognitiveServices.entityLinking({API_KEY: yourApiKey})
-			
-		const parameters = {
-			
-		};
+const entityLinking = new cognitiveServices.entityLinking({
+    API_KEY: yourApiKey
+})
 
-			entityLinking.linkEntity({parameters})
-				.then((response) => {
-						/**
+const parameters = {
+
+};
+
+entityLinking.linkEntity({
+        parameters
+    })
+    .then((response) => {
+        /**
 							Example response: {
 		"entities": [
 			{
@@ -3511,12 +3666,13 @@ offset | The location (in offset by characters) of the selected word or phrase w
 		]
 	}
 							*/
-					console.log('Got response', response);
-				})
-				.catch((err) => {
-					console.error('Encountered error making request:', err);
-				});
-		
+        console.log('Got response', response);
+    })
+    .catch((err) => {
+        console.error('Encountered error making request:', err);
+    });
+
+```
 
 
 
@@ -3558,17 +3714,22 @@ returnFaceAttributes | Analyze and return the one or more specified face attribu
 
 #### Example
 
+```javascript
 
-			const face = new cognitiveServices.face({API_KEY: yourApiKey})
-			
-		const parameters = {
-			returnFaceId: "true"
-			returnFaceLandmarks: "false"
-		};
+const face = new cognitiveServices.face({
+    API_KEY: yourApiKey
+})
 
-			face.detect({parameters})
-				.then((response) => {
-						/**
+const parameters = {
+    returnFaceId: "true"
+    returnFaceLandmarks: "false"
+};
+
+face.detect({
+        parameters
+    })
+    .then((response) => {
+        /**
 							Example response: [
 			{
 					"faceId": "c5c24a82-6845-4031-9d5d-978df9175426",
@@ -3708,12 +3869,13 @@ returnFaceAttributes | Analyze and return the one or more specified face attribu
 			}
 	]
 							*/
-					console.log('Got response', response);
-				})
-				.catch((err) => {
-					console.error('Encountered error making request:', err);
-				});
-		
+        console.log('Got response', response);
+    })
+    .catch((err) => {
+        console.error('Encountered error making request:', err);
+    });
+
+```
 
 #### Face - Find Similar
 
@@ -3734,13 +3896,18 @@ returnFaceAttributes | Analyze and return the one or more specified face attribu
 
 #### Example
 
+```javascript
 
-			const face = new cognitiveServices.face({API_KEY: yourApiKey})
-			
+const face = new cognitiveServices.face({
+    API_KEY: yourApiKey
+})
 
-			face.findSimilar({parameters})
-				.then((response) => {
-						/**
+
+face.findSimilar({
+        parameters
+    })
+    .then((response) => {
+        /**
 							Example response: [
 			{
 					"persistedFaceId" : "015839fb-fbd9-4f79-ace9-7675fc2f1dd9",
@@ -3749,12 +3916,13 @@ returnFaceAttributes | Analyze and return the one or more specified face attribu
 			 
 	]
 							*/
-					console.log('Got response', response);
-				})
-				.catch((err) => {
-					console.error('Encountered error making request:', err);
-				});
-		
+        console.log('Got response', response);
+    })
+    .catch((err) => {
+        console.error('Encountered error making request:', err);
+    });
+
+```
 
 #### Face - Group
 
@@ -3784,13 +3952,18 @@ returnFaceAttributes | Analyze and return the one or more specified face attribu
 
 #### Example
 
+```javascript
 
-			const face = new cognitiveServices.face({API_KEY: yourApiKey})
-			
+const face = new cognitiveServices.face({
+    API_KEY: yourApiKey
+})
 
-			face.group({parameters})
-				.then((response) => {
-						/**
+
+face.group({
+        parameters
+    })
+    .then((response) => {
+        /**
 							Example response: {
 		"groups": [
 			[
@@ -3809,12 +3982,13 @@ returnFaceAttributes | Analyze and return the one or more specified face attribu
 		]
 	}
 							*/
-					console.log('Got response', response);
-				})
-				.catch((err) => {
-					console.error('Encountered error making request:', err);
-				});
-		
+        console.log('Got response', response);
+    })
+    .catch((err) => {
+        console.error('Encountered error making request:', err);
+    });
+
+```
 
 #### Face - Identify
 
@@ -3848,13 +4022,18 @@ returnFaceAttributes | Analyze and return the one or more specified face attribu
 
 #### Example
 
+```javascript
 
-			const face = new cognitiveServices.face({API_KEY: yourApiKey})
-			
+const face = new cognitiveServices.face({
+    API_KEY: yourApiKey
+})
 
-			face.identify({parameters})
-				.then((response) => {
-						/**
+
+face.identify({
+        parameters
+    })
+    .then((response) => {
+        /**
 							Example response: {
 			[
 					{
@@ -3877,12 +4056,13 @@ returnFaceAttributes | Analyze and return the one or more specified face attribu
 			]
 	}
 							*/
-					console.log('Got response', response);
-				})
-				.catch((err) => {
-					console.error('Encountered error making request:', err);
-				});
-		
+        console.log('Got response', response);
+    })
+    .catch((err) => {
+        console.error('Encountered error making request:', err);
+    });
+
+```
 
 #### Face - Verify
 
@@ -3908,24 +4088,30 @@ returnFaceAttributes | Analyze and return the one or more specified face attribu
 
 #### Example
 
+```javascript
 
-			const face = new cognitiveServices.face({API_KEY: yourApiKey})
-			
+const face = new cognitiveServices.face({
+    API_KEY: yourApiKey
+})
 
-			face.verify({parameters})
-				.then((response) => {
-						/**
+
+face.verify({
+        parameters
+    })
+    .then((response) => {
+        /**
 							Example response: {
 		"isIdentical": true,
 		"confidence": 0.9
 	}
 							*/
-					console.log('Got response', response);
-				})
-				.catch((err) => {
-					console.error('Encountered error making request:', err);
-				});
-		
+        console.log('Got response', response);
+    })
+    .catch((err) => {
+        console.error('Encountered error making request:', err);
+    });
+
+```
 
 #### Face - Add a Face to a Face List
 
@@ -3965,26 +4151,32 @@ targetFace | A face rectangle to specify the target face to be added into the fa
 
 #### Example
 
+```javascript
 
-			const face = new cognitiveServices.face({API_KEY: yourApiKey})
-			
-		const parameters = {
-			
-		};
+const face = new cognitiveServices.face({
+    API_KEY: yourApiKey
+})
 
-			face.addAFaceToAFaceList({parameters})
-				.then((response) => {
-						/**
+const parameters = {
+
+};
+
+face.addAFaceToAFaceList({
+        parameters
+    })
+    .then((response) => {
+        /**
 							Example response: {
 		"persistedFaceId": "B8D802CF-DD8F-4E61-B15C-9E6C5844CCBA"
 	}
 							*/
-					console.log('Got response', response);
-				})
-				.catch((err) => {
-					console.error('Encountered error making request:', err);
-				});
-		
+        console.log('Got response', response);
+    })
+    .catch((err) => {
+        console.error('Encountered error making request:', err);
+    });
+
+```
 
 #### Face - Create a Face List
 
@@ -4013,21 +4205,27 @@ faceListId |     Valid character is letter in lower case or digit or '-' or '_',
 
 #### Example
 
+```javascript
 
-			const face = new cognitiveServices.face({API_KEY: yourApiKey})
-			
-		const parameters = {
-			
-		};
+const face = new cognitiveServices.face({
+    API_KEY: yourApiKey
+})
 
-			face.createAFaceList({parameters})
-				.then((response) => {
-					console.log('Got response', response);
-				})
-				.catch((err) => {
-					console.error('Encountered error making request:', err);
-				});
-		
+const parameters = {
+
+};
+
+face.createAFaceList({
+        parameters
+    })
+    .then((response) => {
+        console.log('Got response', response);
+    })
+    .catch((err) => {
+        console.error('Encountered error making request:', err);
+    });
+
+```
 
 #### Face - Delete a Face from a Face List
 
@@ -4051,21 +4249,27 @@ persistedFaceId | Valid character is letter in lower case or digit or '-' or '_'
 
 #### Example
 
+```javascript
 
-			const face = new cognitiveServices.face({API_KEY: yourApiKey})
-			
-		const parameters = {
-			
-		};
+const face = new cognitiveServices.face({
+    API_KEY: yourApiKey
+})
 
-			face.deleteAFaceFromAFaceList({parameters})
-				.then((response) => {
-					console.log('Got response', response);
-				})
-				.catch((err) => {
-					console.error('Encountered error making request:', err);
-				});
-		
+const parameters = {
+
+};
+
+face.deleteAFaceFromAFaceList({
+        parameters
+    })
+    .then((response) => {
+        console.log('Got response', response);
+    })
+    .catch((err) => {
+        console.error('Encountered error making request:', err);
+    });
+
+```
 
 #### Face - Delete a Face List
 
@@ -4088,21 +4292,27 @@ faceListId | Valid character is letter in lower case or digit or '-' or '_', max
 
 #### Example
 
+```javascript
 
-			const face = new cognitiveServices.face({API_KEY: yourApiKey})
-			
-		const parameters = {
-			
-		};
+const face = new cognitiveServices.face({
+    API_KEY: yourApiKey
+})
 
-			face.deleteAFaceList({parameters})
-				.then((response) => {
-					console.log('Got response', response);
-				})
-				.catch((err) => {
-					console.error('Encountered error making request:', err);
-				});
-		
+const parameters = {
+
+};
+
+face.deleteAFaceList({
+        parameters
+    })
+    .then((response) => {
+        console.log('Got response', response);
+    })
+    .catch((err) => {
+        console.error('Encountered error making request:', err);
+    });
+
+```
 
 #### Face - Get a Face List
 
@@ -4126,16 +4336,21 @@ faceListId | Valid character is letter in lower case or digit or '-' or '_', max
 
 #### Example
 
+```javascript
 
-			const face = new cognitiveServices.face({API_KEY: yourApiKey})
-			
-		const parameters = {
-			
-		};
+const face = new cognitiveServices.face({
+    API_KEY: yourApiKey
+})
 
-			face.getAFaceList({parameters})
-				.then((response) => {
-						/**
+const parameters = {
+
+};
+
+face.getAFaceList({
+        parameters
+    })
+    .then((response) => {
+        /**
 							Example response: {
 			"faceListId": "sample_list",
 			"name": "list1",
@@ -4149,12 +4364,13 @@ faceListId | Valid character is letter in lower case or digit or '-' or '_', max
 			]
 	}
 							*/
-					console.log('Got response', response);
-				})
-				.catch((err) => {
-					console.error('Encountered error making request:', err);
-				});
-		
+        console.log('Got response', response);
+    })
+    .catch((err) => {
+        console.error('Encountered error making request:', err);
+    });
+
+```
 
 #### Face - List Face Lists
 
@@ -4174,13 +4390,18 @@ faceListId | Valid character is letter in lower case or digit or '-' or '_', max
 
 #### Example
 
+```javascript
 
-			const face = new cognitiveServices.face({API_KEY: yourApiKey})
-			
+const face = new cognitiveServices.face({
+    API_KEY: yourApiKey
+})
 
-			face.listFaceLists({parameters})
-				.then((response) => {
-						/**
+
+face.listFaceLists({
+        parameters
+    })
+    .then((response) => {
+        /**
 							Example response: [
 			{
 					"faceListId": "sample_list",
@@ -4190,12 +4411,13 @@ faceListId | Valid character is letter in lower case or digit or '-' or '_', max
 			
 	]
 							*/
-					console.log('Got response', response);
-				})
-				.catch((err) => {
-					console.error('Encountered error making request:', err);
-				});
-		
+        console.log('Got response', response);
+    })
+    .catch((err) => {
+        console.error('Encountered error making request:', err);
+    });
+
+```
 
 #### Face - Update a Face List
 
@@ -4219,21 +4441,27 @@ faceListId | Valid character is letter in lower case or digit or '-' or '_', max
 
 #### Example
 
+```javascript
 
-			const face = new cognitiveServices.face({API_KEY: yourApiKey})
-			
-		const parameters = {
-			
-		};
+const face = new cognitiveServices.face({
+    API_KEY: yourApiKey
+})
 
-			face.updateAFaceList({parameters})
-				.then((response) => {
-					console.log('Got response', response);
-				})
-				.catch((err) => {
-					console.error('Encountered error making request:', err);
-				});
-		
+const parameters = {
+
+};
+
+face.updateAFaceList({
+        parameters
+    })
+    .then((response) => {
+        console.log('Got response', response);
+    })
+    .catch((err) => {
+        console.error('Encountered error making request:', err);
+    });
+
+```
 
 #### Face - Add a Person Face
 
@@ -4270,26 +4498,32 @@ targetFace | A face rectangle to specify the target face to be added to a person
 
 #### Example
 
+```javascript
 
-			const face = new cognitiveServices.face({API_KEY: yourApiKey})
-			
-		const parameters = {
-			
-		};
+const face = new cognitiveServices.face({
+    API_KEY: yourApiKey
+})
 
-			face.addAPersonFace({parameters})
-				.then((response) => {
-						/**
+const parameters = {
+
+};
+
+face.addAPersonFace({
+        parameters
+    })
+    .then((response) => {
+        /**
 							Example response: {
 		"persistedFaceId": "B8D802CF-DD8F-4E61-B15C-9E6C5844CCBA"
 	}
 							*/
-					console.log('Got response', response);
-				})
-				.catch((err) => {
-					console.error('Encountered error making request:', err);
-				});
-		
+        console.log('Got response', response);
+    })
+    .catch((err) => {
+        console.error('Encountered error making request:', err);
+    });
+
+```
 
 #### Face - Create a Person
 
@@ -4314,26 +4548,32 @@ personGroupId | The target person's belonging person group's ID. | yes | string 
 
 #### Example
 
+```javascript
 
-			const face = new cognitiveServices.face({API_KEY: yourApiKey})
-			
-		const parameters = {
-			
-		};
+const face = new cognitiveServices.face({
+    API_KEY: yourApiKey
+})
 
-			face.createAPerson({parameters})
-				.then((response) => {
-						/**
+const parameters = {
+
+};
+
+face.createAPerson({
+        parameters
+    })
+    .then((response) => {
+        /**
 							Example response: {
 		"personId": "25985303-c537-4467-b41d-bdb45cd95ca1"
 	}
 							*/
-					console.log('Got response', response);
-				})
-				.catch((err) => {
-					console.error('Encountered error making request:', err);
-				});
-		
+        console.log('Got response', response);
+    })
+    .catch((err) => {
+        console.error('Encountered error making request:', err);
+    });
+
+```
 
 #### Face - Delete a Person
 
@@ -4357,21 +4597,27 @@ personId | The target personId to delete. | yes | string |
 
 #### Example
 
+```javascript
 
-			const face = new cognitiveServices.face({API_KEY: yourApiKey})
-			
-		const parameters = {
-			
-		};
+const face = new cognitiveServices.face({
+    API_KEY: yourApiKey
+})
 
-			face.deleteAPerson({parameters})
-				.then((response) => {
-					console.log('Got response', response);
-				})
-				.catch((err) => {
-					console.error('Encountered error making request:', err);
-				});
-		
+const parameters = {
+
+};
+
+face.deleteAPerson({
+        parameters
+    })
+    .then((response) => {
+        console.log('Got response', response);
+    })
+    .catch((err) => {
+        console.error('Encountered error making request:', err);
+    });
+
+```
 
 #### Face - Delete a Person Face
 
@@ -4396,21 +4642,27 @@ persistedFaceId | The face to remove. This persisted face ID is returned from <a
 
 #### Example
 
+```javascript
 
-			const face = new cognitiveServices.face({API_KEY: yourApiKey})
-			
-		const parameters = {
-			
-		};
+const face = new cognitiveServices.face({
+    API_KEY: yourApiKey
+})
 
-			face.deleteAPersonFace({parameters})
-				.then((response) => {
-					console.log('Got response', response);
-				})
-				.catch((err) => {
-					console.error('Encountered error making request:', err);
-				});
-		
+const parameters = {
+
+};
+
+face.deleteAPersonFace({
+        parameters
+    })
+    .then((response) => {
+        console.log('Got response', response);
+    })
+    .catch((err) => {
+        console.error('Encountered error making request:', err);
+    });
+
+```
 
 #### Face - Get a Person
 
@@ -4434,16 +4686,21 @@ personId | The target person ID. | yes | string |
 
 #### Example
 
+```javascript
 
-			const face = new cognitiveServices.face({API_KEY: yourApiKey})
-			
-		const parameters = {
-			
-		};
+const face = new cognitiveServices.face({
+    API_KEY: yourApiKey
+})
 
-			face.getAPerson({parameters})
-				.then((response) => {
-						/**
+const parameters = {
+
+};
+
+face.getAPerson({
+        parameters
+    })
+    .then((response) => {
+        /**
 							Example response: {
 		"personId": "25985303-c537-4467-b41d-bdb45cd95ca1",
 		"persistedFaceIds": [
@@ -4455,12 +4712,13 @@ personId | The target person ID. | yes | string |
 		"userData": "User-provided data attached to the person"
 	}
 							*/
-					console.log('Got response', response);
-				})
-				.catch((err) => {
-					console.error('Encountered error making request:', err);
-				});
-		
+        console.log('Got response', response);
+    })
+    .catch((err) => {
+        console.error('Encountered error making request:', err);
+    });
+
+```
 
 #### Face - Get a Person Face
 
@@ -4485,27 +4743,33 @@ persistedFaceId | The target face ID. | yes | string |
 
 #### Example
 
+```javascript
 
-			const face = new cognitiveServices.face({API_KEY: yourApiKey})
-			
-		const parameters = {
-			
-		};
+const face = new cognitiveServices.face({
+    API_KEY: yourApiKey
+})
 
-			face.getAPersonFace({parameters})
-				.then((response) => {
-						/**
+const parameters = {
+
+};
+
+face.getAPersonFace({
+        parameters
+    })
+    .then((response) => {
+        /**
 							Example response: {
 		"persistedFaceId": "015839fb-fbd9-4f79-ace9-7675fc2f1dd9",
 		"userData": "User-provided data attached to the person"
 	}
 							*/
-					console.log('Got response', response);
-				})
-				.catch((err) => {
-					console.error('Encountered error making request:', err);
-				});
-		
+        console.log('Got response', response);
+    })
+    .catch((err) => {
+        console.error('Encountered error making request:', err);
+    });
+
+```
 
 #### Face - List Persons in a Person Group
 
@@ -4528,16 +4792,21 @@ personGroupId | Target person group's ID. | yes | string |
 
 #### Example
 
+```javascript
 
-			const face = new cognitiveServices.face({API_KEY: yourApiKey})
-			
-		const parameters = {
-			
-		};
+const face = new cognitiveServices.face({
+    API_KEY: yourApiKey
+})
 
-			face.listPersonsInAPersonGroup({parameters})
-				.then((response) => {
-						/**
+const parameters = {
+
+};
+
+face.listPersonsInAPersonGroup({
+        parameters
+    })
+    .then((response) => {
+        /**
 							Example response: [
 		{
 			"personId": "25985303-c537-4467-b41d-bdb45cd95ca1",
@@ -4560,12 +4829,13 @@ personGroupId | Target person group's ID. | yes | string |
 		}
 	]
 							*/
-					console.log('Got response', response);
-				})
-				.catch((err) => {
-					console.error('Encountered error making request:', err);
-				});
-		
+        console.log('Got response', response);
+    })
+    .catch((err) => {
+        console.error('Encountered error making request:', err);
+    });
+
+```
 
 #### Face - Update a Person
 
@@ -4589,21 +4859,27 @@ personId | Target person's ID. | yes | string |
 
 #### Example
 
+```javascript
 
-			const face = new cognitiveServices.face({API_KEY: yourApiKey})
-			
-		const parameters = {
-			
-		};
+const face = new cognitiveServices.face({
+    API_KEY: yourApiKey
+})
 
-			face.updateAPerson({parameters})
-				.then((response) => {
-					console.log('Got response', response);
-				})
-				.catch((err) => {
-					console.error('Encountered error making request:', err);
-				});
-		
+const parameters = {
+
+};
+
+face.updateAPerson({
+        parameters
+    })
+    .then((response) => {
+        console.log('Got response', response);
+    })
+    .catch((err) => {
+        console.error('Encountered error making request:', err);
+    });
+
+```
 
 #### Face - Update a Person Face
 
@@ -4628,21 +4904,27 @@ persistedFaceId | Target face's ID. | yes | string |
 
 #### Example
 
+```javascript
 
-			const face = new cognitiveServices.face({API_KEY: yourApiKey})
-			
-		const parameters = {
-			
-		};
+const face = new cognitiveServices.face({
+    API_KEY: yourApiKey
+})
 
-			face.updateAPersonFace({parameters})
-				.then((response) => {
-					console.log('Got response', response);
-				})
-				.catch((err) => {
-					console.error('Encountered error making request:', err);
-				});
-		
+const parameters = {
+
+};
+
+face.updateAPersonFace({
+        parameters
+    })
+    .then((response) => {
+        console.log('Got response', response);
+    })
+    .catch((err) => {
+        console.error('Encountered error making request:', err);
+    });
+
+```
 
 #### Face - Create a Person Group
 
@@ -4668,21 +4950,27 @@ personGroupId |     User-provided person group ID as a string. The valid charact
 
 #### Example
 
+```javascript
 
-			const face = new cognitiveServices.face({API_KEY: yourApiKey})
-			
-		const parameters = {
-			
-		};
+const face = new cognitiveServices.face({
+    API_KEY: yourApiKey
+})
 
-			face.createAPersonGroup({parameters})
-				.then((response) => {
-					console.log('Got response', response);
-				})
-				.catch((err) => {
-					console.error('Encountered error making request:', err);
-				});
-		
+const parameters = {
+
+};
+
+face.createAPersonGroup({
+        parameters
+    })
+    .then((response) => {
+        console.log('Got response', response);
+    })
+    .catch((err) => {
+        console.error('Encountered error making request:', err);
+    });
+
+```
 
 #### Face - Delete a Person Group
 
@@ -4705,21 +4993,27 @@ personGroupId | The ID of the person group to be deleted. | yes | string |
 
 #### Example
 
+```javascript
 
-			const face = new cognitiveServices.face({API_KEY: yourApiKey})
-			
-		const parameters = {
-			
-		};
+const face = new cognitiveServices.face({
+    API_KEY: yourApiKey
+})
 
-			face.deleteAPersonGroup({parameters})
-				.then((response) => {
-					console.log('Got response', response);
-				})
-				.catch((err) => {
-					console.error('Encountered error making request:', err);
-				});
-		
+const parameters = {
+
+};
+
+face.deleteAPersonGroup({
+        parameters
+    })
+    .then((response) => {
+        console.log('Got response', response);
+    })
+    .catch((err) => {
+        console.error('Encountered error making request:', err);
+    });
+
+```
 
 #### Face - Get a Person Group
 
@@ -4742,28 +5036,34 @@ personGroupId | ID of the target person group. | yes | string |
 
 #### Example
 
+```javascript
 
-			const face = new cognitiveServices.face({API_KEY: yourApiKey})
-			
-		const parameters = {
-			
-		};
+const face = new cognitiveServices.face({
+    API_KEY: yourApiKey
+})
 
-			face.getAPersonGroup({parameters})
-				.then((response) => {
-						/**
+const parameters = {
+
+};
+
+face.getAPersonGroup({
+        parameters
+    })
+    .then((response) => {
+        /**
 							Example response: {
 		"personGroupId": "sample_group",
 		"name": "group1",
 		"userData": "User-provided data attached to the person group"
 	}
 							*/
-					console.log('Got response', response);
-				})
-				.catch((err) => {
-					console.error('Encountered error making request:', err);
-				});
-		
+        console.log('Got response', response);
+    })
+    .catch((err) => {
+        console.error('Encountered error making request:', err);
+    });
+
+```
 
 #### Face - Get Person Group Training Status
 
@@ -4786,16 +5086,21 @@ personGroupId | ID of target person group. | yes | string |
 
 #### Example
 
+```javascript
 
-			const face = new cognitiveServices.face({API_KEY: yourApiKey})
-			
-		const parameters = {
-			
-		};
+const face = new cognitiveServices.face({
+    API_KEY: yourApiKey
+})
 
-			face.getPersonGroupTrainingStatus({parameters})
-				.then((response) => {
-						/**
+const parameters = {
+
+};
+
+face.getPersonGroupTrainingStatus({
+        parameters
+    })
+    .then((response) => {
+        /**
 							Example response: {
 		"status": "succeeded",
 		"createdDateTime": "2015-05-15T13:45:30",
@@ -4803,12 +5108,13 @@ personGroupId | ID of target person group. | yes | string |
 		"message": "The operation was timeout."
 	}
 							*/
-					console.log('Got response', response);
-				})
-				.catch((err) => {
-					console.error('Encountered error making request:', err);
-				});
-		
+        console.log('Got response', response);
+    })
+    .catch((err) => {
+        console.error('Encountered error making request:', err);
+    });
+
+```
 
 #### Face - List Person Groups
 
@@ -4828,13 +5134,18 @@ personGroupId | ID of target person group. | yes | string |
 
 #### Example
 
+```javascript
 
-			const face = new cognitiveServices.face({API_KEY: yourApiKey})
-			
+const face = new cognitiveServices.face({
+    API_KEY: yourApiKey
+})
 
-			face.listPersonGroups({parameters})
-				.then((response) => {
-						/**
+
+face.listPersonGroups({
+        parameters
+    })
+    .then((response) => {
+        /**
 							Example response: [
 		{
 			"personGroupId": "sample_group",
@@ -4848,12 +5159,13 @@ personGroupId | ID of target person group. | yes | string |
 		}
 	]
 							*/
-					console.log('Got response', response);
-				})
-				.catch((err) => {
-					console.error('Encountered error making request:', err);
-				});
-		
+        console.log('Got response', response);
+    })
+    .catch((err) => {
+        console.error('Encountered error making request:', err);
+    });
+
+```
 
 #### Face - Train Person Group
 
@@ -4879,21 +5191,27 @@ personGroupId | Target person group to be trained. | yes | string |
 
 #### Example
 
+```javascript
 
-			const face = new cognitiveServices.face({API_KEY: yourApiKey})
-			
-		const parameters = {
-			
-		};
+const face = new cognitiveServices.face({
+    API_KEY: yourApiKey
+})
 
-			face.trainPersonGroup({parameters})
-				.then((response) => {
-					console.log('Got response', response);
-				})
-				.catch((err) => {
-					console.error('Encountered error making request:', err);
-				});
-		
+const parameters = {
+
+};
+
+face.trainPersonGroup({
+        parameters
+    })
+    .then((response) => {
+        console.log('Got response', response);
+    })
+    .catch((err) => {
+        console.error('Encountered error making request:', err);
+    });
+
+```
 
 #### Face - Update a Person Group
 
@@ -4916,21 +5234,27 @@ personGroupId | ID of the person group to be updated. | yes | string |
 
 #### Example
 
+```javascript
 
-			const face = new cognitiveServices.face({API_KEY: yourApiKey})
-			
-		const parameters = {
-			
-		};
+const face = new cognitiveServices.face({
+    API_KEY: yourApiKey
+})
 
-			face.updateAPersonGroup({parameters})
-				.then((response) => {
-					console.log('Got response', response);
-				})
-				.catch((err) => {
-					console.error('Encountered error making request:', err);
-				});
-		
+const parameters = {
+
+};
+
+face.updateAPersonGroup({
+        parameters
+    })
+    .then((response) => {
+        console.log('Got response', response);
+    })
+    .catch((err) => {
+        console.error('Encountered error making request:', err);
+    });
+
+```
 
 
 
@@ -4954,18 +5278,24 @@ Once you have created a model, you can upload your catalog data, upload your usa
 
 #### Example
 
+```javascript
 
-			const recommendations = new cognitiveServices.recommendations({API_KEY: yourApiKey})
-			
+const recommendations = new cognitiveServices.recommendations({
+    API_KEY: yourApiKey
+})
 
-			recommendations.createAModel({parameters})
-				.then((response) => {
-					console.log('Got response', response);
-				})
-				.catch((err) => {
-					console.error('Encountered error making request:', err);
-				});
-		
+
+recommendations.createAModel({
+        parameters
+    })
+    .then((response) => {
+        console.log('Got response', response);
+    })
+    .catch((err) => {
+        console.error('Encountered error making request:', err);
+    });
+
+```
 
 #### Recommendations - Create/Trigger a build
 
@@ -4984,21 +5314,27 @@ modelId | Unique identifier of the model | yes | string |
 
 #### Example
 
+```javascript
 
-			const recommendations = new cognitiveServices.recommendations({API_KEY: yourApiKey})
-			
-		const parameters = {
-			
-		};
+const recommendations = new cognitiveServices.recommendations({
+    API_KEY: yourApiKey
+})
 
-			recommendations.create/TriggerABuild({parameters})
-				.then((response) => {
-					console.log('Got response', response);
-				})
-				.catch((err) => {
-					console.error('Encountered error making request:', err);
-				});
-		
+const parameters = {
+
+};
+
+recommendations.create / TriggerABuild({
+        parameters
+    })
+    .then((response) => {
+        console.log('Got response', response);
+    })
+    .catch((err) => {
+        console.error('Encountered error making request:', err);
+    });
+
+```
 
 #### Recommendations - Delete a build
 
@@ -5020,21 +5356,27 @@ buildId | Format - int64. Unique identifier of the build | yes | integer |
 
 #### Example
 
+```javascript
 
-			const recommendations = new cognitiveServices.recommendations({API_KEY: yourApiKey})
-			
-		const parameters = {
-			
-		};
+const recommendations = new cognitiveServices.recommendations({
+    API_KEY: yourApiKey
+})
 
-			recommendations.deleteABuild({parameters})
-				.then((response) => {
-					console.log('Got response', response);
-				})
-				.catch((err) => {
-					console.error('Encountered error making request:', err);
-				});
-		
+const parameters = {
+
+};
+
+recommendations.deleteABuild({
+        parameters
+    })
+    .then((response) => {
+        console.log('Got response', response);
+    })
+    .catch((err) => {
+        console.error('Encountered error making request:', err);
+    });
+
+```
 
 #### Recommendations - Delete a model
 
@@ -5053,21 +5395,27 @@ id | Unique identifier of the model. | yes | string |
 
 #### Example
 
+```javascript
 
-			const recommendations = new cognitiveServices.recommendations({API_KEY: yourApiKey})
-			
-		const parameters = {
-			
-		};
+const recommendations = new cognitiveServices.recommendations({
+    API_KEY: yourApiKey
+})
 
-			recommendations.deleteAModel({parameters})
-				.then((response) => {
-					console.log('Got response', response);
-				})
-				.catch((err) => {
-					console.error('Encountered error making request:', err);
-				});
-		
+const parameters = {
+
+};
+
+recommendations.deleteAModel({
+        parameters
+    })
+    .then((response) => {
+        console.log('Got response', response);
+    })
+    .catch((err) => {
+        console.error('Encountered error making request:', err);
+    });
+
+```
 
 #### Recommendations - Delete/Cancel an ongoing operation
 
@@ -5086,21 +5434,27 @@ id | Operation ID | yes | string |
 
 #### Example
 
+```javascript
 
-			const recommendations = new cognitiveServices.recommendations({API_KEY: yourApiKey})
-			
-		const parameters = {
-			
-		};
+const recommendations = new cognitiveServices.recommendations({
+    API_KEY: yourApiKey
+})
 
-			recommendations.delete/CancelAnOngoingOperation({parameters})
-				.then((response) => {
-					console.log('Got response', response);
-				})
-				.catch((err) => {
-					console.error('Encountered error making request:', err);
-				});
-		
+const parameters = {
+
+};
+
+recommendations.delete / CancelAnOngoingOperation({
+        parameters
+    })
+    .then((response) => {
+        console.log('Got response', response);
+    })
+    .catch((err) => {
+        console.error('Encountered error making request:', err);
+    });
+
+```
 
 #### Recommendations - Get a model by id
 
@@ -5119,16 +5473,21 @@ id | Unique identifier of the model to be fetched. | yes | string |
 
 #### Example
 
+```javascript
 
-			const recommendations = new cognitiveServices.recommendations({API_KEY: yourApiKey})
-			
-		const parameters = {
-			
-		};
+const recommendations = new cognitiveServices.recommendations({
+    API_KEY: yourApiKey
+})
 
-			recommendations.getAModelById({parameters})
-				.then((response) => {
-						/**
+const parameters = {
+
+};
+
+recommendations.getAModelById({
+        parameters
+    })
+    .then((response) => {
+        /**
 							Example response: {
 		"id": "string",
 		"name": "string",
@@ -5137,12 +5496,13 @@ id | Unique identifier of the model to be fetched. | yes | string |
 		"activeBuildId": 0
 	}
 							*/
-					console.log('Got response', response);
-				})
-				.catch((err) => {
-					console.error('Encountered error making request:', err);
-				});
-		
+        console.log('Got response', response);
+    })
+    .catch((err) => {
+        console.error('Encountered error making request:', err);
+    });
+
+```
 
 #### Recommendations - Get all models
 
@@ -5158,13 +5518,18 @@ Retrieves all models.
 
 #### Example
 
+```javascript
 
-			const recommendations = new cognitiveServices.recommendations({API_KEY: yourApiKey})
-			
+const recommendations = new cognitiveServices.recommendations({
+    API_KEY: yourApiKey
+})
 
-			recommendations.getAllModels({parameters})
-				.then((response) => {
-						/**
+
+recommendations.getAllModels({
+        parameters
+    })
+    .then((response) => {
+        /**
 							Example response: {
 		"models": [
 			{
@@ -5177,12 +5542,13 @@ Retrieves all models.
 		]
 	}
 							*/
-					console.log('Got response', response);
-				})
-				.catch((err) => {
-					console.error('Encountered error making request:', err);
-				});
-		
+        console.log('Got response', response);
+    })
+    .catch((err) => {
+        console.error('Encountered error making request:', err);
+    });
+
+```
 
 #### Recommendations - Get build by id
 
@@ -5202,16 +5568,21 @@ buildId | Format - int64. Unique identifier of the build | yes | integer |
 
 #### Example
 
+```javascript
 
-			const recommendations = new cognitiveServices.recommendations({API_KEY: yourApiKey})
-			
-		const parameters = {
-			
-		};
+const recommendations = new cognitiveServices.recommendations({
+    API_KEY: yourApiKey
+})
 
-			recommendations.getBuildById({parameters})
-				.then((response) => {
-						/**
+const parameters = {
+
+};
+
+recommendations.getBuildById({
+        parameters
+    })
+    .then((response) => {
+        /**
 							Example response: {
 		"id": 0,
 		"description": "string",
@@ -5225,12 +5596,13 @@ buildId | Format - int64. Unique identifier of the build | yes | integer |
 		"modifiedDateTime": "string"
 	}
 							*/
-					console.log('Got response', response);
-				})
-				.catch((err) => {
-					console.error('Encountered error making request:', err);
-				});
-		
+        console.log('Got response', response);
+    })
+    .catch((err) => {
+        console.error('Encountered error making request:', err);
+    });
+
+```
 
 #### Recommendations - Get build metrics
 
@@ -5250,16 +5622,21 @@ buildId | Format - int64. Unique identifier of the build | yes | integer |
 
 #### Example
 
+```javascript
 
-			const recommendations = new cognitiveServices.recommendations({API_KEY: yourApiKey})
-			
-		const parameters = {
-			
-		};
+const recommendations = new cognitiveServices.recommendations({
+    API_KEY: yourApiKey
+})
 
-			recommendations.getBuildMetrics({parameters})
-				.then((response) => {
-						/**
+const parameters = {
+
+};
+
+recommendations.getBuildMetrics({
+        parameters
+    })
+    .then((response) => {
+        /**
 							Example response: {
 		"precisionItemRecommend": {
 			"precisionMetrics": [
@@ -5313,12 +5690,13 @@ buildId | Format - int64. Unique identifier of the build | yes | integer |
 		}
 	}
 							*/
-					console.log('Got response', response);
-				})
-				.catch((err) => {
-					console.error('Encountered error making request:', err);
-				});
-		
+        console.log('Got response', response);
+    })
+    .catch((err) => {
+        console.error('Encountered error making request:', err);
+    });
+
+```
 
 #### Recommendations - Get details of all builds
 
@@ -5338,16 +5716,21 @@ onlyLastRequestedBuild | true to return only the last build of the model, false 
 
 #### Example
 
+```javascript
 
-			const recommendations = new cognitiveServices.recommendations({API_KEY: yourApiKey})
-			
-		const parameters = {
-			
-		};
+const recommendations = new cognitiveServices.recommendations({
+    API_KEY: yourApiKey
+})
 
-			recommendations.getDetailsOfAllBuilds({parameters})
-				.then((response) => {
-						/**
+const parameters = {
+
+};
+
+recommendations.getDetailsOfAllBuilds({
+        parameters
+    })
+    .then((response) => {
+        /**
 							Example response: {
 		"builds": [
 			{
@@ -5365,12 +5748,13 @@ onlyLastRequestedBuild | true to return only the last build of the model, false 
 		]
 	}
 							*/
-					console.log('Got response', response);
-				})
-				.catch((err) => {
-					console.error('Encountered error making request:', err);
-				});
-		
+        console.log('Got response', response);
+    })
+    .catch((err) => {
+        console.error('Encountered error making request:', err);
+    });
+
+```
 
 #### Recommendations - Get recommendations based on items (I2I)
 
@@ -5394,16 +5778,21 @@ buildId | Format - int64. The build id to use for this recommendation request. I
 
 #### Example
 
+```javascript
 
-			const recommendations = new cognitiveServices.recommendations({API_KEY: yourApiKey})
-			
-		const parameters = {
-			
-		};
+const recommendations = new cognitiveServices.recommendations({
+    API_KEY: yourApiKey
+})
 
-			recommendations.getRecommendationsBasedOnItems (I2I)({parameters})
-				.then((response) => {
-						/**
+const parameters = {
+
+};
+
+recommendations.getRecommendationsBasedOnItems(I2I)({
+        parameters
+    })
+    .then((response) => {
+        /**
 							Example response: {
 		"recommendedItems": [
 			{
@@ -5422,12 +5811,13 @@ buildId | Format - int64. The build id to use for this recommendation request. I
 		]
 	}
 							*/
-					console.log('Got response', response);
-				})
-				.catch((err) => {
-					console.error('Encountered error making request:', err);
-				});
-		
+        console.log('Got response', response);
+    })
+    .catch((err) => {
+        console.error('Encountered error making request:', err);
+    });
+
+```
 
 #### Recommendations - Get user recommendations (U2I)
 
@@ -5456,16 +5846,21 @@ buildId | Format - int64. Build identifier, if the number is less than 0, uses t
 
 #### Example
 
+```javascript
 
-			const recommendations = new cognitiveServices.recommendations({API_KEY: yourApiKey})
-			
-		const parameters = {
-			
-		};
+const recommendations = new cognitiveServices.recommendations({
+    API_KEY: yourApiKey
+})
 
-			recommendations.getUserRecommendations (U2I)({parameters})
-				.then((response) => {
-						/**
+const parameters = {
+
+};
+
+recommendations.getUserRecommendations(U2I)({
+        parameters
+    })
+    .then((response) => {
+        /**
 							Example response: {
 		"recommendedItems": [
 			{
@@ -5484,12 +5879,13 @@ buildId | Format - int64. Build identifier, if the number is less than 0, uses t
 		]
 	}
 							*/
-					console.log('Got response', response);
-				})
-				.catch((err) => {
-					console.error('Encountered error making request:', err);
-				});
-		
+        console.log('Got response', response);
+    })
+    .catch((err) => {
+        console.error('Encountered error making request:', err);
+    });
+
+```
 
 #### Recommendations - Retrieve the status of an operation
 
@@ -5508,16 +5904,21 @@ id | Operation ID | yes | string |
 
 #### Example
 
+```javascript
 
-			const recommendations = new cognitiveServices.recommendations({API_KEY: yourApiKey})
-			
-		const parameters = {
-			
-		};
+const recommendations = new cognitiveServices.recommendations({
+    API_KEY: yourApiKey
+})
 
-			recommendations.retrieveTheStatusOfAnOperation({parameters})
-				.then((response) => {
-						/**
+const parameters = {
+
+};
+
+recommendations.retrieveTheStatusOfAnOperation({
+        parameters
+    })
+    .then((response) => {
+        /**
 							Example response: {
 		"type": "string",
 		"status": "string",
@@ -5540,12 +5941,13 @@ id | Operation ID | yes | string |
 		}
 	}
 							*/
-					console.log('Got response', response);
-				})
-				.catch((err) => {
-					console.error('Encountered error making request:', err);
-				});
-		
+        console.log('Got response', response);
+    })
+    .catch((err) => {
+        console.error('Encountered error making request:', err);
+    });
+
+```
 
 #### Recommendations - Update a model
 
@@ -5564,21 +5966,27 @@ id | Unique identifier of the model. | yes | string |
 
 #### Example
 
+```javascript
 
-			const recommendations = new cognitiveServices.recommendations({API_KEY: yourApiKey})
-			
-		const parameters = {
-			
-		};
+const recommendations = new cognitiveServices.recommendations({
+    API_KEY: yourApiKey
+})
 
-			recommendations.updateAModel({parameters})
-				.then((response) => {
-					console.log('Got response', response);
-				})
-				.catch((err) => {
-					console.error('Encountered error making request:', err);
-				});
-		
+const parameters = {
+
+};
+
+recommendations.updateAModel({
+        parameters
+    })
+    .then((response) => {
+        console.log('Got response', response);
+    })
+    .catch((err) => {
+        console.error('Encountered error making request:', err);
+    });
+
+```
 
 #### Recommendations - Upload a catalog file to a model
 
@@ -5599,16 +6007,21 @@ catalogDisplayName | Display name of the catalog data. e.g. "CatalogFile1"     
 
 #### Example
 
+```javascript
 
-			const recommendations = new cognitiveServices.recommendations({API_KEY: yourApiKey})
-			
-		const parameters = {
-			
-		};
+const recommendations = new cognitiveServices.recommendations({
+    API_KEY: yourApiKey
+})
 
-			recommendations.uploadACatalogFileToAModel({parameters})
-				.then((response) => {
-						/**
+const parameters = {
+
+};
+
+recommendations.uploadACatalogFileToAModel({
+        parameters
+    })
+    .then((response) => {
+        /**
 							Example response: {
 		"processedLineCount": 0,
 		"errorLineCount": 0,
@@ -5621,12 +6034,13 @@ catalogDisplayName | Display name of the catalog data. e.g. "CatalogFile1"     
 		]
 	}
 							*/
-					console.log('Got response', response);
-				})
-				.catch((err) => {
-					console.error('Encountered error making request:', err);
-				});
-		
+        console.log('Got response', response);
+    })
+    .catch((err) => {
+        console.error('Encountered error making request:', err);
+    });
+
+```
 
 #### Recommendations - Upload a usage file to a model
 
@@ -5646,16 +6060,21 @@ usageDisplayName | Display name of the usage data. e.g. "UsageFile1"<br>Only let
 
 #### Example
 
+```javascript
 
-			const recommendations = new cognitiveServices.recommendations({API_KEY: yourApiKey})
-			
-		const parameters = {
-			
-		};
+const recommendations = new cognitiveServices.recommendations({
+    API_KEY: yourApiKey
+})
 
-			recommendations.uploadAUsageFileToAModel({parameters})
-				.then((response) => {
-						/**
+const parameters = {
+
+};
+
+recommendations.uploadAUsageFileToAModel({
+        parameters
+    })
+    .then((response) => {
+        /**
 							Example response: {
 		"fileId": "string",
 		"processedLineCount": 0,
@@ -5669,12 +6088,13 @@ usageDisplayName | Display name of the usage data. e.g. "UsageFile1"<br>Only let
 		]
 	}
 							*/
-					console.log('Got response', response);
-				})
-				.catch((err) => {
-					console.error('Encountered error making request:', err);
-				});
-		
+        console.log('Got response', response);
+    })
+    .catch((err) => {
+        console.error('Encountered error making request:', err);
+    });
+
+```
 
 
 
@@ -5698,16 +6118,21 @@ verificationProfileId | ID of speaker verification profile. GUID returned from <
 
 #### Example
 
+```javascript
 
-			const speakerRecognition = new cognitiveServices.speakerRecognition({API_KEY: yourApiKey})
-			
-		const parameters = {
-			
-		};
+const speakerRecognition = new cognitiveServices.speakerRecognition({
+    API_KEY: yourApiKey
+})
 
-			speakerRecognition.createEnrollment({parameters})
-				.then((response) => {
-						/**
+const parameters = {
+
+};
+
+speakerRecognition.createEnrollment({
+        parameters
+    })
+    .then((response) => {
+        /**
 							Example response: {
 		"enrollmentStatus" : "Enrolled", // [Enrolled | Enrolling | Training]
 		"enrollmentsCount":0,
@@ -5715,12 +6140,13 @@ verificationProfileId | ID of speaker verification profile. GUID returned from <
 		"phrase" : "Recognized verification phrase"
 	}
 							*/
-					console.log('Got response', response);
-				})
-				.catch((err) => {
-					console.error('Encountered error making request:', err);
-				});
-		
+        console.log('Got response', response);
+    })
+    .catch((err) => {
+        console.error('Encountered error making request:', err);
+    });
+
+```
 
 #### Speaker Recognition - Create Profile
 
@@ -5737,23 +6163,29 @@ One subscription can only create 1000 speaker verification/identification profil
 
 #### Example
 
+```javascript
 
-			const speakerRecognition = new cognitiveServices.speakerRecognition({API_KEY: yourApiKey})
-			
+const speakerRecognition = new cognitiveServices.speakerRecognition({
+    API_KEY: yourApiKey
+})
 
-			speakerRecognition.createProfile({parameters})
-				.then((response) => {
-						/**
+
+speakerRecognition.createProfile({
+        parameters
+    })
+    .then((response) => {
+        /**
 							Example response: {
 		"identificationProfileId": "49a36324-fc4b-4387-aa06-090cfbf0064f",
 	}
 							*/
-					console.log('Got response', response);
-				})
-				.catch((err) => {
-					console.error('Encountered error making request:', err);
-				});
-		
+        console.log('Got response', response);
+    })
+    .catch((err) => {
+        console.error('Encountered error making request:', err);
+    });
+
+```
 
 #### Speaker Recognition - Delete Profile
 
@@ -5772,21 +6204,27 @@ verificationProfileId | ID of speaker verification profile. It should be a GUID.
 
 #### Example
 
+```javascript
 
-			const speakerRecognition = new cognitiveServices.speakerRecognition({API_KEY: yourApiKey})
-			
-		const parameters = {
-			
-		};
+const speakerRecognition = new cognitiveServices.speakerRecognition({
+    API_KEY: yourApiKey
+})
 
-			speakerRecognition.deleteProfile({parameters})
-				.then((response) => {
-					console.log('Got response', response);
-				})
-				.catch((err) => {
-					console.error('Encountered error making request:', err);
-				});
-		
+const parameters = {
+
+};
+
+speakerRecognition.deleteProfile({
+        parameters
+    })
+    .then((response) => {
+        console.log('Got response', response);
+    })
+    .catch((err) => {
+        console.error('Encountered error making request:', err);
+    });
+
+```
 
 #### Speaker Recognition - Get All Profiles
 
@@ -5802,13 +6240,18 @@ Get all speaker verification profiles within the subscription.
 
 #### Example
 
+```javascript
 
-			const speakerRecognition = new cognitiveServices.speakerRecognition({API_KEY: yourApiKey})
-			
+const speakerRecognition = new cognitiveServices.speakerRecognition({
+    API_KEY: yourApiKey
+})
 
-			speakerRecognition.getAllProfiles({parameters})
-				.then((response) => {
-						/**
+
+speakerRecognition.getAllProfiles({
+        parameters
+    })
+    .then((response) => {
+        /**
 							Example response: [{
 		"verificationProfileId" : "111f427c-3791-468f-b709-fcef7660fff9",
 		"locale" : "en-US",
@@ -5819,12 +6262,13 @@ Get all speaker verification profiles within the subscription.
 		"enrollmentStatus" : "Enrolled" //[Enrolled | Enrolling | Training]
 	}, ]
 							*/
-					console.log('Got response', response);
-				})
-				.catch((err) => {
-					console.error('Encountered error making request:', err);
-				});
-		
+        console.log('Got response', response);
+    })
+    .catch((err) => {
+        console.error('Encountered error making request:', err);
+    });
+
+```
 
 #### Speaker Recognition - Get Profile
 
@@ -5843,16 +6287,21 @@ verificationProfileId | ID of speaker verification profile. It should be a GUID.
 
 #### Example
 
+```javascript
 
-			const speakerRecognition = new cognitiveServices.speakerRecognition({API_KEY: yourApiKey})
-			
-		const parameters = {
-			verificationProfileId: "111f427c-3791-468f-b709-fcef7660fff9"
-		};
+const speakerRecognition = new cognitiveServices.speakerRecognition({
+    API_KEY: yourApiKey
+})
 
-			speakerRecognition.getProfile({parameters})
-				.then((response) => {
-						/**
+const parameters = {
+    verificationProfileId: "111f427c-3791-468f-b709-fcef7660fff9"
+};
+
+speakerRecognition.getProfile({
+        parameters
+    })
+    .then((response) => {
+        /**
 							Example response: {
 		"verificationProfileId" : "111f427c-3791-468f-b709-fcef7660fff9",
 		"locale" : "en-US",
@@ -5863,12 +6312,13 @@ verificationProfileId | ID of speaker verification profile. It should be a GUID.
 		"enrollmentStatus" : "Enrolled" // [Enrolled | Enrolling | Training]
 	}
 							*/
-					console.log('Got response', response);
-				})
-				.catch((err) => {
-					console.error('Encountered error making request:', err);
-				});
-		
+        console.log('Got response', response);
+    })
+    .catch((err) => {
+        console.error('Encountered error making request:', err);
+    });
+
+```
 
 #### Speaker Recognition - Reset Enrollments
 
@@ -5887,21 +6337,27 @@ verificationProfileId | ID of speaker verification profile. It should be a GUID.
 
 #### Example
 
+```javascript
 
-			const speakerRecognition = new cognitiveServices.speakerRecognition({API_KEY: yourApiKey})
-			
-		const parameters = {
-			
-		};
+const speakerRecognition = new cognitiveServices.speakerRecognition({
+    API_KEY: yourApiKey
+})
 
-			speakerRecognition.resetEnrollments({parameters})
-				.then((response) => {
-					console.log('Got response', response);
-				})
-				.catch((err) => {
-					console.error('Encountered error making request:', err);
-				});
-		
+const parameters = {
+
+};
+
+speakerRecognition.resetEnrollments({
+        parameters
+    })
+    .then((response) => {
+        console.log('Got response', response);
+    })
+    .catch((err) => {
+        console.error('Encountered error making request:', err);
+    });
+
+```
 
 #### Speaker Recognition - Get Operation Status
 
@@ -5920,16 +6376,21 @@ operationId | The operation Id, created by <a href="https://dev.projectoxford.ai
 
 #### Example
 
+```javascript
 
-			const speakerRecognition = new cognitiveServices.speakerRecognition({API_KEY: yourApiKey})
-			
-		const parameters = {
-			operationId: "EF217D0C-9085-45D7-AAE0-2B36471B89B5"
-		};
+const speakerRecognition = new cognitiveServices.speakerRecognition({
+    API_KEY: yourApiKey
+})
 
-			speakerRecognition.getOperationStatus({parameters})
-				.then((response) => {
-						/**
+const parameters = {
+    operationId: "EF217D0C-9085-45D7-AAE0-2B36471B89B5"
+};
+
+speakerRecognition.getOperationStatus({
+        parameters
+    })
+    .then((response) => {
+        /**
 							Example response: Case 1 - not started 
 	HTTP/1.1 200 Ok
 	Content-Type: application/json
@@ -6005,12 +6466,13 @@ operationId | The operation Id, created by <a href="https://dev.projectoxford.ai
 	
 	
 							*/
-					console.log('Got response', response);
-				})
-				.catch((err) => {
-					console.error('Encountered error making request:', err);
-				});
-		
+        console.log('Got response', response);
+    })
+    .catch((err) => {
+        console.error('Encountered error making request:', err);
+    });
+
+```
 
 #### Speaker Recognition - Identification
 
@@ -6029,21 +6491,27 @@ identificationProfileIds | Comma-delimited identificationProfileIds, the id shou
 
 #### Example
 
+```javascript
 
-			const speakerRecognition = new cognitiveServices.speakerRecognition({API_KEY: yourApiKey})
-			
-		const parameters = {
-			identificationProfileIds: "111f427c-3791-468f-b709-fcef7660fff9,111f427c-3791-468f-b709-fcef7660fff9,111f427c-3791-468f-b709-fcef7660fff9"
-		};
+const speakerRecognition = new cognitiveServices.speakerRecognition({
+    API_KEY: yourApiKey
+})
 
-			speakerRecognition.identification({parameters})
-				.then((response) => {
-					console.log('Got response', response);
-				})
-				.catch((err) => {
-					console.error('Encountered error making request:', err);
-				});
-		
+const parameters = {
+    identificationProfileIds: "111f427c-3791-468f-b709-fcef7660fff9,111f427c-3791-468f-b709-fcef7660fff9,111f427c-3791-468f-b709-fcef7660fff9"
+};
+
+speakerRecognition.identification({
+        parameters
+    })
+    .then((response) => {
+        console.log('Got response', response);
+    })
+    .catch((err) => {
+        console.error('Encountered error making request:', err);
+    });
+
+```
 
 #### Speaker Recognition - Verification
 
@@ -6062,28 +6530,34 @@ verificationProfileId | ID of speaker verification profile. It should be a GUID.
 
 #### Example
 
+```javascript
 
-			const speakerRecognition = new cognitiveServices.speakerRecognition({API_KEY: yourApiKey})
-			
-		const parameters = {
-			
-		};
+const speakerRecognition = new cognitiveServices.speakerRecognition({
+    API_KEY: yourApiKey
+})
 
-			speakerRecognition.verification({parameters})
-				.then((response) => {
-						/**
+const parameters = {
+
+};
+
+speakerRecognition.verification({
+        parameters
+    })
+    .then((response) => {
+        /**
 							Example response: {
 		"result" : "Accept", // [Accept | Reject]
 		"confidence" : "Normal", // [Low | Normal | High]
 		"phrase": "recognized phrase"
 	}
 							*/
-					console.log('Got response', response);
-				})
-				.catch((err) => {
-					console.error('Encountered error making request:', err);
-				});
-		
+        console.log('Got response', response);
+    })
+    .catch((err) => {
+        console.error('Encountered error making request:', err);
+    });
+
+```
 
 #### Speaker Recognition - List All Supported Verification Phrases
 
@@ -6102,16 +6576,21 @@ locale | Locale for the language when retrieving verification phrases. | yes | s
 
 #### Example
 
+```javascript
 
-			const speakerRecognition = new cognitiveServices.speakerRecognition({API_KEY: yourApiKey})
-			
-		const parameters = {
-			locale: "en-US"
-		};
+const speakerRecognition = new cognitiveServices.speakerRecognition({
+    API_KEY: yourApiKey
+})
 
-			speakerRecognition.listAllSupportedVerificationPhrases({parameters})
-				.then((response) => {
-						/**
+const parameters = {
+    locale: "en-US"
+};
+
+speakerRecognition.listAllSupportedVerificationPhrases({
+        parameters
+    })
+    .then((response) => {
+        /**
 							Example response: [
 		{
 			"phrase":"phrase1"
@@ -6122,12 +6601,13 @@ locale | Locale for the language when retrieving verification phrases. | yes | s
 		
 	]
 							*/
-					console.log('Got response', response);
-				})
-				.catch((err) => {
-					console.error('Encountered error making request:', err);
-				});
-		
+        console.log('Got response', response);
+    })
+    .catch((err) => {
+        console.error('Encountered error making request:', err);
+    });
+
+```
 
 
 
@@ -6152,16 +6632,21 @@ numberOfLanguagesToDetect | Format - int32. (Optional) Number of languages to de
 
 #### Example
 
+```javascript
 
-			const textAnalytics = new cognitiveServices.textAnalytics({API_KEY: yourApiKey})
-			
-		const parameters = {
-			
-		};
+const textAnalytics = new cognitiveServices.textAnalytics({
+    API_KEY: yourApiKey
+})
 
-			textAnalytics.detectLanguage({parameters})
-				.then((response) => {
-						/**
+const parameters = {
+
+};
+
+textAnalytics.detectLanguage({
+        parameters
+    })
+    .then((response) => {
+        /**
 							Example response: {
 		"documents": [
 			{
@@ -6183,12 +6668,13 @@ numberOfLanguagesToDetect | Format - int32. (Optional) Number of languages to de
 		]
 	}
 							*/
-					console.log('Got response', response);
-				})
-				.catch((err) => {
-					console.error('Encountered error making request:', err);
-				});
-		
+        console.log('Got response', response);
+    })
+    .catch((err) => {
+        console.error('Encountered error making request:', err);
+    });
+
+```
 
 #### Text Analytics - Detect Topics
 
@@ -6214,21 +6700,27 @@ maxDocumentsPerWord | Format - int32. (optional) Words that occur in more than t
 
 #### Example
 
+```javascript
 
-			const textAnalytics = new cognitiveServices.textAnalytics({API_KEY: yourApiKey})
-			
-		const parameters = {
-			
-		};
+const textAnalytics = new cognitiveServices.textAnalytics({
+    API_KEY: yourApiKey
+})
 
-			textAnalytics.detectTopics({parameters})
-				.then((response) => {
-					console.log('Got response', response);
-				})
-				.catch((err) => {
-					console.error('Encountered error making request:', err);
-				});
-		
+const parameters = {
+
+};
+
+textAnalytics.detectTopics({
+        parameters
+    })
+    .then((response) => {
+        console.log('Got response', response);
+    })
+    .catch((err) => {
+        console.error('Encountered error making request:', err);
+    });
+
+```
 
 #### Text Analytics - Key Phrases
 
@@ -6246,13 +6738,18 @@ The API returns a list of strings denoting the key talking points in the input t
 
 #### Example
 
+```javascript
 
-			const textAnalytics = new cognitiveServices.textAnalytics({API_KEY: yourApiKey})
-			
+const textAnalytics = new cognitiveServices.textAnalytics({
+    API_KEY: yourApiKey
+})
 
-			textAnalytics.keyPhrases({parameters})
-				.then((response) => {
-						/**
+
+textAnalytics.keyPhrases({
+        parameters
+    })
+    .then((response) => {
+        /**
 							Example response: {
 		"documents": [
 			{
@@ -6270,12 +6767,13 @@ The API returns a list of strings denoting the key talking points in the input t
 		]
 	}
 							*/
-					console.log('Got response', response);
-				})
-				.catch((err) => {
-					console.error('Encountered error making request:', err);
-				});
-		
+        console.log('Got response', response);
+    })
+    .catch((err) => {
+        console.error('Encountered error making request:', err);
+    });
+
+```
 
 #### Text Analytics - Operation Status
 
@@ -6294,16 +6792,21 @@ operationId | A unique id for the submitted operation. | yes | string |
 
 #### Example
 
+```javascript
 
-			const textAnalytics = new cognitiveServices.textAnalytics({API_KEY: yourApiKey})
-			
-		const parameters = {
-			
-		};
+const textAnalytics = new cognitiveServices.textAnalytics({
+    API_KEY: yourApiKey
+})
 
-			textAnalytics.operationStatus({parameters})
-				.then((response) => {
-						/**
+const parameters = {
+
+};
+
+textAnalytics.operationStatus({
+        parameters
+    })
+    .then((response) => {
+        /**
 							Example response: {
 		"status": "notStarted",
 		"createdDateTime": "string",
@@ -6321,12 +6824,13 @@ operationId | A unique id for the submitted operation. | yes | string |
 		"message": "string"
 	}
 							*/
-					console.log('Got response', response);
-				})
-				.catch((err) => {
-					console.error('Encountered error making request:', err);
-				});
-		
+        console.log('Got response', response);
+    })
+    .catch((err) => {
+        console.error('Encountered error making request:', err);
+    });
+
+```
 
 #### Text Analytics - Sentiment
 
@@ -6346,13 +6850,18 @@ The API returns a numeric score between 0 and 1.
 
 #### Example
 
+```javascript
 
-			const textAnalytics = new cognitiveServices.textAnalytics({API_KEY: yourApiKey})
-			
+const textAnalytics = new cognitiveServices.textAnalytics({
+    API_KEY: yourApiKey
+})
 
-			textAnalytics.sentiment({parameters})
-				.then((response) => {
-						/**
+
+textAnalytics.sentiment({
+        parameters
+    })
+    .then((response) => {
+        /**
 							Example response: {
 		"documents": [
 			{
@@ -6368,12 +6877,13 @@ The API returns a numeric score between 0 and 1.
 		]
 	}
 							*/
-					console.log('Got response', response);
-				})
-				.catch((err) => {
-					console.error('Encountered error making request:', err);
-				});
-		
+        console.log('Got response', response);
+    })
+    .catch((err) => {
+        console.error('Encountered error making request:', err);
+    });
+
+```
 
 
 
@@ -6394,18 +6904,24 @@ The API returns a numeric score between 0 and 1.
 
 #### Example
 
+```javascript
 
-			const video = new cognitiveServices.video({API_KEY: yourApiKey})
-			
+const video = new cognitiveServices.video({
+    API_KEY: yourApiKey
+})
 
-			video.faceDetectionAndTracking({parameters})
-				.then((response) => {
-					console.log('Got response', response);
-				})
-				.catch((err) => {
-					console.error('Encountered error making request:', err);
-				});
-		
+
+video.faceDetectionAndTracking({
+        parameters
+    })
+    .then((response) => {
+        console.log('Got response', response);
+    })
+    .catch((err) => {
+        console.error('Encountered error making request:', err);
+    });
+
+```
 
 #### Video - Get Operation Result
 
@@ -6458,16 +6974,21 @@ oid | OperationId | yes | string |
 
 #### Example
 
+```javascript
 
-			const video = new cognitiveServices.video({API_KEY: yourApiKey})
-			
-		const parameters = {
-			
-		};
+const video = new cognitiveServices.video({
+    API_KEY: yourApiKey
+})
 
-			video.getOperationResult({parameters})
-				.then((response) => {
-						/**
+const parameters = {
+
+};
+
+video.getOperationResult({
+        parameters
+    })
+    .then((response) => {
+        /**
 							Example response: {
 		"status": "running",
 		"createdDateTime":	"2015-09-30T01:28:23Z",
@@ -6475,12 +6996,13 @@ oid | OperationId | yes | string |
 	}
 	
 							*/
-					console.log('Got response', response);
-				})
-				.catch((err) => {
-					console.error('Encountered error making request:', err);
-				});
-		
+        console.log('Got response', response);
+    })
+    .catch((err) => {
+        console.error('Encountered error making request:', err);
+    });
+
+```
 
 #### Video - Get Result Video
 
@@ -6499,21 +7021,27 @@ oid |  | yes | string |
 
 #### Example
 
+```javascript
 
-			const video = new cognitiveServices.video({API_KEY: yourApiKey})
-			
-		const parameters = {
-			
-		};
+const video = new cognitiveServices.video({
+    API_KEY: yourApiKey
+})
 
-			video.getResultVideo({parameters})
-				.then((response) => {
-					console.log('Got response', response);
-				})
-				.catch((err) => {
-					console.error('Encountered error making request:', err);
-				});
-		
+const parameters = {
+
+};
+
+video.getResultVideo({
+        parameters
+    })
+    .then((response) => {
+        console.log('Got response', response);
+    })
+    .catch((err) => {
+        console.error('Encountered error making request:', err);
+    });
+
+```
 
 #### Video - Motion Detection
 
@@ -6537,21 +7065,27 @@ mergeTimeThreshold | Specify the threshold on whether successive motions should 
 
 #### Example
 
+```javascript
 
-			const video = new cognitiveServices.video({API_KEY: yourApiKey})
-			
-		const parameters = {
-			
-		};
+const video = new cognitiveServices.video({
+    API_KEY: yourApiKey
+})
 
-			video.motionDetection({parameters})
-				.then((response) => {
-					console.log('Got response', response);
-				})
-				.catch((err) => {
-					console.error('Encountered error making request:', err);
-				});
-		
+const parameters = {
+
+};
+
+video.motionDetection({
+        parameters
+    })
+    .then((response) => {
+        console.log('Got response', response);
+    })
+    .catch((err) => {
+        console.error('Encountered error making request:', err);
+    });
+
+```
 
 #### Video - Stabilization
 
@@ -6567,18 +7101,24 @@ mergeTimeThreshold | Specify the threshold on whether successive motions should 
 
 #### Example
 
+```javascript
 
-			const video = new cognitiveServices.video({API_KEY: yourApiKey})
-			
+const video = new cognitiveServices.video({
+    API_KEY: yourApiKey
+})
 
-			video.stabilization({parameters})
-				.then((response) => {
-					console.log('Got response', response);
-				})
-				.catch((err) => {
-					console.error('Encountered error making request:', err);
-				});
-		
+
+video.stabilization({
+        parameters
+    })
+    .then((response) => {
+        console.log('Got response', response);
+    })
+    .catch((err) => {
+        console.error('Encountered error making request:', err);
+    });
+
+```
 
 #### Video - Thumbnail
 
@@ -6631,21 +7171,27 @@ fadeInFadeOut | Indicates whether output video should have fade in/out effect du
 
 #### Example
 
+```javascript
 
-			const video = new cognitiveServices.video({API_KEY: yourApiKey})
-			
-		const parameters = {
-			
-		};
+const video = new cognitiveServices.video({
+    API_KEY: yourApiKey
+})
 
-			video.thumbnail({parameters})
-				.then((response) => {
-					console.log('Got response', response);
-				})
-				.catch((err) => {
-					console.error('Encountered error making request:', err);
-				});
-		
+const parameters = {
+
+};
+
+video.thumbnail({
+        parameters
+    })
+    .then((response) => {
+        console.log('Got response', response);
+    })
+    .catch((err) => {
+        console.error('Encountered error making request:', err);
+    });
+
+```
 
 
 
@@ -6671,16 +7217,21 @@ maxNumOfCandidatesReturned | Max number of candidates would be returned. If not 
 
 #### Example
 
+```javascript
 
-			const webLanguageModel = new cognitiveServices.webLanguageModel({API_KEY: yourApiKey})
-			
-		const parameters = {
-			
-		};
+const webLanguageModel = new cognitiveServices.webLanguageModel({
+    API_KEY: yourApiKey
+})
 
-			webLanguageModel.breakIntoWords({parameters})
-				.then((response) => {
-						/**
+const parameters = {
+
+};
+
+webLanguageModel.breakIntoWords({
+        parameters
+    })
+    .then((response) => {
+        /**
 							Example response: {
 		"candidates": [
 			{
@@ -6694,12 +7245,13 @@ maxNumOfCandidatesReturned | Max number of candidates would be returned. If not 
 		]
 	}
 							*/
-					console.log('Got response', response);
-				})
-				.catch((err) => {
-					console.error('Encountered error making request:', err);
-				});
-		
+        console.log('Got response', response);
+    })
+    .catch((err) => {
+        console.error('Encountered error making request:', err);
+    });
+
+```
 
 #### Web Language Model - Calculate Conditional Probability
 
@@ -6719,16 +7271,21 @@ order | The order of N-gram. If not specified, use default value 5 .Supported va
 
 #### Example
 
+```javascript
 
-			const webLanguageModel = new cognitiveServices.webLanguageModel({API_KEY: yourApiKey})
-			
-		const parameters = {
-			
-		};
+const webLanguageModel = new cognitiveServices.webLanguageModel({
+    API_KEY: yourApiKey
+})
 
-			webLanguageModel.calculateConditionalProbability({parameters})
-				.then((response) => {
-						/**
+const parameters = {
+
+};
+
+webLanguageModel.calculateConditionalProbability({
+        parameters
+    })
+    .then((response) => {
+        /**
 							Example response: {
 		"results":
 		[
@@ -6751,12 +7308,13 @@ order | The order of N-gram. If not specified, use default value 5 .Supported va
 		]
 	}
 							*/
-					console.log('Got response', response);
-				})
-				.catch((err) => {
-					console.error('Encountered error making request:', err);
-				});
-		
+        console.log('Got response', response);
+    })
+    .catch((err) => {
+        console.error('Encountered error making request:', err);
+    });
+
+```
 
 #### Web Language Model - Calculate Joint Probability
 
@@ -6776,16 +7334,21 @@ order | The order of N-gram. If not specified, use default value 5 .Supported va
 
 #### Example
 
+```javascript
 
-			const webLanguageModel = new cognitiveServices.webLanguageModel({API_KEY: yourApiKey})
-			
-		const parameters = {
-			
-		};
+const webLanguageModel = new cognitiveServices.webLanguageModel({
+    API_KEY: yourApiKey
+})
 
-			webLanguageModel.calculateJointProbability({parameters})
-				.then((response) => {
-						/**
+const parameters = {
+
+};
+
+webLanguageModel.calculateJointProbability({
+        parameters
+    })
+    .then((response) => {
+        /**
 							Example response: {
 		"results": [
 			{
@@ -6803,12 +7366,13 @@ order | The order of N-gram. If not specified, use default value 5 .Supported va
 		]
 	}
 							*/
-					console.log('Got response', response);
-				})
-				.catch((err) => {
-					console.error('Encountered error making request:', err);
-				});
-		
+        console.log('Got response', response);
+    })
+    .catch((err) => {
+        console.error('Encountered error making request:', err);
+    });
+
+```
 
 #### Web Language Model - Generate Next Words
 
@@ -6830,16 +7394,21 @@ maxNumOfCandidatesReturned | Max number of candidates would be returned. If not 
 
 #### Example
 
+```javascript
 
-			const webLanguageModel = new cognitiveServices.webLanguageModel({API_KEY: yourApiKey})
-			
-		const parameters = {
-			
-		};
+const webLanguageModel = new cognitiveServices.webLanguageModel({
+    API_KEY: yourApiKey
+})
 
-			webLanguageModel.generateNextWords({parameters})
-				.then((response) => {
-						/**
+const parameters = {
+
+};
+
+webLanguageModel.generateNextWords({
+        parameters
+    })
+    .then((response) => {
+        /**
 							Example response: {
 		"candidates": [
 			{
@@ -6861,12 +7430,13 @@ maxNumOfCandidatesReturned | Max number of candidates would be returned. If not 
 		]
 	}
 							*/
-					console.log('Got response', response);
-				})
-				.catch((err) => {
-					console.error('Encountered error making request:', err);
-				});
-		
+        console.log('Got response', response);
+    })
+    .catch((err) => {
+        console.error('Encountered error making request:', err);
+    });
+
+```
 
 #### Web Language Model - List Available Models
 
@@ -6882,13 +7452,18 @@ List models available currently.
 
 #### Example
 
+```javascript
 
-			const webLanguageModel = new cognitiveServices.webLanguageModel({API_KEY: yourApiKey})
-			
+const webLanguageModel = new cognitiveServices.webLanguageModel({
+    API_KEY: yourApiKey
+})
 
-			webLanguageModel.listAvailableModels({parameters})
-				.then((response) => {
-						/**
+
+webLanguageModel.listAvailableModels({
+        parameters
+    })
+    .then((response) => {
+        /**
 							Example response: 
 	{
 		"models":
@@ -6909,10 +7484,11 @@ List models available currently.
 		]
 	}
 							*/
-					console.log('Got response', response);
-				})
-				.catch((err) => {
-					console.error('Encountered error making request:', err);
-				});
-		
+        console.log('Got response', response);
+    })
+    .catch((err) => {
+        console.error('Encountered error making request:', err);
+    });
+
+```
 
