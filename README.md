@@ -601,9 +601,7 @@ const bingSpellCheck = new cognitiveServices.bingSpellCheck({
 })
 
 
-bingSpellCheck.spellCheck({,
-        body
-    })
+bingSpellCheck.spellCheck()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -1215,9 +1213,7 @@ const emotion = new cognitiveServices.emotion({
 })
 
 
-emotion.emotionRecognition({,
-        body
-    })
+emotion.emotionRecognition()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -1256,9 +1252,7 @@ const emotion = new cognitiveServices.emotion({
 })
 
 
-emotion.emotionRecognitionInVideo({,
-        body
-    })
+emotion.emotionRecognitionInVideo()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -1292,9 +1286,7 @@ const emotion = new cognitiveServices.emotion({
 })
 
 
-emotion.emotionRecognitionWithFaceRectangles({,
-        body
-    })
+emotion.emotionRecognitionWithFaceRectangles()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -1846,9 +1838,7 @@ const face = new cognitiveServices.face({
 })
 
 
-face.deleteAFaceFromAFaceList({,
-        body
-    })
+face.deleteAFaceFromAFaceList()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -1886,9 +1876,7 @@ const face = new cognitiveServices.face({
 })
 
 
-face.deleteAFaceList({,
-        body
-    })
+face.deleteAFaceList()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -2164,9 +2152,7 @@ const face = new cognitiveServices.face({
 })
 
 
-face.deleteAPerson({,
-        body
-    })
+face.deleteAPerson()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -2206,9 +2192,7 @@ const face = new cognitiveServices.face({
 })
 
 
-face.deleteAPersonFace({,
-        body
-    })
+face.deleteAPersonFace()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -2515,9 +2499,7 @@ const face = new cognitiveServices.face({
 })
 
 
-face.deleteAPersonGroup({,
-        body
-    })
+face.deleteAPersonGroup()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -2669,9 +2651,7 @@ const face = new cognitiveServices.face({
 })
 
 
-face.trainPersonGroup({,
-        body
-    })
+face.trainPersonGroup()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -2759,9 +2739,7 @@ const recommendations = new cognitiveServices.recommendations({
 })
 
 
-recommendations.createAModel({,
-        body
-    })
+recommendations.createAModel()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -2795,9 +2773,7 @@ const recommendations = new cognitiveServices.recommendations({
 })
 
 
-recommendations.create / TriggerABuild({,
-        body
-    })
+recommendations.create / TriggerABuild()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -2834,9 +2810,7 @@ const recommendations = new cognitiveServices.recommendations({
 })
 
 
-recommendations.deleteABuild({,
-        body
-    })
+recommendations.deleteABuild()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -2870,9 +2844,7 @@ const recommendations = new cognitiveServices.recommendations({
 })
 
 
-recommendations.deleteAModel({,
-        body
-    })
+recommendations.deleteAModel()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -2906,9 +2878,7 @@ const recommendations = new cognitiveServices.recommendations({
 })
 
 
-recommendations.delete / CancelAnOngoingOperation({,
-        body
-    })
+recommendations.delete / CancelAnOngoingOperation()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -3229,9 +3199,7 @@ const recommendations = new cognitiveServices.recommendations({
 })
 
 
-recommendations.updateAModel({,
-        body
-    })
+recommendations.updateAModel()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -3267,9 +3235,7 @@ const recommendations = new cognitiveServices.recommendations({
 })
 
 
-recommendations.uploadACatalogFileToAModel({,
-        body
-    })
+recommendations.uploadACatalogFileToAModel()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -3304,9 +3270,7 @@ const recommendations = new cognitiveServices.recommendations({
 })
 
 
-recommendations.uploadAUsageFileToAModel({,
-        body
-    })
+recommendations.uploadAUsageFileToAModel()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -3430,9 +3394,7 @@ const speakerRecognition = new cognitiveServices.speakerRecognition({
 })
 
 
-speakerRecognition.deleteProfile({,
-        body
-    })
+speakerRecognition.deleteProfile()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -3536,9 +3498,7 @@ const speakerRecognition = new cognitiveServices.speakerRecognition({
 })
 
 
-speakerRecognition.resetEnrollments({,
-        body
-    })
+speakerRecognition.resetEnrollments()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -3756,9 +3716,7 @@ const textAnalytics = new cognitiveServices.textAnalytics({
 })
 
 
-textAnalytics.detectLanguage({,
-        body
-    })
+textAnalytics.detectLanguage()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -3799,9 +3757,7 @@ const textAnalytics = new cognitiveServices.textAnalytics({
 })
 
 
-textAnalytics.detectTopics({,
-        body
-    })
+textAnalytics.detectTopics()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -3834,9 +3790,7 @@ const textAnalytics = new cognitiveServices.textAnalytics({
 })
 
 
-textAnalytics.keyPhrases({,
-        body
-    })
+textAnalytics.keyPhrases()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -3905,9 +3859,7 @@ const textAnalytics = new cognitiveServices.textAnalytics({
 })
 
 
-textAnalytics.sentiment({,
-        body
-    })
+textAnalytics.sentiment()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -3943,9 +3895,7 @@ const video = new cognitiveServices.video({
 })
 
 
-video.faceDetectionAndTracking({,
-        body
-    })
+video.faceDetectionAndTracking()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -4086,9 +4036,7 @@ const video = new cognitiveServices.video({
 })
 
 
-video.motionDetection({,
-        body
-    })
+video.motionDetection()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -4119,9 +4067,7 @@ const video = new cognitiveServices.video({
 })
 
 
-video.stabilization({,
-        body
-    })
+video.stabilization()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -4189,9 +4135,7 @@ const video = new cognitiveServices.video({
 })
 
 
-video.thumbnail({,
-        body
-    })
+video.thumbnail()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -4274,9 +4218,7 @@ const webLanguageModel = new cognitiveServices.webLanguageModel({
 })
 
 
-webLanguageModel.calculateConditionalProbability({,
-        body
-    })
+webLanguageModel.calculateConditionalProbability()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -4311,9 +4253,7 @@ const webLanguageModel = new cognitiveServices.webLanguageModel({
 })
 
 
-webLanguageModel.calculateJointProbability({,
-        body
-    })
+webLanguageModel.calculateJointProbability()
     .then((response) => {
         console.log('Got response', response);
     })
