@@ -363,8 +363,7 @@ const bingImageSearch = new cognitiveServices.bingImageSearch({
     API_KEY: yourApiKey
 })
 
-/* An image to retrieve insights for */
-const body = {};
+const body = {}; // An image to retrieve insights for
 
 
 bingImageSearch.imageInsights({,
@@ -1385,8 +1384,7 @@ const entityLinking = new cognitiveServices.entityLinking({
     API_KEY: yourApiKey
 })
 
-/* Given a specific paragraph of text within a document, the Entity Linking Intelligence Service will recognize and identify each separate entity based on the context */
-const body = {};
+const body = {}; // Given a specific paragraph of text within a document, the Entity Linking Intelligence Service will recognize and identify each separate entity based on the context
 
 
 entityLinking.linkEntity({,
@@ -1456,8 +1454,9 @@ const parameters = {
     returnFaceId: "true"
     returnFaceLandmarks: "false"
 };
-/* Given a specific paragraph of text within a document, the Entity Linking Intelligence Service will recognize and identify each separate entity based on the context */
-const body = {};
+const body = {
+    "url": "URL of input image"
+};
 
 
 face.detect({
@@ -1505,8 +1504,11 @@ const face = new cognitiveServices.face({
     API_KEY: yourApiKey
 })
 
-/* Given a specific paragraph of text within a document, the Entity Linking Intelligence Service will recognize and identify each separate entity based on the context */
-const body = {};
+const body = {
+    "faceId": "Query face The faceId comes from the ",
+    "faceIds": "faceListId",
+    "maxNumOfCandidatesReturned": " for more detail faceListId and faceIds should not be provided at the same time"
+};
 
 
 face.findSimilar({,
@@ -1560,8 +1562,9 @@ const face = new cognitiveServices.face({
     API_KEY: yourApiKey
 })
 
-/* Given a specific paragraph of text within a document, the Entity Linking Intelligence Service will recognize and identify each separate entity based on the context */
-const body = {};
+const body = {
+    "faceIds": "Candidate face IDs The maximum is 1000 faces"
+};
 
 
 face.group({,
@@ -1621,8 +1624,11 @@ const face = new cognitiveServices.face({
     API_KEY: yourApiKey
 })
 
-/* Given a specific paragraph of text within a document, the Entity Linking Intelligence Service will recognize and identify each separate entity based on the context */
-const body = {};
+const body = {
+    "faceIds": "Query faces' IDs The length of faceIds is between [1, 10]",
+    "personGroupId": "Target person group's ID",
+    "maxNumOfCandidatesReturned": "The range of maxNumOfCandidatesReturned is between 1 and 5 (default is 1)"
+};
 
 
 face.identify({,
@@ -1673,8 +1679,10 @@ const face = new cognitiveServices.face({
     API_KEY: yourApiKey
 })
 
-/* Given a specific paragraph of text within a document, the Entity Linking Intelligence Service will recognize and identify each separate entity based on the context */
-const body = {};
+const body = {
+    "faceId1": "ID of one face",
+    "faceId2": "ID of another face"
+};
 
 
 face.verify({,
@@ -1738,8 +1746,9 @@ const face = new cognitiveServices.face({
     API_KEY: yourApiKey
 })
 
-/* Given a specific paragraph of text within a document, the Entity Linking Intelligence Service will recognize and identify each separate entity based on the context */
-const body = {};
+const body = {
+    "url": "Image url Image file size should between 1KB to 4MB Only one face is allowed per image"
+};
 
 
 face.addAFaceToAFaceList({,
@@ -1793,8 +1802,10 @@ const face = new cognitiveServices.face({
     API_KEY: yourApiKey
 })
 
-/* Given a specific paragraph of text within a document, the Entity Linking Intelligence Service will recognize and identify each separate entity based on the context */
-const body = {};
+const body = {
+    "name": "Name of the created face list, maximum length is 128",
+    "userData": "Optional user defined data for the face list Length should not exceed 16KB"
+};
 
 
 face.createAFaceList({,
@@ -1994,8 +2005,10 @@ const face = new cognitiveServices.face({
     API_KEY: yourApiKey
 })
 
-/* Given a specific paragraph of text within a document, the Entity Linking Intelligence Service will recognize and identify each separate entity based on the context */
-const body = {};
+const body = {
+    "name": "Name of the face list, maximum length is 128",
+    "userData": "Optional user defined data for the face list Length should not exceed 16KB"
+};
 
 
 face.updateAFaceList({,
@@ -2056,8 +2069,9 @@ const face = new cognitiveServices.face({
     API_KEY: yourApiKey
 })
 
-/* Given a specific paragraph of text within a document, the Entity Linking Intelligence Service will recognize and identify each separate entity based on the context */
-const body = {};
+const body = {
+    "url": "Face image URL Valid image size is from 1KB to 4MB Only one face is allowed per image"
+};
 
 
 face.addAPersonFace({,
@@ -2107,8 +2121,10 @@ const face = new cognitiveServices.face({
     API_KEY: yourApiKey
 })
 
-/* Given a specific paragraph of text within a document, the Entity Linking Intelligence Service will recognize and identify each separate entity based on the context */
-const body = {};
+const body = {
+    "name": "Target person's display name The maximum length is 128",
+    "userData": "Optional fields for user-provided data attached to a person Size limit is 16KB"
+};
 
 
 face.createAPerson({,
@@ -2353,8 +2369,10 @@ const face = new cognitiveServices.face({
     API_KEY: yourApiKey
 })
 
-/* Given a specific paragraph of text within a document, the Entity Linking Intelligence Service will recognize and identify each separate entity based on the context */
-const body = {};
+const body = {
+    "name": "Target person's display name Maximum length is 128",
+    "userData": "User-provided data attached to the person Maximum length is 16KB"
+};
 
 
 face.updateAPerson({,
@@ -2403,8 +2421,9 @@ const face = new cognitiveServices.face({
     API_KEY: yourApiKey
 })
 
-/* Given a specific paragraph of text within a document, the Entity Linking Intelligence Service will recognize and identify each separate entity based on the context */
-const body = {};
+const body = {
+    "userData": "Optional Attach user data to person's face The size limit is 1KB"
+};
 
 
 face.updateAPersonFace({,
@@ -2455,8 +2474,10 @@ const face = new cognitiveServices.face({
     API_KEY: yourApiKey
 })
 
-/* Given a specific paragraph of text within a document, the Entity Linking Intelligence Service will recognize and identify each separate entity based on the context */
-const body = {};
+const body = {
+    "name": "Person group display name The maximum length is 128",
+    "userData": "User-provided data attached to the person group The size limit is 16KB"
+};
 
 
 face.createAPersonGroup({,
@@ -2694,8 +2715,10 @@ const face = new cognitiveServices.face({
     API_KEY: yourApiKey
 })
 
-/* Given a specific paragraph of text within a document, the Entity Linking Intelligence Service will recognize and identify each separate entity based on the context */
-const body = {};
+const body = {
+    "name": "Person group display name The maximum length is 128",
+    "userData": "User-provided data attached to the person group The size limit is 16KB"
+};
 
 
 face.updateAPersonGroup({,
@@ -3317,8 +3340,13 @@ const speakerRecognition = new cognitiveServices.speakerRecognition({
     API_KEY: yourApiKey
 })
 
-/* Given a specific paragraph of text within a document, the Entity Linking Intelligence Service will recognize and identify each separate entity based on the context */
-const body = {};
+const body = {
+    "Container": "WAV",
+    "Encoding": "PCM",
+    "Rate": "16K",
+    "SampleFormat": "16 bit",
+    "Channels": "Mono"
+};
 
 
 speakerRecognition.createEnrollment({,
@@ -3353,9 +3381,6 @@ One subscription can only create 1000 speaker verification/identification profil
 const speakerRecognition = new cognitiveServices.speakerRecognition({
     API_KEY: yourApiKey
 })
-
-/* Given a specific paragraph of text within a document, the Entity Linking Intelligence Service will recognize and identify each separate entity based on the context */
-const body = {};
 
 
 speakerRecognition.createProfile({,
@@ -3582,8 +3607,13 @@ const speakerRecognition = new cognitiveServices.speakerRecognition({
 const parameters = {
     identificationProfileIds: "111f427c-3791-468f-b709-fcef7660fff9,111f427c-3791-468f-b709-fcef7660fff9,111f427c-3791-468f-b709-fcef7660fff9"
 };
-/* Given a specific paragraph of text within a document, the Entity Linking Intelligence Service will recognize and identify each separate entity based on the context */
-const body = {};
+const body = {
+    "Container": "WAV",
+    "Encoding": "PCM",
+    "Rate": "16K",
+    "SampleFormat": "16 bit",
+    "Channels": "Mono"
+};
 
 
 speakerRecognition.identification({
@@ -3631,8 +3661,13 @@ const speakerRecognition = new cognitiveServices.speakerRecognition({
     API_KEY: yourApiKey
 })
 
-/* Given a specific paragraph of text within a document, the Entity Linking Intelligence Service will recognize and identify each separate entity based on the context */
-const body = {};
+const body = {
+    "Container": "WAV",
+    "Encoding": "PCM",
+    "Rate": "16K",
+    "SampleFormat": "16 bit",
+    "Channels": "Mono"
+};
 
 
 speakerRecognition.verification({,
@@ -4177,8 +4212,7 @@ const webLanguageModel = new cognitiveServices.webLanguageModel({
     API_KEY: yourApiKey
 })
 
-/* empty post body */
-const body = {};
+const body = {}; // empty post body
 
 
 webLanguageModel.breakIntoWords({,
@@ -4291,8 +4325,7 @@ const webLanguageModel = new cognitiveServices.webLanguageModel({
     API_KEY: yourApiKey
 })
 
-/* empty post body */
-const body = {};
+const body = {}; // empty post body
 
 
 webLanguageModel.generateNextWords({,
