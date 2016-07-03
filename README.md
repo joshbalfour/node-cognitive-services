@@ -361,8 +361,13 @@ const bingImageSearch = new cognitiveServices.bingImageSearch({
     API_KEY: yourApiKey
 })
 
+/* An image to retrieve insights for */
+const body = {};
 
-bingImageSearch.imageInsights()
+
+bingImageSearch.imageInsights({,
+        body
+    })
     .then((response) => {
         console.log('Got response', response);
     })
@@ -594,7 +599,9 @@ const bingSpellCheck = new cognitiveServices.bingSpellCheck({
 })
 
 
-bingSpellCheck.spellCheck()
+bingSpellCheck.spellCheck({,
+        body
+    })
     .then((response) => {
         console.log('Got response', response);
     })
@@ -777,9 +784,20 @@ const computerVision = new cognitiveServices.computerVision({
 const parameters = {
     visualFeatures: "Categories"
 };
+/* Input passed within the POST body. Supported input methods: raw image binary or image URL. 
+
+Input requirements: 
+
+Supported image formats: JPEG, PNG, GIF, BMP. 
+Image file size must be less than 4MB.
+Image dimensions must be at least 50 x 50.
+ */
+const body = {};
+
 
 computerVision.analyzeImage({
-        parameters
+        parameters,
+        body
     })
     .then((response) => {
         console.log('Got response', response);
@@ -825,9 +843,20 @@ const computerVision = new cognitiveServices.computerVision({
 const parameters = {
     maxCandidates: "1"
 };
+/* Input passed within the POST body. Supported input methods: raw image binary or image URL. 
+
+Input requirements: 
+
+Supported image formats: JPEG, PNG, GIF, BMP. 
+Image file size must be less than 4MB.
+Image dimensions should be greater than 50 x 50.
+ */
+const body = {};
+
 
 computerVision.describeImage({
-        parameters
+        parameters,
+        body
     })
     .then((response) => {
         console.log('Got response', response);
@@ -875,9 +904,20 @@ const computerVision = new cognitiveServices.computerVision({
 const parameters = {
     smartCropping: "true"
 };
+/* Input passed within the POST body. Supported input methods: raw image binary or image URL. 
+
+Input requirements: 
+
+Supported image formats: JPEG, PNG, GIF, BMP. 
+Image file size must be less than 4MB.
+Image dimensions should be greater than 50 x 50.
+ */
+const body = {};
+
 
 computerVision.getThumbnail({
-        parameters
+        parameters,
+        body
     })
     .then((response) => {
         console.log('Got response', response);
@@ -961,9 +1001,21 @@ const parameters = {
     language: "unk"
     detectOrientation: "true"
 };
+/* Input passed within the POST body. Supported input methods: raw image binary or image URL. 
+
+Input requirements: 
+
+Supported image formats: JPEG, PNG, GIF, BMP. 
+Image file size must be less than 4MB.
+Image dimensions must be between 40 x 40 and 3200 x 3200 pixels, and the image cannot be larger than 100 megapixels.
+
+ */
+const body = {};
+
 
 computerVision.ocr({
-        parameters
+        parameters,
+        body
     })
     .then((response) => {
         console.log('Got response', response);
@@ -1006,8 +1058,20 @@ const computerVision = new cognitiveServices.computerVision({
     API_KEY: yourApiKey
 })
 
+/* Input passed within the POST body. Supported input methods: raw image binary or image URL. 
 
-computerVision.recognizeDomainSpecificContent()
+Input requirements: 
+
+Supported image formats: JPEG, PNG, GIF, BMP. 
+Image file size must be less than 4MB.
+Image dimensions should be greater than 50 x 50.
+ */
+const body = {};
+
+
+computerVision.recognizeDomainSpecificContent({,
+        body
+    })
     .then((response) => {
         console.log('Got response', response);
     })
@@ -1046,8 +1110,20 @@ const computerVision = new cognitiveServices.computerVision({
     API_KEY: yourApiKey
 })
 
+/* Input passed within the POST body. Supported input methods: raw image binary or image URL. 
 
-computerVision.tagImage()
+Input requirements: 
+
+Supported image formats: JPEG, PNG, GIF, BMP. 
+Image file size must be less than 4MB.
+Image dimensions should be greater than 50 x 50.
+ */
+const body = {};
+
+
+computerVision.tagImage({,
+        body
+    })
     .then((response) => {
         console.log('Got response', response);
     })
@@ -1082,7 +1158,9 @@ const emotion = new cognitiveServices.emotion({
 })
 
 
-emotion.emotionRecognition()
+emotion.emotionRecognition({,
+        body
+    })
     .then((response) => {
         console.log('Got response', response);
     })
@@ -1121,7 +1199,9 @@ const emotion = new cognitiveServices.emotion({
 })
 
 
-emotion.emotionRecognitionInVideo()
+emotion.emotionRecognitionInVideo({,
+        body
+    })
     .then((response) => {
         console.log('Got response', response);
     })
@@ -1155,7 +1235,9 @@ const emotion = new cognitiveServices.emotion({
 })
 
 
-emotion.emotionRecognitionWithFaceRectangles()
+emotion.emotionRecognitionWithFaceRectangles({,
+        body
+    })
     .then((response) => {
         console.log('Got response', response);
     })
@@ -1252,8 +1334,13 @@ const entityLinking = new cognitiveServices.entityLinking({
     API_KEY: yourApiKey
 })
 
+/* Given a specific paragraph of text within a document, the Entity Linking Intelligence Service will recognize and identify each separate entity based on the context */
+const body = {};
 
-entityLinking.linkEntity()
+
+entityLinking.linkEntity({,
+        body
+    })
     .then((response) => {
         console.log('Got response', response);
     })
@@ -1313,9 +1400,13 @@ const parameters = {
     returnFaceId: "true"
     returnFaceLandmarks: "false"
 };
+/* Given a specific paragraph of text within a document, the Entity Linking Intelligence Service will recognize and identify each separate entity based on the context */
+const body = {};
+
 
 face.detect({
-        parameters
+        parameters,
+        body
     })
     .then((response) => {
         console.log('Got response', response);
@@ -1351,8 +1442,13 @@ const face = new cognitiveServices.face({
     API_KEY: yourApiKey
 })
 
+/* Given a specific paragraph of text within a document, the Entity Linking Intelligence Service will recognize and identify each separate entity based on the context */
+const body = {};
 
-face.findSimilar()
+
+face.findSimilar({,
+        body
+    })
     .then((response) => {
         console.log('Got response', response);
     })
@@ -1396,8 +1492,13 @@ const face = new cognitiveServices.face({
     API_KEY: yourApiKey
 })
 
+/* Given a specific paragraph of text within a document, the Entity Linking Intelligence Service will recognize and identify each separate entity based on the context */
+const body = {};
 
-face.group()
+
+face.group({,
+        body
+    })
     .then((response) => {
         console.log('Got response', response);
     })
@@ -1445,8 +1546,13 @@ const face = new cognitiveServices.face({
     API_KEY: yourApiKey
 })
 
+/* Given a specific paragraph of text within a document, the Entity Linking Intelligence Service will recognize and identify each separate entity based on the context */
+const body = {};
 
-face.identify()
+
+face.identify({,
+        body
+    })
     .then((response) => {
         console.log('Got response', response);
     })
@@ -1486,8 +1592,13 @@ const face = new cognitiveServices.face({
     API_KEY: yourApiKey
 })
 
+/* Given a specific paragraph of text within a document, the Entity Linking Intelligence Service will recognize and identify each separate entity based on the context */
+const body = {};
 
-face.verify()
+
+face.verify({,
+        body
+    })
     .then((response) => {
         console.log('Got response', response);
     })
@@ -1541,8 +1652,13 @@ const face = new cognitiveServices.face({
     API_KEY: yourApiKey
 })
 
+/* Given a specific paragraph of text within a document, the Entity Linking Intelligence Service will recognize and identify each separate entity based on the context */
+const body = {};
 
-face.addAFaceToAFaceList()
+
+face.addAFaceToAFaceList({,
+        body
+    })
     .then((response) => {
         console.log('Got response', response);
     })
@@ -1585,8 +1701,13 @@ const face = new cognitiveServices.face({
     API_KEY: yourApiKey
 })
 
+/* Given a specific paragraph of text within a document, the Entity Linking Intelligence Service will recognize and identify each separate entity based on the context */
+const body = {};
 
-face.createAFaceList()
+
+face.createAFaceList({,
+        body
+    })
     .then((response) => {
         console.log('Got response', response);
     })
@@ -1625,7 +1746,9 @@ const face = new cognitiveServices.face({
 })
 
 
-face.deleteAFaceFromAFaceList()
+face.deleteAFaceFromAFaceList({,
+        body
+    })
     .then((response) => {
         console.log('Got response', response);
     })
@@ -1663,7 +1786,9 @@ const face = new cognitiveServices.face({
 })
 
 
-face.deleteAFaceList()
+face.deleteAFaceList({,
+        body
+    })
     .then((response) => {
         console.log('Got response', response);
     })
@@ -1775,8 +1900,13 @@ const face = new cognitiveServices.face({
     API_KEY: yourApiKey
 })
 
+/* Given a specific paragraph of text within a document, the Entity Linking Intelligence Service will recognize and identify each separate entity based on the context */
+const body = {};
 
-face.updateAFaceList()
+
+face.updateAFaceList({,
+        body
+    })
     .then((response) => {
         console.log('Got response', response);
     })
@@ -1827,8 +1957,13 @@ const face = new cognitiveServices.face({
     API_KEY: yourApiKey
 })
 
+/* Given a specific paragraph of text within a document, the Entity Linking Intelligence Service will recognize and identify each separate entity based on the context */
+const body = {};
 
-face.addAPersonFace()
+
+face.addAPersonFace({,
+        body
+    })
     .then((response) => {
         console.log('Got response', response);
     })
@@ -1867,8 +2002,13 @@ const face = new cognitiveServices.face({
     API_KEY: yourApiKey
 })
 
+/* Given a specific paragraph of text within a document, the Entity Linking Intelligence Service will recognize and identify each separate entity based on the context */
+const body = {};
 
-face.createAPerson()
+
+face.createAPerson({,
+        body
+    })
     .then((response) => {
         console.log('Got response', response);
     })
@@ -1907,7 +2047,9 @@ const face = new cognitiveServices.face({
 })
 
 
-face.deleteAPerson()
+face.deleteAPerson({,
+        body
+    })
     .then((response) => {
         console.log('Got response', response);
     })
@@ -1947,7 +2089,9 @@ const face = new cognitiveServices.face({
 })
 
 
-face.deleteAPersonFace()
+face.deleteAPersonFace({,
+        body
+    })
     .then((response) => {
         console.log('Got response', response);
     })
@@ -2102,8 +2246,13 @@ const face = new cognitiveServices.face({
     API_KEY: yourApiKey
 })
 
+/* Given a specific paragraph of text within a document, the Entity Linking Intelligence Service will recognize and identify each separate entity based on the context */
+const body = {};
 
-face.updateAPerson()
+
+face.updateAPerson({,
+        body
+    })
     .then((response) => {
         console.log('Got response', response);
     })
@@ -2142,8 +2291,13 @@ const face = new cognitiveServices.face({
     API_KEY: yourApiKey
 })
 
+/* Given a specific paragraph of text within a document, the Entity Linking Intelligence Service will recognize and identify each separate entity based on the context */
+const body = {};
 
-face.updateAPersonFace()
+
+face.updateAPersonFace({,
+        body
+    })
     .then((response) => {
         console.log('Got response', response);
     })
@@ -2183,8 +2337,13 @@ const face = new cognitiveServices.face({
     API_KEY: yourApiKey
 })
 
+/* Given a specific paragraph of text within a document, the Entity Linking Intelligence Service will recognize and identify each separate entity based on the context */
+const body = {};
 
-face.createAPersonGroup()
+
+face.createAPersonGroup({,
+        body
+    })
     .then((response) => {
         console.log('Got response', response);
     })
@@ -2222,7 +2381,9 @@ const face = new cognitiveServices.face({
 })
 
 
-face.deleteAPersonGroup()
+face.deleteAPersonGroup({,
+        body
+    })
     .then((response) => {
         console.log('Got response', response);
     })
@@ -2374,7 +2535,9 @@ const face = new cognitiveServices.face({
 })
 
 
-face.trainPersonGroup()
+face.trainPersonGroup({,
+        body
+    })
     .then((response) => {
         console.log('Got response', response);
     })
@@ -2411,8 +2574,13 @@ const face = new cognitiveServices.face({
     API_KEY: yourApiKey
 })
 
+/* Given a specific paragraph of text within a document, the Entity Linking Intelligence Service will recognize and identify each separate entity based on the context */
+const body = {};
 
-face.updateAPersonGroup()
+
+face.updateAPersonGroup({,
+        body
+    })
     .then((response) => {
         console.log('Got response', response);
     })
@@ -2451,7 +2619,9 @@ const recommendations = new cognitiveServices.recommendations({
 })
 
 
-recommendations.createAModel()
+recommendations.createAModel({,
+        body
+    })
     .then((response) => {
         console.log('Got response', response);
     })
@@ -2485,7 +2655,9 @@ const recommendations = new cognitiveServices.recommendations({
 })
 
 
-recommendations.create / TriggerABuild()
+recommendations.create / TriggerABuild({,
+        body
+    })
     .then((response) => {
         console.log('Got response', response);
     })
@@ -2522,7 +2694,9 @@ const recommendations = new cognitiveServices.recommendations({
 })
 
 
-recommendations.deleteABuild()
+recommendations.deleteABuild({,
+        body
+    })
     .then((response) => {
         console.log('Got response', response);
     })
@@ -2556,7 +2730,9 @@ const recommendations = new cognitiveServices.recommendations({
 })
 
 
-recommendations.deleteAModel()
+recommendations.deleteAModel({,
+        body
+    })
     .then((response) => {
         console.log('Got response', response);
     })
@@ -2590,7 +2766,9 @@ const recommendations = new cognitiveServices.recommendations({
 })
 
 
-recommendations.delete / CancelAnOngoingOperation()
+recommendations.delete / CancelAnOngoingOperation({,
+        body
+    })
     .then((response) => {
         console.log('Got response', response);
     })
@@ -2911,7 +3089,9 @@ const recommendations = new cognitiveServices.recommendations({
 })
 
 
-recommendations.updateAModel()
+recommendations.updateAModel({,
+        body
+    })
     .then((response) => {
         console.log('Got response', response);
     })
@@ -2947,7 +3127,9 @@ const recommendations = new cognitiveServices.recommendations({
 })
 
 
-recommendations.uploadACatalogFileToAModel()
+recommendations.uploadACatalogFileToAModel({,
+        body
+    })
     .then((response) => {
         console.log('Got response', response);
     })
@@ -2982,7 +3164,9 @@ const recommendations = new cognitiveServices.recommendations({
 })
 
 
-recommendations.uploadAUsageFileToAModel()
+recommendations.uploadAUsageFileToAModel({,
+        body
+    })
     .then((response) => {
         console.log('Got response', response);
     })
@@ -3020,8 +3204,13 @@ const speakerRecognition = new cognitiveServices.speakerRecognition({
     API_KEY: yourApiKey
 })
 
+/* Given a specific paragraph of text within a document, the Entity Linking Intelligence Service will recognize and identify each separate entity based on the context */
+const body = {};
 
-speakerRecognition.createEnrollment()
+
+speakerRecognition.createEnrollment({,
+        body
+    })
     .then((response) => {
         console.log('Got response', response);
     })
@@ -3052,8 +3241,13 @@ const speakerRecognition = new cognitiveServices.speakerRecognition({
     API_KEY: yourApiKey
 })
 
+/* Given a specific paragraph of text within a document, the Entity Linking Intelligence Service will recognize and identify each separate entity based on the context */
+const body = {};
 
-speakerRecognition.createProfile()
+
+speakerRecognition.createProfile({,
+        body
+    })
     .then((response) => {
         console.log('Got response', response);
     })
@@ -3087,7 +3281,9 @@ const speakerRecognition = new cognitiveServices.speakerRecognition({
 })
 
 
-speakerRecognition.deleteProfile()
+speakerRecognition.deleteProfile({,
+        body
+    })
     .then((response) => {
         console.log('Got response', response);
     })
@@ -3191,7 +3387,9 @@ const speakerRecognition = new cognitiveServices.speakerRecognition({
 })
 
 
-speakerRecognition.resetEnrollments()
+speakerRecognition.resetEnrollments({,
+        body
+    })
     .then((response) => {
         console.log('Got response', response);
     })
@@ -3266,9 +3464,13 @@ const speakerRecognition = new cognitiveServices.speakerRecognition({
 const parameters = {
     identificationProfileIds: "111f427c-3791-468f-b709-fcef7660fff9,111f427c-3791-468f-b709-fcef7660fff9,111f427c-3791-468f-b709-fcef7660fff9"
 };
+/* Given a specific paragraph of text within a document, the Entity Linking Intelligence Service will recognize and identify each separate entity based on the context */
+const body = {};
+
 
 speakerRecognition.identification({
-        parameters
+        parameters,
+        body
     })
     .then((response) => {
         console.log('Got response', response);
@@ -3302,8 +3504,13 @@ const speakerRecognition = new cognitiveServices.speakerRecognition({
     API_KEY: yourApiKey
 })
 
+/* Given a specific paragraph of text within a document, the Entity Linking Intelligence Service will recognize and identify each separate entity based on the context */
+const body = {};
 
-speakerRecognition.verification()
+
+speakerRecognition.verification({,
+        body
+    })
     .then((response) => {
         console.log('Got response', response);
     })
@@ -3382,7 +3589,9 @@ const textAnalytics = new cognitiveServices.textAnalytics({
 })
 
 
-textAnalytics.detectLanguage()
+textAnalytics.detectLanguage({,
+        body
+    })
     .then((response) => {
         console.log('Got response', response);
     })
@@ -3423,7 +3632,9 @@ const textAnalytics = new cognitiveServices.textAnalytics({
 })
 
 
-textAnalytics.detectTopics()
+textAnalytics.detectTopics({,
+        body
+    })
     .then((response) => {
         console.log('Got response', response);
     })
@@ -3456,7 +3667,9 @@ const textAnalytics = new cognitiveServices.textAnalytics({
 })
 
 
-textAnalytics.keyPhrases()
+textAnalytics.keyPhrases({,
+        body
+    })
     .then((response) => {
         console.log('Got response', response);
     })
@@ -3525,7 +3738,9 @@ const textAnalytics = new cognitiveServices.textAnalytics({
 })
 
 
-textAnalytics.sentiment()
+textAnalytics.sentiment({,
+        body
+    })
     .then((response) => {
         console.log('Got response', response);
     })
@@ -3561,7 +3776,9 @@ const video = new cognitiveServices.video({
 })
 
 
-video.faceDetectionAndTracking()
+video.faceDetectionAndTracking({,
+        body
+    })
     .then((response) => {
         console.log('Got response', response);
     })
@@ -3702,7 +3919,9 @@ const video = new cognitiveServices.video({
 })
 
 
-video.motionDetection()
+video.motionDetection({,
+        body
+    })
     .then((response) => {
         console.log('Got response', response);
     })
@@ -3733,7 +3952,9 @@ const video = new cognitiveServices.video({
 })
 
 
-video.stabilization()
+video.stabilization({,
+        body
+    })
     .then((response) => {
         console.log('Got response', response);
     })
@@ -3801,7 +4022,9 @@ const video = new cognitiveServices.video({
 })
 
 
-video.thumbnail()
+video.thumbnail({,
+        body
+    })
     .then((response) => {
         console.log('Got response', response);
     })
@@ -3841,8 +4064,13 @@ const webLanguageModel = new cognitiveServices.webLanguageModel({
     API_KEY: yourApiKey
 })
 
+/* empty post body */
+const body = {};
 
-webLanguageModel.breakIntoWords()
+
+webLanguageModel.breakIntoWords({,
+        body
+    })
     .then((response) => {
         console.log('Got response', response);
     })
@@ -3877,7 +4105,9 @@ const webLanguageModel = new cognitiveServices.webLanguageModel({
 })
 
 
-webLanguageModel.calculateConditionalProbability()
+webLanguageModel.calculateConditionalProbability({,
+        body
+    })
     .then((response) => {
         console.log('Got response', response);
     })
@@ -3912,7 +4142,9 @@ const webLanguageModel = new cognitiveServices.webLanguageModel({
 })
 
 
-webLanguageModel.calculateJointProbability()
+webLanguageModel.calculateJointProbability({,
+        body
+    })
     .then((response) => {
         console.log('Got response', response);
     })
@@ -3948,8 +4180,13 @@ const webLanguageModel = new cognitiveServices.webLanguageModel({
     API_KEY: yourApiKey
 })
 
+/* empty post body */
+const body = {};
 
-webLanguageModel.generateNextWords()
+
+webLanguageModel.generateNextWords({,
+        body
+    })
     .then((response) => {
         console.log('Got response', response);
     })
