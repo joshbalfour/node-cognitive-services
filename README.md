@@ -345,9 +345,9 @@ bingAutosuggest.suggestions({
 ##### Description
 
 Get insights for an image sent in the POST body.
-<br/>
-<br/>
-See full documentation for this API <a target="_blank" href="https://msdn.microsoft.com/en-us/library/dn760791.aspx">here<a>
+
+
+See full documentation for this API here
 
 ##### Parameters
 
@@ -755,14 +755,14 @@ bingWebSearch.search({
 ##### Description
 
 This operation extracts a rich set of visual features based on the image content. 
-        <br>
-        <br>
+        
+        
         Two input methods are supported -- (1) Uploading an image or (2) specifying an image URL.  Within your request, there is an optional parameter to allow you to choose which features to return.  By default, image categories are returned in the response. 
-        <br>
-        <br>
+        
+        
         A successful response will be returned in JSON.  If the request failed, the response will contain an error code and a message to help understand what went wrong. 
 
-<h4>Http Method</h4>
+Http Method
 POST
 
 ##### Parameters
@@ -815,14 +815,14 @@ computerVision.analyzeImage({
 ##### Description
 
 This operation generates a description of an image in human readable language with complete sentences.  The description is based on a collection of content tags, which are also returned by the operation. More than one description can be generated for each image.  Descriptions are ordered by their confidence score. All descriptions are in English.
-        <br>
-        <br>
+        
+        
         Two input methods are supported -- (1) Uploading an image or (2) specifying an image URL.  
-        <br>
-        <br>
+        
+        
         A successful response will be returned in JSON.  If the request failed, the response will contain an error code and a message to help understand what went wrong. 
 
-<h4>Http Method</h4>
+Http Method
 POST
 
 ##### Parameters
@@ -874,13 +874,13 @@ computerVision.describeImage({
 ##### Description
 
 This operation generates a thumbnail image with the user-specified width and height.  By default, the service analyzes the image, identifies the region of interest (ROI), and generates smart cropping coordinates based on the ROI.  Smart cropping helps when you specify an aspect ratio that differs from that of the input image
-<p/>
+
 A successful response contains the thumbnail image binary.  If the request failed, the response contains an error code and a message to help determine what went wrong.
 
-<p/>
+
 Upon failure, the error code and an error message are returned. The error code could be one of InvalidImageUrl, InvalidImageFormat, InvalidImageSize, InvalidThumbnailSize, NotSupportedImage, FailedToProcess, Timeout, or InternalServerError.
 
-<h4>Http Method</h4>
+Http Method
 POST
 
 
@@ -935,11 +935,11 @@ computerVision.getThumbnail({
 ##### Description
 
 This operation returns the list of domain-specific models that are supported by the Computer Vision API.  Currently, the API only supports one domain-specific model: a celebrity recognizer.
-        <br>
-        <br>
+        
+        
         A successful response will be returned in JSON.  If the request failed, the response will contain an error code and a message to help understand what went wrong. 
 
-<h4>Http Method</h4>
+Http Method
 GET
 
 ##### Parameters
@@ -973,12 +973,12 @@ computerVision.listDomainSpecificModels()
 
 Optical Character Recognition (OCR) detects text in an image and extracts the recognized characters into a machine-usable character stream.   
 
-<p/>
+
 Upon success, the OCR results will be returned. 
-<p/>
+
 Upon failure, the error code together with an error message will be returned. The error code can be one of InvalidImageUrl, InvalidImageFormat, InvalidImageSize, NotSupportedImage,  NotSupportedLanguage, or InternalServerError.
 
-<h4>Http Method</h4>
+Http Method
 POST
 
 ##### Parameters
@@ -1033,14 +1033,14 @@ computerVision.ocr({
 ##### Description
 
 This operation recognizes content within an image by applying a domain-specific model.  The list of domain-specific models that are supported by the Computer Vision API can be retrieved using the /models GET request.  Currently, the API only provides a single domain-specific model: celebrities.
-        <br>
-        <br>
+        
+        
         Two input methods are supported -- (1) Uploading an image or (2) specifying an image URL.  
-        <br>
-        <br>
+        
+        
         A successful response will be returned in JSON.  If the request failed, the response will contain an error code and a message to help understand what went wrong. 
 
-<h4>Http Method</h4>
+Http Method
 POST
 
 ##### Parameters
@@ -1088,14 +1088,14 @@ computerVision.recognizeDomainSpecificContent({,
 ##### Description
 
 This operation generates a list of words, or tags, that are relevant to the content of the supplied image. The Computer Vision API can return tags based on objects, living beings, scenery or actions found in images. Unlike categories, tags are not organized according to a hierarchical classification system, but correspond to image content. Tags may contain hints to avoid ambiguity or provide context, for example the tag “cello” may be accompanied by the hint “musical instrument”. All tags are in English.
-        <br>
-        <br>
+        
+        
         Two input methods are supported -- (1) Uploading an image or (2) specifying an image URL.  
-        <br>
-        <br>
+        
+        
         A successful response will be returned in JSON.  If the request failed, the response will contain an error code and a message to help understand what went wrong. 
 
-<h4>Http Method</h4>
+Http Method
 POST
 
 ##### Parameters
@@ -1143,7 +1143,7 @@ computerVision.tagImage({,
 
 ##### Description
 
-<p>Recognizes the emotions expressed by one or more people in an image, as well as returns a bounding box for the face. The emotions detected are happiness, sadness, surprise, anger, fear, contempt, and disgust or neutral. <br/>&bull; The supported input image formats includes JPEG, PNG, GIF(the first frame), BMP. Image file size should be no larger than 4MB. <br/>&bull; If a user has already called the Face API, they can submit the face rectangles as an optional input. Otherwise, Emotion API will first compute the rectangles. <br/>&bull; The detectable face size range is 36x36 to 4096x4096 pixels. Faces out of this range will not be detected. <br/>&bull; For each image, the maximum number of faces detected is 64 and the faces are ranked by face rectangle size in descending order. If no face is detected, an empty array will be returned. <br/>&bull; Some faces may not be detected due to technical challenges, e.g. very large face angles (head-pose), large occlusion. Frontal and near-frontal faces have the best results. <br/>&bull; The emotions contempt and disgust are experimental.</p>
+Recognizes the emotions expressed by one or more people in an image, as well as returns a bounding box for the face. The emotions detected are happiness, sadness, surprise, anger, fear, contempt, and disgust or neutral. &bull; The supported input image formats includes JPEG, PNG, GIF(the first frame), BMP. Image file size should be no larger than 4MB. &bull; If a user has already called the Face API, they can submit the face rectangles as an optional input. Otherwise, Emotion API will first compute the rectangles. &bull; The detectable face size range is 36x36 to 4096x4096 pixels. Faces out of this range will not be detected. &bull; For each image, the maximum number of faces detected is 64 and the faces are ranked by face rectangle size in descending order. If no face is detected, an empty array will be returned. &bull; Some faces may not be detected due to technical challenges, e.g. very large face angles (head-pose), large occlusion. Frontal and near-frontal faces have the best results. &bull; The emotions contempt and disgust are experimental.
 
 ##### Parameters
 
@@ -1176,15 +1176,15 @@ emotion.emotionRecognition({,
 
 ##### Description
 
-<p>Welcome to the Microsoft Emotion API for Video. Emotion API for Video is a cloud-based API that recognizes the emotions expressed by the people in an image and returns an aggregate summary of their emotions. The emotions detected are happiness, sadness, surprise, anger, fear, contempt, and disgust or neutral. These APIs allow you to build more personalized and intelligent apps by understanding your video content. </p>
-<br/>
-Emotion Recognition<br/>
-Returns aggregate emotions for the faces in a video.<br/>
-&bull; The supported input video formats include MP4, MOV, and WMV. Video file size should be no larger than 100MB. <br/>
-&bull; The detectable face size range is 24x24 to 2048x2048 pixels. The faces out of this range will not be detected. <br/>
-&bull; For each video, the maximum number of faces returned is 64. <br/>
-&bull; Some faces may not be detected due to technical challenges; e.g. very large face angles (head-pose), and large occlusion. Frontal and near-frontal faces have the best results. <br/>
-&bull; Output files are deleted after 24 hours. <br/>
+Welcome to the Microsoft Emotion API for Video. Emotion API for Video is a cloud-based API that recognizes the emotions expressed by the people in an image and returns an aggregate summary of their emotions. The emotions detected are happiness, sadness, surprise, anger, fear, contempt, and disgust or neutral. These APIs allow you to build more personalized and intelligent apps by understanding your video content. 
+
+Emotion Recognition
+Returns aggregate emotions for the faces in a video.
+&bull; The supported input video formats include MP4, MOV, and WMV. Video file size should be no larger than 100MB. 
+&bull; The detectable face size range is 24x24 to 2048x2048 pixels. The faces out of this range will not be detected. 
+&bull; For each video, the maximum number of faces returned is 64. 
+&bull; Some faces may not be detected due to technical challenges; e.g. very large face angles (head-pose), and large occlusion. Frontal and near-frontal faces have the best results. 
+&bull; Output files are deleted after 24 hours. 
 
 ##### Parameters
 
@@ -1217,7 +1217,7 @@ emotion.emotionRecognitionInVideo({,
 
 ##### Description
 
-<p>Recognizes the emotions expressed by one or more people in an image, as well as returns a bounding box for the face. The emotions detected are happiness, sadness, surprise, anger, fear, contempt, and disgust or neutral. <br/>&bull; The supported input image formats includes JPEG, PNG, GIF(the first frame), BMP. Image file size should be no larger than 4MB. <br/>&bull; If a user has already called the Face API, they can submit the face rectangles as an optional input. Otherwise, Emotion API will first compute the rectangles. <br/>&bull; The detectable face size range is 36x36 to 4096x4096 pixels. Faces out of this range will not be detected. <br/>&bull; For each image, the maximum number of faces detected is 64 and the faces are ranked by face rectangle size in descending order. If no face is detected, an empty array will be returned. <br/>&bull; Some faces may not be detected due to technical challenges, e.g. very large face angles (head-pose), large occlusion. Frontal and near-frontal faces have the best results. <br/>&bull; The emotions contempt and disgust are experimental.</p>
+Recognizes the emotions expressed by one or more people in an image, as well as returns a bounding box for the face. The emotions detected are happiness, sadness, surprise, anger, fear, contempt, and disgust or neutral. &bull; The supported input image formats includes JPEG, PNG, GIF(the first frame), BMP. Image file size should be no larger than 4MB. &bull; If a user has already called the Face API, they can submit the face rectangles as an optional input. Otherwise, Emotion API will first compute the rectangles. &bull; The detectable face size range is 36x36 to 4096x4096 pixels. Faces out of this range will not be detected. &bull; For each image, the maximum number of faces detected is 64 and the faces are ranked by face rectangle size in descending order. If no face is detected, an empty array will be returned. &bull; Some faces may not be detected due to technical challenges, e.g. very large face angles (head-pose), large occlusion. Frontal and near-frontal faces have the best results. &bull; The emotions contempt and disgust are experimental.
 
 ##### Parameters
 
@@ -1253,32 +1253,32 @@ emotion.emotionRecognitionWithFaceRectangles({,
 
 ##### Description
 
-Get operation result. If succeeded, this interface returns a JSON that includes time stamps and operation status/result. Below is an example: <br/>
+Get operation result. If succeeded, this interface returns a JSON that includes time stamps and operation status/result. Below is an example: 
 
 Example JSON:
-<table class="element table">
-            <thead>
-            </thead>
-            <tbody>
-            <tr>
-{<br/>
-	"status": "Running",<br/>
-	"createdDateTime":  "2015-09-30T01:28:23.4493273Z",<br/>
-	"lastActionDateTime": "2015-09-30T01:32:23.0895791Z",<br/>
-}<br/>
-             </tr>
-            </tbody>
-</table>
-<br/>
-<p>
-Possible values of "status" field are:<br/>
-<b>Not Started</b> - video content is received/uploaded but the process has not started.<br/>
-<b>Uploading</b> - the video content is being uploaded by the URL client side provides.<br/>
-<b>Running</b> - the process is running.<br/>
-<b>Failed</b> - the process is failed. Detailed information will be provided in "message" field.<br/>
-<b>Succeeded</b> - the process succeeded. In this case, depending on specific operation client side created, the result can be retrieved in following two ways:<br/>
-</p>
-The result (as a JSON in string) is available in <b>processingResult</b> field.
+
+            
+            
+            
+            
+{
+	"status": "Running",
+	"createdDateTime":  "2015-09-30T01:28:23.4493273Z",
+	"lastActionDateTime": "2015-09-30T01:32:23.0895791Z",
+}
+             
+            
+
+
+
+Possible values of "status" field are:
+Not Started - video content is received/uploaded but the process has not started.
+Uploading - the video content is being uploaded by the URL client side provides.
+Running - the process is running.
+Failed - the process is failed. Detailed information will be provided in "message" field.
+Succeeded - the process succeeded. In this case, depending on specific operation client side created, the result can be retrieved in following two ways:
+
+The result (as a JSON in string) is available in processingResult field.
 
 ##### Parameters
 
@@ -1365,9 +1365,9 @@ Detect human faces in an image and returns face locations, and optionally with f
   <ul>
   <li>Optional parameters for returning face ID, landmarks, and attributes. Attributes include age, gender, smile intensity, 
   facial hair and head-pose. Face ID is for other APIs use including 
-  <a href="/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f30395239">Face - Identify</a>, 
-  <a href="/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f3039523a">Face - Verify</a>, and 
-  <a href="/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f30395237">Face - Find Similar</a>. 
+  Face - Identify, 
+  Face - Verify, and 
+  Face - Find Similar. 
   The face ID will expire in 24 hours after detection call.</li>
   <ul>
   <li>JPEG, PNG, GIF(the first frame), and BMP are supported. The image file size should be no larger than 4MB.</li>
@@ -1376,7 +1376,7 @@ Detect human faces in an image and returns face locations, and optionally with f
   <li>Some faces may not be detected for technical challenges, e.g. very large face angles (head-pose) or large occlusion. Frontal and near-frontal faces have the best results.</li>
   <li>Attributes (age, gender, headPose, smile and facialHair, and glasses) are still experimental and may not be very accurate. HeadPose's pitch value is reserved as 0.</li>
   </ul>
-  <h4>Http Method</h4>
+  Http Method
   POST
 
 ##### Parameters
@@ -1426,7 +1426,7 @@ face.detect({
 
   Find similar - looking faces for a query face from a list of candidate faces (given by a face list or a face ID array) and return similar face IDs ranked by similarity.
   The candidate face list has a limitation of 1000 faces.
-  <h4>Http Method</h4>
+  Http Method
   POST
 
 
@@ -1466,7 +1466,7 @@ face.findSimilar({,
 
 
   Divide candidate faces into groups based on face similarity.
-  <br/>
+  
   <ul>
   <li>The output is one or more disjointed face groups and a messyGroup. A face group contains faces
   that have similar looking, often of the same person. Face groups are ranked by
@@ -1474,9 +1474,9 @@ face.findSimilar({,
   </li>
   <li>MessyGroup is a special face group containing faces that cannot find any similar counterpart face from original faces. The messyGroup will not appear in the result if all faces
   found their counterparts.</li>
-  <li>Group API needs at least 2 candidate faces and 1000 at most. We suggest to try <a href="/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f3039523a">Face - Verify</a> when you only have 2 candidate faces.</li>
+  <li>Group API needs at least 2 candidate faces and 1000 at most. We suggest to try Face - Verify when you only have 2 candidate faces.</li>
   </ul>
-  <h4>Http Method</h4>
+  Http Method
   POST
 
 
@@ -1516,21 +1516,21 @@ face.group({,
 
 
   Identify unknown faces from an person group.
-  <br/><br/>
+  
   For each face in the faceIds array,
   Face Identify will compute similarity for the face among all faces within a person group (given by personGroupId),
   and returns candidate person(s) for that face ranked by similarity confidence.
-  The person group should be trained to make it ready for identify. See more in <a href="/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f30395249">Person Group - Train Person Group</a>.
-  <br/><br/>
+  The person group should be trained to make it ready for identify. See more in Person Group - Train Person Group.
+  
   Remarks:
   <ul>
   <li>The algorithm allows more than one face to be identified, but the no more than 10 faces.</li>
   <li>Each person in the person group could have more than one face, but no more than 64 faces.</li>
   <li>Identification works well for frontal faces and near-frontal faces.</li>
   <li>Number of candidates returned is restricted by maxNumOfCandidatesReturned. If no person is identified, the candidate returned will be an empty array.</li>
-  <li>Try <a href="/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f30395237">Face - Find Similar</a> when you need to identify similar faces from a face list instead of a person group.</li>
+  <li>Try Face - Find Similar when you need to identify similar faces from a face list instead of a person group.</li>
   </ul>
-  <h4>Http Method</h4>
+  Http Method
   POST
 
 
@@ -1570,13 +1570,13 @@ face.identify({,
 
 
   Verify whether two faces belong to a same person.
-  <br/><br/>
+  
   Remarks:
   <ul>
   <li>Verify works well for frontal and near-frontal faces. </li>
   <li>For the scenarios that are sensitive to accuracy please use with own judgment.</li>
   </ul>
-  <h4>Http Method</h4>
+  Http Method
   POST
 
 
@@ -1614,25 +1614,25 @@ face.verify({,
 
 ##### Description
 
-<p>Add a face to a face list. The input face is specified as an image with a targetFace rectangle.
+Add a face to a face list. The input face is specified as an image with a targetFace rectangle.
         It returns an persistedFaceId representing the added face, and persistedFaceId will not expire.
         <ul>
 <li>The persistedFaceId will be used in output JSON of
-        <a href="/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f30395237">Face - Find Similar</a>, 
-  or in <a href="/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f30395251">Face List - Delete a Face from a Face List</a> to remove face from a face list.</li>
+        Face - Find Similar, 
+  or in Face List - Delete a Face from a Face List to remove face from a face list.</li>
 <li>JPEG, PNG, GIF(the first frame), and BMP are supported. The image file size should be no larger than 4MB.</li>
 <li>The detectable face size is between 36x36 to 4096x4096 pixels. The faces out of this range will not be detected.</li>
 <li>Rectangle specified by targetFace should contain exactly one face. Zero or multiple faces will be regarded as an error. Out of detectable face size, large head-pose, or very large occlusions will also result in fail to add a person face.</li> 
-<li>The given rectangle specifies both face location and face size at the same time. There is no guarantee of corrent result if you are using rectangle which are not returned from <a href="/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f30395236">Face - Detect</a>.  </li> 
+<li>The given rectangle specifies both face location and face size at the same time. There is no guarantee of corrent result if you are using rectangle which are not returned from Face - Detect.  </li> 
 </ul>
-<p>
+
 Face list is a group of faces, and these faces will not expire. Face list is used as a parameter of source faces in 
-  <a href="/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f30395237">Face - Find Similar</a>. 
-  Face List is useful when to find similar faces in a fixed face set very often, e.g. to find a similar face in a face list of celebrities, friends, or family members.</p>
-        <p>
+  Face - Find Similar. 
+  Face List is useful when to find similar faces in a fixed face set very often, e.g. to find a similar face in a face list of celebrities, friends, or family members.
+        
   A face list can have a maximum of 1000 faces.
-</p>
-  <h4>Http Method</h4>
+
+  Http Method
   POST
 
 ##### Parameters
@@ -1675,14 +1675,14 @@ face.addAFaceToAFaceList({,
 ##### Description
 
 
-        <p>Create an empty face list with user-specified face list ID, name and an optional user-data. 64 face lists are allowed to exist in one subscription.</p>
-<p>
+        Create an empty face list with user-specified face list ID, name and an optional user-data. 64 face lists are allowed to exist in one subscription.
+
 Face list is a group of faces, and these faces will not expire. Face list is used as a parameter of source faces in 
-  <a href="/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f30395237">Face - Find Similar</a>. 
+  Face - Find Similar. 
   Face List is useful when to find similar faces in a fixed face set very often, e.g. to find a similar face in a face list of celebrities, friends, or family members.
-</p>
-<p>A face list can have a maximum of 1000 faces.</p>
- <h4>Http Method</h4>
+
+A face list can have a maximum of 1000 faces.
+ Http Method
   PUT
 
 
@@ -1725,7 +1725,7 @@ face.createAFaceList({,
 
 
   Delete an existing face from a face list (given by a face ID and a face list ID). Persisted image related to the face will also be deleted.
-  <h4>Http Method</h4>
+  Http Method
   DELETE
 
 
@@ -1766,7 +1766,7 @@ face.deleteAFaceFromAFaceList({,
 
 
   Delete an existing face list according to face list ID. Persisted face images in the face list will also be deleted.
-  <h4>Http Method</h4>
+  Http Method
   DELETE
 
 
@@ -1806,8 +1806,8 @@ face.deleteAFaceList({,
 
 
   Retrieve a face list's information, including face list ID, name, userData and faces in the face list. Face list simply represents a list of faces, and could be treated as a searchable data source in
-  <a href="/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f30395237">Face - Find Similar</a>.
-  <h4>Http Method</h4>
+  Face - Find Similar.
+  Http Method
   GET
 
 
@@ -1844,8 +1844,8 @@ face.getAFaceList()
 ##### Description
 
 
-  Retrieve information about all existing face lists. Only face list ID, name and user data will be returned. Try <a href="/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f3039524c">Face List - Get a Face List</a> to retrieve face information inside faceList.
-  <h4>Http Method</h4>
+  Retrieve information about all existing face lists. Only face list ID, name and user data will be returned. Try Face List - Get a Face List to retrieve face information inside faceList.
+  Http Method
   GET
 
 
@@ -1880,8 +1880,8 @@ face.listFaceLists()
 
 
   Update face changes to a face list. Face list simply represents a list of faces, and could be treat as a searchable data source in
-  <a href="/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f30395237">Face - Find Similar</a>.
-  <h4>Http Method</h4>
+  Face - Find Similar.
+  Http Method
   PATCH
 
 
@@ -1922,20 +1922,20 @@ face.updateAFaceList({,
 
 ##### Description
 
-<p>Add a representative face to a person for identification. The input face is specified as an image with a targetFace rectangle.
-        It returns an persistedFaceId representing the added face and this persistedFaceId will not expire. </p>
+Add a representative face to a person for identification. The input face is specified as an image with a targetFace rectangle.
+        It returns an persistedFaceId representing the added face and this persistedFaceId will not expire. 
 <ul>
 <li>The persistedFaceId is only used in
-        <a href="/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f30395239">Face - Identify</a>
+        Face - Identify
 and 
-<a href="/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f3039523e">Person - Delete a Person Face</a></li>
+Person - Delete a Person Face</li>
 <li>Each person has a maximum of 248 faces.</li>
 <li>JPEG, PNG, GIF(the first frame), and BMP are supported. The image file size should be no larger than 4MB.</li>
 <li>The detectable face size is between 36x36 to 4096x4096 pixels. The faces out of this range will not be detected.</li>
 <li>Rectangle specified by targetFace should contain exactly one face. Zero or multiple faces will be regarded as an error. Out of detectable face size, large head-pose, or very large occlusions will also result in fail to add a person face.</li> 
-<li>The given rectangle specifies both face location and face size at the same time. There is no guarantee of corrent result if you are using rectangle which are not returned from <a href="/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f30395236">Face - Detect</a>.  </li> 
+<li>The given rectangle specifies both face location and face size at the same time. There is no guarantee of corrent result if you are using rectangle which are not returned from Face - Detect.  </li> 
 </ul>
-  <h4>Http Method</h4>
+  Http Method
   POST
 
 
@@ -1981,9 +1981,9 @@ face.addAPersonFace({,
 
 
   Create a new person in a specified person group for identify. A newly created person have no registered face, you can call Person - Add a Person Face API to add faces to the person.
-  <br/><br/>
+  
   The number of persons has a subscription limit. For free subscription, the limit is 1000. 
-  <h4>Http Method</h4>
+  Http Method
   POST
 
 
@@ -2026,7 +2026,7 @@ face.createAPerson({,
 
 
   Delete an existing person from a person group. Persisted face images of the person will also be deleted.
-  <h4>Http Method</h4>
+  Http Method
   DELETE
 
 
@@ -2067,7 +2067,7 @@ face.deleteAPerson({,
 
 
   Delete a face from a person. Relative image for the persisted face will also be deleted.
-  <h4>Http Method</h4>
+  Http Method
   DELETE
 
 
@@ -2109,7 +2109,7 @@ face.deleteAPersonFace({,
 
 
   Retrieve a person's information, including registered faces, name and userData.
-  <h4>Http Method</h4>
+  Http Method
   GET
 
 
@@ -2148,7 +2148,7 @@ face.getAPerson()
 
 
   Retrieve information about a face (specified by face ID, person ID and its belonging person group ID).
-  <h4>Http Method</h4>
+  Http Method
   GET
 
 
@@ -2188,7 +2188,7 @@ face.getAPersonFace()
 
 
   List all people in a person group, and retrieve person information (including person ID, name, user data and registered faces of the person).
-  <h4>Http Method</h4>
+  Http Method
   GET
 
 
@@ -2226,7 +2226,7 @@ face.listPersonsInAPersonGroup()
 
 
   Update a person's name or userData field.
-  <h4>Http Method</h4>
+  Http Method
   PATCH
 
 
@@ -2270,7 +2270,7 @@ face.updateAPerson({,
 
 
   Update a person face's userData field.
-  <h4>Http Method</h4>
+  Http Method
   PATCH
 
 
@@ -2315,10 +2315,10 @@ face.updateAPersonFace({,
 
 
   Create a new person group with specified person group ID, name and user-provided data.
-  <br/><br/>
-  A person group is one of the most important parameters for the <a href="/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f30395239">Face - Identify</a> API. The Identify
+  
+  A person group is one of the most important parameters for the Face - Identify API. The Identify
   searches person faces in a specified person group.
-  <h4>Http Method</h4>
+  Http Method
   PUT
 
 
@@ -2361,7 +2361,7 @@ face.createAPersonGroup({,
 
 
   Delete an existing person group. Persisted face images of all people in the person group will also be deleted.
-  <h4>Http Method</h4>
+  Http Method
   DELETE
 
 
@@ -2400,8 +2400,8 @@ face.deleteAPersonGroup({,
 ##### Description
 
 
-  Retrieve the information of a person group, including its name and userData. This API returns person group information only, use <a href="/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f30395241">Person - List Persons in a Person Group</a> instead to retrieve person information under the person group.
-  <h4>Http Method</h4>
+  Retrieve the information of a person group, including its name and userData. This API returns person group information only, use Person - List Persons in a Person Group instead to retrieve person information under the person group.
+  Http Method
   GET
 
 
@@ -2438,8 +2438,8 @@ face.getAPersonGroup()
 ##### Description
 
 
-  Retrieve the training status of a person group (completed or ongoing). Training can be triggered by the <a href="/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f30395249">Person Group - Train Person Group</a> API. The training will process for a while on the server side..
-  <h4>Http Method</h4>
+  Retrieve the training status of a person group (completed or ongoing). Training can be triggered by the Person Group - Train Person Group API. The training will process for a while on the server side..
+  Http Method
   GET
 
 
@@ -2477,7 +2477,7 @@ face.getPersonGroupTrainingStatus()
 
 
   List all person groups and their information.
-  <h4>Http Method</h4>
+  Http Method
   GET
 
 
@@ -2512,10 +2512,10 @@ face.listPersonGroups()
 
 
   Queue a person group training task, the training task may not be started immediately.
-  <br/><br/>
-  Any updates to person group will not take effect in <a href="/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f30395239">Face - Identify</a> until person group is successfully trained.
-  You can query the training status by calling <a href="/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f30395247">Person Group - Get Person Group Training Status</a> API.
-  <h4>Http Method</h4>
+  
+  Any updates to person group will not take effect in Face - Identify until person group is successfully trained.
+  You can query the training status by calling Person Group - Get Person Group Training Status API.
+  Http Method
   POST
 
 
@@ -2555,7 +2555,7 @@ face.trainPersonGroup({,
 
 
   Update an existing person group's display name and userData. The properties which does not appear in request body will not be updated.
-  <h4>Http Method</h4>
+  Http Method
   PATCH
 
 
@@ -2600,11 +2600,11 @@ face.updateAPersonGroup({,
 
 ##### Description
 
-Create a new model.  A model is a container of your usage data, catalog data and the recommendation model.<br>
+Create a new model.  A model is a container of your usage data, catalog data and the recommendation model.
 Once you have created a model, you can upload your catalog data, upload your usage data and start the training process by creating a new build in that model.
 
-<p><b>Note:</b></p>
-<p>You may create up to 10 models. If you need to delete unused models, you may use the "Delete a model" API.</p>
+Note:
+You may create up to 10 models. If you need to delete unused models, you may use the "Delete a model" API.
 
 ##### Parameters
 
@@ -2637,7 +2637,7 @@ recommendations.createAModel({,
 
 ##### Description
 
-Trigger a recommendation model build. Before triggering a build you first must upload catalog and usage data. Once a build is triggered you will receive an <i>operation</i> that you can use to track the build status, or to cancel the build operation.<p>There are 3 types of builds: a <i>Recommendation</i> build, a <i>Rank</i> build and an <i> FBT (frequently bought together) build.</i></p><p>The recommendation build's purpose is to generate a recommendation model used for predictions. Predictions (for this type of build) come in two flavors: <br><p>* <i>Item to Item recommendations (I2I)</i><br>Given an item or a list of items this option will predict a list of items that are likely to be of high interest. </p><p>* <i>User to Item recommendations (U2I) </i><br>Given a user id (and optionally a list of items) this option will predict a list of items that are likely to be of high interest for the given user (and its additional choice of items). The U2I recommendations are based on the history of items that were of interest for the user up to the time the model was built.</p><p>An FBT (Frequently bought together) build is yet another recommendations algorithm called sometimes a "conservative" recommender, which is good for catalogs that are not homogeneous in nature (homogeneous: books, movies, some food, fashion; non-homogeneous: computer and devices, cross-domain, highly diverse).</p><p><b>Note:</b> If the usage files that you uploaded contain the optional field "event type" then for FBT modelling only "Purchase" events will be used. If no event type is provided all events will be considered as purchase.</p><p>A rank build is a technical build that allows you to learn about the usefulness of your features. It is not currently supported on this API version.</p>
+Trigger a recommendation model build. Before triggering a build you first must upload catalog and usage data. Once a build is triggered you will receive an operation that you can use to track the build status, or to cancel the build operation.There are 3 types of builds: a Recommendation build, a Rank build and an  FBT (frequently bought together) build.The recommendation build's purpose is to generate a recommendation model used for predictions. Predictions (for this type of build) come in two flavors: * Item to Item recommendations (I2I)Given an item or a list of items this option will predict a list of items that are likely to be of high interest. * User to Item recommendations (U2I) Given a user id (and optionally a list of items) this option will predict a list of items that are likely to be of high interest for the given user (and its additional choice of items). The U2I recommendations are based on the history of items that were of interest for the user up to the time the model was built.An FBT (Frequently bought together) build is yet another recommendations algorithm called sometimes a "conservative" recommender, which is good for catalogs that are not homogeneous in nature (homogeneous: books, movies, some food, fashion; non-homogeneous: computer and devices, cross-domain, highly diverse).Note: If the usage files that you uploaded contain the optional field "event type" then for FBT modelling only "Purchase" events will be used. If no event type is provided all events will be considered as purchase.A rank build is a technical build that allows you to learn about the usefulness of your features. It is not currently supported on this API version.
 
 ##### Parameters
 
@@ -2674,8 +2674,8 @@ recommendations.create / TriggerABuild({,
 ##### Description
 
 Delete a build.
-<p>You cannot delete an active build, you will get an error. The model should be updated to a different active build before you delete it. </p>
-<p>You cannot delete an in-progress build. You should cancel the build first by submitting Cancel Build request.</p>
+You cannot delete an active build, you will get an error. The model should be updated to a different active build before you delete it. 
+You cannot delete an in-progress build. You should cancel the build first by submitting Cancel Build request.
 
 ##### Parameters
 
@@ -2748,7 +2748,7 @@ recommendations.deleteAModel({,
 
 ##### Description
 
-<p>Cancels an ongoing operation. One example is to cancel a build request that was submitted.</p><p>To get the operation ID location, you should check the <i>Operation-Location</i> header that is returned on the response when you are triggering a build.</p>
+Cancels an ongoing operation. One example is to cancel a build request that was submitted.To get the operation ID location, you should check the Operation-Location header that is returned on the response when you are triggering a build.
 
 ##### Parameters
 
@@ -2954,7 +2954,7 @@ recommendations.getDetailsOfAllBuilds()
 
 ##### Description
 
-<p>Get recommendations for one or more items based on a specific build.</p><p>Special cases: <br>1. If the item list contains just a single item that is not in the catalog - an empty list is returned.<br>2. If the item list contains some items that don't appear in the catalog - these are removed and a result is generated based on the other items.<br>3. If an item list contains only <i>cold items</i> the <i>most popular</i> recommendation list is generated as a response.<br>4. If the items list contains some <i>cold</i> items (after removing the items that don't appear in the catalog) - the result is generated based on the other items only.<br>
+Get recommendations for one or more items based on a specific build.Special cases: 1. If the item list contains just a single item that is not in the catalog - an empty list is returned.2. If the item list contains some items that don't appear in the catalog - these are removed and a result is generated based on the other items.3. If an item list contains only cold items the most popular recommendation list is generated as a response.4. If the items list contains some cold items (after removing the items that don't appear in the catalog) - the result is generated based on the other items only.
 
 ##### Parameters
 
@@ -2993,12 +2993,12 @@ recommendations.getRecommendationsBasedOnItems(I2I)()
 
 ##### Description
 
-Get user recommendations of a build of type "Recommendation" marked as active build.<br>
-The API will return a list of predicted items according to the usage history of the user.<br>
-Note:  There is no user recommendation for an <i>FBT</i> build. If the active build is <i>FBT</i>, this method will return an error.
+Get user recommendations of a build of type "Recommendation" marked as active build.
+The API will return a list of predicted items according to the usage history of the user.
+Note:  There is no user recommendation for an FBT build. If the active build is FBT, this method will return an error.
 
-<p><b>Note</b></p>
-<p>The EnableU2I build parameter needs to be set to true in order to train the model so that it can support user recommendations.</p>
+Note
+The EnableU2I build parameter needs to be set to true in order to train the model so that it can support user recommendations.
 
 ##### Parameters
 
@@ -3037,7 +3037,7 @@ recommendations.getUserRecommendations(U2I)()
 
 ##### Description
 
-<p>Retrieves the status of an operation given the operation ID. You will need to use this API to track the status of a build operation, for instance.</p><p>To get the operation ID location, you should check the Operation-Location header that is returned on the response when you are triggering a build.</p>
+Retrieves the status of an operation given the operation ID. You will need to use this API to track the status of a build operation, for instance.To get the operation ID location, you should check the Operation-Location header that is returned on the response when you are triggering a build.
 
 ##### Parameters
 
@@ -3071,7 +3071,7 @@ recommendations.retrieveTheStatusOfAnOperation()
 
 ##### Description
 
-<p>Allows you to update the description or the active build for a model.</p><p><b>Active build ID</b> – Every build for every model has a build ID. The active build ID is the first successful build of every new model. Once you have an active build ID and you do additional builds for the same model, you need to explicitly set it as the default build ID if you want to. When you consume recommendations, if you do not specify the build ID that you want to use, the default one will be used automatically.</p><p>This mechanism enables you - once you have a recommendation model in production - to build new models and test them before you promote them to production.</p>
+Allows you to update the description or the active build for a model.Active build ID – Every build for every model has a build ID. The active build ID is the first successful build of every new model. Once you have an active build ID and you do additional builds for the same model, you need to explicitly set it as the default build ID if you want to. When you consume recommendations, if you do not specify the build ID that you want to use, the default one will be used automatically.This mechanism enables you - once you have a recommendation model in production - to build new models and test them before you promote them to production.
 
 ##### Parameters
 
@@ -3107,8 +3107,8 @@ recommendations.updateAModel({,
 
 ##### Description
 
-<p>If you upload to the same model with several calls, the system will insert only the new catalog items; Existing items will remain with the original values.  You cannot update catalog items by using this API.</p><p>The catalog data should follow the following format: <br><i>Item Id, Item Name, Item Category, Description, Features list.</i></p>
-<p>The first 3 attributes (Item Id, Name and Category) are mandatory, while others are optional.</p><p>Item Id can have max length of 50 characters and allowed characters are [A-z], [a-z], [0-9], [_] (Underscore), [-] (Dash). </p><p>Item Name can have max length of 255 characters and can contain alphanumeric characters.</p><p>Item Category can have max length of 255 characters and can contain alphanumeric characters.</p><p>Item Description can have max length of 4000 characters and can contain alphanumeric characters.</p><p>Item Features List can have max length of 4000 characters and can contain alphanumeric characters.</p>Note: The maximum size of data that can be sent in POST call for this API is 200MB.
+If you upload to the same model with several calls, the system will insert only the new catalog items; Existing items will remain with the original values.  You cannot update catalog items by using this API.The catalog data should follow the following format: Item Id, Item Name, Item Category, Description, Features list.
+The first 3 attributes (Item Id, Name and Category) are mandatory, while others are optional.Item Id can have max length of 50 characters and allowed characters are [A-z], [a-z], [0-9], [_] (Underscore), [-] (Dash). Item Name can have max length of 255 characters and can contain alphanumeric characters.Item Category can have max length of 255 characters and can contain alphanumeric characters.Item Description can have max length of 4000 characters and can contain alphanumeric characters.Item Features List can have max length of 4000 characters and can contain alphanumeric characters.Note: The maximum size of data that can be sent in POST call for this API is 200MB.
 
 ##### Parameters
 
@@ -3145,7 +3145,7 @@ recommendations.uploadACatalogFileToAModel({,
 
 ##### Description
 
-<p>Before you upload usage files, you need to upload the catalog files that describe the items that will be taken into consideration in the model.</p><p>The maximum size of data that can be sent in POST call for this API is 200MB.  If you need to upload more than 200MB of usage data, you may call this API several times.</p><p>Usage data format: <i>User Id, Item Id, Time, Event type</i>.</p><p>The first 3 attributes (User Id, Item Id, Time) are mandatory, while others are optional for each usage event. </p><p>User Id can have max length of 255 characters and allowed characters are [A-z], [a-z], [0-9], [_] (Underscore), [-] (Dash). </p><p>Item Id can have max length of 50 characters and allowed characters are [A-z], [a-z], [0-9], [_] (Underscore), [-] (Dash). </p><p>Time should be in date type in format: YYYY/MM/DDTHH:MM:SS (e.g. 2013/06/20T10:00:00).</p><p>Event can be one of the following: <i>Click, RecommendationClick, AddShopCart, RemoveShopCart, Purchase. </i></p><p><b>Note: </b>The maximum number of usage points that are kept is ~5,000,000. The oldest will be deleted if new ones will be uploaded or reported.</p>
+Before you upload usage files, you need to upload the catalog files that describe the items that will be taken into consideration in the model.The maximum size of data that can be sent in POST call for this API is 200MB.  If you need to upload more than 200MB of usage data, you may call this API several times.Usage data format: User Id, Item Id, Time, Event type.The first 3 attributes (User Id, Item Id, Time) are mandatory, while others are optional for each usage event. User Id can have max length of 255 characters and allowed characters are [A-z], [a-z], [0-9], [_] (Underscore), [-] (Dash). Item Id can have max length of 50 characters and allowed characters are [A-z], [a-z], [0-9], [_] (Underscore), [-] (Dash). Time should be in date type in format: YYYY/MM/DDTHH:MM:SS (e.g. 2013/06/20T10:00:00).Event can be one of the following: Click, RecommendationClick, AddShopCart, RemoveShopCart, Purchase. Note: The maximum number of usage points that are kept is ~5,000,000. The oldest will be deleted if new ones will be uploaded or reported.
 
 ##### Parameters
 
@@ -3186,7 +3186,7 @@ recommendations.uploadAUsageFileToAModel({,
 
 ##### Description
 
-Enrollment for speaker verification is text-dependent, which means speaker need to choose a specific phrase to use in both enrollment and verification. List of supported phrases can be found in <a href="https://dev.projectoxford.ai/docs/services/563309b6778daf02acc0a508/operations/5652c0801984551c3859634d">Verification Phrase - List All Supported Verification Phrases</a>.<br/><br/>
+Enrollment for speaker verification is text-dependent, which means speaker need to choose a specific phrase to use in both enrollment and verification. List of supported phrases can be found in Verification Phrase - List All Supported Verification Phrases.
 The service requires at least 3 enrollments for each speaker before the profile can be used in verification scenarios. It is recommended to use the same device (mic) in both enrollment and verification.
 
 ##### Parameters
@@ -3226,8 +3226,8 @@ speakerRecognition.createEnrollment({,
 
 ##### Description
 
-Create a new speaker identification profile with specified locale.<br/>
-One subscription can only create 1000 speaker verification/identification profiles at most.<br/>
+Create a new speaker identification profile with specified locale.
+One subscription can only create 1000 speaker verification/identification profiles at most.
 
 ##### Parameters
 
@@ -3405,7 +3405,7 @@ speakerRecognition.resetEnrollments({,
 
 ##### Description
 
-Get operation status or result. The operation should be created by <a href="https://dev.projectoxford.ai/docs/services/563309b6778daf02acc0a508/operations/5645c523778daf217c292592"> Speaker Recognition - Identification</a> or <a href="https://dev.projectoxford.ai/docs/services/563309b6778daf02acc0a508/operations/5645c3271984551c84ec6797"> Identification Profile - Create Enrollment</a>. And the URL should be retrieved from Operation-Location header of initial POST 202 response
+Get operation status or result. The operation should be created by  Speaker Recognition - Identification or  Identification Profile - Create Enrollment. And the URL should be retrieved from Operation-Location header of initial POST 202 response
 
 ##### Parameters
 
@@ -3526,7 +3526,7 @@ speakerRecognition.verification({,
 
 ##### Description
 
-Returns the list of supported verification phrases that can be used for <a href="https://dev.projectoxford.ai/docs/services/563309b6778daf02acc0a508/operations/56406930e597ed20c8d8549c">Verification Profile - Create Enrollment</a> and <a href="https://dev.projectoxford.ai/docs/services/563309b6778daf02acc0a508/operations/56406930e597ed20c8d8549d">Speaker Recognition - Verification</a>.
+Returns the list of supported verification phrases that can be used for Verification Profile - Create Enrollment and Speaker Recognition - Verification.
 
 ##### Parameters
 
@@ -3760,8 +3760,8 @@ textAnalytics.sentiment({,
 
 ##### Description
 
-<p>Detects and tracks human faces in a video and returns face locations. <br/>&bull; The supported input video formats include MP4, MOV, and WMV. Video file size should be no larger than 100MB. <br/>&bull; The detectable face size range is 24x24 to 2048x2048 pixels. The faces out of this range will not be detected. <br/>&bull; For each video, the maximum number of faces returned is 64. <br/>&bull; Some faces may not be detected due to technical challenges; e.g. very large face angles (head-pose), and large occlusion. Frontal and near-frontal faces have the best results. <br/>&bull; Output files are deleted after 24 hours.
-</p>
+Detects and tracks human faces in a video and returns face locations. &bull; The supported input video formats include MP4, MOV, and WMV. Video file size should be no larger than 100MB. &bull; The detectable face size range is 24x24 to 2048x2048 pixels. The faces out of this range will not be detected. &bull; For each video, the maximum number of faces returned is 64. &bull; Some faces may not be detected due to technical challenges; e.g. very large face angles (head-pose), and large occlusion. Frontal and near-frontal faces have the best results. &bull; Output files are deleted after 24 hours.
+
 
 ##### Parameters
 
@@ -3797,38 +3797,38 @@ video.faceDetectionAndTracking({,
 Get operation result. If succeeded, this interface returns a JSON that includes time stamps and operation status. Below is an example:
 
 Example JSON:
-<table class="element table">
-            <thead>
-            </thead>
-            <tbody>
-            <tr>
-{<br/>
-	"status": "Running",<br/>
-	"createdDateTime":  "2015-09-30T01:28:23.4493273Z",<br/>
-	"lastActionDateTime": "2015-09-30T01:32:23.0895791Z",<br/>
-}<br/>
-             </tr>
-            </tbody>
-</table>
-<br/>
-<p>
-Possible values of "status" field are:<br/>
-<b>Not Started</b> - video content is received/uploaded but the process has not started.<br/>
-<b>Uploading</b> - the video content is being uploaded by the URL client side provides.<br/>
-<b>Running</b> - the process is running.<br/>
-<b>Failed</b> - the process is failed. Detailed information will be provided in "message" field.<br/>
-<b>Succeeded</b> - the process succeeded. In this case, depending on specific operation client side created, the result can be retrieved in following two ways:<br/>
-</p>
-<table class="element table">
-            <thead>
-            <tr><th>Video Operation</th><th>How to Retrieve Result</th></tr>
-            </thead>
-            <tbody>
-            <tr><td>Stabilization</td><td>The result (as a video file) can be retrieved from the URL specified in <b>resourceLocation</b> field.</td></tr>
-            <tr><td>Face Detection and Tracking<br/>Motion Detection 
-</td><td>The result (as a JSON in string) is available in <b>processingResult</b> field.</td></tr>
-             </tbody>
-</table>
+
+            
+            
+            
+            
+{
+	"status": "Running",
+	"createdDateTime":  "2015-09-30T01:28:23.4493273Z",
+	"lastActionDateTime": "2015-09-30T01:32:23.0895791Z",
+}
+             
+            
+
+
+
+Possible values of "status" field are:
+Not Started - video content is received/uploaded but the process has not started.
+Uploading - the video content is being uploaded by the URL client side provides.
+Running - the process is running.
+Failed - the process is failed. Detailed information will be provided in "message" field.
+Succeeded - the process succeeded. In this case, depending on specific operation client side created, the result can be retrieved in following two ways:
+
+
+            
+            Video OperationHow to Retrieve Result
+            
+            
+            StabilizationThe result (as a video file) can be retrieved from the URL specified in resourceLocation field.
+            Face Detection and TrackingMotion Detection 
+The result (as a JSON in string) is available in processingResult field.
+             
+
 
 ##### Parameters
 
@@ -3862,7 +3862,7 @@ video.getOperationResult()
 
 ##### Description
 
-This interface is used for getting result video content. Currently only Stabilization outputs video content as result. The URL to this interface should be retrieved from <b>resourceLocation</b> field of JSON returned from Get Operation Result interface.
+This interface is used for getting result video content. Currently only Stabilization outputs video content as result. The URL to this interface should be retrieved from resourceLocation field of JSON returned from Get Operation Result interface.
 
 ##### Parameters
 
@@ -3896,8 +3896,8 @@ video.getResultVideo()
 
 ##### Description
 
-<p>Detects motion in a video, and returns the frame and duration of the motion that was captured. <br/>&bull; The supported input video formats include MP4, MOV, and WMV. Video file size should be no larger than 100MB. <br/>&bull; User can input detection zones to set up as areas to detect motion. <br/>&bull; User can specify motion sensitivity: high, medium, and low. Higher sensitivity means more motions will be detected at a cost that more false alarms will be reported.<br/>&bull; Motion Detection is optimized for stationary background videos. <br/>&bull; User can specify whether light change events should be detected. A light change refers to a change in the frame that was caused by a light turning off and on. Some developers do not want to detect this, as they consider it a false alarm. Other developers want to make sure they capture any change, light changes included.<br/>&bull; User can specify whether successive motions should be merged together by passing in a parameter (mergeTimeThreshold) For example, if a motion happens from 1 to 4 seconds and the next motion happens from 5 to 10 seconds, some developers will want to count that as one instance of motion.<br/>&bull; User can specify which frames to be detected by passing in a parameter (frameSamplingValue).<br/>&bull; Some motion may not be detected due to technical challenges; e.g. semi-transparent objects, and some small objects. <br/>&bull; Output files are deleted after 24 hours.
-</p>
+Detects motion in a video, and returns the frame and duration of the motion that was captured. &bull; The supported input video formats include MP4, MOV, and WMV. Video file size should be no larger than 100MB. &bull; User can input detection zones to set up as areas to detect motion. &bull; User can specify motion sensitivity: high, medium, and low. Higher sensitivity means more motions will be detected at a cost that more false alarms will be reported.&bull; Motion Detection is optimized for stationary background videos. &bull; User can specify whether light change events should be detected. A light change refers to a change in the frame that was caused by a light turning off and on. Some developers do not want to detect this, as they consider it a false alarm. Other developers want to make sure they capture any change, light changes included.&bull; User can specify whether successive motions should be merged together by passing in a parameter (mergeTimeThreshold) For example, if a motion happens from 1 to 4 seconds and the next motion happens from 5 to 10 seconds, some developers will want to count that as one instance of motion.&bull; User can specify which frames to be detected by passing in a parameter (frameSamplingValue).&bull; Some motion may not be detected due to technical challenges; e.g. semi-transparent objects, and some small objects. &bull; Output files are deleted after 24 hours.
+
 
 ##### Parameters
 
@@ -3937,7 +3937,7 @@ video.motionDetection({,
 
 ##### Description
 
-<p>Smooths and stabilizes a video.  <br/>&bull;  The supported input video formats include MP4, MOV, and WMV. Video file size should be no larger than 100MB. <br/>&bull;  Stabilization is optimized for small camera motions, with or without rolling shutter effects (e.g. holding a static camera, and walking with a slow speed). <br/>&bull;  Both width and height of the input video must be even numbers. <br/>&bull;  The resolution of the input video should be less than or equal to 2160P (4K, 3840 X 2160). <br/>&bull; Output files are deleted after 24 hours.</p>
+Smooths and stabilizes a video.  &bull;  The supported input video formats include MP4, MOV, and WMV. Video file size should be no larger than 100MB. &bull;  Stabilization is optimized for small camera motions, with or without rolling shutter effects (e.g. holding a static camera, and walking with a slow speed). &bull;  Both width and height of the input video must be even numbers. &bull;  The resolution of the input video should be less than or equal to 2160P (4K, 3840 X 2160). &bull; Output files are deleted after 24 hours.
 
 ##### Parameters
 
@@ -3970,39 +3970,39 @@ video.stabilization({,
 
 ##### Description
 
-Generates a motion thumbnail from a video. The Video Thumbnail API provides an automatic summary for videos to let people see a preview or snapshot quickly. Selection of scenes from a video create a preview in form of a short video. <br/>
-&bull; The supported input video formats include MP4, MOV, and WMV. Video file size should be no larger than 100MB. <br/>
-&bull; The number of scenes displayed in the thumbnail is either chosen by the user or defaults to the optimal duration supported by the Video API’s algorithm.<br/>
-&bull; A scene is a collection of indexed frames. Scenes are mapped according to sequence in video. <br/>
-&bull; Fade in/fade out effects are included in the thumbnail by default, but can be turned off by the user. <br/>
-&bull; Audio is included by default, but can be turned off by the user. Pauses in audio are detected to divide video into coherent scenes and avoid breaking sentences of speech.<br/>
-&bull; Output files are deleted after 24 hours.<br/>
-<br/>
+Generates a motion thumbnail from a video. The Video Thumbnail API provides an automatic summary for videos to let people see a preview or snapshot quickly. Selection of scenes from a video create a preview in form of a short video. 
+&bull; The supported input video formats include MP4, MOV, and WMV. Video file size should be no larger than 100MB. 
+&bull; The number of scenes displayed in the thumbnail is either chosen by the user or defaults to the optimal duration supported by the Video API’s algorithm.
+&bull; A scene is a collection of indexed frames. Scenes are mapped according to sequence in video. 
+&bull; Fade in/fade out effects are included in the thumbnail by default, but can be turned off by the user. 
+&bull; Audio is included by default, but can be turned off by the user. Pauses in audio are detected to divide video into coherent scenes and avoid breaking sentences of speech.
+&bull; Output files are deleted after 24 hours.
+
 * Optimal Duration of Video Thumbnail Supported by Video API shown in table below.
 
-<table class="element table">
-<thead>
-</thead>
-<tbody>
-<tr>
-<td>Motion Thumbnail</td>
-</tr>
-<tr>
-<td>Video duration (d)</td>
-<td>d < 3min</td>
-<td>3min < d < 15min</td>
-<td>15min < d < 30min</td>
-<td>30min < d</td>
-</tr>
-<tr>
-<td>Thumbnail duration</td>
-<td>15sec (2-3 scenes)</td>
-<td>30sec (3-5 scenes)</td>
-<td>60sec (5-10 scenes)</td>
-<td>90sec (10-15 scenes)</td>
-</tr>
-<tbody>
-</table>
+
+
+
+
+
+Motion Thumbnail
+
+
+Video duration (d)
+d < 3min
+3min < d < 15min
+15min < d < 30min
+30min < d
+
+
+Thumbnail duration
+15sec (2-3 scenes)
+30sec (3-5 scenes)
+60sec (5-10 scenes)
+90sec (10-15 scenes)
+
+
+
 
 ##### Parameters
 
