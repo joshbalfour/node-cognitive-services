@@ -352,6 +352,8 @@ See full documentation for this API here
 ##### Parameters
 
 
+#### Body
+An image to retrieve insights for
 
 #### Example
 
@@ -772,6 +774,15 @@ Name | Description | Required | Type | Example Value
 visualFeatures | A string indicating what visual feature types to return. Multiple values should be comma-separated. Valid visual feature types include:	<ul><li>Categories - categorizes image content according to a taxonomy defined in documentation. </li><li>Tags - tags the image with a detailed list of words related to the image content. </li><li>Description - describes the image content with a complete English sentence. </li><li>Faces - detects if faces are present. If present, generate coordinates, gender and age.</li> <li>ImageType - detects if image is clipart or a line drawing.</li><li> Color - determines the accent color, dominant color, and whether an image is black&white.</li><li>Adult - detects if the image is pornographic in nature (depicts nudity or a sex act).Sexually suggestive content is also detected.</li></ul> | no | string | Categories
 details | A string indicating which domain-specific details to return. Multiple values should be comma-separated. Valid visual feature types include:	<ul><li>Celebrities - identifies celebrities if detected in the image.</li></ul> | no | string | 
 
+#### Body
+Input passed within the POST body. Supported input methods: raw image binary or image URL. 
+
+Input requirements: 
+<ul>
+<li>Supported image formats: JPEG, PNG, GIF, BMP. </li>
+<li>Image file size must be less than 4MB.</li>
+<li>Image dimensions must be at least 50 x 50.</li>
+</ul>
 
 #### Example
 
@@ -831,6 +842,15 @@ Name | Description | Required | Type | Example Value
 --- | --- | --- | --- | ---
 maxCandidates | Maximum number of candidate descriptions to be returned.The default is 1. | no | string | 1
 
+#### Body
+Input passed within the POST body. Supported input methods: raw image binary or image URL. 
+
+Input requirements: 
+<ul>
+<li>Supported image formats: JPEG, PNG, GIF, BMP. </li>
+<li>Image file size must be less than 4MB.</li>
+<li>Image dimensions should be greater than 50 x 50.</li>
+</ul>
 
 #### Example
 
@@ -892,6 +912,15 @@ width | Width of the thumbnail.It must be between 1 and 1024. Recommended minimu
 height | Height of the thumbnail. It must be between 1 and 1024. Recommended minimum of 50. | yes | number | 
 smartCropping | Boolean flag for enabling smart cropping. | no | boolean | true
 
+#### Body
+Input passed within the POST body. Supported input methods: raw image binary or image URL. 
+
+Input requirements: 
+<ul>
+<li>Supported image formats: JPEG, PNG, GIF, BMP. </li>
+<li>Image file size must be less than 4MB.</li>
+<li>Image dimensions should be greater than 50 x 50.</li>
+</ul>
 
 #### Example
 
@@ -988,6 +1017,16 @@ Name | Description | Required | Type | Example Value
 language | The BCP-47 language code of the text to be detected in the image.The default value is &quot;unk&quot;, then the service will auto detect the language of the text in the image.Supported languages:<ul style="margin-left:.375in;direction:ltr;unicode-bidi:embed; margin-top:0in;margin-bottom:0in" type="disc"><li>unk (AutoDetect)</li><li>zh-Hans (ChineseSimplified)</li><li>zh-Hant (ChineseTraditional)</li><li>cs (Czech)</li><li>da (Danish)</li><li>nl (Dutch)</li><li>en (English)</li><li>fi (Finnish)</li><li>fr (French)</li><li>de (German)</li><li>el (Greek)</li><li>hu (Hungarian)</li><li>it (Italian)</li><li>Ja (Japanese)</li><li>ko (Korean)</li><li>nb (Norwegian)</li><li>pl (Polish)</li><li>pt (Portuguese,</li><li>ru (Russian)</li><li>es (Spanish)</li><li>sv (Swedish)</li><li>tr (Turkish)</li></ul> | no | string | unk
 detectOrientation  | Whether detect the text orientation in the image. With detectOrientation=true the OCR service tries to detect the image orientation and correct it before further processing (e.g. if it's upside-down).  | no | boolean | true
 
+#### Body
+Input passed within the POST body. Supported input methods: raw image binary or image URL. 
+
+Input requirements: 
+<ul>
+<li>Supported image formats: JPEG, PNG, GIF, BMP. </li>
+<li>Image file size must be less than 4MB.</li>
+<li>Image dimensions must be between 40 x 40 and 3200 x 3200 pixels, and the image cannot be larger than 100 megapixels.</li>
+</ul>
+
 
 #### Example
 
@@ -1049,6 +1088,15 @@ Name | Description | Required | Type | Example Value
 --- | --- | --- | --- | ---
 model | The domain-specific content to recognize. | yes | string | 
 
+#### Body
+Input passed within the POST body. Supported input methods: raw image binary or image URL. 
+
+Input requirements: 
+<ul>
+<li>Supported image formats: JPEG, PNG, GIF, BMP. </li>
+<li>Image file size must be less than 4MB.</li>
+<li>Image dimensions should be greater than 50 x 50.</li>
+</ul>
 
 #### Example
 
@@ -1101,6 +1149,15 @@ POST
 ##### Parameters
 
 
+#### Body
+Input passed within the POST body. Supported input methods: raw image binary or image URL. 
+
+Input requirements: 
+<ul>
+<li>Supported image formats: JPEG, PNG, GIF, BMP. </li>
+<li>Image file size must be less than 4MB.</li>
+<li>Image dimensions should be greater than 50 x 50.</li>
+</ul>
 
 #### Example
 
@@ -1325,6 +1382,8 @@ Name | Description | Required | Type | Example Value
 selection | The specific word or phrase within the text that is to be entity linked. If not specified, the service will try to recognize and identify all the entities within the input text. | no | string | 
 offset | The location (in offset by characters) of the selected word or phrase within the input text. Used to distinguish when there are multiple instances of the same words or phrases within the input text. Only valid when the selection is specified. | no | string | 
 
+#### Body
+Given a specific paragraph of text within a document, the Entity Linking Intelligence Service will recognize and identify each separate entity based on the context
 
 #### Example
 
@@ -1387,6 +1446,11 @@ returnFaceId | Return face IDs of the detected faces or not. The default value i
 returnFaceLandmarks | Return face landmarks of the detected faces or not. The default value is false.  | no | boolean | false
 returnFaceAttributes | Analyze and return the one or more specified face attributes in the comma-separated string like "returnFaceAttributes=age,gender".Supported face attributes include age, gender, headPose, smile, facialHair, and glasses. Note that each face attribute analysis has additional computational and time cost. | no | string | 
 
+#### Body
+name | description
+--- | ---
+url | URL of input image
+
 
 #### Example
 
@@ -1432,6 +1496,13 @@ face.detect({
 
 ##### Parameters
 
+
+#### Body
+name | description
+--- | ---
+faceId | Query face The faceId comes from the 
+faceIds | faceListId
+maxNumOfCandidatesReturned |  for more detail faceListId and faceIds should not be provided at the same time
 
 
 #### Example
@@ -1482,6 +1553,11 @@ face.findSimilar({,
 
 ##### Parameters
 
+
+#### Body
+name | description
+--- | ---
+faceIds | Candidate face IDs The maximum is 1000 faces
 
 
 #### Example
@@ -1537,6 +1613,13 @@ face.group({,
 ##### Parameters
 
 
+#### Body
+name | description
+--- | ---
+faceIds | Query faces' IDs The length of faceIds is between [1, 10]
+personGroupId | Target person group's ID
+maxNumOfCandidatesReturned | The range of maxNumOfCandidatesReturned is between 1 and 5 (default is 1)
+
 
 #### Example
 
@@ -1582,6 +1665,12 @@ face.identify({,
 
 ##### Parameters
 
+
+#### Body
+name | description
+--- | ---
+faceId1 | ID of one face
+faceId2 | ID of another face
 
 
 #### Example
@@ -1643,6 +1732,11 @@ faceListId | Valid character is letter in lower case or digit or '-' or '_', max
 userData | User-specified data for any purpose. Themaximum length is 1KB. | no | string | 
 targetFace | A face rectangle to specify the target face to be added into the face list, in the format of "targetFace=left,top,width,height". E.g. "targetFace=10,10,100,100". No targetFace means to detect the only face in the entire image. | no | string | 
 
+#### Body
+name | description
+--- | ---
+url | Image url Image file size should between 1KB to 4MB Only one face is allowed per image
+
 
 #### Example
 
@@ -1691,6 +1785,12 @@ A face list can have a maximum of 1000 faces.
 Name | Description | Required | Type | Example Value
 --- | --- | --- | --- | ---
 faceListId | Valid character is letter in lower case or digit or '-' or '_', maximum length is 64. | yes | string | 
+
+#### Body
+name | description
+--- | ---
+name | Name of the created face list, maximum length is 128
+userData | Optional user defined data for the face list Length should not exceed 16KB
 
 
 #### Example
@@ -1891,6 +1991,12 @@ Name | Description | Required | Type | Example Value
 --- | --- | --- | --- | ---
 faceListId | Valid character is letter in lower case or digit or '-' or '_', maximum length is 64. | yes | string | 
 
+#### Body
+name | description
+--- | ---
+name | Name of the face list, maximum length is 128
+userData | Optional user defined data for the face list Length should not exceed 16KB
+
 
 #### Example
 
@@ -1948,6 +2054,11 @@ personId | Target person that the face is added to. | yes | string |
 userData | User-specified data for any purpose. The maximum length is 1KB.  | no | string | 
 targetFace | A face rectangle to specify the target face to be added to a person, in the format of "targetFace=left,top,width,height". E.g. "targetFace=10,10,100,100". No targetFace means to detect the only face in the entire image.  | no | string | 
 
+#### Body
+name | description
+--- | ---
+url | Face image URL Valid image size is from 1KB to 4MB Only one face is allowed per image
+
 
 #### Example
 
@@ -1992,6 +2103,12 @@ face.addAPersonFace({,
 Name | Description | Required | Type | Example Value
 --- | --- | --- | --- | ---
 personGroupId | The target person's belonging person group's ID. | yes | string | 
+
+#### Body
+name | description
+--- | ---
+name | Target person's display name The maximum length is 128
+userData | Optional fields for user-provided data attached to a person Size limit is 16KB
 
 
 #### Example
@@ -2237,6 +2354,12 @@ Name | Description | Required | Type | Example Value
 personGroupId | The target person's belonging person group's ID. | yes | string | 
 personId | Target person's ID. | yes | string | 
 
+#### Body
+name | description
+--- | ---
+name | Target person's display name Maximum length is 128
+userData | User-provided data attached to the person Maximum length is 16KB
+
 
 #### Example
 
@@ -2281,6 +2404,11 @@ Name | Description | Required | Type | Example Value
 personGroupId | The target person's belonging person group's ID. | yes | string | 
 personId | Target person's ID. | yes | string | 
 persistedFaceId | Target face's ID. | yes | string | 
+
+#### Body
+name | description
+--- | ---
+userData | Optional Attach user data to person's face The size limit is 1KB
 
 
 #### Example
@@ -2327,6 +2455,12 @@ face.updateAPersonFace({,
 Name | Description | Required | Type | Example Value
 --- | --- | --- | --- | ---
 personGroupId | User-provided person group ID as a string. The valid characters include numbers, english letters in lower case, '-' and '_'. The maximum length of the personGroupId is 64. | yes | string | 
+
+#### Body
+name | description
+--- | ---
+name | Person group display name The maximum length is 128
+userData | User-provided data attached to the person group The size limit is 16KB
 
 
 #### Example
@@ -2564,6 +2698,12 @@ face.trainPersonGroup({,
 Name | Description | Required | Type | Example Value
 --- | --- | --- | --- | ---
 personGroupId | ID of the person group to be updated. | yes | string | 
+
+#### Body
+name | description
+--- | ---
+name | Person group display name The maximum length is 128
+userData | User-provided data attached to the person group The size limit is 16KB
 
 
 #### Example
@@ -3195,6 +3335,15 @@ Name | Description | Required | Type | Example Value
 --- | --- | --- | --- | ---
 verificationProfileId | ID of speaker verification profile. GUID returned from Verification Profile - Create Profile API | yes | string | 
 
+#### Body
+name | example
+--- | ---
+Container | WAV
+Encoding | PCM
+Rate | 16K
+SampleFormat | 16 bit
+Channels | Mono
+
 
 #### Example
 
@@ -3452,6 +3601,15 @@ Name | Description | Required | Type | Example Value
 --- | --- | --- | --- | ---
 identificationProfileIds | Comma-delimited identificationProfileIds, the id should be Guid.It can only support at most 10 profiles for one identification request. | yes | string | 111f427c-3791-468f-b709-fcef7660fff9,111f427c-3791-468f-b709-fcef7660fff9,111f427c-3791-468f-b709-fcef7660fff9
 
+#### Body
+name | example
+--- | ---
+Container | WAV
+Encoding | PCM
+Rate | 16K
+SampleFormat | 16 bit
+Channels | Mono
+
 
 #### Example
 
@@ -3494,6 +3652,15 @@ To automatically verify and authenticate users using their voice or speech.
 Name | Description | Required | Type | Example Value
 --- | --- | --- | --- | ---
 verificationProfileId | ID of speaker verification profile. It should be a GUID. | yes | string | 
+
+#### Body
+name | example
+--- | ---
+Container | WAV
+Encoding | PCM
+Rate | 16K
+SampleFormat | 16 bit
+Channels | Mono
 
 
 #### Example
@@ -4055,6 +4222,8 @@ text | The line of text to break into words. If spaces are present, they will be
 order | The order of N-gram. If not specified, use default value 5 .Supported value: 1, 2, 3, 4, 5. | no | number | 
 maxNumOfCandidatesReturned | Max number of candidates would be returned. If not specified, use default value 5. | no | number | 
 
+#### Body
+empty post body
 
 #### Example
 
@@ -4171,6 +4340,8 @@ words | A string containing a sequence of words from which to generate the list 
 order | The order of N-gram. If not specified, use default value 5 .Supported value: 1, 2, 3, 4, 5. | no | number | 
 maxNumOfCandidatesReturned | Max number of candidates would be returned. If not specified, use default value 5.  | no | number | 
 
+#### Body
+empty post body
 
 #### Example
 
