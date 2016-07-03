@@ -16,7 +16,9 @@ Unofficial SDK for [Microsoft® Cognitive Services](https://www.microsoft.com/co
 
 To get started first [sign up](https://www.microsoft.com/cognitive-services/en-us/sign-up) and [grab your API keys](https://www.microsoft.com/cognitive-services/en-US/subscriptions).
 Then figure out which API you want to use, you can find descriptions [here](https://www.microsoft.com/cognitive-services/en-us/apis).
-Then you can start using this SDK in your project. To do so, open a terminal and go to your project directory and go `npm init`, then `npm install cognitive-services --save`.
+
+ To use this SDK in your project, open a terminal and go to your project directory and go `npm init`, then `npm install cognitive-services --save`.
+
 Then make a JS file in your project directory and add `const cognitiveServices = require('cognitive-services');` to the top of it. You're now ready to use the code samples below.
 	
 
