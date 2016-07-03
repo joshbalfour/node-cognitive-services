@@ -1447,7 +1447,7 @@ returnFaceLandmarks | Return face landmarks of the detected faces or not. The de
 returnFaceAttributes | Analyze and return the one or more specified face attributes in the comma-separated string like "returnFaceAttributes=age,gender".Supported face attributes include age, gender, headPose, smile, facialHair, and glasses. Note that each face attribute analysis has additional computational and time cost. | no | string | 
 
 #### Body
-name | description
+Name | Description
 --- | ---
 url | URL of input image
 
@@ -1498,7 +1498,7 @@ face.detect({
 
 
 #### Body
-name | description
+Name | Description
 --- | ---
 faceId | Query face The faceId comes from the 
 faceIds | faceListId
@@ -1555,7 +1555,7 @@ face.findSimilar({,
 
 
 #### Body
-name | description
+Name | Description
 --- | ---
 faceIds | Candidate face IDs The maximum is 1000 faces
 
@@ -1614,7 +1614,7 @@ face.group({,
 
 
 #### Body
-name | description
+Name | Description
 --- | ---
 faceIds | Query faces' IDs The length of faceIds is between [1, 10]
 personGroupId | Target person group's ID
@@ -1667,7 +1667,7 @@ face.identify({,
 
 
 #### Body
-name | description
+Name | Description
 --- | ---
 faceId1 | ID of one face
 faceId2 | ID of another face
@@ -1733,7 +1733,7 @@ userData | User-specified data for any purpose. Themaximum length is 1KB. | no |
 targetFace | A face rectangle to specify the target face to be added into the face list, in the format of "targetFace=left,top,width,height". E.g. "targetFace=10,10,100,100". No targetFace means to detect the only face in the entire image. | no | string | 
 
 #### Body
-name | description
+Name | Description
 --- | ---
 url | Image url Image file size should between 1KB to 4MB Only one face is allowed per image
 
@@ -1787,7 +1787,7 @@ Name | Description | Required | Type | Example Value
 faceListId | Valid character is letter in lower case or digit or '-' or '_', maximum length is 64. | yes | string | 
 
 #### Body
-name | description
+Name | Description
 --- | ---
 name | Name of the created face list, maximum length is 128
 userData | Optional user defined data for the face list Length should not exceed 16KB
@@ -1992,7 +1992,7 @@ Name | Description | Required | Type | Example Value
 faceListId | Valid character is letter in lower case or digit or '-' or '_', maximum length is 64. | yes | string | 
 
 #### Body
-name | description
+Name | Description
 --- | ---
 name | Name of the face list, maximum length is 128
 userData | Optional user defined data for the face list Length should not exceed 16KB
@@ -2055,7 +2055,7 @@ userData | User-specified data for any purpose. The maximum length is 1KB.  | no
 targetFace | A face rectangle to specify the target face to be added to a person, in the format of "targetFace=left,top,width,height". E.g. "targetFace=10,10,100,100". No targetFace means to detect the only face in the entire image.  | no | string | 
 
 #### Body
-name | description
+Name | Description
 --- | ---
 url | Face image URL Valid image size is from 1KB to 4MB Only one face is allowed per image
 
@@ -2105,7 +2105,7 @@ Name | Description | Required | Type | Example Value
 personGroupId | The target person's belonging person group's ID. | yes | string | 
 
 #### Body
-name | description
+Name | Description
 --- | ---
 name | Target person's display name The maximum length is 128
 userData | Optional fields for user-provided data attached to a person Size limit is 16KB
@@ -2355,7 +2355,7 @@ personGroupId | The target person's belonging person group's ID. | yes | string 
 personId | Target person's ID. | yes | string | 
 
 #### Body
-name | description
+Name | Description
 --- | ---
 name | Target person's display name Maximum length is 128
 userData | User-provided data attached to the person Maximum length is 16KB
@@ -2406,7 +2406,7 @@ personId | Target person's ID. | yes | string |
 persistedFaceId | Target face's ID. | yes | string | 
 
 #### Body
-name | description
+Name | Description
 --- | ---
 userData | Optional Attach user data to person's face The size limit is 1KB
 
@@ -2457,7 +2457,7 @@ Name | Description | Required | Type | Example Value
 personGroupId | User-provided person group ID as a string. The valid characters include numbers, english letters in lower case, '-' and '_'. The maximum length of the personGroupId is 64. | yes | string | 
 
 #### Body
-name | description
+Name | Description
 --- | ---
 name | Person group display name The maximum length is 128
 userData | User-provided data attached to the person group The size limit is 16KB
@@ -2700,7 +2700,7 @@ Name | Description | Required | Type | Example Value
 personGroupId | ID of the person group to be updated. | yes | string | 
 
 #### Body
-name | description
+Name | Description
 --- | ---
 name | Person group display name The maximum length is 128
 userData | User-provided data attached to the person group The size limit is 16KB
@@ -3336,7 +3336,7 @@ Name | Description | Required | Type | Example Value
 verificationProfileId | ID of speaker verification profile. GUID returned from Verification Profile - Create Profile API | yes | string | 
 
 #### Body
-name | example
+Name | Example
 --- | ---
 Container | WAV
 Encoding | PCM
@@ -3602,7 +3602,7 @@ Name | Description | Required | Type | Example Value
 identificationProfileIds | Comma-delimited identificationProfileIds, the id should be Guid.It can only support at most 10 profiles for one identification request. | yes | string | 111f427c-3791-468f-b709-fcef7660fff9,111f427c-3791-468f-b709-fcef7660fff9,111f427c-3791-468f-b709-fcef7660fff9
 
 #### Body
-name | example
+Name | Example
 --- | ---
 Container | WAV
 Encoding | PCM
@@ -3654,7 +3654,7 @@ Name | Description | Required | Type | Example Value
 verificationProfileId | ID of speaker verification profile. It should be a GUID. | yes | string | 
 
 #### Body
-name | example
+Name | Example
 --- | ---
 Container | WAV
 Encoding | PCM
