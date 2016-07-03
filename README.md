@@ -769,7 +769,7 @@ POST
 
 Name | Description | Required | Type | Example Value
 --- | --- | --- | --- | ---
-visualFeatures | A string indicating what visual feature types to return. Multiple values should be comma-separated. <br/>Valid visual feature types include:<br/>	<ul><li><b>Categories</b> - categorizes image content according to a taxonomy defined in documentation. </li><li><b>Tags</b> - tags the image with a detailed list of words related to the image content. </li><li><b>Description</b> - describes the image content with a complete English sentence. </li><li><b>Faces</b> - detects if faces are present. If present, generate coordinates, gender and age.</li> <li><b >ImageType</b> - detects if image is clipart or a line drawing.</li><li><b> Color</b> - determines the accent color, dominant color, and whether an image is black&white.</li><li><b>Adult</b> - detects if the image is pornographic in nature (depicts nudity or a sex act).  Sexually suggestive content is also detected.</li></ul> | no | string | Categories
+visualFeatures | A string indicating what visual feature types to return. Multiple values should be comma-separated. <br/>Valid visual feature types include:<br/>	<ul><li><b>Categories</b> - categorizes image content according to a taxonomy defined in documentation. </li><li><b>Tags</b> - tags the image with a detailed list of words related to the image content. </li><li><b>Description</b> - describes the image content with a complete English sentence. </li><li><b>Faces</b> - detects if faces are present. If present, generate coordinates, gender and age.</li> <li><b >ImageType</b> - detects if image is clipart or a line drawing.</li><li><b> Color</b> - determines the accent color, dominant color, and whether an image is black&white.</li><li><b>Adult</b> - detects if the image is pornographic in nature (depicts nudity or a sex act).Sexually suggestive content is also detected.</li></ul> | no | string | Categories
 details | A string indicating which domain-specific details to return. Multiple values should be comma-separated. <br/>Valid visual feature types include:<br/>	<ul><li><b >Celebrities</b> - identifies celebrities if detected in the image.</li></ul> | no | string | 
 
 
@@ -829,7 +829,7 @@ POST
 
 Name | Description | Required | Type | Example Value
 --- | --- | --- | --- | ---
-maxCandidates | Maximum number of candidate descriptions to be returned.  The default is 1. | no | string | 1
+maxCandidates | Maximum number of candidate descriptions to be returned.The default is 1. | no | string | 1
 
 
 #### Example
@@ -888,7 +888,7 @@ POST
 
 Name | Description | Required | Type | Example Value
 --- | --- | --- | --- | ---
-width | Width of the thumbnail.  It must be between 1 and 1024. Recommended minimum of 50. | yes | number | 
+width | Width of the thumbnail.It must be between 1 and 1024. Recommended minimum of 50. | yes | number | 
 height | Height of the thumbnail. It must be between 1 and 1024. Recommended minimum of 50. | yes | number | 
 smartCropping | Boolean flag for enabling smart cropping. | no | boolean | true
 
@@ -985,7 +985,7 @@ POST
 
 Name | Description | Required | Type | Example Value
 --- | --- | --- | --- | ---
-language | The BCP-47 language code of the text to be detected in the image.The default value is &quot;unk&quot;, then the service will auto detect the language of the text in the image.<br />    <br />    Supported languages:    <ul style="margin-left:.375in;direction:ltr;unicode-bidi:embed; margin-top:0in;margin-bottom:0in" type="disc">        <li>unk (AutoDetect)</li>        <li>zh-Hans (ChineseSimplified)</li>        <li>zh-Hant (ChineseTraditional)</li>        <li>cs (Czech)</li>        <li>da (Danish)</li>        <li>nl (Dutch)</li>        <li>en (English)</li>        <li>fi (Finnish)</li>        <li>fr (French)</li>        <li>de (German)</li>        <li>el (Greek)</li>        <li>hu (Hungarian)</li>        <li>it (Italian)</li>        <li>Ja (Japanese)</li>        <li>ko (Korean)</li>        <li>nb (Norwegian)</li>        <li>pl (Polish)</li>        <li>pt (Portuguese,</li>        <li>ru (Russian)</li>        <li>es (Spanish)</li>        <li>sv (Swedish)</li>        <li>tr (Turkish)</li>    </ul> | no | string | unk
+language | The BCP-47 language code of the text to be detected in the image.The default value is &quot;unk&quot;, then the service will auto detect the language of the text in the image.<br /><br />Supported languages:<ul style="margin-left:.375in;direction:ltr;unicode-bidi:embed; margin-top:0in;margin-bottom:0in" type="disc"><li>unk (AutoDetect)</li><li>zh-Hans (ChineseSimplified)</li><li>zh-Hant (ChineseTraditional)</li><li>cs (Czech)</li><li>da (Danish)</li><li>nl (Dutch)</li><li>en (English)</li><li>fi (Finnish)</li><li>fr (French)</li><li>de (German)</li><li>el (Greek)</li><li>hu (Hungarian)</li><li>it (Italian)</li><li>Ja (Japanese)</li><li>ko (Korean)</li><li>nb (Norwegian)</li><li>pl (Polish)</li><li>pt (Portuguese,</li><li>ru (Russian)</li><li>es (Spanish)</li><li>sv (Swedish)</li><li>tr (Turkish)</li></ul> | no | string | unk
 detectOrientation  | Whether detect the text orientation in the image. With detectOrientation=true the OCR service tries to detect the image orientation and correct it before further processing (e.g. if it's upside-down).  | no | boolean | true
 
 
@@ -1640,7 +1640,7 @@ Face list is a group of faces, and these faces will not expire. Face list is use
 Name | Description | Required | Type | Example Value
 --- | --- | --- | --- | ---
 faceListId | Valid character is letter in lower case or digit or '-' or '_', maximum length is 64. | yes | string | 
-userData | User-specified data for any purpose. The  maximum length is 1KB. | no | string | 
+userData | User-specified data for any purpose. Themaximum length is 1KB. | no | string | 
 targetFace | A face rectangle to specify the target face to be added into the face list, in the format of "targetFace=left,top,width,height". E.g. "targetFace=10,10,100,100". No targetFace means to detect the only face in the entire image. | no | string | 
 
 
@@ -1690,7 +1690,7 @@ Face list is a group of faces, and these faces will not expire. Face list is use
 
 Name | Description | Required | Type | Example Value
 --- | --- | --- | --- | ---
-faceListId |     Valid character is letter in lower case or digit or '-' or '_', maximum length is 64.   | yes | string | 
+faceListId | Valid character is letter in lower case or digit or '-' or '_', maximum length is 64. | yes | string | 
 
 
 #### Example
@@ -2326,7 +2326,7 @@ face.updateAPersonFace({,
 
 Name | Description | Required | Type | Example Value
 --- | --- | --- | --- | ---
-personGroupId |     User-provided person group ID as a string. The valid characters include numbers, english letters in lower case, '-' and '_'. The maximum length of the personGroupId is 64.   | yes | string | 
+personGroupId | User-provided person group ID as a string. The valid characters include numbers, english letters in lower case, '-' and '_'. The maximum length of the personGroupId is 64. | yes | string | 
 
 
 #### Example
@@ -3115,7 +3115,7 @@ recommendations.updateAModel({,
 Name | Description | Required | Type | Example Value
 --- | --- | --- | --- | ---
 modelId | Unique identifier of the model | yes | string | 
-catalogDisplayName | Display name of the catalog data. e.g. "CatalogFile1"            Only letters (A-Z, a-z), numbers (0-9), hyphens (-) and underscore (_) are allowed. Max length: 50 | yes | string | 
+catalogDisplayName | Display name of the catalog data. e.g. "CatalogFile1"Only letters (A-Z, a-z), numbers (0-9), hyphens (-) and underscore (_) are allowed. Max length: 50 | yes | string | 
 
 
 #### Example
@@ -3619,8 +3619,8 @@ The API returns the top detected topics for a list of submitted text documents.
 
 Name | Description | Required | Type | Example Value
 --- | --- | --- | --- | ---
-minDocumentsPerWord | Format - int32. (optional) Words that occur in less than this many documents are ignored.             Use this parameter to help exclude rare document topics.            Omit to let the service choose appropriate value. | no | integer | 
-maxDocumentsPerWord | Format - int32. (optional) Words that occur in more than this many documents are ignored.             Use this parameter to help exclude ubiquitous document topics.            Omit to let the service choose appropriate value. | no | integer | 
+minDocumentsPerWord | Format - int32. (optional) Words that occur in less than this many documents are ignored. Use this parameter to help exclude rare document topics.Omit to let the service choose appropriate value. | no | integer | 
+maxDocumentsPerWord | Format - int32. (optional) Words that occur in more than this many documents are ignored. Use this parameter to help exclude ubiquitous document topics.Omit to let the service choose appropriate value. | no | integer | 
 
 
 #### Example
