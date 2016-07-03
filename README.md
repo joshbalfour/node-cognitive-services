@@ -12,22 +12,134 @@ Unofficial SDK for [Microsoft Cognitive Services](https://www.microsoft.com/cogn
 ## Usage
 
 ### Index
-* [Academic Knowledge](#academic-knowledge)
-* [Bing Autosuggest](#bing-autosuggest)
-* [Bing Image Search](#bing-image-search)
-* [Bing News Search](#bing-news-search)
-* [Bing Spell Check](#bing-spell-check)
-* [Bing Video Search](#bing-video-search)
-* [Bing Web Search](#bing-web-search)
-* [Computer Vision](#computer-vision)
-* [Emotion](#emotion)
-* [Entity Linking](#entity-linking)
-* [Face](#face)
-* [Recommendations](#recommendations)
-* [Speaker Recognition](#speaker-recognition)
-* [Text Analytics](#text-analytics)
-* [Video](#video)
-* [Web Language Model](#web-language-model)
+
+* [Academic Knowledge](#academic-knowledge),
+	* [CalcHistogram](#academic-knowledge---calchistogram),
+	* [Evaluate](#academic-knowledge---evaluate),
+	* [Interpret](#academic-knowledge---interpret)
+
+* [Bing Autosuggest](#bing-autosuggest),
+	* [Suggestions](#bing-autosuggest---suggestions)
+
+* [Bing Image Search](#bing-image-search),
+	* [Image Insights](#bing-image-search---image-insights),
+	* [Search](#bing-image-search---search),
+	* [Trending](#bing-image-search---trending)
+
+* [Bing News Search](#bing-news-search),
+	* [Category News](#bing-news-search---category-news),
+	* [Search](#bing-news-search---search),
+	* [Trending Topics](#bing-news-search---trending-topics)
+
+* [Bing Spell Check](#bing-spell-check),
+	* [Spell Check](#bing-spell-check---spell-check)
+
+* [Bing Video Search](#bing-video-search),
+	* [Search](#bing-video-search---search),
+	* [Trending](#bing-video-search---trending)
+
+* [Bing Web Search](#bing-web-search),
+	* [Search](#bing-web-search---search)
+
+* [Computer Vision](#computer-vision),
+	* [Analyze Image](#computer-vision---analyze-image),
+	* [Describe Image](#computer-vision---describe-image),
+	* [Get Thumbnail](#computer-vision---get-thumbnail),
+	* [List Domain Specific Models](#computer-vision---list-domain-specific-models),
+	* [OCR](#computer-vision---ocr),
+	* [Recognize Domain Specific Content](#computer-vision---recognize-domain-specific-content),
+	* [Tag Image](#computer-vision---tag-image)
+
+* [Emotion](#emotion),
+	* [Emotion Recognition](#emotion---emotion-recognition),
+	* [Emotion Recognition in Video](#emotion---emotion-recognition-in-video),
+	* [Emotion Recognition with Face Rectangles](#emotion---emotion-recognition-with-face-rectangles),
+	* [Get Recognition in Video Operation Result](#emotion---get-recognition-in-video-operation-result)
+
+* [Entity Linking](#entity-linking),
+	* [Link Entity](#entity-linking---link-entity)
+
+* [Face](#face),
+	* [Detect](#face---detect),
+	* [Find Similar](#face---find-similar),
+	* [Group](#face---group),
+	* [Identify](#face---identify),
+	* [Verify](#face---verify),
+	* [Add a Face to a Face List](#face---add-a-face-to-a-face-list),
+	* [Create a Face List](#face---create-a-face-list),
+	* [Delete a Face from a Face List](#face---delete-a-face-from-a-face-list),
+	* [Delete a Face List](#face---delete-a-face-list),
+	* [Get a Face List](#face---get-a-face-list),
+	* [List Face Lists](#face---list-face-lists),
+	* [Update a Face List](#face---update-a-face-list),
+	* [Add a Person Face](#face---add-a-person-face),
+	* [Create a Person](#face---create-a-person),
+	* [Delete a Person](#face---delete-a-person),
+	* [Delete a Person Face](#face---delete-a-person-face),
+	* [Get a Person](#face---get-a-person),
+	* [Get a Person Face](#face---get-a-person-face),
+	* [List Persons in a Person Group](#face---list-persons-in-a-person-group),
+	* [Update a Person](#face---update-a-person),
+	* [Update a Person Face](#face---update-a-person-face),
+	* [Create a Person Group](#face---create-a-person-group),
+	* [Delete a Person Group](#face---delete-a-person-group),
+	* [Get a Person Group](#face---get-a-person-group),
+	* [Get Person Group Training Status](#face---get-person-group-training-status),
+	* [List Person Groups](#face---list-person-groups),
+	* [Train Person Group](#face---train-person-group),
+	* [Update a Person Group](#face---update-a-person-group)
+
+* [Recommendations](#recommendations),
+	* [Create a model](#recommendations---create-a-model),
+	* [Create/Trigger a build](#recommendations---create/trigger-a-build),
+	* [Delete a build](#recommendations---delete-a-build),
+	* [Delete a model](#recommendations---delete-a-model),
+	* [Delete/Cancel an ongoing operation](#recommendations---delete/cancel-an-ongoing-operation),
+	* [Get a model by id](#recommendations---get-a-model-by-id),
+	* [Get all models](#recommendations---get-all-models),
+	* [Get build by id](#recommendations---get-build-by-id),
+	* [Get build metrics](#recommendations---get-build-metrics),
+	* [Get details of all builds](#recommendations---get-details-of-all-builds),
+	* [Get recommendations based on items (I2I)](#recommendations---get-recommendations-based-on-items-(i2i)),
+	* [Get user recommendations (U2I)](#recommendations---get-user-recommendations-(u2i)),
+	* [Retrieve the status of an operation](#recommendations---retrieve-the-status-of-an-operation),
+	* [Update a model](#recommendations---update-a-model),
+	* [Upload a catalog file to a model](#recommendations---upload-a-catalog-file-to-a-model),
+	* [Upload a usage file to a model](#recommendations---upload-a-usage-file-to-a-model)
+
+* [Speaker Recognition](#speaker-recognition),
+	* [Create Enrollment](#speaker-recognition---create-enrollment),
+	* [Create Profile](#speaker-recognition---create-profile),
+	* [Delete Profile](#speaker-recognition---delete-profile),
+	* [Get All Profiles](#speaker-recognition---get-all-profiles),
+	* [Get Profile](#speaker-recognition---get-profile),
+	* [Reset Enrollments](#speaker-recognition---reset-enrollments),
+	* [Get Operation Status](#speaker-recognition---get-operation-status),
+	* [Identification](#speaker-recognition---identification),
+	* [Verification](#speaker-recognition---verification),
+	* [List All Supported Verification Phrases](#speaker-recognition---list-all-supported-verification-phrases)
+
+* [Text Analytics](#text-analytics),
+	* [Detect Language](#text-analytics---detect-language),
+	* [Detect Topics](#text-analytics---detect-topics),
+	* [Key Phrases](#text-analytics---key-phrases),
+	* [Operation Status](#text-analytics---operation-status),
+	* [Sentiment](#text-analytics---sentiment)
+
+* [Video](#video),
+	* [Face Detection and Tracking](#video---face-detection-and-tracking),
+	* [Get Operation Result](#video---get-operation-result),
+	* [Get Result Video](#video---get-result-video),
+	* [Motion Detection](#video---motion-detection),
+	* [Stabilization](#video---stabilization),
+	* [Thumbnail](#video---thumbnail)
+
+* [Web Language Model](#web-language-model),
+	* [Break Into Words](#web-language-model---break-into-words),
+	* [Calculate Conditional Probability](#web-language-model---calculate-conditional-probability),
+	* [Calculate Joint Probability](#web-language-model---calculate-joint-probability),
+	* [Generate Next Words](#web-language-model---generate-next-words),
+	* [List Available Models](#web-language-model---list-available-models)
 
 ### Academic Knowledge
 
