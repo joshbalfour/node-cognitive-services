@@ -14,8 +14,8 @@ Unofficial SDK for [Microsoft® Cognitive Services](https://www.microsoft.com/co
 ## Getting Started
 
 
-		To get started first [sign up](https://www.microsoft.com/cognitive-services/en-us/sign-up) and [grab your API keys](https://www.microsoft.com/cognitive-services/en-US/subscriptions).
-		Then figure out which API you want to use, you can find descriptions [here](https://www.microsoft.com/cognitive-services/en-us/apis).
+To get started first [sign up](https://www.microsoft.com/cognitive-services/en-us/sign-up) and [grab your API keys](https://www.microsoft.com/cognitive-services/en-US/subscriptions).
+Then figure out which API you want to use, you can find descriptions [here](https://www.microsoft.com/cognitive-services/en-us/apis).
 	
 
 ## Reference
@@ -4232,7 +4232,7 @@ webLanguageModel.listAvailableModels()
 ## License
 
 
-	Copyright (c) 2016, Josh Balfour
+Copyright (c) 2016, Josh Balfour
 
 Permission to use, copy, modify, and/or distribute this software for any purpose
 with or without fee is hereby granted, provided that the above copyright notice
@@ -4250,6 +4250,6 @@ THIS SOFTWARE.
 ## Legal
 
 
-	Microsoft, Microsoft Cognitive Services, and Windows are either registered trademarks or trademarks of Microsoft Corporation in the United States and/or other countries.
-	This project was done without the knowledge or endorsement of Microsoft®.
+Microsoft, Microsoft Cognitive Services, and Windows are either registered trademarks or trademarks of Microsoft Corporation in the United States and/or other countries.
+This project was done without the knowledge or endorsement of Microsoft®.
 	
