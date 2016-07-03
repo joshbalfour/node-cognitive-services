@@ -392,7 +392,7 @@ Name | Description | Required | Type | Example Value
 q | The user's search query string | yes | string | cats
 count | The number of image results to return in the response. The actual number delivered may be less than requested. | no | number | 10
 offset | The zero-based offset that indicates the number of image results to skip before returning results. | no | number | 0
-mkt | The market where the results come from. Typically, this is the country where the user is making the request from; however, it could be a different country if the user is not located in a country where Bing delivers results. The market must be in the form {language code}-{country code}. For example, en-US.<br><br>Full list of supported markets:<br>es-AR,en-AU,de-AT,nl-BE,fr-BE,pt-BR,en-CA,fr-CA,es-CL,da-DK,fi-FI,fr-FR,de-DE,zh-HK,en-IN,en-ID,en-IE,it-IT,ja-JP,ko-KR,en-MY,es-MX,nl-NL,en-NZ,no-NO,zh-CN,pl-PL,pt-PT,en-PH,ru-RU,ar-SA,en-ZA,es-ES,sv-SE,fr-CH,de-CH,zh-TW,tr-TR,en-GB,en-US,es-US | no | string | en-us
+mkt | The market where the results come from. Typically, this is the country where the user is making the request from; however, it could be a different country if the user is not located in a country where Bing delivers results. The market must be in the form {language code}-{country code}. For example, en-US.Full list of supported markets:es-AR,en-AU,de-AT,nl-BE,fr-BE,pt-BR,en-CA,fr-CA,es-CL,da-DK,fi-FI,fr-FR,de-DE,zh-HK,en-IN,en-ID,en-IE,it-IT,ja-JP,ko-KR,en-MY,es-MX,nl-NL,en-NZ,no-NO,zh-CN,pl-PL,pt-PT,en-PH,ru-RU,ar-SA,en-ZA,es-ES,sv-SE,fr-CH,de-CH,zh-TW,tr-TR,en-GB,en-US,es-US | no | string | en-us
 safeSearch | A filter used to filter results for adult content. | no | string | Moderate
 
 
@@ -508,7 +508,7 @@ Name | Description | Required | Type | Example Value
 q | The user's search query string | yes | string | microsoft
 count | The number of news results to return in the response. The actual number delivered may be less than requested. | no | string | 10
 offset | The zero-based offset that indicates the number of news results to skip before returning results. | no | string | 0
-mkt | The market where the results come from. Typically, this is the country where the user is making the request from; however, it could be a different country if the user is not located in a country where Bing delivers results. The market must be in the form {language code}-{country code}. For example, en-US.<br><br>Full list of supported markets:<br>es-AR,en-AU,de-AT,nl-BE,fr-BE,pt-BR,en-CA,fr-CA,es-CL,da-DK,fi-FI,fr-FR,de-DE,zh-HK,en-IN,en-ID,en-IE,it-IT,ja-JP,ko-KR,en-MY,es-MX,nl-NL,en-NZ,no-NO,zh-CN,pl-PL,pt-PT,en-PH,ru-RU,ar-SA,en-ZA,es-ES,sv-SE,fr-CH,de-CH,zh-TW,tr-TR,en-GB,en-US,es-US | no | string | en-us
+mkt | The market where the results come from. Typically, this is the country where the user is making the request from; however, it could be a different country if the user is not located in a country where Bing delivers results. The market must be in the form {language code}-{country code}. For example, en-US.Full list of supported markets:es-AR,en-AU,de-AT,nl-BE,fr-BE,pt-BR,en-CA,fr-CA,es-CL,da-DK,fi-FI,fr-FR,de-DE,zh-HK,en-IN,en-ID,en-IE,it-IT,ja-JP,ko-KR,en-MY,es-MX,nl-NL,en-NZ,no-NO,zh-CN,pl-PL,pt-PT,en-PH,ru-RU,ar-SA,en-ZA,es-ES,sv-SE,fr-CH,de-CH,zh-TW,tr-TR,en-GB,en-US,es-US | no | string | en-us
 safeSearch | A filter used to filter results for adult content. | no | string | Moderate
 
 
@@ -630,7 +630,7 @@ Name | Description | Required | Type | Example Value
 q | The user's search query string | yes | string | cats
 count | The number of video results to return in the response. The actual number delivered may be less than requested. | no | number | 10
 offset | The zero-based offset that indicates the number of video results to skip before returning results. | no | number | 0
-mkt | The market where the results come from. Typically, this is the country where the user is making the request from; however, it could be a different country if the user is not located in a country where Bing delivers results. The market must be in the form {language code}-{country code}. For example, en-US.<br><br>Full list of supported markets:<br>es-AR,en-AU,de-AT,nl-BE,fr-BE,pt-BR,en-CA,fr-CA,es-CL,da-DK,fi-FI,fr-FR,de-DE,zh-HK,en-IN,en-ID,en-IE,it-IT,ja-JP,ko-KR,en-MY,es-MX,nl-NL,en-NZ,no-NO,zh-CN,pl-PL,pt-PT,en-PH,ru-RU,ar-SA,en-ZA,es-ES,sv-SE,fr-CH,de-CH,zh-TW,tr-TR,en-GB,en-US,es-US | no | string | en-us
+mkt | The market where the results come from. Typically, this is the country where the user is making the request from; however, it could be a different country if the user is not located in a country where Bing delivers results. The market must be in the form {language code}-{country code}. For example, en-US.Full list of supported markets:es-AR,en-AU,de-AT,nl-BE,fr-BE,pt-BR,en-CA,fr-CA,es-CL,da-DK,fi-FI,fr-FR,de-DE,zh-HK,en-IN,en-ID,en-IE,it-IT,ja-JP,ko-KR,en-MY,es-MX,nl-NL,en-NZ,no-NO,zh-CN,pl-PL,pt-PT,en-PH,ru-RU,ar-SA,en-ZA,es-ES,sv-SE,fr-CH,de-CH,zh-TW,tr-TR,en-GB,en-US,es-US | no | string | en-us
 safeSearch | A filter used to filter results for adult content. | no | string | Moderate
 
 
@@ -712,7 +712,7 @@ Name | Description | Required | Type | Example Value
 q | The user's search query string | yes | string | bill gates
 count | The number of search results to return in the response. The actual number delivered may be less than requested. | no | number | 10
 offset | The zero-based offset that indicates the number of search results to skip before returning results. | no | number | 0
-mkt | The market where the results come from. Typically, this is the country where the user is making the request from; however, it could be a different country if the user is not located in a country where Bing delivers results. The market must be in the form {language code}-{country code}. For example, en-US.<br><br>Full list of supported markets:<br>es-AR,en-AU,de-AT,nl-BE,fr-BE,pt-BR,en-CA,fr-CA,es-CL,da-DK,fi-FI,fr-FR,de-DE,zh-HK,en-IN,en-ID,en-IE,it-IT,ja-JP,ko-KR,en-MY,es-MX,nl-NL,en-NZ,no-NO,zh-CN,pl-PL,pt-PT,en-PH,ru-RU,ar-SA,en-ZA,es-ES,sv-SE,fr-CH,de-CH,zh-TW,tr-TR,en-GB,en-US,es-US | no | string | en-us
+mkt | The market where the results come from. Typically, this is the country where the user is making the request from; however, it could be a different country if the user is not located in a country where Bing delivers results. The market must be in the form {language code}-{country code}. For example, en-US.Full list of supported markets:es-AR,en-AU,de-AT,nl-BE,fr-BE,pt-BR,en-CA,fr-CA,es-CL,da-DK,fi-FI,fr-FR,de-DE,zh-HK,en-IN,en-ID,en-IE,it-IT,ja-JP,ko-KR,en-MY,es-MX,nl-NL,en-NZ,no-NO,zh-CN,pl-PL,pt-PT,en-PH,ru-RU,ar-SA,en-ZA,es-ES,sv-SE,fr-CH,de-CH,zh-TW,tr-TR,en-GB,en-US,es-US | no | string | en-us
 safesearch | A filter used to filter results for adult content. | no | string | Moderate
 
 
@@ -769,8 +769,8 @@ POST
 
 Name | Description | Required | Type | Example Value
 --- | --- | --- | --- | ---
-visualFeatures | A string indicating what visual feature types to return. Multiple values should be comma-separated. <br/>Valid visual feature types include:<br/>	<ul><li><b>Categories</b> - categorizes image content according to a taxonomy defined in documentation. </li><li><b>Tags</b> - tags the image with a detailed list of words related to the image content. </li><li><b>Description</b> - describes the image content with a complete English sentence. </li><li><b>Faces</b> - detects if faces are present. If present, generate coordinates, gender and age.</li> <li><b >ImageType</b> - detects if image is clipart or a line drawing.</li><li><b> Color</b> - determines the accent color, dominant color, and whether an image is black&white.</li><li><b>Adult</b> - detects if the image is pornographic in nature (depicts nudity or a sex act).Sexually suggestive content is also detected.</li></ul> | no | string | Categories
-details | A string indicating which domain-specific details to return. Multiple values should be comma-separated. <br/>Valid visual feature types include:<br/>	<ul><li><b >Celebrities</b> - identifies celebrities if detected in the image.</li></ul> | no | string | 
+visualFeatures | A string indicating what visual feature types to return. Multiple values should be comma-separated. Valid visual feature types include:	<ul><li>Categories - categorizes image content according to a taxonomy defined in documentation. </li><li>Tags - tags the image with a detailed list of words related to the image content. </li><li>Description - describes the image content with a complete English sentence. </li><li>Faces - detects if faces are present. If present, generate coordinates, gender and age.</li> <li>ImageType - detects if image is clipart or a line drawing.</li><li> Color - determines the accent color, dominant color, and whether an image is black&white.</li><li>Adult - detects if the image is pornographic in nature (depicts nudity or a sex act).Sexually suggestive content is also detected.</li></ul> | no | string | Categories
+details | A string indicating which domain-specific details to return. Multiple values should be comma-separated. Valid visual feature types include:	<ul><li>Celebrities - identifies celebrities if detected in the image.</li></ul> | no | string | 
 
 
 #### Example
@@ -985,7 +985,7 @@ POST
 
 Name | Description | Required | Type | Example Value
 --- | --- | --- | --- | ---
-language | The BCP-47 language code of the text to be detected in the image.The default value is &quot;unk&quot;, then the service will auto detect the language of the text in the image.<br /><br />Supported languages:<ul style="margin-left:.375in;direction:ltr;unicode-bidi:embed; margin-top:0in;margin-bottom:0in" type="disc"><li>unk (AutoDetect)</li><li>zh-Hans (ChineseSimplified)</li><li>zh-Hant (ChineseTraditional)</li><li>cs (Czech)</li><li>da (Danish)</li><li>nl (Dutch)</li><li>en (English)</li><li>fi (Finnish)</li><li>fr (French)</li><li>de (German)</li><li>el (Greek)</li><li>hu (Hungarian)</li><li>it (Italian)</li><li>Ja (Japanese)</li><li>ko (Korean)</li><li>nb (Norwegian)</li><li>pl (Polish)</li><li>pt (Portuguese,</li><li>ru (Russian)</li><li>es (Spanish)</li><li>sv (Swedish)</li><li>tr (Turkish)</li></ul> | no | string | unk
+language | The BCP-47 language code of the text to be detected in the image.The default value is &quot;unk&quot;, then the service will auto detect the language of the text in the image.Supported languages:<ul style="margin-left:.375in;direction:ltr;unicode-bidi:embed; margin-top:0in;margin-bottom:0in" type="disc"><li>unk (AutoDetect)</li><li>zh-Hans (ChineseSimplified)</li><li>zh-Hant (ChineseTraditional)</li><li>cs (Czech)</li><li>da (Danish)</li><li>nl (Dutch)</li><li>en (English)</li><li>fi (Finnish)</li><li>fr (French)</li><li>de (German)</li><li>el (Greek)</li><li>hu (Hungarian)</li><li>it (Italian)</li><li>Ja (Japanese)</li><li>ko (Korean)</li><li>nb (Norwegian)</li><li>pl (Polish)</li><li>pt (Portuguese,</li><li>ru (Russian)</li><li>es (Spanish)</li><li>sv (Swedish)</li><li>tr (Turkish)</li></ul> | no | string | unk
 detectOrientation  | Whether detect the text orientation in the image. With detectOrientation=true the OCR service tries to detect the image orientation and correct it before further processing (e.g. if it's upside-down).  | no | boolean | true
 
 
@@ -2077,7 +2077,7 @@ Name | Description | Required | Type | Example Value
 --- | --- | --- | --- | ---
 personGroupId | The target person's belonging person group's ID. | yes | string | 
 personId | Belonging person ID. | yes | string | 
-persistedFaceId | The face to remove. This persisted face ID is returned from <a href="/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f3039523b">Person - Add a Person Face</a>. | yes | string | 
+persistedFaceId | The face to remove. This persisted face ID is returned from Person - Add a Person Face. | yes | string | 
 
 
 #### Example
@@ -2961,7 +2961,7 @@ recommendations.getDetailsOfAllBuilds()
 Name | Description | Required | Type | Example Value
 --- | --- | --- | --- | ---
 modelId | Unique identifier of the model | yes | string | 
-itemIds | Comma-separated list of the items to recommend for. If the active build is of type FBT, then you can send only one item. <br> Max length: 1024 | yes | string | 
+itemIds | Comma-separated list of the items to recommend for. If the active build is of type FBT, then you can send only one item.  Max length: 1024 | yes | string | 
 numberOfResults | Format - int32. Number of recommended items to return | yes | integer | 
 minimalScore | Format - double. Minmal score, currently honored for only FBT builds. | yes | number | 
 includeMetadata | Future use, always false. | no | boolean | 
@@ -3152,7 +3152,7 @@ recommendations.uploadACatalogFileToAModel({,
 Name | Description | Required | Type | Example Value
 --- | --- | --- | --- | ---
 modelId | Unique identifier of the model. | yes | string | 
-usageDisplayName | Display name of the usage data. e.g. "UsageFile1"<br>Only letters(A-Z, a-z), numbers(0-9), hyphens(-) and underscore(_) are allowed. <br>Max length: 50 | yes | string | 
+usageDisplayName | Display name of the usage data. e.g. "UsageFile1"Only letters(A-Z, a-z), numbers(0-9), hyphens(-) and underscore(_) are allowed. Max length: 50 | yes | string | 
 
 
 #### Example
@@ -3193,7 +3193,7 @@ The service requires at least 3 enrollments for each speaker before the profile 
 
 Name | Description | Required | Type | Example Value
 --- | --- | --- | --- | ---
-verificationProfileId | ID of speaker verification profile. GUID returned from <a href="https://dev.projectoxford.ai/docs/services/563309b6778daf02acc0a508/operations/563309b7778daf06340c9652">Verification Profile - Create Profile</a> API | yes | string | 
+verificationProfileId | ID of speaker verification profile. GUID returned from Verification Profile - Create Profile API | yes | string | 
 
 
 #### Example
@@ -3411,7 +3411,7 @@ Get operation status or result. The operation should be created by <a href="http
 
 Name | Description | Required | Type | Example Value
 --- | --- | --- | --- | ---
-operationId | The operation Id, created by <a href="https://dev.projectoxford.ai/docs/services/563309b6778daf02acc0a508/operations/5645c523778daf217c292592"> Speaker Recognition - Identification</a> or <a href="https://dev.projectoxford.ai/docs/services/563309b6778daf02acc0a508/operations/5645c3271984551c84ec6797"> Identification Profile - Create Enrollment</a>.  | yes | string | EF217D0C-9085-45D7-AAE0-2B36471B89B5
+operationId | The operation Id, created by  Speaker Recognition - Identification or  Identification Profile - Create Enrollment.  | yes | string | EF217D0C-9085-45D7-AAE0-2B36471B89B5
 
 
 #### Example
@@ -3450,7 +3450,7 @@ To automatically identify who is speaking given a group of speakers.
 
 Name | Description | Required | Type | Example Value
 --- | --- | --- | --- | ---
-identificationProfileIds | Comma-delimited identificationProfileIds, the id should be Guid.<br/>It can only support at most 10 profiles for one identification request. | yes | string | 111f427c-3791-468f-b709-fcef7660fff9,111f427c-3791-468f-b709-fcef7660fff9,111f427c-3791-468f-b709-fcef7660fff9
+identificationProfileIds | Comma-delimited identificationProfileIds, the id should be Guid.It can only support at most 10 profiles for one identification request. | yes | string | 111f427c-3791-468f-b709-fcef7660fff9,111f427c-3791-468f-b709-fcef7660fff9,111f427c-3791-468f-b709-fcef7660fff9
 
 
 #### Example
@@ -3907,7 +3907,7 @@ sensitivityLevel | Specify the detection sensitivity level: “low”, “medium
 frameSamplingValue | User may skip frames by setting this parameter. It can be used as a tradeoff between performance and cost, skipping frames may reduce processing time but result in worse detection performance. The default value is 1, meaning detecting motion for every frame. If set to 2, then the algorithm will detect one frame for every two frames. The upper bound is 20. | no | number | 
 detectionZones | User can setup detection zones by passing in a string like “detectionZones=0,0;0.5,0;1,0;1,0.5;1,1;0.5,1;0,1;0,0.5 |0.3,0.3;0.55,0.3;0.8,0.3; 0.8,0.55;0.8,0.8;0.55,0.8;0.3,0.8;0.3,0.55;| 0,0;1,0;1,1;0,1”, each detection zone is separated by a “|” and each point is defined by a “x,y” pair and separated by a “;”. At most 8 detection zones are supported and each detection zone should be defined by at least 3 points and no more than 16 points. The default setting is “detectionZones=0,0;0.5,0;1,0;1,0.5;1,1;0.5,1;0,1;0,0.5”, i.e. the whole frame defined by an 8-point polygon. | no | string | 
 detectLightChange | Specify whether light change events should be detected. The default value is false. | no | boolean | 
-mergeTimeThreshold | Specify the threshold on whether successive motions should be merged together, if the interval between successive motions is <= mergeTimeThreshold, they will be merged. The default value is 0.0 and upper bound is 10.0. | no | number | 
+mergeTimeThreshold | Specify the threshold on whether successive motions should be merged together, if the interval between successive motions is  | no | number | 
 
 
 #### Example
