@@ -241,9 +241,7 @@ const bingImageSearch = new cognitiveServices.bingImageSearch({
 })
 
 
-bingImageSearch.imageInsights({
-        parameters
-    })
+bingImageSearch.imageInsights()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -321,9 +319,7 @@ const bingImageSearch = new cognitiveServices.bingImageSearch({
 })
 
 
-bingImageSearch.trending({
-        parameters
-    })
+bingImageSearch.trending()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -360,13 +356,8 @@ const bingNewsSearch = new cognitiveServices.bingNewsSearch({
     API_KEY: yourApiKey
 })
 
-const parameters = {
 
-};
-
-bingNewsSearch.categoryNews({
-        parameters
-    })
+bingNewsSearch.categoryNews()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -444,9 +435,7 @@ const bingNewsSearch = new cognitiveServices.bingNewsSearch({
 })
 
 
-bingNewsSearch.trendingTopics({
-        parameters
-    })
+bingNewsSearch.trendingTopics()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -483,13 +472,8 @@ const bingSpellCheck = new cognitiveServices.bingSpellCheck({
     API_KEY: yourApiKey
 })
 
-const parameters = {
 
-};
-
-bingSpellCheck.spellCheck({
-        parameters
-    })
+bingSpellCheck.spellCheck()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -571,9 +555,7 @@ const bingVideoSearch = new cognitiveServices.bingVideoSearch({
 })
 
 
-bingVideoSearch.trending({
-        parameters
-    })
+bingVideoSearch.trending()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -812,9 +794,7 @@ const computerVision = new cognitiveServices.computerVision({
 })
 
 
-computerVision.listDomainSpecificModels({
-        parameters
-    })
+computerVision.listDomainSpecificModels()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -905,13 +885,8 @@ const computerVision = new cognitiveServices.computerVision({
     API_KEY: yourApiKey
 })
 
-const parameters = {
 
-};
-
-computerVision.recognizeDomainSpecificContent({
-        parameters
-    })
+computerVision.recognizeDomainSpecificContent()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -951,9 +926,7 @@ const computerVision = new cognitiveServices.computerVision({
 })
 
 
-computerVision.tagImage({
-        parameters
-    })
+computerVision.tagImage()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -988,9 +961,7 @@ const emotion = new cognitiveServices.emotion({
 })
 
 
-emotion.emotionRecognition({
-        parameters
-    })
+emotion.emotionRecognition()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -1029,9 +1000,7 @@ const emotion = new cognitiveServices.emotion({
 })
 
 
-emotion.emotionRecognitionInVideo({
-        parameters
-    })
+emotion.emotionRecognitionInVideo()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -1064,13 +1033,8 @@ const emotion = new cognitiveServices.emotion({
     API_KEY: yourApiKey
 })
 
-const parameters = {
 
-};
-
-emotion.emotionRecognitionWithFaceRectangles({
-        parameters
-    })
+emotion.emotionRecognitionWithFaceRectangles()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -1128,13 +1092,8 @@ const emotion = new cognitiveServices.emotion({
     API_KEY: yourApiKey
 })
 
-const parameters = {
 
-};
-
-emotion.getRecognitionInVideoOperationResult({
-        parameters
-    })
+emotion.getRecognitionInVideoOperationResult()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -1172,13 +1131,8 @@ const entityLinking = new cognitiveServices.entityLinking({
     API_KEY: yourApiKey
 })
 
-const parameters = {
 
-};
-
-entityLinking.linkEntity({
-        parameters
-    })
+entityLinking.linkEntity()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -1277,9 +1231,7 @@ const face = new cognitiveServices.face({
 })
 
 
-face.findSimilar({
-        parameters
-    })
+face.findSimilar()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -1324,9 +1276,7 @@ const face = new cognitiveServices.face({
 })
 
 
-face.group({
-        parameters
-    })
+face.group()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -1375,9 +1325,7 @@ const face = new cognitiveServices.face({
 })
 
 
-face.identify({
-        parameters
-    })
+face.identify()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -1418,9 +1366,7 @@ const face = new cognitiveServices.face({
 })
 
 
-face.verify({
-        parameters
-    })
+face.verify()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -1474,13 +1420,8 @@ const face = new cognitiveServices.face({
     API_KEY: yourApiKey
 })
 
-const parameters = {
 
-};
-
-face.addAFaceToAFaceList({
-        parameters
-    })
+face.addAFaceToAFaceList()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -1523,13 +1464,8 @@ const face = new cognitiveServices.face({
     API_KEY: yourApiKey
 })
 
-const parameters = {
 
-};
-
-face.createAFaceList({
-        parameters
-    })
+face.createAFaceList()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -1567,13 +1503,8 @@ const face = new cognitiveServices.face({
     API_KEY: yourApiKey
 })
 
-const parameters = {
 
-};
-
-face.deleteAFaceFromAFaceList({
-        parameters
-    })
+face.deleteAFaceFromAFaceList()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -1610,13 +1541,8 @@ const face = new cognitiveServices.face({
     API_KEY: yourApiKey
 })
 
-const parameters = {
 
-};
-
-face.deleteAFaceList({
-        parameters
-    })
+face.deleteAFaceList()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -1654,13 +1580,8 @@ const face = new cognitiveServices.face({
     API_KEY: yourApiKey
 })
 
-const parameters = {
 
-};
-
-face.getAFaceList({
-        parameters
-    })
+face.getAFaceList()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -1695,9 +1616,7 @@ const face = new cognitiveServices.face({
 })
 
 
-face.listFaceLists({
-        parameters
-    })
+face.listFaceLists()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -1735,13 +1654,8 @@ const face = new cognitiveServices.face({
     API_KEY: yourApiKey
 })
 
-const parameters = {
 
-};
-
-face.updateAFaceList({
-        parameters
-    })
+face.updateAFaceList()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -1792,13 +1706,8 @@ const face = new cognitiveServices.face({
     API_KEY: yourApiKey
 })
 
-const parameters = {
 
-};
-
-face.addAPersonFace({
-        parameters
-    })
+face.addAPersonFace()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -1837,13 +1746,8 @@ const face = new cognitiveServices.face({
     API_KEY: yourApiKey
 })
 
-const parameters = {
 
-};
-
-face.createAPerson({
-        parameters
-    })
+face.createAPerson()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -1881,13 +1785,8 @@ const face = new cognitiveServices.face({
     API_KEY: yourApiKey
 })
 
-const parameters = {
 
-};
-
-face.deleteAPerson({
-        parameters
-    })
+face.deleteAPerson()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -1926,13 +1825,8 @@ const face = new cognitiveServices.face({
     API_KEY: yourApiKey
 })
 
-const parameters = {
 
-};
-
-face.deleteAPersonFace({
-        parameters
-    })
+face.deleteAPersonFace()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -1970,13 +1864,8 @@ const face = new cognitiveServices.face({
     API_KEY: yourApiKey
 })
 
-const parameters = {
 
-};
-
-face.getAPerson({
-        parameters
-    })
+face.getAPerson()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -2015,13 +1904,8 @@ const face = new cognitiveServices.face({
     API_KEY: yourApiKey
 })
 
-const parameters = {
 
-};
-
-face.getAPersonFace({
-        parameters
-    })
+face.getAPersonFace()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -2058,13 +1942,8 @@ const face = new cognitiveServices.face({
     API_KEY: yourApiKey
 })
 
-const parameters = {
 
-};
-
-face.listPersonsInAPersonGroup({
-        parameters
-    })
+face.listPersonsInAPersonGroup()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -2102,13 +1981,8 @@ const face = new cognitiveServices.face({
     API_KEY: yourApiKey
 })
 
-const parameters = {
 
-};
-
-face.updateAPerson({
-        parameters
-    })
+face.updateAPerson()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -2147,13 +2021,8 @@ const face = new cognitiveServices.face({
     API_KEY: yourApiKey
 })
 
-const parameters = {
 
-};
-
-face.updateAPersonFace({
-        parameters
-    })
+face.updateAPersonFace()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -2193,13 +2062,8 @@ const face = new cognitiveServices.face({
     API_KEY: yourApiKey
 })
 
-const parameters = {
 
-};
-
-face.createAPersonGroup({
-        parameters
-    })
+face.createAPersonGroup()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -2236,13 +2100,8 @@ const face = new cognitiveServices.face({
     API_KEY: yourApiKey
 })
 
-const parameters = {
 
-};
-
-face.deleteAPersonGroup({
-        parameters
-    })
+face.deleteAPersonGroup()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -2279,13 +2138,8 @@ const face = new cognitiveServices.face({
     API_KEY: yourApiKey
 })
 
-const parameters = {
 
-};
-
-face.getAPersonGroup({
-        parameters
-    })
+face.getAPersonGroup()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -2322,13 +2176,8 @@ const face = new cognitiveServices.face({
     API_KEY: yourApiKey
 })
 
-const parameters = {
 
-};
-
-face.getPersonGroupTrainingStatus({
-        parameters
-    })
+face.getPersonGroupTrainingStatus()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -2363,9 +2212,7 @@ const face = new cognitiveServices.face({
 })
 
 
-face.listPersonGroups({
-        parameters
-    })
+face.listPersonGroups()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -2405,13 +2252,8 @@ const face = new cognitiveServices.face({
     API_KEY: yourApiKey
 })
 
-const parameters = {
 
-};
-
-face.trainPersonGroup({
-        parameters
-    })
+face.trainPersonGroup()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -2448,13 +2290,8 @@ const face = new cognitiveServices.face({
     API_KEY: yourApiKey
 })
 
-const parameters = {
 
-};
-
-face.updateAPersonGroup({
-        parameters
-    })
+face.updateAPersonGroup()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -2493,9 +2330,7 @@ const recommendations = new cognitiveServices.recommendations({
 })
 
 
-recommendations.createAModel({
-        parameters
-    })
+recommendations.createAModel()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -2528,13 +2363,8 @@ const recommendations = new cognitiveServices.recommendations({
     API_KEY: yourApiKey
 })
 
-const parameters = {
 
-};
-
-recommendations.create / TriggerABuild({
-        parameters
-    })
+recommendations.create / TriggerABuild()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -2570,13 +2400,8 @@ const recommendations = new cognitiveServices.recommendations({
     API_KEY: yourApiKey
 })
 
-const parameters = {
 
-};
-
-recommendations.deleteABuild({
-        parameters
-    })
+recommendations.deleteABuild()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -2609,13 +2434,8 @@ const recommendations = new cognitiveServices.recommendations({
     API_KEY: yourApiKey
 })
 
-const parameters = {
 
-};
-
-recommendations.deleteAModel({
-        parameters
-    })
+recommendations.deleteAModel()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -2648,13 +2468,8 @@ const recommendations = new cognitiveServices.recommendations({
     API_KEY: yourApiKey
 })
 
-const parameters = {
 
-};
-
-recommendations.delete / CancelAnOngoingOperation({
-        parameters
-    })
+recommendations.delete / CancelAnOngoingOperation()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -2687,13 +2502,8 @@ const recommendations = new cognitiveServices.recommendations({
     API_KEY: yourApiKey
 })
 
-const parameters = {
 
-};
-
-recommendations.getAModelById({
-        parameters
-    })
+recommendations.getAModelById()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -2724,9 +2534,7 @@ const recommendations = new cognitiveServices.recommendations({
 })
 
 
-recommendations.getAllModels({
-        parameters
-    })
+recommendations.getAllModels()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -2760,13 +2568,8 @@ const recommendations = new cognitiveServices.recommendations({
     API_KEY: yourApiKey
 })
 
-const parameters = {
 
-};
-
-recommendations.getBuildById({
-        parameters
-    })
+recommendations.getBuildById()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -2800,13 +2603,8 @@ const recommendations = new cognitiveServices.recommendations({
     API_KEY: yourApiKey
 })
 
-const parameters = {
 
-};
-
-recommendations.getBuildMetrics({
-        parameters
-    })
+recommendations.getBuildMetrics()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -2840,13 +2638,8 @@ const recommendations = new cognitiveServices.recommendations({
     API_KEY: yourApiKey
 })
 
-const parameters = {
 
-};
-
-recommendations.getDetailsOfAllBuilds({
-        parameters
-    })
+recommendations.getDetailsOfAllBuilds()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -2884,13 +2677,8 @@ const recommendations = new cognitiveServices.recommendations({
     API_KEY: yourApiKey
 })
 
-const parameters = {
 
-};
-
-recommendations.getRecommendationsBasedOnItems(I2I)({
-        parameters
-    })
+recommendations.getRecommendationsBasedOnItems(I2I)()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -2933,13 +2721,8 @@ const recommendations = new cognitiveServices.recommendations({
     API_KEY: yourApiKey
 })
 
-const parameters = {
 
-};
-
-recommendations.getUserRecommendations(U2I)({
-        parameters
-    })
+recommendations.getUserRecommendations(U2I)()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -2972,13 +2755,8 @@ const recommendations = new cognitiveServices.recommendations({
     API_KEY: yourApiKey
 })
 
-const parameters = {
 
-};
-
-recommendations.retrieveTheStatusOfAnOperation({
-        parameters
-    })
+recommendations.retrieveTheStatusOfAnOperation()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -3011,13 +2789,8 @@ const recommendations = new cognitiveServices.recommendations({
     API_KEY: yourApiKey
 })
 
-const parameters = {
 
-};
-
-recommendations.updateAModel({
-        parameters
-    })
+recommendations.updateAModel()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -3052,13 +2825,8 @@ const recommendations = new cognitiveServices.recommendations({
     API_KEY: yourApiKey
 })
 
-const parameters = {
 
-};
-
-recommendations.uploadACatalogFileToAModel({
-        parameters
-    })
+recommendations.uploadACatalogFileToAModel()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -3092,13 +2860,8 @@ const recommendations = new cognitiveServices.recommendations({
     API_KEY: yourApiKey
 })
 
-const parameters = {
 
-};
-
-recommendations.uploadAUsageFileToAModel({
-        parameters
-    })
+recommendations.uploadAUsageFileToAModel()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -3136,13 +2899,8 @@ const speakerRecognition = new cognitiveServices.speakerRecognition({
     API_KEY: yourApiKey
 })
 
-const parameters = {
 
-};
-
-speakerRecognition.createEnrollment({
-        parameters
-    })
+speakerRecognition.createEnrollment()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -3174,9 +2932,7 @@ const speakerRecognition = new cognitiveServices.speakerRecognition({
 })
 
 
-speakerRecognition.createProfile({
-        parameters
-    })
+speakerRecognition.createProfile()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -3209,13 +2965,8 @@ const speakerRecognition = new cognitiveServices.speakerRecognition({
     API_KEY: yourApiKey
 })
 
-const parameters = {
 
-};
-
-speakerRecognition.deleteProfile({
-        parameters
-    })
+speakerRecognition.deleteProfile()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -3246,9 +2997,7 @@ const speakerRecognition = new cognitiveServices.speakerRecognition({
 })
 
 
-speakerRecognition.getAllProfiles({
-        parameters
-    })
+speakerRecognition.getAllProfiles()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -3320,13 +3069,8 @@ const speakerRecognition = new cognitiveServices.speakerRecognition({
     API_KEY: yourApiKey
 })
 
-const parameters = {
 
-};
-
-speakerRecognition.resetEnrollments({
-        parameters
-    })
+speakerRecognition.resetEnrollments()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -3437,13 +3181,8 @@ const speakerRecognition = new cognitiveServices.speakerRecognition({
     API_KEY: yourApiKey
 })
 
-const parameters = {
 
-};
-
-speakerRecognition.verification({
-        parameters
-    })
+speakerRecognition.verification()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -3521,13 +3260,8 @@ const textAnalytics = new cognitiveServices.textAnalytics({
     API_KEY: yourApiKey
 })
 
-const parameters = {
 
-};
-
-textAnalytics.detectLanguage({
-        parameters
-    })
+textAnalytics.detectLanguage()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -3567,13 +3301,8 @@ const textAnalytics = new cognitiveServices.textAnalytics({
     API_KEY: yourApiKey
 })
 
-const parameters = {
 
-};
-
-textAnalytics.detectTopics({
-        parameters
-    })
+textAnalytics.detectTopics()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -3606,9 +3335,7 @@ const textAnalytics = new cognitiveServices.textAnalytics({
 })
 
 
-textAnalytics.keyPhrases({
-        parameters
-    })
+textAnalytics.keyPhrases()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -3641,13 +3368,8 @@ const textAnalytics = new cognitiveServices.textAnalytics({
     API_KEY: yourApiKey
 })
 
-const parameters = {
 
-};
-
-textAnalytics.operationStatus({
-        parameters
-    })
+textAnalytics.operationStatus()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -3682,9 +3404,7 @@ const textAnalytics = new cognitiveServices.textAnalytics({
 })
 
 
-textAnalytics.sentiment({
-        parameters
-    })
+textAnalytics.sentiment()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -3720,9 +3440,7 @@ const video = new cognitiveServices.video({
 })
 
 
-video.faceDetectionAndTracking({
-        parameters
-    })
+video.faceDetectionAndTracking()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -3789,13 +3507,8 @@ const video = new cognitiveServices.video({
     API_KEY: yourApiKey
 })
 
-const parameters = {
 
-};
-
-video.getOperationResult({
-        parameters
-    })
+video.getOperationResult()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -3828,13 +3541,8 @@ const video = new cognitiveServices.video({
     API_KEY: yourApiKey
 })
 
-const parameters = {
 
-};
-
-video.getResultVideo({
-        parameters
-    })
+video.getResultVideo()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -3872,13 +3580,8 @@ const video = new cognitiveServices.video({
     API_KEY: yourApiKey
 })
 
-const parameters = {
 
-};
-
-video.motionDetection({
-        parameters
-    })
+video.motionDetection()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -3909,9 +3612,7 @@ const video = new cognitiveServices.video({
 })
 
 
-video.stabilization({
-        parameters
-    })
+video.stabilization()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -3978,13 +3679,8 @@ const video = new cognitiveServices.video({
     API_KEY: yourApiKey
 })
 
-const parameters = {
 
-};
-
-video.thumbnail({
-        parameters
-    })
+video.thumbnail()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -4024,13 +3720,8 @@ const webLanguageModel = new cognitiveServices.webLanguageModel({
     API_KEY: yourApiKey
 })
 
-const parameters = {
 
-};
-
-webLanguageModel.breakIntoWords({
-        parameters
-    })
+webLanguageModel.breakIntoWords()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -4064,13 +3755,8 @@ const webLanguageModel = new cognitiveServices.webLanguageModel({
     API_KEY: yourApiKey
 })
 
-const parameters = {
 
-};
-
-webLanguageModel.calculateConditionalProbability({
-        parameters
-    })
+webLanguageModel.calculateConditionalProbability()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -4104,13 +3790,8 @@ const webLanguageModel = new cognitiveServices.webLanguageModel({
     API_KEY: yourApiKey
 })
 
-const parameters = {
 
-};
-
-webLanguageModel.calculateJointProbability({
-        parameters
-    })
+webLanguageModel.calculateJointProbability()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -4146,13 +3827,8 @@ const webLanguageModel = new cognitiveServices.webLanguageModel({
     API_KEY: yourApiKey
 })
 
-const parameters = {
 
-};
-
-webLanguageModel.generateNextWords({
-        parameters
-    })
+webLanguageModel.generateNextWords()
     .then((response) => {
         console.log('Got response', response);
     })
@@ -4183,9 +3859,7 @@ const webLanguageModel = new cognitiveServices.webLanguageModel({
 })
 
 
-webLanguageModel.listAvailableModels({
-        parameters
-    })
+webLanguageModel.listAvailableModels()
     .then((response) => {
         console.log('Got response', response);
     })
