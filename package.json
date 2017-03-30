@@ -1,6 +1,6 @@
 {
   "name": "cognitive-services",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Microsoft Cognitive Services API",
   "main": "index.js",
   "scripts": {
