@@ -16,7 +16,7 @@
     "SDK"
   ],
   "repository": "https://github.com/joshbalfour/node-cognitive-services",
-  "engines" : { "node" : ">=6.0" } 
+  "engines" : { "node" : ">=6.0" },
   "dependencies": {
     "request-promise": "^3.0.0"
   }
