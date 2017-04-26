@@ -789,7 +789,7 @@ Input requirements:
 
 ```javascript
 
-const computerVision = new cognitiveServices.computerVision({
+const computerVision = cognitiveServices.computerVision({
     API_KEY: yourApiKey
 })
 
@@ -857,7 +857,7 @@ Input requirements:
 
 ```javascript
 
-const computerVision = new cognitiveServices.computerVision({
+const computerVision = cognitiveServices.computerVision({
     API_KEY: yourApiKey
 })
 
@@ -927,7 +927,7 @@ Input requirements:
 
 ```javascript
 
-const computerVision = new cognitiveServices.computerVision({
+const computerVision = cognitiveServices.computerVision({
     API_KEY: yourApiKey
 })
 
@@ -980,7 +980,7 @@ GET
 
 ```javascript
 
-const computerVision = new cognitiveServices.computerVision({
+const computerVision = cognitiveServices.computerVision({
     API_KEY: yourApiKey
 })
 
@@ -1033,7 +1033,7 @@ Input requirements:
 
 ```javascript
 
-const computerVision = new cognitiveServices.computerVision({
+const computerVision = cognitiveServices.computerVision({
     API_KEY: yourApiKey
 })
 
@@ -1103,7 +1103,7 @@ Input requirements:
 
 ```javascript
 
-const computerVision = new cognitiveServices.computerVision({
+const computerVision = cognitiveServices.computerVision({
     API_KEY: yourApiKey
 })
 
@@ -1164,7 +1164,7 @@ Input requirements:
 
 ```javascript
 
-const computerVision = new cognitiveServices.computerVision({
+const computerVision = cognitiveServices.computerVision({
     API_KEY: yourApiKey
 })
 
@@ -3250,7 +3250,8 @@ The first 3 attributes (Item Id, Name and Category) are mandatory, while others 
 Name | Description | Required | Type | Example Value
 --- | --- | --- | --- | ---
 modelId | Unique identifier of the model | yes | string | 
-catalogDisplayName | Display name of the catalog data. e.g. "CatalogFile1"Only letters (A-Z, a-z), numbers (0-9), hyphens (-) and underscore (_) are allowed. Max length: 50 | yes | string | 
+catalogDisplayName | Display name of the catalog data. e.g. "CatalogFile1"
+Only letters (A-Z, a-z), numbers (0-9), hyphens (-) and underscore (_) are allowed. Max length: 50 | yes | string | 
 
 
 #### Example
@@ -3783,8 +3784,12 @@ The API returns the top detected topics for a list of submitted text documents.
 
 Name | Description | Required | Type | Example Value
 --- | --- | --- | --- | ---
-minDocumentsPerWord | Format - int32. (optional) Words that occur in less than this many documents are ignored. Use this parameter to help exclude rare document topics.Omit to let the service choose appropriate value. | no | integer | 
-maxDocumentsPerWord | Format - int32. (optional) Words that occur in more than this many documents are ignored. Use this parameter to help exclude ubiquitous document topics.Omit to let the service choose appropriate value. | no | integer | 
+minDocumentsPerWord | Format - int32. (optional) Words that occur in less than this many documents are ignored. 
+Use this parameter to help exclude rare document topics.
+Omit to let the service choose appropriate value. | no | integer | 
+maxDocumentsPerWord | Format - int32. (optional) Words that occur in more than this many documents are ignored. 
+Use this parameter to help exclude ubiquitous document topics.
+Omit to let the service choose appropriate value. | no | integer | 
 
 
 #### Example
