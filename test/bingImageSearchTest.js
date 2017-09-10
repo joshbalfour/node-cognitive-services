@@ -3,7 +3,7 @@ const config = require('./config.js');
 const should = require('should');
 const fs = require('fs');
 
-describe.only('Bing Image Search', () => {
+describe('Bing Image Search', () => {
 
     const client = cognitive.bingImageSearch({
         API_KEY: config.bingImage.apiKey,

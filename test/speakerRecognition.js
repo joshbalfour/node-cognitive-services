@@ -44,4 +44,23 @@ describe('Speaker recognition', () => {
             });
         })
     })
+
+    describe.only('Verification phrase', () => {
+        it('should list all verification phrases', (done) => {
+            const parameters = {
+                locale: "en-US"
+            };
+
+            client.listAllSupportedVerificationPhrases({
+                parameters
+            }).then((response) => {
+                should(response).not.be.undefined();
+                should(response).be.Array();
+                should(response).matchEach((i) => should(i).have.property('phrase'));
+                done();
+            }).catch((err) => {
+                done(new Error("Error making request:" + err));
+            });
+        })
+    })
 })

@@ -441,8 +441,7 @@ const speakerRecognition = ({
     };
     
     self.listAllSupportedVerificationPhrases = ({
-        parameters,
-        headers
+        parameters
     }) => {
 
         const operation = {
@@ -463,9 +462,6 @@ const speakerRecognition = ({
                 "name": "locale",
                 "description": "Locale for the language when retrieving verification phrases.",
                 "value": "en-US",
-                "options": [
-                    "en-US"
-                ],
                 "required": true,
                 "kind": 1,
                 "typeName": "string"
@@ -473,6 +469,7 @@ const speakerRecognition = ({
         };
 
         const body = null;
+        const headers = null;
 
         return verify(operation, parameters, headers, endpoint)
             .then(() => {
