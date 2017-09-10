@@ -1,31 +1,24 @@
 const {
     makeRequest,
-    verifyParameters
+    verify,
 } = require('../lib/api');
 
 const speakerRecognition = ({
-    API_KEY
+    API_KEY,
+    endpoint
 }) => {
 
     let self = this;
 
-    /**
-			Name: Speaker Recognition: Create Enrollment
-			Description: Enrollment for speaker verification is text-dependent, which means speaker need to choose a specific phrase to use in both enrollment and verification. List of supported phrases can be found in <a href="https://dev.projectoxford.ai/docs/services/563309b6778daf02acc0a508/operations/5652c0801984551c3859634d">Verification Phrase - List All Supported Verification Phrases</a>.<br/><br/>
-The service requires at least 3 enrollments for each speaker before the profile can be used in verification scenarios. It is recommended to use the same device (mic) in both enrollment and verification.
-			Example Parameters: {
-			"verificationProfileId": null
-		}
-		*/
-    self.createEnrollment = ({
+    self.verificationProfileCreateEnrollment = ({
         parameters,
+        headers,
         body
     }) => {
 
         const operation = {
-            "name": "Create Enrollment",
+            "name": "Verification profile - Create Enrollment",
             "path": "spid/v1.0/verificationProfiles/{verificationProfileId}/enroll",
-            "host": "api.projectoxford.ai",
             "method": "POST",
             "scheme": "https",
             "serviceId": "563309b6778daf02acc0a508",
@@ -33,106 +26,103 @@ The service requires at least 3 enrollments for each speaker before the profile 
             "id": "56406930e597ed20c8d8549c",
             "description": "Enrollment for speaker verification is text-dependent, which means speaker need to choose a specific phrase to use in both enrollment and verification. List of supported phrases can be found in <a href=\"https://dev.projectoxford.ai/docs/services/563309b6778daf02acc0a508/operations/5652c0801984551c3859634d\">Verification Phrase - List All Supported Verification Phrases</a>.<br/><br/>\nThe service requires at least 3 enrollments for each speaker before the profile can be used in verification scenarios. It is recommended to use the same device (mic) in both enrollment and verification.",
             "serviceName": "Speaker Recognition",
-            "requestBody": [{
-                "Container": "WAV"
-            }, {
-                "Encoding": "PCM"
-            }, {
-                "Rate": "16K"
-            }, {
-                "SampleFormat": "16 bit"
-            }, {
-                "Channels": "Mono"
+            "requestBody": [],
+            "headers": [{
+                "name": "Content-Type",
+                "description": "Media type of the body sent to the API.",
+                "options": [
+                    "application/json",
+                    "application/octet-stream",
+                    "multipart/form-data",
+                ],
+                "required": false,
+                "typeName": "string"
             }],
-            "headers": {
-                "Content-Type": "multipart/form-data",
-                "Host": "api.projectoxford.ai"
-            },
+            "endpoints": [
+                "westus.api.cognitive.microsoft.com"
+            ],
             "parameters": [{
                 "name": "verificationProfileId",
-                "description": "ID of speaker verification profile. GUID returned from <a href=\"https://dev.projectoxford.ai/docs/services/563309b6778daf02acc0a508/operations/563309b7778daf06340c9652\">Verification Profile - Create Profile</a> API",
+                "description": "ID of speaker verification profile. GUID returned from Verification Profile - Create Profile API",
                 "value": null,
-                "options": [
-                    "94BC205B-FACD-42A7-9D80-485403106627"
-                ],
                 "required": true,
                 "kind": 1,
                 "typeName": "string"
             }]
         };
 
-        return verifyParameters(operation, parameters)
-            .then(makeRequest({
-                operation,
-                parameters,
-                body,
-                API_KEY
-            }));
+        return verify(operation, parameters, headers, endpoint)
+            .then(() => {
+                return makeRequest({
+                    operation,
+                    parameters,
+                    body,
+                    API_KEY,
+                    endpoint,
+                    headers
+                })}
+            );
 
     };
-    /**
-			Name: Speaker Recognition: Create Profile
-			Description: Create a new speaker identification profile with specified locale.<br/>
-One subscription can only create 1000 speaker verification/identification profiles at most.<br/>
-			Example Parameters: {}
-		*/
-    self.createProfile = ({
+
+    self.verificationProfileCreateProfile = ({
         parameters,
+        headers,
         body
     }) => {
 
         const operation = {
-            "name": "Create Profile",
-            "path": "spid/v1.0/identificationProfiles",
-            "host": "api.projectoxford.ai",
+            "name": "Verification profile - Create Profile",
+            "path": "spid/v1.0/verificationProfiles",
             "method": "POST",
             "scheme": "https",
             "serviceId": "563309b6778daf02acc0a508",
             "operationId": "5645c068e597ed22ec38f42e",
             "id": "5645c068e597ed22ec38f42e",
-            "description": "Create a new speaker identification profile with specified locale.<br/>\nOne subscription can only create 1000 speaker verification/identification profiles at most.<br/>",
+            "description": "Create a new speaker verification profile with specific locale. One subscription can only create 1000 speaker verification/identification profiles at most.",
             "serviceName": "Speaker Recognition",
             "requestBody": [{
-                "Fields": "Locale for the language of this speaker identification profile ."
-            }, {
-                "Fields": "A complete supported locale list is here:\n					"
-            }, {
-                "Fields": "\n					"
-            }, {
-                "Fields": "\n				"
+                "Fields": "locale",
+                "Description": "Locale for language of the new speaker verification profile. "
             }],
-            "headers": {
-                "Content-Type": "application/json",
-                "Host": "api.projectoxford.ai"
-            },
+            "headers": [{
+                "name": "Content-Type",
+                "description": "Media type of the body sent to the API.",
+                "options": [
+                    "application/json"
+                ],
+                "required": false,
+                "typeName": "string"
+            }],
+            "endpoints": [
+                "westus.api.cognitive.microsoft.com"
+            ],
             "parameters": []
         };
 
-        return verifyParameters(operation, parameters)
-            .then(makeRequest({
-                operation,
-                parameters,
-                body,
-                API_KEY
-            }));
+        return verify(operation, parameters, headers, endpoint)
+            .then(() => {
+                return makeRequest({
+                    operation,
+                    parameters,
+                    body,
+                    API_KEY,
+                    endpoint,
+                    headers
+                })}
+            );
 
     };
-    /**
-	Name: Speaker Recognition: Delete Profile
-	Description: Deletes both speaker verification profile and all associated enrollments permanently from the service.
-	Example Parameters: {
-	"verificationProfileId": null
-}
-*/
-    self.deleteProfile = ({
+
+    self.verificationProfileDeleteProfile = ({
         parameters,
+        headers,
         body
     }) => {
 
         const operation = {
-            "name": "Delete Profile",
+            "name": "Verification profile - Delete Profile",
             "path": "spid/v1.0/verificationProfiles/{verificationProfileId}",
-            "host": "api.projectoxford.ai",
             "method": "DELETE",
             "scheme": "https",
             "serviceId": "563309b6778daf02acc0a508",
@@ -140,44 +130,42 @@ One subscription can only create 1000 speaker verification/identification profil
             "id": "563309b7778daf06340c9655",
             "description": "Deletes both speaker verification profile and all associated enrollments permanently from the service.",
             "serviceName": "Speaker Recognition",
-            "headers": {
-                "Host": "api.projectoxford.ai"
-            },
+            "headers": [],
+            "endpoints": [
+                "westus.api.cognitive.microsoft.com"
+            ],
             "parameters": [{
                 "name": "verificationProfileId",
                 "description": "ID of speaker verification profile. It should be a GUID.",
                 "value": null,
-                "options": [
-                    "7180c319-88b5-4cf0-824d-1dfd5d4854f4"
-                ],
                 "required": true,
                 "kind": 1,
                 "typeName": "string"
             }]
         };
 
-        return verifyParameters(operation, parameters)
-            .then(makeRequest({
-                operation,
-                parameters,
-                body,
-                API_KEY
-            }));
+        return verify(operation, parameters, headers, endpoint)
+            .then(() => {
+                return makeRequest({
+                    operation,
+                    parameters,
+                    body,
+                    API_KEY,
+                    endpoint,
+                    headers
+                })}
+            );
 
     };
-    /**
-	Name: Speaker Recognition: Get All Profiles
-	Description: Get all speaker verification profiles within the subscription.
-	Example Parameters: {}
-*/
-    self.getAllProfiles = ({
-        parameters
+
+    self.verificationProfileGetAllProfiles = ({
+        parameters,
+        headers
     }) => {
 
         const operation = {
-            "name": "Get All Profiles",
+            "name": "Verification profile - Get All Profiles",
             "path": "spid/v1.0/verificationProfiles",
-            "host": "api.projectoxford.ai",
             "method": "GET",
             "scheme": "https",
             "serviceId": "563309b6778daf02acc0a508",
@@ -185,36 +173,37 @@ One subscription can only create 1000 speaker verification/identification profil
             "id": "563309b7778daf06340c9653",
             "description": "Get all speaker verification profiles within the subscription.",
             "serviceName": "Speaker Recognition",
-            "headers": {
-                "Host": "api.projectoxford.ai"
-            },
+            "headers": [],
+            "endpoints": [
+                "westus.api.cognitive.microsoft.com",
+            ],           
             "parameters": []
         };
 
-        return verifyParameters(operation, parameters)
-            .then(makeRequest({
-                operation,
-                parameters,
-                body,
-                API_KEY
-            }));
+        const body = {};
+
+        return verify(operation, parameters, headers, endpoint)
+		.then(() => {
+			return makeRequest({
+				operation,
+				parameters,
+				body,
+				API_KEY,
+				endpoint,
+				headers
+			})}
+		);
 
     };
-    /**
-	Name: Speaker Recognition: Get Profile
-	Description: Get a speaker verification profile by verificationProfileId
-	Example Parameters: {
-	"verificationProfileId": "111f427c-3791-468f-b709-fcef7660fff9"
-}
-*/
-    self.getProfile = ({
-        parameters
+
+    self.verificationProfileGetProfile = ({
+        parameters,
+        headers
     }) => {
 
         const operation = {
-            "name": "Get Profile",
+            "name": "Verification Profile - Get Profile",
             "path": "spid/v1.0/verificationProfiles/{verificationProfileId}",
-            "host": "api.projectoxford.ai",
             "method": "GET",
             "scheme": "https",
             "serviceId": "563309b6778daf02acc0a508",
@@ -222,47 +211,42 @@ One subscription can only create 1000 speaker verification/identification profil
             "id": "56409ee2778daf19706420de",
             "description": "Get a speaker verification profile by verificationProfileId",
             "serviceName": "Speaker Recognition",
-            "headers": {
-                "Host": "api.projectoxford.ai"
-            },
+            "headers": [],
             "parameters": [{
                 "name": "verificationProfileId",
                 "description": "ID of speaker verification profile. It should be a GUID.",
-                "value": "111f427c-3791-468f-b709-fcef7660fff9",
-                "options": [
-                    "111f427c-3791-468f-b709-fcef7660fff9"
-                ],
+                "value": "",
                 "required": true,
                 "kind": 1,
                 "typeName": "string"
             }]
         };
 
-        return verifyParameters(operation, parameters)
-            .then(makeRequest({
-                operation,
-                parameters,
-                body,
-                API_KEY
-            }));
+        const body = {};
+
+        return verify(operation, parameters, headers, endpoint)
+            .then(() => {
+                return makeRequest({
+                    operation,
+                    parameters,
+                    body,
+                    API_KEY,
+                    endpoint,
+                    headers
+                })}
+            );
 
     };
-    /**
-	Name: Speaker Recognition: Reset Enrollments
-	Description: Deletes all enrollments associated with the given speaker’s verification profile permanently from the service.
-	Example Parameters: {
-	"verificationProfileId": null
-}
-*/
-    self.resetEnrollments = ({
+
+    self.verificationProfileResetEnrollments = ({
         parameters,
+        headers,
         body
     }) => {
 
         const operation = {
-            "name": "Reset Enrollments",
+            "name": "Verification Profile - Reset Enrollments",
             "path": "spid/v1.0/verificationProfiles/{verificationProfileId}/reset",
-            "host": "api.projectoxford.ai",
             "method": "POST",
             "scheme": "https",
             "serviceId": "563309b6778daf02acc0a508",
@@ -270,46 +254,41 @@ One subscription can only create 1000 speaker verification/identification profil
             "id": "56406930e597ed20c8d8549b",
             "description": "Deletes all enrollments associated with the given speaker’s verification profile permanently from the service.",
             "serviceName": "Speaker Recognition",
-            "headers": {
-                "Host": "api.projectoxford.ai"
-            },
+            "headers": [],
+            "endpoints": [
+                "westus.api.cognitive.microsoft.com"
+            ],
             "parameters": [{
                 "name": "verificationProfileId",
                 "description": "ID of speaker verification profile. It should be a GUID.",
-                "value": null,
-                "options": [
-                    "7180c319-88b5-4cf0-824d-1dfd5d4854f4"
-                ],
+                "value": "",
                 "required": true,
                 "kind": 1,
                 "typeName": "string"
             }]
         };
 
-        return verifyParameters(operation, parameters)
-            .then(makeRequest({
-                operation,
-                parameters,
-                body,
-                API_KEY
-            }));
-
+        return verify(operation, parameters, headers, endpoint)
+            .then(() => {
+                return makeRequest({
+                    operation,
+                    parameters,
+                    body,
+                    API_KEY,
+                    endpoint,
+                    headers
+                })}
+            );
     };
-    /**
-	Name: Speaker Recognition: Get Operation Status
-	Description: Get operation status or result. The operation should be created by <a href="https://dev.projectoxford.ai/docs/services/563309b6778daf02acc0a508/operations/5645c523778daf217c292592"> Speaker Recognition - Identification</a> or <a href="https://dev.projectoxford.ai/docs/services/563309b6778daf02acc0a508/operations/5645c3271984551c84ec6797"> Identification Profile - Create Enrollment</a>. And the URL should be retrieved from Operation-Location header of initial POST 202 response
-	Example Parameters: {
-	"operationId": "EF217D0C-9085-45D7-AAE0-2B36471B89B5"
-}
-*/
-    self.getOperationStatus = ({
-        parameters
+
+    self.speakerRecognitionGetOperationStatus = ({
+        parameters,
+        headers
     }) => {
 
         const operation = {
-            "name": "Get Operation Status",
+            "name": "Speaker Recognition - Get Operation Status",
             "path": "spid/v1.0/operations/{operationId}",
-            "host": "api.projectoxford.ai",
             "method": "GET",
             "scheme": "https",
             "serviceId": "563309b6778daf02acc0a508",
@@ -317,47 +296,45 @@ One subscription can only create 1000 speaker verification/identification profil
             "id": "5645c725ca73070ee8845bd6",
             "description": "Get operation status or result. The operation should be created by <a href=\"https://dev.projectoxford.ai/docs/services/563309b6778daf02acc0a508/operations/5645c523778daf217c292592\"> Speaker Recognition - Identification</a> or <a href=\"https://dev.projectoxford.ai/docs/services/563309b6778daf02acc0a508/operations/5645c3271984551c84ec6797\"> Identification Profile - Create Enrollment</a>. And the URL should be retrieved from Operation-Location header of initial POST 202 response",
             "serviceName": "Speaker Recognition",
-            "headers": {
-                "Host": "api.projectoxford.ai"
-            },
+            "headers": [],
+            "endpoints": [
+                "westus.api.cognitive.microsoft.com"
+            ],
             "parameters": [{
                 "name": "operationId",
                 "description": "The operation Id, created by <a href=\"https://dev.projectoxford.ai/docs/services/563309b6778daf02acc0a508/operations/5645c523778daf217c292592\"> Speaker Recognition - Identification</a> or <a href=\"https://dev.projectoxford.ai/docs/services/563309b6778daf02acc0a508/operations/5645c3271984551c84ec6797\"> Identification Profile - Create Enrollment</a>. ",
-                "value": "EF217D0C-9085-45D7-AAE0-2B36471B89B5",
-                "options": [
-                    "EF217D0C-9085-45D7-AAE0-2B36471B89B5"
-                ],
+                "value": "",
                 "required": true,
                 "kind": 1,
                 "typeName": "string"
             }]
         };
 
-        return verifyParameters(operation, parameters)
-            .then(makeRequest({
-                operation,
-                parameters,
-                body,
-                API_KEY
-            }));
+        const body = {};
+
+        return verify(operation, parameters, headers, endpoint)
+            .then(() => {
+                return makeRequest({
+                    operation,
+                    parameters,
+                    body,
+                    API_KEY,
+                    endpoint,
+                    headers
+                })}
+            );
 
     };
-    /**
-	Name: Speaker Recognition: Identification
-	Description: To automatically identify who is speaking given a group of speakers.
-	Example Parameters: {
-	"identificationProfileIds": "111f427c-3791-468f-b709-fcef7660fff9,111f427c-3791-468f-b709-fcef7660fff9,111f427c-3791-468f-b709-fcef7660fff9"
-}
-*/
-    self.identification = ({
+
+    self.speakerRecognitionIdentification = ({
         parameters,
+        headers,
         body
     }) => {
 
         const operation = {
-            "name": "Identification",
-            "path": "spid/v1.0/identify?identificationProfileIds={identificationProfileIds}",
-            "host": "api.projectoxford.ai",
+            "name": "Speaker Recognition - Identification",
+            "path": "spid/v1.0/identify?identificationProfileIds={identificationProfileIds}[&shortAudio]",
             "method": "POST",
             "scheme": "https",
             "serviceId": "563309b6778daf02acc0a508",
@@ -365,59 +342,59 @@ One subscription can only create 1000 speaker verification/identification profil
             "id": "5645c523778daf217c292592",
             "description": "To automatically identify who is speaking given a group of speakers.",
             "serviceName": "Speaker Recognition",
-            "requestBody": [{
-                "Container": "WAV"
-            }, {
-                "Encoding": "PCM"
-            }, {
-                "Rate": "16K"
-            }, {
-                "SampleFormat": "16 bit"
-            }, {
-                "Channels": "Mono"
+            "headers": [{
+                "name": "Content-Type",
+                "description": "Media type of the body sent to the API.",
+                "options": [
+                    "application/octet-stream",
+                    "multipart/form-data",
+                ],
+                "required": false,
+                "typeName": "string"
             }],
-            "headers": {
-                "Content-Type": "application/octet-stream",
-                "Host": "api.projectoxford.ai"
-            },
+            "endpoints": [
+                "westus.api.cognitive.microsoft.com",
+            ],
             "parameters": [{
                 "name": "identificationProfileIds",
-                "description": "Comma-delimited identificationProfileIds, the id should be Guid.<br/>It can only support at most 10 profiles for one identification request.",
-                "value": "111f427c-3791-468f-b709-fcef7660fff9,111f427c-3791-468f-b709-fcef7660fff9,111f427c-3791-468f-b709-fcef7660fff9",
-                "options": [
-                    "111f427c-3791-468f-b709-fcef7660fff9,111f427c-3791-468f-b709-fcef7660fff9,111f427c-3791-468f-b709-fcef7660fff9"
-                ],
+                "description": "Comma-delimited identificationProfileIds, the id should be Guid. It can only support at most 10 profiles for one identification request.",
+                "value": "",
                 "required": true,
                 "kind": 1,
                 "typeName": "string"
+            }, {
+                "name": "shortAudio",
+                "description": "Instruct the service to waive the recommended minimum audio limit needed for identification. Set value to “true” to force identification using any audio length (min. 1 second).",
+                "value": "",
+                "required": false,
+                "kind": 1,
+                "typeName": "boolean"
             }]
         };
 
-        return verifyParameters(operation, parameters)
-            .then(makeRequest({
-                operation,
-                parameters,
-                body,
-                API_KEY
-            }));
+        return verify(operation, parameters, headers, endpoint)
+            .then(() => {
+                return makeRequest({
+                    operation,
+                    parameters,
+                    body,
+                    API_KEY,
+                    endpoint,
+                    headers
+                })}
+            );
 
     };
-    /**
-	Name: Speaker Recognition: Verification
-	Description: To automatically verify and authenticate users using their voice or speech.
-	Example Parameters: {
-	"verificationProfileId": null
-}
-*/
-    self.verification = ({
+
+    self.speakerRecognitionVerification = ({
         parameters,
+        heaers,
         body
     }) => {
 
         const operation = {
-            "name": "Verification",
+            "name": "Speaker Recognition - Verification",
             "path": "spid/v1.0/verify?verificationProfileId={verificationProfileId}",
-            "host": "api.projectoxford.ai",
             "method": "POST",
             "scheme": "https",
             "serviceId": "563309b6778daf02acc0a508",
@@ -425,58 +402,52 @@ One subscription can only create 1000 speaker verification/identification profil
             "id": "56406930e597ed20c8d8549d",
             "description": "To automatically verify and authenticate users using their voice or speech.",
             "serviceName": "Speaker Recognition",
-            "requestBody": [{
-                "Container": "WAV"
-            }, {
-                "Encoding": "PCM"
-            }, {
-                "Rate": "16K"
-            }, {
-                "SampleFormat": "16 bit"
-            }, {
-                "Channels": "Mono"
+            "requestBody": [],
+            "headers": [{
+                "name": "Content-Type",
+                "description": "Media type of the body sent to the API.",
+                "options": [
+                    "application/octet-stream",
+                    "multipart/form-data",
+                ],
+                "required": false,
+                "typeName": "string"
             }],
-            "headers": {
-                "Content-Type": "application/octet-stream",
-                "Host": "api.projectoxford.ai"
-            },
+            "endpoints": [
+                "westus.api.cognitive.microsoft.com"
+            ],
             "parameters": [{
                 "name": "verificationProfileId",
                 "description": "ID of speaker verification profile. It should be a GUID.",
                 "value": null,
-                "options": [
-                    "94BC205B-FACD-42A7-9D80-485403106627"
-                ],
                 "required": true,
                 "kind": 1,
                 "typeName": "string"
             }]
         };
 
-        return verifyParameters(operation, parameters)
-            .then(makeRequest({
-                operation,
-                parameters,
-                body,
-                API_KEY
-            }));
+        return verify(operation, parameters, headers, endpoint)
+            .then(() => {
+                return makeRequest({
+                    operation,
+                    parameters,
+                    body,
+                    API_KEY,
+                    endpoint,
+                    headers
+                })}
+            );
 
     };
-    /**
-	Name: Speaker Recognition: List All Supported Verification Phrases
-	Description: Returns the list of supported verification phrases that can be used for <a href="https://dev.projectoxford.ai/docs/services/563309b6778daf02acc0a508/operations/56406930e597ed20c8d8549c">Verification Profile - Create Enrollment</a> and <a href="https://dev.projectoxford.ai/docs/services/563309b6778daf02acc0a508/operations/56406930e597ed20c8d8549d">Speaker Recognition - Verification</a>.
-	Example Parameters: {
-	"locale": "en-US"
-}
-*/
+    
     self.listAllSupportedVerificationPhrases = ({
-        parameters
+        parameters,
+        headers
     }) => {
 
         const operation = {
             "name": "List All Supported Verification Phrases",
             "path": "spid/v1.0/verificationPhrases?locale={locale}",
-            "host": "api.projectoxford.ai",
             "method": "GET",
             "scheme": "https",
             "serviceId": "563309b6778daf02acc0a508",
@@ -484,9 +455,10 @@ One subscription can only create 1000 speaker verification/identification profil
             "id": "5652c0801984551c3859634d",
             "description": "Returns the list of supported verification phrases that can be used for <a href=\"https://dev.projectoxford.ai/docs/services/563309b6778daf02acc0a508/operations/56406930e597ed20c8d8549c\">Verification Profile - Create Enrollment</a> and <a href=\"https://dev.projectoxford.ai/docs/services/563309b6778daf02acc0a508/operations/56406930e597ed20c8d8549d\">Speaker Recognition - Verification</a>.",
             "serviceName": "Speaker Recognition",
-            "headers": {
-                "Host": "api.projectoxford.ai"
-            },
+            "headers": [],
+            "endpoints": [
+                "westus.api.cognitive.microsoft.com"
+            ],
             "parameters": [{
                 "name": "locale",
                 "description": "Locale for the language when retrieving verification phrases.",
@@ -500,15 +472,304 @@ One subscription can only create 1000 speaker verification/identification profil
             }]
         };
 
-        return verifyParameters(operation, parameters)
-            .then(makeRequest({
-                operation,
-                parameters,
-                body,
-                API_KEY
-            }));
+        const body = {};
+
+        return verify(operation, parameters, headers, endpoint)
+            .then(() => {
+                return makeRequest({
+                    operation,
+                    parameters,
+                    body,
+                    API_KEY,
+                    endpoint,
+                    headers
+                })}
+            );
 
     };
+
+    self.identificationProfileCreateEnrollment = ({
+        parameters,
+        headers,
+        body
+    }) => {
+
+        const operation = {
+            "name": "Identification Profile - Create Enrollment",
+            "path": "spid/v1.0/identificationProfiles/{identificationProfileId}/enroll[?shortAudio]",
+            "method": "POST",
+            "scheme": "https",
+            "serviceId": "563309b6778daf02acc0a508",
+            "operationId": "5645c3271984551c84ec6797",
+            "id": "5645c3271984551c84ec6797",
+            "description": "Enrollment for speaker identification is text-independent, which means that there are no restrictions on \
+                 what the speaker says in the audio. The speaker's voice is recorded, and a number of features are extracted to form a unique voiceprint.",
+            "serviceName": "Speaker Recognition",
+            "headers": [{
+                "name": "Content-Type",
+                "description": "Media type of the body sent to the API.",
+                "options": [
+                    "application/octet-stream",
+                    "multipart/form-data",
+                ],
+                "required": false,
+                "typeName": "string"
+            }],
+            "endpoints": [
+                "westus.api.cognitive.microsoft.com"
+            ],
+            "parameters": [{
+                "name": "identificationProfileId",
+                "description": "ID of speaker identification profile. GUID returned from Identification Profile - Create Profile API",
+                "value": null,
+                "required": true,
+                "kind": 1,
+                "typeName": "string"
+            }, {
+                "name": "shortAudio",
+                "description": "Instruct the service to waive the recommended minimum audio limit needed for enrollment. \
+                    Set value to 'true' to force enrollment using any audio length (min. 1 second).",
+                "value": null,
+                "required": false,
+                "kind": 1,
+                "typeName": "string"
+            }]
+        };
+
+        return verify(operation, parameters, headers, endpoint)
+            .then(() => {
+                return makeRequest({
+                    operation,
+                    parameters,
+                    body,
+                    API_KEY,
+                    endpoint,
+                    headers
+                })}
+            );
+    };
+
+    self.identificationProfileCreateProfile = ({
+        parameters,
+        headers,
+        body
+    }) => {
+
+        const operation = {
+            "name": "Identification Profile - Create Profile",
+            "path": "spid/v1.0/identificationProfiles",
+            "method": "POST",
+            "scheme": "https",
+            "serviceId": "563309b6778daf02acc0a508",
+            "operationId": "5645c068e597ed22ec38f42e",
+            "id": "5645c068e597ed22ec38f42e",
+            "description": "Create a new speaker identification profile with specified locale.\
+                One subscription can only create 1000 speaker verification/identification profiles at most.",
+            "serviceName": "Speaker Recognition",
+            "requestBody": [{
+                "Fields": "locale",
+                "Description":  "Locale for the language of this speaker identification profile. A complete supported locale list is here:\
+                    en-US (English US)\
+                    zh-CN (Chinese Mandarin)"
+            }],
+            "headers": [{
+                "name": "Content-Type",
+                "description": "Media type of the body sent to the API.",
+                "options": [
+                    "application/json",
+                ],
+                "required": false,
+                "typeName": "string"
+            }],
+            "endpoints": [
+                "westus.api.cognitive.microsoft.com"
+            ],
+            "parameters": []
+        };
+
+        return verify(operation, parameters, headers, endpoint)
+            .then(() => {
+                return makeRequest({
+                    operation,
+                    parameters,
+                    body,
+                    API_KEY,
+                    endpoint,
+                    headers
+                })}
+            );
+    };
+
+    self.identificationProfileDeleteProfile = ({
+        parameters,
+        headers
+    }) => {
+
+        const operation = {
+            "name": "Identification Profile - Create Profile",
+            "path": "spid/v1.0/identificationProfiles/{identificationProfileId}",
+            "method": "DELETE",
+            "scheme": "https",
+            "serviceId": "563309b6778daf02acc0a508",
+            "operationId": "5645c068e597ed22ec38f42e",
+            "id": "5645c068e597ed22ec38f42e",
+            "description": "Create a new speaker identification profile with specified locale.\
+                One subscription can only create 1000 speaker verification/identification profiles at most.",
+            "serviceName": "Speaker Recognition",
+            "headers": [],
+            "endpoints": [
+                "westus.api.cognitive.microsoft.com"
+            ],
+            "parameters": [{
+                "name": "identificationProfileId",
+                "description": "ID of speaker identification profile. GUID returned from Identification Profile - Create Profile API",
+                "value": null,
+                "required": string,
+                "kind": 1,
+                "typeName": "string"
+            }]
+        };
+
+        const body = {};
+
+        return verify(operation, parameters, headers, endpoint)
+            .then(() => {
+                return makeRequest({
+                    operation,
+                    parameters,
+                    body,
+                    API_KEY,
+                    endpoint,
+                    headers
+                })}
+            );
+    };
+
+    self.identificationProfileGetAll = ({
+        parameters,
+        headers
+    }) => {
+
+        const operation = {
+            "name": "Identification Profile - Get All Profiles",
+            "path": "spid/v1.0/identificationProfiles",
+            "method": "GET",
+            "scheme": "https",
+            "serviceId": "563309b6778daf02acc0a508",
+            "operationId": "5645c211e597ed22ec38f431",
+            "id": "5645c211e597ed22ec38f431",
+            "description": "Get all speaker identification profiles within the subscription.",
+            "serviceName": "Speaker Recognition",
+            "headers": [],
+            "endpoints": [
+                "westus.api.cognitive.microsoft.com"
+            ],
+            "parameters": []
+        };
+
+        const body = {};
+
+        return verify(operation, parameters, headers, endpoint)
+            .then(() => {
+                return makeRequest({
+                    operation,
+                    parameters,
+                    body,
+                    API_KEY,
+                    endpoint,
+                    headers
+                })}
+            );
+    };
+
+    self.identificationProfileGet = ({
+        parameters,
+        headers
+    }) => {
+
+        const operation = {
+            "name": "Identification Profile - Get Profile",
+            "path": "spid/v1.0/identificationProfiles/{identificationProfileId}",
+            "method": "GET",
+            "scheme": "https",
+            "serviceId": "563309b6778daf02acc0a508",
+            "operationId": "5645c211e597ed22ec38f431",
+            "id": "5645c0d9e597ed22ec38f42f",
+            "description": "Get a speaker identification profile by identificationProfileId.",
+            "serviceName": "Speaker Recognition",
+            "headers": [],
+            "endpoints": [
+                "westus.api.cognitive.microsoft.com"
+            ],
+            "parameters": [{
+                "name": "identificationProfileId",
+                "description": "ID of speaker identification profile. GUID returned from Identification Profile - Create Profile API",
+                "value": null,
+                "required": string,
+                "kind": 1,
+                "typeName": "string"
+            }]
+        };
+
+        const body = {};
+
+        return verify(operation, parameters, headers, endpoint)
+            .then(() => {
+                return makeRequest({
+                    operation,
+                    parameters,
+                    body,
+                    API_KEY,
+                    endpoint,
+                    headers
+                })}
+            );
+    };
+
+    self.identificationProfileResetEnrollments = ({
+        parameters,
+        headers
+    }) => {
+
+        const operation = {
+            "name": "Identification Profile - Reset Enrollments",
+            "path": "spid/v1.0/identificationProfiles/{identificationProfileId}/reset",
+            "method": "POST",
+            "scheme": "https",
+            "serviceId": "563309b6778daf02acc0a508",
+            "operationId": "5645c211e597ed22ec38f431",
+            "id": "5645c2c1e597ed22ec38f433",
+            "description": "Deletes all enrollments associated with the given speaker identification profile permanently from the service.",
+            "serviceName": "Speaker Recognition",
+            "headers": [],
+            "endpoints": [
+                "westus.api.cognitive.microsoft.com"
+            ],
+            "parameters": [{
+                "name": "identificationProfileId",
+                "description": "ID of speaker identification profile. GUID returned from Identification Profile - Create Profile API",
+                "value": null,
+                "required": string,
+                "kind": 1,
+                "typeName": "string"
+            }]
+        };
+
+        const body = {};
+
+        return verify(operation, parameters, headers, endpoint)
+            .then(() => {
+                return makeRequest({
+                    operation,
+                    parameters,
+                    body,
+                    API_KEY,
+                    endpoint,
+                    headers
+                })}
+            );
+    };
+
 
     return self;
 };

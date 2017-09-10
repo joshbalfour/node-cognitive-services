@@ -6,5 +6,9 @@ module.exports = {
     face: {
         endpoint: "westus.api.cognitive.microsoft.com",
         apiKey: "insert-key-here",
+    },
+    speakerRecognition: {
+        endpoint: "westus.api.cognitive.microsoft.com",
+        apiKey: "insert-key-here"
     }
 }
