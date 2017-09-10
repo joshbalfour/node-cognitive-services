@@ -130,8 +130,7 @@ describe('Face', () => {
                 'Content-type': 'application/octet-stream'
             };
             
-            const data = fs.readFileSync('test/assets/random_face.jpg');
-            const body = new Buffer(data);
+            const body = fs.readFileSync('test/assets/random_face.jpg');
             const parameters = {
                 "personGroupId": personGroupId,
                 "personId": personId
