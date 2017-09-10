@@ -323,6 +323,8 @@ GET
             "parameters": []
         };
 
+        const body = {};
+
         return verify(operation, parameters, headers, endpoint)
             .then(makeRequest({
                 operation,

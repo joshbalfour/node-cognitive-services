@@ -777,6 +777,8 @@ Face list is a group of faces, and these faces will not expire. Face list is use
             }]
         };
 
+        const body = {};
+
         return verify(operation, parameters, headers, endpoint)
             .then(() => {
                 return makeRequest({
@@ -824,6 +826,8 @@ Face list is a group of faces, and these faces will not expire. Face list is use
             ],
             "parameters": []
         };
+
+        const body = {};
 
         return verify(operation, parameters, headers, endpoint)
             .then(() => {
@@ -1307,6 +1311,8 @@ and
             }]
         };
 
+        const body = {};
+
         return verify(operation, parameters, headers, endpoint)
             .then(() => {
                 return makeRequest({
@@ -1383,6 +1389,8 @@ and
             }]
         };
 
+        const body = {};
+
         return verify(operation, parameters, headers, endpoint)
             .then(() => {
                 return makeRequest({
@@ -1456,6 +1464,8 @@ and
                 "typeName": "number"
             }]
         };
+
+        const body = {};
 
         return verify(operation, parameters, headers, endpoint)
             .then(() => {
@@ -1823,6 +1833,8 @@ and
             }]
         };
 
+        const body = {};
+
         return verify(operation, parameters, headers, endpoint)
 		.then(() => {
 			return makeRequest({
@@ -1880,6 +1892,8 @@ and
                 "typeName": "string"
             }]
         };
+
+        const body = {};
 
         return verify(operation, parameters, headers, endpoint)
 		.then(() => {
@@ -1944,6 +1958,8 @@ and
                 "typeName": "number"
             }]
         };
+
+        const body = {};
 
         return verify(operation, parameters, headers, endpoint)
 		.then(() => {
