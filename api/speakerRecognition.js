@@ -180,7 +180,7 @@ const speakerRecognition = ({
             "parameters": []
         };
 
-        const body = {};
+        const body = null;
 
         return verify(operation, parameters, headers, endpoint)
 		.then(() => {
@@ -222,7 +222,7 @@ const speakerRecognition = ({
             }]
         };
 
-        const body = {};
+        const body = null;
 
         return verify(operation, parameters, headers, endpoint)
             .then(() => {
@@ -310,7 +310,7 @@ const speakerRecognition = ({
             }]
         };
 
-        const body = {};
+        const body = null;
 
         return verify(operation, parameters, headers, endpoint)
             .then(() => {
@@ -472,7 +472,7 @@ const speakerRecognition = ({
             }]
         };
 
-        const body = {};
+        const body = null;
 
         return verify(operation, parameters, headers, endpoint)
             .then(() => {
@@ -630,7 +630,7 @@ const speakerRecognition = ({
             }]
         };
 
-        const body = {};
+        const body = null;
 
         return verify(operation, parameters, headers, endpoint)
             .then(() => {
@@ -667,7 +667,7 @@ const speakerRecognition = ({
             "parameters": []
         };
 
-        const body = {};
+        const body = null;
 
         return verify(operation, parameters, headers, endpoint)
             .then(() => {
@@ -711,7 +711,7 @@ const speakerRecognition = ({
             }]
         };
 
-        const body = {};
+        const body = null;
 
         return verify(operation, parameters, headers, endpoint)
             .then(() => {
@@ -755,7 +755,7 @@ const speakerRecognition = ({
             }]
         };
 
-        const body = {};
+        const body = null;
 
         return verify(operation, parameters, headers, endpoint)
             .then(() => {

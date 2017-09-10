@@ -777,7 +777,7 @@ Face list is a group of faces, and these faces will not expire. Face list is use
             }]
         };
 
-        const body = {};
+        const body = null;
 
         return verify(operation, parameters, headers, endpoint)
             .then(() => {
@@ -827,7 +827,7 @@ Face list is a group of faces, and these faces will not expire. Face list is use
             "parameters": []
         };
 
-        const body = {};
+        const body = null;
 
         return verify(operation, parameters, headers, endpoint)
             .then(() => {
@@ -1311,7 +1311,7 @@ and
             }]
         };
 
-        const body = {};
+        const body = null;
 
         return verify(operation, parameters, headers, endpoint)
             .then(() => {
@@ -1389,7 +1389,7 @@ and
             }]
         };
 
-        const body = {};
+        const body = null;
 
         return verify(operation, parameters, headers, endpoint)
             .then(() => {
@@ -1465,7 +1465,7 @@ and
             }]
         };
 
-        const body = {};
+        const body = null;
 
         return verify(operation, parameters, headers, endpoint)
             .then(() => {
@@ -1707,7 +1707,7 @@ and
             ],
             "parameters": [{
                 "name": "personGroupId",
-                "description": "\n		User-provided person group ID as a string. The valid characters include numbers, english letters in lower case, '-' and '_'. The maximum length of the personGroupId is 64.\n	",
+                "description": "User-provided person group ID as a string. The valid characters include numbers, english letters in lower case, '-' and '_'. The maximum length of the personGroupId is 64.\n	",
                 "value": null,
                 "options": [],
                 "required": true,
@@ -1833,7 +1833,7 @@ and
             }]
         };
 
-        const body = {};
+        const body = null;
 
         return verify(operation, parameters, headers, endpoint)
 		.then(() => {
@@ -1893,7 +1893,7 @@ and
             }]
         };
 
-        const body = {};
+        const body = null;
 
         return verify(operation, parameters, headers, endpoint)
 		.then(() => {
@@ -1959,7 +1959,7 @@ and
             }]
         };
 
-        const body = {};
+        const body = null;
 
         return verify(operation, parameters, headers, endpoint)
 		.then(() => {
