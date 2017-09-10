@@ -25,9 +25,10 @@ describe('Face', () => {
 
             face.detect({
                 parameters,
-                body,
-                headers
+                headers,
+                body
             }).then((response) => {
+                console.log(response);
                 should(response).not.be.undefined();
                 done();
             }).catch((err) => {

@@ -19,13 +19,13 @@ describe('Computer vision', () => {
                 'Content-type': 'application/json'
             };
             const body = {
-                "url": "https://upload.wikimedia.org/wikipedia/commons/2/23/Space_Needle_2011-07-04.jpg"
+                "url": "https://pbs.twimg.com/profile_images/808958766628605952/yB14UlXl_400x400.jpg"
             };
 
             client.ocr({
                 parameters,
-                body,
-                headers
+                headers,
+                body
             }).then((response) => {
                 should(response).not.be.undefined();
                 done();
