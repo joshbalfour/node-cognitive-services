@@ -14,5 +14,9 @@ module.exports = {
     bingImage: {
         endpoint: "api.cognitive.microsoft.com",
         apiKey: "insert-key-here" 
+    },
+    academicKnowledge: {
+        endpoint: "westus.api.cognitive.microsoft.com",
+        apiKey: "insert-key-here"
     }
 }

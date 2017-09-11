@@ -334,7 +334,7 @@ const speakerRecognition = ({
 
         const operation = {
             "name": "Speaker Recognition - Identification",
-            "path": "spid/v1.0/identify?identificationProfileIds={identificationProfileIds}[&shortAudio]",
+            "path": "spid/v1.0/identify?identificationProfileIds={identificationProfileIds}",
             "method": "POST",
             "scheme": "https",
             "serviceId": "563309b6778daf02acc0a508",
@@ -446,7 +446,7 @@ const speakerRecognition = ({
 
         const operation = {
             "name": "List All Supported Verification Phrases",
-            "path": "spid/v1.0/verificationPhrases?locale={locale}",
+            "path": "spid/v1.0/verificationPhrases",
             "method": "GET",
             "scheme": "https",
             "serviceId": "563309b6778daf02acc0a508",
@@ -493,7 +493,7 @@ const speakerRecognition = ({
 
         const operation = {
             "name": "Identification Profile - Create Enrollment",
-            "path": "spid/v1.0/identificationProfiles/{identificationProfileId}/enroll[?shortAudio]",
+            "path": "spid/v1.0/identificationProfiles/{identificationProfileId}/enroll",
             "method": "POST",
             "scheme": "https",
             "serviceId": "563309b6778daf02acc0a508",

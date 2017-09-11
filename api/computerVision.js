@@ -659,7 +659,7 @@ GET
     
             const operation = {
                 "name": "Recognize Handwritten Text",
-                "path": "vision/v1.0/recognizeText[?handwriting]",
+                "path": "vision/v1.0/recognizeText",
                 "method": "POST",
                 "scheme": "https",
                 "serviceId": "56f91f2d778daf23d8ec6739",
