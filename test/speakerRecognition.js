@@ -45,7 +45,7 @@ describe('Speaker recognition', () => {
         })
     })
 
-    describe.only('Verification phrase', () => {
+    describe('Verification phrase', () => {
         it('should list all verification phrases', (done) => {
             const parameters = {
                 locale: "en-US"

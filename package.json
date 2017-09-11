@@ -20,12 +20,13 @@
     "node": ">=6.0"
   },
   "dependencies": {
-    "request-promise": "^3.0.0"
+    "request": "^2.81.0",
+    "request-promise": "^4.2.1"
   },
   "devDependencies": {
     "gulp": "^3.9.1",
-    "gulp-coverage": "^0.3.38",
-    "gulp-mocha": "^4.3.1",
+    "gulp-istanbul": "^1.1.2",
+    "gulp-mocha": "^3.0.1",
     "should": "^13.0.1"
   }
 }

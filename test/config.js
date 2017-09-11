@@ -10,5 +10,9 @@ module.exports = {
     speakerRecognition: {
         endpoint: "westus.api.cognitive.microsoft.com",
         apiKey: "insert-key-here"
+    },
+    bingImage: {
+        endpoint: "api.cognitive.microsoft.com",
+        apiKey: "insert-key-here" 
     }
 }

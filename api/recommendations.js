@@ -500,7 +500,7 @@ Once you have created a model, you can upload your catalog data, upload your usa
 	"buildId": null
 }
 */
-    self.getRecommendationsBasedOnItems(I2I) = ({
+    self.getRecommendationsBasedOnItems = ({
         parameters
     }) => {
 
@@ -595,7 +595,7 @@ Note:  There is no user recommendation for an <i>FBT</i> build. If the active bu
 			"buildId": null
 		}
 		*/
-    self.getUserRecommendations(U2I) = ({
+    self.getUserRecommendations = ({
         parameters
     }) => {
 
