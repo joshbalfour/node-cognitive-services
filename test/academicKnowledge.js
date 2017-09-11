@@ -173,6 +173,27 @@ describe('Academic knowledge', () => {
                 parameters
             }).then((response) => {
                 should(response).not.be.undefined();
+                should(response).be.Number;
+                done();
+            }).catch((err) => {
+                done(new Error("Error making request:" + err));
+            });
+        })
+    })
+
+    describe('Post similarity', () => {
+        it('should return response', (done) => {
+            const body = "s1=home&s2=house";
+            const headers = {
+                "Content-type": "application/x-www-form-urlencoded"
+            }
+
+            client.postSimilarity({
+                headers,
+                body
+            }).then((response) => {
+                should(response).not.be.undefined();
+                should(response).be.Number;
                 done();
             }).catch((err) => {
                 done(new Error("Error making request:" + err));

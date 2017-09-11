@@ -478,6 +478,52 @@ const academicKnowledge = ({
 
     };
 
+    self.postSimilarity = ({
+        headers,
+        body
+    }) => {
+
+        const operation = {
+            "name": "Post similarity",
+            "path": "academic/v1.0/similarity",
+            "method": "POST",
+            "scheme": "https",
+            "serviceId": "56332331778daf02acc0a50b",
+            "operationId": "58172b97dbe2d91538cc000b",
+            "id": "58172b97dbe2d91538cc000b ",
+            "description": "The similarity REST API is used to calculate a floating point value based on 2 text inputs.",
+            "serviceName": "Academic Knowledge",
+            "endpoints": [
+                "westus.api.cognitive.microsoft.com"
+            ],
+            "headers": [{
+                "name": "Content-Type",
+                "description": "Media type of the body sent to the API.",
+                "options": [
+                    "application/x-www-form-urlencoded"
+                ],
+                "required": false,
+                "typeName": "string"
+            }],
+            "parameters": []
+        };
+
+        const parameters = null;
+
+        return verify(operation, parameters, headers, endpoint)
+            .then(() => {
+                return makeRequest({
+                    operation,
+                    parameters,
+                    body,
+                    API_KEY,
+                    endpoint,
+                    headers
+                })}
+            );
+
+    };
+
     return self;
 };
 
