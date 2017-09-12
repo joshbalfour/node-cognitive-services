@@ -20,7 +20,12 @@ Then figure out which API you want to use, you can find descriptions [here](http
  To use this SDK in your project, open a terminal and go to your project directory and go `npm init`, then `npm install cognitive-services --save`.
 
 Then make a JS file in your project directory and add `const cognitiveServices = require('cognitive-services');` to the top of it. You're now ready to use the code samples below.
-	
+
+## Contributing
+
+1. Download the source code and run `npm install`.
+1. Update the file `tests/config.js` with your own API keys.
+1. Run `gulp test`.
 
 ## Reference
 
