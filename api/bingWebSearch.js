@@ -1,10 +1,11 @@
 const {
     makeRequest,
-    verifyParameters
+    verify
 } = require('../lib/api');
 
 const bingWebSearch = ({
-    API_KEY
+    API_KEY,
+    endpoint
 }) => {
 
     let self = this;

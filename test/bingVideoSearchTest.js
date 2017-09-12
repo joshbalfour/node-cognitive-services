@@ -2,49 +2,24 @@ const cognitive = require('../index.js');
 const config = require('./config.js');
 const should = require('should');
 
-describe('Bing news search', () => {
+describe('Bing video search', () => {
 
-    const client = cognitive.bingNewsSearch({
-        API_KEY: config.bingNewsSearch.apiKey,
-        endpoint: config.bingNewsSearch.endpoint
+    const client = cognitive.bingVideoSearch({
+        API_KEY: config.bingVideoSearch.apiKey,
+        endpoint: config.bingVideoSearch.endpoint
     });
-
-    describe('News by category', () => {
-        it('should return response', (done) => {
-            const parameters = {
-                "category": "Sports"
-            };
-
-            const headers = {};
-
-            client.categoryNews({
-                parameters,
-                headers
-            }).then((response) => {
-                should(response).not.be.undefined();
-                should(response).have.properties(['_type', 'value'])
-                done();
-            }).catch((err) => {
-                done(new Error("Error making request:" + err));
-            });
-        })
-    })
 
     describe('Search', () => {
         it('should return response', (done) => {
             const parameters = {
-                "q": "argentina",
-                "count": 100
+                "q": "cats"
             };
 
-            const headers = {};
-
             client.search({
-                parameters,
-                headers
+                parameters
             }).then((response) => {
                 should(response).not.be.undefined();
-                should(response).have.properties(['_type', 'readLink', 'sort', 'totalEstimatedMatches', 'value'])
+                should(response).have.properties(['_type', 'instrumentation', 'nextOffsetAddCount', 'pivotSuggestions', 'queryExpansions', 'readLink', 'totalEstimatedMatches', 'value', 'webSearchUrl']);
                 done();
             }).catch((err) => {
                 done(new Error("Error making request:" + err));
@@ -52,20 +27,34 @@ describe('Bing news search', () => {
         })
     })
 
-    describe('Trending news', () => {
+    describe('Trending', () => {
         it('should return response', (done) => {
-            const parameters = {
-                "count": 10
-            };
+            const parameters = {};
 
-            const headers = {};
-
-            client.trendingTopics({
-                parameters,
-                headers
+            client.trending({
+                parameters
             }).then((response) => {
                 should(response).not.be.undefined();
-                should(response).have.properties(['_type', 'value'])
+                should(response).have.properties(['_type', 'instrumentation', 'bannerTiles', 'categories']);
+                done();
+            }).catch((err) => {
+                done(new Error("Error making request:" + err));
+            });
+        })
+    })
+
+    describe('Details', () => {
+        it('should return response', (done) => {
+            const parameters = {
+                'id': '2329574E92ADA9F478562329574E92ADA9F47856',
+                'modulesRequested': 'All'
+            };
+
+            client.details({
+                parameters
+            }).then((response) => {
+                should(response).not.be.undefined();
+                should(response).have.properties(['_type', 'instrumentation', 'relatedVideos', 'videoResult']);
                 done();
             }).catch((err) => {
                 done(new Error("Error making request:" + err));

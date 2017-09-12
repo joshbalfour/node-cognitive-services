@@ -11,7 +11,7 @@ module.exports = {
         endpoint: "westus.api.cognitive.microsoft.com",
         apiKey: "insert-key-here"
     },
-    bingImage: {
+    bingImageSearch: {
         endpoint: "api.cognitive.microsoft.com",
         apiKey: "insert-key-here" 
     },
@@ -30,5 +30,9 @@ module.exports = {
     bingSpellCheck: {
         endpoint: "api.cognitive.microsoft.com",
         apiKey: "insert-key-here"
-    }
+    },
+    bingVideoSearch: {
+        endpoint: "api.cognitive.microsoft.com",
+        apiKey: "insert-key-here"
+    },
 }

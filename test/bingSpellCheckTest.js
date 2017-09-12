@@ -2,7 +2,7 @@ const cognitive = require('../index.js');
 const config = require('./config.js');
 const should = require('should');
 
-describe.only('Bing spell check', () => {
+describe('Bing spell check', () => {
 
     const client = cognitive.bingSpellCheck({
         API_KEY: config.bingSpellCheck.apiKey,
