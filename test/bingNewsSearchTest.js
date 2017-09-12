@@ -2,7 +2,7 @@ const cognitive = require('../index.js');
 const config = require('./config.js');
 const should = require('should');
 
-describe.only('Bing news search', () => {
+describe('Bing news search', () => {
 
     const client = cognitive.bingNewsSearch({
         API_KEY: config.bingNewsSearch.apiKey,

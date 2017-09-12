@@ -26,5 +26,9 @@ module.exports = {
     bingNewsSearch: {
         endpoint: "api.cognitive.microsoft.com",
         apiKey: "insert-key-here"
+    },
+    bingSpellCheck: {
+        endpoint: "api.cognitive.microsoft.com",
+        apiKey: "insert-key-here"
     }
 }
