@@ -89,8 +89,9 @@ describe('Face', () => {
                 headers,
                 body
             }).then((response) => {
-                console.log(response);
                 should(response).not.be.undefined();
+                should(response.length).eql(1);
+                should(response).have.properties(['faceAttributes', 'faceId', 'faceLandmarks', 'faceRectangle']);
                 done();
             }).catch((err) => {
                 done(new Error("Error making request:" + err));
@@ -116,7 +117,6 @@ describe('Face', () => {
                 headers,
                 body
             }).then((response) => {
-                console.log(response);
                 should(response).not.be.undefined();
                 should(response).have.property('persistedFaceId');
                 done();
@@ -141,7 +141,6 @@ describe('Face', () => {
                 headers,
                 body
             }).then((response) => {
-                console.log(response);
                 should(response).not.be.undefined();
                 should(response).have.property('persistedFaceId');
                 done();
