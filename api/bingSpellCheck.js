@@ -26,7 +26,6 @@ const bingSpellCheck = ({
             "name": "Spell Check",
             "path": "bing/v5.0/spellcheck/",
             "method": "POST",
-            "scheme": "https",
             "serviceId": "56e73033cf5ff80c2008c679",
             "operationId": "56e73036cf5ff81048ee6727",
             "id": "56e73036cf5ff81048ee6727",

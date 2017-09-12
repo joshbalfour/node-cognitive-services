@@ -19,7 +19,6 @@ const bingAutosuggest = ({
             "name": "Suggestions",
             "path": "bing/v5.0/suggestions/",
             "method": "GET",
-            "scheme": "https",
             "serviceId": "56c7694ecf5ff801a090fbd1",
             "operationId": "56c769a2cf5ff801a090fbd2",
             "id": "56c769a2cf5ff801a090fbd2",

@@ -27,7 +27,6 @@ const entityLinking = ({
             "path": "entitylinking/v1.0/link",
             "host": "api.projectoxford.ai",
             "method": "POST",
-            "scheme": "https",
             "serviceId": "56f0eabfca730713cc392442",
             "operationId": "56f0eabfca73070e44d0f39c",
             "id": "56f0eabfca73070e44d0f39c",

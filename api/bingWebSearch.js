@@ -30,7 +30,6 @@ const bingWebSearch = ({
             "path": "bing/v5.0/search",
             "host": "api.cognitive.microsoft.com",
             "method": "GET",
-            "scheme": "https",
             "serviceId": "56b43eeccf5ff8098cef3807",
             "operationId": "56b4447dcf5ff8098cef380d",
             "id": "56b4447dcf5ff8098cef380d",
