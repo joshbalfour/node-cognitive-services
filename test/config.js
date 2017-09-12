@@ -22,5 +22,9 @@ module.exports = {
     bingAutosuggest: {
         endpoint: "api.cognitive.microsoft.com",
         apiKey: "insert-key-here"
+    },
+    bingNewsSearch: {
+        endpoint: "api.cognitive.microsoft.com",
+        apiKey: "insert-key-here"
     }
 }
