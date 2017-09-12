@@ -35,4 +35,8 @@ module.exports = {
         endpoint: "api.cognitive.microsoft.com",
         apiKey: "insert-key-here"
     },
+    bingWebSearch: {
+        endpoint: "api.cognitive.microsoft.com",
+        apiKey: "insert-key-here"
+    },
 }
