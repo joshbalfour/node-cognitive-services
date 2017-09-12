@@ -39,4 +39,9 @@ module.exports = {
         endpoint: "api.cognitive.microsoft.com",
         apiKey: "insert-key-here"
     },
+    // https://azure.microsoft.com/en-gb/try/cognitive-services/?api=entity-linking-intelligence-service
+    entityLinking: {
+        endpoint: "westus.api.cognitive.microsoft.com",
+        apiKey: "insert-key-here"
+    },
 }
