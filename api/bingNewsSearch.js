@@ -268,6 +268,13 @@ const bingNewsSearch = ({
                 "typeName": "string"
             }],
             "parameters": [{
+                "name": "q",
+                "description": "The user's search query string. If the query string is empty (for example, q=), the response includes the top news stories.",
+                "value": null,
+                "required": false,
+                "kind": 2,
+                "typeName": "string"
+            }, {
                 "name": "cc",
                 "description": "A 2-character country code of the country where the results come from.",
                 "value": null,

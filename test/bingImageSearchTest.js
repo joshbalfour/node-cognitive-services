@@ -11,7 +11,7 @@ describe('Bing Image Search', () => {
     });
 
     describe('Search', () => {
-        it('should get image insights', (done) => {
+        it.skip('should get image insights', (done) => {
             const headers = {
                 'Content-type': 'multipart/form-data'
             };

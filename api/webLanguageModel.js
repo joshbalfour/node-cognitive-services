@@ -27,7 +27,6 @@ const webLanguageModel = ({
         const operation = {
             "name": "Break Into Words",
             "path": "text/weblm/v1.0/breakIntoWords",
-            "host": "api.projectoxford.ai",
             "method": "POST",
             "serviceId": "55de9ca4e597ed1fd4e2f104",
             "operationId": "55de9ca4e597ed19b0de8a51",
@@ -190,7 +189,6 @@ const webLanguageModel = ({
         const operation = {
             "name": "Calculate Joint Probability",
             "path": "text/weblm/v1.0/calculateJointProbability",
-            "host": "api.projectoxford.ai",
             "method": "POST",
             "serviceId": "55de9ca4e597ed1fd4e2f104",
             "operationId": "55de9ca4e597ed19b0de8a4f",

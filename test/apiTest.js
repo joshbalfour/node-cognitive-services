@@ -21,4 +21,26 @@ describe('API Test', () => {
             done();
         });
     })
+
+    it('if a parameter is required and its value is not in the list of options it should throw an error', (done) => {
+        const client = cognitive.webLanguageModel({
+            API_KEY: config.webLanguageModel.apiKey,
+            endpoint: config.webLanguageModel.endpoint
+        });
+
+        const parameters = {
+            "model": "not_found",
+            "text": "some text"
+        };
+
+        client.breakIntoWords({
+            parameters
+        }).then((response) => {
+            done(new Error('Should have failed because a parameter is not in the list of options allowed'))
+        }).catch((err) => {
+            should(err).not.be.undefined();
+            should(err.message).eql('Parameter "model" had a value not supported. Valid values are title,anchor,query,body')
+            done();
+        });
+    })
 })

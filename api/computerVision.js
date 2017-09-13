@@ -244,7 +244,6 @@ POST
                 "name": "width",
                 "description": "Width of the thumbnail.	It must be between 1 and 1024. Recommended minimum of 50.",
                 "value": null,
-                "options": [],
                 "required": true,
                 "kind": 2,
                 "typeName": "number"
@@ -252,7 +251,6 @@ POST
                 "name": "height",
                 "description": "Height of the thumbnail. It must be between 1 and 1024. Recommended minimum of 50.",
                 "value": null,
-                "options": [],
                 "required": true,
                 "kind": 2,
                 "typeName": "number"
@@ -492,7 +490,6 @@ POST
                 "name": "model",
                 "description": "The domain-specific content to recognize.",
                 "value": null,
-                "options": [],
                 "required": true,
                 "kind": 1,
                 "typeName": "string"
@@ -612,7 +609,6 @@ GET
                     "name": "operationId",
                     "description": "Id of the text operation returned in the response of the Recognize Handwritten Text interface.",
                     "value": null,
-                    "options": [],
                     "required": true,
                     "kind": 1,
                     "typeName": "string"

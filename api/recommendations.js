@@ -79,7 +79,6 @@ Once you have created a model, you can upload your catalog data, upload your usa
                 "name": "modelId",
                 "description": "Unique identifier of the model",
                 "value": null,
-                "options": [],
                 "required": true,
                 "kind": 1,
                 "typeName": "string"
@@ -127,7 +126,6 @@ Once you have created a model, you can upload your catalog data, upload your usa
                 "name": "modelId",
                 "description": "",
                 "value": null,
-                "options": [],
                 "required": true,
                 "kind": 1,
                 "typeName": "string"
@@ -135,7 +133,6 @@ Once you have created a model, you can upload your catalog data, upload your usa
                 "name": "buildId",
                 "description": "Format - int64. Unique identifier of the build",
                 "value": null,
-                "options": [],
                 "required": true,
                 "kind": 1,
                 "typeName": "integer"
@@ -180,7 +177,6 @@ Once you have created a model, you can upload your catalog data, upload your usa
                 "name": "id",
                 "description": "Unique identifier of the model.",
                 "value": null,
-                "options": [],
                 "required": true,
                 "kind": 1,
                 "typeName": "string"
@@ -225,7 +221,6 @@ Once you have created a model, you can upload your catalog data, upload your usa
                 "name": "id",
                 "description": "Operation ID",
                 "value": null,
-                "options": [],
                 "required": true,
                 "kind": 1,
                 "typeName": "string"
@@ -269,7 +264,6 @@ Once you have created a model, you can upload your catalog data, upload your usa
                 "name": "id",
                 "description": "Unique identifier of the model to be fetched.",
                 "value": null,
-                "options": [],
                 "required": true,
                 "kind": 1,
                 "typeName": "string"
@@ -348,7 +342,6 @@ Once you have created a model, you can upload your catalog data, upload your usa
                 "name": "modelId",
                 "description": "Unique identifier of the model",
                 "value": null,
-                "options": [],
                 "required": true,
                 "kind": 1,
                 "typeName": "string"
@@ -356,7 +349,6 @@ Once you have created a model, you can upload your catalog data, upload your usa
                 "name": "buildId",
                 "description": "Format - int64. Unique identifier of the build",
                 "value": null,
-                "options": [],
                 "required": true,
                 "kind": 1,
                 "typeName": "integer"
@@ -401,7 +393,6 @@ Once you have created a model, you can upload your catalog data, upload your usa
                 "name": "modelId",
                 "description": "Unique identifier of the model",
                 "value": null,
-                "options": [],
                 "required": true,
                 "kind": 1,
                 "typeName": "string"
@@ -409,7 +400,6 @@ Once you have created a model, you can upload your catalog data, upload your usa
                 "name": "buildId",
                 "description": "Format - int64. Unique identifier of the build",
                 "value": null,
-                "options": [],
                 "required": true,
                 "kind": 1,
                 "typeName": "integer"
@@ -454,7 +444,6 @@ Once you have created a model, you can upload your catalog data, upload your usa
                 "name": "modelId",
                 "description": "Unique identifier of the model",
                 "value": null,
-                "options": [],
                 "required": true,
                 "kind": 1,
                 "typeName": "string"
@@ -462,7 +451,6 @@ Once you have created a model, you can upload your catalog data, upload your usa
                 "name": "onlyLastRequestedBuild",
                 "description": "true to return only the last build of the model, false to return all the builds",
                 "value": null,
-                "options": [],
                 "required": false,
                 "kind": 2,
                 "typeName": "boolean"
@@ -511,7 +499,6 @@ Once you have created a model, you can upload your catalog data, upload your usa
                 "name": "modelId",
                 "description": "Unique identifier of the model",
                 "value": null,
-                "options": [],
                 "required": true,
                 "kind": 1,
                 "typeName": "string"
@@ -519,7 +506,6 @@ Once you have created a model, you can upload your catalog data, upload your usa
                 "name": "itemIds",
                 "description": "Comma-separated list of the items to recommend for. If the active build is of type FBT, then you can send only one item. <br> Max length: 1024",
                 "value": null,
-                "options": [],
                 "required": true,
                 "kind": 1,
                 "typeName": "string"
@@ -527,7 +513,6 @@ Once you have created a model, you can upload your catalog data, upload your usa
                 "name": "numberOfResults",
                 "description": "Format - int32. Number of recommended items to return",
                 "value": null,
-                "options": [],
                 "required": true,
                 "kind": 1,
                 "typeName": "integer"
@@ -535,7 +520,6 @@ Once you have created a model, you can upload your catalog data, upload your usa
                 "name": "minimalScore",
                 "description": "Format - double. Minmal score, currently honored for only FBT builds.",
                 "value": null,
-                "options": [],
                 "required": true,
                 "kind": 1,
                 "typeName": "number"
@@ -543,7 +527,6 @@ Once you have created a model, you can upload your catalog data, upload your usa
                 "name": "includeMetadata",
                 "description": "Future use, always false.",
                 "value": null,
-                "options": [],
                 "required": false,
                 "kind": 2,
                 "typeName": "boolean"
@@ -551,7 +534,6 @@ Once you have created a model, you can upload your catalog data, upload your usa
                 "name": "buildId",
                 "description": "Format - int64. The build id to use for this recommendation request. If the number is less than 0, uses the active build of the model instead.",
                 "value": null,
-                "options": [],
                 "required": false,
                 "kind": 2,
                 "typeName": "integer"
@@ -605,7 +587,6 @@ Note:  There is no user recommendation for an <i>FBT</i> build. If the active bu
                 "name": "modelId",
                 "description": "Unique identifier of the model.",
                 "value": null,
-                "options": [],
                 "required": true,
                 "kind": 1,
                 "typeName": "string"
@@ -613,7 +594,6 @@ Note:  There is no user recommendation for an <i>FBT</i> build. If the active bu
                 "name": "userId",
                 "description": "Unique user identifier.",
                 "value": null,
-                "options": [],
                 "required": true,
                 "kind": 1,
                 "typeName": "string"
@@ -621,7 +601,6 @@ Note:  There is no user recommendation for an <i>FBT</i> build. If the active bu
                 "name": "numberOfResults",
                 "description": "Format - int32. Number of recommended items to return.",
                 "value": null,
-                "options": [],
                 "required": true,
                 "kind": 1,
                 "typeName": "integer"
@@ -629,7 +608,6 @@ Note:  There is no user recommendation for an <i>FBT</i> build. If the active bu
                 "name": "itemsIds",
                 "description": "The unique identifiers of the items to consider in addition to user history.",
                 "value": null,
-                "options": [],
                 "required": false,
                 "kind": 2,
                 "typeName": "string"
@@ -637,7 +615,6 @@ Note:  There is no user recommendation for an <i>FBT</i> build. If the active bu
                 "name": "includeMetadata",
                 "description": "Set to false. (For future use)",
                 "value": null,
-                "options": [],
                 "required": false,
                 "kind": 2,
                 "typeName": "boolean"
@@ -645,7 +622,6 @@ Note:  There is no user recommendation for an <i>FBT</i> build. If the active bu
                 "name": "buildId",
                 "description": "Format - int64. Build identifier, if the number is less than 0, uses the active build of the model instead.",
                 "value": null,
-                "options": [],
                 "required": false,
                 "kind": 2,
                 "typeName": "integer"
@@ -689,7 +665,6 @@ Note:  There is no user recommendation for an <i>FBT</i> build. If the active bu
                 "name": "id",
                 "description": "Operation ID",
                 "value": null,
-                "options": [],
                 "required": true,
                 "kind": 1,
                 "typeName": "string"
@@ -735,7 +710,6 @@ Note:  There is no user recommendation for an <i>FBT</i> build. If the active bu
                 "name": "id",
                 "description": "Unique identifier of the model.",
                 "value": null,
-                "options": [],
                 "required": true,
                 "kind": 1,
                 "typeName": "string"
@@ -782,7 +756,6 @@ Note:  There is no user recommendation for an <i>FBT</i> build. If the active bu
                 "name": "modelId",
                 "description": "Unique identifier of the model",
                 "value": null,
-                "options": [],
                 "required": true,
                 "kind": 1,
                 "typeName": "string"
@@ -790,7 +763,6 @@ Note:  There is no user recommendation for an <i>FBT</i> build. If the active bu
                 "name": "catalogDisplayName",
                 "description": "Display name of the catalog data. e.g. \"CatalogFile1\"\r\n						Only letters (A-Z, a-z), numbers (0-9), hyphens (-) and underscore (_) are allowed. Max length: 50",
                 "value": null,
-                "options": [],
                 "required": true,
                 "kind": 1,
                 "typeName": "string"
@@ -836,7 +808,6 @@ Note:  There is no user recommendation for an <i>FBT</i> build. If the active bu
                 "name": "modelId",
                 "description": "Unique identifier of the model.",
                 "value": null,
-                "options": [],
                 "required": true,
                 "kind": 1,
                 "typeName": "string"
@@ -844,7 +815,6 @@ Note:  There is no user recommendation for an <i>FBT</i> build. If the active bu
                 "name": "usageDisplayName",
                 "description": "Display name of the usage data. e.g. \"UsageFile1\"<br>Only letters(A-Z, a-z), numbers(0-9), hyphens(-) and underscore(_) are allowed. <br>Max length: 50",
                 "value": null,
-                "options": [],
                 "required": true,
                 "kind": 1,
                 "typeName": "string"

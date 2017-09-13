@@ -118,7 +118,6 @@ Returns aggregate emotions for the faces in a video.<br/>
                 "name": "faceRectangles",
                 "description": "A face rectangle is in the form “left,top,width,height”. Delimited multiple face rectangles with a “;”. ",
                 "value": null,
-                "options": [],
                 "required": true,
                 "kind": 1,
                 "typeName": "string"
@@ -187,7 +186,6 @@ The result (as a JSON in string) is available in <b>processingResult</b> field.
                 "name": "oid",
                 "description": "",
                 "value": null,
-                "options": [],
                 "required": true,
                 "kind": 1,
                 "typeName": "string"

@@ -98,7 +98,6 @@ const face = ({
                 "name": "returnFaceAttributes",
                 "description": "Analyze and return the one or more specified face attributes in the comma-separated string like \"returnFaceAttributes=age,gender\".Supported face attributes include age, gender, headPose, smile, facialHair, and glasses. Note that each face attribute analysis has additional computational and time cost.",
                 "value": null,
-                "options": [],
                 "required": false,
                 "kind": 2,
                 "typeName": "string"
@@ -482,7 +481,6 @@ Face list is a group of faces, and these faces will not expire. Face list is use
                 "name": "faceListId",
                 "description": "Valid character is letter in lower case or digit or '-' or '_', maximum length is 64.",
                 "value": null,
-                "options": [],
                 "required": true,
                 "kind": 1,
                 "typeName": "string"
@@ -490,7 +488,6 @@ Face list is a group of faces, and these faces will not expire. Face list is use
                 "name": "userData",
                 "description": "User-specified data for any purpose. The	maximum length is 1KB.",
                 "value": null,
-                "options": [],
                 "required": false,
                 "kind": 2,
                 "typeName": "string"
@@ -498,7 +495,6 @@ Face list is a group of faces, and these faces will not expire. Face list is use
                 "name": "targetFace",
                 "description": "A face rectangle to specify the target face to be added into the face list, in the format of \"targetFace=left,top,width,height\". E.g. \"targetFace=10,10,100,100\". No targetFace means to detect the only face in the entire image.",
                 "value": null,
-                "options": [],
                 "required": false,
                 "kind": 2,
                 "typeName": "string"
@@ -575,9 +571,8 @@ Face list is a group of faces, and these faces will not expire. Face list is use
             ],
             "parameters": [{
                 "name": "faceListId",
-                "description": "\n		Valid character is letter in lower case or digit or '-' or '_', maximum length is 64.\n	",
+                "description": "Valid character is letter in lower case or digit or '-' or '_', maximum length is 64.\n	",
                 "value": null,
-                "options": [],
                 "required": true,
                 "kind": 1,
                 "typeName": "string"
@@ -636,7 +631,6 @@ Face list is a group of faces, and these faces will not expire. Face list is use
                 "name": "faceListId",
                 "description": "Valid character is letter in lower case or digit or '-' or '_', maximum length is 64.",
                 "value": null,
-                "options": [],
                 "required": true,
                 "kind": 1,
                 "typeName": "string"
@@ -644,7 +638,6 @@ Face list is a group of faces, and these faces will not expire. Face list is use
                 "name": "persistedFaceId",
                 "description": "Valid character is letter in lower case or digit or '-' or '_', maximum length is 64.",
                 "value": null,
-                "options": [],
                 "required": true,
                 "kind": 1,
                 "typeName": "string"
@@ -702,7 +695,6 @@ Face list is a group of faces, and these faces will not expire. Face list is use
                 "name": "faceListId",
                 "description": "Valid character is letter in lower case or digit or '-' or '_', maximum length is 64.",
                 "value": null,
-                "options": [],
                 "required": true,
                 "kind": 1,
                 "typeName": "string"
@@ -760,7 +752,6 @@ Face list is a group of faces, and these faces will not expire. Face list is use
                 "name": "faceListId",
                 "description": "Valid character is letter in lower case or digit or '-' or '_', maximum length is 64.",
                 "value": null,
-                "options": [],
                 "required": true,
                 "kind": 1,
                 "typeName": "string"
@@ -885,7 +876,6 @@ Face list is a group of faces, and these faces will not expire. Face list is use
                 "name": "faceListId",
                 "description": "Valid character is letter in lower case or digit or '-' or '_', maximum length is 64.",
                 "value": null,
-                "options": [],
                 "required": true,
                 "kind": 1,
                 "typeName": "string"
@@ -970,7 +960,6 @@ and
                 "name": "personGroupId",
                 "description": "The target person's belonging person group's ID.",
                 "value": null,
-                "options": [],
                 "required": true,
                 "kind": 1,
                 "typeName": "string"
@@ -978,7 +967,6 @@ and
                 "name": "personId",
                 "description": "Target person that the face is added to.",
                 "value": null,
-                "options": [],
                 "required": true,
                 "kind": 1,
                 "typeName": "string"
@@ -986,7 +974,6 @@ and
                 "name": "userData",
                 "description": "User-specified data for any purpose. The maximum length is 1KB. ",
                 "value": null,
-                "options": [],
                 "required": false,
                 "kind": 2,
                 "typeName": "string"
@@ -994,7 +981,6 @@ and
                 "name": "targetFace",
                 "description": "A face rectangle to specify the target face to be added to a person, in the format of \"targetFace=left,top,width,height\". E.g. \"targetFace=10,10,100,100\". No targetFace means to detect the only face in the entire image. ",
                 "value": null,
-                "options": [],
                 "required": false,
                 "kind": 2,
                 "typeName": "string"
@@ -1069,7 +1055,6 @@ and
                 "name": "personGroupId",
                 "description": "The target person's belonging person group's ID.",
                 "value": null,
-                "options": [],
                 "required": true,
                 "kind": 1,
                 "typeName": "string"
@@ -1137,7 +1122,6 @@ and
                 "name": "personGroupId",
                 "description": "The target person's belonging person group's ID.",
                 "value": null,
-                "options": [],
                 "required": true,
                 "kind": 1,
                 "typeName": "string"
@@ -1145,7 +1129,6 @@ and
                 "name": "personId",
                 "description": "The target personId to delete.",
                 "value": null,
-                "options": [],
                 "required": true,
                 "kind": 1,
                 "typeName": "string"
@@ -1205,7 +1188,6 @@ and
                 "name": "personGroupId",
                 "description": "The target person's belonging person group's ID.",
                 "value": null,
-                "options": [],
                 "required": true,
                 "kind": 1,
                 "typeName": "string"
@@ -1213,7 +1195,6 @@ and
                 "name": "personId",
                 "description": "Belonging person ID.",
                 "value": null,
-                "options": [],
                 "required": true,
                 "kind": 1,
                 "typeName": "string"
@@ -1221,7 +1202,6 @@ and
                 "name": "persistedFaceId",
                 "description": "The face to remove. This persisted face ID is returned from <a href=\"/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f3039523b\">Person - Add a Person Face</a>.",
                 "value": null,
-                "options": [],
                 "required": true,
                 "kind": 1,
                 "typeName": "string"
@@ -1279,7 +1259,6 @@ and
                 "name": "personGroupId",
                 "description": "The target person's belonging person group's ID.",
                 "value": null,
-                "options": [],
                 "required": true,
                 "kind": 1,
                 "typeName": "string"
@@ -1287,7 +1266,6 @@ and
                 "name": "personId",
                 "description": "The target person ID.",
                 "value": null,
-                "options": [],
                 "required": true,
                 "kind": 1,
                 "typeName": "string"
@@ -1348,7 +1326,6 @@ and
                 "name": "personGroupId",
                 "description": "The target person's belonging person group's ID.",
                 "value": null,
-                "options": [],
                 "required": true,
                 "kind": 1,
                 "typeName": "string"
@@ -1356,7 +1333,6 @@ and
                 "name": "personId",
                 "description": "The target person ID the face belongs to.",
                 "value": null,
-                "options": [],
                 "required": true,
                 "kind": 1,
                 "typeName": "string"
@@ -1364,7 +1340,6 @@ and
                 "name": "persistedFaceId",
                 "description": "The target face ID.",
                 "value": null,
-                "options": [],
                 "required": true,
                 "kind": 1,
                 "typeName": "string"
@@ -1423,7 +1398,6 @@ and
                 "name": "personGroupId",
                 "description": "Target person group's ID.",
                 "value": null,
-                "options": [],
                 "required": true,
                 "kind": 1,
                 "typeName": "string"
@@ -1431,7 +1405,6 @@ and
                 "name": "start",
                 "description": "List persons from the least personId greater than the \"start\". It contains no more than 64 characters. Default is empty.",
                 "value": "",
-                "options": [],
                 "required": false,
                 "kind": 1,
                 "typeName": "string"
@@ -1439,7 +1412,6 @@ and
                 "name": "top",
                 "description": "The number of persons to list, ranging in [1, 1000]. Default is 1000.",
                 "value": 1000,
-                "options": [],
                 "required": false,
                 "kind": 1,
                 "typeName": "number"
@@ -1515,7 +1487,6 @@ and
                 "name": "personGroupId",
                 "description": "The target person's belonging person group's ID.",
                 "value": null,
-                "options": [],
                 "required": true,
                 "kind": 1,
                 "typeName": "string"
@@ -1523,7 +1494,6 @@ and
                 "name": "personId",
                 "description": "Target person's ID.",
                 "value": null,
-                "options": [],
                 "required": true,
                 "kind": 1,
                 "typeName": "string"
@@ -1595,7 +1565,6 @@ and
                 "name": "personGroupId",
                 "description": "The target person's belonging person group's ID.",
                 "value": null,
-                "options": [],
                 "required": true,
                 "kind": 1,
                 "typeName": "string"
@@ -1603,7 +1572,6 @@ and
                 "name": "personId",
                 "description": "Target person's ID.",
                 "value": null,
-                "options": [],
                 "required": true,
                 "kind": 1,
                 "typeName": "string"
@@ -1611,7 +1579,6 @@ and
                 "name": "persistedFaceId",
                 "description": "Target face's ID.",
                 "value": null,
-                "options": [],
                 "required": true,
                 "kind": 1,
                 "typeName": "string"
@@ -1687,7 +1654,6 @@ and
                 "name": "personGroupId",
                 "description": "User-provided person group ID as a string. The valid characters include numbers, english letters in lower case, '-' and '_'. The maximum length of the personGroupId is 64.\n	",
                 "value": null,
-                "options": [],
                 "required": true,
                 "kind": 1,
                 "typeName": "string"
@@ -1745,7 +1711,6 @@ and
                 "name": "personGroupId",
                 "description": "The ID of the person group to be deleted.",
                 "value": null,
-                "options": [],
                 "required": true,
                 "kind": 1,
                 "typeName": "string"
@@ -1802,7 +1767,6 @@ and
                 "name": "personGroupId",
                 "description": "ID of the target person group.",
                 "value": null,
-                "options": [],
                 "required": true,
                 "kind": 1,
                 "typeName": "string"
@@ -1861,7 +1825,6 @@ and
                 "name": "personGroupId",
                 "description": "personGroupId of target person group.",
                 "value": null,
-                "options": [],
                 "required": true,
                 "kind": 1,
                 "typeName": "string"
@@ -1918,7 +1881,6 @@ and
                 "name": "start",
                 "description": "List person groups from the least personGroupId greater than the \"start\". It contains no more than 64 characters. Default is empty.",
                 "value": "",
-                "options": [],
                 "required": false,
                 "kind": 2,
                 "typeName": "string"
@@ -1926,7 +1888,6 @@ and
                 "name": "top",
                 "description": "The number of person groups to list, ranging in [1, 1000]. Default is 1000.",
                 "value": 1000,
-                "options": [],
                 "required": false,
                 "kind": 2,
                 "typeName": "number"
@@ -1989,7 +1950,6 @@ and
                 "name": "personGroupId",
                 "description": "Target person group to be trained.",
                 "value": null,
-                "options": [],
                 "required": true,
                 "kind": 1,
                 "typeName": "string"
@@ -2062,7 +2022,6 @@ and
                 "name": "personGroupId",
                 "description": "personGroupId of the person group to be updated.",
                 "value": null,
-                "options": [],
                 "required": true,
                 "kind": 1,
                 "typeName": "string"

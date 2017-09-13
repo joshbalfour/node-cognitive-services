@@ -2,7 +2,7 @@ const cognitive = require('../index.js');
 const config = require('./config.js');
 const should = require('should');
 
-describe.only('Web language model', () => {
+describe('Web language model', () => {
 
     const client = cognitive.webLanguageModel({
         API_KEY: config.webLanguageModel.apiKey,
@@ -33,8 +33,7 @@ describe.only('Web language model', () => {
     describe('Calculate Conditional Probability (POST)', () => {
         it('should return response', (done) => {
             const parameters = {
-                "model": "body",
-                "text": "hello seattle"
+                "model": "body"
             };
 
             const headers = {

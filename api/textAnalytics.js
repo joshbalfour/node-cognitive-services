@@ -41,7 +41,6 @@ const textAnalytics = ({
                 "name": "numberOfLanguagesToDetect",
                 "description": "Format - int32. (Optional) Number of languages to detect. Set to 1 by default.",
                 "value": null,
-                "options": [],
                 "required": false,
                 "kind": 2,
                 "typeName": "integer"
@@ -94,7 +93,6 @@ const textAnalytics = ({
                 "name": "minDocumentsPerWord",
                 "description": "Format - int32. (optional) Words that occur in less than this many documents are ignored. \r\n						Use this parameter to help exclude rare document topics.\r\n						Omit to let the service choose appropriate value.",
                 "value": null,
-                "options": [],
                 "required": false,
                 "kind": 2,
                 "typeName": "integer"
@@ -102,7 +100,6 @@ const textAnalytics = ({
                 "name": "maxDocumentsPerWord",
                 "description": "Format - int32. (optional) Words that occur in more than this many documents are ignored. \r\n						Use this parameter to help exclude ubiquitous document topics.\r\n						Omit to let the service choose appropriate value.",
                 "value": null,
-                "options": [],
                 "required": false,
                 "kind": 2,
                 "typeName": "integer"
@@ -184,7 +181,6 @@ const textAnalytics = ({
                 "name": "operationId",
                 "description": "A unique id for the submitted operation.",
                 "value": null,
-                "options": [],
                 "required": true,
                 "kind": 1,
                 "typeName": "string"

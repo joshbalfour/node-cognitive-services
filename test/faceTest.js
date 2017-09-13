@@ -91,7 +91,7 @@ describe('Face', () => {
             }).then((response) => {
                 should(response).not.be.undefined();
                 should(response.length).eql(1);
-                should(response).have.properties(['faceAttributes', 'faceId', 'faceLandmarks', 'faceRectangle']);
+                should(response[0]).have.properties(['faceAttributes', 'faceId', 'faceLandmarks', 'faceRectangle']);
                 done();
             }).catch((err) => {
                 done(new Error("Error making request:" + err));

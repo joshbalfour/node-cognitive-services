@@ -19,7 +19,6 @@ const bingImageSearch = ({
         const operation = {
             "name": "Image Insights",
             "path": "bing/v5.0/images/search",
-            "host": "api.cognitive.microsoft.com",
             "method": "POST",
             "serviceId": "56b43f0ccf5ff8098cef3808",
             "operationId": "571fab09dbe2d933e891028f",

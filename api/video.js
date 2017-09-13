@@ -108,7 +108,6 @@ Possible values of "status" field are:<br/>
                 "name": "oid",
                 "description": "OperationId",
                 "value": null,
-                "options": [],
                 "required": true,
                 "kind": 1,
                 "typeName": "string"
@@ -152,7 +151,6 @@ Possible values of "status" field are:<br/>
                 "name": "oid",
                 "description": "",
                 "value": null,
-                "options": [],
                 "required": true,
                 "kind": 1,
                 "typeName": "string"
@@ -203,7 +201,6 @@ Possible values of "status" field are:<br/>
                 "name": "sensitivityLevel",
                 "description": "Specify the detection sensitivity level: “low”, “medium”, “high”. Higher sensitivity means more motions will be detected at a cost that more false alarms will be reported. The default value is “medium”.",
                 "value": null,
-                "options": [],
                 "required": false,
                 "kind": 2,
                 "typeName": "string"
@@ -211,7 +208,6 @@ Possible values of "status" field are:<br/>
                 "name": "frameSamplingValue",
                 "description": "User may skip frames by setting this parameter. It can be used as a tradeoff between performance and cost, skipping frames may reduce processing time but result in worse detection performance. The default value is 1, meaning detecting motion for every frame. If set to 2, then the algorithm will detect one frame for every two frames. The upper bound is 20.",
                 "value": null,
-                "options": [],
                 "required": false,
                 "kind": 2,
                 "typeName": "number"
@@ -219,7 +215,6 @@ Possible values of "status" field are:<br/>
                 "name": "detectionZones",
                 "description": "User can setup detection zones by passing in a string like “detectionZones=0,0;0.5,0;1,0;1,0.5;1,1;0.5,1;0,1;0,0.5 |0.3,0.3;0.55,0.3;0.8,0.3; 0.8,0.55;0.8,0.8;0.55,0.8;0.3,0.8;0.3,0.55;| 0,0;1,0;1,1;0,1”, each detection zone is separated by a “|” and each point is defined by a “x,y” pair and separated by a “;”. At most 8 detection zones are supported and each detection zone should be defined by at least 3 points and no more than 16 points. The default setting is “detectionZones=0,0;0.5,0;1,0;1,0.5;1,1;0.5,1;0,1;0,0.5”, i.e. the whole frame defined by an 8-point polygon.",
                 "value": null,
-                "options": [],
                 "required": false,
                 "kind": 2,
                 "typeName": "string"
@@ -227,7 +222,6 @@ Possible values of "status" field are:<br/>
                 "name": "detectLightChange",
                 "description": "Specify whether light change events should be detected. The default value is false.",
                 "value": null,
-                "options": [],
                 "required": false,
                 "kind": 2,
                 "typeName": "boolean"
@@ -235,7 +229,6 @@ Possible values of "status" field are:<br/>
                 "name": "mergeTimeThreshold",
                 "description": "Specify the threshold on whether successive motions should be merged together, if the interval between successive motions is <= mergeTimeThreshold, they will be merged. The default value is 0.0 and upper bound is 10.0.",
                 "value": null,
-                "options": [],
                 "required": false,
                 "kind": 2,
                 "typeName": "number"
@@ -351,7 +344,6 @@ Possible values of "status" field are:<br/>
                 "name": "maxMotionThumbnailDurationInSecs",
                 "description": "Specifies maximum duration of output video (in seconds). The default value is 0, which indicates the duration will be automatically decided by the algorithm.",
                 "value": null,
-                "options": [],
                 "required": false,
                 "kind": 2,
                 "typeName": "number"
@@ -359,7 +351,6 @@ Possible values of "status" field are:<br/>
                 "name": "outputAudio",
                 "description": "Indicates whether output video should include audio track. The default value is true.",
                 "value": null,
-                "options": [],
                 "required": false,
                 "kind": 2,
                 "typeName": "boolean"
@@ -367,7 +358,6 @@ Possible values of "status" field are:<br/>
                 "name": "fadeInFadeOut",
                 "description": "Indicates whether output video should have fade in/out effect during scene changes. The default value is true.",
                 "value": null,
-                "options": [],
                 "required": false,
                 "kind": 2,
                 "typeName": "boolean"
