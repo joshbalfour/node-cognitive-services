@@ -44,4 +44,9 @@ module.exports = {
         endpoint: "westus.api.cognitive.microsoft.com",
         apiKey: "insert-key-here"
     },
+    // https://azure.microsoft.com/en-us/try/cognitive-services/?api=web-language-model
+    webLanguageModel: {
+        endpoint: "westus.api.cognitive.microsoft.com",
+        apiKey: "insert-key-here"
+    },
 }
