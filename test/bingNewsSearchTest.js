@@ -37,7 +37,9 @@ describe('Bing news search', () => {
                 "count": 100
             };
 
-            const headers = {};
+            const headers = {
+                'Content-type': 'multipart/form-data'
+            };
 
             client.search({
                 parameters,

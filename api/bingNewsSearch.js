@@ -132,7 +132,6 @@ const bingNewsSearch = ({
             }, {
                 "name": "originalImg",
                 "description": "A Boolean value that determines whether the image's contentUrl contains a URL that points to a thumbnail of the original article's image or the image itself.",
-                "value": "0",
                 "required": false,
                 "kind": 2,
                 "typeName": "boolean"
@@ -159,10 +158,6 @@ const bingNewsSearch = ({
                 "name": "textDecorations",
                 "description": "A Boolean value that determines whether display strings should contain decoration markers such as hit highlighting characters.",
                 "value": "false",
-                "options": [
-                    "true",
-                    "false"
-                ],
                 "required": false,
                 "kind": 2,
                 "typeName": "boolean"
@@ -176,7 +171,7 @@ const bingNewsSearch = ({
                 ],
                 "required": false,
                 "kind": 2,
-                "typeName": "strin"
+                "typeName": "string"
             }]
         };
 
@@ -344,10 +339,6 @@ const bingNewsSearch = ({
                 "name": "textDecorations",
                 "description": "A Boolean value that determines whether display strings should contain decoration markers such as hit highlighting characters.",
                 "value": "false",
-                "options": [
-                    "true",
-                    "false"
-                ],
                 "required": false,
                 "kind": 2,
                 "typeName": "boolean"
@@ -496,10 +487,6 @@ const bingNewsSearch = ({
                 "name": "textDecorations",
                 "description": "A Boolean value that determines whether display strings should contain decoration markers such as hit highlighting characters.",
                 "value": "false",
-                "options": [
-                    "true",
-                    "false"
-                ],
                 "required": false,
                 "kind": 2,
                 "typeName": "boolean"

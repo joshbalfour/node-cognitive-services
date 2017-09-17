@@ -117,10 +117,6 @@ const bingVideoSearch = ({
                 "name": "textDecorations",
                 "description": "A Boolean value that determines whether display strings should contain decoration markers such as hit highlighting characters.",
                 "value": "false",
-                "options": [
-                    "true",
-                    "false"
-                ],
                 "required": false,
                 "kind": 2,
                 "typeName": "boolean"
@@ -271,10 +267,6 @@ const bingVideoSearch = ({
                 "name": "textDecorations",
                 "description": "A Boolean value that determines whether display strings should contain decoration markers such as hit highlighting characters.",
                 "value": "false",
-                "options": [
-                    "true",
-                    "false"
-                ],
                 "required": false,
                 "kind": 2,
                 "typeName": "boolean"
@@ -393,10 +385,6 @@ const bingVideoSearch = ({
                 "name": "textDecorations",
                 "description": "A Boolean value that determines whether display strings should contain decoration markers such as hit highlighting characters.",
                 "value": "false",
-                "options": [
-                    "true",
-                    "false"
-                ],
                 "required": false,
                 "kind": 2,
                 "typeName": "boolean"

@@ -13,7 +13,7 @@ gulp.task('pre-test', function () {
   gulp.task('test', ['pre-test'], function () {
     return gulp.src(['test/*.js'])
       .pipe(mocha({
-          timeout: 3000
+          timeout: 6000
       }))
       // Creating the reports after tests ran
       .pipe(istanbul.writeReports({

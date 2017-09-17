@@ -15,6 +15,8 @@ function makeId(length) {
 
 describe('Face', () => {
 
+    const SATYA_NADELLA_IMAGE_URL = "http://s3.amazonaws.com/digitaltrends-uploads-prod/2014/02/Satya-Nadella-quotes.jpg";
+
     const personGroupId = "test-" + makeId(8);
     var personId = null;
 
@@ -81,7 +83,7 @@ describe('Face', () => {
                 'Content-type': 'application/json'
             };
             const body = {
-                "url": "http://techstory.in/wp-content/uploads/2015/02/sachin-tendulkar-sifr-651867782.jpg"
+                "url": SATYA_NADELLA_IMAGE_URL
             };
 
             face.detect({

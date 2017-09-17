@@ -3,6 +3,8 @@ const {
     verify
 } = require('../lib/api');
 
+imageCategories = ["abstract_","abstract_net","abstract_nonphoto","abstract_rect","abstract_shape","abstract_texture","animal_","animal_bird","animal_cat","animal_dog","animal_horse","animal_panda","building_","building_arch","building_brickwall","building_church","building_corner","building_doorwindows","building_pillar","building_stair","building_street","dark_","drink_","drink_can","dark_fire","dark_fireworks","sky_object","food_","food_bread","food_fastfood","food_grilled","food_pizza","indoor_","indoor_churchwindow","indoor_court","indoor_doorwindows","indoor_marketstore","indoor_room","indoor_venue","dark_light","others_","outdoor_","outdoor_city","outdoor_field","outdoor_grass","outdoor_house","outdoor_mountain","outdoor_oceanbeach","outdoor_playground","outdoor_railway","outdoor_road","outdoor_sportsfield","outdoor_stonerock","outdoor_street","outdoor_water","outdoor_waterside","people_","people_baby","people_crowd","people_group","people_hand","people_many","people_portrait","people_show","people_tattoo","people_young","plant_","plant_branch","plant_flower","plant_leaves","plant_tree","object_screen","object_sculpture","sky_cloud","sky_sun","people_swimming","outdoor_pool","text_","text_mag","text_map","text_menu","text_sign","trans_bicycle","trans_bus","trans_car", "trans_trainstation"];
+
 const computerVision = ({
     API_KEY,
     endpoint
@@ -13,19 +15,10 @@ const computerVision = ({
     /**
 			Name: Computer Vision: Analyze Image
 			Description: This operation extracts a rich set of visual features based on the image content. 
-        <br>
-        <br>
-        Two input methods are supported -- (1) Uploading an image or (2) specifying an image URL.  Within your request, there is an optional parameter to allow you to choose which features to return.  By default, image categories are returned in the response. 
-        <br>
-        <br>
-        A successful response will be returned in JSON.  If the request failed, the response will contain an error code and a message to help understand what went wrong. 
 
-<h4>Http Method</h4>
-POST
-			Example Parameters: {
-			"visualFeatures": "Categories",
-			"details": null
-		}
+Two input methods are supported -- (1) Uploading an image or (2) specifying an image URL. Within your request, there is an optional parameter to allow you to choose which features to return. By default, image categories are returned in the response. 
+
+A successful response will be returned in JSON. If the request failed, the response will contain an error code and a message to help understand what went wrong.
 		*/
     self.analyzeImage = ({
         parameters,
@@ -40,7 +33,7 @@ POST
             "serviceId": "56f91f2d778daf23d8ec6739",
             "operationId": "56f91f2e778daf14a499e1fa",
             "id": "56f91f2e778daf14a499e1fa",
-            "description": "This operation extracts a rich set of visual features based on the image content. \n				<br>\n				<br>\n				Two input methods are supported -- (1) Uploading an image or (2) specifying an image URL.	Within your request, there is an optional parameter to allow you to choose which features to return.	By default, image categories are returned in the response. \n				<br>\n				<br>\n				A successful response will be returned in JSON.	If the request failed, the response will contain an error code and a message to help understand what went wrong. \n\n<h4>Http Method</h4>\nPOST",
+            "description": "This operation extracts a rich set of visual features based on the image content. Two input methods are supported (1) Uploading an image or (2) specifying an image URL. Within your request, there is an optional parameter to allow you to choose which features to return. By default, image categories are returned in the response.",
             "serviceName": "Computer Vision",
             "headers": [{
                 "name": "Content-Type",
@@ -62,7 +55,7 @@ POST
             ],
             "parameters": [{
                 "name": "visualFeatures",
-                "description": "A string indicating what visual feature types to return. Multiple values should be comma-separated. \n<br/>Valid visual feature types include:\n<br/>\t\n<ul>\n<li><b>Categories</b> - categorizes image content according to a taxonomy defined in documentation. </li>\n<li><b>Tags</b> - tags the image with a detailed list of words related to the image content. </li>\n<li><b>Description</b> - describes the image content with a complete English sentence. </li>\n<li><b>Faces</b> - detects if faces are present. If present, generate coordinates, gender and age.</li> \n<li><b >ImageType</b> - detects if image is clipart or a line drawing.</li>\n<li><b> Color</b> - determines the accent color, dominant color, and whether an image is black&white.</li>\n<li><b>Adult</b> - detects if the image is pornographic in nature (depicts nudity or a sex act).	Sexually suggestive content is also detected.</li>\n</ul>",
+                "description": "A string indicating what visual feature types to return. Multiple values should be comma-separated.",
                 "value": "Categories",
                 "options": [
                     "ImageType",
@@ -78,7 +71,7 @@ POST
                 "typeName": "string"
             }, {
                 "name": "details",
-                "description": "A string indicating which domain-specific details to return. Multiple values should be comma-separated. \n<br/>Valid visual feature types include:\n<br/>\t\n<ul>\n<li><b >Celebrities</b> - identifies celebrities if detected in the image.</li>\n</ul>\n",
+                "description": "A string indicating which domain-specific details to return. Multiple values should be comma-separated.",
                 "value": null,
                 "options": [
                     "Celebrities",
@@ -93,7 +86,7 @@ POST
                 "value": "en",
                 "options": [
                     "en",
-                    "es"
+                    "zh"
                 ],
                 "required": false,
                 "kind": 2,
@@ -114,21 +107,15 @@ POST
             );
 
     };
+
     /**
 			Name: Computer Vision: Describe Image
-			Description: This operation generates a description of an image in human readable language with complete sentences.  The description is based on a collection of content tags, which are also returned by the operation. More than one description can be generated for each image.  Descriptions are ordered by their confidence score. All descriptions are in English.
-        <br>
-        <br>
-        Two input methods are supported -- (1) Uploading an image or (2) specifying an image URL.  
-        <br>
-        <br>
-        A successful response will be returned in JSON.  If the request failed, the response will contain an error code and a message to help understand what went wrong. 
+			Description: This operation generates a description of an image in human readable language with complete sentences. The description is based on a collection of content tags, which are also returned by the operation. More than one description can be generated for each image. Descriptions are ordered by their confidence score. All descriptions are in English. 
 
-<h4>Http Method</h4>
-POST
-			Example Parameters: {
-			"maxCandidates": "1"
-		}
+Two input methods are supported -- (1) Uploading an image or (2) specifying an image URL.
+
+
+A successful response will be returned in JSON. If the request failed, the response will contain an error code and a message to help understand what went wrong.
 		*/
     self.describeImage = ({
         parameters,
@@ -143,7 +130,7 @@ POST
             "serviceId": "56f91f2d778daf23d8ec6739",
             "operationId": "56f91f2e778daf14a499e1fe",
             "id": "56f91f2e778daf14a499e1fe",
-            "description": "This operation generates a description of an image in human readable language with complete sentences.	The description is based on a collection of content tags, which are also returned by the operation. More than one description can be generated for each image.	Descriptions are ordered by their confidence score. All descriptions are in English.\n				<br>\n				<br>\n				Two input methods are supported -- (1) Uploading an image or (2) specifying an image URL.	\n				<br>\n				<br>\n				A successful response will be returned in JSON.	If the request failed, the response will contain an error code and a message to help understand what went wrong. \n\n<h4>Http Method</h4>\nPOST",
+            "description": "This operation generates a description of an image in human readable language with complete sentences. The description is based on a collection of content tags, which are also returned by the operation. More than one description can be generated for each image. Descriptions are ordered by their confidence score. All descriptions are in English. Two input methods are supported -- (1) Uploading an image or (2) specifying an image URL.",
             "serviceName": "Computer Vision",
             "headers": [{
                 "name": "Content-Type",
@@ -165,11 +152,8 @@ POST
             ],
             "parameters": [{
                 "name": "maxCandidates",
-                "description": "Maximum number of candidate descriptions to be returned.	The default is 1.",
+                "description": "Maximum number of candidate descriptions to be returned. The default is 1.",
                 "value": "1",
-                "options": [
-                    "1"
-                ],
                 "required": false,
                 "kind": 2,
                 "typeName": "string"
@@ -189,23 +173,14 @@ POST
             );
 
     };
+
     /**
 			Name: Computer Vision: Get Thumbnail
-			Description: This operation generates a thumbnail image with the user-specified width and height.  By default, the service analyzes the image, identifies the region of interest (ROI), and generates smart cropping coordinates based on the ROI.  Smart cropping helps when you specify an aspect ratio that differs from that of the input image
-<p/>
-A successful response contains the thumbnail image binary.  If the request failed, the response contains an error code and a message to help determine what went wrong.
+			Description: This operation generates a thumbnail image with the user-specified width and height. By default, the service analyzes the image, identifies the region of interest (ROI), and generates smart cropping coordinates based on the ROI. Smart cropping helps when you specify an aspect ratio that differs from that of the input image
 
-<p/>
+A successful response contains the thumbnail image binary. If the request failed, the response contains an error code and a message to help determine what went wrong.
+
 Upon failure, the error code and an error message are returned. The error code could be one of InvalidImageUrl, InvalidImageFormat, InvalidImageSize, InvalidThumbnailSize, NotSupportedImage, FailedToProcess, Timeout, or InternalServerError.
-
-<h4>Http Method</h4>
-POST
-
-			Example Parameters: {
-			"width": null,
-			"height": null,
-			"smartCropping": "true"
-		}
 		*/
     self.getThumbnail = ({
         parameters,
@@ -220,7 +195,7 @@ POST
             "serviceId": "56f91f2d778daf23d8ec6739",
             "operationId": "56f91f2e778daf14a499e1fb",
             "id": "56f91f2e778daf14a499e1fb",
-            "description": "This operation generates a thumbnail image with the user-specified width and height.	By default, the service analyzes the image, identifies the region of interest (ROI), and generates smart cropping coordinates based on the ROI.	Smart cropping helps when you specify an aspect ratio that differs from that of the input image\n<p/>\nA successful response contains the thumbnail image binary.	If the request failed, the response contains an error code and a message to help determine what went wrong.\n\n<p/>\nUpon failure, the error code and an error message are returned. The error code could be one of InvalidImageUrl, InvalidImageFormat, InvalidImageSize, InvalidThumbnailSize, NotSupportedImage, FailedToProcess, Timeout, or InternalServerError.\n\n<h4>Http Method</h4>\nPOST\n",
+            "description": "This operation generates a thumbnail image with the user-specified width and height. By default, the service analyzes the image, identifies the region of interest (ROI), and generates smart cropping coordinates based on the ROI. Smart cropping helps when you specify an aspect ratio that differs from that of the input image. A successful response contains the thumbnail image binary. If the request failed, the response contains an error code and a message to help determine what went wrong. Upon failure, the error code and an error message are returned. The error code could be one of InvalidImageUrl, InvalidImageFormat, InvalidImageSize, InvalidThumbnailSize, NotSupportedImage, FailedToProcess, Timeout, or InternalServerError.",
             "serviceName": "Computer Vision",
             "headers": [{
                 "name": "Content-Type",
@@ -258,10 +233,6 @@ POST
                 "name": "smartCropping",
                 "description": "Boolean flag for enabling smart cropping.",
                 "value": "true",
-                "options": [
-                    "true",
-                    "false"
-                ],
                 "required": false,
                 "kind": 2,
                 "typeName": "boolean"
@@ -281,21 +252,14 @@ POST
             );
 
     };
+
     /**
 			Name: Computer Vision: List Domain Specific Models
-			Description: This operation returns the list of domain-specific models that are supported by the Computer Vision API.  Currently, the API only supports one domain-specific model: a celebrity recognizer.
-        <br>
-        <br>
-        A successful response will be returned in JSON.  If the request failed, the response will contain an error code and a message to help understand what went wrong. 
+			Description: This operation returns the list of domain-specific models that are supported by the Computer Vision API. Currently, the API supports following domain-specific models: celebrity recognizer, landmark recognizer. 
 
-<h4>Http Method</h4>
-GET
-			Example Parameters: {}
+A successful response will be returned in JSON. If the request failed, the response will contain an error code and a message to help understand what went wrong.
 		*/
-    self.listDomainSpecificModels = ({
-        parameters,
-        headers,
-    }) => {
+    self.listDomainSpecificModels = () => {
 
         const operation = {
             "name": "List Domain Specific Models",
@@ -304,7 +268,7 @@ GET
             "serviceId": "56f91f2d778daf23d8ec6739",
             "operationId": "56f91f2e778daf14a499e1fd",
             "id": "56f91f2e778daf14a499e1fd",
-            "description": "This operation returns the list of domain-specific models that are supported by the Computer Vision API.	Currently, the API only supports one domain-specific model: a celebrity recognizer.\n				<br>\n				<br>\n				A successful response will be returned in JSON.	If the request failed, the response will contain an error code and a message to help understand what went wrong. \n\n<h4>Http Method</h4>\nGET",
+            "description": "This operation returns the list of domain-specific models that are supported by the Computer Vision API. Currently, the API supports following domain-specific models: celebrity recognizer, landmark recognizer.",
             "serviceName": "Computer Vision",
             "headers": [],
             "endpoints": [
@@ -318,33 +282,30 @@ GET
         };
 
         const body = null;
+        const parameters = null;
+        const headers = null;
 
         return verify(operation, parameters, headers, endpoint)
-            .then(makeRequest({
+        .then(() => {
+            return makeRequest({
                 operation,
                 parameters,
                 body,
                 API_KEY,
                 endpoint,
                 headers
-            }));
+            })}
+        );
 
     };
+    
     /**
 			Name: Computer Vision: OCR
-			Description: Optical Character Recognition (OCR) detects text in an image and extracts the recognized characters into a machine-usable character stream.   
+			Description: Optical Character Recognition (OCR) detects text in an image and extracts the recognized characters into a machine-usable character stream.
 
-<p/>
-Upon success, the OCR results will be returned. 
-<p/>
-Upon failure, the error code together with an error message will be returned. The error code can be one of InvalidImageUrl, InvalidImageFormat, InvalidImageSize, NotSupportedImage,  NotSupportedLanguage, or InternalServerError.
+Upon success, the OCR results will be returned.
 
-<h4>Http Method</h4>
-POST
-			Example Parameters: {
-			"language": "unk",
-            "detectOrientation ": "true"
-		}
+Upon failure, the error code together with an error message will be returned. The error code can be one of InvalidImageUrl, InvalidImageFormat, InvalidImageSize, NotSupportedImage, NotSupportedLanguage, or InternalServerError.
 		*/
     self.ocr = ({
         parameters,
@@ -359,7 +320,7 @@ POST
             "serviceId": "56f91f2d778daf23d8ec6739",
             "operationId": "56f91f2e778daf14a499e1fc",
             "id": "56f91f2e778daf14a499e1fc",
-            "description": "Optical Character Recognition (OCR) detects text in an image and extracts the recognized characters into a machine-usable character stream.	 \n\n<p/>\nUpon success, the OCR results will be returned. \n<p/>\nUpon failure, the error code together with an error message will be returned. The error code can be one of InvalidImageUrl, InvalidImageFormat, InvalidImageSize, NotSupportedImage,	NotSupportedLanguage, or InternalServerError.\n\n<h4>Http Method</h4>\nPOST",
+            "description": "Optical Character Recognition (OCR) detects text in an image and extracts the recognized characters into a machine-usable character stream. Upon success, the OCR results will be returned. Upon failure, the error code together with an error message will be returned. The error code can be one of InvalidImageUrl, InvalidImageFormat, InvalidImageSize, NotSupportedImage, NotSupportedLanguage, or InternalServerError.",
             "serviceName": "Computer Vision",
             "endpoints": [
                 "westus.api.cognitive.microsoft.com",
@@ -381,12 +342,12 @@ POST
             }],
             "parameters": [{
                 "name": "language",
-                "description": "The BCP-47 language code of the text to be detected in the image.The default value is &quot;unk&quot;, then the service will auto detect the language of the text in the image.<br />\n		<br />\n		Supported languages:\n		<ul style=\"margin-left:.375in;direction:ltr;unicode-bidi:embed;\n margin-top:0in;margin-bottom:0in\" type=\"disc\">\n				<li>unk (AutoDetect)</li>\n				<li>zh-Hans (ChineseSimplified)</li>\n				<li>zh-Hant (ChineseTraditional)</li>\n				<li>cs (Czech)</li>\n				<li>da (Danish)</li>\n				<li>nl (Dutch)</li>\n				<li>en (English)</li>\n				<li>fi (Finnish)</li>\n				<li>fr (French)</li>\n				<li>de (German)</li>\n				<li>el (Greek)</li>\n				<li>hu (Hungarian)</li>\n				<li>it (Italian)</li>\n				<li>Ja (Japanese)</li>\n				<li>ko (Korean)</li>\n				<li>nb (Norwegian)</li>\n				<li>pl (Polish)</li>\n				<li>pt (Portuguese,</li>\n				<li>ru (Russian)</li>\n				<li>es (Spanish)</li>\n				<li>sv (Swedish)</li>\n				<li>tr (Turkish)</li>\n		</ul>",
+                "description": "The BCP-47 language code of the text to be detected in the image.The default value is \"unk\", then the service will auto detect the language of the text in the image.",
                 "value": "unk",
                 "options": [
                     "unk",
                     "zh-Hans",
-                    " zh-Hant",
+                    "zh-Hant",
                     "cs",
                     "da",
                     "nl",
@@ -405,7 +366,12 @@ POST
                     "ru",
                     "es",
                     "sv",
-                    "tr"
+                    "tr",
+                    "ar",
+                    "ro",
+                    "sr-Cyrl",
+                    "sr-Latn",
+                    "sk"
                 ],
                 "required": false,
                 "kind": 2,
@@ -437,6 +403,7 @@ POST
             );
 
     };
+
     /**
 			Name: Computer Vision: Recognize Domain Specific Content
 			Description: This operation recognizes content within an image by applying a domain-specific model.  The list of domain-specific models that are supported by the Computer Vision API can be retrieved using the /models GET request.  Currently, the API only provides a single domain-specific model: celebrities.
@@ -466,7 +433,7 @@ POST
             "serviceId": "56f91f2d778daf23d8ec6739",
             "operationId": "56f91f2e778daf14a499e200",
             "id": "56f91f2e778daf14a499e200",
-            "description": "This operation recognizes content within an image by applying a domain-specific model.	The list of domain-specific models that are supported by the Computer Vision API can be retrieved using the /models GET request.	Currently, the API only provides a single domain-specific model: celebrities.\n				<br>\n				<br>\n				Two input methods are supported -- (1) Uploading an image or (2) specifying an image URL.	\n				<br>\n				<br>\n				A successful response will be returned in JSON.	If the request failed, the response will contain an error code and a message to help understand what went wrong. \n\n<h4>Http Method</h4>\nPOST",
+            "description": "This operation recognizes content within an image by applying a domain-specific model. The list of domain-specific models that are supported by the Computer Vision API can be retrieved using the /models GET request. Currently, the API provides following domain-specific models: celebrities, landmarks. Two input methods are supported -- (1) Uploading an image or (2) specifying an image URL. A successful response will be returned in JSON. If the request failed, the response will contain an error code and a message to help understand what went wrong. ",
             "serviceName": "Computer Vision",
             "headers": [{
                 "name": "Content-Type",
@@ -509,22 +476,17 @@ POST
             );
 
     };
+
     /**
 			Name: Computer Vision: Tag Image
-			Description: This operation generates a list of words, or tags, that are relevant to the content of the supplied image. The Computer Vision API can return tags based on objects, living beings, scenery or actions found in images. Unlike categories, tags are not organized according to a hierarchical classification system, but correspond to image content. Tags may contain hints to avoid ambiguity or provide context, for example the tag “cello” may be accompanied by the hint “musical instrument”. All tags are in English.
-        <br>
-        <br>
-        Two input methods are supported -- (1) Uploading an image or (2) specifying an image URL.  
-        <br>
-        <br>
-        A successful response will be returned in JSON.  If the request failed, the response will contain an error code and a message to help understand what went wrong. 
+			Description: This operation generates a list of words, or tags, that are relevant to the content of the supplied image. The Computer Vision API can return tags based on objects, living beings, scenery or actions found in images. Unlike categories, tags are not organized according to a hierarchical classification system, but correspond to image content. Tags may contain hints to avoid ambiguity or provide context, for example the tag “cello” may be accompanied by the hint “musical instrument”. All tags are in English. 
 
-<h4>Http Method</h4>
-POST
-			Example Parameters: {}
+            Two input methods are supported -- (1) Uploading an image or (2) specifying an image URL.
+
+
+            A successful response will be returned in JSON. If the request failed, the response will contain an error code and a message to help understand what went wrong.
 		*/
     self.tagImage = ({
-        parameters,
         headers,
         body
     }) => {
@@ -536,7 +498,7 @@ POST
             "serviceId": "56f91f2d778daf23d8ec6739",
             "operationId": "56f91f2e778daf14a499e1ff",
             "id": "56f91f2e778daf14a499e1ff",
-            "description": "This operation generates a list of words, or tags, that are relevant to the content of the supplied image. The Computer Vision API can return tags based on objects, living beings, scenery or actions found in images. Unlike categories, tags are not organized according to a hierarchical classification system, but correspond to image content. Tags may contain hints to avoid ambiguity or provide context, for example the tag “cello” may be accompanied by the hint “musical instrument”. All tags are in English.\n				<br>\n				<br>\n				Two input methods are supported -- (1) Uploading an image or (2) specifying an image URL.	\n				<br>\n				<br>\n				A successful response will be returned in JSON.	If the request failed, the response will contain an error code and a message to help understand what went wrong. \n\n<h4>Http Method</h4>\nPOST",
+            "description": "This operation generates a list of words, or tags, that are relevant to the content of the supplied image. The Computer Vision API can return tags based on objects, living beings, scenery or actions found in images. Unlike categories, tags are not organized according to a hierarchical classification system, but correspond to image content. Tags may contain hints to avoid ambiguity or provide context, for example the tag “cello” may be accompanied by the hint “musical instrument”. All tags are in English. Two input methods are supported -- (1) Uploading an image or (2) specifying an image URL. A successful response will be returned in JSON. If the request failed, the response will contain an error code and a message to help understand what went wrong. ",
             "serviceName": "Computer Vision",
             "headers": [{
                 "name": "Content-Type",
@@ -555,9 +517,10 @@ POST
                 "westcentralus.api.cognitive.microsoft.com",
                 "westeurope.api.cognitive.microsoft.com",
                 "southeastasia.api.cognitive.microsoft.com"
-            ],
-            "parameters": []
+            ]
         };
+
+        const parameters = null;
 
         return verify(operation, parameters, headers, endpoint)
             .then(() => {
@@ -572,133 +535,125 @@ POST
             );
 
     };
+
     /**
 			Name: Computer Vision: Get Handwritten Text Operation Result
-			Description: This interface is used for getting handwritten text operation result. The URL to this interface should be retrieved from “Operation-Location” field returned from Recognize Handwritten Text interface.
-        <br>
-        <br>
-        Returns the operation status. Possible values of "status" field are: Not Started, Running, Failed, Succeeded. If the status is "Succeeded", the response JSON will include the text recognition result. The result is organized in the hierarchy of Line/Word/Text. Result fields include lines, words, bounding box and text.
+            Description: This interface is used for getting handwritten text operation result. The URL to this interface should be retrieved from “Operation-Location” field returned from Recognize Handwritten Text interface.
+    */
+    self.getHandwrittenTextOperationResult = ({
+        parameters
+    }) => {
 
-<h4>Http Method</h4>
-GET
-		*/
-        self.getHandwrittenTextOperationResult = ({
-            parameters,
-            headers,
-            body
-        }) => {
-    
-            const operation = {
-                "name": "Get Handwritten Text Operation Result",
-                "path": "vision/v1.0/textOperations/{operationId}",
-                "method": "GET",
-                "serviceId": "56f91f2d778daf23d8ec6739",
-                "operationId": "587f2cf1154055056008f201",
-                "id": "587f2cf1154055056008f201",
-                "description": "This interface is used for getting handwritten text operation result. The URL to this interface should be retrieved from “Operation-Location” field returned from Recognize Handwritten Text interface.",
-                "serviceName": "Computer Vision",
-                "headers": [],
-                "endpoints": [
-                    "westus.api.cognitive.microsoft.com",
-                    "eastus2.api.cognitive.microsoft.com",
-                    "westcentralus.api.cognitive.microsoft.com",
-                    "westeurope.api.cognitive.microsoft.com",
-                    "southeastasia.api.cognitive.microsoft.com"
-                ],
-                "parameters": [{
-                    "name": "operationId",
-                    "description": "Id of the text operation returned in the response of the Recognize Handwritten Text interface.",
-                    "value": null,
-                    "required": true,
-                    "kind": 1,
-                    "typeName": "string"
-                }]
-            };
-    
-            return verify(operation, parameters, headers, endpoint)
-                .then(() => {
-                    return makeRequest({
-                        operation,
-                        parameters,
-                        body,
-                        API_KEY,
-                        endpoint,
-                        headers
-                    })}
-                );
-    
+        const operation = {
+            "name": "Get Handwritten Text Operation Result",
+            "path": "vision/v1.0/textOperations/{operationId}",
+            "method": "GET",
+            "serviceId": "56f91f2d778daf23d8ec6739",
+            "operationId": "587f2cf1154055056008f201",
+            "id": "587f2cf1154055056008f201",
+            "description": "This interface is used for getting handwritten text operation result. The URL to this interface should be retrieved from \"Operation-Location\" field returned from Recognize Handwritten Text interface.",
+            "serviceName": "Computer Vision",
+            "endpoints": [
+                "westus.api.cognitive.microsoft.com",
+                "eastus2.api.cognitive.microsoft.com",
+                "westcentralus.api.cognitive.microsoft.com",
+                "westeurope.api.cognitive.microsoft.com",
+                "southeastasia.api.cognitive.microsoft.com"
+            ],
+            "parameters": [{
+                "name": "operationId",
+                "description": "Id of the text operation returned in the response of the Recognize Handwritten Text interface.",
+                "value": null,
+                "required": true,
+                "kind": 1,
+                "typeName": "string"
+            }]
         };
+
+        const body = null;
+        const headers = null;
+
+        return verify(operation, parameters, headers, endpoint)
+            .then(() => {
+                return makeRequest({
+                    operation,
+                    parameters,
+                    body,
+                    API_KEY,
+                    endpoint,
+                    headers
+                })}
+            );
+
+    };
     
          /**
-			Name: Computer Vision: Get Handwritten Text Operation Result
-			Description: This interface is used for getting handwritten text operation result. The URL to this interface should be retrieved from “Operation-Location” field returned from Recognize Handwritten Text interface.
-        <br>
-        <br>
-        Returns the operation status. Possible values of "status" field are: Not Started, Running, Failed, Succeeded. If the status is "Succeeded", the response JSON will include the text recognition result. The result is organized in the hierarchy of Line/Word/Text. Result fields include lines, words, bounding box and text.
+			Name: Computer Vision: Recognize Handwritten Text
+			Description: Use this interface to get the result of a Recognize Handwritten Text operation. When you use the Recognize Handwritten Text interface, the response contains a field called “Operation-Location”. The “Operation-Location” field contains the URL that you must use for your Get Handwritten Text Operation Result operation. 
 
-<h4>Http Method</h4>
-GET
+            For the result of a Recognize Handwritten Text operation to be available, it requires an amount of time that depends on the length of the text. So, you may need to wait before using this Get Handwritten Text Operation Result interface. The time you need to wait may be up to a number of seconds. 
+
+            Note: this technology is currently in preview and is only available for English text.
 		*/
-        self.recognizeHandwrittenText = ({
-            parameters,
-            headers,
-            body
-        }) => {
-    
-            const operation = {
-                "name": "Recognize Handwritten Text",
-                "path": "vision/v1.0/recognizeText",
-                "method": "POST",
-                "serviceId": "56f91f2d778daf23d8ec6739",
-                "operationId": "587f2c6a154055056008f200",
-                "id": "587f2c6a154055056008f200",
-                "description": "Use this interface to get the result of a Recognize Handwritten Text operation. When you use the Recognize Handwritten Text interface, the response contains a field called “Operation-Location”. The “Operation-Location” field contains the URL that you must use for your Get Handwritten Text Operation Result operation.  \
-                    For the result of a Recognize Handwritten Text operation to be available, it requires an amount of time that depends on the length of the text. So, you may need to wait before using this Get Handwritten Text Operation Result interface. The time you need to wait may be up to a number of seconds. ",
-                "serviceName": "Computer Vision",
-                "headers": [{
-                    "name": "Content-Type",
-                    "description": "Media type of the body sent to the API.",
-                    "options": [
-                        "application/json",
-                        "application/octet-stream",
-                    ],
-                    "required": false,
-                    "typeName": "string"
-                }],
-                "endpoints": [
-                    "westus.api.cognitive.microsoft.com",
-                    "eastus2.api.cognitive.microsoft.com",
-                    "westcentralus.api.cognitive.microsoft.com",
-                    "westeurope.api.cognitive.microsoft.com",
-                    "southeastasia.api.cognitive.microsoft.com"
+    self.recognizeHandwrittenText = ({
+        parameters,
+        headers,
+        body
+    }) => {
+
+        const operation = {
+            "name": "Recognize Handwritten Text",
+            "path": "vision/v1.0/recognizeText",
+            "method": "POST",
+            "serviceId": "56f91f2d778daf23d8ec6739",
+            "operationId": "587f2c6a154055056008f200",
+            "id": "587f2c6a154055056008f200",
+            "description": "Use this interface to get the result of a Recognize Handwritten Text operation. When you use the Recognize Handwritten Text interface, the response contains a field called “Operation-Location”. The “Operation-Location” field contains the URL that you must use for your Get Handwritten Text Operation Result operation. For the result of a Recognize Handwritten Text operation to be available, it requires an amount of time that depends on the length of the text. So, you may need to wait before using this Get Handwritten Text Operation Result interface. The time you need to wait may be up to a number of seconds. Note: this technology is currently in preview and is only available for English text. ",
+            "serviceName": "Computer Vision",
+            "headers": [{
+                "name": "Content-Type",
+                "description": "Media type of the body sent to the API.",
+                "options": [
+                    "application/json",
+                    "application/octet-stream",
                 ],
-                "parameters": [{
-                    "name": "handwriting",
-                    "description": "If this parameter is set to “true” or is not specified, handwriting recognition is performed. If “false” is specified, printed text recognition is performed by calling OCR operation.",
-                    "value": null,
-                    "options": [
-                        "false",
-                        "true"
-                    ],
-                    "required": true,
-                    "kind": 1,
-                    "typeName": "boolean"
-                }]
-            };
-    
-            return verify(operation, parameters, headers, endpoint)
-                .then(() => {
-                    return makeRequest({
-                        operation,
-                        parameters,
-                        body,
-                        API_KEY,
-                        endpoint,
-                        headers
-                    })}
-                );
-    
+                "required": false,
+                "typeName": "string"
+            }],
+            "endpoints": [
+                "westus.api.cognitive.microsoft.com",
+                "eastus2.api.cognitive.microsoft.com",
+                "westcentralus.api.cognitive.microsoft.com",
+                "westeurope.api.cognitive.microsoft.com",
+                "southeastasia.api.cognitive.microsoft.com"
+            ],
+            "parameters": [{
+                "name": "handwriting",
+                "description": "If this parameter is set to “true” or is not specified, handwriting recognition is performed. If “false” is specified, printed text recognition is performed by calling OCR operation.",
+                "value": null,
+                "required": true,
+                "kind": 1,
+                "typeName": "boolean"
+            }]
         };
+
+        return verify(operation, parameters, headers, endpoint)
+            .then(() => {
+                return makeRequest({
+                    operation,
+                    parameters,
+                    body,
+                    API_KEY,
+                    endpoint,
+                    headers
+                })}
+            )
+            .then((operationIdUrl) => {
+                var splittedUrl = operationIdUrl.split('/');
+                return splittedUrl[splittedUrl.length - 1];
+            })
+
+    };
 
     return self;
 };

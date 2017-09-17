@@ -327,7 +327,7 @@ const academicKnowledge = ({
                 "value": "0",
                 "required": false,
                 "kind": 2,
-                "typeName": "boolean"
+                "typeName": "string"
             }, {
                 "name": "count",
                 "description": "Maximum number of interpretations to return.",
