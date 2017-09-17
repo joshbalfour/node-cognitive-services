@@ -25,7 +25,7 @@ describe('Video', () => {
                 should(operationId).be.String();
 
                 parameters = {
-                    'operationId': operationId
+                    'oid': operationId
                 };
 
                 return client.getOperationResult({
@@ -61,7 +61,7 @@ describe('Video', () => {
                 should(operationId).be.String();
 
                 parameters = {
-                    'operationId': operationId
+                    'oid': operationId
                 };
 
                 return client.getOperationResult({
