@@ -71,7 +71,6 @@ const bingImageSearch = ({
             "id": "56b4433fcf5ff8098cef380c",
             "description": "Get relevant images for a given query.",
             "serviceName": "Bing Image Search",
-            "headers": [],
             "parameters": [{
                 "name": "q",
                 "description": "The user's search query string",
@@ -134,8 +133,6 @@ const bingImageSearch = ({
             "id": "56b44b8ccf5ff81038d15ce0",
             "description": "Get currently trending images.",
             "serviceName": "Bing Image Search",
-            "headers": [],
-            "parameters": []
         };
 
         return makeRequest(self, {

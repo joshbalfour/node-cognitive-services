@@ -118,7 +118,6 @@ const speakerRecognition = ({
             "id": "563309b7778daf06340c9655",
             "description": "Deletes both speaker verification profile and all associated enrollments permanently from the service.",
             "serviceName": "Speaker Recognition",
-            "headers": [],
             "parameters": [{
                 "name": "verificationProfileId",
                 "description": "ID of speaker verification profile. It should be a GUID.",
@@ -153,8 +152,6 @@ const speakerRecognition = ({
             "id": "563309b7778daf06340c9653",
             "description": "Get all speaker verification profiles within the subscription.",
             "serviceName": "Speaker Recognition",
-            "headers": [],
-            "parameters": []
         };
 
         return makeRequest(self, {
@@ -179,7 +176,6 @@ const speakerRecognition = ({
             "id": "56409ee2778daf19706420de",
             "description": "Get a speaker verification profile by verificationProfileId",
             "serviceName": "Speaker Recognition",
-            "headers": [],
             "parameters": [{
                 "name": "verificationProfileId",
                 "description": "ID of speaker verification profile. It should be a GUID.",
