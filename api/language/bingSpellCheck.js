@@ -9,6 +9,9 @@ const bingSpellCheck = ({
 
     let self = this;
 
+    self.endpoints = [
+        "api.cognitive.microsoft.com"
+    ];
     self._apiKey = apiKey;
     self._endpoint = endpoint;
 
@@ -42,9 +45,6 @@ const bingSpellCheck = ({
                 "required": false,
                 "typeName": "string"
             }],
-            "endpoints": [
-                "api.cognitive.microsoft.com",
-            ],
             "parameters": [{
                 "name": "mode",
                 "description": "Mode of spellcheck:\

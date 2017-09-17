@@ -9,6 +9,9 @@ const bingWebSearch = ({
 
     let self = this;
 
+    self.endpoints = [
+        "api.cognitive.microsoft.com"
+    ],
     self._apiKey = apiKey;
     self._endpoint = endpoint;
 
@@ -37,9 +40,6 @@ const bingWebSearch = ({
             "id": "56b4447dcf5ff8098cef380d",
             "description": "Get web, image, news, & videos results for a given query.",
             "serviceName": "Bing Web Search",
-            "endpoints": [
-                "api.cognitive.microsoft.com"
-            ],
             "parameters": [{
                 "name": "cc",
                 "description": "A 2-character country code of the country where the results come from.",

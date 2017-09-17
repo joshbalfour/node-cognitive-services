@@ -9,6 +9,9 @@ const webLanguageModel = ({
 
     let self = this;
 
+    self.endpoints = [
+        "westus.api.cognitive.microsoft.com"
+    ];
     self._apiKey = apiKey;
     self._endpoint = endpoint;
 
@@ -35,9 +38,6 @@ const webLanguageModel = ({
             "id": "55de9ca4e597ed19b0de8a51",
             "description": "Insert spaces into a string of words lacking spaces, like a hashtag or part of a URL. Punctuation or exotic characters can prevent a string from being broken, so it’s best to limit input strings to lower-case, alpha-numeric characters.",
             "serviceName": "Web Language Model",
-            "endpoints": [
-                "westus.api.cognitive.microsoft.com"
-            ],           
             "parameters": [{
                 "name": "model",
                 "description": "Which model to use.",
@@ -109,9 +109,6 @@ const webLanguageModel = ({
             "id": "55de9ca4e597ed19b0de8a4e",
             "description": "Calculate the conditional probability that a particular word will follow a given sequence of words.",
             "serviceName": "Web Language Model",
-            "endpoints": [
-                "westus.api.cognitive.microsoft.com"
-            ],
             "headers": [{
                 "name": "Content-Type",
                 "description": "Media type of the body sent to the API.",
@@ -184,9 +181,6 @@ const webLanguageModel = ({
             "id": "55de9ca4e597ed19b0de8a4f",
             "description": "Calculate the joint probability that a particular sequence of words will appear together.",
             "serviceName": "Web Language Model",
-            "endpoints": [
-                "westus.api.cognitive.microsoft.com"
-            ],
             "headers": [{
                 "name": "Content-Type",
                 "description": "Media type of the body sent to the API.",
@@ -258,9 +252,6 @@ const webLanguageModel = ({
             "id": "55de9ca4e597ed19b0de8a50",
             "description": "Get the list of words (completions) most likely to follow a given sequence of words.",
             "serviceName": "Web Language Model",
-            "endpoints": [
-                "westus.api.cognitive.microsoft.com"
-            ],
             "parameters": [{
                 "name": "model",
                 "description": "Which model to use.",
@@ -325,9 +316,6 @@ const webLanguageModel = ({
             "id": "565bf87b778daf12447f43c1",
             "description": "List models available currently.",
             "serviceName": "Web Language Model",
-            "endpoints": [
-                "westus.api.cognitive.microsoft.com"
-            ]
         };
 
         return makeRequest(self, {

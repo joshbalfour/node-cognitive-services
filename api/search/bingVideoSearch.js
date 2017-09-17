@@ -9,6 +9,9 @@ const bingVideoSearch = ({
 
     let self = this;
 
+    self.endpoints = [
+        "api.cognitive.microsoft.com"
+    ];
     self._apiKey = apiKey;
     self._endpoint = endpoint;
 
@@ -36,9 +39,6 @@ const bingVideoSearch = ({
             "id": "56b440d2cf5ff8098cef380b",
             "description": "Get videos relevant for a given query.",
             "serviceName": "Bing Video Search",
-            "endpoints": [
-                "api.cognitive.microsoft.com"
-            ],
             "parameters": [{
                 "name": "id",
                 "description": "An ID that uniquely identifies a video. The Video object's videoId field contains the ID that you set this parameter to.",
@@ -198,9 +198,6 @@ const bingVideoSearch = ({
             "id": "56b44c36cf5ff81038d15ce1",
             "description": "Get currently trending videos.",
             "serviceName": "Bing Video Search",
-            "endpoints": [
-                "api.cognitive.microsoft.com"
-            ],
             "parameters": [{
                 "name": "id",
                 "description": "An ID that uniquely identifies a video. The Video object's videoId field contains the ID that you set this parameter to.",
@@ -317,9 +314,6 @@ const bingVideoSearch = ({
             "id": "56b440d2cf5ff8098cef380b",
             "description": "Get videos relevant for a given query.",
             "serviceName": "Bing Video Search",
-            "endpoints": [
-                "api.cognitive.microsoft.com"
-            ],
             "parameters": [{
                 "name": "id",
                 "description": "An ID that uniquely identifies a video. The Video object's videoId field contains the ID that you set this parameter to.",

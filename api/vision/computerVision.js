@@ -11,6 +11,13 @@ const computerVision = ({
 
     let self = this;
 
+    self.endpoints = [
+        "westus.api.cognitive.microsoft.com",
+        "eastus2.api.cognitive.microsoft.com",
+        "westcentralus.api.cognitive.microsoft.com",
+        "westeurope.api.cognitive.microsoft.com",
+        "southeastasia.api.cognitive.microsoft.com"
+    ]
     self._apiKey = apiKey;
     self._endpoint = endpoint;
 
@@ -48,13 +55,6 @@ A successful response will be returned in JSON. If the request failed, the respo
                 "required": false,
                 "typeName": "string"
             }],
-            "endpoints": [
-                "westus.api.cognitive.microsoft.com",
-                "eastus2.api.cognitive.microsoft.com",
-                "westcentralus.api.cognitive.microsoft.com",
-                "westeurope.api.cognitive.microsoft.com",
-                "southeastasia.api.cognitive.microsoft.com"
-            ],
             "parameters": [{
                 "name": "visualFeatures",
                 "description": "A string indicating what visual feature types to return. Multiple values should be comma-separated.",
@@ -141,13 +141,6 @@ A successful response will be returned in JSON. If the request failed, the respo
                 "required": false,
                 "typeName": "string"
             }],
-            "endpoints": [
-                "westus.api.cognitive.microsoft.com",
-                "eastus2.api.cognitive.microsoft.com",
-                "westcentralus.api.cognitive.microsoft.com",
-                "westeurope.api.cognitive.microsoft.com",
-                "southeastasia.api.cognitive.microsoft.com"
-            ],
             "parameters": [{
                 "name": "maxCandidates",
                 "description": "Maximum number of candidate descriptions to be returned. The default is 1.",
@@ -202,13 +195,6 @@ Upon failure, the error code and an error message are returned. The error code c
                 "required": false,
                 "typeName": "string"
             }],
-            "endpoints": [
-                "westus.api.cognitive.microsoft.com",
-                "eastus2.api.cognitive.microsoft.com",
-                "westcentralus.api.cognitive.microsoft.com",
-                "westeurope.api.cognitive.microsoft.com",
-                "southeastasia.api.cognitive.microsoft.com"
-            ],
             "parameters": [{
                 "name": "width",
                 "description": "Width of the thumbnail.	It must be between 1 and 1024. Recommended minimum of 50.",
@@ -260,15 +246,6 @@ A successful response will be returned in JSON. If the request failed, the respo
             "id": "56f91f2e778daf14a499e1fd",
             "description": "This operation returns the list of domain-specific models that are supported by the Computer Vision API. Currently, the API supports following domain-specific models: celebrity recognizer, landmark recognizer.",
             "serviceName": "Computer Vision",
-            "headers": [],
-            "endpoints": [
-                "westus.api.cognitive.microsoft.com",
-                "eastus2.api.cognitive.microsoft.com",
-                "westcentralus.api.cognitive.microsoft.com",
-                "westeurope.api.cognitive.microsoft.com",
-                "southeastasia.api.cognitive.microsoft.com"
-            ],
-            "parameters": []
         };
 
         return makeRequest(self, {
@@ -301,13 +278,6 @@ Upon failure, the error code together with an error message will be returned. Th
             "id": "56f91f2e778daf14a499e1fc",
             "description": "Optical Character Recognition (OCR) detects text in an image and extracts the recognized characters into a machine-usable character stream. Upon success, the OCR results will be returned. Upon failure, the error code together with an error message will be returned. The error code can be one of InvalidImageUrl, InvalidImageFormat, InvalidImageSize, NotSupportedImage, NotSupportedLanguage, or InternalServerError.",
             "serviceName": "Computer Vision",
-            "endpoints": [
-                "westus.api.cognitive.microsoft.com",
-                "eastus2.api.cognitive.microsoft.com",
-                "westcentralus.api.cognitive.microsoft.com",
-                "westeurope.api.cognitive.microsoft.com",
-                "southeastasia.api.cognitive.microsoft.com"
-            ],
             "headers": [{
                 "name": "Content-Type",
                 "description": "Media type of the body sent to the API.",
@@ -421,13 +391,6 @@ POST
                 "required": false,
                 "typeName": "string"
             }],
-            "endpoints": [
-                "westus.api.cognitive.microsoft.com",
-                "eastus2.api.cognitive.microsoft.com",
-                "westcentralus.api.cognitive.microsoft.com",
-                "westeurope.api.cognitive.microsoft.com",
-                "southeastasia.api.cognitive.microsoft.com"
-            ],
             "parameters": [{
                 "name": "model",
                 "description": "The domain-specific content to recognize.",
@@ -482,13 +445,6 @@ POST
                 "required": false,
                 "typeName": "string"
             }],
-            "endpoints": [
-                "westus.api.cognitive.microsoft.com",
-                "eastus2.api.cognitive.microsoft.com",
-                "westcentralus.api.cognitive.microsoft.com",
-                "westeurope.api.cognitive.microsoft.com",
-                "southeastasia.api.cognitive.microsoft.com"
-            ]
         };
 
         return makeRequest(self, {
@@ -517,13 +473,6 @@ POST
             "id": "587f2cf1154055056008f201",
             "description": "This interface is used for getting handwritten text operation result. The URL to this interface should be retrieved from \"Operation-Location\" field returned from Recognize Handwritten Text interface.",
             "serviceName": "Computer Vision",
-            "endpoints": [
-                "westus.api.cognitive.microsoft.com",
-                "eastus2.api.cognitive.microsoft.com",
-                "westcentralus.api.cognitive.microsoft.com",
-                "westeurope.api.cognitive.microsoft.com",
-                "southeastasia.api.cognitive.microsoft.com"
-            ],
             "parameters": [{
                 "name": "operationId",
                 "description": "Id of the text operation returned in the response of the Recognize Handwritten Text interface.",
@@ -575,13 +524,6 @@ POST
                 "required": false,
                 "typeName": "string"
             }],
-            "endpoints": [
-                "westus.api.cognitive.microsoft.com",
-                "eastus2.api.cognitive.microsoft.com",
-                "westcentralus.api.cognitive.microsoft.com",
-                "westeurope.api.cognitive.microsoft.com",
-                "southeastasia.api.cognitive.microsoft.com"
-            ],
             "parameters": [{
                 "name": "handwriting",
                 "description": "If this parameter is set to “true” or is not specified, handwriting recognition is performed. If “false” is specified, printed text recognition is performed by calling OCR operation.",

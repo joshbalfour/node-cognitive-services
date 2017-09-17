@@ -9,6 +9,9 @@ const video = ({
 
     let self = this;
 
+    self.endpoints = [
+        "westus.api.cognitive.microsoft.com"
+    ];
     self._apiKey = apiKey;
     self._endpoint = endpoint;
 
@@ -40,9 +43,6 @@ const video = ({
             • Some faces may not be detected due to technical challenges; e.g. very large face angles (head-pose), and large \occlusion. Frontal and near-frontal faces have the best results. \
             • Output files are deleted after 24 hours.",
             "serviceName": "Video",
-            "endpoints": [
-                "westus.api.cognitive.microsoft.com"
-            ],
             "headers": [{
                 "name": "Content-Type",
                 "description": "Media type of the body sent to the API.",
@@ -98,9 +98,6 @@ Succeeded - the process succeeded.
             "id": "565d6517778daf0978c45e36",
             "description": "Get operation result. If succeeded, this interface returns a JSON that includes time stamps and operation status. ",
             "serviceName": "Video",
-            "endpoints": [
-                "westus.api.cognitive.microsoft.com",
-            ],
             "parameters": [{
                 "name": "oid",
                 "description": "",
@@ -138,9 +135,6 @@ Succeeded - the process succeeded.
             "id": "565d81f4ca73072048922d95",
             "description": "This interface is used for getting result video content. Currently only Stabilization outputs video content as result. The URL to this interface should be retrieved from <b>resourceLocation</b> field of JSON returned from Get Operation Result interface.",
             "serviceName": "Video",
-            "endpoints": [
-                "westus.api.cognitive.microsoft.com",
-            ],
             "parameters": [{
                 "name": "oid",
                 "description": "",
@@ -195,9 +189,6 @@ Succeeded - the process succeeded.
             • Some motion may not be detected due to technical challenges; e.g. semi-transparent objects, and some small objects.\
             • Output files are deleted after 24 hours.",
             "serviceName": "Video",
-            "endpoints": [
-                "westus.api.cognitive.microsoft.com",
-            ],
             "headers": [{
                 "name": "Content-Type",
                 "description": "Media type of the body sent to the API.",
@@ -293,9 +284,6 @@ Succeeded - the process succeeded.
             • The resolution of the input video should be less than or equal to 2160P (4K, 3840 X 2160). \
             • Output files are deleted after 24 hours.",
             "serviceName": "Video",
-            "endpoints": [
-                "westus.api.cognitive.microsoft.com",
-            ],
             "headers": [{
                 "name": "Content-Type",
                 "description": "Media type of the body sent to the API.",
@@ -351,9 +339,6 @@ Succeeded - the process succeeded.
             • Audio is included by default, but can be turned off by the user. Pauses in audio are detected to divide video into coherent scenes and avoid breaking sentences of speech.\
             • Output files are deleted after 24 hours.",
             "serviceName": "Video",
-            "endpoints": [
-                "westus.api.cognitive.microsoft.com",
-            ],
             "headers": [{
                 "name": "Content-Type",
                 "description": "Media type of the body sent to the API.",

@@ -9,6 +9,9 @@ const bingAutosuggest = ({
 
     let self = this;
 
+    self.endpoints = [
+        "api.cognitive.microsoft.com"
+    ];
     self._apiKey = apiKey;
     self._endpoint = endpoint;
 
@@ -26,9 +29,6 @@ const bingAutosuggest = ({
             "id": "56c769a2cf5ff801a090fbd2",
             "description": "This operation provides suggestions for a given query or partial query.",
             "serviceName": "Bing Autosuggest",
-            "endpoints": [
-                "api.cognitive.microsoft.com"
-            ],
             "headers": [{
                 "name": "Accept",
                 "description": "Optional request header.",

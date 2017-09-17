@@ -9,6 +9,9 @@ const entityLinking = ({
 
     let self = this;
 
+    self.endpoints = [
+        "westus.api.cognitive.microsoft.com"
+    ];
     self._apiKey = apiKey;
     self._endpoint = endpoint;
 
@@ -44,9 +47,6 @@ const entityLinking = ({
                 "required": false,
                 "typeName": "string"
             }],
-            "endpoints": [
-                "westus.api.cognitive.microsoft.com"
-            ],
             "parameters": [{
                 "name": "selection",
                 "description": "The specific word or phrase within the text that is to be entity linked. If not specified, the service will try to recognize and identify all the entities within the input text.",

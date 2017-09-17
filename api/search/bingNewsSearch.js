@@ -9,6 +9,9 @@ const bingNewsSearch = ({
 
     let self = this;
 
+    self.endpoints = [
+        "api.cognitive.microsoft.com"
+    ];
     self._apiKey = apiKey;
     self._endpoint = endpoint;
 
@@ -33,9 +36,6 @@ const bingNewsSearch = ({
             "id": "56f02400dbe2d91900c68553",
             "description": "Returns the top news articles by category. For example, you can request the top sports or entertainment articles. For information about specifying categories, see the category query parameter.",
             "serviceName": "Bing News Search",
-            "endpoints": [
-                "api.cognitive.microsoft.com",
-            ],
             "headers": [{
                 "name": "Accept",
                 "description": "Optional request header.",
@@ -212,9 +212,6 @@ const bingNewsSearch = ({
             "id": "56b449fbcf5ff81038d15cdf",
             "description": "Returns news articles based on the user's search query. If the search query is empty, the call returns the top news articles.",
             "serviceName": "Bing News Search",
-            "endpoints": [
-                "api.cognitive.microsoft.com",
-            ],
             "headers": [{
                 "name": "Accept",
                 "description": "Optional request header.",
@@ -379,9 +376,6 @@ const bingNewsSearch = ({
             "id": "56c7a9a6cf5ff801a090fbdc",
             "description": "Returns trending news topics that are currently trending on social networks. Available only in the en-US and zh-CN markets.",
             "serviceName": "Bing News Search",
-            "endpoints": [
-                "api.cognitive.microsoft.com",
-            ],
             "headers": [{
                 "name": "Accept",
                 "description": "Optional request header.",

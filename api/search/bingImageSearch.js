@@ -8,7 +8,9 @@ const bingImageSearch = ({
 }) => {
 
     let self = this;
-
+    self.endpoints = [
+        "api.cognitive.microsoft.com"
+    ],
     self._apiKey = apiKey;
     self._endpoint = endpoint;
 
@@ -36,9 +38,7 @@ const bingImageSearch = ({
                 "required": false,
                 "typeName": "string"
             }],
-            "endpoints": [
-                "api.cognitive.microsoft.com"
-            ],
+            
             "parameters": [{
                 "name": "q",
                 "description": "The user's search query string",
@@ -72,9 +72,6 @@ const bingImageSearch = ({
             "description": "Get relevant images for a given query.",
             "serviceName": "Bing Image Search",
             "headers": [],
-            "endpoints": [
-                "api.cognitive.microsoft.com"
-            ],
             "parameters": [{
                 "name": "q",
                 "description": "The user's search query string",
@@ -138,9 +135,6 @@ const bingImageSearch = ({
             "description": "Get currently trending images.",
             "serviceName": "Bing Image Search",
             "headers": [],
-            "endpoints": [
-                "api.cognitive.microsoft.com"
-            ],
             "parameters": []
         };
 

@@ -9,6 +9,13 @@ const textAnalytics = ({
 
     let self = this;
 
+    self.endpoints = [
+        "westus.api.cognitive.microsoft.com",
+        "eastus2.api.cognitive.microsoft.com",
+        "westcentralus.api.cognitive.microsoft.com",
+        "westeurope.api.cognitive.microsoft.com",
+        "southeastasia.api.cognitive.microsoft.com"
+    ];
     self._apiKey = apiKey;
     self._endpoint = endpoint;
 
@@ -30,13 +37,6 @@ const textAnalytics = ({
             "id": "56f30ceeeda5650db055a3c7",
             "description": "The API returns the detected language and a numeric score between 0 and 1. Scores close to 1 indicate 100% certainty that the identified language is true. A total of 120 languages are supported.   Irrespective of the value, the language with the highest score is returned.",
             "serviceName": "Text Analytics",
-            "endpoints": [
-                "westus.api.cognitive.microsoft.com",
-                "eastus2.api.cognitive.microsoft.com",
-                "westcentralus.api.cognitive.microsoft.com",
-                "westeurope.api.cognitive.microsoft.com",
-                "southeastasia.api.cognitive.microsoft.com"
-            ],
             "headers": [{
                 "name": "Content-Type",
                 "description": "Media type of the body sent to the API.",
@@ -76,13 +76,6 @@ const textAnalytics = ({
             "id": "56f30ceeeda5650db055a3c6",
             "description": "The API returns a list of strings denoting the key talking points in the input text. We employ techniques from Microsoft Office's sophisticated Natural Language Processing toolkit. Each document supplied must have a language. Pass in one of: de,en,es,fi,fr,it,ja,pl,pt-BR,pt-PT,sv. See https://docs.microsoft.com/en-us/azure/cognitive-services/text-analytics/overview for the complete list of support languages.",
             "serviceName": "Text Analytics",
-            "endpoints": [
-                "westus.api.cognitive.microsoft.com",
-                "eastus2.api.cognitive.microsoft.com",
-                "westcentralus.api.cognitive.microsoft.com",
-                "westeurope.api.cognitive.microsoft.com",
-                "southeastasia.api.cognitive.microsoft.com"
-            ],
             "headers": [{
                 "name": "Content-Type",
                 "description": "Media type of the body sent to the API.",
@@ -123,13 +116,6 @@ const textAnalytics = ({
             "id": "56f30ceeeda5650db055a3c9",
             "description": "The API returns a numeric score between 0 and 1. Scores close to 1 indicate positive sentiment, while scores close to 0 indicate negative sentiment. Sentiment score is generated using classification techniques. The input features to the classifier include n-grams, features generated from part-of-speech tags, and word embeddings.",
             "serviceName": "Text Analytics",
-            "endpoints": [
-                "westus.api.cognitive.microsoft.com",
-                "eastus2.api.cognitive.microsoft.com",
-                "westcentralus.api.cognitive.microsoft.com",
-                "westeurope.api.cognitive.microsoft.com",
-                "southeastasia.api.cognitive.microsoft.com"
-            ],
             "headers": [{
                 "name": "Content-Type",
                 "description": "Media type of the body sent to the API.",

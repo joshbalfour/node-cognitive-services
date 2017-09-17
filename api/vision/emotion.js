@@ -9,6 +9,9 @@ const emotion = ({
 
     let self = this;
 
+    self.endpoints = [
+        "westus.api.cognitive.microsoft.com"
+    ];
     self._apiKey = apiKey;
     self._endpoint = endpoint;
 
@@ -36,9 +39,6 @@ const emotion = ({
             "id": "563b31ea778daf121cc3a5fa",
             "description": "Recognizes the emotions expressed by one or more people in an image, as well as returns a bounding box for the face. The emotions detected are happiness, sadness, surprise, anger, fear, contempt, and disgust or neutral. ",
             "serviceName": "Emotion",
-            "endpoints": [
-                "westus.api.cognitive.microsoft.com"
-            ],
             "headers": [{
                 "name": "Content-Type",
                 "description": "Media type of the body sent to the API.",
@@ -82,9 +82,6 @@ const emotion = ({
             • Some faces may not be detected due to technical challenges; e.g. very large face angles (head-pose), and large \occlusion. Frontal and near-frontal faces have the best results. \
             • Output files are deleted after 24 hours. ",
             "serviceName": "Emotion",
-            "endpoints": [
-                "westus.api.cognitive.microsoft.com"
-            ],
             "parameters": [{
                 "name": "outputStyle",
                 "description": "Defaults to “aggregate” style, but a user can specify “perFrame” style.",
@@ -139,9 +136,6 @@ const emotion = ({
             • Some faces may not be detected due to technical challenges, e.g. very large face angles (head-pose), large occlusion. Frontal and near-frontal faces have the best results. \
             • The emotions contempt and disgust are experimental. ",
             "serviceName": "Emotion",
-            "endpoints": [
-                "westus.api.cognitive.microsoft.com"
-            ],
             "headers": [{
                 "name": "Content-Type",
                 "description": "Media type of the body sent to the API.",
@@ -207,9 +201,6 @@ const emotion = ({
             "id": "56f8d4471984551ec0a0984f",
             "description": "Get operation result. If succeeded, this interface returns a JSON that includes time stamps and operation status/result.",
             "serviceName": "Emotion",
-            "endpoints": [
-                "westus.api.cognitive.microsoft.com"
-            ],
             "parameters": [{
                 "name": "oid",
                 "description": "",

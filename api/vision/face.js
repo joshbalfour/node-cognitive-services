@@ -9,6 +9,13 @@ const face = ({
 
     let self = this;
 
+    self.endpoints = [
+        "westus.api.cognitive.microsoft.com",
+        "eastus2.api.cognitive.microsoft.com",
+        "westcentralus.api.cognitive.microsoft.com",
+        "westeurope.api.cognitive.microsoft.com",
+        "southeastasia.api.cognitive.microsoft.com"
+    ];
     self._apiKey = apiKey;
     self._endpoint = endpoint;
 
@@ -57,13 +64,6 @@ const face = ({
                 "Fields": "url",
                 "Description": "URL of input image."
             }],
-            "endpoints": [
-                "westus.api.cognitive.microsoft.com",
-                "eastus2.api.cognitive.microsoft.com",
-                "westcentralus.api.cognitive.microsoft.com",
-                "westeurope.api.cognitive.microsoft.com",
-                "southeastasia.api.cognitive.microsoft.com"
-            ],
             "headers": [{
                 "name": "Content-Type",
                 "description": "Media type of the body sent to the API.",
@@ -165,14 +165,6 @@ const face = ({
                 "required": false,
                 "typeName": "string"
             }],
-            "endpoints": [
-                "westus.api.cognitive.microsoft.com",
-                "eastus2.api.cognitive.microsoft.com",
-                "westcentralus.api.cognitive.microsoft.com",
-                "westeurope.api.cognitive.microsoft.com",
-                "southeastasia.api.cognitive.microsoft.com"
-            ],
-            "parameters": []
         };
 
         return makeRequest(self, {
@@ -231,14 +223,6 @@ const face = ({
                 "required": false,
                 "typeName": "string"
             }],
-            "endpoints": [
-                "westus.api.cognitive.microsoft.com",
-                "eastus2.api.cognitive.microsoft.com",
-                "westcentralus.api.cognitive.microsoft.com",
-                "westeurope.api.cognitive.microsoft.com",
-                "southeastasia.api.cognitive.microsoft.com"
-            ],
-            "parameters": []
         };
 
         return makeRequest(self, {
@@ -310,14 +294,6 @@ const face = ({
                 "required": false,
                 "typeName": "string"
             }],
-            "endpoints": [
-                "westus.api.cognitive.microsoft.com",
-                "eastus2.api.cognitive.microsoft.com",
-                "westcentralus.api.cognitive.microsoft.com",
-                "westeurope.api.cognitive.microsoft.com",
-                "southeastasia.api.cognitive.microsoft.com"
-            ],
-            "parameters": []
         };
 
         return makeRequest(self, {
@@ -374,16 +350,7 @@ const face = ({
                 ],
                 "required": false,
                 "typeName": "string"
-            }],
-            "endpoints": [
-                "westus.api.cognitive.microsoft.com",
-                "eastus2.api.cognitive.microsoft.com",
-                "westcentralus.api.cognitive.microsoft.com",
-                "westeurope.api.cognitive.microsoft.com",
-                "southeastasia.api.cognitive.microsoft.com"
-            ],
-            
-            "parameters": []
+            }]
         };
 
         return makeRequest(self, {
@@ -452,13 +419,6 @@ Face list is a group of faces, and these faces will not expire. Face list is use
                 "required": false,
                 "typeName": "string"
             }],
-            "endpoints": [
-                "westus.api.cognitive.microsoft.com",
-                "eastus2.api.cognitive.microsoft.com",
-                "westcentralus.api.cognitive.microsoft.com",
-                "westeurope.api.cognitive.microsoft.com",
-                "southeastasia.api.cognitive.microsoft.com"
-            ],           
             "parameters": [{
                 "name": "faceListId",
                 "description": "Valid character is letter in lower case or digit or '-' or '_', maximum length is 64.",
@@ -540,13 +500,6 @@ Face list is a group of faces, and these faces will not expire. Face list is use
                 "required": false,
                 "typeName": "string"
             }],
-            "endpoints": [
-                "westus.api.cognitive.microsoft.com",
-                "eastus2.api.cognitive.microsoft.com",
-                "westcentralus.api.cognitive.microsoft.com",
-                "westeurope.api.cognitive.microsoft.com",
-                "southeastasia.api.cognitive.microsoft.com"
-            ],
             "parameters": [{
                 "name": "faceListId",
                 "description": "Valid character is letter in lower case or digit or '-' or '_', maximum length is 64.\n	",
@@ -593,14 +546,6 @@ Face list is a group of faces, and these faces will not expire. Face list is use
             "id": "563879b61984550f30395251",
             "description": "\n	Delete an existing face from a face list (given by a face ID and a face list ID). Persisted image related to the face will also be deleted.\n	<h4>Http Method</h4>\n	DELETE\n",
             "serviceName": "Face",
-            "headers": [],
-            "endpoints": [
-                "westus.api.cognitive.microsoft.com",
-                "eastus2.api.cognitive.microsoft.com",
-                "westcentralus.api.cognitive.microsoft.com",
-                "westeurope.api.cognitive.microsoft.com",
-                "southeastasia.api.cognitive.microsoft.com"
-            ],
             "parameters": [{
                 "name": "faceListId",
                 "description": "Valid character is letter in lower case or digit or '-' or '_', maximum length is 64.",
@@ -654,13 +599,6 @@ Face list is a group of faces, and these faces will not expire. Face list is use
             "description": "\n	Delete an existing face list according to face list ID. Persisted face images in the face list will also be deleted.\n	<h4>Http Method</h4>\n	DELETE\n",
             "serviceName": "Face",
             "headers": [],
-            "endpoints": [
-                "westus.api.cognitive.microsoft.com",
-                "eastus2.api.cognitive.microsoft.com",
-                "westcentralus.api.cognitive.microsoft.com",
-                "westeurope.api.cognitive.microsoft.com",
-                "southeastasia.api.cognitive.microsoft.com"
-            ],
             "parameters": [{
                 "name": "faceListId",
                 "description": "Valid character is letter in lower case or digit or '-' or '_', maximum length is 64.",
@@ -706,14 +644,6 @@ Face list is a group of faces, and these faces will not expire. Face list is use
             "id": "563879b61984550f3039524c",
             "description": "\n	Retrieve a face list's information, including face list ID, name, userData and faces in the face list. Face list simply represents a list of faces, and could be treated as a searchable data source in\n	<a href=\"/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f30395237\">Face - Find Similar</a>.\n	<h4>Http Method</h4>\n	GET\n",
             "serviceName": "Face",
-            "headers": [],
-            "endpoints": [
-                "westus.api.cognitive.microsoft.com",
-                "eastus2.api.cognitive.microsoft.com",
-                "westcentralus.api.cognitive.microsoft.com",
-                "westeurope.api.cognitive.microsoft.com",
-                "southeastasia.api.cognitive.microsoft.com"
-            ],
             "parameters": [{
                 "name": "faceListId",
                 "description": "Valid character is letter in lower case or digit or '-' or '_', maximum length is 64.",
@@ -755,15 +685,6 @@ Face list is a group of faces, and these faces will not expire. Face list is use
             "id": "563879b61984550f3039524d",
             "description": "\n	Retrieve information about all existing face lists. Only face list ID, name and user data will be returned. Try <a href=\"/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f3039524c\">Face List - Get a Face List</a> to retrieve face information inside faceList.\n	<h4>Http Method</h4>\n	GET\n",
             "serviceName": "Face",
-            "headers": [],
-            "endpoints": [
-                "westus.api.cognitive.microsoft.com",
-                "eastus2.api.cognitive.microsoft.com",
-                "westcentralus.api.cognitive.microsoft.com",
-                "westeurope.api.cognitive.microsoft.com",
-                "southeastasia.api.cognitive.microsoft.com"
-            ],
-            "parameters": []
         };
 
         return makeRequest(self, {
@@ -810,13 +731,6 @@ Face list is a group of faces, and these faces will not expire. Face list is use
                 "required": false,
                 "typeName": "string"
             }],
-            "endpoints": [
-                "westus.api.cognitive.microsoft.com",
-                "eastus2.api.cognitive.microsoft.com",
-                "westcentralus.api.cognitive.microsoft.com",
-                "westeurope.api.cognitive.microsoft.com",
-                "southeastasia.api.cognitive.microsoft.com"
-            ],
             "requestBody": [{
                 "Fields": "name",
                 "Description": "Name of the face list, maximum length is 128"
@@ -897,13 +811,6 @@ and
                 "required": false,
                 "typeName": "string"
             }],
-            "endpoints": [
-                "westus.api.cognitive.microsoft.com",
-                "eastus2.api.cognitive.microsoft.com",
-                "westcentralus.api.cognitive.microsoft.com",
-                "westeurope.api.cognitive.microsoft.com",
-                "southeastasia.api.cognitive.microsoft.com"
-            ],
             "parameters": [{
                 "name": "personGroupId",
                 "description": "The target person's belonging person group's ID.",
@@ -988,13 +895,6 @@ and
                 "required": false,
                 "typeName": "string"
             }],
-            "endpoints": [
-                "westus.api.cognitive.microsoft.com",
-                "eastus2.api.cognitive.microsoft.com",
-                "westcentralus.api.cognitive.microsoft.com",
-                "westeurope.api.cognitive.microsoft.com",
-                "southeastasia.api.cognitive.microsoft.com"
-            ],
             "parameters": [{
                 "name": "personGroupId",
                 "description": "The target person's belonging person group's ID.",
@@ -1050,13 +950,6 @@ and
                 "required": false,
                 "typeName": "string"
             }],
-            "endpoints": [
-                "westus.api.cognitive.microsoft.com",
-                "eastus2.api.cognitive.microsoft.com",
-                "westcentralus.api.cognitive.microsoft.com",
-                "westeurope.api.cognitive.microsoft.com",
-                "southeastasia.api.cognitive.microsoft.com"
-            ],
             "parameters": [{
                 "name": "personGroupId",
                 "description": "The target person's belonging person group's ID.",
@@ -1111,14 +1004,6 @@ and
             "id": "563879b61984550f3039523e",
             "description": "\n	Delete a face from a person. Relative image for the persisted face will also be deleted.\n	<h4>Http Method</h4>\n	DELETE\n",
             "serviceName": "Face",
-            "headers": [],
-            "endpoints": [
-                "westus.api.cognitive.microsoft.com",
-                "eastus2.api.cognitive.microsoft.com",
-                "westcentralus.api.cognitive.microsoft.com",
-                "westeurope.api.cognitive.microsoft.com",
-                "southeastasia.api.cognitive.microsoft.com"
-            ],
             "parameters": [{
                 "name": "personGroupId",
                 "description": "The target person's belonging person group's ID.",
@@ -1178,14 +1063,6 @@ and
             "id": "563879b61984550f3039523f",
             "description": "\n	Retrieve a person's information, including registered faces, name and userData.\n	<h4>Http Method</h4>\n	GET\n",
             "serviceName": "Face",
-            "headers": [],
-            "endpoints": [
-                "westus.api.cognitive.microsoft.com",
-                "eastus2.api.cognitive.microsoft.com",
-                "westcentralus.api.cognitive.microsoft.com",
-                "westeurope.api.cognitive.microsoft.com",
-                "southeastasia.api.cognitive.microsoft.com"
-            ],
             "parameters": [{
                 "name": "personGroupId",
                 "description": "The target person's belonging person group's ID.",
@@ -1238,14 +1115,6 @@ and
             "id": "563879b61984550f30395240",
             "description": "\n	Retrieve information about a face (specified by face ID, person ID and its belonging person group ID).\n	<h4>Http Method</h4>\n	GET\n",
             "serviceName": "Face",
-            "headers": [],
-            "endpoints": [
-                "westus.api.cognitive.microsoft.com",
-                "eastus2.api.cognitive.microsoft.com",
-                "westcentralus.api.cognitive.microsoft.com",
-                "westeurope.api.cognitive.microsoft.com",
-                "southeastasia.api.cognitive.microsoft.com"
-            ],
             "parameters": [{
                 "name": "personGroupId",
                 "description": "The target person's belonging person group's ID.",
@@ -1303,14 +1172,6 @@ and
             "id": "563879b61984550f30395241",
             "description": "\n	List all people in a person group, and retrieve person information (including person ID, name, user data and registered faces of the person).\n	<h4>Http Method</h4>\n	GET\n",
             "serviceName": "Face",
-            "headers": [],
-            "endpoints": [
-                "westus.api.cognitive.microsoft.com",
-                "eastus2.api.cognitive.microsoft.com",
-                "westcentralus.api.cognitive.microsoft.com",
-                "westeurope.api.cognitive.microsoft.com",
-                "southeastasia.api.cognitive.microsoft.com"
-            ],
             "parameters": [{
                 "name": "personGroupId",
                 "description": "Target person group's ID.",
@@ -1385,14 +1246,7 @@ and
                 ],
                 "required": false,
                 "typeName": "string"
-            }],
-            "endpoints": [
-                "westus.api.cognitive.microsoft.com",
-                "eastus2.api.cognitive.microsoft.com",
-                "westcentralus.api.cognitive.microsoft.com",
-                "westeurope.api.cognitive.microsoft.com",
-                "southeastasia.api.cognitive.microsoft.com"
-            ],           
+            }],         
             "parameters": [{
                 "name": "personGroupId",
                 "description": "The target person's belonging person group's ID.",
@@ -1460,13 +1314,6 @@ and
                 "required": false,
                 "typeName": "string"
             }],
-            "endpoints": [
-                "westus.api.cognitive.microsoft.com",
-                "eastus2.api.cognitive.microsoft.com",
-                "westcentralus.api.cognitive.microsoft.com",
-                "westeurope.api.cognitive.microsoft.com",
-                "southeastasia.api.cognitive.microsoft.com"
-            ],
             "parameters": [{
                 "name": "personGroupId",
                 "description": "The target person's belonging person group's ID.",
@@ -1545,13 +1392,6 @@ and
                 "required": false,
                 "typeName": "string"
             }],
-            "endpoints": [
-                "westus.api.cognitive.microsoft.com",
-                "eastus2.api.cognitive.microsoft.com",
-                "westcentralus.api.cognitive.microsoft.com",
-                "westeurope.api.cognitive.microsoft.com",
-                "southeastasia.api.cognitive.microsoft.com"
-            ],
             "parameters": [{
                 "name": "personGroupId",
                 "description": "User-provided person group ID as a string. The valid characters include numbers, english letters in lower case, '-' and '_'. The maximum length of the personGroupId is 64.\n	",
@@ -1598,13 +1438,6 @@ and
             "description": "\n	Delete an existing person group. Persisted face images of all people in the person group will also be deleted.\n	<h4>Http Method</h4>\n	DELETE\n",
             "serviceName": "Face",
             "headers": [],
-            "endpoints": [
-                "westus.api.cognitive.microsoft.com",
-                "eastus2.api.cognitive.microsoft.com",
-                "westcentralus.api.cognitive.microsoft.com",
-                "westeurope.api.cognitive.microsoft.com",
-                "southeastasia.api.cognitive.microsoft.com"
-            ],
             "parameters": [{
                 "name": "personGroupId",
                 "description": "The ID of the person group to be deleted.",
@@ -1649,14 +1482,6 @@ and
             "id": "563879b61984550f30395246",
             "description": "\n	Retrieve the information of a person group, including its name and userData. This API returns person group information only, use <a href=\"/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f30395241\">Person - List Persons in a Person Group</a> instead to retrieve person information under the person group.\n	<h4>Http Method</h4>\n	GET\n",
             "serviceName": "Face",
-            "headers": [],
-            "endpoints": [
-                "westus.api.cognitive.microsoft.com",
-                "eastus2.api.cognitive.microsoft.com",
-                "westcentralus.api.cognitive.microsoft.com",
-                "westeurope.api.cognitive.microsoft.com",
-                "southeastasia.api.cognitive.microsoft.com"
-            ],
             "parameters": [{
                 "name": "personGroupId",
                 "description": "ID of the target person group.",
@@ -1700,14 +1525,6 @@ and
             "id": "563879b61984550f30395247",
             "description": "\n	Retrieve the training status of a person group (completed or ongoing). Training can be triggered by the <a href=\"/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f30395249\">Person Group - Train Person Group</a> API. The training will process for a while on the server side..\n	<h4>Http Method</h4>\n	GET\n",
             "serviceName": "Face",
-            "headers": [],
-            "endpoints": [
-                "westus.api.cognitive.microsoft.com",
-                "eastus2.api.cognitive.microsoft.com",
-                "westcentralus.api.cognitive.microsoft.com",
-                "westeurope.api.cognitive.microsoft.com",
-                "southeastasia.api.cognitive.microsoft.com"
-            ],
             "parameters": [{
                 "name": "personGroupId",
                 "description": "personGroupId of target person group.",
@@ -1749,14 +1566,6 @@ and
             "id": "563879b61984550f30395248",
             "description": "\n	List all person groups and their information.\n	<h4>Http Method</h4>\n	GET\n",
             "serviceName": "Face",
-            "headers": [],
-            "endpoints": [
-                "westus.api.cognitive.microsoft.com",
-                "eastus2.api.cognitive.microsoft.com",
-                "westcentralus.api.cognitive.microsoft.com",
-                "westeurope.api.cognitive.microsoft.com",
-                "southeastasia.api.cognitive.microsoft.com"
-            ],
             "parameters": [{
                 "name": "start",
                 "description": "List person groups from the least personGroupId greater than the \"start\". It contains no more than 64 characters. Default is empty.",
@@ -1811,14 +1620,6 @@ and
             "id": "563879b61984550f30395249",
             "description": "\n	Queue a person group training task, the training task may not be started immediately.\n	<br/><br/>\n	Any updates to person group will not take effect in <a href=\"/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f30395239\">Face - Identify</a> until person group is successfully trained.\n	You can query the training status by calling <a href=\"/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f30395247\">Person Group - Get Person Group Training Status</a> API.\n	<h4>Http Method</h4>\n	POST\n",
             "serviceName": "Face",
-            "headers": [],
-            "endpoints": [
-                "westus.api.cognitive.microsoft.com",
-                "eastus2.api.cognitive.microsoft.com",
-                "westcentralus.api.cognitive.microsoft.com",
-                "westeurope.api.cognitive.microsoft.com",
-                "southeastasia.api.cognitive.microsoft.com"
-            ],
             "parameters": [{
                 "name": "personGroupId",
                 "description": "Target person group to be trained.",
@@ -1880,13 +1681,6 @@ and
                 "required": false,
                 "typeName": "string"
             }],
-            "endpoints": [
-                "westus.api.cognitive.microsoft.com",
-                "eastus2.api.cognitive.microsoft.com",
-                "westcentralus.api.cognitive.microsoft.com",
-                "westeurope.api.cognitive.microsoft.com",
-                "southeastasia.api.cognitive.microsoft.com"
-            ],
             "parameters": [{
                 "name": "personGroupId",
                 "description": "personGroupId of the person group to be updated.",

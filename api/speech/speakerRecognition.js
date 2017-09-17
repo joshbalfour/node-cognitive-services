@@ -9,6 +9,9 @@ const speakerRecognition = ({
 
     let self = this;
 
+    self.endpoints = [
+        "westus.api.cognitive.microsoft.com",
+    ],
     self._apiKey = apiKey;
     self._endpoint = endpoint;
 
@@ -39,9 +42,6 @@ const speakerRecognition = ({
                 "required": false,
                 "typeName": "string"
             }],
-            "endpoints": [
-                "westus.api.cognitive.microsoft.com"
-            ],
             "parameters": [{
                 "name": "verificationProfileId",
                 "description": "ID of speaker verification profile. GUID returned from Verification Profile - Create Profile API",
@@ -90,9 +90,6 @@ const speakerRecognition = ({
                 "required": false,
                 "typeName": "string"
             }],
-            "endpoints": [
-                "westus.api.cognitive.microsoft.com"
-            ],
             "parameters": []
         };
 
@@ -122,9 +119,6 @@ const speakerRecognition = ({
             "description": "Deletes both speaker verification profile and all associated enrollments permanently from the service.",
             "serviceName": "Speaker Recognition",
             "headers": [],
-            "endpoints": [
-                "westus.api.cognitive.microsoft.com"
-            ],
             "parameters": [{
                 "name": "verificationProfileId",
                 "description": "ID of speaker verification profile. It should be a GUID.",
@@ -160,9 +154,6 @@ const speakerRecognition = ({
             "description": "Get all speaker verification profiles within the subscription.",
             "serviceName": "Speaker Recognition",
             "headers": [],
-            "endpoints": [
-                "westus.api.cognitive.microsoft.com",
-            ],           
             "parameters": []
         };
 
@@ -223,10 +214,6 @@ const speakerRecognition = ({
             "id": "56406930e597ed20c8d8549b",
             "description": "Deletes all enrollments associated with the given speaker’s verification profile permanently from the service.",
             "serviceName": "Speaker Recognition",
-            "headers": [],
-            "endpoints": [
-                "westus.api.cognitive.microsoft.com"
-            ],
             "parameters": [{
                 "name": "verificationProfileId",
                 "description": "ID of speaker verification profile. It should be a GUID.",
@@ -260,10 +247,6 @@ const speakerRecognition = ({
             "id": "5645c725ca73070ee8845bd6",
             "description": "Get operation status or result. The operation should be created by <a href=\"https://dev.projectoxford.ai/docs/services/563309b6778daf02acc0a508/operations/5645c523778daf217c292592\"> Speaker Recognition - Identification</a> or <a href=\"https://dev.projectoxford.ai/docs/services/563309b6778daf02acc0a508/operations/5645c3271984551c84ec6797\"> Identification Profile - Create Enrollment</a>. And the URL should be retrieved from Operation-Location header of initial POST 202 response",
             "serviceName": "Speaker Recognition",
-            "headers": [],
-            "endpoints": [
-                "westus.api.cognitive.microsoft.com"
-            ],
             "parameters": [{
                 "name": "operationId",
                 "description": "The operation Id, created by <a href=\"https://dev.projectoxford.ai/docs/services/563309b6778daf02acc0a508/operations/5645c523778daf217c292592\"> Speaker Recognition - Identification</a> or <a href=\"https://dev.projectoxford.ai/docs/services/563309b6778daf02acc0a508/operations/5645c3271984551c84ec6797\"> Identification Profile - Create Enrollment</a>. ",
@@ -308,9 +291,6 @@ const speakerRecognition = ({
                 "required": false,
                 "typeName": "string"
             }],
-            "endpoints": [
-                "westus.api.cognitive.microsoft.com",
-            ],
             "parameters": [{
                 "name": "identificationProfileIds",
                 "description": "Comma-delimited identificationProfileIds, the id should be Guid. It can only support at most 10 profiles for one identification request.",
@@ -353,7 +333,6 @@ const speakerRecognition = ({
             "id": "56406930e597ed20c8d8549d",
             "description": "To automatically verify and authenticate users using their voice or speech.",
             "serviceName": "Speaker Recognition",
-            "requestBody": [],
             "headers": [{
                 "name": "Content-Type",
                 "description": "Media type of the body sent to the API.",
@@ -364,9 +343,6 @@ const speakerRecognition = ({
                 "required": false,
                 "typeName": "string"
             }],
-            "endpoints": [
-                "westus.api.cognitive.microsoft.com"
-            ],
             "parameters": [{
                 "name": "verificationProfileId",
                 "description": "ID of speaker verification profile. It should be a GUID.",
@@ -400,10 +376,6 @@ const speakerRecognition = ({
             "id": "5652c0801984551c3859634d",
             "description": "Returns the list of supported verification phrases that can be used for <a href=\"https://dev.projectoxford.ai/docs/services/563309b6778daf02acc0a508/operations/56406930e597ed20c8d8549c\">Verification Profile - Create Enrollment</a> and <a href=\"https://dev.projectoxford.ai/docs/services/563309b6778daf02acc0a508/operations/56406930e597ed20c8d8549d\">Speaker Recognition - Verification</a>.",
             "serviceName": "Speaker Recognition",
-            "headers": [],
-            "endpoints": [
-                "westus.api.cognitive.microsoft.com"
-            ],
             "parameters": [{
                 "name": "locale",
                 "description": "Locale for the language when retrieving verification phrases.",
@@ -448,9 +420,6 @@ const speakerRecognition = ({
                 "required": false,
                 "typeName": "string"
             }],
-            "endpoints": [
-                "westus.api.cognitive.microsoft.com"
-            ],
             "parameters": [{
                 "name": "identificationProfileId",
                 "description": "ID of speaker identification profile. GUID returned from Identification Profile - Create Profile API",
@@ -509,9 +478,6 @@ const speakerRecognition = ({
                 "required": false,
                 "typeName": "string"
             }],
-            "endpoints": [
-                "westus.api.cognitive.microsoft.com"
-            ],
             "parameters": []
         };
 
@@ -539,10 +505,6 @@ const speakerRecognition = ({
             "description": "Create a new speaker identification profile with specified locale.\
                 One subscription can only create 1000 speaker verification/identification profiles at most.",
             "serviceName": "Speaker Recognition",
-            "headers": [],
-            "endpoints": [
-                "westus.api.cognitive.microsoft.com"
-            ],
             "parameters": [{
                 "name": "identificationProfileId",
                 "description": "ID of speaker identification profile. GUID returned from Identification Profile - Create Profile API",
@@ -574,12 +536,7 @@ const speakerRecognition = ({
             "operationId": "5645c211e597ed22ec38f431",
             "id": "5645c211e597ed22ec38f431",
             "description": "Get all speaker identification profiles within the subscription.",
-            "serviceName": "Speaker Recognition",
-            "headers": [],
-            "endpoints": [
-                "westus.api.cognitive.microsoft.com"
-            ],
-            "parameters": []
+            "serviceName": "Speaker Recognition"
         };
 
         return makeRequest(self, {
@@ -604,10 +561,6 @@ const speakerRecognition = ({
             "id": "5645c0d9e597ed22ec38f42f",
             "description": "Get a speaker identification profile by identificationProfileId.",
             "serviceName": "Speaker Recognition",
-            "headers": [],
-            "endpoints": [
-                "westus.api.cognitive.microsoft.com"
-            ],
             "parameters": [{
                 "name": "identificationProfileId",
                 "description": "ID of speaker identification profile. GUID returned from Identification Profile - Create Profile API",
@@ -640,10 +593,6 @@ const speakerRecognition = ({
             "id": "5645c2c1e597ed22ec38f433",
             "description": "Deletes all enrollments associated with the given speaker identification profile permanently from the service.",
             "serviceName": "Speaker Recognition",
-            "headers": [],
-            "endpoints": [
-                "westus.api.cognitive.microsoft.com"
-            ],
             "parameters": [{
                 "name": "identificationProfileId",
                 "description": "ID of speaker identification profile. GUID returned from Identification Profile - Create Profile API",

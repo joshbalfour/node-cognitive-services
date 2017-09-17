@@ -11,6 +11,9 @@ const academicKnowledge = ({
 
     let self = this;
 
+    self.endpoints = [
+        "westus.api.cognitive.microsoft.com"
+    ],
     self._apiKey = apiKey;
     self._endpoint = endpoint;
 
@@ -27,9 +30,6 @@ const academicKnowledge = ({
             "id": "565d9001ca73072048922d97",
             "description": "The calchistogram REST API is used to calculate the distribution of attribute values for a set of paper entities.",
             "serviceName": "Academic Knowledge",
-            "endpoints": [
-                "westus.api.cognitive.microsoft.com"
-            ],
             "parameters": [{
                 "name": "expr",
                 "description": "A query expression that specifies the entities over which to calculate histograms.",
@@ -90,9 +90,6 @@ const academicKnowledge = ({
             "id": "5951f894d2864531c0129ba2",
             "description": "The calchistogram REST API is used to calculate the distribution of attribute values for a set of paper entities.",
             "serviceName": "Academic Knowledge",
-            "endpoints": [
-                "westus.api.cognitive.microsoft.com"
-            ],
             "headers": [{
                 "name": "Content-Type",
                 "description": "Media type of the body sent to the API.",
@@ -126,9 +123,6 @@ const academicKnowledge = ({
             "id": "565d753be597ed16ac3ffc03",
             "description": "The evaluate REST API is used to return a set of academic entities based on a query expression.",
             "serviceName": "Academic Knowledge",
-            "endpoints": [
-                "westus.api.cognitive.microsoft.com"
-            ],
             "parameters": [{
                 "name": "expr",
                 "description": "A query expression that specifies which entities should be returned.",
@@ -196,9 +190,6 @@ const academicKnowledge = ({
             "id": "5951f78363b4fb31286b8ef4",
             "description": "The evaluate REST API is used to return a set of academic entities based on a query expression.",
             "serviceName": "Academic Knowledge",
-            "endpoints": [
-                "westus.api.cognitive.microsoft.com"
-            ],
             "headers": [{
                 "name": "Content-Type",
                 "description": "Media type of the body sent to the API.",
@@ -233,9 +224,6 @@ const academicKnowledge = ({
             "id": "5951f78363b4fb31286b8ef4",
             "description": "The graph query interface powered by Graph Engine allows us to not only query entities that meet certain criteria (e.g. find a paper with a given title), but also perform pattern matching via graph exploration (e.g. detect co-authorship).",
             "serviceName": "Academic Knowledge",
-            "endpoints": [
-                "westus.api.cognitive.microsoft.com"
-            ],
             "headers": [{
                 "name": "Content-Type",
                 "description": "Media type of the body sent to the API.",
@@ -279,9 +267,6 @@ const academicKnowledge = ({
             "id": "56332331778daf06340c9666",
             "description": "The interpret REST API takes an end user query string (i.e., a query entered by a user of your application) and returns formatted interpretations of user intent based on the Academic Graph data and the Academic Grammar. To provide an interactive experience, you can call this method repeatedly after each character entered by the user. In that case, you should set the complete parameter to 1 to enable auto-complete suggestions. If your application does not want auto-completion, you should set the complete parameter to 0..",
             "serviceName": "Academic Knowledge",
-            "endpoints": [
-                "westus.api.cognitive.microsoft.com"
-            ],
             "parameters": [{
                 "name": "query",
                 "description": "Query entered by user. If complete is set to 1, query will be interpreted as a prefix for generating query auto-completion suggestions.",
@@ -349,9 +334,6 @@ const academicKnowledge = ({
             "id": "5951f6260ecf2621902c89e4",
             "description": "The calchistogram REST API is used to calculate the distribution of attribute values for a set of paper entities.",
             "serviceName": "Academic Knowledge",
-            "endpoints": [
-                "westus.api.cognitive.microsoft.com"
-            ],
             "headers": [{
                 "name": "Content-Type",
                 "description": "Media type of the body sent to the API.",
@@ -385,9 +367,6 @@ const academicKnowledge = ({
             "id": "58076bdadcf4c40708f83791",
             "description": "The similarity REST API is used to calculate a floating point value based on 2 text inputs.",
             "serviceName": "Academic Knowledge",
-            "endpoints": [
-                "westus.api.cognitive.microsoft.com"
-            ],
             "parameters": [{
                 "name": "s1",
                 "description": "String to be compared, input length is bounded by the limitation of the length of URL. When the strings are too long to be processed using GET, use POST instead.",
@@ -427,9 +406,6 @@ const academicKnowledge = ({
             "id": "58172b97dbe2d91538cc000b ",
             "description": "The similarity REST API is used to calculate a floating point value based on 2 text inputs.",
             "serviceName": "Academic Knowledge",
-            "endpoints": [
-                "westus.api.cognitive.microsoft.com"
-            ],
             "headers": [{
                 "name": "Content-Type",
                 "description": "Media type of the body sent to the API.",

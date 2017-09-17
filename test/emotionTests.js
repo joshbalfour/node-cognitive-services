@@ -48,7 +48,7 @@ describe('Emotion', () => {
                 should(operationId).be.String();
 
                 parameters = {
-                    'operationId': operationId
+                    'oid': operationId
                 };
 
                 return client.getRecognitionInVideoOperationResult({
