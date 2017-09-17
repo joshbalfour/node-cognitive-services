@@ -1,7 +1,7 @@
 const {
     makeRequest,
     verify
-} = require('../lib/api');
+} = require('../../lib/api');
 
 const video = ({
     apiKey,

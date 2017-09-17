@@ -1,7 +1,7 @@
 const {
     makeRequest,
     verifyParameters
-} = require('../lib/api');
+} = require('../../lib/api');
 
 const recommendations = ({
     apiKey
