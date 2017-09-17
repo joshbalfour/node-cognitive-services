@@ -103,7 +103,7 @@ Succeeded - the process succeeded.
                 "description": "",
                 "value": null,
                 "required": true,
-                "kind": 1,
+                "type": "routeParam",
                 "typeName": "string"
             }]
         };
@@ -140,7 +140,7 @@ Succeeded - the process succeeded.
                 "description": "",
                 "value": null,
                 "required": true,
-                "kind": 1,
+                "type": "routeParam",
                 "typeName": "string"
             }]
         };
@@ -209,7 +209,7 @@ Succeeded - the process succeeded.
                     "high"
                 ],
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "string"
             }, {
                 "name": "frameSamplingValue",
@@ -217,28 +217,28 @@ Succeeded - the process succeeded.
                 "value": 1,
                 "options": [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20],
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "number"
             }, {
                 "name": "detectionZones",
                 "description": "User can setup detection zones by passing in a string like “detectionZones=0,0;0.5,0;1,0;1,0.5;1,1;0.5,1;0,1;0,0.5 |0.3,0.3;0.55,0.3;0.8,0.3; 0.8,0.55;0.8,0.8;0.55,0.8;0.3,0.8;0.3,0.55;| 0,0;1,0;1,1;0,1”, each detection zone is separated by a “|” and each point is defined by a “x,y” pair and separated by a “;”. At most 8 detection zones are supported and each detection zone should be defined by at least 3 points and no more than 16 points. The default setting is “detectionZones=0,0;0.5,0;1,0;1,0.5;1,1;0.5,1;0,1;0,0.5”, i.e. the whole frame defined by an 8-point polygon.",
                 "value": "0,0;0.5,0;1,0;1,0.5;1,1;0.5,1;0,1;0,0.5",
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "string"
             }, {
                 "name": "detectLightChange",
                 "description": "Specify whether light change events should be detected. The default value is false.",
                 "value": false,
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "boolean"
             }, {
                 "name": "mergeTimeThreshold",
                 "description": "Specify the threshold on whether successive motions should be merged together, if the interval between successive motions is <= mergeTimeThreshold, they will be merged. The default value is 0.0 and upper bound is 10.0.",
                 "value": 0.0,
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "number"
             }]
         };
@@ -354,21 +354,21 @@ Succeeded - the process succeeded.
                 "description": "Specifies maximum duration of output video (in seconds). The default value is 0, which indicates the duration will be automatically decided by the algorithm.",
                 "value": "0",
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "number"
             }, {
                 "name": "outputAudio",
                 "description": "Indicates whether output video should include audio track. The default value is true.",
                 "value": true,
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "boolean"
             }, {
                 "name": "fadeInFadeOut",
                 "description": "Indicates whether output video should have fade in/out effect during scene changes. The default value is true.",
                 "value": true,
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "boolean"
             }]
         };

@@ -1,5 +1,5 @@
-const cognitive = require('../index.js');
-const config = require('./config.js');
+const cognitive = require('../../index.js');
+const config = require('../config.js');
 const should = require('should');
 const fs = require('fs');
 
@@ -33,15 +33,16 @@ describe('Emotion', () => {
         })
     })
 
-    describe.skip('Recognize emotion in video (POST and GET)', () => {
+    describe('Recognize emotion in video (POST and GET)', () => {
         it('should accept application/octet-stream', (done) => {
-            const headers = {
-                'Content-type': 'application/octet-stream'
-            };
             const body = fs.readFileSync('test/assets/video_girl_laughing.mp4');
 
+            var parameters = {
+                'outputStyle': 'aggregate'
+            };
+
             client.emotionRecognitionInVideo({
-                headers,
+                parameters,
                 body
             }).then((operationId) => {
                 should(operationId).not.be.undefined();

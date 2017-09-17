@@ -45,14 +45,14 @@ const bingWebSearch = ({
                 "description": "A 2-character country code of the country where the results come from.",
                 "value": "",
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "string"
             }, {
                 "name": "count",
                 "description": "The number of search results to return in the response. The default is 10 and the maximum value that you may specify is 50. The actual number delivered may be less than requested.",
                 "value": "10",
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "number"
             }, {
                 "name": "freshness",
@@ -64,28 +64,28 @@ const bingWebSearch = ({
                     "Month"
                 ],
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "string"
             }, {
                 "name": "mkt",
                 "description": "The market where the results come from. Typically, mkt is the country where the user is making the request from.",
                 "value": "",
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "string"
             }, {
                 "name": "offset",
                 "description": "The zero-based offset that indicates the number of image results to skip before returning results.",
                 "value": "0",
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "number"
             }, {
                 "name": "q",
                 "description": "The user's search query string.",
                 "value": "",
                 "required": true,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "string"
             }, {
                 "name": "responseFilter",
@@ -102,7 +102,7 @@ const bingWebSearch = ({
                     "Webpages"
                 ],
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "string"
             }, {
                 "name": "safeSearch",
@@ -114,14 +114,14 @@ const bingWebSearch = ({
                     "Strict"
                 ],
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "string"
             }, {
                 "name": "setLang",
                 "description": "The language to use for user interface strings.",
                 "value": null,
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "string"
             }, {
                 "name": "textDecorations",
@@ -132,7 +132,7 @@ const bingWebSearch = ({
                     "false"
                 ],
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "boolean"
             }, {
                 "name": "textFormat",
@@ -143,7 +143,7 @@ const bingWebSearch = ({
                     "HTML"
                 ],
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "strin"
             }]
         };

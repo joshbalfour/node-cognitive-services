@@ -52,14 +52,14 @@ const entityLinking = ({
                 "description": "The specific word or phrase within the text that is to be entity linked. If not specified, the service will try to recognize and identify all the entities within the input text.",
                 "value": null,
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "string"
             }, {
                 "name": "offset",
                 "description": "The location (in offset by characters) of the selected word or phrase within the input text. Used to distinguish when there are multiple instances of the same words or phrases within the input text. Only valid when the selection is specified.",
                 "value": null,
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "string"
             }]
         };

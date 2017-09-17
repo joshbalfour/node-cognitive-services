@@ -49,14 +49,14 @@ const webLanguageModel = ({
                     "body"
                 ],
                 "required": true,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "string"
             }, {
                 "name": "text",
                 "description": "The line of text to break into words. If spaces are present, they will be interpreted as hard breaks and maintained, except for leading or trailing spaces, which will be trimmed.",
                 "value": null,
                 "required": true,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "string"
             }, {
                 "name": "order",
@@ -66,14 +66,14 @@ const webLanguageModel = ({
                     "1", "2", "3", "4", "5"
                 ],
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "number"
             }, {
                 "name": "maxNumOfCandidatesReturned",
                 "description": "Max number of candidates that would be returned. If not specified, use default value 5.",
                 "value": "5",
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "number"
             }]
         };
@@ -133,7 +133,7 @@ const webLanguageModel = ({
                     "body"
                 ],
                 "required": true,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "string"
             }, {
                 "name": "order",
@@ -143,7 +143,7 @@ const webLanguageModel = ({
                     "1", "2", "3", "4", "5"
                 ],
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "number"
             }]
         };
@@ -205,7 +205,7 @@ const webLanguageModel = ({
                     "body"
                 ],
                 "required": true,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "string"
             }, {
                 "name": "order",
@@ -215,7 +215,7 @@ const webLanguageModel = ({
                     "1", "2", "3", "4", "5"
                 ],
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "number"
             }]
         };
@@ -263,14 +263,14 @@ const webLanguageModel = ({
                     "body"
                 ],
                 "required": true,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "string"
             }, {
                 "name": "words",
                 "description": "A string containing a sequence of words from which to generate the list of words likely to follow. The words should be separated by spaces.",
                 "value": null,
                 "required": true,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "string"
             }, {
                 "name": "order",
@@ -280,14 +280,14 @@ const webLanguageModel = ({
                     "1", "2", "3", "4", "5"
                 ],
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "number"
             }, {
                 "name": "maxNumOfCandidatesReturned",
                 "description": "Max number of candidates that would be returned. If not specified, use default value 5.",
                 "value": "5",
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "number"
             }]
         };

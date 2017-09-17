@@ -47,7 +47,7 @@ const speakerRecognition = ({
                 "description": "ID of speaker verification profile. GUID returned from Verification Profile - Create Profile API",
                 "value": null,
                 "required": true,
-                "kind": 1,
+                "type": "routeParam",
                 "typeName": "string"
             }]
         };
@@ -124,7 +124,7 @@ const speakerRecognition = ({
                 "description": "ID of speaker verification profile. It should be a GUID.",
                 "value": null,
                 "required": true,
-                "kind": 1,
+                "type": "routeParam",
                 "typeName": "string"
             }]
         };
@@ -185,7 +185,7 @@ const speakerRecognition = ({
                 "description": "ID of speaker verification profile. It should be a GUID.",
                 "value": "",
                 "required": true,
-                "kind": 1,
+                "type": "routeParam",
                 "typeName": "string"
             }]
         };
@@ -219,7 +219,7 @@ const speakerRecognition = ({
                 "description": "ID of speaker verification profile. It should be a GUID.",
                 "value": "",
                 "required": true,
-                "kind": 1,
+                "type": "routeParam",
                 "typeName": "string"
             }]
         };
@@ -252,7 +252,7 @@ const speakerRecognition = ({
                 "description": "The operation Id, created by <a href=\"https://dev.projectoxford.ai/docs/services/563309b6778daf02acc0a508/operations/5645c523778daf217c292592\"> Speaker Recognition - Identification</a> or <a href=\"https://dev.projectoxford.ai/docs/services/563309b6778daf02acc0a508/operations/5645c3271984551c84ec6797\"> Identification Profile - Create Enrollment</a>. ",
                 "value": "",
                 "required": true,
-                "kind": 1,
+                "type": "routeParam",
                 "typeName": "string"
             }]
         };
@@ -296,14 +296,14 @@ const speakerRecognition = ({
                 "description": "Comma-delimited identificationProfileIds, the id should be Guid. It can only support at most 10 profiles for one identification request.",
                 "value": "",
                 "required": true,
-                "kind": 1,
+                "type": "routeParam",
                 "typeName": "string"
             }, {
                 "name": "shortAudio",
                 "description": "Instruct the service to waive the recommended minimum audio limit needed for identification. Set value to “true” to force identification using any audio length (min. 1 second).",
                 "value": "",
                 "required": false,
-                "kind": 1,
+                "type": "routeParam",
                 "typeName": "boolean"
             }]
         };
@@ -348,7 +348,7 @@ const speakerRecognition = ({
                 "description": "ID of speaker verification profile. It should be a GUID.",
                 "value": null,
                 "required": true,
-                "kind": 1,
+                "type": "routeParam",
                 "typeName": "string"
             }]
         };
@@ -381,7 +381,7 @@ const speakerRecognition = ({
                 "description": "Locale for the language when retrieving verification phrases.",
                 "value": "en-US",
                 "required": true,
-                "kind": 1,
+                "type": "routeParam",
                 "typeName": "string"
             }]
         };
@@ -425,7 +425,7 @@ const speakerRecognition = ({
                 "description": "ID of speaker identification profile. GUID returned from Identification Profile - Create Profile API",
                 "value": null,
                 "required": true,
-                "kind": 1,
+                "type": "routeParam",
                 "typeName": "string"
             }, {
                 "name": "shortAudio",
@@ -433,7 +433,7 @@ const speakerRecognition = ({
                     Set value to 'true' to force enrollment using any audio length (min. 1 second).",
                 "value": null,
                 "required": false,
-                "kind": 1,
+                "type": "routeParam",
                 "typeName": "string"
             }]
         };
@@ -510,7 +510,7 @@ const speakerRecognition = ({
                 "description": "ID of speaker identification profile. GUID returned from Identification Profile - Create Profile API",
                 "value": null,
                 "required": string,
-                "kind": 1,
+                "type": "routeParam",
                 "typeName": "string"
             }]
         };
@@ -566,7 +566,7 @@ const speakerRecognition = ({
                 "description": "ID of speaker identification profile. GUID returned from Identification Profile - Create Profile API",
                 "value": null,
                 "required": string,
-                "kind": 1,
+                "type": "routeParam",
                 "typeName": "string"
             }]
         };
@@ -598,7 +598,7 @@ const speakerRecognition = ({
                 "description": "ID of speaker identification profile. GUID returned from Identification Profile - Create Profile API",
                 "value": null,
                 "required": string,
-                "kind": 1,
+                "type": "routeParam",
                 "typeName": "string"
             }]
         };

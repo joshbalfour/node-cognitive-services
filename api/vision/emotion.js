@@ -91,7 +91,7 @@ const emotion = ({
                     "perFrame"
                 ],
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "string"
             }]
         };
@@ -151,7 +151,7 @@ const emotion = ({
                 "description": "A face rectangle is in the form “left,top,width,height”. Delimited multiple face rectangles with a “;”. ",
                 "value": null,
                 "required": true,
-                "kind": 1,
+                "type": "routeParam",
                 "typeName": "string"
             }]
         };
@@ -206,7 +206,7 @@ const emotion = ({
                 "description": "",
                 "value": null,
                 "required": true,
-                "kind": 1,
+                "type": "routeParam",
                 "typeName": "string"
             }]
         };

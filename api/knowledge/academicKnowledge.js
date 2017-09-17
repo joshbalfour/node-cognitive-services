@@ -35,35 +35,35 @@ const academicKnowledge = ({
                 "description": "A query expression that specifies the entities over which to calculate histograms.",
                 "value": null,
                 "required": true,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "string"
             }, {
                 "name": "model",
                 "description": "Name of the model that you wish to query. Currently, the value defaults to \"latest\".\n",
                 "value": "latest",
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "string"
             }, {
                 "name": "attributes",
                 "description": "A comma delimited list that specifies the attribute values that are included in the response. Attribute names are case-sensitive.",
                 "value": null,
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "string"
             }, {
                 "name": "count",
                 "description": "Number of results to return.",
                 "value": "",
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "number"
             }, {
                 "name": "offset",
                 "description": "Index of the first result to return.",
                 "value": "",
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "number"
             }]
         };
@@ -128,42 +128,42 @@ const academicKnowledge = ({
                 "description": "A query expression that specifies which entities should be returned.",
                 "value": null,
                 "required": true,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "string"
             }, {
                 "name": "model",
                 "description": "Name of the model that you wish to query. Currently, the value defaults to \"latest\".\n",
                 "value": "latest",
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "string"
             }, {
                 "name": "count",
                 "description": "Number of results to return.",
                 "value": "10",
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "number"
             }, {
                 "name": "offset",
                 "description": "Index of the first result to return.",
                 "value": "0",
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "number"
             }, {
                 "name": "orderby",
                 "description": "Name of an attribute that is used for sorting the entities. Optionally, ascending/descending can be specified. The format is: name:asc or name:desc.",
                 "value": null,
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "string"
             }, {
                 "name": "attributes",
                 "description": "A comma delimited list that specifies the attribute values that are included in the response. Attribute names are case-sensitive.",
                 "value": "Id",
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "string"
             }]
         };
@@ -240,7 +240,7 @@ const academicKnowledge = ({
                 "value": null,
                 "options": ["json", "lambda"],
                 "required": true,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "string"
             }]
         };
@@ -272,42 +272,42 @@ const academicKnowledge = ({
                 "description": "Query entered by user. If complete is set to 1, query will be interpreted as a prefix for generating query auto-completion suggestions.",
                 "value": null,
                 "required": true,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "string"
             }, {
                 "name": "complete",
                 "description": "1 means that auto-completion suggestions are generated based on the grammar and graph data.",
                 "value": "0",
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "string"
             }, {
                 "name": "count",
                 "description": "Maximum number of interpretations to return.",
                 "value": "10",
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "number"
             }, {
                 "name": "offset",
                 "description": "Index of the first interpretation to return. For example, count=2&offset=0 returns interpretations 0 and 1. count=2&offset=2 returns interpretations 2 and 3.",
                 "value": null,
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "number"
             }, {
                 "name": "timeout",
                 "description": "Timeout in milliseconds. Only interpretations found before the timeout has elapsed are returned.",
                 "value": null,
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "number"
             }, {
                 "name": "model",
                 "description": "Name of the model that you wish to query. Currently, the value defaults to \"latest\".\n",
                 "value": "latest",
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "string"
             }]
         };
@@ -372,14 +372,14 @@ const academicKnowledge = ({
                 "description": "String to be compared, input length is bounded by the limitation of the length of URL. When the strings are too long to be processed using GET, use POST instead.",
                 "value": null,
                 "required": true,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "string"
             }, {
                 "name": "s2",
                 "description": "String to be compared, input length is bounded by the limitation of the length of URL. When the strings are too long to be processed using GET, use POST instead.",
                 "value": null,
                 "required": true,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "string"
             }]
         };

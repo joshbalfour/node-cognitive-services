@@ -75,28 +75,28 @@ const bingAutosuggest = ({
                 "description": "A 2-character country code of the country where the results come from.",
                 "value": "",
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "string"
             }, {
                 "name": "mkt",
                 "description": "The market where the results come from. Typically, mkt is the country where the user is making the request from. ",
                 "value": "",
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "string"
             }, {
                 "name": "q",
                 "description": "The user's search query string.",
                 "value": "",
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "string"
             }, {
                 "name": "setLang",
                 "description": "The language to use for user interface strings. Specify the language using the ISO 639-1 2-letter language code. For example, the language code for English is EN.",
                 "value": "",
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "string"
             }]
         };

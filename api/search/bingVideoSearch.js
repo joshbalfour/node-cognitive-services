@@ -44,28 +44,28 @@ const bingVideoSearch = ({
                 "description": "An ID that uniquely identifies a video. The Video object's videoId field contains the ID that you set this parameter to.",
                 "value": "",
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "string"
             }, {
                 "name": "q",
                 "description": "The user's search query string",
                 "value": "",
                 "required": true,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "string"
             }, {
                 "name": "cc",
                 "description": "A 2-character country code of the country where the results come from.",
                 "value": null,
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "string"
             }, {
                 "name": "count",
                 "description": "The number of video results to return in the response. The actual number delivered may be less than requested.",
                 "value": "",
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "number"
             }, {
                 "name": "freshness",
@@ -77,14 +77,14 @@ const bingVideoSearch = ({
                     "Month"
                 ],
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "string"
             }, {
                 "name": "offset",
                 "description": "The zero-based offset that indicates the number of video results to skip before returning results.",
                 "value": "0",
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "number"
             }, {
                 "name": "mkt",
@@ -94,7 +94,7 @@ const bingVideoSearch = ({
                     "es-AR","en-AU","de-AT","nl-BE","fr-BE","pt-BR","en-CA","fr-CA","es-CL","da-DK","fi-FI","fr-FR","de-DE","zh-HK","en-IN","en-ID","en-IE","it-IT","ja-JP","ko-KR","en-MY","es-MX","nl-NL","en-NZ","no-NO","zh-CN","pl-PL","pt-PT","en-PH","ru-RU","ar-SA","en-ZA","es-ES","sv-SE","fr-CH","de-CH","zh-TW","tr-TR","en-GB","en-US","es-US"
                 ],
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "string"
             }, {
                 "name": "safeSearch",
@@ -106,21 +106,21 @@ const bingVideoSearch = ({
                     "Strict"
                 ],
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "string"
             }, {
                 "name": "setLang",
                 "description": "The language to use for user interface strings.",
                 "value": null,
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "string"
             }, {
                 "name": "textDecorations",
                 "description": "A Boolean value that determines whether display strings should contain decoration markers such as hit highlighting characters.",
                 "value": "false",
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "boolean"
             }, {
                 "name": "textFormat",
@@ -131,7 +131,7 @@ const bingVideoSearch = ({
                     "HTML"
                 ],
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "string"
             }, {
                 "name": "pricing",
@@ -143,7 +143,7 @@ const bingVideoSearch = ({
                     "All"
                 ],
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "string"
             }, {
                 "name": "resolution",
@@ -156,7 +156,7 @@ const bingVideoSearch = ({
                     "All"
                 ],
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "string"
             }, {
                 "name": "videoLength",
@@ -169,7 +169,7 @@ const bingVideoSearch = ({
                     "All"
                 ],
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "string"
             }]
         };
@@ -203,14 +203,14 @@ const bingVideoSearch = ({
                 "description": "An ID that uniquely identifies a video. The Video object's videoId field contains the ID that you set this parameter to.",
                 "value": "",
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "string"
             }, {
                 "name": "cc",
                 "description": "A 2-character country code of the country where the results come from.",
                 "value": null,
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "string"
             }, {
                 "name": "freshness",
@@ -222,7 +222,7 @@ const bingVideoSearch = ({
                     "Month"
                 ],
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "string"
             }, {
                 "name": "mkt",
@@ -232,7 +232,7 @@ const bingVideoSearch = ({
                     "es-AR","en-AU","de-AT","nl-BE","fr-BE","pt-BR","en-CA","fr-CA","es-CL","da-DK","fi-FI","fr-FR","de-DE","zh-HK","en-IN","en-ID","en-IE","it-IT","ja-JP","ko-KR","en-MY","es-MX","nl-NL","en-NZ","no-NO","zh-CN","pl-PL","pt-PT","en-PH","ru-RU","ar-SA","en-ZA","es-ES","sv-SE","fr-CH","de-CH","zh-TW","tr-TR","en-GB","en-US","es-US"
                 ],
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "string"
             }, {
                 "name": "safeSearch",
@@ -244,21 +244,21 @@ const bingVideoSearch = ({
                     "Strict"
                 ],
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "string"
             }, {
                 "name": "setLang",
                 "description": "The language to use for user interface strings.",
                 "value": null,
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "string"
             }, {
                 "name": "textDecorations",
                 "description": "A Boolean value that determines whether display strings should contain decoration markers such as hit highlighting characters.",
                 "value": "false",
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "boolean"
             }, {
                 "name": "textFormat",
@@ -269,7 +269,7 @@ const bingVideoSearch = ({
                     "HTML"
                 ],
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "string"
             }, {
                 "name": "modulesRequested",
@@ -281,7 +281,7 @@ const bingVideoSearch = ({
                     "VideoResult"
                 ],
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "string"
             }]
         };
@@ -319,14 +319,14 @@ const bingVideoSearch = ({
                 "description": "An ID that uniquely identifies a video. The Video object's videoId field contains the ID that you set this parameter to.",
                 "value": "",
                 "required": true,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "string"
             }, {
                 "name": "cc",
                 "description": "A 2-character country code of the country where the results come from.",
                 "value": null,
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "string"
             }, {
                 "name": "mkt",
@@ -336,7 +336,7 @@ const bingVideoSearch = ({
                     "es-AR","en-AU","de-AT","nl-BE","fr-BE","pt-BR","en-CA","fr-CA","es-CL","da-DK","fi-FI","fr-FR","de-DE","zh-HK","en-IN","en-ID","en-IE","it-IT","ja-JP","ko-KR","en-MY","es-MX","nl-NL","en-NZ","no-NO","zh-CN","pl-PL","pt-PT","en-PH","ru-RU","ar-SA","en-ZA","es-ES","sv-SE","fr-CH","de-CH","zh-TW","tr-TR","en-GB","en-US","es-US"
                 ],
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "string"
             }, {
                 "name": "safeSearch",
@@ -348,21 +348,21 @@ const bingVideoSearch = ({
                     "Strict"
                 ],
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "string"
             }, {
                 "name": "setLang",
                 "description": "The language to use for user interface strings.",
                 "value": null,
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "string"
             }, {
                 "name": "textDecorations",
                 "description": "A Boolean value that determines whether display strings should contain decoration markers such as hit highlighting characters.",
                 "value": "false",
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "boolean"
             }, {
                 "name": "textFormat",
@@ -373,7 +373,7 @@ const bingVideoSearch = ({
                     "HTML"
                 ],
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "string"
             }, {
                 "name": "modulesRequested",
@@ -385,7 +385,7 @@ const bingVideoSearch = ({
                     "VideoResult"
                 ],
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "string"
             }, {
                 "name": "pricing",
@@ -397,7 +397,7 @@ const bingVideoSearch = ({
                     "All"
                 ],
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "string"
             }, {
                 "name": "resolution",
@@ -410,7 +410,7 @@ const bingVideoSearch = ({
                     "All"
                 ],
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "string"
             }, {
                 "name": "videoLength",
@@ -423,7 +423,7 @@ const bingVideoSearch = ({
                     "All"
                 ],
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "string"
             }]
         };

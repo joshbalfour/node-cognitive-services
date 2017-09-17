@@ -1,5 +1,5 @@
-const cognitive = require('../index.js');
-const config = require('./config.js');
+const cognitive = require('../../index.js');
+const config = require('../config.js');
 const should = require('should');
 
 describe('Bing spell check', () => {

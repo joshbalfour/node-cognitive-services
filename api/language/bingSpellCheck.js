@@ -56,14 +56,14 @@ const bingSpellCheck = ({
                     "proof"
                 ],
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "string"
             }, {
                 "name": "mkt",
                 "description": "For proof mode, only support en-us, es-es, pt-br, For spell mode, support all language codes.",
                 "value": null,
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "string"
             }]
         };

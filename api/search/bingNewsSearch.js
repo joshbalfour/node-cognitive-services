@@ -82,21 +82,21 @@ const bingNewsSearch = ({
                 "description": "The category of articles to return. For example, Sports articles or Entertainment articles.",
                 "value": null,
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "string"
             }, {
                 "name": "cc",
                 "description": "A 2-character country code of the country where the results come from.",
                 "value": null,
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "string"
             }, {
                 "name": "count",
                 "description": "The number of news articles to return in the response. The actual number delivered may be less than requested. The default is 10 and the maximum value that you may specify is 100.",
                 "value": "10",
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "number"
             }, {
                 "name": "freshness",
@@ -108,34 +108,34 @@ const bingNewsSearch = ({
                     "Month"
                 ],
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "string"
             }, {
                 "name": "headlineCount",
                 "description": "The number of headline articles and clusters to return. The default is 12.",
                 "value": "12",
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "number"
             }, {
                 "name": "mkt",
                 "description": "The market where the results come from. Typically, mkt is the country where the user is making the request from. However, it could be a different country if the user is not located in a country where Bing delivers results. The market must be in the form <language code>-<country code>. This parameter and the cc query parameter are mutually exclusive—do not specify both.",
                 "value": "",
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "string"
             }, {
                 "name": "offset",
                 "description": "The zero-based offset that indicates the number of news articles to skip before returning articles. ",
                 "value": "0",
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "number"
             }, {
                 "name": "originalImg",
                 "description": "A Boolean value that determines whether the image's contentUrl contains a URL that points to a thumbnail of the original article's image or the image itself.",
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "boolean"
             }, {
                 "name": "safeSearch",
@@ -147,21 +147,21 @@ const bingNewsSearch = ({
                     "Strict"
                 ],
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "string"
             }, {
                 "name": "setLang",
                 "description": "The language to use for user interface strings.",
                 "value": null,
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "string"
             }, {
                 "name": "textDecorations",
                 "description": "A Boolean value that determines whether display strings should contain decoration markers such as hit highlighting characters.",
                 "value": "false",
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "boolean"
             }, {
                 "name": "textFormat",
@@ -172,7 +172,7 @@ const bingNewsSearch = ({
                     "HTML"
                 ],
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "string"
             }]
         };
@@ -258,21 +258,21 @@ const bingNewsSearch = ({
                 "description": "The user's search query string. If the query string is empty (for example, q=), the response includes the top news stories.",
                 "value": null,
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "string"
             }, {
                 "name": "cc",
                 "description": "A 2-character country code of the country where the results come from.",
                 "value": null,
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "string"
             }, {
                 "name": "count",
                 "description": "The number of news articles to return in the response. The actual number delivered may be less than requested. The default is 10 and the maximum value that you may specify is 100.",
                 "value": "10",
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "number"
             }, {
                 "name": "freshness",
@@ -284,28 +284,28 @@ const bingNewsSearch = ({
                     "Month"
                 ],
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "string"
             }, {
                 "name": "mkt",
                 "description": "The market where the results come from. Typically, mkt is the country where the user is making the request from. However, it could be a different country if the user is not located in a country where Bing delivers results. The market must be in the form <language code>-<country code>. This parameter and the cc query parameter are mutually exclusive—do not specify both.",
                 "value": "",
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "string"
             }, {
                 "name": "offset",
                 "description": "The zero-based offset that indicates the number of news articles to skip before returning articles. ",
                 "value": "0",
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "number"
             }, {
                 "name": "originalImg",
                 "description": "A Boolean value that determines whether the image's contentUrl contains a URL that points to a thumbnail of the original article's image or the image itself.",
                 "value": "0",
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "boolean"
             }, {
                 "name": "safeSearch",
@@ -317,21 +317,21 @@ const bingNewsSearch = ({
                     "Strict"
                 ],
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "string"
             }, {
                 "name": "setLang",
                 "description": "The language to use for user interface strings.",
                 "value": null,
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "string"
             }, {
                 "name": "textDecorations",
                 "description": "A Boolean value that determines whether display strings should contain decoration markers such as hit highlighting characters.",
                 "value": "false",
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "boolean"
             }, {
                 "name": "textFormat",
@@ -342,7 +342,7 @@ const bingNewsSearch = ({
                     "HTML"
                 ],
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "strin"
             }]
         };
@@ -422,28 +422,28 @@ const bingNewsSearch = ({
                 "description": "A 2-character country code of the country where the results come from.",
                 "value": null,
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "string"
             }, {
                 "name": "count",
                 "description": "The number of news articles to return in the response. The actual number delivered may be less than requested. For trending topics, the default is all trending news topics (approximately 55 articles).",
                 "value": "55",
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "number"
             }, {
                 "name": "mkt",
                 "description": "The market where the results come from. Typically, mkt is the country where the user is making the request from. However, it could be a different country if the user is not located in a country where Bing delivers results. The market must be in the form <language code>-<country code>. This parameter and the cc query parameter are mutually exclusive—do not specify both.",
                 "value": "",
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "string"
             }, {
                 "name": "offset",
                 "description": "The zero-based offset that indicates the number of news articles to skip before returning articles. ",
                 "value": "0",
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "number"
             }, {
                 "name": "safeSearch",
@@ -455,21 +455,21 @@ const bingNewsSearch = ({
                     "Strict"
                 ],
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "string"
             }, {
                 "name": "setLang",
                 "description": "The language to use for user interface strings.",
                 "value": null,
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "string"
             }, {
                 "name": "textDecorations",
                 "description": "A Boolean value that determines whether display strings should contain decoration markers such as hit highlighting characters.",
                 "value": "false",
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "boolean"
             }, {
                 "name": "textFormat",
@@ -480,7 +480,7 @@ const bingNewsSearch = ({
                     "HTML"
                 ],
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "strin"
             }]
         };

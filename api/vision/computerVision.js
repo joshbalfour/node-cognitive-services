@@ -69,7 +69,7 @@ A successful response will be returned in JSON. If the request failed, the respo
                     "Description"
                 ],
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "string"
             }, {
                 "name": "details",
@@ -80,7 +80,7 @@ A successful response will be returned in JSON. If the request failed, the respo
                     "Landmarks"
                 ],
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "string"
             },{
                 "name": "language",
@@ -91,7 +91,7 @@ A successful response will be returned in JSON. If the request failed, the respo
                     "zh"
                 ],
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "string"
             }]
         };
@@ -146,7 +146,7 @@ A successful response will be returned in JSON. If the request failed, the respo
                 "description": "Maximum number of candidate descriptions to be returned. The default is 1.",
                 "value": "1",
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "string"
             }]
         };
@@ -200,21 +200,21 @@ Upon failure, the error code and an error message are returned. The error code c
                 "description": "Width of the thumbnail.	It must be between 1 and 1024. Recommended minimum of 50.",
                 "value": null,
                 "required": true,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "number"
             }, {
                 "name": "height",
                 "description": "Height of the thumbnail. It must be between 1 and 1024. Recommended minimum of 50.",
                 "value": null,
                 "required": true,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "number"
             }, {
                 "name": "smartCropping",
                 "description": "Boolean flag for enabling smart cropping.",
                 "value": "true",
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "boolean"
             }]
         };
@@ -323,7 +323,7 @@ Upon failure, the error code together with an error message will be returned. Th
                     "sk"
                 ],
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "string"
             }, {
                 "name": "detectOrientation",
@@ -334,7 +334,7 @@ Upon failure, the error code together with an error message will be returned. Th
                     "false"
                 ],
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "boolean"
             }]
         };
@@ -396,7 +396,7 @@ POST
                 "description": "The domain-specific content to recognize.",
                 "value": null,
                 "required": true,
-                "kind": 1,
+                "type": "routeParam",
                 "typeName": "string"
             }]
         };
@@ -478,7 +478,7 @@ POST
                 "description": "Id of the text operation returned in the response of the Recognize Handwritten Text interface.",
                 "value": null,
                 "required": true,
-                "kind": 1,
+                "type": "routeParam",
                 "typeName": "string"
             }]
         };
@@ -529,7 +529,7 @@ POST
                 "description": "If this parameter is set to “true” or is not specified, handwriting recognition is performed. If “false” is specified, printed text recognition is performed by calling OCR operation.",
                 "value": null,
                 "required": true,
-                "kind": 1,
+                "type": "routeParam",
                 "typeName": "boolean"
             }]
         };

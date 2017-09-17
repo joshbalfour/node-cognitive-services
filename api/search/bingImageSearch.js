@@ -44,7 +44,7 @@ const bingImageSearch = ({
                 "description": "The user's search query string",
                 "value": null,
                 "required": true,
-                "kind": 1,
+                "type": "routeParam",
                 "typeName": "string"
             }]
         };
@@ -77,28 +77,28 @@ const bingImageSearch = ({
                 "description": "The user's search query string",
                 "value": "",
                 "required": true,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "string"
             }, {
                 "name": "count",
                 "description": "The number of image results to return in the response. The actual number delivered may be less than requested.",
                 "value": "",
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "number"
             }, {
                 "name": "offset",
                 "description": "The zero-based offset that indicates the number of image results to skip before returning results.",
                 "value": "",
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "number"
             }, {
                 "name": "mkt",
                 "description": "The market where the results come from. Typically, this is the country where the user is making the request from; however, it could be a different country if the user is not located in a country where Bing delivers results. The market must be in the form {language code}-{country code}. For example, en-US.\n\n<br>\n<br>\nFull list of supported markets:\n<br>\nes-AR,en-AU,de-AT,nl-BE,fr-BE,pt-BR,en-CA,fr-CA,es-CL,da-DK,fi-FI,fr-FR,de-DE,zh-HK,en-IN,en-ID,en-IE,it-IT,ja-JP,ko-KR,en-MY,es-MX,nl-NL,en-NZ,no-NO,zh-CN,pl-PL,pt-PT,en-PH,ru-RU,ar-SA,en-ZA,es-ES,sv-SE,fr-CH,de-CH,zh-TW,tr-TR,en-GB,en-US,es-US",
                 "value": "en-us",
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "string"
             }, {
                 "name": "safeSearch",
@@ -110,7 +110,7 @@ const bingImageSearch = ({
                     "Strict"
                 ],
                 "required": false,
-                "kind": 2,
+                "type": "queryStringParam",
                 "typeName": "string"
             }]
         };
