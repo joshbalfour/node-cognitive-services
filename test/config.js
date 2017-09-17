@@ -53,4 +53,8 @@ module.exports = {
         endpoint: "westus.api.cognitive.microsoft.com",
         apiKey: "insert-key-here"
     },
+    textAnalytics: {
+        endpoint: "westus.api.cognitive.microsoft.com",
+        apiKey: "insert-key-here"
+    },
 }

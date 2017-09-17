@@ -33,7 +33,7 @@ describe.only('Emotion', () => {
         })
     })
 
-    describe('Recognize emotion in video (POST and GET)', () => {
+    describe.only('Recognize emotion in video (POST and GET)', () => {
         it('should accept application/octet-stream', (done) => {
             const headers = {
                 'Content-type': 'application/octet-stream'
