@@ -49,4 +49,8 @@ module.exports = {
         endpoint: "westus.api.cognitive.microsoft.com",
         apiKey: "insert-key-here"
     },
+    emotion: {
+        endpoint: "westus.api.cognitive.microsoft.com",
+        apiKey: "insert-key-here"
+    },
 }
