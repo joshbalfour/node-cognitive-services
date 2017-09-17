@@ -3,7 +3,7 @@ const config = require('./config.js');
 const should = require('should');
 const fs = require('fs');
 
-describe.only('Emotion', () => {
+describe('Emotion', () => {
 
     const client = cognitive.emotion({
         apiKey: config.emotion.apiKey,
@@ -33,7 +33,7 @@ describe.only('Emotion', () => {
         })
     })
 
-    describe.only('Recognize emotion in video (POST and GET)', () => {
+    describe.skip('Recognize emotion in video (POST and GET)', () => {
         it('should accept application/octet-stream', (done) => {
             const headers = {
                 'Content-type': 'application/octet-stream'
