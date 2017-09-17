@@ -8,7 +8,7 @@ describe('Computer vision', () => {
     const FRIENDS_IMAGE_URL = 'http://az616578.vo.msecnd.net/files/2016/10/09/636115830685164048-686058602_friends.jpg';
 
     const client = cognitive.computerVision({
-        API_KEY: config.computerVision.apiKey,
+        apiKey: config.computerVision.apiKey,
         endpoint: config.computerVision.endpoint
     });
 
@@ -157,7 +157,7 @@ describe('Computer vision', () => {
         });
     });
 
-    describe('Recognize handwritten text (GET and POST)',  () => {
+    describe('Recognize handwritten text (POST and GET)',  () => {
         it('should accept application/octet-stream', (done) => {
             const headers = {
                 'Content-type': 'application/octet-stream'

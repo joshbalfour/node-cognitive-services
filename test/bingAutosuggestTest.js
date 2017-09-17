@@ -5,7 +5,7 @@ const should = require('should');
 describe('Bing autosuggest', () => {
 
     const client = cognitive.bingAutosuggest({
-        API_KEY: config.bingAutosuggest.apiKey,
+        apiKey: config.bingAutosuggest.apiKey,
         endpoint: config.bingAutosuggest.endpoint
     });
 

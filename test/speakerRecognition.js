@@ -5,7 +5,7 @@ const should = require('should');
 describe('Speaker recognition', () => {
 
     const client = cognitive.speakerRecognition({
-        API_KEY: config.speakerRecognition.apiKey,
+        apiKey: config.speakerRecognition.apiKey,
         endpoint: config.speakerRecognition.endpoint
     });
 

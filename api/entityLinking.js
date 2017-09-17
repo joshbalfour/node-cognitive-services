@@ -4,7 +4,7 @@ const {
 } = require('../lib/api');
 
 const entityLinking = ({
-    API_KEY,
+    apiKey,
     endpoint
 }) => {
 
@@ -68,7 +68,7 @@ const entityLinking = ({
                     operation,
                     parameters,
                     body,
-                    API_KEY,
+                    apiKey,
                     endpoint,
                     headers
                 })}

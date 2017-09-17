@@ -4,7 +4,7 @@ const {
 } = require('../lib/api');
 
 const textAnalytics = ({
-    API_KEY
+    apiKey
 }) => {
 
     let self = this;
@@ -52,7 +52,7 @@ const textAnalytics = ({
                 operation,
                 parameters,
                 body,
-                API_KEY
+                apiKey
             }));
 
     };
@@ -111,7 +111,7 @@ const textAnalytics = ({
                 operation,
                 parameters,
                 body,
-                API_KEY
+                apiKey
             }));
 
     };
@@ -149,7 +149,7 @@ const textAnalytics = ({
                 operation,
                 parameters,
                 body,
-                API_KEY
+                apiKey
             }));
 
     };
@@ -192,7 +192,7 @@ const textAnalytics = ({
                 operation,
                 parameters,
                 body,
-                API_KEY
+                apiKey
             }));
 
     };
@@ -232,7 +232,7 @@ const textAnalytics = ({
                 operation,
                 parameters,
                 body,
-                API_KEY
+                apiKey
             }));
 
     };

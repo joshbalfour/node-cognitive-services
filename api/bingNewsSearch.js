@@ -4,7 +4,7 @@ const {
 } = require('../lib/api');
 
 const bingNewsSearch = ({
-    API_KEY,
+    apiKey,
     endpoint
 }) => {
 
@@ -183,7 +183,7 @@ const bingNewsSearch = ({
                     operation,
                     parameters,
                     body,
-                    API_KEY,
+                    apiKey,
                     endpoint,
                     headers
                 })}
@@ -364,7 +364,7 @@ const bingNewsSearch = ({
                     operation,
                     parameters,
                     body,
-                    API_KEY,
+                    apiKey,
                     endpoint,
                     headers
                 })}
@@ -512,7 +512,7 @@ const bingNewsSearch = ({
                     operation,
                     parameters,
                     body,
-                    API_KEY,
+                    apiKey,
                     endpoint,
                     headers
                 })}

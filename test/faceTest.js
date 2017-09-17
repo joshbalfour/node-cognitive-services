@@ -21,7 +21,7 @@ describe('Face', () => {
     var personId = null;
 
     const face = cognitive.face({
-        API_KEY: config.face.apiKey,
+        apiKey: config.face.apiKey,
         endpoint: config.face.endpoint
     });
 
@@ -132,7 +132,7 @@ describe('Face', () => {
                 'Content-type': 'application/octet-stream'
             };
             
-            const body = fs.readFileSync('test/assets/random_face.jpg');
+            const body = fs.readFileSync('test/assets/happy_face.jpg');
             const parameters = {
                 "personGroupId": personGroupId,
                 "personId": personId

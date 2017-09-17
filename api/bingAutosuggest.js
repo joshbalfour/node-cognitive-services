@@ -4,7 +4,7 @@ const {
 } = require('../lib/api');
 
 const bingAutosuggest = ({
-    API_KEY,
+    apiKey,
     endpoint
 }) => {
 
@@ -107,7 +107,7 @@ const bingAutosuggest = ({
                     operation,
                     parameters,
                     body,
-                    API_KEY,
+                    apiKey,
                     endpoint,
                     headers
                 })}

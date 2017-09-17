@@ -5,7 +5,7 @@ const should = require('should');
 describe('Academic knowledge', () => {
 
     const client = cognitive.academicKnowledge({
-        API_KEY: config.academicKnowledge.apiKey,
+        apiKey: config.academicKnowledge.apiKey,
         endpoint: config.academicKnowledge.endpoint
     });
 

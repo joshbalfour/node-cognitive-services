@@ -4,7 +4,7 @@ const {
 } = require('../lib/api');
 
 const video = ({
-    API_KEY
+    apiKey
 }) => {
 
     let self = this;
@@ -42,7 +42,7 @@ const video = ({
                 operation,
                 parameters,
                 body,
-                API_KEY
+                apiKey
             }));
 
     };
@@ -119,7 +119,7 @@ Possible values of "status" field are:<br/>
                 operation,
                 parameters,
                 body,
-                API_KEY
+                apiKey
             }));
 
     };
@@ -162,7 +162,7 @@ Possible values of "status" field are:<br/>
                 operation,
                 parameters,
                 body,
-                API_KEY
+                apiKey
             }));
 
     };
@@ -240,7 +240,7 @@ Possible values of "status" field are:<br/>
                 operation,
                 parameters,
                 body,
-                API_KEY
+                apiKey
             }));
 
     };
@@ -276,7 +276,7 @@ Possible values of "status" field are:<br/>
                 operation,
                 parameters,
                 body,
-                API_KEY
+                apiKey
             }));
 
     };
@@ -369,7 +369,7 @@ Possible values of "status" field are:<br/>
                 operation,
                 parameters,
                 body,
-                API_KEY
+                apiKey
             }));
 
     };

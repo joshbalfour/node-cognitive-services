@@ -4,7 +4,7 @@ const {
 } = require('../lib/api');
 
 const speakerRecognition = ({
-    API_KEY,
+    apiKey,
     endpoint
 }) => {
 
@@ -56,7 +56,7 @@ const speakerRecognition = ({
                     operation,
                     parameters,
                     body,
-                    API_KEY,
+                    apiKey,
                     endpoint,
                     headers
                 })}
@@ -104,7 +104,7 @@ const speakerRecognition = ({
                     operation,
                     parameters,
                     body,
-                    API_KEY,
+                    apiKey,
                     endpoint,
                     headers
                 })}
@@ -147,7 +147,7 @@ const speakerRecognition = ({
                     operation,
                     parameters,
                     body,
-                    API_KEY,
+                    apiKey,
                     endpoint,
                     headers
                 })}
@@ -184,7 +184,7 @@ const speakerRecognition = ({
 				operation,
 				parameters,
 				body,
-				API_KEY,
+				apiKey,
 				endpoint,
 				headers
 			})}
@@ -225,7 +225,7 @@ const speakerRecognition = ({
                     operation,
                     parameters,
                     body,
-                    API_KEY,
+                    apiKey,
                     endpoint,
                     headers
                 })}
@@ -268,7 +268,7 @@ const speakerRecognition = ({
                     operation,
                     parameters,
                     body,
-                    API_KEY,
+                    apiKey,
                     endpoint,
                     headers
                 })}
@@ -311,7 +311,7 @@ const speakerRecognition = ({
                     operation,
                     parameters,
                     body,
-                    API_KEY,
+                    apiKey,
                     endpoint,
                     headers
                 })}
@@ -370,7 +370,7 @@ const speakerRecognition = ({
                     operation,
                     parameters,
                     body,
-                    API_KEY,
+                    apiKey,
                     endpoint,
                     headers
                 })}
@@ -423,7 +423,7 @@ const speakerRecognition = ({
                     operation,
                     parameters,
                     body,
-                    API_KEY,
+                    apiKey,
                     endpoint,
                     headers
                 })}
@@ -467,7 +467,7 @@ const speakerRecognition = ({
                     operation,
                     parameters,
                     body,
-                    API_KEY,
+                    apiKey,
                     endpoint,
                     headers
                 })}
@@ -528,7 +528,7 @@ const speakerRecognition = ({
                     operation,
                     parameters,
                     body,
-                    API_KEY,
+                    apiKey,
                     endpoint,
                     headers
                 })}
@@ -578,7 +578,7 @@ const speakerRecognition = ({
                     operation,
                     parameters,
                     body,
-                    API_KEY,
+                    apiKey,
                     endpoint,
                     headers
                 })}
@@ -622,7 +622,7 @@ const speakerRecognition = ({
                     operation,
                     parameters,
                     body,
-                    API_KEY,
+                    apiKey,
                     endpoint,
                     headers
                 })}
@@ -658,7 +658,7 @@ const speakerRecognition = ({
                     operation,
                     parameters,
                     body,
-                    API_KEY,
+                    apiKey,
                     endpoint,
                     headers
                 })}
@@ -701,7 +701,7 @@ const speakerRecognition = ({
                     operation,
                     parameters,
                     body,
-                    API_KEY,
+                    apiKey,
                     endpoint,
                     headers
                 })}
@@ -744,7 +744,7 @@ const speakerRecognition = ({
                     operation,
                     parameters,
                     body,
-                    API_KEY,
+                    apiKey,
                     endpoint,
                     headers
                 })}

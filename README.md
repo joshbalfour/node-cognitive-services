@@ -185,7 +185,7 @@ offset | Index of the first result to return. | no | number | 0
 ```javascript
 
 const academicKnowledge = new cognitiveServices.academicKnowledge({
-    API_KEY: yourApiKey
+    apiKey: yourApiKey
 })
 
 const parameters = {
@@ -231,7 +231,7 @@ attributes | A comma delimited list that specifies the attribute values that are
 ```javascript
 
 const academicKnowledge = new cognitiveServices.academicKnowledge({
-    API_KEY: yourApiKey
+    apiKey: yourApiKey
 })
 
 const parameters = {
@@ -279,7 +279,7 @@ model | Name of the model that you wish to query. Currently, the value defaults 
 ```javascript
 
 const academicKnowledge = new cognitiveServices.academicKnowledge({
-    API_KEY: yourApiKey
+    apiKey: yourApiKey
 })
 
 const parameters = {
@@ -324,7 +324,7 @@ q | Query | yes | string | bill g
 ```javascript
 
 const bingAutosuggest = new cognitiveServices.bingAutosuggest({
-    API_KEY: yourApiKey
+    apiKey: yourApiKey
 })
 
 const parameters = {
@@ -369,7 +369,7 @@ An image to retrieve insights for
 ```javascript
 
 const bingImageSearch = new cognitiveServices.bingImageSearch({
-    API_KEY: yourApiKey
+    apiKey: yourApiKey
 })
 
 const body = {}; // An image to retrieve insights for
@@ -411,7 +411,7 @@ safeSearch | A filter used to filter results for adult content. | no | string | 
 ```javascript
 
 const bingImageSearch = new cognitiveServices.bingImageSearch({
-    API_KEY: yourApiKey
+    apiKey: yourApiKey
 })
 
 const parameters = {
@@ -451,7 +451,7 @@ Get currently trending images.
 ```javascript
 
 const bingImageSearch = new cognitiveServices.bingImageSearch({
-    API_KEY: yourApiKey
+    apiKey: yourApiKey
 })
 
 
@@ -489,7 +489,7 @@ Category | Specifies which category of news articles the caller wants returned. 
 ```javascript
 
 const bingNewsSearch = new cognitiveServices.bingNewsSearch({
-    API_KEY: yourApiKey
+    apiKey: yourApiKey
 })
 
 
@@ -527,7 +527,7 @@ safeSearch | A filter used to filter results for adult content. | no | string | 
 ```javascript
 
 const bingNewsSearch = new cognitiveServices.bingNewsSearch({
-    API_KEY: yourApiKey
+    apiKey: yourApiKey
 })
 
 const parameters = {
@@ -567,7 +567,7 @@ Get trending topics identified by Bing.  These are the same topics shown in the 
 ```javascript
 
 const bingNewsSearch = new cognitiveServices.bingNewsSearch({
-    API_KEY: yourApiKey
+    apiKey: yourApiKey
 })
 
 
@@ -605,7 +605,7 @@ mode | Mode of spellcheck:<ul><li>Proof - Meant to provide Office Word like spel
 ```javascript
 
 const bingSpellCheck = new cognitiveServices.bingSpellCheck({
-    API_KEY: yourApiKey
+    apiKey: yourApiKey
 })
 
 
@@ -647,7 +647,7 @@ safeSearch | A filter used to filter results for adult content. | no | string | 
 ```javascript
 
 const bingVideoSearch = new cognitiveServices.bingVideoSearch({
-    API_KEY: yourApiKey
+    apiKey: yourApiKey
 })
 
 const parameters = {
@@ -687,7 +687,7 @@ Get currently trending videos.
 ```javascript
 
 const bingVideoSearch = new cognitiveServices.bingVideoSearch({
-    API_KEY: yourApiKey
+    apiKey: yourApiKey
 })
 
 
@@ -729,7 +729,7 @@ safesearch | A filter used to filter results for adult content. | no | string | 
 ```javascript
 
 const bingWebSearch = new cognitiveServices.bingWebSearch({
-    API_KEY: yourApiKey
+    apiKey: yourApiKey
 })
 
 const parameters = {
@@ -795,7 +795,7 @@ Input requirements:
 ```javascript
 
 const computerVision = cognitiveServices.computerVision({
-    API_KEY: yourApiKey
+    apiKey: yourApiKey
 })
 
 const parameters = {
@@ -863,7 +863,7 @@ Input requirements:
 ```javascript
 
 const computerVision = cognitiveServices.computerVision({
-    API_KEY: yourApiKey
+    apiKey: yourApiKey
 })
 
 const parameters = {
@@ -933,7 +933,7 @@ Input requirements:
 ```javascript
 
 const computerVision = cognitiveServices.computerVision({
-    API_KEY: yourApiKey
+    apiKey: yourApiKey
 })
 
 const parameters = {
@@ -986,7 +986,7 @@ GET
 ```javascript
 
 const computerVision = cognitiveServices.computerVision({
-    API_KEY: yourApiKey
+    apiKey: yourApiKey
 })
 
 
@@ -1039,7 +1039,7 @@ Input requirements:
 ```javascript
 
 const computerVision = cognitiveServices.computerVision({
-    API_KEY: yourApiKey
+    apiKey: yourApiKey
 })
 
 const parameters = {
@@ -1109,7 +1109,7 @@ Input requirements:
 ```javascript
 
 const computerVision = cognitiveServices.computerVision({
-    API_KEY: yourApiKey
+    apiKey: yourApiKey
 })
 
 /* Input passed within the POST body. Supported input methods: raw image binary or image URL. 
@@ -1170,7 +1170,7 @@ Input requirements:
 ```javascript
 
 const computerVision = cognitiveServices.computerVision({
-    API_KEY: yourApiKey
+    apiKey: yourApiKey
 })
 
 /* Input passed within the POST body. Supported input methods: raw image binary or image URL. 
@@ -1217,7 +1217,7 @@ Recognizes the emotions expressed by one or more people in an image, as well as 
 ```javascript
 
 const emotion = new cognitiveServices.emotion({
-    API_KEY: yourApiKey
+    apiKey: yourApiKey
 })
 
 
@@ -1256,7 +1256,7 @@ Returns aggregate emotions for the faces in a video.
 ```javascript
 
 const emotion = new cognitiveServices.emotion({
-    API_KEY: yourApiKey
+    apiKey: yourApiKey
 })
 
 
@@ -1290,7 +1290,7 @@ faceRectangles | A face rectangle is in the form “left,top,width,height”. De
 ```javascript
 
 const emotion = new cognitiveServices.emotion({
-    API_KEY: yourApiKey
+    apiKey: yourApiKey
 })
 
 
@@ -1349,7 +1349,7 @@ oid |  | yes | string |
 ```javascript
 
 const emotion = new cognitiveServices.emotion({
-    API_KEY: yourApiKey
+    apiKey: yourApiKey
 })
 
 
@@ -1390,7 +1390,7 @@ Given a specific paragraph of text within a document, the Entity Linking Intelli
 ```javascript
 
 const entityLinking = new cognitiveServices.entityLinking({
-    API_KEY: yourApiKey
+    apiKey: yourApiKey
 })
 
 const body = {}; // Given a specific paragraph of text within a document, the Entity Linking Intelligence Service will recognize and identify each separate entity based on the context
@@ -1456,7 +1456,7 @@ url | URL of input image
 ```javascript
 
 const face = new cognitiveServices.face({
-    API_KEY: yourApiKey
+    apiKey: yourApiKey
 })
 
 const parameters = {
@@ -1510,7 +1510,7 @@ maxNumOfCandidatesReturned |  for more detail faceListId and faceIds should not 
 ```javascript
 
 const face = new cognitiveServices.face({
-    API_KEY: yourApiKey
+    apiKey: yourApiKey
 })
 
 const body = {
@@ -1568,7 +1568,7 @@ faceIds | Candidate face IDs The maximum is 1000 faces
 ```javascript
 
 const face = new cognitiveServices.face({
-    API_KEY: yourApiKey
+    apiKey: yourApiKey
 })
 
 const body = {
@@ -1630,7 +1630,7 @@ maxNumOfCandidatesReturned | The range of maxNumOfCandidatesReturned is between 
 ```javascript
 
 const face = new cognitiveServices.face({
-    API_KEY: yourApiKey
+    apiKey: yourApiKey
 })
 
 const body = {
@@ -1685,7 +1685,7 @@ faceId2 | ID of another face
 ```javascript
 
 const face = new cognitiveServices.face({
-    API_KEY: yourApiKey
+    apiKey: yourApiKey
 })
 
 const body = {
@@ -1752,7 +1752,7 @@ url | Image url Image file size should between 1KB to 4MB Only one face is allow
 ```javascript
 
 const face = new cognitiveServices.face({
-    API_KEY: yourApiKey
+    apiKey: yourApiKey
 })
 
 const body = {
@@ -1808,7 +1808,7 @@ userData | Optional user defined data for the face list Length should not exceed
 ```javascript
 
 const face = new cognitiveServices.face({
-    API_KEY: yourApiKey
+    apiKey: yourApiKey
 })
 
 const body = {
@@ -1854,7 +1854,7 @@ persistedFaceId | Valid character is letter in lower case or digit or '-' or '_'
 ```javascript
 
 const face = new cognitiveServices.face({
-    API_KEY: yourApiKey
+    apiKey: yourApiKey
 })
 
 
@@ -1892,7 +1892,7 @@ faceListId | Valid character is letter in lower case or digit or '-' or '_', max
 ```javascript
 
 const face = new cognitiveServices.face({
-    API_KEY: yourApiKey
+    apiKey: yourApiKey
 })
 
 
@@ -1931,7 +1931,7 @@ faceListId | Valid character is letter in lower case or digit or '-' or '_', max
 ```javascript
 
 const face = new cognitiveServices.face({
-    API_KEY: yourApiKey
+    apiKey: yourApiKey
 })
 
 
@@ -1966,7 +1966,7 @@ face.getAFaceList()
 ```javascript
 
 const face = new cognitiveServices.face({
-    API_KEY: yourApiKey
+    apiKey: yourApiKey
 })
 
 
@@ -2011,7 +2011,7 @@ userData | Optional user defined data for the face list Length should not exceed
 ```javascript
 
 const face = new cognitiveServices.face({
-    API_KEY: yourApiKey
+    apiKey: yourApiKey
 })
 
 const body = {
@@ -2075,7 +2075,7 @@ url | Face image URL Valid image size is from 1KB to 4MB Only one face is allowe
 ```javascript
 
 const face = new cognitiveServices.face({
-    API_KEY: yourApiKey
+    apiKey: yourApiKey
 })
 
 const body = {
@@ -2127,7 +2127,7 @@ userData | Optional fields for user-provided data attached to a person Size limi
 ```javascript
 
 const face = new cognitiveServices.face({
-    API_KEY: yourApiKey
+    apiKey: yourApiKey
 })
 
 const body = {
@@ -2173,7 +2173,7 @@ personId | The target personId to delete. | yes | string |
 ```javascript
 
 const face = new cognitiveServices.face({
-    API_KEY: yourApiKey
+    apiKey: yourApiKey
 })
 
 
@@ -2213,7 +2213,7 @@ persistedFaceId | The face to remove. This persisted face ID is returned from Pe
 ```javascript
 
 const face = new cognitiveServices.face({
-    API_KEY: yourApiKey
+    apiKey: yourApiKey
 })
 
 
@@ -2252,7 +2252,7 @@ personId | The target person ID. | yes | string |
 ```javascript
 
 const face = new cognitiveServices.face({
-    API_KEY: yourApiKey
+    apiKey: yourApiKey
 })
 
 
@@ -2292,7 +2292,7 @@ persistedFaceId | The target face ID. | yes | string |
 ```javascript
 
 const face = new cognitiveServices.face({
-    API_KEY: yourApiKey
+    apiKey: yourApiKey
 })
 
 
@@ -2330,7 +2330,7 @@ personGroupId | Target person group's ID. | yes | string |
 ```javascript
 
 const face = new cognitiveServices.face({
-    API_KEY: yourApiKey
+    apiKey: yourApiKey
 })
 
 
@@ -2375,7 +2375,7 @@ userData | User-provided data attached to the person Maximum length is 16KB
 ```javascript
 
 const face = new cognitiveServices.face({
-    API_KEY: yourApiKey
+    apiKey: yourApiKey
 })
 
 const body = {
@@ -2427,7 +2427,7 @@ userData | Optional Attach user data to person's face The size limit is 1KB
 ```javascript
 
 const face = new cognitiveServices.face({
-    API_KEY: yourApiKey
+    apiKey: yourApiKey
 })
 
 const body = {
@@ -2480,7 +2480,7 @@ userData | User-provided data attached to the person group The size limit is 16K
 ```javascript
 
 const face = new cognitiveServices.face({
-    API_KEY: yourApiKey
+    apiKey: yourApiKey
 })
 
 const body = {
@@ -2525,7 +2525,7 @@ personGroupId | The ID of the person group to be deleted. | yes | string |
 ```javascript
 
 const face = new cognitiveServices.face({
-    API_KEY: yourApiKey
+    apiKey: yourApiKey
 })
 
 
@@ -2563,7 +2563,7 @@ personGroupId | ID of the target person group. | yes | string |
 ```javascript
 
 const face = new cognitiveServices.face({
-    API_KEY: yourApiKey
+    apiKey: yourApiKey
 })
 
 
@@ -2601,7 +2601,7 @@ personGroupId | ID of target person group. | yes | string |
 ```javascript
 
 const face = new cognitiveServices.face({
-    API_KEY: yourApiKey
+    apiKey: yourApiKey
 })
 
 
@@ -2636,7 +2636,7 @@ face.getPersonGroupTrainingStatus()
 ```javascript
 
 const face = new cognitiveServices.face({
-    API_KEY: yourApiKey
+    apiKey: yourApiKey
 })
 
 
@@ -2677,7 +2677,7 @@ personGroupId | Target person group to be trained. | yes | string |
 ```javascript
 
 const face = new cognitiveServices.face({
-    API_KEY: yourApiKey
+    apiKey: yourApiKey
 })
 
 
@@ -2721,7 +2721,7 @@ userData | User-provided data attached to the person group The size limit is 16K
 ```javascript
 
 const face = new cognitiveServices.face({
-    API_KEY: yourApiKey
+    apiKey: yourApiKey
 })
 
 const body = {
@@ -2767,7 +2767,7 @@ You may create up to 10 models. If you need to delete unused models, you may use
 ```javascript
 
 const recommendations = new cognitiveServices.recommendations({
-    API_KEY: yourApiKey
+    apiKey: yourApiKey
 })
 
 
@@ -2801,7 +2801,7 @@ modelId | Unique identifier of the model | yes | string |
 ```javascript
 
 const recommendations = new cognitiveServices.recommendations({
-    API_KEY: yourApiKey
+    apiKey: yourApiKey
 })
 
 
@@ -2838,7 +2838,7 @@ buildId | Format - int64. Unique identifier of the build | yes | integer |
 ```javascript
 
 const recommendations = new cognitiveServices.recommendations({
-    API_KEY: yourApiKey
+    apiKey: yourApiKey
 })
 
 
@@ -2872,7 +2872,7 @@ id | Unique identifier of the model. | yes | string |
 ```javascript
 
 const recommendations = new cognitiveServices.recommendations({
-    API_KEY: yourApiKey
+    apiKey: yourApiKey
 })
 
 
@@ -2906,7 +2906,7 @@ id | Operation ID | yes | string |
 ```javascript
 
 const recommendations = new cognitiveServices.recommendations({
-    API_KEY: yourApiKey
+    apiKey: yourApiKey
 })
 
 
@@ -2940,7 +2940,7 @@ id | Unique identifier of the model to be fetched. | yes | string |
 ```javascript
 
 const recommendations = new cognitiveServices.recommendations({
-    API_KEY: yourApiKey
+    apiKey: yourApiKey
 })
 
 
@@ -2971,7 +2971,7 @@ Retrieves all models.
 ```javascript
 
 const recommendations = new cognitiveServices.recommendations({
-    API_KEY: yourApiKey
+    apiKey: yourApiKey
 })
 
 
@@ -3006,7 +3006,7 @@ buildId | Format - int64. Unique identifier of the build | yes | integer |
 ```javascript
 
 const recommendations = new cognitiveServices.recommendations({
-    API_KEY: yourApiKey
+    apiKey: yourApiKey
 })
 
 
@@ -3041,7 +3041,7 @@ buildId | Format - int64. Unique identifier of the build | yes | integer |
 ```javascript
 
 const recommendations = new cognitiveServices.recommendations({
-    API_KEY: yourApiKey
+    apiKey: yourApiKey
 })
 
 
@@ -3076,7 +3076,7 @@ onlyLastRequestedBuild | true to return only the last build of the model, false 
 ```javascript
 
 const recommendations = new cognitiveServices.recommendations({
-    API_KEY: yourApiKey
+    apiKey: yourApiKey
 })
 
 
@@ -3115,7 +3115,7 @@ buildId | Format - int64. The build id to use for this recommendation request. I
 ```javascript
 
 const recommendations = new cognitiveServices.recommendations({
-    API_KEY: yourApiKey
+    apiKey: yourApiKey
 })
 
 
@@ -3159,7 +3159,7 @@ buildId | Format - int64. Build identifier, if the number is less than 0, uses t
 ```javascript
 
 const recommendations = new cognitiveServices.recommendations({
-    API_KEY: yourApiKey
+    apiKey: yourApiKey
 })
 
 
@@ -3193,7 +3193,7 @@ id | Operation ID | yes | string |
 ```javascript
 
 const recommendations = new cognitiveServices.recommendations({
-    API_KEY: yourApiKey
+    apiKey: yourApiKey
 })
 
 
@@ -3227,7 +3227,7 @@ id | Unique identifier of the model. | yes | string |
 ```javascript
 
 const recommendations = new cognitiveServices.recommendations({
-    API_KEY: yourApiKey
+    apiKey: yourApiKey
 })
 
 
@@ -3264,7 +3264,7 @@ Only letters (A-Z, a-z), numbers (0-9), hyphens (-) and underscore (_) are allow
 ```javascript
 
 const recommendations = new cognitiveServices.recommendations({
-    API_KEY: yourApiKey
+    apiKey: yourApiKey
 })
 
 
@@ -3299,7 +3299,7 @@ usageDisplayName | Display name of the usage data. e.g. "UsageFile1"Only letters
 ```javascript
 
 const recommendations = new cognitiveServices.recommendations({
-    API_KEY: yourApiKey
+    apiKey: yourApiKey
 })
 
 
@@ -3347,7 +3347,7 @@ Channels | Mono
 ```javascript
 
 const speakerRecognition = new cognitiveServices.speakerRecognition({
-    API_KEY: yourApiKey
+    apiKey: yourApiKey
 })
 
 const body = {
@@ -3389,7 +3389,7 @@ One subscription can only create 1000 speaker verification/identification profil
 ```javascript
 
 const speakerRecognition = new cognitiveServices.speakerRecognition({
-    API_KEY: yourApiKey
+    apiKey: yourApiKey
 })
 
 
@@ -3425,7 +3425,7 @@ verificationProfileId | ID of speaker verification profile. It should be a GUID.
 ```javascript
 
 const speakerRecognition = new cognitiveServices.speakerRecognition({
-    API_KEY: yourApiKey
+    apiKey: yourApiKey
 })
 
 
@@ -3456,7 +3456,7 @@ Get all speaker verification profiles within the subscription.
 ```javascript
 
 const speakerRecognition = new cognitiveServices.speakerRecognition({
-    API_KEY: yourApiKey
+    apiKey: yourApiKey
 })
 
 
@@ -3490,7 +3490,7 @@ verificationProfileId | ID of speaker verification profile. It should be a GUID.
 ```javascript
 
 const speakerRecognition = new cognitiveServices.speakerRecognition({
-    API_KEY: yourApiKey
+    apiKey: yourApiKey
 })
 
 const parameters = {
@@ -3529,7 +3529,7 @@ verificationProfileId | ID of speaker verification profile. It should be a GUID.
 ```javascript
 
 const speakerRecognition = new cognitiveServices.speakerRecognition({
-    API_KEY: yourApiKey
+    apiKey: yourApiKey
 })
 
 
@@ -3563,7 +3563,7 @@ operationId | The operation Id, created by  Speaker Recognition - Identification
 ```javascript
 
 const speakerRecognition = new cognitiveServices.speakerRecognition({
-    API_KEY: yourApiKey
+    apiKey: yourApiKey
 })
 
 const parameters = {
@@ -3611,7 +3611,7 @@ Channels | Mono
 ```javascript
 
 const speakerRecognition = new cognitiveServices.speakerRecognition({
-    API_KEY: yourApiKey
+    apiKey: yourApiKey
 })
 
 const parameters = {
@@ -3668,7 +3668,7 @@ Channels | Mono
 ```javascript
 
 const speakerRecognition = new cognitiveServices.speakerRecognition({
-    API_KEY: yourApiKey
+    apiKey: yourApiKey
 })
 
 const body = {
@@ -3712,7 +3712,7 @@ locale | Locale for the language when retrieving verification phrases. | yes | s
 ```javascript
 
 const speakerRecognition = new cognitiveServices.speakerRecognition({
-    API_KEY: yourApiKey
+    apiKey: yourApiKey
 })
 
 const parameters = {
@@ -3757,7 +3757,7 @@ numberOfLanguagesToDetect | Format - int32. (Optional) Number of languages to de
 ```javascript
 
 const textAnalytics = new cognitiveServices.textAnalytics({
-    API_KEY: yourApiKey
+    apiKey: yourApiKey
 })
 
 
@@ -3802,7 +3802,7 @@ Omit to let the service choose appropriate value. | no | integer |
 ```javascript
 
 const textAnalytics = new cognitiveServices.textAnalytics({
-    API_KEY: yourApiKey
+    apiKey: yourApiKey
 })
 
 
@@ -3835,7 +3835,7 @@ The API returns a list of strings denoting the key talking points in the input t
 ```javascript
 
 const textAnalytics = new cognitiveServices.textAnalytics({
-    API_KEY: yourApiKey
+    apiKey: yourApiKey
 })
 
 
@@ -3869,7 +3869,7 @@ operationId | A unique id for the submitted operation. | yes | string |
 ```javascript
 
 const textAnalytics = new cognitiveServices.textAnalytics({
-    API_KEY: yourApiKey
+    apiKey: yourApiKey
 })
 
 
@@ -3904,7 +3904,7 @@ The API returns a numeric score between 0 and 1.
 ```javascript
 
 const textAnalytics = new cognitiveServices.textAnalytics({
-    API_KEY: yourApiKey
+    apiKey: yourApiKey
 })
 
 
@@ -3940,7 +3940,7 @@ Detects and tracks human faces in a video and returns face locations. &bull; The
 ```javascript
 
 const video = new cognitiveServices.video({
-    API_KEY: yourApiKey
+    apiKey: yourApiKey
 })
 
 
@@ -4008,7 +4008,7 @@ oid | OperationId | yes | string |
 ```javascript
 
 const video = new cognitiveServices.video({
-    API_KEY: yourApiKey
+    apiKey: yourApiKey
 })
 
 
@@ -4042,7 +4042,7 @@ oid |  | yes | string |
 ```javascript
 
 const video = new cognitiveServices.video({
-    API_KEY: yourApiKey
+    apiKey: yourApiKey
 })
 
 
@@ -4081,7 +4081,7 @@ mergeTimeThreshold | Specify the threshold on whether successive motions should 
 ```javascript
 
 const video = new cognitiveServices.video({
-    API_KEY: yourApiKey
+    apiKey: yourApiKey
 })
 
 
@@ -4112,7 +4112,7 @@ Smooths and stabilizes a video.  &bull;  The supported input video formats inclu
 ```javascript
 
 const video = new cognitiveServices.video({
-    API_KEY: yourApiKey
+    apiKey: yourApiKey
 })
 
 
@@ -4180,7 +4180,7 @@ fadeInFadeOut | Indicates whether output video should have fade in/out effect du
 ```javascript
 
 const video = new cognitiveServices.video({
-    API_KEY: yourApiKey
+    apiKey: yourApiKey
 })
 
 
@@ -4223,7 +4223,7 @@ empty post body
 ```javascript
 
 const webLanguageModel = new cognitiveServices.webLanguageModel({
-    API_KEY: yourApiKey
+    apiKey: yourApiKey
 })
 
 const body = {}; // empty post body
@@ -4262,7 +4262,7 @@ order | The order of N-gram. If not specified, use default value 5 .Supported va
 ```javascript
 
 const webLanguageModel = new cognitiveServices.webLanguageModel({
-    API_KEY: yourApiKey
+    apiKey: yourApiKey
 })
 
 
@@ -4297,7 +4297,7 @@ order | The order of N-gram. If not specified, use default value 5 .Supported va
 ```javascript
 
 const webLanguageModel = new cognitiveServices.webLanguageModel({
-    API_KEY: yourApiKey
+    apiKey: yourApiKey
 })
 
 
@@ -4336,7 +4336,7 @@ empty post body
 ```javascript
 
 const webLanguageModel = new cognitiveServices.webLanguageModel({
-    API_KEY: yourApiKey
+    apiKey: yourApiKey
 })
 
 const body = {}; // empty post body
@@ -4371,7 +4371,7 @@ List models available currently.
 ```javascript
 
 const webLanguageModel = new cognitiveServices.webLanguageModel({
-    API_KEY: yourApiKey
+    apiKey: yourApiKey
 })
 
 

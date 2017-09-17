@@ -4,7 +4,7 @@ const {
 } = require('../lib/api');
 
 const face = ({
-    API_KEY, 
+    apiKey, 
     endpoint
 }) => {
 
@@ -110,7 +110,7 @@ const face = ({
                     operation,
                     parameters,
                     body,
-                    API_KEY,
+                    apiKey,
                     endpoint,
                     headers
                 })}
@@ -183,7 +183,7 @@ const face = ({
                     operation,
                     parameters,
                     body,
-                    API_KEY,
+                    apiKey,
                     endpoint,
                     headers
                 })}
@@ -253,7 +253,7 @@ const face = ({
                     operation,
                     parameters,
                     body,
-                    API_KEY,
+                    apiKey,
                     endpoint,
                     headers
                 })}
@@ -336,7 +336,7 @@ const face = ({
                     operation,
                     parameters,
                     body,
-                    API_KEY,
+                    apiKey,
                     endpoint,
                     headers
                 })}
@@ -406,7 +406,7 @@ const face = ({
                     operation,
                     parameters,
                     body,
-                    API_KEY,
+                    apiKey,
                     endpoint,
                     headers
                 })}
@@ -507,7 +507,7 @@ Face list is a group of faces, and these faces will not expire. Face list is use
                     operation,
                     parameters,
                     body,
-                    API_KEY,
+                    apiKey,
                     endpoint,
                     headers
                 })}
@@ -585,7 +585,7 @@ Face list is a group of faces, and these faces will not expire. Face list is use
                     operation,
                     parameters,
                     body,
-                    API_KEY,
+                    apiKey,
                     endpoint,
                     headers
                 })}
@@ -650,7 +650,7 @@ Face list is a group of faces, and these faces will not expire. Face list is use
                     operation,
                     parameters,
                     body,
-                    API_KEY,
+                    apiKey,
                     endpoint,
                     headers
                 })}
@@ -707,7 +707,7 @@ Face list is a group of faces, and these faces will not expire. Face list is use
                     operation,
                     parameters,
                     body,
-                    API_KEY,
+                    apiKey,
                     endpoint,
                     headers
                 })}
@@ -766,7 +766,7 @@ Face list is a group of faces, and these faces will not expire. Face list is use
                     operation,
                     parameters,
                     body,
-                    API_KEY,
+                    apiKey,
                     endpoint,
                     headers
                 })}
@@ -815,7 +815,7 @@ Face list is a group of faces, and these faces will not expire. Face list is use
                     operation,
                     parameters,
                     body,
-                    API_KEY,
+                    apiKey,
                     endpoint,
                     headers
                 })}
@@ -888,7 +888,7 @@ Face list is a group of faces, and these faces will not expire. Face list is use
                     operation,
                     parameters,
                     body,
-                    API_KEY,
+                    apiKey,
                     endpoint,
                     headers
                 })}
@@ -993,7 +993,7 @@ and
                     operation,
                     parameters,
                     body,
-                    API_KEY,
+                    apiKey,
                     endpoint,
                     headers
                 })}
@@ -1068,7 +1068,7 @@ and
                     operation,
                     parameters,
                     body,
-                    API_KEY,
+                    apiKey,
                     endpoint,
                     headers
                 })}
@@ -1141,7 +1141,7 @@ and
                     operation,
                     parameters,
                     body,
-                    API_KEY,
+                    apiKey,
                     endpoint,
                     headers
                 })}
@@ -1214,7 +1214,7 @@ and
                     operation,
                     parameters,
                     body,
-                    API_KEY,
+                    apiKey,
                     endpoint,
                     headers
                 })}
@@ -1280,7 +1280,7 @@ and
                     operation,
                     parameters,
                     body,
-                    API_KEY,
+                    apiKey,
                     endpoint,
                     headers
                 })}
@@ -1354,7 +1354,7 @@ and
                     operation,
                     parameters,
                     body,
-                    API_KEY,
+                    apiKey,
                     endpoint,
                     headers
                 })}
@@ -1426,7 +1426,7 @@ and
                     operation,
                     parameters,
                     body,
-                    API_KEY,
+                    apiKey,
                     endpoint,
                     headers
                 })}
@@ -1506,7 +1506,7 @@ and
                     operation,
                     parameters,
                     body,
-                    API_KEY,
+                    apiKey,
                     endpoint,
                     headers
                 })}
@@ -1591,7 +1591,7 @@ and
 				operation,
 				parameters,
 				body,
-				API_KEY,
+				apiKey,
 				endpoint,
 				headers
 			})}
@@ -1666,7 +1666,7 @@ and
 				operation,
 				parameters,
 				body,
-				API_KEY,
+				apiKey,
 				endpoint,
 				headers
 			})}
@@ -1723,7 +1723,7 @@ and
 				operation,
 				parameters,
 				body,
-				API_KEY,
+				apiKey,
 				endpoint,
 				headers
 			})}
@@ -1781,7 +1781,7 @@ and
 				operation,
 				parameters,
 				body,
-				API_KEY,
+				apiKey,
 				endpoint,
 				headers
 			})}
@@ -1839,7 +1839,7 @@ and
 				operation,
 				parameters,
 				body,
-				API_KEY,
+				apiKey,
 				endpoint,
 				headers
 			})}
@@ -1902,7 +1902,7 @@ and
 				operation,
 				parameters,
 				body,
-				API_KEY,
+				apiKey,
 				endpoint,
 				headers
 			})}
@@ -1962,7 +1962,7 @@ and
 				operation,
 				parameters,
 				body,
-				API_KEY,
+				apiKey,
 				endpoint,
 				headers
 			})}
@@ -2034,7 +2034,7 @@ and
 				operation,
 				parameters,
 				body,
-				API_KEY,
+				apiKey,
 				endpoint,
 				headers
 			})}

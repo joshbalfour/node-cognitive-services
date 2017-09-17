@@ -4,7 +4,7 @@ const {
 } = require('../lib/api');
 
 const recommendations = ({
-    API_KEY
+    apiKey
 }) => {
 
     let self = this;
@@ -45,7 +45,7 @@ Once you have created a model, you can upload your catalog data, upload your usa
                 operation,
                 parameters,
                 body,
-                API_KEY
+                apiKey
             }));
 
     };
@@ -90,7 +90,7 @@ Once you have created a model, you can upload your catalog data, upload your usa
                 operation,
                 parameters,
                 body,
-                API_KEY
+                apiKey
             }));
 
     };
@@ -144,7 +144,7 @@ Once you have created a model, you can upload your catalog data, upload your usa
                 operation,
                 parameters,
                 body,
-                API_KEY
+                apiKey
             }));
 
     };
@@ -188,7 +188,7 @@ Once you have created a model, you can upload your catalog data, upload your usa
                 operation,
                 parameters,
                 body,
-                API_KEY
+                apiKey
             }));
 
     };
@@ -232,7 +232,7 @@ Once you have created a model, you can upload your catalog data, upload your usa
                 operation,
                 parameters,
                 body,
-                API_KEY
+                apiKey
             }));
 
     };
@@ -275,7 +275,7 @@ Once you have created a model, you can upload your catalog data, upload your usa
                 operation,
                 parameters,
                 body,
-                API_KEY
+                apiKey
             }));
 
     };
@@ -309,7 +309,7 @@ Once you have created a model, you can upload your catalog data, upload your usa
                 operation,
                 parameters,
                 body,
-                API_KEY
+                apiKey
             }));
 
     };
@@ -360,7 +360,7 @@ Once you have created a model, you can upload your catalog data, upload your usa
                 operation,
                 parameters,
                 body,
-                API_KEY
+                apiKey
             }));
 
     };
@@ -411,7 +411,7 @@ Once you have created a model, you can upload your catalog data, upload your usa
                 operation,
                 parameters,
                 body,
-                API_KEY
+                apiKey
             }));
 
     };
@@ -462,7 +462,7 @@ Once you have created a model, you can upload your catalog data, upload your usa
                 operation,
                 parameters,
                 body,
-                API_KEY
+                apiKey
             }));
 
     };
@@ -545,7 +545,7 @@ Once you have created a model, you can upload your catalog data, upload your usa
                 operation,
                 parameters,
                 body,
-                API_KEY
+                apiKey
             }));
 
     };
@@ -633,7 +633,7 @@ Note:  There is no user recommendation for an <i>FBT</i> build. If the active bu
                 operation,
                 parameters,
                 body,
-                API_KEY
+                apiKey
             }));
 
     };
@@ -676,7 +676,7 @@ Note:  There is no user recommendation for an <i>FBT</i> build. If the active bu
                 operation,
                 parameters,
                 body,
-                API_KEY
+                apiKey
             }));
 
     };
@@ -721,7 +721,7 @@ Note:  There is no user recommendation for an <i>FBT</i> build. If the active bu
                 operation,
                 parameters,
                 body,
-                API_KEY
+                apiKey
             }));
 
     };
@@ -774,7 +774,7 @@ Note:  There is no user recommendation for an <i>FBT</i> build. If the active bu
                 operation,
                 parameters,
                 body,
-                API_KEY
+                apiKey
             }));
 
     };
@@ -826,7 +826,7 @@ Note:  There is no user recommendation for an <i>FBT</i> build. If the active bu
                 operation,
                 parameters,
                 body,
-                API_KEY
+                apiKey
             }));
 
     };

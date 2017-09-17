@@ -4,7 +4,7 @@ const {
 } = require('../lib/api');
 
 const webLanguageModel = ({
-    API_KEY,
+    apiKey,
     endpoint
 }) => {
 
@@ -85,7 +85,7 @@ const webLanguageModel = ({
                     operation,
                     parameters,
                     body,
-                    API_KEY,
+                    apiKey,
                     endpoint,
                     headers
                 })}
@@ -164,7 +164,7 @@ const webLanguageModel = ({
                     operation,
                     parameters,
                     body,
-                    API_KEY,
+                    apiKey,
                     endpoint,
                     headers
                 })}
@@ -243,7 +243,7 @@ const webLanguageModel = ({
                     operation,
                     parameters,
                     body,
-                    API_KEY,
+                    apiKey,
                     endpoint,
                     headers
                 })}
@@ -325,7 +325,7 @@ const webLanguageModel = ({
                     operation,
                     parameters,
                     body,
-                    API_KEY,
+                    apiKey,
                     endpoint,
                     headers
                 })}
@@ -364,7 +364,7 @@ const webLanguageModel = ({
                     operation,
                     parameters,
                     body,
-                    API_KEY,
+                    apiKey,
                     endpoint,
                     headers
                 })}

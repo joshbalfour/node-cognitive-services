@@ -4,7 +4,7 @@ const {
 } = require('../lib/api');
 
 const academicKnowledge = ({
-    API_KEY,
+    apiKey,
     endpoint
 }) => {
 
@@ -73,7 +73,7 @@ const academicKnowledge = ({
                     operation,
                     parameters,
                     body,
-                    API_KEY,
+                    apiKey,
                     endpoint,
                     headers
                 })}
@@ -117,7 +117,7 @@ const academicKnowledge = ({
                     operation,
                     parameters,
                     body,
-                    API_KEY,
+                    apiKey,
                     endpoint,
                     headers
                 })}
@@ -195,7 +195,7 @@ const academicKnowledge = ({
                     operation,
                     parameters,
                     body,
-                    API_KEY,
+                    apiKey,
                     endpoint,
                     headers
                 })}
@@ -239,7 +239,7 @@ const academicKnowledge = ({
                     operation,
                     parameters,
                     body,
-                    API_KEY,
+                    apiKey,
                     endpoint,
                     headers
                 })}
@@ -291,7 +291,7 @@ const academicKnowledge = ({
                     operation,
                     parameters,
                     body,
-                    API_KEY,
+                    apiKey,
                     endpoint,
                     headers
                 })}
@@ -368,7 +368,7 @@ const academicKnowledge = ({
                     operation,
                     parameters,
                     body,
-                    API_KEY,
+                    apiKey,
                     endpoint,
                     headers
                 })}
@@ -412,7 +412,7 @@ const academicKnowledge = ({
                     operation,
                     parameters,
                     body,
-                    API_KEY,
+                    apiKey,
                     endpoint,
                     headers
                 })}
@@ -462,7 +462,7 @@ const academicKnowledge = ({
                     operation,
                     parameters,
                     body,
-                    API_KEY,
+                    apiKey,
                     endpoint,
                     headers
                 })}
@@ -507,7 +507,7 @@ const academicKnowledge = ({
                     operation,
                     parameters,
                     body,
-                    API_KEY,
+                    apiKey,
                     endpoint,
                     headers
                 })}

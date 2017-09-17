@@ -4,7 +4,7 @@ const {
 } = require('../lib/api');
 
 const bingSpellCheck = ({
-    API_KEY,
+    apiKey,
     endpoint
 }) => {
 
@@ -76,7 +76,7 @@ const bingSpellCheck = ({
                     operation,
                     parameters,
                     body,
-                    API_KEY,
+                    apiKey,
                     endpoint,
                     headers
                 })}

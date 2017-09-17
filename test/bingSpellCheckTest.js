@@ -5,7 +5,7 @@ const should = require('should');
 describe('Bing spell check', () => {
 
     const client = cognitive.bingSpellCheck({
-        API_KEY: config.bingSpellCheck.apiKey,
+        apiKey: config.bingSpellCheck.apiKey,
         endpoint: config.bingSpellCheck.endpoint
     });
 

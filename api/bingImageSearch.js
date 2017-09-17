@@ -4,7 +4,7 @@ const {
 } = require('../lib/api');
 
 const bingImageSearch = ({
-    API_KEY,
+    apiKey,
     endpoint
 }) => {
 
@@ -53,7 +53,7 @@ const bingImageSearch = ({
 				operation,
 				parameters,
 				body,
-				API_KEY,
+				apiKey,
 				endpoint,
 				headers
 			})}
@@ -129,7 +129,7 @@ const bingImageSearch = ({
                     operation,
                     parameters,
                     body,
-                    API_KEY,
+                    apiKey,
                     endpoint,
                     headers
                 })}
@@ -165,7 +165,7 @@ const bingImageSearch = ({
                     operation,
                     parameters,
                     body,
-                    API_KEY,
+                    apiKey,
                     endpoint,
                     headers
                 })}

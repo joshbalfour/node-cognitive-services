@@ -4,7 +4,7 @@ const {
 } = require('../lib/api');
 
 const bingWebSearch = ({
-    API_KEY,
+    apiKey,
     endpoint
 }) => {
 
@@ -154,7 +154,7 @@ const bingWebSearch = ({
                     operation,
                     parameters,
                     body,
-                    API_KEY,
+                    apiKey,
                     endpoint,
                     headers
                 })}

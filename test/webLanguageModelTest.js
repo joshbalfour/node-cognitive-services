@@ -5,7 +5,7 @@ const should = require('should');
 describe('Web language model', () => {
 
     const client = cognitive.webLanguageModel({
-        API_KEY: config.webLanguageModel.apiKey,
+        apiKey: config.webLanguageModel.apiKey,
         endpoint: config.webLanguageModel.endpoint
     });
 

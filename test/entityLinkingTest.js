@@ -5,7 +5,7 @@ const should = require('should');
 describe('Entity linking', () => {
 
     const client = cognitive.entityLinking({
-        API_KEY: config.entityLinking.apiKey,
+        apiKey: config.entityLinking.apiKey,
         endpoint: config.entityLinking.endpoint
     });
 
