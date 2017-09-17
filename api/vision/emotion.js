@@ -217,7 +217,6 @@ const emotion = ({
         const operation = {
             "name": "Get Recognition in Video Operation Result",
             "path": "emotion/v1.0/operations/{oid}",
-            "host": "api.projectoxford.ai",
             "method": "GET",
             "serviceId": "5639d931ca73072154c1ce89",
             "operationId": "56f8d4471984551ec0a0984f",
