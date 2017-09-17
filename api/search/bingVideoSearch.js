@@ -1,6 +1,5 @@
 const {
-    makeRequest,
-    verify
+    makeRequest
 } = require('../../lib/api');
 
 const bingVideoSearch = ({
@@ -9,6 +8,9 @@ const bingVideoSearch = ({
 }) => {
 
     let self = this;
+
+    self._apiKey = apiKey;
+    self._endpoint = endpoint;
 
     /**
 	Name: Bing Video Search: Search
@@ -172,20 +174,11 @@ const bingVideoSearch = ({
             }]
         };
 
-        const body = null;
-        const headers = null;
-
-		return verify(operation, parameters, headers, endpoint)
-            .then(() => {
-                return makeRequest({
-                    operation,
-                    parameters,
-                    body,
-                    apiKey,
-                    endpoint,
-                    headers
-                })}
-            );
+        return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint,
+            parameters: parameters
+        })
 
     };
 
@@ -296,21 +289,10 @@ const bingVideoSearch = ({
             }]
         };
 
-        const parameters = null;
-        const headers = null;
-        const body = null;
-
-		return verify(operation, parameters, headers, endpoint)
-            .then(() => {
-                return makeRequest({
-                    operation,
-                    parameters,
-                    body,
-                    apiKey,
-                    endpoint,
-                    headers
-                })}
-            );
+        return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint
+        })
 
     };
 
@@ -452,20 +434,11 @@ const bingVideoSearch = ({
             }]
         };
 
-        const body = null;
-        const headers = null;
-
-		return verify(operation, parameters, headers, endpoint)
-            .then(() => {
-                return makeRequest({
-                    operation,
-                    parameters,
-                    body,
-                    apiKey,
-                    endpoint,
-                    headers
-                })}
-            );
+        return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint,
+            parameters: parameters
+        })
 
     };
 

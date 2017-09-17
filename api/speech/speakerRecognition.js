@@ -1,6 +1,5 @@
 const {
-    makeRequest,
-    verify,
+    makeRequest
 } = require('../../lib/api');
 
 const speakerRecognition = ({
@@ -9,6 +8,9 @@ const speakerRecognition = ({
 }) => {
 
     let self = this;
+
+    self._apiKey = apiKey;
+    self._endpoint = endpoint;
 
     self.verificationProfileCreateEnrollment = ({
         parameters,
@@ -50,17 +52,13 @@ const speakerRecognition = ({
             }]
         };
 
-        return verify(operation, parameters, headers, endpoint)
-            .then(() => {
-                return makeRequest({
-                    operation,
-                    parameters,
-                    body,
-                    apiKey,
-                    endpoint,
-                    headers
-                })}
-            );
+        return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint,
+            parameters: parameters,
+            headers: headers,
+            body: body
+        })
 
     };
 
@@ -98,17 +96,13 @@ const speakerRecognition = ({
             "parameters": []
         };
 
-        return verify(operation, parameters, headers, endpoint)
-            .then(() => {
-                return makeRequest({
-                    operation,
-                    parameters,
-                    body,
-                    apiKey,
-                    endpoint,
-                    headers
-                })}
-            );
+        return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint,
+            parameters: parameters,
+            headers: headers,
+            body: body
+        })
 
     };
 
@@ -141,17 +135,13 @@ const speakerRecognition = ({
             }]
         };
 
-        return verify(operation, parameters, headers, endpoint)
-            .then(() => {
-                return makeRequest({
-                    operation,
-                    parameters,
-                    body,
-                    apiKey,
-                    endpoint,
-                    headers
-                })}
-            );
+        return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint,
+            parameters: parameters,
+            headers: headers,
+            body: body
+        })
 
     };
 
@@ -176,19 +166,11 @@ const speakerRecognition = ({
             "parameters": []
         };
 
-        const body = null;
-
-        return verify(operation, parameters, headers, endpoint)
-		.then(() => {
-			return makeRequest({
-				operation,
-				parameters,
-				body,
-				apiKey,
-				endpoint,
-				headers
-			})}
-		);
+        return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint,
+            parameters: parameters
+        })
 
     };
 
@@ -217,19 +199,12 @@ const speakerRecognition = ({
             }]
         };
 
-        const body = null;
-
-        return verify(operation, parameters, headers, endpoint)
-            .then(() => {
-                return makeRequest({
-                    operation,
-                    parameters,
-                    body,
-                    apiKey,
-                    endpoint,
-                    headers
-                })}
-            );
+        return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint,
+            parameters: parameters,
+            headers: headers
+        })
 
     };
 
@@ -262,17 +237,13 @@ const speakerRecognition = ({
             }]
         };
 
-        return verify(operation, parameters, headers, endpoint)
-            .then(() => {
-                return makeRequest({
-                    operation,
-                    parameters,
-                    body,
-                    apiKey,
-                    endpoint,
-                    headers
-                })}
-            );
+        return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint,
+            parameters: parameters,
+            headers: headers,
+            body: body
+        })
     };
 
     self.speakerRecognitionGetOperationStatus = ({
@@ -303,19 +274,12 @@ const speakerRecognition = ({
             }]
         };
 
-        const body = null;
-
-        return verify(operation, parameters, headers, endpoint)
-            .then(() => {
-                return makeRequest({
-                    operation,
-                    parameters,
-                    body,
-                    apiKey,
-                    endpoint,
-                    headers
-                })}
-            );
+        return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint,
+            parameters: parameters,
+            headers: headers
+        })
 
     };
 
@@ -364,17 +328,13 @@ const speakerRecognition = ({
             }]
         };
 
-        return verify(operation, parameters, headers, endpoint)
-            .then(() => {
-                return makeRequest({
-                    operation,
-                    parameters,
-                    body,
-                    apiKey,
-                    endpoint,
-                    headers
-                })}
-            );
+        return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint,
+            parameters: parameters,
+            headers: headers,
+            body: body
+        })
 
     };
 
@@ -417,17 +377,13 @@ const speakerRecognition = ({
             }]
         };
 
-        return verify(operation, parameters, headers, endpoint)
-            .then(() => {
-                return makeRequest({
-                    operation,
-                    parameters,
-                    body,
-                    apiKey,
-                    endpoint,
-                    headers
-                })}
-            );
+        return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint,
+            parameters: parameters,
+            headers: headers,
+            body: body
+        })
 
     };
     
@@ -458,20 +414,11 @@ const speakerRecognition = ({
             }]
         };
 
-        const body = null;
-        const headers = null;
-
-        return verify(operation, parameters, headers, endpoint)
-            .then(() => {
-                return makeRequest({
-                    operation,
-                    parameters,
-                    body,
-                    apiKey,
-                    endpoint,
-                    headers
-                })}
-            );
+        return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint,
+            parameters: parameters
+        })
 
     };
 
@@ -522,17 +469,13 @@ const speakerRecognition = ({
             }]
         };
 
-        return verify(operation, parameters, headers, endpoint)
-            .then(() => {
-                return makeRequest({
-                    operation,
-                    parameters,
-                    body,
-                    apiKey,
-                    endpoint,
-                    headers
-                })}
-            );
+        return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint,
+            parameters: parameters,
+            headers: headers,
+            body: body
+        })
     };
 
     self.identificationProfileCreateProfile = ({
@@ -572,17 +515,13 @@ const speakerRecognition = ({
             "parameters": []
         };
 
-        return verify(operation, parameters, headers, endpoint)
-            .then(() => {
-                return makeRequest({
-                    operation,
-                    parameters,
-                    body,
-                    apiKey,
-                    endpoint,
-                    headers
-                })}
-            );
+        return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint,
+            parameters: parameters,
+            headers: headers,
+            body: body
+        })
     };
 
     self.identificationProfileDeleteProfile = ({
@@ -614,19 +553,12 @@ const speakerRecognition = ({
             }]
         };
 
-        const body = null;
-
-        return verify(operation, parameters, headers, endpoint)
-            .then(() => {
-                return makeRequest({
-                    operation,
-                    parameters,
-                    body,
-                    apiKey,
-                    endpoint,
-                    headers
-                })}
-            );
+        return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint,
+            parameters: parameters,
+            headers: headers
+        })
     };
 
     self.identificationProfileGetAll = ({
@@ -650,19 +582,12 @@ const speakerRecognition = ({
             "parameters": []
         };
 
-        const body = null;
-
-        return verify(operation, parameters, headers, endpoint)
-            .then(() => {
-                return makeRequest({
-                    operation,
-                    parameters,
-                    body,
-                    apiKey,
-                    endpoint,
-                    headers
-                })}
-            );
+        return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint,
+            parameters: parameters,
+            headers: headers
+        })
     };
 
     self.identificationProfileGet = ({
@@ -693,19 +618,12 @@ const speakerRecognition = ({
             }]
         };
 
-        const body = null;
-
-        return verify(operation, parameters, headers, endpoint)
-            .then(() => {
-                return makeRequest({
-                    operation,
-                    parameters,
-                    body,
-                    apiKey,
-                    endpoint,
-                    headers
-                })}
-            );
+        return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint,
+            parameters: parameters,
+            headers: headers
+        })
     };
 
     self.identificationProfileResetEnrollments = ({
@@ -736,19 +654,12 @@ const speakerRecognition = ({
             }]
         };
 
-        const body = null;
-
-        return verify(operation, parameters, headers, endpoint)
-            .then(() => {
-                return makeRequest({
-                    operation,
-                    parameters,
-                    body,
-                    apiKey,
-                    endpoint,
-                    headers
-                })}
-            );
+        return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint,
+            parameters: parameters,
+            headers: headers
+        })
     };
 
 

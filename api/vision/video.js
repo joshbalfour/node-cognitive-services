@@ -1,6 +1,5 @@
 const {
-    makeRequest,
-    verify
+    makeRequest
 } = require('../../lib/api');
 
 const video = ({
@@ -9,6 +8,9 @@ const video = ({
 }) => {
 
     let self = this;
+
+    self._apiKey = apiKey;
+    self._endpoint = endpoint;
 
     /**
 			Name: Video: Face Detection and Tracking
@@ -52,19 +54,12 @@ const video = ({
             }],
         };
 
-        const parameters = null;
-
-        return verify(operation, parameters, headers, endpoint)
-        .then(() => {
-            return makeRequest({
-                operation,
-                parameters,
-                body,
-                apiKey,
-                endpoint,
-                headers
-            })}
-        )
+        return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint,
+            headers: headers,
+            body: body
+        })
         .then((operationIdUrl) => {
             var splittedUrl = operationIdUrl.split('/');
             return splittedUrl[splittedUrl.length - 1];
@@ -116,20 +111,11 @@ Succeeded - the process succeeded.
             }]
         };
 
-        const headers = null;
-        const body = null;
-
-        return verify(operation, parameters, headers, endpoint)
-        .then(() => {
-            return makeRequest({
-                operation,
-                parameters,
-                body,
-                apiKey,
-                endpoint,
-                headers
-            })}
-        )
+        return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint,
+            parameters: parameters
+        })
 
     };
     /**
@@ -165,17 +151,11 @@ Succeeded - the process succeeded.
             }]
         };
 
-        return verify(operation, parameters, headers, endpoint)
-        .then(() => {
-            return makeRequest({
-                operation,
-                parameters,
-                body,
-                apiKey,
-                endpoint,
-                headers
-            })}
-        )
+        return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint,
+            parameters: parameters
+        })
 
     };
     /**
@@ -272,17 +252,13 @@ Succeeded - the process succeeded.
             }]
         };
 
-        return verify(operation, parameters, headers, endpoint)
-        .then(() => {
-            return makeRequest({
-                operation,
-                parameters,
-                body,
-                apiKey,
-                endpoint,
-                headers
-            })}
-        )
+        return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint,
+            parameters: parameters,
+            headers: headers,
+            body: body
+        })
         .then((operationIdUrl) => {
             var splittedUrl = operationIdUrl.split('/');
             return splittedUrl[splittedUrl.length - 1];
@@ -332,19 +308,12 @@ Succeeded - the process succeeded.
             }]
         };
 
-        const parameters = null;
-
-        return verify(operation, parameters, headers, endpoint)
-        .then(() => {
-            return makeRequest({
-                operation,
-                parameters,
-                body,
-                apiKey,
-                endpoint,
-                headers
-            })}
-        )
+        return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint,
+            headers: headers,
+            body: body
+        })
         .then((operationIdUrl) => {
             var splittedUrl = operationIdUrl.split('/');
             return splittedUrl[splittedUrl.length - 1];
@@ -419,17 +388,13 @@ Succeeded - the process succeeded.
             }]
         };
 
-        return verify(operation, parameters, headers, endpoint)
-        .then(() => {
-            return makeRequest({
-                operation,
-                parameters,
-                body,
-                apiKey,
-                endpoint,
-                headers
-            })}
-        )
+        return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint,
+            parameters: parameters,
+            headers: headers,
+            body: body
+        })
         .then((operationIdUrl) => {
             var splittedUrl = operationIdUrl.split('/');
             return splittedUrl[splittedUrl.length - 1];

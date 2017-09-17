@@ -1,6 +1,5 @@
 const {
-    makeRequest,
-    verify
+    makeRequest
 } = require('../../lib/api');
 
 const face = ({
@@ -9,6 +8,9 @@ const face = ({
 }) => {
 
     let self = this;
+
+    self._apiKey = apiKey;
+    self._endpoint = endpoint;
 
     /**
 			Name: Face: Detect
@@ -104,17 +106,13 @@ const face = ({
             }]
         };
 
-        return verify(operation, parameters, headers, endpoint)
-            .then(() => {
-                return makeRequest({
-                    operation,
-                    parameters,
-                    body,
-                    apiKey,
-                    endpoint,
-                    headers
-                })}
-            );
+        return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint,
+            parameters: parameters,
+            headers: headers,
+            body: body
+        })
 
     };
     /**
@@ -177,17 +175,13 @@ const face = ({
             "parameters": []
         };
 
-        return verify(operation, parameters, headers, endpoint)
-            .then(() => {
-                return makeRequest({
-                    operation,
-                    parameters,
-                    body,
-                    apiKey,
-                    endpoint,
-                    headers
-                })}
-            );
+        return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint,
+            parameters: parameters,
+            headers: headers,
+            body: body
+        })
 
     };
     /**
@@ -247,17 +241,13 @@ const face = ({
             "parameters": []
         };
 
-        return verify(operation, parameters, headers, endpoint)
-            .then(() => {
-                return makeRequest({
-                    operation,
-                    parameters,
-                    body,
-                    apiKey,
-                    endpoint,
-                    headers
-                })}
-            );
+        return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint,
+            parameters: parameters,
+            headers: headers,
+            body: body
+        })
 
     };
     /**
@@ -330,17 +320,13 @@ const face = ({
             "parameters": []
         };
 
-        return verify(operation, parameters, headers, endpoint)
-            .then(() => {
-                return makeRequest({
-                    operation,
-                    parameters,
-                    body,
-                    apiKey,
-                    endpoint,
-                    headers
-                })}
-            );
+        return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint,
+            parameters: parameters,
+            headers: headers,
+            body: body
+        })
 
     };
     /**
@@ -400,17 +386,13 @@ const face = ({
             "parameters": []
         };
 
-        return verify(operation, parameters, headers, endpoint)
-            .then(() => {
-                return makeRequest({
-                    operation,
-                    parameters,
-                    body,
-                    apiKey,
-                    endpoint,
-                    headers
-                })}
-            );
+        return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint,
+            parameters: parameters,
+            headers: headers,
+            body: body
+        })
 
     };
     /**
@@ -501,17 +483,13 @@ Face list is a group of faces, and these faces will not expire. Face list is use
             }]
         };
 
-        return verify(operation, parameters, headers, endpoint)
-            .then(() => {
-                return makeRequest({
-                    operation,
-                    parameters,
-                    body,
-                    apiKey,
-                    endpoint,
-                    headers
-                })}
-            );
+        return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint,
+            parameters: parameters,
+            headers: headers,
+            body: body
+        })
 
     };
     /**
@@ -579,17 +557,13 @@ Face list is a group of faces, and these faces will not expire. Face list is use
             }]
         };
 
-        return verify(operation, parameters, headers, endpoint)
-            .then(() => {
-                return makeRequest({
-                    operation,
-                    parameters,
-                    body,
-                    apiKey,
-                    endpoint,
-                    headers
-                })}
-            );
+        return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint,
+            parameters: parameters,
+            headers: headers,
+            body: body
+        })
 
     };
     /**
@@ -644,17 +618,13 @@ Face list is a group of faces, and these faces will not expire. Face list is use
             }]
         };
 
-        return verify(operation, parameters, headers, endpoint)
-            .then(() => {
-                return makeRequest({
-                    operation,
-                    parameters,
-                    body,
-                    apiKey,
-                    endpoint,
-                    headers
-                })}
-            );
+        return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint,
+            parameters: parameters,
+            headers: headers,
+            body: body
+        })
 
     };
     /**
@@ -701,17 +671,13 @@ Face list is a group of faces, and these faces will not expire. Face list is use
             }]
         };
 
-        return verify(operation, parameters, headers, endpoint)
-            .then(() => {
-                return makeRequest({
-                    operation,
-                    parameters,
-                    body,
-                    apiKey,
-                    endpoint,
-                    headers
-                })}
-            );
+        return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint,
+            parameters: parameters,
+            headers: headers,
+            body: body
+        })
 
     };
     /**
@@ -758,19 +724,12 @@ Face list is a group of faces, and these faces will not expire. Face list is use
             }]
         };
 
-        const body = null;
-
-        return verify(operation, parameters, headers, endpoint)
-            .then(() => {
-                return makeRequest({
-                    operation,
-                    parameters,
-                    body,
-                    apiKey,
-                    endpoint,
-                    headers
-                })}
-            );
+        return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint,
+            parameters: parameters,
+            headers: headers
+        })
 
     };
     /**
@@ -807,19 +766,12 @@ Face list is a group of faces, and these faces will not expire. Face list is use
             "parameters": []
         };
 
-        const body = null;
-
-        return verify(operation, parameters, headers, endpoint)
-            .then(() => {
-                return makeRequest({
-                    operation,
-                    parameters,
-                    body,
-                    apiKey,
-                    endpoint,
-                    headers
-                })}
-            );
+        return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint,
+            parameters: parameters,
+            headers: headers
+        })
 
     };
     /**
@@ -882,17 +834,13 @@ Face list is a group of faces, and these faces will not expire. Face list is use
             }]
         };
 
-        return verify(operation, parameters, headers, endpoint)
-            .then(() => {
-                return makeRequest({
-                    operation,
-                    parameters,
-                    body,
-                    apiKey,
-                    endpoint,
-                    headers
-                })}
-            );
+        return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint,
+            parameters: parameters,
+            headers: headers,
+            body: body
+        })
 
     };
     /**
@@ -987,17 +935,13 @@ and
             }]
         };
 
-        return verify(operation, parameters, headers, endpoint)
-            .then(() => {
-                return makeRequest({
-                    operation,
-                    parameters,
-                    body,
-                    apiKey,
-                    endpoint,
-                    headers
-                })}
-            );
+        return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint,
+            parameters: parameters,
+            headers: headers,
+            body: body
+        })
 
     };
     /**
@@ -1061,18 +1005,13 @@ and
             }]
         };
 
-
-        return verify(operation, parameters, headers, endpoint)
-            .then(() => {
-                return makeRequest({
-                    operation,
-                    parameters,
-                    body,
-                    apiKey,
-                    endpoint,
-                    headers
-                })}
-            );
+        return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint,
+            parameters: parameters,
+            headers: headers,
+            body: body
+        })
 
     };
     /**
@@ -1135,17 +1074,13 @@ and
             }]
         };
 
-        return verify(operation, parameters, headers, endpoint)
-            .then(() => {
-                return makeRequest({
-                    operation,
-                    parameters,
-                    body,
-                    apiKey,
-                    endpoint,
-                    headers
-                })}
-            );
+        return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint,
+            parameters: parameters,
+            headers: headers,
+            body: body
+        })
 
     };
     /**
@@ -1208,17 +1143,13 @@ and
             }]
         };
 
-        return verify(operation, parameters, headers, endpoint)
-            .then(() => {
-                return makeRequest({
-                    operation,
-                    parameters,
-                    body,
-                    apiKey,
-                    endpoint,
-                    headers
-                })}
-            );
+        return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint,
+            parameters: parameters,
+            headers: headers,
+            body: body
+        })
 
     };
     /**
@@ -1272,19 +1203,12 @@ and
             }]
         };
 
-        const body = null;
-
-        return verify(operation, parameters, headers, endpoint)
-            .then(() => {
-                return makeRequest({
-                    operation,
-                    parameters,
-                    body,
-                    apiKey,
-                    endpoint,
-                    headers
-                })}
-            );
+        return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint,
+            parameters: parameters,
+            headers: headers
+        })
 
     };
     /**
@@ -1346,19 +1270,12 @@ and
             }]
         };
 
-        const body = null;
-
-        return verify(operation, parameters, headers, endpoint)
-            .then(() => {
-                return makeRequest({
-                    operation,
-                    parameters,
-                    body,
-                    apiKey,
-                    endpoint,
-                    headers
-                })}
-            );
+        return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint,
+            parameters: parameters,
+            headers: headers
+        })
 
     };
     /**
@@ -1418,19 +1335,12 @@ and
             }]
         };
 
-        const body = null;
-
-        return verify(operation, parameters, headers, endpoint)
-            .then(() => {
-                return makeRequest({
-                    operation,
-                    parameters,
-                    body,
-                    apiKey,
-                    endpoint,
-                    headers
-                })}
-            );
+        return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint,
+            parameters: parameters,
+            headers: headers
+        })
 
     };
     /**
@@ -1500,17 +1410,13 @@ and
             }]
         };
 
-        return verify(operation, parameters, headers, endpoint)
-            .then(() => {
-                return makeRequest({
-                    operation,
-                    parameters,
-                    body,
-                    apiKey,
-                    endpoint,
-                    headers
-                })}
-            );
+        return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint,
+            parameters: parameters,
+            headers: headers,
+            body: body
+        })
 
     };
     /**
@@ -1585,17 +1491,13 @@ and
             }]
         };
 
-        return verify(operation, parameters, headers, endpoint)
-		.then(() => {
-			return makeRequest({
-				operation,
-				parameters,
-				body,
-				apiKey,
-				endpoint,
-				headers
-			})}
-		);
+        return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint,
+            parameters: parameters,
+            headers: headers,
+            body: body
+        })
 
     };
     /**
@@ -1660,17 +1562,13 @@ and
             }]
         };
 
-        return verify(operation, parameters, headers, endpoint)
-		.then(() => {
-			return makeRequest({
-				operation,
-				parameters,
-				body,
-				apiKey,
-				endpoint,
-				headers
-			})}
-		);
+        return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint,
+            parameters: parameters,
+            headers: headers,
+            body: body
+        })
 
     };
     /**
@@ -1717,17 +1615,13 @@ and
             }]
         };
 
-        return verify(operation, parameters, headers, endpoint)
-		.then(() => {
-			return makeRequest({
-				operation,
-				parameters,
-				body,
-				apiKey,
-				endpoint,
-				headers
-			})}
-		);
+        return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint,
+            parameters: parameters,
+            headers: headers,
+            body: body
+        })
 
     };
     /**
@@ -1773,19 +1667,12 @@ and
             }]
         };
 
-        const body = null;
-
-        return verify(operation, parameters, headers, endpoint)
-		.then(() => {
-			return makeRequest({
-				operation,
-				parameters,
-				body,
-				apiKey,
-				endpoint,
-				headers
-			})}
-		);
+        return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint,
+            parameters: parameters,
+            headers: headers
+        })
 
     };
     /**
@@ -1831,19 +1718,12 @@ and
             }]
         };
 
-        const body = null;
-
-        return verify(operation, parameters, headers, endpoint)
-		.then(() => {
-			return makeRequest({
-				operation,
-				parameters,
-				body,
-				apiKey,
-				endpoint,
-				headers
-			})}
-		);
+        return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint,
+            parameters: parameters,
+            headers: headers
+        })
 
     };
     /**
@@ -1894,19 +1774,12 @@ and
             }]
         };
 
-        const body = null;
-
-        return verify(operation, parameters, headers, endpoint)
-		.then(() => {
-			return makeRequest({
-				operation,
-				parameters,
-				body,
-				apiKey,
-				endpoint,
-				headers
-			})}
-		);
+        return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint,
+            parameters: parameters,
+            headers: headers
+        })
 
     };
     /**
@@ -1956,17 +1829,13 @@ and
             }]
         };
 
-        return verify(operation, parameters, headers, endpoint)
-		.then(() => {
-			return makeRequest({
-				operation,
-				parameters,
-				body,
-				apiKey,
-				endpoint,
-				headers
-			})}
-		);
+        return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint,
+            parameters: parameters,
+            headers: headers,
+            body: body
+        })
 
     };
     /**
@@ -2028,17 +1897,13 @@ and
             }]
         };
 
-        return verify(operation, parameters, headers, endpoint)
-		.then(() => {
-			return makeRequest({
-				operation,
-				parameters,
-				body,
-				apiKey,
-				endpoint,
-				headers
-			})}
-		);
+        return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint,
+            parameters: parameters,
+            headers: headers,
+            body: body
+        })
 
     };
 

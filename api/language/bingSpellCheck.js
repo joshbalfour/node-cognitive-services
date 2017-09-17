@@ -1,6 +1,5 @@
 const {
-    makeRequest,
-    verify
+    makeRequest
 } = require('../../lib/api');
 
 const bingSpellCheck = ({
@@ -9,6 +8,9 @@ const bingSpellCheck = ({
 }) => {
 
     let self = this;
+
+    self._apiKey = apiKey;
+    self._endpoint = endpoint;
 
     /**
 	Name: Bing Spell Check: Spell Check
@@ -70,17 +72,13 @@ const bingSpellCheck = ({
             "Content-type": "application/x-www-form-urlencoded"
         };
 
-		return verify(operation, parameters, headers, endpoint)
-            .then(() => {
-                return makeRequest({
-                    operation,
-                    parameters,
-                    body,
-                    apiKey,
-                    endpoint,
-                    headers
-                })}
-            );
+		return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint,
+            parameters: parameters,
+            headers: headers,
+            body: body
+        })
     };
 
     return self;

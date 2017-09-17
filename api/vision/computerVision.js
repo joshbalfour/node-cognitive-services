@@ -1,6 +1,5 @@
 const {
-    makeRequest,
-    verify
+    makeRequest
 } = require('../../lib/api');
 
 imageCategories = ["abstract_","abstract_net","abstract_nonphoto","abstract_rect","abstract_shape","abstract_texture","animal_","animal_bird","animal_cat","animal_dog","animal_horse","animal_panda","building_","building_arch","building_brickwall","building_church","building_corner","building_doorwindows","building_pillar","building_stair","building_street","dark_","drink_","drink_can","dark_fire","dark_fireworks","sky_object","food_","food_bread","food_fastfood","food_grilled","food_pizza","indoor_","indoor_churchwindow","indoor_court","indoor_doorwindows","indoor_marketstore","indoor_room","indoor_venue","dark_light","others_","outdoor_","outdoor_city","outdoor_field","outdoor_grass","outdoor_house","outdoor_mountain","outdoor_oceanbeach","outdoor_playground","outdoor_railway","outdoor_road","outdoor_sportsfield","outdoor_stonerock","outdoor_street","outdoor_water","outdoor_waterside","people_","people_baby","people_crowd","people_group","people_hand","people_many","people_portrait","people_show","people_tattoo","people_young","plant_","plant_branch","plant_flower","plant_leaves","plant_tree","object_screen","object_sculpture","sky_cloud","sky_sun","people_swimming","outdoor_pool","text_","text_mag","text_map","text_menu","text_sign","trans_bicycle","trans_bus","trans_car", "trans_trainstation"];
@@ -11,6 +10,9 @@ const computerVision = ({
 }) => {
 
     let self = this;
+
+    self._apiKey = apiKey;
+    self._endpoint = endpoint;
 
     /**
 			Name: Computer Vision: Analyze Image
@@ -94,17 +96,13 @@ A successful response will be returned in JSON. If the request failed, the respo
             }]
         };
 
-        return verify(operation, parameters, headers, endpoint)
-            .then(() => {
-                return makeRequest({
-                    operation,
-                    parameters,
-                    body,
-                    apiKey,
-                    endpoint,
-                    headers
-                })}
-            );
+        return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint,
+            parameters: parameters,
+            headers: headers,
+            body: body
+        })
 
     };
 
@@ -160,17 +158,13 @@ A successful response will be returned in JSON. If the request failed, the respo
             }]
         };
 
-        return verify(operation, parameters, headers, endpoint)
-            .then(() => {
-                return makeRequest({
-                    operation,
-                    parameters,
-                    body,
-                    apiKey,
-                    endpoint,
-                    headers
-                })}
-            );
+        return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint,
+            parameters: parameters,
+            headers: headers,
+            body: body
+        })
 
     };
 
@@ -239,17 +233,13 @@ Upon failure, the error code and an error message are returned. The error code c
             }]
         };
 
-        return verify(operation, parameters, headers, endpoint)
-            .then(() => {
-                return makeRequest({
-                    operation,
-                    parameters,
-                    body,
-                    apiKey,
-                    endpoint,
-                    headers
-                })}
-            );
+        return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint,
+            parameters: parameters,
+            headers: headers,
+            body: body
+        })
 
     };
 
@@ -281,21 +271,10 @@ A successful response will be returned in JSON. If the request failed, the respo
             "parameters": []
         };
 
-        const body = null;
-        const parameters = null;
-        const headers = null;
-
-        return verify(operation, parameters, headers, endpoint)
-        .then(() => {
-            return makeRequest({
-                operation,
-                parameters,
-                body,
-                apiKey,
-                endpoint,
-                headers
-            })}
-        );
+        return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint
+        })
 
     };
     
@@ -390,17 +369,13 @@ Upon failure, the error code together with an error message will be returned. Th
             }]
         };
 
-        return verify(operation, parameters, headers, endpoint)
-            .then(() => {
-                return makeRequest({
-                    operation,
-                    parameters,
-                    body,
-                    apiKey,
-                    endpoint,
-                    headers
-                })}
-            );
+        return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint,
+            parameters: parameters,
+            headers: headers,
+            body: body
+        })
 
     };
 
@@ -463,17 +438,13 @@ POST
             }]
         };
 
-        return verify(operation, parameters, headers, endpoint)
-            .then(() => {
-                return makeRequest({
-                    operation,
-                    parameters,
-                    body,
-                    apiKey,
-                    endpoint,
-                    headers
-                })}
-            );
+        return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint,
+            parameters: parameters,
+            headers: headers,
+            body: body
+        })
 
     };
 
@@ -520,19 +491,12 @@ POST
             ]
         };
 
-        const parameters = null;
-
-        return verify(operation, parameters, headers, endpoint)
-            .then(() => {
-                return makeRequest({
-                    operation,
-                    parameters,
-                    body,
-                    apiKey,
-                    endpoint,
-                    headers
-                })}
-            );
+        return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint,
+            headers: headers,
+            body: body
+        })
 
     };
 
@@ -570,20 +534,11 @@ POST
             }]
         };
 
-        const body = null;
-        const headers = null;
-
-        return verify(operation, parameters, headers, endpoint)
-            .then(() => {
-                return makeRequest({
-                    operation,
-                    parameters,
-                    body,
-                    apiKey,
-                    endpoint,
-                    headers
-                })}
-            );
+        return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint,
+            parameters: parameters,
+        })
 
     };
     
@@ -637,21 +592,17 @@ POST
             }]
         };
 
-        return verify(operation, parameters, headers, endpoint)
-            .then(() => {
-                return makeRequest({
-                    operation,
-                    parameters,
-                    body,
-                    apiKey,
-                    endpoint,
-                    headers
-                })}
-            )
-            .then((operationIdUrl) => {
-                var splittedUrl = operationIdUrl.split('/');
-                return splittedUrl[splittedUrl.length - 1];
-            })
+        return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint,
+            parameters: parameters,
+            headers: headers,
+            body: body
+        })
+        .then((operationIdUrl) => {
+            var splittedUrl = operationIdUrl.split('/');
+            return splittedUrl[splittedUrl.length - 1];
+        })
 
     };
 

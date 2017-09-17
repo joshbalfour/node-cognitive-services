@@ -1,6 +1,5 @@
 const {
-    makeRequest,
-    verify
+    makeRequest
 } = require('../../lib/api');
 
 const webLanguageModel = ({
@@ -9,6 +8,9 @@ const webLanguageModel = ({
 }) => {
 
     let self = this;
+
+    self._apiKey = apiKey;
+    self._endpoint = endpoint;
 
     /**
 	Name: Web Language Model: Break Into Words
@@ -76,20 +78,11 @@ const webLanguageModel = ({
             }]
         };
 
-        const body = null;
-        const headers = null;
-
-		return verify(operation, parameters, headers, endpoint)
-            .then(() => {
-                return makeRequest({
-                    operation,
-                    parameters,
-                    body,
-                    apiKey,
-                    endpoint,
-                    headers
-                })}
-            );
+        return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint,
+            parameters: parameters
+        })
 
     };
 
@@ -158,17 +151,13 @@ const webLanguageModel = ({
             }]
         };
 
-		return verify(operation, parameters, headers, endpoint)
-            .then(() => {
-                return makeRequest({
-                    operation,
-                    parameters,
-                    body,
-                    apiKey,
-                    endpoint,
-                    headers
-                })}
-            );
+		return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint,
+            parameters: parameters,
+            headers: headers,
+            body: body
+        })
 
     };
 
@@ -237,17 +226,13 @@ const webLanguageModel = ({
             }]
         };
 
-		return verify(operation, parameters, headers, endpoint)
-            .then(() => {
-                return makeRequest({
-                    operation,
-                    parameters,
-                    body,
-                    apiKey,
-                    endpoint,
-                    headers
-                })}
-            );
+		return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint,
+            parameters: parameters,
+            headers: headers,
+            body: body
+        })
     };
 
     /**
@@ -316,20 +301,11 @@ const webLanguageModel = ({
             }]
         };
 
-        const headers = null;
-        const body = null;
-
-		return verify(operation, parameters, headers, endpoint)
-            .then(() => {
-                return makeRequest({
-                    operation,
-                    parameters,
-                    body,
-                    apiKey,
-                    endpoint,
-                    headers
-                })}
-            );
+        return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint,
+            parameters: parameters
+        })
 
     };
 
@@ -354,21 +330,10 @@ const webLanguageModel = ({
             ]
         };
 
-        const body = null;
-        const parameters = null;
-        const headers = null;
-
-		return verify(operation, parameters, headers, endpoint)
-            .then(() => {
-                return makeRequest({
-                    operation,
-                    parameters,
-                    body,
-                    apiKey,
-                    endpoint,
-                    headers
-                })}
-            );
+        return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint
+        })
     };
 
     return self;

@@ -1,6 +1,5 @@
 const {
-    makeRequest,
-    verify
+    makeRequest
 } = require('../../lib/api');
 
 const textAnalytics = ({
@@ -9,6 +8,9 @@ const textAnalytics = ({
 }) => {
 
     let self = this;
+
+    self._apiKey = apiKey;
+    self._endpoint = endpoint;
 
     /**
 			Name: Text Analytics: Detect Language
@@ -47,19 +49,12 @@ const textAnalytics = ({
             }],
         };
 
-        const parameters = null;
-
-        return verify(operation, parameters, headers, endpoint)
-        .then(() => {
-            return makeRequest({
-                operation,
-                parameters,
-                body,
-                apiKey,
-                endpoint,
-                headers
-            })}
-        )
+        return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint,
+            headers: headers,
+            body: body
+        })
 
     };
     
@@ -100,19 +95,12 @@ const textAnalytics = ({
             }]
         };
 
-        const parameters = null;
-
-        return verify(operation, parameters, headers, endpoint)
-            .then(() => {
-                return makeRequest({
-                    operation,
-                    parameters,
-                    body,
-                    apiKey,
-                    endpoint,
-                    headers
-                })}
-            )
+        return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint,
+            headers: headers,
+            body: body
+        })
 
     };
 
@@ -154,19 +142,12 @@ const textAnalytics = ({
             }]
         };
 
-        const parameters = null;
-
-        return verify(operation, parameters, headers, endpoint)
-        .then(() => {
-            return makeRequest({
-                operation,
-                parameters,
-                body,
-                apiKey,
-                endpoint,
-                headers
-            })}
-        )
+        return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint,
+            headers: headers,
+            body: body
+        })
 
     };
 

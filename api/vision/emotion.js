@@ -1,6 +1,5 @@
 const {
-    makeRequest,
-    verify
+    makeRequest
 } = require('../../lib/api');
 
 const emotion = ({
@@ -9,6 +8,9 @@ const emotion = ({
 }) => {
 
     let self = this;
+
+    self._apiKey = apiKey;
+    self._endpoint = endpoint;
 
     /**
 	Name: Emotion: Emotion Recognition
@@ -49,19 +51,12 @@ const emotion = ({
             }]
         };
 
-        const parameters = null;
-
-        return verify(operation, parameters, headers, endpoint)
-        .then(() => {
-            return makeRequest({
-                operation,
-                parameters,
-                body,
-                apiKey,
-                endpoint,
-                headers
-            })}
-        )
+        return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint,
+            headers: headers,
+            body: body
+        })
     };
 
     /**
@@ -104,23 +99,16 @@ const emotion = ({
             }]
         };
 
-        const headers = null;
-
-        return verify(operation, parameters, headers, endpoint)
-            .then(() => {
-                return makeRequest({
-                    operation,
-                    parameters,
-                    body,
-                    apiKey,
-                    endpoint,
-                    headers
-                })}
-            )
-            .then((operationIdUrl) => {
-                var splittedUrl = operationIdUrl.split('/');
-                return splittedUrl[splittedUrl.length - 1];
-            })
+        return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint,
+            parameters: parameters,
+            body: body
+        })
+        .then((operationIdUrl) => {
+            var splittedUrl = operationIdUrl.split('/');
+            return splittedUrl[splittedUrl.length - 1];
+        })
 
     };
     /**
@@ -174,17 +162,13 @@ const emotion = ({
             }]
         };
 
-        return verify(operation, parameters, headers, endpoint)
-        .then(() => {
-            return makeRequest({
-                operation,
-                parameters,
-                body,
-                apiKey,
-                endpoint,
-                headers
-            })}
-        )
+        return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint,
+            parameters: parameters,
+            headers: headers,
+            body: body
+        })
 
     };
 
@@ -236,17 +220,11 @@ const emotion = ({
             }]
         };
 
-        return verify(operation, parameters, headers, endpoint)
-        .then(() => {
-            return makeRequest({
-                operation,
-                parameters,
-                body,
-                apiKey,
-                endpoint,
-                headers
-            })}
-        )
+        return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint,
+            parameters: parameters
+        })
 
     };
 

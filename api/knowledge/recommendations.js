@@ -1,6 +1,5 @@
 const {
-    makeRequest,
-    verifyParameters
+    makeRequest
 } = require('../../lib/api');
 
 const recommendations = ({
@@ -8,6 +7,9 @@ const recommendations = ({
 }) => {
 
     let self = this;
+
+    self._apiKey = apiKey;
+    self._endpoint = endpoint;
 
     /**
 			Name: Recommendations: Create a model
@@ -40,13 +42,13 @@ Once you have created a model, you can upload your catalog data, upload your usa
             "parameters": []
         };
 
-        return verifyParameters(operation, parameters)
-            .then(makeRequest({
-                operation,
-                parameters,
-                body,
-                apiKey
-            }));
+        return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint,
+            parameters: parameters,
+            headers: headers,
+            body: body
+        })
 
     };
     /**
@@ -85,13 +87,13 @@ Once you have created a model, you can upload your catalog data, upload your usa
             }]
         };
 
-        return verifyParameters(operation, parameters)
-            .then(makeRequest({
-                operation,
-                parameters,
-                body,
-                apiKey
-            }));
+        return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint,
+            parameters: parameters,
+            headers: headers,
+            body: body
+        })
 
     };
     /**
@@ -139,13 +141,13 @@ Once you have created a model, you can upload your catalog data, upload your usa
             }]
         };
 
-        return verifyParameters(operation, parameters)
-            .then(makeRequest({
-                operation,
-                parameters,
-                body,
-                apiKey
-            }));
+        return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint,
+            parameters: parameters,
+            headers: headers,
+            body: body
+        })
 
     };
     /**
@@ -183,13 +185,13 @@ Once you have created a model, you can upload your catalog data, upload your usa
             }]
         };
 
-        return verifyParameters(operation, parameters)
-            .then(makeRequest({
-                operation,
-                parameters,
-                body,
-                apiKey
-            }));
+        return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint,
+            parameters: parameters,
+            headers: headers,
+            body: body
+        })
 
     };
     /**
@@ -227,13 +229,13 @@ Once you have created a model, you can upload your catalog data, upload your usa
             }]
         };
 
-        return verifyParameters(operation, parameters)
-            .then(makeRequest({
-                operation,
-                parameters,
-                body,
-                apiKey
-            }));
+        return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint,
+            parameters: parameters,
+            headers: headers,
+            body: body
+        })
 
     };
     /**
@@ -270,13 +272,13 @@ Once you have created a model, you can upload your catalog data, upload your usa
             }]
         };
 
-        return verifyParameters(operation, parameters)
-            .then(makeRequest({
-                operation,
-                parameters,
-                body,
-                apiKey
-            }));
+        return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint,
+            parameters: parameters,
+            headers: headers,
+            body: body
+        })
 
     };
     /**
@@ -304,13 +306,13 @@ Once you have created a model, you can upload your catalog data, upload your usa
             "parameters": []
         };
 
-        return verifyParameters(operation, parameters)
-            .then(makeRequest({
-                operation,
-                parameters,
-                body,
-                apiKey
-            }));
+        return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint,
+            parameters: parameters,
+            headers: headers,
+            body: body
+        })
 
     };
     /**
@@ -355,13 +357,13 @@ Once you have created a model, you can upload your catalog data, upload your usa
             }]
         };
 
-        return verifyParameters(operation, parameters)
-            .then(makeRequest({
-                operation,
-                parameters,
-                body,
-                apiKey
-            }));
+        return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint,
+            parameters: parameters,
+            headers: headers,
+            body: body
+        })
 
     };
     /**
@@ -406,13 +408,13 @@ Once you have created a model, you can upload your catalog data, upload your usa
             }]
         };
 
-        return verifyParameters(operation, parameters)
-            .then(makeRequest({
-                operation,
-                parameters,
-                body,
-                apiKey
-            }));
+        return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint,
+            parameters: parameters,
+            headers: headers,
+            body: body
+        })
 
     };
     /**
@@ -457,13 +459,13 @@ Once you have created a model, you can upload your catalog data, upload your usa
             }]
         };
 
-        return verifyParameters(operation, parameters)
-            .then(makeRequest({
-                operation,
-                parameters,
-                body,
-                apiKey
-            }));
+        return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint,
+            parameters: parameters,
+            headers: headers,
+            body: body
+        })
 
     };
     /**
@@ -540,13 +542,13 @@ Once you have created a model, you can upload your catalog data, upload your usa
             }]
         };
 
-        return verifyParameters(operation, parameters)
-            .then(makeRequest({
-                operation,
-                parameters,
-                body,
-                apiKey
-            }));
+        return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint,
+            parameters: parameters,
+            headers: headers,
+            body: body
+        })
 
     };
     /**
@@ -628,13 +630,13 @@ Note:  There is no user recommendation for an <i>FBT</i> build. If the active bu
             }]
         };
 
-        return verifyParameters(operation, parameters)
-            .then(makeRequest({
-                operation,
-                parameters,
-                body,
-                apiKey
-            }));
+        return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint,
+            parameters: parameters,
+            headers: headers,
+            body: body
+        })
 
     };
     /**
@@ -671,13 +673,13 @@ Note:  There is no user recommendation for an <i>FBT</i> build. If the active bu
             }]
         };
 
-        return verifyParameters(operation, parameters)
-            .then(makeRequest({
-                operation,
-                parameters,
-                body,
-                apiKey
-            }));
+        return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint,
+            parameters: parameters,
+            headers: headers,
+            body: body
+        })
 
     };
     /**
@@ -716,13 +718,13 @@ Note:  There is no user recommendation for an <i>FBT</i> build. If the active bu
             }]
         };
 
-        return verifyParameters(operation, parameters)
-            .then(makeRequest({
-                operation,
-                parameters,
-                body,
-                apiKey
-            }));
+        return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint,
+            parameters: parameters,
+            headers: headers,
+            body: body
+        })
 
     };
     /**
@@ -769,13 +771,13 @@ Note:  There is no user recommendation for an <i>FBT</i> build. If the active bu
             }]
         };
 
-        return verifyParameters(operation, parameters)
-            .then(makeRequest({
-                operation,
-                parameters,
-                body,
-                apiKey
-            }));
+        return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint,
+            parameters: parameters,
+            headers: headers,
+            body: body
+        })
 
     };
     /**
@@ -821,13 +823,13 @@ Note:  There is no user recommendation for an <i>FBT</i> build. If the active bu
             }]
         };
 
-        return verifyParameters(operation, parameters)
-            .then(makeRequest({
-                operation,
-                parameters,
-                body,
-                apiKey
-            }));
+        return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint,
+            parameters: parameters,
+            headers: headers,
+            body: body
+        })
 
     };
 

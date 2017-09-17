@@ -1,14 +1,18 @@
 const {
-    makeRequest,
-    verify
+    makeRequest
 } = require('../../lib/api');
 
 const academicKnowledge = ({
-    apiKey,
-    endpoint
+    apiKey: apiKey,
+    endpoint: endpoint
 }) => {
 
+    console.log(apiKey);
+
     let self = this;
+
+    self._apiKey = apiKey;
+    self._endpoint = endpoint;
 
     self.calcHistogram = ({
         parameters
@@ -64,20 +68,11 @@ const academicKnowledge = ({
             }]
         };
 
-        const headers = null;
-        const body = null;
-
-        return verify(operation, parameters, headers, endpoint)
-            .then(() => {
-                return makeRequest({
-                    operation,
-                    parameters,
-                    body,
-                    apiKey,
-                    endpoint,
-                    headers
-                })}
-            );
+        return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint,
+            parameters: parameters
+        })
 
     };
 
@@ -109,19 +104,12 @@ const academicKnowledge = ({
             }]
         };
 
-        const parameters = null;
-
-        return verify(operation, parameters, headers, endpoint)
-            .then(() => {
-                return makeRequest({
-                    operation,
-                    parameters,
-                    body,
-                    apiKey,
-                    endpoint,
-                    headers
-                })}
-            );
+        return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint,
+            headers: headers,
+            body: body
+        })
 
     };
 
@@ -186,20 +174,11 @@ const academicKnowledge = ({
             }]
         };
 
-        const headers = null;
-        const body = null;
-
-		return verify(operation, parameters, headers, endpoint)
-            .then(() => {
-                return makeRequest({
-                    operation,
-                    parameters,
-                    body,
-                    apiKey,
-                    endpoint,
-                    headers
-                })}
-            );
+        return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint,
+            parameters: parameters
+        })
 
     };
 
@@ -231,19 +210,12 @@ const academicKnowledge = ({
             }]
         };
 
-        const parameters = null;
-
-        return verify(operation, parameters, headers, endpoint)
-            .then(() => {
-                return makeRequest({
-                    operation,
-                    parameters,
-                    body,
-                    apiKey,
-                    endpoint,
-                    headers
-                })}
-            );
+        return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint,
+            headers: headers,
+            body: body
+        })
     };
 
     self.graphSearch = ({
@@ -285,17 +257,13 @@ const academicKnowledge = ({
             }]
         };
 
-        return verify(operation, parameters, headers, endpoint)
-            .then(() => {
-                return makeRequest({
-                    operation,
-                    parameters,
-                    body,
-                    apiKey,
-                    endpoint,
-                    headers
-                })}
-            );
+        return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint,
+            parameters: parameters,
+            headers: headers,
+            body: body
+        })
     };
 
     self.interpret = ({
@@ -359,20 +327,11 @@ const academicKnowledge = ({
             }]
         };
 
-        const headers = null;
-        const body = null;
-
-        return verify(operation, parameters, headers, endpoint)
-            .then(() => {
-                return makeRequest({
-                    operation,
-                    parameters,
-                    body,
-                    apiKey,
-                    endpoint,
-                    headers
-                })}
-            );
+        return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint,
+            parameters: parameters
+        })
 
     };
 
@@ -404,19 +363,12 @@ const academicKnowledge = ({
             }]
         };
 
-        const parameters = null;
-
-        return verify(operation, parameters, headers, endpoint)
-            .then(() => {
-                return makeRequest({
-                    operation,
-                    parameters,
-                    body,
-                    apiKey,
-                    endpoint,
-                    headers
-                })}
-            );
+        return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint,
+            headers: headers,
+            body: body
+        })
 
     };
 
@@ -453,20 +405,11 @@ const academicKnowledge = ({
             }]
         };
 
-        const headers = null;
-        const body = null;
-
-        return verify(operation, parameters, headers, endpoint)
-            .then(() => {
-                return makeRequest({
-                    operation,
-                    parameters,
-                    body,
-                    apiKey,
-                    endpoint,
-                    headers
-                })}
-            );
+        return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint,
+            parameters: parameters
+        })
 
     };
 
@@ -499,19 +442,12 @@ const academicKnowledge = ({
             "parameters": []
         };
 
-        const parameters = null;
-
-        return verify(operation, parameters, headers, endpoint)
-            .then(() => {
-                return makeRequest({
-                    operation,
-                    parameters,
-                    body,
-                    apiKey,
-                    endpoint,
-                    headers
-                })}
-            );
+        return makeRequest(self, {
+            operation: operation,
+            endpoint: endpoint,
+            headers: headers,
+            body: body
+        })
 
     };
 
