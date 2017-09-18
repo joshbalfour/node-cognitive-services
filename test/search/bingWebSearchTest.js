@@ -5,8 +5,8 @@ const should = require('should');
 describe('Bing web search', () => {
 
     const client = cognitive.bingWebSearch({
-        apiKey: config.bingWebSearch.apiKey,
-        endpoint: config.bingWebSearch.endpoint
+        apiKey: config.bingSearch.apiKey,
+        endpoint: config.bingSearch.endpoint
     });
 
     describe('Search', () => {

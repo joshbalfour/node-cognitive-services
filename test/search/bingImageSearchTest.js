@@ -6,8 +6,8 @@ const fs = require('fs');
 describe('Bing Image Search', () => {
 
     const client = cognitive.bingImageSearch({
-        apiKey: config.bingImageSearch.apiKey,
-        endpoint: config.bingImageSearch.endpoint
+        apiKey: config.bingSearch.apiKey,
+        endpoint: config.bingSearch.endpoint
     });
 
     describe('Search', () => {
