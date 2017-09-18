@@ -1,6 +1,6 @@
 {
   "name": "cognitive-services",
-  "version": "0.1.2",
+  "version": "0.2",
   "description": "Microsoft Cognitive Services API",
   "main": "index.js",
   "scripts": {
@@ -16,8 +16,17 @@
     "SDK"
   ],
   "repository": "https://github.com/joshbalfour/node-cognitive-services",
-  "engines" : { "node" : ">=6.0" },
+  "engines": {
+    "node": ">=6.0"
+  },
   "dependencies": {
-    "request-promise": "^3.0.0"
+    "request": "^2.81.0",
+    "request-promise": "^4.2.1"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-istanbul": "^1.1.2",
+    "gulp-mocha": "^3.0.1",
+    "should": "^13.0.1"
   }
 }
