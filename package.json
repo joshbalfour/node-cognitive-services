@@ -1,10 +1,10 @@
 {
   "name": "cognitive-services",
-  "version": "0.2.0",
-  "description": "Microsoft Cognitive Services API",
+  "version": "0.2.1",
+  "description": "Microsoft Cognitive Services SDK for Node.js",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "gulp test"
   },
   "author": "Josh Balfour <josh@joshbalfour.co.uk>",
   "license": "ISC",
@@ -13,7 +13,13 @@
     "Cognitive",
     "Services",
     "API",
-    "SDK"
+    "SDK",
+    "Face",
+    "Speech",
+    "Vision",
+    "Language",
+    "Javascript",
+    "Node.js"
   ],
   "repository": "https://github.com/joshbalfour/node-cognitive-services",
   "engines": {

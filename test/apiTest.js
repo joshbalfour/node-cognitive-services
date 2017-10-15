@@ -1,4 +1,3 @@
-const cognitive = require('../index.js');
 const config = require('./config.js');
 const should = require('should');
 const api = require('../lib/api.js');

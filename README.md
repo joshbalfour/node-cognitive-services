@@ -20,7 +20,7 @@ To use this SDK in your project, run `npm install cognitive-services --save`.
 
 > **Note**: this SDK only works with Node 6.0 or higher.
 
-Then make a JS file in your project directory and add 
+Then make a JS file in your project directory and add the following:
 
 ```javascript
 const cognitiveServices = require('cognitive-services');
@@ -44,6 +44,8 @@ const client = cognitiveServices.bingSpellCheck({
 client.spellCheck({
     parameters,
     body
+}).then(response => {
+    console.log(response);
 })
 ```
 
