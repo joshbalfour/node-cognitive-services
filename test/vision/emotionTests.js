@@ -1,11 +1,11 @@
-const cognitive = require('../../index.js');
+const cognitive = require('../../src/index.js');
 const config = require('../config.js');
 const should = require('should');
 const fs = require('fs');
 
 describe('Emotion', () => {
 
-    const client = cognitive.emotion({
+    const client = new cognitive.emotion({
         apiKey: config.emotion.apiKey,
         endpoint: config.emotion.endpoint
     });

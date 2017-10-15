@@ -1,10 +1,10 @@
-const cognitive = require('../../index.js');
+const cognitive = require('../../src/index.js');
 const config = require('../config.js');
 const should = require('should');
 
 describe('Speaker recognition', () => {
 
-    const client = cognitive.speakerRecognition({
+    const client = new cognitive.speakerRecognition({
         apiKey: config.speakerRecognition.apiKey,
         endpoint: config.speakerRecognition.endpoint
     });

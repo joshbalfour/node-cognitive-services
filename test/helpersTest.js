@@ -1,8 +1,44 @@
-const config = require('./config.js');
 const should = require('should');
-const api = require('../lib/api.js');
+const api = require('../src/helpers');
 
 describe('API Test', () => {
+    it('if a body parameter is required for json and not entered it should throw an error', (done) => {
+        const expectedBody = [{
+            "name": "expr",
+            "required": true,
+            "type": "inBody"
+        }];
+        const actualBody = {};
+        const contentType = "application/json"
+        
+        api.verifyBody(expectedBody, actualBody, contentType)
+        .then((response) => {
+            done(new Error("Expected error message!"));
+        }).catch((err) => {
+            done();
+        });
+    });
+
+    it('if a body parameter is required and its value is not in the list of options it should throw an error', (done) => {
+        const expectedBody = [{
+            "name": "expr",
+            "required": true,
+            "type": "inBody",
+            "options": [1,2,3]
+        }];
+        const actualBody = {
+            "expr": 4
+        };
+        const contentType = "application/json"
+        
+        api.verifyBody(expectedBody, actualBody, contentType)
+        .then((response) => {
+            done(new Error("Expected error message!"));
+        }).catch((err) => {
+            done();
+        });
+    });
+
     it('if a parameter is required and not entered it should throw an error', (done) => {
         const expectedParams = [{
             "name": "expr",

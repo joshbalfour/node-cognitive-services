@@ -1,4 +1,4 @@
-const cognitive = require('../../index.js');
+const cognitive = require('../../src/index.js');
 const config = require('../config.js');
 const should = require('should');
 const fs = require('fs');
@@ -20,7 +20,7 @@ describe('Face', () => {
     const personGroupId = "test-" + makeId(8);
     var personId = null;
 
-    const face = cognitive.face({
+    const face = new cognitive.face({
         apiKey: config.face.apiKey,
         endpoint: config.face.endpoint
     });
@@ -73,7 +73,7 @@ describe('Face', () => {
     })
 
     describe('Face', () => {
-        it('should detect', (done) => {
+        it('should detect when body is in json format', (done) => {
             const parameters = {
                 returnFaceId: "true",
                 returnFaceLandmarks: "true",
@@ -86,6 +86,31 @@ describe('Face', () => {
                 "url": SATYA_NADELLA_IMAGE_URL
             };
 
+            face.detect({
+                parameters,
+                headers,
+                body
+            }).then((response) => {
+                should(response).not.be.undefined();
+                should(response.length).eql(1);
+                should(response[0]).have.properties(['faceAttributes', 'faceId', 'faceLandmarks', 'faceRectangle']);
+                done();
+            }).catch((err) => {
+                done(new Error("Error making request:" + err));
+            });
+        })
+
+        it('should detect when body is in binary', (done) => {
+            const parameters = {
+                returnFaceId: "true",
+                returnFaceLandmarks: "true",
+                returnFaceAttributes: "age,gender,headPose,smile,facialHair,glasses"
+            };
+            const headers = {
+                'Content-type': 'application/octet-stream'
+            };
+            const body = fs.readFileSync('./test/assets/happy_face.jpg');
+            
             face.detect({
                 parameters,
                 headers,

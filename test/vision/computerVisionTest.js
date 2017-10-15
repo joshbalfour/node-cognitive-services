@@ -1,4 +1,4 @@
-const cognitive = require('../../index.js');
+const cognitive = require('../../src/index.js');
 const config = require('../config.js');
 const should = require('should');
 const fs = require('fs');
@@ -7,7 +7,7 @@ describe('Computer vision', () => {
 
     const FRIENDS_IMAGE_URL = 'http://az616578.vo.msecnd.net/files/2016/10/09/636115830685164048-686058602_friends.jpg';
 
-    const client = cognitive.computerVision({
+    const client = new cognitive.computerVision({
         apiKey: config.computerVision.apiKey,
         endpoint: config.computerVision.endpoint
     });

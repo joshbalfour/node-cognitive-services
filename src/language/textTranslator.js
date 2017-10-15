@@ -1,30 +1,34 @@
-const {
-    makeRequest
-} = require('../../lib/api');
+const commonService = require('../commonService');
 
 const xmlBuilder = require('xmlBuilder');
 const xmlParser = require('xml2js');
 
-const textTranslator = ({
-    apiKey,
-    endpoint
-}) => {
-
-    let self = this;
-
-    self.endpoints = [
-        "api.microsofttranslator.com"
-    ];
-    self._apiKey = apiKey;
-    self._endpoint = endpoint;
+/**
+ * Translate text from one language into text of another language, and get text-to-speech output of translated text.
+ * @augments commonService
+ * {@link http://docs.microsofttranslator.com/text-translate.html|documentation}
+ */
+class textTranslator extends commonService {
+    /**
+     * Constructor.
+     * 
+     * @param {Object} obj
+     * @param {string} obj.apiKey
+     * @param {string} obj.endpoint
+     */
+    constructor({ apiKey, endpoint }) {
+        super({ apiKey, endpoint });
+        this.serviceId = ""
+        this.endpoints = [
+            "api.microsofttranslator.com"
+        ];
+    }
 
     /**
-     * Translate array: retrieve translations for multiple source texts
-     * Docs: http://docs.microsofttranslator.com/text-translate.html#!/default/post_TranslateArray
+     * Retrieve translations for multiple source texts.
+     * @returns {Promise.<object>}
      */
-    self.translateArray = ({
-        parameters
-    }) => {
+    translateArray({body}) {
 
         const operation = {
             "path": "V2/Http.svc/TranslateArray",
@@ -114,49 +118,47 @@ const textTranslator = ({
         // Note: API expect XML elements to be sorted alphabetically
         let TranslateArrayRequest = xmlBuilder.create("TranslateArrayRequest");
         TranslateArrayRequest.ele("AppId");
-        if (parameters["from"]) {
-            TranslateArrayRequest.ele("From", null, parameters["from"])
+        if (body["from"]) {
+            TranslateArrayRequest.ele("From", null, body["from"])
         }
 
         let options = TranslateArrayRequest.ele("Options");
 
-        if (parameters["category"]) {
-            options.ele("Category", { xmlns: optionsNamespace }, parameters["category"])
+        if (body["category"]) {
+            options.ele("Category", { xmlns: optionsNamespace }, body["category"])
         }
-        if (parameters["contentType"]) {
-            options.ele("ContentType", { xmlns: optionsNamespace }, parameters["contentType"])
+        if (body["contentType"]) {
+            options.ele("ContentType", { xmlns: optionsNamespace }, body["contentType"])
         }
-        if (parameters["profanityAction"]) {
-            options.ele("ProfanityAction", { xmlns: optionsNamespace }, parameters["profanityAction"])
+        if (body["profanityAction"]) {
+            options.ele("ProfanityAction", { xmlns: optionsNamespace }, body["profanityAction"])
         }
         options.ele("ReservedFlags", { xmlns: optionsNamespace });
-        if (parameters["state"]) {
-            options.ele("State", { xmlns: optionsNamespace }, parameters["state"])
+        if (body["state"]) {
+            options.ele("State", { xmlns: optionsNamespace }, body["state"])
         }
-        if (parameters["uri"]) {
-            options.ele("Uri", { xmlns: optionsNamespace }, parameters["uri"])
+        if (body["uri"]) {
+            options.ele("Uri", { xmlns: optionsNamespace }, body["uri"])
         }
-        if (parameters["user"]) {
-            options.ele("User", { xmlns: optionsNamespace }, parameters["user"])
+        if (body["user"]) {
+            options.ele("User", { xmlns: optionsNamespace }, body["user"])
         }
 
-        if (parameters["sourceTexts"]) {
+        if (body["sourceTexts"]) {
             let texts = TranslateArrayRequest.ele("Texts");
-            for (let i in parameters["sourceTexts"]) {
-                texts.ele("string", { xmlns: textNamespace }, parameters["sourceTexts"][i])
+            for (let i in body["sourceTexts"]) {
+                texts.ele("string", { xmlns: textNamespace }, body["sourceTexts"][i])
             }
         }
 
-        if (parameters["to"]) {
-            TranslateArrayRequest.ele("To", null, parameters["to"])
+        if (body["to"]) {
+            TranslateArrayRequest.ele("To", null, body["to"])
         }
 
-        let body = TranslateArrayRequest.toString();
+        body = TranslateArrayRequest.toString();
 
-        return makeRequest(self, {
+        return this.makeRequest({
             operation: operation,
-            endpoint: endpoint,
-            parameters: parameters,
             headers: { "Content-type": "text/xml" },
             body: body
         }).then(xmlResponse => {
@@ -174,10 +176,9 @@ const textTranslator = ({
 
     /**
      * Translates a text string from one language to another.
+     * @returns {Promise.<object>}
      */
-    self.translate = ({
-        parameters
-    }) => {
+    translate({parameters}) {
 
         const operation = {
             "path": "V2/Http.svc/Translate",
@@ -224,9 +225,8 @@ const textTranslator = ({
             }]
         };
 
-        return makeRequest(self, {
+        return this.makeRequest({
             operation: operation,
-            endpoint: endpoint,
             parameters: parameters
         }).then(xmlResponse => {
             return new Promise((resolve, reject) => {
@@ -243,17 +243,16 @@ const textTranslator = ({
 
     /**
      * Retrieves friendly names for the languages passed in as the parameter languageCodes, and localized using the passed locale language.
+     * @returns {Promise.<object>}
      */
-    self.getLanguageNames = ({
-        parameters
-    }) => {
+    getLanguageNames({parameters, body}) {
 
         const operation = {
             "path": "V2/Http.svc/GetLanguageNames",
             "method": "POST",
             "parameters": [{
                 "name": "locale",
-                "description": "A string representing a combination of an ISO 639 two-letter lowercase culture code associated with a language and an ISO 3166 two-letter uppercase subculture code to localize the language names or a ISO 639 lowercase culture code by itself.",
+                "description": "A string representing a combination of an ISO 639 two-letter lowercase culture code associated with a language and an ISO 3166 two-letter uppercase subculture code to localize the language names or a ISO 639 lowercase culture code by it",
                 "value": null,
                 "required": true,
                 "type": "queryStringParam",
@@ -273,19 +272,18 @@ const textTranslator = ({
         ArrayOfstring.attribute("xmlns:i", "http://www.w3.org/2001/XMLSchema-instance");
         ArrayOfstring.attribute("xmlns", "http://schemas.microsoft.com/2003/10/Serialization/Arrays");
 
-        if (parameters["languageCodes"]) {
-            for (let i = 0; i < parameters.languageCodes.length; i++) {
-                ArrayOfstring.ele("string", null, parameters.languageCodes[i])
+        if (body["languageCodes"]) {
+            for (let i = 0; i < body.languageCodes.length; i++) {
+                ArrayOfstring.ele("string", null, body.languageCodes[i])
             }
         }
 
-        const body = ArrayOfstring.toString();
+        body = ArrayOfstring.toString();
 
-        return makeRequest(self, {
+        return this.makeRequest({
             operation: operation,
-            endpoint: endpoint,
-            parameters: parameters,
             headers: { "Content-type": "text/xml" },
+            parameters: parameters,
             body: body
         }).then(xmlResponse => {
             return new Promise((resolve, reject) => {
@@ -301,18 +299,18 @@ const textTranslator = ({
     };
 
     /**
-     * Obtain a list of language codes representing languages that are supported by the Translation Service.  Translate and TranslateArray can translate between any two of these languages.
+     * Obtain a list of language codes representing languages that are supported by the Translation Service. 
+     * Translate and TranslateArray can translate between any two of these languages.
+     * @returns {Promise.<object>}
      */
-    self.getLanguagesForTranslate = () => {
+    getLanguagesForTranslate() {
 
         const operation = {
             "path": "V2/Http.svc/GetLanguagesForTranslate",
             "method": "GET",
-            "parameters": []
         };
-        return makeRequest(self, {
+        return this.makeRequest({
             operation: operation,
-            endpoint: endpoint
         }).then(xmlResponse => {
             return new Promise((resolve, reject) => {
                 xmlParser.parseString(xmlResponse, (err, res) => {
@@ -328,17 +326,16 @@ const textTranslator = ({
 
     /**
      * Retrieves the languages available for speech synthesis.
+     * @returns {Promise.<object>}
      */
-    self.getLanguagesForSpeak = () => {
+    getLanguagesForSpeak() {
 
         const operation = {
             "path": "V2/Http.svc/GetLanguagesForSpeak",
-            "method": "GET",
-            "parameters": []
+            "method": "GET"
         };
-        return makeRequest(self, {
+        return this.makeRequest({
             operation: operation,
-            endpoint: endpoint
         }).then(xmlResponse => {
             return new Promise((resolve, reject) => {
                 xmlParser.parseString(xmlResponse, (err, res) => {
@@ -354,10 +351,9 @@ const textTranslator = ({
 
     /**
      * Returns a string which is a URL to a wave or mp3 stream of the passed-in text being spoken in the desired language.
+     * @returns {Promise.<object>}
      */
-    self.speak = ({
-        parameters
-    }) => {
+    speak({parameters}) {
 
         const operation = {
             "path": "V2/Http.svc/Speak",
@@ -396,19 +392,17 @@ const textTranslator = ({
                 "typeName": "string"
             }]
         };
-        return makeRequest(self, {
+        return this.makeRequest({
             operation: operation,
-            endpoint: endpoint,
             parameters: parameters
         });
     };
 
     /**
      * Identify the language of a selected piece of text.
+     * @returns {Promise.<object>}
      */
-    self.detect = ({
-        parameters
-    }) => {
+    detect({parameters}) {
 
         const operation = {
             "path": "V2/Http.svc/Detect",
@@ -422,9 +416,8 @@ const textTranslator = ({
                 "typeName": "string"
             }]
         };
-        return makeRequest(self, {
+        return this.makeRequest({
             operation: operation,
-            endpoint: endpoint,
             parameters: parameters
         }).then(xmlResponse => {
             return new Promise((resolve, reject) => {
@@ -440,11 +433,11 @@ const textTranslator = ({
     };
 
     /**
-     * Identify the language of an array of string at once. Performs independent detection of each individual array element and returns a result for each row of the array.
+     * Identify the language of an array of string at once.
+     * Performs independent detection of each individual array element and returns a result for each row of the array.
+     * @returns {Promise.<object>}
      */
-    self.detectArray = ({
-        parameters
-    }) => {
+    detectArray({body}) {
 
         const operation = {
             "path": "V2/Http.svc/DetectArray",
@@ -462,18 +455,16 @@ const textTranslator = ({
         let ArrayOfstring = xmlBuilder.create("ArrayOfstring");
         ArrayOfstring.attribute("xmlns", "http://schemas.microsoft.com/2003/10/Serialization/Arrays");
 
-        if (parameters["texts"]) {
-            for (let i = 0; i < parameters.texts.length; i++) {
-                ArrayOfstring.ele("string", null, parameters.texts[i])
+        if (body["texts"]) {
+            for (let i = 0; i < body.texts.length; i++) {
+                ArrayOfstring.ele("string", null, body.texts[i])
             }
         }
 
-        const body = ArrayOfstring.toString();
+        body = ArrayOfstring.toString();
 
-        return makeRequest(self, {
+        return this.makeRequest({
             operation: operation,
-            endpoint: endpoint,
-            parameters: parameters,
             headers: { "Content-type": "text/xml" },
             body: body
         }).then(xmlResponse => {
@@ -491,10 +482,9 @@ const textTranslator = ({
 
     /**
      * Adds a translation to the translation memory.
+     * @returns {Promise.<object>}
      */
-    self.addTranslation = ({
-        parameters
-    }) => {
+    addTranslation({parameters}) {
 
         const operation = {
             "path": "V2/Http.svc/AddTranslation",
@@ -569,19 +559,17 @@ const textTranslator = ({
             }]
         };
 
-        return makeRequest(self, {
+        return this.makeRequest({
             operation: operation,
-            endpoint: endpoint,
             parameters: parameters
         });
     };
 
     /**
      * Adds an array of translations to add translation memory. This is an array version of AddTranslation.
+     * @returns {Promise.<object>}
      */
-    self.addTranslationArray = ({
-        parameters
-    }) => {
+    addTranslationArray({body}) {
 
         const operation = {
             "path": "V2/Http.svc/AddTranslationArray",
@@ -647,32 +635,32 @@ const textTranslator = ({
         // Note: API expect XML elements to be sorted alphabetically
         let AddtranslationsRequest = xmlBuilder.create("AddtranslationsRequest");
         AddtranslationsRequest.ele("AppId");
-        if (parameters["from"]) {
-            AddtranslationsRequest.ele("From", null, parameters["from"])
+        if (body["from"]) {
+            AddtranslationsRequest.ele("From", null, body["from"])
         }
         const namespace = "http://schemas.datacontract.org/2004/07/Microsoft.MT.Web.Service.V2";
         let options = AddtranslationsRequest.ele("Options");
 
-        if (parameters["category"]) {
-            options.ele("Category", { xmlns: namespace }, parameters["category"]);
+        if (body["category"]) {
+            options.ele("Category", { xmlns: namespace }, body["category"]);
         }
-        if (parameters["contentType"]) {
-            options.ele("ContentType", { xmlns: namespace }, parameters["contentType"]);
+        if (body["contentType"]) {
+            options.ele("ContentType", { xmlns: namespace }, body["contentType"]);
         }
-        if (parameters["user"]) {
-            options.ele("User", { xmlns: namespace }, parameters["user"]);
+        if (body["user"]) {
+            options.ele("User", { xmlns: namespace }, body["user"]);
         }
-        if (parameters["uri"]) {
-            options.ele("Uri", { xmlns: namespace }, parameters["uri"]);
+        if (body["uri"]) {
+            options.ele("Uri", { xmlns: namespace }, body["uri"]);
         }
-        if (parameters["to"]) {
-            AddtranslationsRequest.ele("To", null, parameters["to"]);
+        if (body["to"]) {
+            AddtranslationsRequest.ele("To", null, body["to"]);
         }
 
-        if (parameters["translations"]) {
+        if (body["translations"]) {
             let translations = AddtranslationsRequest.ele("Translations");
-            for (let i in parameters["translations"]) {
-                let t = parameters["translations"][i];
+            for (let i in body["translations"]) {
+                let t = body["translations"][i];
                 let translation = translations.ele("Translation", { xmlns: namespace });
                 translation.ele("OriginalText", t["originalText"]);
                 translation.ele("Rating", t["rating"]);
@@ -682,12 +670,10 @@ const textTranslator = ({
             }
         }
 
-        let body = AddtranslationsRequest.toString();
+        body = AddtranslationsRequest.toString();
 
-        return makeRequest(self, {
+        return this.makeRequest({
             operation: operation,
-            endpoint: endpoint,
-            parameters: parameters,
             headers: { "Content-type": "text/xml" },
             body: body
         })
@@ -695,10 +681,10 @@ const textTranslator = ({
 
     /**
      * Breaks a piece of text into sentences and returns an array containing the lengths in each sentence.
+     * @returns {Promise.<object>}
      */
-    self.breakSentences = ({
-        parameters
-    }) => {
+    breakSentences({parameters}) {
+
         const operation = {
             "path": "V2/Http.svc/BreakSentences",
             "method": "GET",
@@ -718,9 +704,8 @@ const textTranslator = ({
                 "typeName": "string"
             }]
         };
-        return makeRequest(self, {
+        return this.makeRequest({
             operation: operation,
-            endpoint: endpoint,
             parameters: parameters
         }).then(xmlResponse => {
             return new Promise((resolve, reject) => {
@@ -736,11 +721,11 @@ const textTranslator = ({
     };
 
     /**
-     * Retrieves an array of translations for a given language pair from the store and the MT engine. GetTranslations differs from Translate as it returns all available translations.
+     * Retrieves an array of translations for a given language pair from the store and the MT engine. 
+     * GetTranslations differs from Translate as it returns all available translations.
+     * @returns {Promise.<object>}
      */
-    self.getTranslations = ({
-        parameters
-    }) => {
+    getTranslations({parameters}) {
         const operation = {
             "path": "V2/Http.svc/GetTranslations",
             "method": "POST",
@@ -834,9 +819,8 @@ const textTranslator = ({
 
         let body = options.toString();
 
-        return makeRequest(self, {
+        return this.makeRequest({
             operation: operation,
-            endpoint: endpoint,
             parameters: parameters,
             headers: { "Content-type": 'text/xml' },
             body: body
@@ -855,10 +839,9 @@ const textTranslator = ({
 
     /**
      * Retrieve multiple translation candidates for multiple source texts.
+     * @returns {Promise.<object>}
      */
-    self.getTranslationsArray = ({
-        parameters
-    }) => {
+    getTranslationsArray({body}) {
         const operation = {
             "path": "V2/Http.svc/GetTranslationsArray",
             "method": "POST",
@@ -933,50 +916,48 @@ const textTranslator = ({
 
         let GetTranslationsArrayRequest = xmlBuilder.create("GetTranslationsArrayRequest");
         GetTranslationsArrayRequest.ele("AppId");
-        if (parameters["from"]) {
-            GetTranslationsArrayRequest.ele("From", null, parameters["from"])
+        if (body["from"]) {
+            GetTranslationsArrayRequest.ele("From", null, body["from"])
         }
 
         let options = GetTranslationsArrayRequest.ele("Options");
 
-        if (parameters["category"]) {
-            options.ele("Category", { xmlns: optionsNamespace }, parameters["category"])
+        if (body["category"]) {
+            options.ele("Category", { xmlns: optionsNamespace }, body["category"])
         }
-        if (parameters["contentType"]) {
-            options.ele("ContentType", { xmlns: optionsNamespace }, parameters["contentType"])
+        if (body["contentType"]) {
+            options.ele("ContentType", { xmlns: optionsNamespace }, body["contentType"])
         }
         options.ele("ReservedFlags", { xmlns: optionsNamespace });
-        if (parameters["state"]) {
-            options.ele("State", { xmlns: optionsNamespace }, parameters["state"])
+        if (body["state"]) {
+            options.ele("State", { xmlns: optionsNamespace }, body["state"])
         }
-        if (parameters["uri"]) {
-            options.ele("Uri", { xmlns: optionsNamespace }, parameters["uri"])
+        if (body["uri"]) {
+            options.ele("Uri", { xmlns: optionsNamespace }, body["uri"])
         }
-        if (parameters["user"]) {
-            options.ele("User", { xmlns: optionsNamespace }, parameters["user"])
+        if (body["user"]) {
+            options.ele("User", { xmlns: optionsNamespace }, body["user"])
         }
 
-        if (parameters["texts"]) {
+        if (body["texts"]) {
             let texts = GetTranslationsArrayRequest.ele("Texts");
-            for (let i in parameters["texts"]) {
-                texts.ele("string", { xmlns: textNamespace }, parameters["texts"][i])
+            for (let i in body["texts"]) {
+                texts.ele("string", { xmlns: textNamespace }, body["texts"][i])
             }
         }
 
-        if (parameters["to"]) {
-            GetTranslationsArrayRequest.ele("To", null, parameters["to"])
+        if (body["to"]) {
+            GetTranslationsArrayRequest.ele("To", null, body["to"])
         }
 
-        if (parameters["maxTranslations"]) {
-            GetTranslationsArrayRequest.ele("MaxTranslations", null, parameters["maxTranslations"])
+        if (body["maxTranslations"]) {
+            GetTranslationsArrayRequest.ele("MaxTranslations", null, body["maxTranslations"])
         }
 
-        let body = GetTranslationsArrayRequest.toString();
+        body = GetTranslationsArrayRequest.toString();
 
-        return makeRequest(self, {
+        return this.makeRequest({
             operation: operation,
-            endpoint: endpoint,
-            parameters: parameters,
             headers: { "Content-type": 'text/xml' },
             body: body
         }).then(xmlResponse => {
@@ -991,9 +972,6 @@ const textTranslator = ({
             })
         })
     };
-
-
-    return self;
-};
+}
 
 module.exports = textTranslator;

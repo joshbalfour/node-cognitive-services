@@ -1,43 +1,56 @@
-const {
-    makeRequest
-} = require('../../lib/api');
+const commonService = require('../commonService');
 
-const webLanguageModel = ({
-    apiKey,
-    endpoint
-}) => {
+/**
+ * Using this API, your application can leverage the power of big data through language models trained on web-scale corpora collected by Bing in the EN-US market.
+ * 
+ * These smoothed backoff N-gram language models, supporting Markov order up to 5, are trained on the following corpora:
+    - Web page body text
+    - Web page title text
+    - Web page anchor text
+    - Web search query text
 
-    let self = this;
+The Web LM REST API supports four lookup operations:
 
-    self.endpoints = [
-        "westus.api.cognitive.microsoft.com"
-    ];
-    self._apiKey = apiKey;
-    self._endpoint = endpoint;
+- Joint (log10) probability of a sequence of words.
+- Conditional (log10) probability of one word given a sequence of preceding words.
+- List of words (completions) most likely to follow a given sequence of words.
+- Word breaking of strings that contain no spaces.
+ * @augments commonService
+ * {@link https://westus.dev.cognitive.microsoft.com/docs/services/55de9ca4e597ed1fd4e2f104/operations/55de9ca4e597ed19b0de8a51|documentation}
+ */
+class webLanguageModel extends commonService {
+    /**
+     * Constructor.
+     * 
+     * @param {Object} obj
+     * @param {string} obj.apiKey
+     * @param {string} obj.endpoint
+     */
+    constructor({ apiKey, endpoint }) {
+        super({ apiKey, endpoint });
+        this.serviceId = "55de9ca4e597ed1fd4e2f104"
+        this.endpoints = [
+            "westus.api.cognitive.microsoft.com"
+        ];
+    }
+
 
     /**
-	Name: Web Language Model: Break Into Words
-	Description: Insert spaces into a string of words lacking spaces, like a hashtag or part of a URL. Punctuation or exotic characters can prevent a string from being broken, so it’s best to limit input strings to lower-case, alpha-numeric characters.
+     * Insert spaces into a string of words lacking spaces, like a hashtag or part of a URL. Punctuation or exotic characters can prevent a string from being broken, so it’s best to limit input strings to lower-case, alpha-numeric characters.
 	Example Parameters: {
-	"model": null,
-	"text": null,
-	"order": null,
-	"maxNumOfCandidatesReturned": null
-}
-*/
-    self.breakIntoWords = ({
-        parameters
-    }) => {
+        "model": null,
+        "text": null,
+        "order": null,
+        "maxNumOfCandidatesReturned": null
+    }
+    @returns {Promise.<object>}
+    */
+    breakIntoWords({ parameters }) {
 
         const operation = {
-            "name": "Break Into Words",
             "path": "text/weblm/v1.0/breakIntoWords",
             "method": "POST",
-            "serviceId": "55de9ca4e597ed1fd4e2f104",
             "operationId": "55de9ca4e597ed19b0de8a51",
-            "id": "55de9ca4e597ed19b0de8a51",
-            "description": "Insert spaces into a string of words lacking spaces, like a hashtag or part of a URL. Punctuation or exotic characters can prevent a string from being broken, so it’s best to limit input strings to lower-case, alpha-numeric characters.",
-            "serviceName": "Web Language Model",
             "parameters": [{
                 "name": "model",
                 "description": "Which model to use.",
@@ -78,37 +91,27 @@ const webLanguageModel = ({
             }]
         };
 
-        return makeRequest(self, {
+        return this.makeRequest({
             operation: operation,
-            endpoint: endpoint,
             parameters: parameters
         })
 
     };
 
     /**
-	Name: Web Language Model: Calculate Conditional Probability
-	Description: Calculate the conditional probability that a particular word will follow a given sequence of words.
-	Example Parameters: {
-	"model": null,
-	"order": null
-}
-*/
-    self.calculateConditionalProbability = ({
-        parameters,
-        headers,
-        body
-    }) => {
+     * Calculate the conditional probability that a particular word will follow a given sequence of words.
+    Example Parameters: {
+        "model": null,
+        "order": null
+    }
+    @returns {Promise.<object>}
+    */
+    calculateConditionalProbability({ parameters, headers, body }) {
 
         const operation = {
-            "name": "Calculate Conditional Probability",
             "path": "text/weblm/v1.0/calculateConditionalProbability",
             "method": "POST",
-            "serviceId": "55de9ca4e597ed1fd4e2f104",
             "operationId": "55de9ca4e597ed19b0de8a4e",
-            "id": "55de9ca4e597ed19b0de8a4e",
-            "description": "Calculate the conditional probability that a particular word will follow a given sequence of words.",
-            "serviceName": "Web Language Model",
             "headers": [{
                 "name": "Content-Type",
                 "description": "Media type of the body sent to the API.",
@@ -117,10 +120,6 @@ const webLanguageModel = ({
                 ],
                 "required": false,
                 "typeName": "string"
-            }],
-            "requestBody": [{
-                "Fields": "queries",
-                "Description": "Array of queries"
             }],
             "parameters": [{
                 "name": "model",
@@ -145,12 +144,18 @@ const webLanguageModel = ({
                 "required": false,
                 "type": "queryStringParam",
                 "typeName": "number"
+            }, {
+                "name": "queries",
+                "description": "Array of queries",
+                "value": null,
+                "required": false,
+                "type": "inBody",
+                "typeName": "array"
             }]
         };
 
-		return makeRequest(self, {
+        return this.makeRequest({
             operation: operation,
-            endpoint: endpoint,
             parameters: parameters,
             headers: headers,
             body: body
@@ -159,28 +164,19 @@ const webLanguageModel = ({
     };
 
     /**
-	Name: Web Language Model: Calculate Joint Probability
-	Description: Calculate the joint probability that a particular sequence of words will appear together.
-	Example Parameters: {
-	"model": null,
-	"order": null
-}
-*/
-    self.calculateJointProbability = ({
-        parameters,
-        headers,
-        body
-    }) => {
+     * Calculate the joint probability that a particular sequence of words will appear together.
+    Example Parameters: {
+        "model": null,
+        "order": null
+    }
+    @returns {Promise.<object>}
+    */
+    calculateJointProbability({ parameters, headers, body }) {
 
         const operation = {
-            "name": "Calculate Joint Probability",
             "path": "text/weblm/v1.0/calculateJointProbability",
             "method": "POST",
-            "serviceId": "55de9ca4e597ed1fd4e2f104",
             "operationId": "55de9ca4e597ed19b0de8a4f",
-            "id": "55de9ca4e597ed19b0de8a4f",
-            "description": "Calculate the joint probability that a particular sequence of words will appear together.",
-            "serviceName": "Web Language Model",
             "headers": [{
                 "name": "Content-Type",
                 "description": "Media type of the body sent to the API.",
@@ -189,10 +185,6 @@ const webLanguageModel = ({
                 ],
                 "required": false,
                 "typeName": "string"
-            }],
-            "requestBody": [{
-                "Fields": "queries",
-                "Description": "Array of queries"
             }],
             "parameters": [{
                 "name": "model",
@@ -217,12 +209,18 @@ const webLanguageModel = ({
                 "required": false,
                 "type": "queryStringParam",
                 "typeName": "number"
+            }, {
+                "name": "queries",
+                "description": "Array of queries",
+                "value": null,
+                "required": false,
+                "type": "inBody",
+                "typeName": "array"
             }]
         };
 
-		return makeRequest(self, {
+        return this.makeRequest({
             operation: operation,
-            endpoint: endpoint,
             parameters: parameters,
             headers: headers,
             body: body
@@ -230,28 +228,21 @@ const webLanguageModel = ({
     };
 
     /**
-	Name: Web Language Model: Generate Next Words
-	Description: Get the list of words (completions) most likely to follow a given sequence of words.
-	Example Parameters: {
-	"model": null,
-	"words": null,
-	"order": null,
-	"maxNumOfCandidatesReturned": null
-}
-*/
-    self.generateNextWords = ({
-        parameters
-    }) => {
+     * Get the list of words (completions) most likely to follow a given sequence of words.
+    Example Parameters: {
+        "model": null,
+        "words": null,
+        "order": null,
+        "maxNumOfCandidatesReturned": null
+    }
+    @returns {Promise.<object>}
+    */
+    generateNextWords({ parameters }) {
 
         const operation = {
-            "name": "Generate Next Words",
             "path": "text/weblm/v1.0/generateNextWords",
             "method": "POST",
-            "serviceId": "55de9ca4e597ed1fd4e2f104",
             "operationId": "55de9ca4e597ed19b0de8a50",
-            "id": "55de9ca4e597ed19b0de8a50",
-            "description": "Get the list of words (completions) most likely to follow a given sequence of words.",
-            "serviceName": "Web Language Model",
             "parameters": [{
                 "name": "model",
                 "description": "Which model to use.",
@@ -292,39 +283,29 @@ const webLanguageModel = ({
             }]
         };
 
-        return makeRequest(self, {
+        return this.makeRequest({
             operation: operation,
-            endpoint: endpoint,
             parameters: parameters
         })
 
     };
 
     /**
-	Name: Web Language Model: List Available Models
-	Description: List models available currently.
-	Example Parameters: {}
-*/
-    self.listAvailableModels = () => {
+     * List models available currently.
+     * @returns {Promise.<object>}
+    */
+    listAvailableModels() {
 
         const operation = {
-            "name": "List Available Models",
             "path": "text/weblm/v1.0/models",
             "method": "GET",
-            "serviceId": "55de9ca4e597ed1fd4e2f104",
             "operationId": "565bf87b778daf12447f43c1",
-            "id": "565bf87b778daf12447f43c1",
-            "description": "List models available currently.",
-            "serviceName": "Web Language Model",
         };
 
-        return makeRequest(self, {
+        return this.makeRequest({
             operation: operation,
-            endpoint: endpoint
         })
     };
-
-    return self;
 };
 
 module.exports = webLanguageModel;

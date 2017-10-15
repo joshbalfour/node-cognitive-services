@@ -1,33 +1,36 @@
-const {
-    makeRequest
-} = require('../../lib/api');
+const commonService = require('../commonService');
 
-const bingImageSearch = ({
-    apiKey,
-    endpoint
-}) => {
+/**
+ * The Image Search API lets you send a search query to Bing and get back a list of relevant images.
+ * @augments commonService
+ * {@link https://docs.microsoft.com/en-us/rest/api/cognitiveservices/bing-images-api-v5-reference|documentation}
+ */
+class bingImageSearch extends commonService {
+    /**
+     * Constructor.
+     * 
+     * @param {Object} obj
+     * @param {string} obj.apiKey
+     * @param {string} obj.endpoint
+     */
+    constructor({ apiKey, endpoint }) {
+        super({ apiKey, endpoint });
+        this.serviceId = "56b43f0ccf5ff8098cef3808"
+        this.endpoints = [
+            "api.cognitive.microsoft.com"
+        ];
+    }
 
-    let self = this;
-    self.endpoints = [
-        "api.cognitive.microsoft.com"
-    ],
-    self._apiKey = apiKey;
-    self._endpoint = endpoint;
-
-    self.imageInsights = ({
-        parameters,
-        body
-    }) => {
+    /**
+     * Get insights for an image sent in the POST body.
+     * @returns {Promise.<object>}
+     */
+    imageInsights({ parameters, body }) {
 
         const operation = {
-            "name": "Image Insights",
             "path": "bing/v5.0/images/search",
             "method": "POST",
-            "serviceId": "56b43f0ccf5ff8098cef3808",
             "operationId": "571fab09dbe2d933e891028f",
-            "id": "571fab09dbe2d933e891028f",
-            "description": "Get insights for an image sent in the POST body. ",
-            "serviceName": "Bing Image Search",
             "parameters": [{
                 "name": "q",
                 "description": "The user's search query string",
@@ -38,27 +41,23 @@ const bingImageSearch = ({
             }]
         };
 
-        return makeRequest(self, {
+        return this.makeRequest({
             operation: operation,
-            endpoint: endpoint,
             parameters: parameters,
             body: body
         })
     };
 
-    self.search = ({
-        parameters
-    }) => {
+    /**
+     * Get relevant images for a given query.
+     * @returns {Promise.<object>}
+     */
+    search({ parameters }) {
 
         const operation = {
-            "name": "Search",
             "path": "bing/v5.0/images/search",
             "method": "GET",
-            "serviceId": "56b43f0ccf5ff8098cef3808",
             "operationId": "56b4433fcf5ff8098cef380c",
-            "id": "56b4433fcf5ff8098cef380c",
-            "description": "Get relevant images for a given query.",
-            "serviceName": "Bing Image Search",
             "parameters": [{
                 "name": "q",
                 "description": "The user's search query string",
@@ -102,34 +101,29 @@ const bingImageSearch = ({
             }]
         };
 
-        return makeRequest(self, {
+        return this.makeRequest({
             operation: operation,
-            endpoint: endpoint,
             parameters: parameters
         })
 
     };
 
-    self.trending = () => {
+    /**
+     * Get currently trending images.
+     * @returns {Promise.<object>}
+     */
+    trending() {
 
         const operation = {
-            "name": "Trending",
             "path": "bing/v5.0/images/trending",
             "method": "GET",
-            "serviceId": "56b43f0ccf5ff8098cef3808",
             "operationId": "56b44b8ccf5ff81038d15ce0",
-            "id": "56b44b8ccf5ff81038d15ce0",
-            "description": "Get currently trending images.",
-            "serviceName": "Bing Image Search",
         };
 
-        return makeRequest(self, {
+        return this.makeRequest({
             operation: operation,
-            endpoint: endpoint
         })
     };
-
-    return self;
-};
+}
 
 module.exports = bingImageSearch;

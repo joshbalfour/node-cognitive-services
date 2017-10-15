@@ -1,10 +1,10 @@
-const cognitive = require('../../index.js');
+const cognitive = require('../../src/index.js');
 const config = require('../config.js');
 const should = require('should');
 
 describe('Bing spell check', () => {
 
-    const client = cognitive.bingSpellCheck({
+    const client = new cognitive.bingSpellCheck({
         apiKey: config.bingSpellCheck.apiKey,
         endpoint: config.bingSpellCheck.endpoint
     });

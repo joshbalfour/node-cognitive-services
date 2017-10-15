@@ -1,10 +1,10 @@
-const cognitive = require('../../index.js');
+const cognitive = require('../../src/index.js');
 const config = require('../config.js');
 const should = require('should');
 
 describe('QnA maker', () => {
 
-    const client = cognitive.qnaMaker({
+    const client = new cognitive.qnaMaker({
         apiKey: config.qnaMaker.apiKey,
         endpoint: config.qnaMaker.endpoint
     });

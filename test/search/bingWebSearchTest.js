@@ -1,10 +1,10 @@
-const cognitive = require('../../index.js');
+const cognitive = require('../../src/index.js');
 const config = require('../config.js');
 const should = require('should');
 
 describe('Bing web search', () => {
 
-    const client = cognitive.bingWebSearch({
+    const client = new cognitive.bingWebSearch({
         apiKey: config.bingSearch.apiKey,
         endpoint: config.bingSearch.endpoint
     });
