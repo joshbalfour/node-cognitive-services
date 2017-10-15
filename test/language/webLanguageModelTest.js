@@ -1,10 +1,10 @@
-const cognitive = require('../../index.js');
+const cognitive = require('../../src/index.js');
 const config = require('../config.js');
 const should = require('should');
 
 describe('Web language model', () => {
 
-    const client = cognitive.webLanguageModel({
+    const client = new cognitive.webLanguageModel({
         apiKey: config.webLanguageModel.apiKey,
         endpoint: config.webLanguageModel.endpoint
     });

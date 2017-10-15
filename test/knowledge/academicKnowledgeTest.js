@@ -1,10 +1,10 @@
-const cognitive = require('../../index.js');
+const cognitive = require('../../src/index.js');
 const config = require('../config.js');
 const should = require('should');
 
 describe('Academic knowledge', () => {
 
-    const client = cognitive.academicKnowledge({
+    const client = new cognitive.academicKnowledge({
         apiKey: config.academicKnowledge.apiKey,
         endpoint: config.academicKnowledge.endpoint
     });

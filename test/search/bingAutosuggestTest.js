@@ -1,10 +1,10 @@
-const cognitive = require('../../index.js');
+const cognitive = require('../../src/index.js');
 const config = require('../config.js');
 const should = require('should');
 
 describe('Bing autosuggest', () => {
 
-    const client = cognitive.bingAutosuggest({
+    const client = new cognitive.bingAutosuggest({
         apiKey: config.bingAutosuggest.apiKey,
         endpoint: config.bingAutosuggest.endpoint
     });

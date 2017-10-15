@@ -1,10 +1,10 @@
-const cognitive = require('../../index.js');
+const cognitive = require('../../src/index.js');
 const config = require('../config.js');
 const should = require('should');
 
 describe('Entity linking', () => {
 
-    const client = cognitive.entityLinking({
+    const client = new cognitive.entityLinking({
         apiKey: config.entityLinking.apiKey,
         endpoint: config.entityLinking.endpoint
     });

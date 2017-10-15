@@ -1,44 +1,42 @@
-const {
-    makeRequest
-} = require('../../lib/api');
+const commonService = require('../commonService');
 
-const bingVideoSearch = ({
-    apiKey,
-    endpoint
-}) => {
-
-    let self = this;
-
-    self.endpoints = [
-        "api.cognitive.microsoft.com"
-    ];
-    self._apiKey = apiKey;
-    self._endpoint = endpoint;
+/**
+ * The Video Search API lets you send a search query to Bing and get back a list of videos that are relevant to the search query. 
+ * @augments commonService
+ * {@link https://docs.microsoft.com/en-us/rest/api/cognitiveservices/bing-video-api-v5-reference|documentation}
+ */
+class bingVideoSearch extends commonService {
+    /**
+     * Constructor.
+     * 
+     * @param {Object} obj
+     * @param {string} obj.apiKey
+     * @param {string} obj.endpoint
+     */
+    constructor({ apiKey, endpoint }) {
+        super({ apiKey, endpoint });
+        this.serviceId = "56b43f3ccf5ff8098cef3809"
+        this.endpoints = [
+            "api.cognitive.microsoft.com"
+        ];
+    }
 
     /**
-	Name: Bing Video Search: Search
-	Description: Get videos relevant for a given query.
+	Get videos relevant for a given query.
 	Example Parameters: {
-	"q": "cats",
-	"count": "10",
-	"offset": "0",
-	"mkt": "en-us",
-	"safeSearch": "Moderate"
-}
+        "q": "cats",
+        "count": "10",
+        "offset": "0",
+        "mkt": "en-us",
+        "safeSearch": "Moderate"
+    }
+    @returns {Promise.<object>}
 */
-    self.search = ({
-        parameters
-    }) => {
-
+    search({ parameters }) {
         const operation = {
-            "name": "Search",
             "path": "bing/v5.0/videos/search",
             "method": "GET",
-            "serviceId": "56b43f3ccf5ff8098cef3809",
             "operationId": "56b440d2cf5ff8098cef380b",
-            "id": "56b440d2cf5ff8098cef380b",
-            "description": "Get videos relevant for a given query.",
-            "serviceName": "Bing Video Search",
             "parameters": [{
                 "name": "id",
                 "description": "An ID that uniquely identifies a video. The Video object's videoId field contains the ID that you set this parameter to.",
@@ -91,7 +89,7 @@ const bingVideoSearch = ({
                 "description": "The market where the results come from. Typically, this is the country where the user is making the request from; however, it could be a different country if the user is not located in a country where Bing delivers results. The market must be in the form {language code}-{country code}.",
                 "value": "",
                 "options": [
-                    "es-AR","en-AU","de-AT","nl-BE","fr-BE","pt-BR","en-CA","fr-CA","es-CL","da-DK","fi-FI","fr-FR","de-DE","zh-HK","en-IN","en-ID","en-IE","it-IT","ja-JP","ko-KR","en-MY","es-MX","nl-NL","en-NZ","no-NO","zh-CN","pl-PL","pt-PT","en-PH","ru-RU","ar-SA","en-ZA","es-ES","sv-SE","fr-CH","de-CH","zh-TW","tr-TR","en-GB","en-US","es-US"
+                    "es-AR", "en-AU", "de-AT", "nl-BE", "fr-BE", "pt-BR", "en-CA", "fr-CA", "es-CL", "da-DK", "fi-FI", "fr-FR", "de-DE", "zh-HK", "en-IN", "en-ID", "en-IE", "it-IT", "ja-JP", "ko-KR", "en-MY", "es-MX", "nl-NL", "en-NZ", "no-NO", "zh-CN", "pl-PL", "pt-PT", "en-PH", "ru-RU", "ar-SA", "en-ZA", "es-ES", "sv-SE", "fr-CH", "de-CH", "zh-TW", "tr-TR", "en-GB", "en-US", "es-US"
                 ],
                 "required": false,
                 "type": "queryStringParam",
@@ -174,30 +172,23 @@ const bingVideoSearch = ({
             }]
         };
 
-        return makeRequest(self, {
+        return this.makeRequest({
             operation: operation,
-            endpoint: endpoint,
             parameters: parameters
         })
 
     };
 
     /**
-	Name: Bing Video Search: Trending
-	Description: Get currently trending videos.
-	Example Parameters: {}
-*/
-    self.trending = () => {
+    Get currently trending videos.
+    @returns {Promise.<object>}
+    */
+    trending() {
 
         const operation = {
-            "name": "Trending",
             "path": "bing/v5.0/videos/trending",
             "method": "GET",
-            "serviceId": "56b43f3ccf5ff8098cef3809",
             "operationId": "56b44c36cf5ff81038d15ce1",
-            "id": "56b44c36cf5ff81038d15ce1",
-            "description": "Get currently trending videos.",
-            "serviceName": "Bing Video Search",
             "parameters": [{
                 "name": "id",
                 "description": "An ID that uniquely identifies a video. The Video object's videoId field contains the ID that you set this parameter to.",
@@ -229,7 +220,7 @@ const bingVideoSearch = ({
                 "description": "The market where the results come from. Typically, this is the country where the user is making the request from; however, it could be a different country if the user is not located in a country where Bing delivers results. The market must be in the form {language code}-{country code}.",
                 "value": "",
                 "options": [
-                    "es-AR","en-AU","de-AT","nl-BE","fr-BE","pt-BR","en-CA","fr-CA","es-CL","da-DK","fi-FI","fr-FR","de-DE","zh-HK","en-IN","en-ID","en-IE","it-IT","ja-JP","ko-KR","en-MY","es-MX","nl-NL","en-NZ","no-NO","zh-CN","pl-PL","pt-PT","en-PH","ru-RU","ar-SA","en-ZA","es-ES","sv-SE","fr-CH","de-CH","zh-TW","tr-TR","en-GB","en-US","es-US"
+                    "es-AR", "en-AU", "de-AT", "nl-BE", "fr-BE", "pt-BR", "en-CA", "fr-CA", "es-CL", "da-DK", "fi-FI", "fr-FR", "de-DE", "zh-HK", "en-IN", "en-ID", "en-IE", "it-IT", "ja-JP", "ko-KR", "en-MY", "es-MX", "nl-NL", "en-NZ", "no-NO", "zh-CN", "pl-PL", "pt-PT", "en-PH", "ru-RU", "ar-SA", "en-ZA", "es-ES", "sv-SE", "fr-CH", "de-CH", "zh-TW", "tr-TR", "en-GB", "en-US", "es-US"
                 ],
                 "required": false,
                 "type": "queryStringParam",
@@ -286,34 +277,26 @@ const bingVideoSearch = ({
             }]
         };
 
-        return makeRequest(self, {
+        return this.makeRequest({
             operation: operation,
-            endpoint: endpoint
         })
 
     };
 
-        /**
-	Name: Bing Video Search: Details
-	Description: Get details about a video.
-	Example Parameters: {
-	"id": "cats",
-	"modulesRequested": 
-}
-*/
-    self.details = ({
-        parameters
-    }) => {
+    /**
+    Get details about a video.
+    Example Parameters: {
+        "id": "cats",
+        "modulesRequested": 
+        }
+    @returns {Promise.<object>}
+    */
+    details({ parameters }) {
 
         const operation = {
-            "name": "Details",
             "path": "bing/v5.0/videos/details",
             "method": "GET",
-            "serviceId": "56b43f3ccf5ff8098cef3809",
             "operationId": "56b440d2cf5ff8098cef380b",
-            "id": "56b440d2cf5ff8098cef380b",
-            "description": "Get videos relevant for a given query.",
-            "serviceName": "Bing Video Search",
             "parameters": [{
                 "name": "id",
                 "description": "An ID that uniquely identifies a video. The Video object's videoId field contains the ID that you set this parameter to.",
@@ -333,7 +316,7 @@ const bingVideoSearch = ({
                 "description": "The market where the results come from. Typically, this is the country where the user is making the request from; however, it could be a different country if the user is not located in a country where Bing delivers results. The market must be in the form {language code}-{country code}.",
                 "value": "",
                 "options": [
-                    "es-AR","en-AU","de-AT","nl-BE","fr-BE","pt-BR","en-CA","fr-CA","es-CL","da-DK","fi-FI","fr-FR","de-DE","zh-HK","en-IN","en-ID","en-IE","it-IT","ja-JP","ko-KR","en-MY","es-MX","nl-NL","en-NZ","no-NO","zh-CN","pl-PL","pt-PT","en-PH","ru-RU","ar-SA","en-ZA","es-ES","sv-SE","fr-CH","de-CH","zh-TW","tr-TR","en-GB","en-US","es-US"
+                    "es-AR", "en-AU", "de-AT", "nl-BE", "fr-BE", "pt-BR", "en-CA", "fr-CA", "es-CL", "da-DK", "fi-FI", "fr-FR", "de-DE", "zh-HK", "en-IN", "en-ID", "en-IE", "it-IT", "ja-JP", "ko-KR", "en-MY", "es-MX", "nl-NL", "en-NZ", "no-NO", "zh-CN", "pl-PL", "pt-PT", "en-PH", "ru-RU", "ar-SA", "en-ZA", "es-ES", "sv-SE", "fr-CH", "de-CH", "zh-TW", "tr-TR", "en-GB", "en-US", "es-US"
                 ],
                 "required": false,
                 "type": "queryStringParam",
@@ -428,15 +411,12 @@ const bingVideoSearch = ({
             }]
         };
 
-        return makeRequest(self, {
+        return this.makeRequest({
             operation: operation,
-            endpoint: endpoint,
             parameters: parameters
         })
 
     };
-
-    return self;
-};
+}
 
 module.exports = bingVideoSearch;

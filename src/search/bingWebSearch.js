@@ -1,45 +1,43 @@
-const {
-    makeRequest
-} = require('../../lib/api');
+const commonService = require('../commonService');
 
-const bingWebSearch = ({
-    apiKey,
-    endpoint
-}) => {
-
-    let self = this;
-
-    self.endpoints = [
-        "api.cognitive.microsoft.com"
-    ],
-    self._apiKey = apiKey;
-    self._endpoint = endpoint;
+/**
+ * The Web Search API lets you send a search query to Bing and get back search results that include links to webpages, images, and more. 
+ * @augments commonService
+ * {@link https://docs.microsoft.com/en-us/rest/api/cognitiveservices/bing-web-api-v5-reference|documentation}
+ */
+class bingWebSearch extends commonService {
+    /**
+     * Constructor.
+     * 
+     * @param {Object} obj
+     * @param {string} obj.apiKey
+     * @param {string} obj.endpoint
+     */
+    constructor({ apiKey, endpoint }) {
+        super({ apiKey, endpoint });
+        this.serviceId = "56b43eeccf5ff8098cef3807"
+        this.endpoints = [
+            "api.cognitive.microsoft.com"
+        ];
+    }
 
     /**
-	Name: Bing Web Search: Search
-	Description: Get web, image, news, & videos results for a given query.
+     * Get web, image, news, & videos results for a given query.
 	Example Parameters: {
-	"q": "bill gates",
-	"count": "10",
-	"offset": "0",
-	"mkt": "en-us",
-	"safesearch": "Moderate"
-}
-*/
-    self.search = ({
-        parameters,
-        headers
-    }) => {
+        "q": "bill gates",
+        "count": "10",
+        "offset": "0",
+        "mkt": "en-us",
+        "safesearch": "Moderate"
+    }
+    @returns {Promise.<object>}
+    */
+    search({ parameters, headers }) {
 
         const operation = {
-            "name": "Search",
             "path": "bing/v5.0/search",
             "method": "GET",
-            "serviceId": "56b43eeccf5ff8098cef3807",
             "operationId": "56b4447dcf5ff8098cef380d",
-            "id": "56b4447dcf5ff8098cef380d",
-            "description": "Get web, image, news, & videos results for a given query.",
-            "serviceName": "Bing Web Search",
             "parameters": [{
                 "name": "cc",
                 "description": "A 2-character country code of the country where the results come from.",
@@ -127,10 +125,6 @@ const bingWebSearch = ({
                 "name": "textDecorations",
                 "description": "A Boolean value that determines whether display strings should contain decoration markers such as hit highlighting characters.",
                 "value": "false",
-                "options": [
-                    "true",
-                    "false"
-                ],
                 "required": false,
                 "type": "queryStringParam",
                 "typeName": "boolean"
@@ -148,16 +142,14 @@ const bingWebSearch = ({
             }]
         };
 
-        return makeRequest(self, {
+        return this.makeRequest({
             operation: operation,
-            endpoint: endpoint,
             parameters: parameters,
             headers: headers
         })
 
     };
 
-    return self;
-};
+}
 
 module.exports = bingWebSearch;

@@ -1,28 +1,34 @@
-const {
-    makeRequest
-} = require('../../lib/api');
+const commonService = require('../commonService');
 
-const qnaMaker = ({
-    apiKey,
-    endpoint
-}) => {
-
-    let self = this;
-
-    self.endpoints = [
-        "westus.api.cognitive.microsoft.com"
-    ];
-    self._apiKey = apiKey;
-    self._endpoint = endpoint;
-    self._serviceId = "58994a073d9e04097c7ba6fe";
+/**
+ * Microsoft QnA Maker is a free, easy-to-use, REST API and web-based service that trains AI to respond to user's questions in a more natural, conversational way. Compatible across development platforms, hosting services, and channels, QnA Maker is the only question and answer service with a graphical user interface—meaning you don’t need to be a developer to train, manage, and use it for a wide range of solutions.
+ * 
+ * With optimized machine learning logic and the ability to integrate industry-leading language processing with ease, QnA Maker distills masses of information into distinct, helpful answers
+ * 
+ * @augments commonService
+ * {@link https://westus.dev.cognitive.microsoft.com/docs/services/58994a073d9e04097c7ba6fe/operations/58994a073d9e041ad42d9baa|documentation}
+ */
+class qnaMaker extends commonService {
+    /**
+     * Constructor.
+     * 
+     * @param {Object} obj
+     * @param {string} obj.apiKey
+     * @param {string} obj.endpoint
+     */
+    constructor({ apiKey, endpoint }) {
+        super({ apiKey, endpoint });
+        this.serviceId = "58994a073d9e04097c7ba6fe"
+        this.endpoints = [
+            "westus.api.cognitive.microsoft.com"
+        ];
+    }
 
     /**
-        Name: QnAMaker - V2.0
-        Description: Creates a new knowledge base.
+     * Creates a new knowledge base.
+     * @returns {Promise.<object>}
     */
-    self.createKnowledgeBase = ({
-        body
-    }) => {
+    createKnowledgeBase({ body }) {
 
         const operation = {
             "path": "qnamaker/v2.0/knowledgebases/create",
@@ -65,21 +71,18 @@ const qnaMaker = ({
             'Content-type': operation.headers[0].options[0]
         };
 
-		return makeRequest(self, {
+        return this.makeRequest({
             operation: operation,
-            endpoint: endpoint,
             headers: headers,
             body: body
         })
     };
 
     /**
-        Name: QnAMaker - V2.0
-        Description: Deletes the specified knowledge base and all data associated with it.
+     * Deletes the specified knowledge base and all data associated with it.
+     * @returns {Promise.<object>}
     */
-    self.deleteKnowledgeBase = ({
-        parameters
-    }) => {
+    deleteKnowledgeBase({ parameters }) {
 
         const operation = {
             "path": "qnamaker/v2.0/knowledgebases/{knowledgeBaseId}",
@@ -95,21 +98,17 @@ const qnaMaker = ({
             }]
         };
 
-		return makeRequest(self, {
+        return this.makeRequest({
             operation: operation,
-            endpoint: endpoint,
             parameters: parameters
         })
     };
 
     /**
-     * 
-        Name: QnAMaker - V2.0
-        Description: Downloads all the data associated with the specified knowledge base.
+     *  Downloads all the data associated with the specified knowledge base.
+     * @returns {Promise.<object>}
     */
-    self.downloadKnowledgeBase = ({
-        parameters
-    }) => {
+    downloadKnowledgeBase({ parameters }) {
 
         const operation = {
             "path": "qnamaker/v2.0/knowledgebases/{knowledgeBaseId}",
@@ -125,21 +124,17 @@ const qnaMaker = ({
             }]
         };
 
-		return makeRequest(self, {
+        return this.makeRequest({
             operation: operation,
-            endpoint: endpoint,
             parameters: parameters
         })
     };
 
     /**
-        Name: QnAMaker - V2.0
-        Description: Returns the list of answers for the given question sorted in descending order of ranking score.
+     *  Returns the list of answers for the given question sorted in descending order of ranking score.
+     * @returns {Promise.<object>}
     */
-    self.generateAnswer = ({
-        parameters,
-        body
-    }) => {
+    generateAnswer({ parameters, body }) {
 
         const operation = {
             "path": "qnamaker/v2.0/knowledgebases/{knowledgeBaseId}/generateAnswer",
@@ -182,9 +177,8 @@ const qnaMaker = ({
             'Content-type': operation.headers[0].options[0]
         };
 
-		return makeRequest(self, {
+        return this.makeRequest({
             operation: operation,
-            endpoint: endpoint,
             parameters: parameters,
             headers: headers,
             body: body
@@ -192,12 +186,10 @@ const qnaMaker = ({
     };
 
     /**
-        Name: QnAMaker - V2.0
-        Description: Downloads all word alterations (synonyms) that have been automatically mined or added by the user.
+     * Downloads all word alterations (synonyms) that have been automatically mined or added by the user.
+     * @returns {Promise.<object>}
     */
-    self.getAlterations = ({
-        parameters
-    }) => {
+    getAlterations({ parameters }) {
 
         const operation = {
             "path": "qnamaker/v2.0/knowledgebases/{knowledgeBaseId}/downloadAlterations",
@@ -213,20 +205,17 @@ const qnaMaker = ({
             }]
         };
 
-		return makeRequest(self, {
+        return this.makeRequest({
             operation: operation,
-            endpoint: endpoint,
             parameters: parameters
         })
     };
 
     /**
-        Name: QnAMaker - V2.0
-        Description: Publish all unpublished in the knowledgebase to the prod endpoint.
+     * Publish all unpublished in the knowledgebase to the prod endpoint.
+     * @returns {Promise.<object>}
     */
-    self.publishKnowledgeBase = ({
-        parameters
-    }) => {
+    publishKnowledgeBase({ parameters }) {
 
         const operation = {
             "path": "qnamaker/v2.0/knowledgebases/{knowledgeBaseId}",
@@ -242,21 +231,23 @@ const qnaMaker = ({
             }]
         };
 
-		return makeRequest(self, {
+        return this.makeRequest({
             operation: operation,
-            endpoint: endpoint,
             parameters: parameters
         })
     };
 
     /**
-        Name: QnAMaker - V2.0
-        Description: Submit user feedback for tuning question-answer matching. QnA Maker uses active learning to learn from the user utterances that come on a published Knowledge base service. In this process, QnA Maker records user feedback from different users and trains the knowledge base to respond accordingly, when there are sufficient number of users sending the same feedback. Every user feedback is logged and model training is triggered when there are 50 new feedback instances. Typically, the model updates are reflected when same question-answer pair from the knowledge base is sent as feedback for a given user query by at least 20 users. Most changes are immediately reflected in both the published and the saved knowledge bases. Some new question-answer pairs are only added to the saved knowledge base and they are moved to the published version in the next knowledge base publish operation by the developer. This gives the flexibility to the developer to keep or discard the newly added question-answer pairs.
+        Submit user feedback for tuning question-answer matching. QnA Maker uses active learning to learn from the user utterances that come
+        on a published Knowledge base service. In this process, QnA Maker records user feedback from different users and trains the knowledge base to respond accordingly,
+        when there are sufficient number of users sending the same feedback. Every user feedback is logged and model training is triggered when there are 50
+        new feedback instances. Typically, the model updates are reflected when same question-answer pair from the knowledge base is sent as feedback for 
+        a given user query by at least 20 users. Most changes are immediately reflected in both the published and the saved knowledge bases. 
+        Some new question-answer pairs are only added to the saved knowledge base and they are moved to the published version in the next knowledge base 
+        publish operation by the developer. This gives the flexibility to the developer to keep or discard the newly added question-answer pairs.
+        @returns {Promise.<object>}
     */
-    self.trainKnowledgeBase = ({
-        parameters,
-        body
-    }) => {
+    trainKnowledgeBase({ parameters, body }) {
 
         const operation = {
             "path": "qnamaker/v2.0/knowledgebases/{knowledgeBaseId}/train",
@@ -292,9 +283,8 @@ const qnaMaker = ({
             'Content-type': operation.headers[0].options[0]
         }
 
-		return makeRequest(self, {
+        return this.makeRequest({
             operation: operation,
-            endpoint: endpoint,
             parameters: parameters,
             headers: headers,
             body: body
@@ -302,13 +292,10 @@ const qnaMaker = ({
     };
 
     /**
-        Name: QnAMaker - V2.0
-        Description: Replaces word alterations (synonyms) for the KB with the give records.
+     * Replaces word alterations (synonyms) for the KB with the give records.
+     * @returns {Promise.<object>}
     */
-    self.updateAlterations = ({
-        parameters,
-        body
-    }) => {
+    updateAlterations({ parameters, body }) {
 
         const operation = {
             "path": "qnamaker/v2.0/knowledgebases/{knowledgeBaseId}/updateAlterations",
@@ -357,23 +344,19 @@ const qnaMaker = ({
             'Content-type': operation.headers[0].options[0]
         }
 
-		return makeRequest(self, {
+        return this.makeRequest({
             operation: operation,
-            endpoint: endpoint,
             parameters: parameters,
             headers: headers,
             body: body
         })
     };
 
-     /**
-        Name: QnAMaker - V2.0
-        Description: Add or delete QnA Pairs and / or URLs to an existing knowledge base.
-    */
-    self.updateKnowledgeBase = ({
-        parameters,
-        body
-    }) => {
+    /**
+     * Add or delete QnA Pairs and / or URLs to an existing knowledge base.
+     * @returns {Promise.<object>}
+     */
+    updateKnowledgeBase({ parameters, body }) {
 
         const operation = {
             "path": "qnamaker/v2.0/knowledgebases/{knowledgeBaseId}",
@@ -416,16 +399,14 @@ const qnaMaker = ({
             'Content-type': operation.headers[0].options[0]
         }
 
-		return makeRequest(self, {
+        return this.makeRequest({
             operation: operation,
-            endpoint: endpoint,
             parameters: parameters,
             headers: headers,
             body: body
         })
     };
 
-    return self;
-};
+}
 
 module.exports = qnaMaker;

@@ -1,11 +1,11 @@
-const cognitive = require('../../index.js');
+const cognitive = require('../../src/index.js');
 const config = require('../config.js');
 const should = require('should');
 const fs = require('fs');
 
 describe('Video', () => {
 
-    const client = cognitive.video({
+    const client = new cognitive.video({
         apiKey: config.video.apiKey,
         endpoint: config.video.endpoint
     });

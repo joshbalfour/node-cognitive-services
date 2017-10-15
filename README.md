@@ -18,8 +18,6 @@ Then figure out which API you want to use, you can find descriptions [here](http
 
 To use this SDK in your project, run `npm install cognitive-services --save`. 
 
-> **Note**: this SDK only works with Node 6.0 or higher.
-
 Then make a JS file in your project directory and add the following:
 
 ```javascript
@@ -32,14 +30,14 @@ You are now ready to use the APIs, for example:
 const parameters = {
     "mode": "proof",
     "mkt": "en-us"
-};
+}
 
-const body = "Text=Bill+Gatas";
+const body = "Text=Bill+Gatas"
 
-const client = cognitiveServices.bingSpellCheck({
+const client = new cognitiveServices.bingSpellCheck({
     apiKey: "YOUR-API-KEY",
     endpoint: "YOUR-ENDPOINT"
-});
+})
 
 client.spellCheck({
     parameters,

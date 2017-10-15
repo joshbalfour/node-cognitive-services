@@ -1,41 +1,39 @@
-const {
-    makeRequest
-} = require('../../lib/api');
+const commonService = require('../commonService');
 
-const bingNewsSearch = ({
-    apiKey,
-    endpoint
-}) => {
-
-    let self = this;
-
-    self.endpoints = [
-        "api.cognitive.microsoft.com"
-    ];
-    self._apiKey = apiKey;
-    self._endpoint = endpoint;
+/**
+ * The News Search API lets you send a search query to Bing and get back a list of relevant news articles. 
+ * @augments commonService
+ * {@link https://docs.microsoft.com/en-us/rest/api/cognitiveservices/bing-news-api-v5-reference|documentation}
+ */
+class bingNewsSearch extends commonService {
+    /**
+     * Constructor.
+     * 
+     * @param {Object} obj
+     * @param {string} obj.apiKey
+     * @param {string} obj.endpoint
+     */
+    constructor({ apiKey, endpoint }) {
+        super({ apiKey, endpoint });
+        this.serviceId = "56b43f72cf5ff8098cef380a"
+        this.endpoints = [
+            "api.cognitive.microsoft.com"
+        ];
+    }
 
     /**
-	Name: Bing News Search: Category News
-	Description: Returns the top news articles by category.
-	Example Parameters: {
-	"Category": null
-}
-*/
-    self.categoryNews = ({
-        parameters,
-        headers
-    }) => {
+     *  Returns the top news articles by category. For example, you can request the top sports or entertainment articles. For information about specifying categories, see the category query parameter.
+        Example Parameters: {
+        "Category": null
+    }
+    @returns {Promise.<object>}
+    */
+    categoryNews({ parameters, headers }) {
 
         const operation = {
-            "name": "Category News",
             "path": "bing/v5.0/news/",
             "method": "GET",
-            "serviceId": "56b43f72cf5ff8098cef380a",
             "operationId": "56f02400dbe2d91900c68553",
-            "id": "56f02400dbe2d91900c68553",
-            "description": "Returns the top news articles by category. For example, you can request the top sports or entertainment articles. For information about specifying categories, see the category query parameter.",
-            "serviceName": "Bing News Search",
             "headers": [{
                 "name": "Accept",
                 "description": "Optional request header.",
@@ -133,7 +131,7 @@ const bingNewsSearch = ({
                 "typeName": "number"
             }, {
                 "name": "originalImg",
-                "description": "A Boolean value that determines whether the image's contentUrl contains a URL that points to a thumbnail of the original article's image or the image itself.",
+                "description": "A Boolean value that determines whether the image's contentUrl contains a URL that points to a thumbnail of the original article's image or the image it",
                 "required": false,
                 "type": "queryStringParam",
                 "typeName": "boolean"
@@ -177,9 +175,8 @@ const bingNewsSearch = ({
             }]
         };
 
-        return makeRequest(self, {
+        return this.makeRequest({
             operation: operation,
-            endpoint: endpoint,
             parameters: parameters,
             headers: headers
         })
@@ -187,31 +184,22 @@ const bingNewsSearch = ({
 
 
     /**
-	Name: Bing News Search: Search
-	Description: Returns news articles based on the user's search query. If the search query is empty, the call returns the top news articles.
-	Example Parameters: {
-	"q": "microsoft",
-	"count": "10",
-	"offset": "0",
-	"mkt": "en-us",
-	"safeSearch": "Moderate"
-}
-*/
-
-    self.search = ({
-        parameters,
-        headers
-    }) => {
+     * Returns news articles based on the user's search query. If the search query is empty, the call returns the top news articles.
+    Example Parameters: {
+        "q": "microsoft",
+        "count": "10",
+        "offset": "0",
+        "mkt": "en-us",
+        "safeSearch": "Moderate"
+        }
+        @returns {Promise.<object>}
+    */
+    search({ parameters, headers }) {
 
         const operation = {
-            "name": "Search",
             "path": "bing/v5.0/news/search",
             "method": "GET",
-            "serviceId": "56b43f72cf5ff8098cef380a",
             "operationId": "56b449fbcf5ff81038d15cdf",
-            "id": "56b449fbcf5ff81038d15cdf",
-            "description": "Returns news articles based on the user's search query. If the search query is empty, the call returns the top news articles.",
-            "serviceName": "Bing News Search",
             "headers": [{
                 "name": "Accept",
                 "description": "Optional request header.",
@@ -302,7 +290,7 @@ const bingNewsSearch = ({
                 "typeName": "number"
             }, {
                 "name": "originalImg",
-                "description": "A Boolean value that determines whether the image's contentUrl contains a URL that points to a thumbnail of the original article's image or the image itself.",
+                "description": "A Boolean value that determines whether the image's contentUrl contains a URL that points to a thumbnail of the original article's image or the image it",
                 "value": "0",
                 "required": false,
                 "type": "queryStringParam",
@@ -347,9 +335,8 @@ const bingNewsSearch = ({
             }]
         };
 
-        return makeRequest(self, {
+        return this.makeRequest({
             operation: operation,
-            endpoint: endpoint,
             parameters: parameters,
             headers: headers
         })
@@ -357,25 +344,16 @@ const bingNewsSearch = ({
     };
 
     /**
-	Name: Bing News Search: Trending Topics
-	Description: Returns trending news topics that are currently trending on social networks. Available only in the en-US and zh-CN markets.
-	Example Parameters: {}
-*/
-
-    self.trendingTopics = ({
-        parameters,
-        headers
-    }) => {
+     * Returns trending news topics that are currently trending on social networks. Available only in the en-US and zh-CN markets.
+    Example Parameters: {}
+    @returns {Promise.<object>}
+    */
+    trendingTopics({ parameters, headers }) {
 
         const operation = {
-            "name": "Trending Topics",
             "path": "bing/v5.0/news/trendingtopics",
             "method": "GET",
-            "serviceId": "56b43f72cf5ff8098cef380a",
             "operationId": "56c7a9a6cf5ff801a090fbdc",
-            "id": "56c7a9a6cf5ff801a090fbdc",
-            "description": "Returns trending news topics that are currently trending on social networks. Available only in the en-US and zh-CN markets.",
-            "serviceName": "Bing News Search",
             "headers": [{
                 "name": "Accept",
                 "description": "Optional request header.",
@@ -485,16 +463,13 @@ const bingNewsSearch = ({
             }]
         };
 
-        return makeRequest(self, {
+        return this.makeRequest({
             operation: operation,
-            endpoint: endpoint,
             parameters: parameters,
             headers: headers
         })
 
     };
-
-    return self;
 };
 
 module.exports = bingNewsSearch;

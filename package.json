@@ -1,9 +1,10 @@
 {
   "name": "cognitive-services",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "Microsoft Cognitive Services SDK for Node.js",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
+    "prepublish": "babel src --out-dir dist --quiet",
     "test": "gulp test"
   },
   "author": "Josh Balfour <josh@joshbalfour.co.uk>",
@@ -22,9 +23,6 @@
     "Node.js"
   ],
   "repository": "https://github.com/joshbalfour/node-cognitive-services",
-  "engines": {
-    "node": ">=6.0"
-  },
   "dependencies": {
     "request": "^2.81.0",
     "request-promise": "^4.2.1",
@@ -32,6 +30,8 @@
     "xmlbuilder": "^9.0.4"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
     "gulp": "^3.9.1",
     "gulp-istanbul": "^1.1.2",
     "gulp-mocha": "^3.0.1",

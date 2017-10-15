@@ -1,17 +1,17 @@
-const cognitive = require('../../index.js');
+const cognitive = require('../../src/index.js');
 const config = require('../config.js');
 const should = require('should');
 
 describe('Text translator', () => {
 
-    const client = cognitive.textTranslator({
+    const client = new cognitive.textTranslator({
         apiKey: config.textTranslator.apiKey,
         endpoint: config.textTranslator.endpoint
     });
 
     describe('translate array', () => {
         it('should return response', (done) => {
-            const parameters = {
+            const body = {
                 from: "en",
                 to: "es",
                 sourceTexts: [
@@ -23,7 +23,7 @@ describe('Text translator', () => {
             }
 
             client.translateArray({
-                parameters
+                body
             }).then(response => {
                 should(response).not.be.undefined();
                 should(response).be.Array().and.have.length(3);
@@ -35,7 +35,7 @@ describe('Text translator', () => {
         })
 
         it('should mark profan words when auto-detecting language', (done) => {
-            const parameters = {
+            const body = {
                 to: "en",
                 sourceTexts: [
                     "She is a stupid bitch"
@@ -45,7 +45,7 @@ describe('Text translator', () => {
             }
 
             client.translateArray({
-                parameters
+                body
             }).then(response => {
                 should(response).not.be.undefined();
                 should(response).be.Array().and.have.length(1);
@@ -80,13 +80,18 @@ describe('Text translator', () => {
 
     describe('get language names', () => {
         it('should return response', (done) => {
+             
             const parameters = {
-                languageCodes: ['es', 'en'],
                 locale: 'en-US'
             }
 
+            const body = {
+                languageCodes: ['es', 'en']
+            };
+           
             client.getLanguageNames({
-                parameters
+                parameters,
+                body
             }).then(response => {
                 should(response).not.be.undefined();
                 should(response).be.Array().and.have.length(2);
@@ -163,7 +168,7 @@ describe('Text translator', () => {
 
     describe('detect array', () => {
         it('should return response', (done) => {
-            const parameters = {
+            const body = {
                 texts: [
                     "hello world. my name is peter.",
                     "hola mundo. mi nombre es pedro"
@@ -171,7 +176,7 @@ describe('Text translator', () => {
             };
 
             client.detectArray({
-                parameters
+                body
             })
             .then(response => {
                 should(response).be.Array().and.have.length(2);
@@ -206,7 +211,7 @@ describe('Text translator', () => {
 
     describe('add translation array', () => {
         it('should return response', (done) => {
-            const parameters = {
+            const body = {
                 from: "es",
                 to: "en",
                 user: "default",
@@ -223,7 +228,7 @@ describe('Text translator', () => {
             };
 
             client.addTranslationArray({
-                parameters
+                body
             })
             .then(response => {
                 should(response).eql("");
@@ -277,7 +282,7 @@ describe('Text translator', () => {
 
     describe('get translations array', () => {
         it('should return response', (done) => {
-            const parameters = {
+            const body = {
                 from: "en",
                 to: "es",
                 texts: [
@@ -289,7 +294,7 @@ describe('Text translator', () => {
             }
 
             client.getTranslationsArray({
-                parameters
+                body
             }).then(response => {
                 should(response).not.be.undefined();
                 should(response).be.Array().and.have.length(3);

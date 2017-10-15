@@ -1,34 +1,37 @@
-const {
-    makeRequest
-} = require('../../lib/api');
+const commonService = require('../commonService');
 
-const bingAutosuggest = ({
-    apiKey,
-    endpoint
-}) => {
+/**
+ * Bing Autosuggest API lets you send a partial search query term to Bing and get back a list of suggested queries that other users have searched on. 
+ * For example, as the user enters each character of their search term, you'd call this API and populate the search box's drop-down list with the suggested query strings.
+ * @augments commonService
+ * {@link https://docs.microsoft.com/en-us/rest/api/cognitiveservices/bing-autosuggest-api-v5-reference|documentation}
+ */
+class bingAutosuggest extends commonService {
+    /**
+     * Constructor.
+     * 
+     * @param {Object} obj
+     * @param {string} obj.apiKey
+     * @param {string} obj.endpoint
+     */
+    constructor({ apiKey, endpoint }) {
+        super({ apiKey, endpoint });
+        this.serviceId = "56c7694ecf5ff801a090fbd1"
+        this.endpoints = [
+            "api.cognitive.microsoft.com"
+        ];
+    }
 
-    let self = this;
-
-    self.endpoints = [
-        "api.cognitive.microsoft.com"
-    ];
-    self._apiKey = apiKey;
-    self._endpoint = endpoint;
-
-    self.suggestions = ({
-        parameters,
-        headers
-    }) => {
+    /**
+     * Provides suggestions for a given query or partial query.
+     * @returns {Promise.<object>}
+     */
+    suggestions ({ parameters, headers })  {
 
         const operation = {
-            "name": "Suggestions",
             "path": "bing/v5.0/suggestions/",
             "method": "GET",
-            "serviceId": "56c7694ecf5ff801a090fbd1",
             "operationId": "56c769a2cf5ff801a090fbd2",
-            "id": "56c769a2cf5ff801a090fbd2",
-            "description": "This operation provides suggestions for a given query or partial query.",
-            "serviceName": "Bing Autosuggest",
             "headers": [{
                 "name": "Accept",
                 "description": "Optional request header.",
@@ -101,15 +104,13 @@ const bingAutosuggest = ({
             }]
         };
 
-        return makeRequest(self, {
+        return this.makeRequest({
             operation: operation,
-            endpoint: endpoint,
             parameters: parameters,
             headers: headers
         })
     };
 
-    return self;
-};
+}
 
 module.exports = bingAutosuggest;

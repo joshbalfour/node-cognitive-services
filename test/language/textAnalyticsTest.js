@@ -1,10 +1,10 @@
-const cognitive = require('../../index.js');
+const cognitive = require('../../src/index.js');
 const config = require('../config.js');
 const should = require('should');
 
 describe('Text analytics', () => {
 
-    const client = cognitive.textAnalytics({
+    const client = new cognitive.textAnalytics({
         apiKey: config.textAnalytics.apiKey,
         endpoint: config.textAnalytics.endpoint
     });

@@ -1,43 +1,41 @@
-const {
-    makeRequest
-} = require('../../lib/api');
+const commonService = require('../commonService');
 
-const entityLinking = ({
-    apiKey,
-    endpoint
-}) => {
-
-    let self = this;
-
-    self.endpoints = [
-        "westus.api.cognitive.microsoft.com"
-    ];
-    self._apiKey = apiKey;
-    self._endpoint = endpoint;
+/**
+ * Entity Linking is a natural language processing tool to help analyzing text for your application. 
+ * 
+ * @augments commonService
+ * {@link https://westus.dev.cognitive.microsoft.com/docs/services/56f0eabfca730713cc392442/operations/56f0eabfca73070e44d0f39c|documentation}
+ */
+class entityLinking extends commonService {
+    /**
+     * Constructor.
+     * 
+     * @param {Object} obj
+     * @param {string} obj.apiKey
+     * @param {string} obj.endpoint
+     */
+    constructor({ apiKey, endpoint }) {
+        super({ apiKey, endpoint });
+        this.serviceId = "56f0eabfca730713cc392442"
+        this.endpoints = [
+            "westus.api.cognitive.microsoft.com"
+        ];
+    }
 
     /**
-	Name: Entity Linking: Link Entity
-	Description: Entity Linking is a natural language processing tool to help analyzing text for your application. Entity Linking recognize a named-entity from given text and aligning a textual mention of the entity to an appropriate entry in a knowledge base. 
+	Recognize a named-entity from given text and aligning a textual mention of the entity to an appropriate entry in a knowledge base.
 	Example Parameters: {
-	"selection": null,
-	"offset": null
-}
-*/
-    self.linkEntity = ({
-        parameters,
-        headers,
-        body
-    }) => {
+        "selection": null,
+        "offset": null
+    }
+    @returns {Promise.<object>}
+    */
+    linkEntity({ parameters, headers, body }) {
 
         const operation = {
-            "name": "Link Entity",
             "path": "entitylinking/v1.0/link",
             "method": "POST",
-            "serviceId": "56f0eabfca730713cc392442",
             "operationId": "56f0eabfca73070e44d0f39c",
-            "id": "56f0eabfca73070e44d0f39c",
-            "description": "Entity Linking is a natural language processing tool to help analyzing text for your application. Entity Linking recognize a named-entity from given text and aligning a textual mention of the entity to an appropriate entry in a knowledge base.",
-            "serviceName": "Entity Linking",
             "headers": [{
                 "name": "Content-Type",
                 "description": "Media type of the body sent to the API.",
@@ -64,17 +62,14 @@ const entityLinking = ({
             }]
         };
 
-		return makeRequest(self, {
+        return this.makeRequest({
             operation: operation,
-            endpoint: endpoint,
             parameters: parameters,
             headers: headers,
             body: body
         })
+    }
 
-    };
-
-    return self;
 };
 
 module.exports = entityLinking;
