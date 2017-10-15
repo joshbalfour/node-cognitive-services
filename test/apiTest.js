@@ -97,4 +97,41 @@ describe('API Test', () => {
             done();
         })
     });
+
+    it('should throw an error if a header is required but not present', (done) => {
+        const expectedHeaders = [{
+            name: 'name',
+            required: true
+        }];
+        const actualHeaders = {
+            'blarh': '50'
+        };
+
+        api.verifyHeaders(expectedHeaders, actualHeaders)
+        .then((response) => {
+            done(new Error("Should have failed. The header is required."))
+        }).catch((err) => {
+            done();
+        })
+    });
+
+    it('should throw an error if more than one headers are required but not present', (done) => {
+        const expectedHeaders = [{
+            name: 'name1',
+            required: true
+        }, {
+            name: 'name2',
+            required: true
+        }];
+        const actualHeaders = {
+            'blarh': '50'
+        };
+
+        api.verifyHeaders(expectedHeaders, actualHeaders)
+        .then((response) => {
+            done(new Error("Should have failed. The header is required."))
+        }).catch((err) => {
+            done();
+        })
+    });
 });

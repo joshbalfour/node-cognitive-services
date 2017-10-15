@@ -16,7 +16,6 @@ const bingImageSearch = ({
 
     self.imageInsights = ({
         parameters,
-        headers,
         body
     }) => {
 
@@ -29,22 +28,12 @@ const bingImageSearch = ({
             "id": "571fab09dbe2d933e891028f",
             "description": "Get insights for an image sent in the POST body. ",
             "serviceName": "Bing Image Search",
-            "headers": [{
-                "name": "Content-Type",
-                "description": "Media type of the body sent to the API.",
-                "options": [
-                    "multipart/form-data"
-                ],
-                "required": false,
-                "typeName": "string"
-            }],
-            
             "parameters": [{
                 "name": "q",
                 "description": "The user's search query string",
                 "value": null,
                 "required": true,
-                "type": "routeParam",
+                "type": "queryStringParam",
                 "typeName": "string"
             }]
         };
@@ -53,7 +42,6 @@ const bingImageSearch = ({
             operation: operation,
             endpoint: endpoint,
             parameters: parameters,
-            headers: headers,
             body: body
         })
     };

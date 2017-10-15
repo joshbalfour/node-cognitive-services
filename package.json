@@ -21,7 +21,9 @@
   },
   "dependencies": {
     "request": "^2.81.0",
-    "request-promise": "^4.2.1"
+    "request-promise": "^4.2.1",
+    "xml2js": "^0.4.19",
+    "xmlbuilder": "^9.0.4"
   },
   "devDependencies": {
     "gulp": "^3.9.1",

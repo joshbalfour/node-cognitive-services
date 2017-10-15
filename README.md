@@ -62,14 +62,14 @@ If you want to see more examples of use you can see within the `test` folder.
     - [x] Entity Linking
     - [x] Recommendations
     - [ ] Knowledge exploration
-    - [ ] QnA maker
+    - [x] QnA maker
     - [ ] Custom decision service
 - Language
     - [x] Bing spell check
     - [x] Text analytics
     - [x] Web language model
     - [ ] LUIS
-    - [ ] Translator Text
+    - [x] Translator Text
     - [ ] Linguistic Analysis
 - Search
     - [x] Bing Autosuggest

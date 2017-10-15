@@ -46,5 +46,13 @@ module.exports = {
     video: {
         endpoint: "westus.api.cognitive.microsoft.com",
         apiKey: "insert-key-here"
+    },
+    textTranslator: {
+        endpoint: "api.microsofttranslator.com",
+        apiKey: "insert-key-here"
+    },
+    qnaMaker: {
+        endpoint: "westus.api.cognitive.microsoft.com",
+        apiKey: "insert-key-here"
     }
 }

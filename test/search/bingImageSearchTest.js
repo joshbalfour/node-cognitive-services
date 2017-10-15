@@ -11,11 +11,7 @@ describe('Bing Image Search', () => {
     });
 
     describe('Search', () => {
-        it.skip('should get image insights', (done) => {
-            const headers = {
-                'Content-type': 'multipart/form-data'
-            };
-            
+        it('should get image insights', (done) => {
             const body = fs.readFileSync('test/assets/cat.jpg');
             const parameters = {
                 "q": "cats",
@@ -23,7 +19,6 @@ describe('Bing Image Search', () => {
 
             client.imageInsights({
                 parameters,
-                headers,
                 body
             })
             .then((response) => {
@@ -51,7 +46,7 @@ describe('Bing Image Search', () => {
             });
         })
 
-        it('should get trending images', (done) => {
+        it.skip('should get trending images', (done) => {
             client.trending()
             .then((response) => {
                 should(response).not.be.undefined();
