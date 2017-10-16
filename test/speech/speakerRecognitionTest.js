@@ -18,7 +18,6 @@ describe('Speaker recognition', () => {
                 parameters,
                 headers
             }).then((response) => {
-                console.log(response);
                 should(response).not.be.undefined();
                 done();
             }).catch((err) => {
@@ -36,7 +35,6 @@ describe('Speaker recognition', () => {
                 parameters,
                 headers
             }).then((response) => {
-                console.log(response);
                 should(response).not.be.undefined();
                 done();
             }).catch((err) => {

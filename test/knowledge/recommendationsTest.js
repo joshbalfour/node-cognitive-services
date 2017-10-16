@@ -3,7 +3,7 @@ const config = require('../config.js');
 const should = require('should');
 const fs = require('fs');
 
-describe.only('Recommendations', () => {
+describe('Recommendations', () => {
 
     const client = new cognitive.recommendations({
         apiKey: config.recommendations.apiKey,

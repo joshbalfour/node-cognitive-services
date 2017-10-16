@@ -37,17 +37,16 @@ class commonService {
     
                 let path = operation.path;
     
-                // mandatory query params part of the path
-                (operation.parameters || []).forEach((param) => {
+                // mandatory route params
+                operation.parameters.forEach((param) => {
                     if (parameters[param.name] && param.type == 'routeParam') {
                         path = path.split(`{${param.name}}`).join(parameters[param.name]);
                     }
                 });
     
-    
-                // other optional params
+                // query params
                 let i = 0;
-                (operation.parameters || []).forEach((param) => {
+                operation.parameters.forEach((param) => {
                     if (parameters[param.name] && param.type == 'queryStringParam') {
                         if (i == 0)
                             path += '?'
@@ -72,9 +71,8 @@ class commonService {
     
                 if (body != null) {
                     options.body = body;
-                    let contentTypeHeader = headers['Content-type'] || headers['Content-Type'];
-                    if (contentTypeHeader && contentTypeHeader != 'application/json') {
-                        options.json = false; //do not stringify the request body to JSON
+                    if (contentTypeHeader && contentTypeHeader.indexOf('json') == -1) {
+                        options.json = false; // do not stringify the request body to JSON
                     }
                     // POST: receive the response properly
                     options.transform = function (body, res) {

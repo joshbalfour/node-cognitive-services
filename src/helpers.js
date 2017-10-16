@@ -1,24 +1,22 @@
-function verifyBody(expected, actual, contentType) {
+function verifyBody(expected = [], actual = {}, contentType) {
 	return new Promise((resolve, reject) => {
 		if (contentType.indexOf('json') > -1) {
-			for (let i = 0; i < (expected || []).length; i++) {
+			for (let i = 0; i < expected.length; i++) {
 				let expectedParam = expected[i];
-				if (expectedParam.type !== 'inBody' || !expectedParam.required) {
-					continue;
-				}
-
-				if (actual[expectedParam.name]) {
-					let listOfOptions = expectedParam.options;
-					if (expectedParam.typeName === 'boolean') {
-						listOfOptions = ["true", "false"];
+				if (expectedParam.type == 'inBody') {
+					if (actual[expectedParam.name]) {
+						let listOfOptions = expectedParam.options;
+						if (expectedParam.typeName === 'boolean') {
+							listOfOptions = ["true", "false"];
+						}
+						if (Array.isArray(listOfOptions) && listOfOptions.indexOf(actual[expectedParam.name]) == -1) {
+							return reject(new Error(`Body parameter "${actual[expectedParam.name]}" had a value not supported. Valid values are ${listOfOptions.join(',')}`));
+						}
 					}
-					if (Array.isArray(listOfOptions) && listOfOptions.indexOf(actual[expectedParam.name]) == -1) {
-						return reject(new Error(`Body parameter "${actual[expectedParam.name]}" had a value not supported. Valid values are ${listOfOptions.join(',')}`));
+					else if (expectedParam.required) {
+						return reject(new Error(`Body parameter "${expectedParam.name}" is required!`));
 					}
-				} else {
-					return reject(new Error(`Body parameter "${expectedParam.name}" is required!`));
 				}
-
 			}
 		}
 
@@ -28,29 +26,27 @@ function verifyBody(expected, actual, contentType) {
 	});
 }
 
-function verifyParameters(expected, actual) {
-	var expectedParameters = expected || [];
-	var actualParameters = actual || {};
+function verifyParameters(expected = [], actual = {}) {
 
 	return new Promise((resolve, reject) => {
 
-		const missingParameters = expectedParameters
+		const missingParameters = expected
 			.filter(param => param.required)
-			.filter(param => !actualParameters[param.name]);
+			.filter(param => !actual[param.name]);
 
 		const invalidValues = [];
 
 		// validate that the parameters have valid values
-		for (let paramName in actualParameters) {
+		for (let paramName in actual) {
 			var values;
-			if (typeof (actualParameters[paramName]) === 'string') {
-				values = actualParameters[paramName].split(',');
+			if (typeof (actual[paramName]) === 'string') {
+				values = actual[paramName].split(',');
 			} else {
-				values = [actualParameters[paramName]];
+				values = [actual[paramName]];
 			}
 			for (let i = 0; i < values.length; i++) {
 				let value = values[i].toString();
-				let expectedParam = expectedParameters.filter(p => p.name == paramName);
+				let expectedParam = expected.filter(p => p.name == paramName);
 				if (expectedParam.length == 1) {
 					let listOfOptions = expectedParam[0].options;
 					if (expectedParam[0].typeName === 'boolean') {
@@ -78,10 +74,7 @@ function verifyParameters(expected, actual) {
 	});
 }
 
-function verifyHeaders(expected, actual) {
-	var expectedHeaders = expected || [];
-	var actualHeaders = actual || {};
-
+function verifyHeaders(expectedHeaders = [], actualHeaders = {}) {
 	return new Promise((resolve, reject) => {
 
 		const requiredPropsNotPresent = expectedHeaders
@@ -100,9 +93,7 @@ function verifyHeaders(expected, actual) {
 	});
 }
 
-function verifyEndpoint(expected, endpoint) {
-	const endpointsAllowed = expected || [];
-
+function verifyEndpoint(endpointsAllowed = [], endpoint) {
 	return new Promise((resolve, reject) => {
 		if (endpointsAllowed && endpointsAllowed.indexOf(endpoint) != -1) {
 			resolve();
