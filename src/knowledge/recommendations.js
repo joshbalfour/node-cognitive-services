@@ -1,9 +1,11 @@
 const commonService = require('../commonService');
 
 /**
- * The Recommendations API built with Microsoft Azure Machine Learning helps your customer discover items in your catalog. Customer activity in your digital store is used to recommend items and to improve conversion in your digital store.
+ * The Recommendations API built with Microsoft Azure Machine Learning helps your customer discover items in your catalog. 
+ * Customer activity in your digital store is used to recommend items and to improve conversion in your digital store.
  * 
- * The recommendation engine may be trained by uploading data about past customer activity or by collecting data directly from your digital store. When the customer returns to your store you are able to feature recommended items from your catalog that may increase your conversion rate.
+ * The recommendation engine may be trained by uploading data about past customer activity or by collecting data directly from your digital store. 
+ * When the customer returns to your store you are able to feature recommended items from your catalog that may increase your conversion rate.
  * @augments commonService
  * {@link https://westus.dev.cognitive.microsoft.com/docs/services/Recommendations.V4.0/operations/56f30d77eda5650db055a3db|documentation}
  */
@@ -131,7 +133,23 @@ You may create up to 10 models. If you need to delete unused models, you may use
                 ],
                 "required": false,
                 "typeName": "string"
-            }]
+            }],
+            "parameters": [{
+                "name": "modelName",
+                "description": "Name of the model",
+                "value": null,
+                "required": true,
+                "type": "inBody",
+                "typeName": "string"
+            }, {
+                "name": "description",
+                "description": "Description of the model",
+                "value": null,
+                "required": true,
+                "type": "inBody",
+                "typeName": "string"
+            }],
+
         };
 
         return this.makeRequest({
@@ -379,11 +397,11 @@ You may create up to 10 models. If you need to delete unused models, you may use
     deleteAModel({ parameters }) {
 
         const operation = {
-            "path": "recommendations/v4.0/models/{id}",
+            "path": "recommendations/v4.0/models/{modelId}",
             "method": "DELETE",
             "operationId": "56f30d77eda5650db055a3d8",
             "parameters": [{
-                "name": "id",
+                "name": "modelId",
                 "description": "Unique identifier of the model.",
                 "value": null,
                 "required": true,
@@ -515,7 +533,7 @@ You may create up to 10 models. If you need to delete unused models, you may use
                 "name": "onlyLastRequestedBuild",
                 "description": "true to return only the last build of the model, false to return all the builds",
                 "value": null,
-                "required": true,
+                "required": false,
                 "type": "queryStringParam",
                 "typeName": "boolean"
             }]
@@ -1304,21 +1322,12 @@ You may create up to 10 models. If you need to delete unused models, you may use
 
     @returns {Promise.<object>}
     */
-    uploadACatalogFileToAModel({ parameters, headers, body }) {
+    uploadACatalogFileToAModel({ parameters, body }) {
 
         const operation = {
             "path": "recommendations/v4.0/models/{modelId}/catalog",
             "method": "POST",
             "operationId": "56f316efeda5650db055a3e1",
-            "headers": [{
-                "name": "Content-Type",
-                "description": "Media type of the body sent to the API.",
-                "options": [
-                    "application/octet-stream"
-                ],
-                "required": false,
-                "typeName": "string"
-            }],
             "parameters": [{
                 "name": "modelId",
                 "description": "Unique identifier of the model. Only letters (A-Z, a-z), numbers (0-9), hyphens (-) and underscore (_) are allowed. Max length: 50",
@@ -1339,7 +1348,7 @@ You may create up to 10 models. If you need to delete unused models, you may use
         return this.makeRequest({
             operation: operation,
             parameters: parameters,
-            headers: headers,
+            headers: {'Content-type': "application/octet-stream"},
             body: body
         })
 
