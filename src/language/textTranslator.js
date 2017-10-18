@@ -1,6 +1,6 @@
 const commonService = require('../commonService');
 
-const xmlBuilder = require('xmlBuilder');
+const xmlBuilder = require('xmlbuilder');
 const xmlParser = require('xml2js');
 
 /**
