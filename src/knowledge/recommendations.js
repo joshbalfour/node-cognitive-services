@@ -347,7 +347,7 @@ You may create up to 10 models. If you need to delete unused models, you may use
     @returns {Promise.<object>}
 
     */
-    deleteCatalogItems({ parameters, headers }) {
+    deleteCatalogItems({ parameters, body }) {
 
         const operation = {
             "path": "recommendations/v4.0/models/{modelId}/catalog",
@@ -363,26 +363,18 @@ You may create up to 10 models. If you need to delete unused models, you may use
             }, {
                 "name": "deleteAll",
                 "description": "If set to true, the entire catalog is deleted, else items received in request body are deleted. Set to false by default.",
-                "value": null,
+                "value": false,
                 "required": false,
                 "type": "queryStringParam",
                 "typeName": "boolean"
-            }],
-            "headers": [{
-                "name": "Content-Type",
-                "description": "Media type of the body sent to the API.",
-                "options": [
-                    "application/octet-stream"
-                ],
-                "required": false,
-                "typeName": "string"
-            }],
+            }]
         };
 
         return this.makeRequest({
             operation: operation,
             parameters: parameters,
-            headers: headers
+            headers: {'Content-type': "application/octet-stream"},
+            body: body
         })
 
     };
@@ -1405,21 +1397,12 @@ You may create up to 10 models. If you need to delete unused models, you may use
 
     @returns {Promise.<object>}
     */
-    uploadAUsageFileToAModel({ parameters, headers, body }) {
+    uploadAUsageFileToAModel({ parameters, body }) {
 
         const operation = {
             "path": "recommendations/v4.0/models/{modelId}/usage",
             "method": "POST",
             "operationId": "56f316efeda5650db055a3e2",
-            "headers": [{
-                "name": "Content-Type",
-                "description": "Media type of the body sent to the API.",
-                "options": [
-                    "application/octet-stream"
-                ],
-                "required": false,
-                "typeName": "string"
-            }],
             "parameters": [{
                 "name": "modelId",
                 "description": "Unique identifier of the model.",
@@ -1440,7 +1423,7 @@ You may create up to 10 models. If you need to delete unused models, you may use
         return this.makeRequest({
             operation: operation,
             parameters: parameters,
-            headers: headers,
+            headers: {"Content-type": "application/octet-stream"},
             body: body
         })
 

@@ -16,5 +16,6 @@ module.exports = {
     textAnalytics: require('./language/textAnalytics'),
     video: require('./vision/video'),
     webLanguageModel: require('./language/webLanguageModel'),
-    textTranslator: require('./language/textTranslator')
+    textTranslator: require('./language/textTranslator'),
+    bingSpeech: require('./speech/bingSpeech')
 };

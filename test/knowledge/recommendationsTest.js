@@ -11,6 +11,7 @@ describe('Recommendations', () => {
     });
 
     var modelId;
+    var usageFileId;
 
     before(done => {
         console.log('Creating model...')
@@ -103,8 +104,98 @@ describe('Recommendations', () => {
         })
     })
 
-    describe('Get all catalog items', () => {
-        it('should get response', done => {
+    describe('Catalog and usage', () => {
+        before(done => {
+            var parameters = {
+                modelId: modelId,
+                catalogDisplayName: 'books catalog'
+            }
+
+            var body = fs.readFileSync('test/assets/books_catalog.txt');
+
+            console.log("Uploading catalog...")
+            client.uploadACatalogFileToAModel({
+                parameters,
+                body
+            }).then(response => {
+                should(response).not.be.undefined();
+                should(response).have.properties(['processedLineCount', 'errorLineCount', 'importedLineCount'])
+                parameters = {
+                    modelId: modelId,
+                    usageDisplayName: 'books usage'
+                }
+    
+                body = fs.readFileSync('test/assets/books_usage.txt');
+
+                console.log("Uploading usage...")
+                return client.uploadAUsageFileToAModel({
+                    parameters,
+                    body
+                })
+            })
+            .then(response => {
+                should(response).not.be.undefined();
+                should(response).have.properties(['fileId', 'processedLineCount', 'errorLineCount', 'importedLineCount'])
+                usageFileId = response.fileId;
+                done();
+            })
+            .catch(err => {
+                done(err);
+            })
+        })
+
+        after(done => {
+            console.log('Deleting all catalog items...')
+            var parameters = {
+                modelId: modelId,
+                deleteAll: true
+            }
+            client.deleteCatalogItems({
+                parameters
+            })
+            .then(response => {
+                should(response).not.be.undefined();
+                should(response).have.property('deletedItemCount');
+
+                parameters = {
+                    modelId: modelId
+                }
+
+                return client.deleteAllUsageFiles({
+                    parameters
+                })
+            })
+            .then(response => {
+                should(response).be.undefined();
+                done();
+            })
+            .catch(err => {
+                done(err);
+            })
+        })
+
+        it('should delete catalog items sent in the body', done => {
+            const parameters = {
+                modelId: modelId,
+                deleteAll: false
+            }
+            const body = fs.readFileSync('test/assets/books_catalog_items.txt');
+
+            client.deleteCatalogItems({
+                parameters,
+                body
+            })
+            .then(response => {
+                should(response).not.be.undefined();
+                should(response).have.properties(['processedLineCount', 'errorLineCount', 'deletedItemCount'])
+                done();
+            })
+            .catch(err => {
+                done(err);
+            })
+        })
+
+        it('should get all catalog items', done => {
             const parameters = {
                 modelId: modelId
             }
@@ -120,23 +211,34 @@ describe('Recommendations', () => {
                 done(err);
             })
         })
-    })
 
-    describe('Catalog', () => {
-        it('should upload in .txt format', done => {
+        it('should upload usage event', done => {
             const parameters = {
-                modelId: modelId,
-                catalogDisplayName: 'books catalog'
-            }
+                modelId: modelId
+            };
+            const headers = {
+                "Content-type": "application/json"
+            };
+            const body = {
+                "userId": "11400",
+                "events": [
+                    {
+                        "eventType": "Purchase",
+                        "itemId": "20442602",
+                        "timestamp": "2014-05-03T06:05:59",
+                        "count": 1,
+                        "unitPrice": 15.0
+                    }
+                ]
+            };
 
-            const body = fs.readFileSync('test/assets/books_catalog.txt');
-
-            client.uploadACatalogFileToAModel({
+            client.uploadUsageEvent({
                 parameters,
+                headers,
                 body
-            }).then(response => {
-                should(response).not.be.undefined();
-                should(response).have.properties(['processedLineCount', 'errorLineCount', 'importedLineCount'])
+            })
+            .then(response => {
+                should(response).be.undefined();
                 done();
             })
             .catch(err => {
@@ -144,5 +246,4 @@ describe('Recommendations', () => {
             })
         })
     })
-
 })

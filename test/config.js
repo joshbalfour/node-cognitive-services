@@ -58,5 +58,8 @@ module.exports = {
     recommendations: {
         endpoint: "westus.api.cognitive.microsoft.com",
         apiKey: "insert-key-here"
+    },
+    bingSpeech: {
+        apiKey: "insert-key-here"
     }
 }

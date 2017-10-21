@@ -82,7 +82,7 @@ If you want to see more examples of use you can see within the `test` folder.
 - Speech
     - [x] Speaker recognition
     - [ ] Translator
-    - [ ] Bing Speech
+    - [x] Bing Speech
     - [ ] Custom speech service
 - Vision
     - [x] Computer vision
