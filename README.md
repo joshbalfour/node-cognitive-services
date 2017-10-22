@@ -16,7 +16,7 @@ Unofficial SDK for [Microsoft® Cognitive Services](https://www.microsoft.com/co
 To get started first [sign up](https://www.microsoft.com/cognitive-services/en-us/sign-up) and [grab your API keys](https://www.microsoft.com/cognitive-services/en-US/subscriptions).
 Then figure out which API you want to use, you can find descriptions [here](https://www.microsoft.com/cognitive-services/en-us/apis).
 
-To use this SDK in your project, run `npm install cognitive-services --save`. 
+To use this SDK in your project, run `npm install --save cognitive-services`. 
 
 Then make a JS file in your project directory and add the following:
 
@@ -34,12 +34,12 @@ const parameters = {
 
 const body = "Text=Bill+Gatas"
 
-const client = new cognitiveServices.bingSpellCheck({
+const spellCheckClient = new cognitiveServices.bingSpellCheck({
     apiKey: "YOUR-API-KEY",
     endpoint: "YOUR-ENDPOINT"
 })
 
-client.spellCheck({
+spellCheckClient.spellCheck({
     parameters,
     body
 }).then(response => {
@@ -61,15 +61,15 @@ If you want to see more examples of use you can see within the `test` folder.
     - [x] Academic knowledge
     - [x] Entity Linking
     - [x] Recommendations
-    - [ ] Knowledge exploration
     - [x] QnA maker
+    - [ ] Knowledge exploration
     - [ ] Custom decision service
 - Language
     - [x] Bing spell check
     - [x] Text analytics
     - [x] Web language model
-    - [ ] LUIS
     - [x] Translator Text
+    - [ ] LUIS
     - [ ] Linguistic Analysis
 - Search
     - [x] Bing Autosuggest
@@ -81,8 +81,8 @@ If you want to see more examples of use you can see within the `test` folder.
     - [ ] Bing Entity Search
 - Speech
     - [x] Speaker recognition
-    - [ ] Translator
     - [x] Bing Speech
+    - [ ] Translator
     - [ ] Custom speech service
 - Vision
     - [x] Computer vision
@@ -93,26 +93,8 @@ If you want to see more examples of use you can see within the `test` folder.
     - [ ] Custom vision service
     - [ ] Video indexer
 
-## License
-
-
-Copyright (c) 2016, Josh Balfour
-
-Permission to use, copy, modify, and/or distribute this software for any purpose
-with or without fee is hereby granted, provided that the above copyright notice
-and this permission notice appear in all copies.
-
-THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
-REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND
-FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
-INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS
-OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER
-TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF
-THIS SOFTWARE.
-
 
 ## Legal
-
 
 Microsoft, Microsoft Cognitive Services, and Windows are either registered trademarks or trademarks of Microsoft Corporation in the United States and/or other countries.
 This project was done without the knowledge or endorsement of Microsoft®.
