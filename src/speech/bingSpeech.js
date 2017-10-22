@@ -3,10 +3,13 @@ const tokenService = require('../tokenService');
 const xmlBuilder = require('xmlbuilder');
 
 /**
- * Converts human speech to text.
+ * The cloud-based Microsoft Speech API provides developers an easy way to create powerful speech-enabled features in their applications, like voice command control, user dialog using natural speech conversation, and speech transcription and dictation. The Microsoft Speech API supports both Speech to Text and Text to Speech conversion.
+
+- Speech to Text API converts human speech to text that can be used as input or commands to control your application.
+- Text to Speech API converts text to audio streams that can be played back to the user of your application.
  * 
  * @augments commonService
- * @link https://docs.microsoft.com/en-us/azure/cognitive-services/speech/getstarted/getstartedrest
+ * @link https://docs.microsoft.com/en-us/azure/cognitive-services/speech/home
  */
 class bingSpeech extends commonService {
     /**
@@ -26,12 +29,6 @@ class bingSpeech extends commonService {
 
     /**
     Get text.
-    
-	Example parameters:  {
-        recognitionMode: 'dictation',
-        language: 'en-US',
-        format: 'simple'
-    };
     @returns {Promise.<object>}
     */
     getText({ parameters, headers, body }) {
