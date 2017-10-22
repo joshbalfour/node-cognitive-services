@@ -23,9 +23,16 @@ class face extends commonService {
         this.endpoints = [
             "westus.api.cognitive.microsoft.com",
             "eastus2.api.cognitive.microsoft.com",
+            "eastus.api.cognitive.microsoft.com",
+            "eastus2.api.cognitive.microsoft.com",
             "westcentralus.api.cognitive.microsoft.com",
+            "southcentralus.api.cognitive.microsoft.com",
             "westeurope.api.cognitive.microsoft.com",
-            "southeastasia.api.cognitive.microsoft.com"
+            "northeurope.api.cognitive.microsoft.com",
+            "southeastasia.api.cognitive.microsoft.com",
+            "eastasia.api.cognitive.microsoft.com",
+            "australiaeast.api.cognitive.microsoft.com",
+            "brazilsouth.api.cognitive.microsoft.com"
         ];
     }
 
