@@ -17,5 +17,6 @@ module.exports = {
     video: require('./vision/video'),
     webLanguageModel: require('./language/webLanguageModel'),
     textTranslator: require('./language/textTranslator'),
-    bingSpeech: require('./speech/bingSpeech')
+    bingSpeech: require('./speech/bingSpeech'),
+    linguisticAnalysis: require('./language/linguisticAnalysis')
 };
