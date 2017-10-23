@@ -77,8 +77,8 @@ If you want to see more examples of use you can see within the `test` folder.
     - [x] Bing News Search
     - [x] Bing Video Search
     - [x] Bing Web Search
+    - [x] Bing Entity Search
     - [ ] Bing Custom Search
-    - [ ] Bing Entity Search
 - Speech
     - [x] Speaker recognition
     - [x] Bing Speech
