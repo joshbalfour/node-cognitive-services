@@ -20,7 +20,7 @@ function verifyBody(expected = [], actual = {}, contentType) {
 			}
 		}
 
-		expected = expected.filter(p => p.type != "inBody");
+		expected = expected.filter(p => p && p.type != "inBody");
 
 		resolve(expected);
 	});

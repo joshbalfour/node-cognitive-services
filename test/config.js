@@ -15,6 +15,10 @@ module.exports = {
         endpoint: "api.cognitive.microsoft.com",
         apiKey: "insert-key-here" 
     },
+    bingSearchV7: {
+        endpoint: "api.cognitive.microsoft.com",
+        apiKey: "insert-key-here" 
+    },
     academicKnowledge: {
         endpoint: "westus.api.cognitive.microsoft.com",
         apiKey: "insert-key-here"
@@ -23,7 +27,15 @@ module.exports = {
         endpoint: "api.cognitive.microsoft.com",
         apiKey: "insert-key-here"
     },
+    bingAutosuggestV7: {
+        endpoint: "api.cognitive.microsoft.com",
+        apiKey: "insert-key-here"
+    },
     bingSpellCheck: {
+        endpoint: "api.cognitive.microsoft.com",
+        apiKey: "insert-key-here"
+    },
+    bingSpellCheckV7: {
         endpoint: "api.cognitive.microsoft.com",
         apiKey: "insert-key-here"
     },

@@ -2,7 +2,7 @@ const cognitive = require('../../src/index.js');
 const config = require('../config.js');
 const should = require('should');
 
-describe.only('Linguistic analysis', () => {
+describe('Linguistic analysis', () => {
 
     const client = new cognitive.linguisticAnalysis({
         apiKey: config.linguisticAnalysis.apiKey,
