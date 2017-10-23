@@ -54,11 +54,10 @@ describe('Bing news search v7', () => {
         })
     })
 
-    describe('Trending news', () => {
+    describe.skip('Trending news', () => {
         it('should return response', (done) => {
             const parameters = {
-                "count": 10,
-                "cc": 'US'
+                "count": "10",
             };
 
             const headers = {};

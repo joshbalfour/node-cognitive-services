@@ -213,9 +213,9 @@ class bingImageSearchV7 extends commonService {
                 "description": "A filter used to filter results for adult content.",
                 "value": "Moderate",
                 "options": [
-                    "Off",
-                    "Moderate",
-                    "Strict"
+                    "off",
+                    "moderate",
+                    "strict"
                 ],
                 "required": false,
                 "type": "queryStringParam",
@@ -406,8 +406,8 @@ class bingImageSearchV7 extends commonService {
 
         const operation = {
             "path": "bing/v7.0/images/trending",
-            "headers": this.headers,
             "method": "GET",
+            "headers": this.headers,
             "parameters": this.parameters.filter(p => {
                 return p.name == 'cc' || p.name == 'id' || p.name == 'mkt' || p.name == 'safeSearch' || p.name == 'setLang' 
             })
