@@ -12,9 +12,11 @@ describe('Bing Image Search v7', () => {
 
     describe('Image Insights', () => {
         it('should get image insights', (done) => {
-            const body = fs.readFileSync('test/assets/cat.jpg');
+            const body = {};
             const headers = {};
-            const parameters = {};
+            const parameters = {
+                'imgUrl': 'https://github.com/Microsoft/Cognitive-Face-Windows/blob/master/Data/detection1.jpg?raw=true'
+            };
 
             client.imageInsights({
                 parameters,
@@ -23,6 +25,7 @@ describe('Bing Image Search v7', () => {
             })
             .then((response) => {
                 should(response).not.be.undefined();
+                should(response).have.properties(['imageInsightsToken', 'bestRepresentativeQuery', 'imageCaption'])
                 done();
             }).catch((err) => {
                 done(new Error("Error making request:" + err));
