@@ -69,8 +69,8 @@ If you want to see more examples of use you can see within the `test` folder.
     - [x] Text analytics
     - [x] Web language model
     - [x] Translator Text
+    - [x] Linguistic Analysis
     - [ ] LUIS
-    - [ ] Linguistic Analysis
 - Search
     - [x] Bing Autosuggest
     - [x] Bing Image Search
