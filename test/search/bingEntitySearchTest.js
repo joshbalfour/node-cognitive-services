@@ -2,7 +2,7 @@ const cognitive = require('../../src/index.js');
 const config = require('../config.js');
 const should = require('should');
 
-describe.only('Bing entity search', () => {
+describe('Bing entity search', () => {
 
     const client = new cognitive.bingEntitySearch({
         apiKey: config.bingEntitySearch.apiKey,
