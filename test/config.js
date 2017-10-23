@@ -81,5 +81,9 @@ module.exports = {
     bingEntitySearch: {
         endpoint: "api.cognitive.microsoft.com",
         apiKey: "insert-key-here"
-    }
+    },
+    contentModerator: {
+        endpoint: "westus.api.cognitive.microsoft.com",
+        apiKey: "insert-key-here"
+    },
 }
