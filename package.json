@@ -1,6 +1,6 @@
 {
   "name": "cognitive-services",
-  "version": "0.3.4",
+  "version": "0.4.0",
   "description": "Microsoft Cognitive Services SDK for Node.js",
   "main": "dist/index.js",
   "scripts": {
@@ -20,7 +20,11 @@
     "Vision",
     "Language",
     "Javascript",
-    "Node.js"
+    "Node.js",
+    "Knowledge",
+    "Text",
+    "Moderator",
+    "Search"
   ],
   "repository": "https://github.com/joshbalfour/node-cognitive-services",
   "dependencies": {
