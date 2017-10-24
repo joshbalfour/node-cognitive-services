@@ -89,7 +89,7 @@ If you want to see more examples of use you can see within the `test` folder.
     - [x] Emotion
     - [x] Face
     - [x] Video
-    - [ ] Content moderator
+    - [x] Content moderator
     - [ ] Custom vision service
     - [ ] Video indexer
 
