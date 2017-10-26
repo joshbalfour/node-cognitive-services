@@ -1,5 +1,8 @@
 {
   "node": true,
   "esnext": true,
-  "asi": true
+  "asi": true,
+  "unused": true,
+  "-W032": false,
+  "-W043": false
 }

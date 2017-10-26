@@ -34,8 +34,6 @@ function verifyParameters(expected = [], actual = {}) {
 			.filter(param => param.required)
 			.filter(param => !actual[param.name]);
 
-		const invalidValues = [];
-
 		// validate that the parameters have valid values
 		for (let paramName in actual) {
 			var values;
