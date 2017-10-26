@@ -65,18 +65,18 @@ If you want to see more examples of use you can see within the `test` folder.
     - [ ] Knowledge exploration
     - [ ] Custom decision service
 - Language
-    - [x] Bing spell check
+    - [x] Bing spell check (v5 and v7)
     - [x] Text analytics
     - [x] Web language model
     - [x] Translator Text
     - [x] Linguistic Analysis
     - [ ] LUIS
 - Search
-    - [x] Bing Autosuggest
-    - [x] Bing Image Search
-    - [x] Bing News Search
-    - [x] Bing Video Search
-    - [x] Bing Web Search
+    - [x] Bing Autosuggest (v5 and v7)
+    - [x] Bing Image Search (v5 and v7)
+    - [x] Bing News Search (v5 and v7)
+    - [x] Bing Video Search (v5 and v7)
+    - [x] Bing Web Search (v5 and v7)
     - [x] Bing Entity Search
     - [ ] Bing Custom Search
 - Speech
