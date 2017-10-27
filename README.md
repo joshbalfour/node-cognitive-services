@@ -80,7 +80,8 @@ If you want to see more examples of use you can see within the `test` folder.
     - [x] Bing Entity Search
     - [ ] Bing Custom Search
 - Speech
-    - [x] Speaker recognition
+    - [x] Speaker identification
+    - [x] Speaker verification
     - [x] Bing Speech
     - [ ] Translator
     - [ ] Custom speech service
