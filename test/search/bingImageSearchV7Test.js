@@ -56,7 +56,7 @@ describe('Bing Image Search v7', () => {
         })
     })
 
-    describe.skip('trending images', () => {
+    describe('trending images', () => {
         it('should get response', (done) => {
             const headers = {};
             const parameters = {

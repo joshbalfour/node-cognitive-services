@@ -54,7 +54,7 @@ describe('Bing news search v7', () => {
         })
     })
 
-    describe.skip('Trending news', () => {
+    describe('Trending news', () => {
         it('should return response', (done) => {
             const parameters = {
                 "count": "10",

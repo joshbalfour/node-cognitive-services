@@ -46,7 +46,7 @@ describe('Bing Image Search', () => {
             });
         })
 
-        it.skip('should get trending images', (done) => {
+        it('should get trending images', (done) => {
             client.trending()
             .then((response) => {
                 should(response).not.be.undefined();
