@@ -94,14 +94,11 @@ PRs are welcome! If you want to contribute, follow these steps:
     - [x] Computer vision
     - [x] Emotion
     - [x] Face
-    - [x] Video
     - [x] Content moderator
     - [ ] Custom vision service
     - [ ] Video indexer
-
 
 ## Legal
 
 Microsoft, Microsoft Cognitive Services, and Windows are either registered trademarks or trademarks of Microsoft Corporation in the United States and/or other countries.
 This project was done without the knowledge or endorsement of Microsoft®.
-	

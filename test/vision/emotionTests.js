@@ -33,40 +33,6 @@ describe('Emotion', () => {
         })
     })
 
-    describe('Recognize emotion in video (POST and GET)', () => {
-        it('should accept application/octet-stream', (done) => {
-            const body = fs.readFileSync('test/assets/video_girl_laughing.mp4');
-
-            var parameters = {
-                'outputStyle': 'aggregate'
-            };
-
-            client.emotionRecognitionInVideo({
-                parameters,
-                body
-            }).then((operationId) => {
-                should(operationId).not.be.undefined();
-                should(operationId).be.String();
-
-                parameters = {
-                    'oid': operationId
-                };
-
-                return client.getRecognitionInVideoOperationResult({
-                    parameters
-                });
-            })
-            .then((response) => {
-                should(response).not.be.undefined();
-                should(response).have.properties(['status']);
-                done();
-            })
-            .catch((err) => {
-                done(new Error("Error making request:" + err));
-            });
-        });
-    })
-
     describe('Recognize emotion with face rectangles (POST)', () => {
         it('should return response', (done) => {
             const parameters = {

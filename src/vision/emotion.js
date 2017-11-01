@@ -58,46 +58,6 @@ class emotion extends commonService {
     };
 
     /**
-     * Returns aggregate emotions for the faces in a video.
-    - The supported input video formats include MP4, MOV, and WMV. Video file size should be no larger than 100MB. 
-    - The detectable face size range is 24x24 to 2048x2048 pixels. The faces out of this range will not be detected. 
-    - For each video, the maximum number of faces returned is 64. 
-    - Some faces may not be detected due to technical challenges; e.g. very large face angles (head-pose), and large occlusion. Frontal and near-frontal faces have the best results. 
-    - Output files are deleted after 24 hours. 
-
-    @returns {Promise.<string>}  ID of operation
-     */
-    emotionRecognitionInVideo({ parameters, body }) {
-
-        const operation = {
-            "path": "emotion/v1.0/recognizeinvideo",
-            "method": "POST",
-            "operationId": "56f8d40e1984551ec0a0984e",
-            "parameters": [{
-                "name": "outputStyle",
-                "description": "Defaults to “aggregate” style, but a user can specify “perFrame” style.",
-                "value": "aggregate",
-                "options": [
-                    "aggregate",
-                    "perFrame"
-                ],
-                "required": false,
-                "type": "queryStringParam",
-                "typeName": "string"
-            }]
-        };
-
-        return this.makeRequest({
-            operation: operation,
-            parameters: parameters,
-            body: body
-        }).then(operationIdUrl => {
-            return this.getOperationIdFromUrl(operationIdUrl);
-        })
-
-    };
-
-    /**
      * Recognizes the emotions expressed by one or more people in an image, as well as returns a bounding box for the face. The emotions detected are happiness, sadness, surprise, anger, fear, contempt, and disgust or neutral. 
     - The supported input image formats includes JPEG, PNG, GIF(the first frame), BMP. Image file size should be no larger than 4MB. 
     - If a user has already called the Face API, they can submit the face rectangles as an optional input. Otherwise, Emotion API will first compute the rectangles. 
