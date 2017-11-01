@@ -22,7 +22,7 @@ describe('Bing web search', () => {
                 headers
             }).then((response) => {
                 should(response).not.be.undefined();
-                should(response).have.properties('_type', 'facts', 'images', 'rankingResponse', 'relatedSearches', 'videos', 'webPages')
+                should(response).have.properties('_type', 'images', 'rankingResponse', 'relatedSearches', 'videos', 'webPages')
                 done();
             }).catch((err) => {
                 done(new Error("Error making request:" + err));
