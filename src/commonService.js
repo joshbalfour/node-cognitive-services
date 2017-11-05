@@ -1,5 +1,6 @@
 const { verifyBody, verifyEndpoint, verifyHeaders, verifyParameters } = require('./helpers');
 const request = require('request-promise');
+const fs = require('fs');
 
 class commonService {
     constructor({ apiKey, endpoint }) {
@@ -186,8 +187,14 @@ class commonService {
                     qs: parameters,
                     json: true // GET: Automatically parses the JSON string in the response, POST: Automatically stringifies the body to JSON
                 };
+
+                if (contentTypeHeader == 'multipart/form-data' && parameters.path && parameters.path !== null) {
+                    options.formData = {
+                        file: fs.createReadStream(parameters.path)
+                    }
+                }
     
-                if (body != null) {
+                else if (body != null) {
                     options.body = body;
                     if (contentTypeHeader && contentTypeHeader.indexOf('json') == -1) {
                         options.json = false; // do not stringify the request body to JSON

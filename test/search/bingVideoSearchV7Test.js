@@ -23,7 +23,7 @@ describe('Bing video search v7', () => {
                 headers
             }).then((response) => {
                 should(response).not.be.undefined();
-                should(response).have.properties(['_type', 'instrumentation', 'nextOffset', 'pivotSuggestions', 'queryExpansions', 'readLink', 'relatedSearches', 'totalEstimatedMatches', 'value', 'webSearchUrl', 'webSearchUrlPingSuffix']);
+                should(response).have.properties(['_type', 'instrumentation', 'nextOffset', 'pivotSuggestions', 'queryExpansions', 'readLink', 'relatedSearches', 'totalEstimatedMatches', 'value', 'webSearchUrl']);
                 done();
             }).catch((err) => {
                 done(new Error("Error making request:" + err));

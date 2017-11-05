@@ -86,4 +86,7 @@ module.exports = {
         endpoint: "westus.api.cognitive.microsoft.com",
         apiKey: "insert-key-here"
     },
+    videoIndexer: {
+        apiKey: 'insert-key-here'
+    }
 }

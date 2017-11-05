@@ -10,7 +10,7 @@ describe('Recommendations', () => {
         endpoint: config.recommendations.endpoint
     });
 
-    var modelId;
+    var modelId = null;
     var usageFileId;
 
     before(done => {
@@ -37,6 +37,10 @@ describe('Recommendations', () => {
     })
 
     after(done => {
+        if (modelId === null) {
+            done();
+            return;
+        }
         console.log('Deleting model...')
         const parameters = {
             modelId: modelId

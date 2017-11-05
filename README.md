@@ -60,6 +60,8 @@ PRs are welcome! If you want to contribute, follow these steps:
 1. Update the file `tests/config.js` with your own API keys.
 1. Run `gulp test`.
 
+> NOTE: if you want to run the tests in just one class, change `describe` to `describe.only` and run `gulp test`.
+
 ## Supported APIs
 
 - Knowledge
@@ -95,8 +97,8 @@ PRs are welcome! If you want to contribute, follow these steps:
     - [x] Emotion
     - [x] Face
     - [x] Content moderator
+    - [x] Video indexer
     - [ ] Custom vision service
-    - [ ] Video indexer
 
 ## Legal
 

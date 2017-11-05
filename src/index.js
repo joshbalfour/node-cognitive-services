@@ -26,5 +26,6 @@ module.exports = {
     bingSpeech: require('./speech/bingSpeech'),
     linguisticAnalysis: require('./language/linguisticAnalysis'),
     bingEntitySearch: require('./search/bingEntitySearch'),
-    contentModerator: require('./vision/contentModerator')
+    contentModerator: require('./vision/contentModerator'),
+    videoIndexer: require('./vision/videoIndexer')
 };
