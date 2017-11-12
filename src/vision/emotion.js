@@ -102,49 +102,6 @@ class emotion extends commonService {
 
     };
 
-    /**
-     * Get operation result. If succeeded, this interface returns a JSON that includes time stamps and operation status/result. Below is an example: 
-
-    Example JSON:
-
-    {
-    "status": "Running",
-    "createdDateTime": "2015-09-30T01:28:23.4493273Z",
-    "lastActionDateTime": "2015-09-30T01:32:23.0895791Z",
-    }
-
-    Possible values of "status" field are:
-    - Not Started - video content is received/uploaded but the process has not started.
-    - Uploading - the video content is being uploaded by the URL client side provides.
-    - Running - the process is running.
-    - Failed - the process is failed. Detailed information will be provided in "message" field.
-    - Succeeded - the process succeeded. In this case, depending on specific operation client side created, the result can be retrieved in following two ways:
-    
-    The result (as a JSON in string) is available in processingResult field.
-    @returns {Promise.<object>}
-     */
-    getRecognitionInVideoOperationResult({ parameters }) {
-        const operation = {
-            "path": "emotion/v1.0/operations/{oid}",
-            "method": "GET",
-            "operationId": "56f8d4471984551ec0a0984f",
-            "parameters": [{
-                "name": "oid",
-                "description": "",
-                "value": null,
-                "required": true,
-                "type": "routeParam",
-                "typeName": "string"
-            }]
-        };
-
-        return this.makeRequest({
-            operation: operation,
-            parameters: parameters
-        })
-
-    };
-
 }
 
 module.exports = emotion;
