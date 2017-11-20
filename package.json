@@ -7,6 +7,7 @@
     "prepublish": "babel src --out-dir dist --quiet",
     "test": "gulp test"
   },
+  "types": "./src/index.d.ts",
   "author": "Josh Balfour <josh@joshbalfour.co.uk>",
   "license": "ISC",
   "keywords": [
