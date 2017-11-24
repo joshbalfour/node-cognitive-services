@@ -27,7 +27,7 @@ describe('Language understanding', () => {
                 should(response).have.properties(['query','topScoringIntent','entities']);
                 done();
             }).catch((err) => {
-                done(new Error("Error making request:" + err));
+                done(err);
             });
         })
     })

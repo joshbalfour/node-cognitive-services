@@ -40,10 +40,6 @@ class languageUnderstanding extends commonService {
             "method": "POST"
         };
 
-        console.log(operation);
-        console.log(headers);
-        console.log(body);
-
         return this.makeRequest({
             operation: operation,
             headers: headers,
