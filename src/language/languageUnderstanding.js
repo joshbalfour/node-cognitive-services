@@ -33,11 +33,51 @@ class languageUnderstanding extends commonService {
      * Irrespective of the value, the intent with the highest score is returned.
      * @returns {Promise.<object>}
      */
-    detectIntent({ headers, body }) {
+    detectIntent({parameters, headers, body }) {
 
         const operation = {
             "path": "luis/v2.0/apps/" + this.appID,
-            "method": "POST"
+            "method": "POST",
+            "headers": [{
+                "name": "Content-Type",
+                "description": "Media type of the body sent to the API.",
+                "options": [
+                    "application/json"
+                ],
+                "required": false,
+                "typeName":"string"
+            }],
+            "parameters": [{
+                "name": "timezoneOffset",
+                "description": "The timezone offset for the location of the request",
+                "value": null,
+                "required": false,
+                "typeName": "number"
+            },{
+                "name": "verbose",
+                "description": "If true will return all intents instead of just the topscoring intent",
+                "value": false,
+                "required": false,
+                "typeName": "boolean"
+            },{
+                "name": "spellCheck",
+                "description": "enable Bing Spell checking. You must have an Azure Bing spell checker subscription.",
+                "value": false,
+                "required": false,
+                "typeName": "boolean"
+            },{
+                "name": "staging",
+                "description": "Use staging endpoint.",
+                "value": false,
+                "required": false,
+                "typeName": "boolean"
+            },{
+                "name": "log",
+                "description": "Log query. Required for suggested review utterances.",
+                "value": false,
+                "required": false,
+                "typeName": "boolean"
+            }]
         };
 
         return this.makeRequest({
@@ -47,6 +87,7 @@ class languageUnderstanding extends commonService {
         })
 
     };
+
 };
 
 module.exports = languageUnderstanding;

@@ -12,14 +12,21 @@ describe('Language understanding', () => {
 
     describe('Detect Intent (POST)', () => {
         it('should return response', (done) => {
-            const headers = {
-                'Content-type': 'application/json'
+
+            // optional but recommended
+            var parameters = {
+                "log": true, // required to review suggested utterances
+                "verbose":true // required to see all intents and scores
             };
 
-            // change this query to be relevant to your LUIS model
-            const body = "forward to frank 30 dollars through HSBC"
+            // optional
+            var headers = {};
+
+            // query/utterance
+            var body = "forward to frank 30 dollars through HSBC";
 
             client.detectIntent({
+                parameters,
                 headers,
                 body
             }).then((response) => {
