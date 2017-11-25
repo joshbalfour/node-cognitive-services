@@ -1,0 +1,93 @@
+const commonService = require('../commonService');
+
+/**
+ * Language Understanding API is a cloud-based service that provides advanced natural language processing over raw text, and intent and entity detection.
+ * Your LUIS domain-specific model must be in built, trained, and published before using this endpoint.
+ * @augments commonService
+ * {@link https://docs.microsoft.com/en-us/azure/cognitive-services/luis/home}
+ */
+class languageUnderstanding extends commonService {
+    /**
+     * Constructor.
+     * 
+     * @param {Object} obj
+     * @param {string} obj.apiKey
+     * @param {string} obj.endpoint
+     */
+    constructor({ apiKey, appID, endpoint }) {
+        super({ apiKey, endpoint });
+        this.appID = appID;
+        this.serviceId = "LUIS.v2.0"
+        this.endpoints = [
+            "westus.api.cognitive.microsoft.com",
+            "eastus2.api.cognitive.microsoft.com",
+            "westcentralus.api.cognitive.microsoft.com",
+            "westeurope.api.cognitive.microsoft.com",
+            "southeastasia.api.cognitive.microsoft.com"
+        ];
+    }
+
+    /**
+     * Returns the detected intent, entities and entity values with a score for each intent. 
+     * Scores close to 1 indicate 100% certainty that the identified intent is correct. 
+     * Irrespective of the value, the intent with the highest score is returned.
+     * @returns {Promise.<object>}
+     */
+    detectIntent({parameters, headers, body }) {
+
+        const operation = {
+            "path": "luis/v2.0/apps/" + this.appID,
+            "method": "POST",
+            "headers": [{
+                "name": "Content-Type",
+                "description": "Media type of the body sent to the API.",
+                "options": [
+                    "application/json"
+                ],
+                "required": false,
+                "typeName":"string"
+            }],
+            "parameters": [{
+                "name": "timezoneOffset",
+                "description": "The timezone offset for the location of the request",
+                "value": null,
+                "required": false,
+                "typeName": "number"
+            },{
+                "name": "verbose",
+                "description": "If true will return all intents instead of just the topscoring intent",
+                "value": false,
+                "required": false,
+                "typeName": "boolean"
+            },{
+                "name": "spellCheck",
+                "description": "enable Bing Spell checking. You must have an Azure Bing spell checker subscription.",
+                "value": false,
+                "required": false,
+                "typeName": "boolean"
+            },{
+                "name": "staging",
+                "description": "Use staging endpoint.",
+                "value": false,
+                "required": false,
+                "typeName": "boolean"
+            },{
+                "name": "log",
+                "description": "Log query. Required for suggested review utterances.",
+                "value": false,
+                "required": false,
+                "typeName": "boolean"
+            }]
+        };
+
+        return this.makeRequest({
+            operation: operation,
+            headers: headers,
+            body: body
+        })
+
+    };
+
+};
+
+module.exports = languageUnderstanding;

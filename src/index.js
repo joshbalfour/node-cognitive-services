@@ -21,6 +21,7 @@ module.exports = {
     speakerIdentification: require('./speech/speakerIdentification'),
     speakerVerification: require('./speech/speakerVerification'),
     textAnalytics: require('./language/textAnalytics'),
+    languageUnderstanding: require('./language/languageUnderstanding'),
     webLanguageModel: require('./language/webLanguageModel'),
     textTranslator: require('./language/textTranslator'),
     bingSpeech: require('./speech/bingSpeech'),
