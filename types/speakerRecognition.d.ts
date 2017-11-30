@@ -7,8 +7,13 @@ export class speakerRecognition {
 	 */
 	identificationProfileCreateEnrollment(options: identificationProfileCreateEnrollmentOptions): Promise<identificationProfileCreateEnrollmentReturnValue>;
 
-
-	identificationProfileCreateProfile(_ref3: any): any;
+	/**
+	 * 
+	 * @param _ref3 
+	 */
+	identificationProfileCreateProfile(options: identificationProfileCreateProfileOptions): Promise<identificationProfileCreateProfileReturnValue>;
+	
+	
 	identificationProfileDeleteProfile(_ref4: any): any;
 	identificationProfileGet(_ref5: any): any;
 	identificationProfileGetAll(): any;
@@ -71,3 +76,30 @@ export interface identificationProfileCreateEnrollmentReturnValue {
 	error?: [{ code : number, message : string }]
 	 
 }
+
+export interface identificationProfileCreateProfileOptions {
+	headers?: identificationProfileCreateProfileHeaders
+    body?: identificationProfileCreateProfileBody
+}
+
+export interface identificationProfileCreateProfileHeaders {
+	/**
+	 * Media type of the body sent to the API.
+	 */
+	"Content-Type"?: string,
+	
+	/**
+	 * Subscription key which provides access to this API.
+	 */
+	"Ocp-Apim-Subscription-Key": string
+}
+
+export interface identificationProfileCreateProfileBody {
+	locale: string
+}
+
+export interface identificationProfileCreateProfileReturnValue {
+	error?: [{ code : number, message : string }],
+	identificationProfileId?: string
+}
+
