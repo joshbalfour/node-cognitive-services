@@ -29,7 +29,7 @@ describe('Content moderator', () => {
                 should(response).eql("eng")
                 done();
             }).catch((err) => {
-                done(new Error("Error making request:" + err));
+                done(err);
             });
         })
     })
@@ -57,7 +57,7 @@ describe('Content moderator', () => {
                 should(response).have.properties(['OriginalText', 'NormalizedText', 'AutoCorrectedText', 'PII', 'Terms'])
                 done();
             }).catch((err) => {
-                done(new Error("Error making request:" + err));
+                done(err);
             });
         })
     })
@@ -83,7 +83,7 @@ describe('Content moderator', () => {
                 should(response).have.properties(['AdultClassificationScore', 'IsImageAdultClassified', 'RacyClassificationScore', 'IsImageRacyClassified'])
                 done();
             }).catch((err) => {
-                done(new Error("Error making request:" + err));
+                done(err);
             });
         })
 
@@ -110,7 +110,7 @@ describe('Content moderator', () => {
                 should(response).have.properties(['AdultClassificationScore', 'IsImageAdultClassified', 'RacyClassificationScore', 'IsImageRacyClassified'])
                 done();
             }).catch((err) => {
-                done(new Error("Error making request:" + err));
+                done(err);
             });
         })
     })
@@ -137,7 +137,7 @@ describe('Content moderator', () => {
                 should(response.Count).eql(1);
                 done();
             }).catch((err) => {
-                done(new Error("Error making request:" + err));
+                done(err);
             });
         })
 
@@ -165,7 +165,7 @@ describe('Content moderator', () => {
                 should(response.Count).eql(1);
                 done();
             }).catch((err) => {
-                done(new Error("Error making request:" + err));
+                done(err);
             });
         })
     })
@@ -196,7 +196,7 @@ describe('Content moderator', () => {
                 should(response).have.properties(['Language', 'Text', 'Candidates']);
                 done();
             }).catch((err) => {
-                done(new Error("Error making request:" + err));
+                done(err);
             });
         })
     })
@@ -638,7 +638,7 @@ describe('Content moderator', () => {
                 should(response).have.properties(['OriginalText', 'NormalizedText', 'PII', 'Terms'])
                 done();
             }).catch((err) => {
-                done(new Error("Error making request:" + err));
+                done(err);
             });
         })
     })

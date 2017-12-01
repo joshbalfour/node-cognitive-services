@@ -25,7 +25,7 @@ describe('Bing Image Search', () => {
                 should(response).not.be.undefined();
                 done();
             }).catch((err) => {
-                done(new Error("Error making request:" + err));
+                done(err);
             });
         })
 
@@ -42,7 +42,7 @@ describe('Bing Image Search', () => {
                 should(response).have.property("totalEstimatedMatches");
                 done();
             }).catch((err) => {
-                done(new Error("Error making request:" + err));
+                done(err);
             });
         })
 
@@ -53,7 +53,7 @@ describe('Bing Image Search', () => {
                 should(response).have.property('categories');
                 done();
             }).catch((err) => {
-                done(new Error("Error making request:" + err));
+                done(err);
             });
         })
     })

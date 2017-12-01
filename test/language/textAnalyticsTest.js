@@ -37,7 +37,7 @@ describe('Text analytics', () => {
                 should(response.documents).be.Array().and.have.length(body.documents.length);
                 done();
             }).catch((err) => {
-                done(new Error("Error making request:" + err));
+                done(err);
             });
         })
     })
@@ -70,7 +70,7 @@ describe('Text analytics', () => {
                 should(response).have.property('documents').and.be.Array().and.have.length(body.documents.length);
                 done();
             }).catch((err) => {
-                done(new Error("Error making request:" + err));
+                done(err);
             });
         })
     })
@@ -103,7 +103,7 @@ describe('Text analytics', () => {
                 should(response).have.property('documents').and.be.Array().and.have.length(body.documents.length);
                 done();
             }).catch((err) => {
-                done(new Error("Error making request:" + err));
+                done(err);
             });
         })
     })

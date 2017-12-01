@@ -25,7 +25,7 @@ describe('Bing news search v7', () => {
                 should(response).have.properties(['_type', 'value'])
                 done();
             }).catch((err) => {
-                done(new Error("Error making request:" + err));
+                done(err);
             });
         })
     })
@@ -49,7 +49,7 @@ describe('Bing news search v7', () => {
                 should(response).have.properties(['_type', 'readLink', 'sort', 'totalEstimatedMatches', 'value'])
                 done();
             }).catch((err) => {
-                done(new Error("Error making request:" + err));
+                done(err);
             });
         })
     })
@@ -70,7 +70,7 @@ describe('Bing news search v7', () => {
                 should(response).have.properties(['_type', 'value'])
                 done();
             }).catch((err) => {
-                done(new Error("Error making request:" + err));
+                done(err);
             });
         })
     })

@@ -25,7 +25,7 @@ describe('Web language model', () => {
                 should(response).have.properties(['candidates'])
                 done();
             }).catch((err) => {
-                done(new Error("Error making request:" + err));
+                done(err);
             });
         })
     })
@@ -66,7 +66,7 @@ describe('Web language model', () => {
                 should(response).have.properties(['results'])
                 done();
             }).catch((err) => {
-                done(new Error("Error making request:" + err));
+                done(err);
             });
         })
     })
@@ -99,7 +99,7 @@ describe('Web language model', () => {
                 should(response).have.properties(['results'])
                 done();
             }).catch((err) => {
-                done(new Error("Error making request:" + err));
+                done(err);
             });
         })
     })
@@ -118,7 +118,7 @@ describe('Web language model', () => {
                 should(response).have.properties(['candidates'])
                 done();
             }).catch((err) => {
-                done(new Error("Error making request:" + err));
+                done(err);
             });
         })
     })
@@ -132,7 +132,7 @@ describe('Web language model', () => {
                 should(response).have.properties(['models'])
                 done();
             }).catch((err) => {
-                done(new Error("Error making request:" + err));
+                done(err);
             });
         })
     })

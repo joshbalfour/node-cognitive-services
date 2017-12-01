@@ -30,7 +30,7 @@ describe('Text translator', () => {
                 should(response[0]).have.properties(["From", "OriginalTextSentenceLengths", "TranslatedText", "TranslatedTextSentenceLengths"]);
                 done();
             }).catch(err => {
-                done(new Error("Error making request:" + err));
+                done(err);
             });
         })
 
@@ -52,7 +52,7 @@ describe('Text translator', () => {
                 should(response[0]).have.properties(["From", "OriginalTextSentenceLengths", "TranslatedText", "TranslatedTextSentenceLengths"]);
                 done();
             }).catch(err => {
-                done(new Error("Error making request:" + err));
+                done(err);
             });
         })
     })
@@ -73,7 +73,7 @@ describe('Text translator', () => {
                 should(response).be.String();
                 done();
             }).catch(err => {
-                done(new Error("Error making request:" + err));
+                done(err);
             });
         })
     })
@@ -97,7 +97,7 @@ describe('Text translator', () => {
                 should(response).be.Array().and.have.length(2);
                 done();
             }).catch(err => {
-                done(new Error("Error making request:" + err));
+                done(err);
             });
         })
     })
@@ -110,7 +110,7 @@ describe('Text translator', () => {
                 should(response).be.Array();
                 done();
             }).catch(err => {
-                done(new Error("Error making request:" + err));
+                done(err);
             });
         })
     })
@@ -123,7 +123,7 @@ describe('Text translator', () => {
                 should(response).be.Array();
                 done();
             }).catch(err => {
-                done(new Error("Error making request:" + err));
+                done(err);
             });
         })
     })
@@ -143,7 +143,7 @@ describe('Text translator', () => {
                 should(response).not.be.undefined(); //raw mp3!
                 done();
             }).catch(err => {
-                done(new Error("Error making request:" + err));
+                done(err);
             });
         })
     })
@@ -161,7 +161,7 @@ describe('Text translator', () => {
                 should(response).equal('en');
                 done();
             }).catch(err => {
-                done(new Error("Error making request:" + err));
+                done(err);
             });
         })
     })
@@ -182,7 +182,7 @@ describe('Text translator', () => {
                 should(response).be.Array().and.have.length(2);
                 done();
             }).catch(err => {
-                done(new Error("Error making request:" + err));
+                done(err);
             });
         })
     })
@@ -204,7 +204,7 @@ describe('Text translator', () => {
                 should(response).be.undefined();
                 done();
             }).catch(err => {
-                done(new Error("Error making request:" + err));
+                done(err);
             });
         })
     })
@@ -234,7 +234,7 @@ describe('Text translator', () => {
                 should(response).eql("");
                 done();
             }).catch(err => {
-                done(new Error("Error making request:" + err));
+                done(err);
             });
         })
     })
@@ -252,7 +252,7 @@ describe('Text translator', () => {
                 should(response).be.Array();
                 done();
             }).catch(err => {
-                done(new Error("Error making request:" + err));
+                done(err);
             });
         })
     })
@@ -275,7 +275,7 @@ describe('Text translator', () => {
                 should(response.Translations[0]).have.properties(['TranslationMatch']);
                 done();
             }).catch(err => {
-                done(new Error("Error making request:" + err));
+                done(err);
             });
         })
     })
@@ -301,7 +301,7 @@ describe('Text translator', () => {
                 should(response[0]).have.properties(['From', 'Translations']);
                 done();
             }).catch(err => {
-                done(new Error("Error making request:" + err));
+                done(err);
             });
         })
     })

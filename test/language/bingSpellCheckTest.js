@@ -26,7 +26,7 @@ describe('Bing spell check', () => {
                 should(response).have.properties(['_type', 'flaggedTokens'])
                 done();
             }).catch((err) => {
-                done(new Error("Error making request:" + err));
+                done(err);
             });
         })
     })

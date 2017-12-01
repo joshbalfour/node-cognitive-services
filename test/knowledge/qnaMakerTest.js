@@ -40,7 +40,7 @@ describe('QnA maker', () => {
             knowledgeBaseId = response.kbId;
             done();
         }).catch(err => {
-            done(new Error("Error making request:" + err));
+            done(err);
         });
     })
 
@@ -56,7 +56,7 @@ describe('QnA maker', () => {
             should(response).be.undefined();
             done();
         }).catch(err => {
-            done(new Error("Error making request:" + err));
+            done(err);
         });
     })
 
@@ -72,7 +72,7 @@ describe('QnA maker', () => {
                 should(response).not.be.undefined();
                 done();
             }).catch(err => {
-                done(new Error("Error making request:" + err));
+                done(err);
             });
         })
     })
@@ -96,7 +96,7 @@ describe('QnA maker', () => {
                 should(response).have.property('answers');
                 done();
             }).catch(err => {
-                done(new Error("Error making request:" + err));
+                done(err);
             });
         })
     })
@@ -115,7 +115,7 @@ describe('QnA maker', () => {
                 should(response.wordAlterations).be.Array();
                 done();
             }).catch(err => {
-                done(new Error("Error making request:" + err));
+                done(err);
             });
         })
     })
@@ -132,7 +132,7 @@ describe('QnA maker', () => {
                 should(response).be.undefined();
                 done();
             }).catch(err => {
-                done(new Error("Error making request:" + err));
+                done(err);
             });
         })
     })
@@ -161,7 +161,7 @@ describe('QnA maker', () => {
                 should(response).be.undefined();
                 done();
             }).catch(err => {
-                done(new Error("Error making request:" + err));
+                done(err);
             });
         })
     })
@@ -190,7 +190,7 @@ describe('QnA maker', () => {
                 should(response).be.undefined();
                 done();
             }).catch(err => {
-                done(new Error("Error making request:" + err));
+                done(err);
             });
         })
     })
@@ -230,7 +230,7 @@ describe('QnA maker', () => {
                 should(response).be.undefined();
                 done();
             }).catch(err => {
-                done(new Error("Error making request:" + err));
+                done(err);
             });
         })
     })

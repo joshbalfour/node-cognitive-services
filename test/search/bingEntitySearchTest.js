@@ -26,7 +26,7 @@ describe('Bing entity search', () => {
                 should(response.entities.value[0]).have.properties(['bingId', 'contractualRules', 'description', 'image', 'name', 'url', 'webSearchUrl']);
                 done();
             }).catch((err) => {
-                done(new Error("Error making request:" + err));
+                done(err);
             });
         })
     })

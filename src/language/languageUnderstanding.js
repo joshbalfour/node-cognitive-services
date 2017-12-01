@@ -33,7 +33,7 @@ class languageUnderstanding extends commonService {
      * Irrespective of the value, the intent with the highest score is returned.
      * @returns {Promise.<object>}
      */
-    detectIntent({parameters, headers, body }) {
+    detectIntent({parameters, headers, body}) {
 
         const operation = {
             "path": "luis/v2.0/apps/" + this.appID,

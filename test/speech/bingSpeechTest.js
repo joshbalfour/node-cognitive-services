@@ -31,7 +31,7 @@ describe('Bing speech', () => {
                 should(response).not.be.undefined();
                 done();
             }).catch(err => {
-                done(new Error("Error making request:" + err));
+                done(err);
             });
         })
     })
@@ -57,7 +57,7 @@ describe('Bing speech', () => {
                 //fs.writeFileSync("./test/output.mp3", response, "binary");
                 done();
             }).catch(err => {
-                done(new Error("Error making request:" + err));
+                done(err);
             });
         })
     })

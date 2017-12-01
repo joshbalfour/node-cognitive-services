@@ -25,7 +25,7 @@ describe('Bing web search', () => {
                 should(response).have.properties('_type', 'images', 'rankingResponse', 'relatedSearches', 'videos', 'webPages')
                 done();
             }).catch((err) => {
-                done(new Error("Error making request:" + err));
+                done(err);
             });
         })
     })

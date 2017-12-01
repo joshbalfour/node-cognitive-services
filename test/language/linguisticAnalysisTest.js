@@ -24,7 +24,7 @@ describe('Linguistic analysis', () => {
             })
             done();
         }).catch((err) => {
-            done(new Error("Error making request:" + err));
+            done(err);
         });
     })
 
@@ -43,7 +43,7 @@ describe('Linguistic analysis', () => {
                 should(response[0]).have.properties(['analyzerId', 'result']);
                 done();
             }).catch(err => {
-                done(new Error("Error making request:" + err));
+                done(err);
             });
         })
     })

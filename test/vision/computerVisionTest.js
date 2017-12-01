@@ -34,7 +34,7 @@ describe('Computer vision', () => {
                 should(response).have.properties(["categories", "metadata", "requestId"]);
                 done();
             }).catch((err) => {
-                done(new Error("Error making request:" + err));
+                done(err);
             });
         });
     });
@@ -61,7 +61,7 @@ describe('Computer vision', () => {
                 should(response.description).have.properties(['captions', 'tags']);
                 done();
             }).catch((err) => {
-                done(new Error("Error making request:" + err));
+                done(err);
             });
         });
     });
@@ -88,7 +88,7 @@ describe('Computer vision', () => {
                 should(response).not.be.undefined();
                 done();
             }).catch((err) => {
-                done(new Error("Error making request:" + err));
+                done(err);
             });
         });
     });
@@ -102,7 +102,7 @@ describe('Computer vision', () => {
                 should(response.models).be.Array();
                 done();
             }).catch((err) => {
-                done(new Error("Error making request:" + err));
+                done(err);
             });
         });
     });
@@ -129,7 +129,7 @@ describe('Computer vision', () => {
                 should(response.result).have.property('celebrities');
                 done();
             }).catch((err) => {
-                done(new Error("Error making request:" + err));
+                done(err);
             });
         });
     });
@@ -152,7 +152,7 @@ describe('Computer vision', () => {
                 should(response.tags).be.Array();
                 done();
             }).catch((err) => {
-                done(new Error("Error making request:" + err));
+                done(err);
             });
         });
     });
@@ -189,7 +189,7 @@ describe('Computer vision', () => {
                 done();
             })
             .catch((err) => {
-                done(new Error("Error making request:" + err));
+                done(err);
             });
         });
     });
@@ -216,7 +216,7 @@ describe('Computer vision', () => {
                 should(response).have.properties(["language", "orientation", "regions", "textAngle"]);
                 done();
             }).catch((err) => {
-                done(new Error("Error making request:" + err));
+                done(err);
             });
         });
     });

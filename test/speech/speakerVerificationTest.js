@@ -164,7 +164,7 @@ describe('Speaker verification', () => {
             should(response).matchEach((i) => should(i).have.property('phrase'));
             done();
         }).catch((err) => {
-            done(new Error("Error making request:" + err));
+            done(err);
         });
     })
 })

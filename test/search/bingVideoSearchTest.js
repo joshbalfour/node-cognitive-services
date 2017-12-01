@@ -22,7 +22,7 @@ describe('Bing video search', () => {
                 should(response).have.properties(['_type', 'instrumentation', 'nextOffsetAddCount', 'pivotSuggestions', 'queryExpansions', 'readLink', 'totalEstimatedMatches', 'value', 'webSearchUrl']);
                 done();
             }).catch((err) => {
-                done(new Error("Error making request:" + err));
+                done(err);
             });
         })
     })
@@ -38,7 +38,7 @@ describe('Bing video search', () => {
                 should(response).have.properties(['_type', 'instrumentation', 'bannerTiles', 'categories']);
                 done();
             }).catch((err) => {
-                done(new Error("Error making request:" + err));
+                done(err);
             });
         })
     })
@@ -57,7 +57,7 @@ describe('Bing video search', () => {
                 should(response).have.properties(['_type', 'instrumentation', 'relatedVideos', 'videoResult']);
                 done();
             }).catch((err) => {
-                done(new Error("Error making request:" + err));
+                done(err);
             });
         })
     })

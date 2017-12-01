@@ -23,10 +23,10 @@ describe('Bing web search v7', () => {
                 headers
             }).then((response) => {
                 should(response).not.be.undefined();
-                should(response).have.properties(['queryContext', 'webPages', 'rankingResponse', 'entities', 'images', 'videos', 'relatedSearches']);
+                should(response).have.properties(['queryContext', 'webPages', 'rankingResponse']);
                 done();
             }).catch((err) => {
-                done(new Error("Error making request:" + err));
+                done(err);
             });
         })
     })

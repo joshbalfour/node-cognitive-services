@@ -83,7 +83,7 @@ describe('Video indexer', () => {
             });
         })
 
-        it('should fail if format unsupported', () => {
+        it('should fail if format unsupported', done => {
             const parameters = {
                 name: 'A girl laughing',
                 privacy: 'Public',
@@ -301,7 +301,7 @@ describe('Video indexer', () => {
     })
 
     describe('Search', () => {
-        it('should search', () => {
+        it('should search', done => {
             const parameters = {
                 language: 'en-US',
                 externalId: externalVideoId
@@ -316,7 +316,7 @@ describe('Video indexer', () => {
                 if (response.results.length > 0) {
                     should(response.results).matchEach(breakdown => {
                         should(breakdown).have.properties(['accountId', 'id', 'partition', 'externalId', 'metadata', 
-                        'name', 'descrciption', 'organization', 'privacyMode', 'userName', 'isOwned', 'isBase', 
+                        'name', 'description', 'organization', 'privacyMode', 'userName', 'isOwned', 'isBase', 
                         'state', 'processingProgress', 'durationInSeconds', 'thumbnailUrl', 'social', 'searchMatches'])
                     });
                 }

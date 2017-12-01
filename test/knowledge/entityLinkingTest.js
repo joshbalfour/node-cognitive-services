@@ -31,7 +31,7 @@ describe('Entity linking', () => {
                 should(response).have.properties(['entities'])
                 done();
             }).catch((err) => {
-                done(new Error("Error making request:" + err));
+                done(err);
             });
         })
     })

@@ -96,7 +96,7 @@ describe('Face', () => {
                 should(response[0]).have.properties(['faceAttributes', 'faceId', 'faceLandmarks', 'faceRectangle']);
                 done();
             }).catch((err) => {
-                done(new Error("Error making request:" + err));
+                done(err);
             });
         })
 
@@ -121,7 +121,7 @@ describe('Face', () => {
                 should(response[0]).have.properties(['faceAttributes', 'faceId', 'faceLandmarks', 'faceRectangle']);
                 done();
             }).catch((err) => {
-                done(new Error("Error making request:" + err));
+                done(err);
             });
         })
     })
@@ -187,7 +187,7 @@ describe('Face', () => {
                 should(response).be.Array().and.have.length(1);
                 done();
             }).catch((err) => {
-                done(new Error("Error making request:" + err));
+                done(err);
             });
         })
 
@@ -222,7 +222,7 @@ describe('Face', () => {
                 should(response).be.undefined();
                 done();
             }).catch((err) => {
-                done(new Error("Error making request:" + err));
+                done(err);
             });
         })
 
@@ -274,7 +274,7 @@ describe('Face', () => {
                 should(response).have.property('persistedFaceId');
                 done();
             }).catch((err) => {
-                done(new Error("Error making request:" + err));
+                done(err);
             });
         })
 
@@ -298,7 +298,7 @@ describe('Face', () => {
                 should(response).have.property('persistedFaceId');
                 done();
             }).catch((err) => {
-                done(new Error("Error making request:" + err));
+                done(err);
             });
         })
     })
@@ -372,7 +372,7 @@ describe('Face', () => {
                 should(matches).be.Array().with.length(1);
                 done();
             }).catch((err) => {
-                done(new Error("Error making request:" + err));
+                done(err);
             });
         })
 

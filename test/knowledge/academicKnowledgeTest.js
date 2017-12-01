@@ -22,7 +22,7 @@ describe('Academic knowledge', () => {
                 should(response).have.properties(['expr', 'num_entities', 'histograms'])
                 done();
             }).catch((err) => {
-                done(new Error("Error making request:" + err));
+                done(err);
             });
         })
     })
@@ -42,7 +42,7 @@ describe('Academic knowledge', () => {
                 should(response).have.properties(['expr', 'num_entities', 'histograms'])
                 done();
             }).catch((err) => {
-                done(new Error("Error making request:" + err));
+                done(err);
             });
         })
     })
@@ -60,7 +60,7 @@ describe('Academic knowledge', () => {
                 should(response).have.properties(['expr', 'entities'])
                 done();
             }).catch((err) => {
-                done(new Error("Error making request:" + err));
+                done(err);
             });
         })
     })
@@ -80,7 +80,7 @@ describe('Academic knowledge', () => {
                 should(response).have.properties(['expr', 'entities'])
                 done();
             }).catch((err) => {
-                done(new Error("Error making request:" + err));
+                done(err);
             });
         })
     })
@@ -119,7 +119,7 @@ describe('Academic knowledge', () => {
                 should(response).have.property("Results")
                 done();
             }).catch((err) => {
-                done(new Error("Error making request:" + err));
+                done(err);
             });
         })
     })
@@ -137,7 +137,7 @@ describe('Academic knowledge', () => {
                 should(response).have.properties(['query', 'interpretations'])
                 done();
             }).catch((err) => {
-                done(new Error("Error making request:" + err));
+                done(err);
             });
         })
     })
@@ -157,7 +157,7 @@ describe('Academic knowledge', () => {
                 should(response).have.properties(['query', 'interpretations'])
                 done();
             }).catch((err) => {
-                done(new Error("Error making request:" + err));
+                done(err);
             });
         })
     })
@@ -176,7 +176,7 @@ describe('Academic knowledge', () => {
                 should(response).be.Number;
                 done();
             }).catch((err) => {
-                done(new Error("Error making request:" + err));
+                done(err);
             });
         })
     })
@@ -196,7 +196,7 @@ describe('Academic knowledge', () => {
                 should(response).be.Number;
                 done();
             }).catch((err) => {
-                done(new Error("Error making request:" + err));
+                done(err);
             });
         })
     })

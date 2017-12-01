@@ -2,7 +2,7 @@ const cognitive = require('../../src/index.js');
 const config = require('../config.js');
 const should = require('should');
 
-describe('Language understanding', () => {
+describe('Language understanding (LUIS)', () => {
 
     const client = new cognitive.languageUnderstanding({
         apiKey: config.languageUnderstanding.apiKey,
@@ -10,13 +10,12 @@ describe('Language understanding', () => {
         endpoint: config.languageUnderstanding.endpoint
     });
 
-    describe('Detect Intent (POST)', () => {
+    describe('Detect Intent', () => {
         it('should return response', (done) => {
-
             // optional but recommended
             var parameters = {
                 "log": true, // required to review suggested utterances
-                "verbose":true // required to see all intents and scores
+                "verbose": true // required to see all intents and scores
             };
 
             // optional

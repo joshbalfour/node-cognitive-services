@@ -77,7 +77,7 @@ PRs are welcome! If you want to contribute, follow these steps:
     - [x] Web language model
     - [x] Translator Text
     - [x] Linguistic Analysis
-    - [ ] LUIS
+    - [x] LUIS (partial support, PRs welcome)
 - Search
     - [x] Bing Autosuggest (v5 and v7)
     - [x] Bing Image Search (v5 and v7)

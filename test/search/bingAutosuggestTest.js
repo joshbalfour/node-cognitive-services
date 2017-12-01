@@ -25,7 +25,7 @@ describe('Bing autosuggest', () => {
                 should(response).have.properties(['_type', 'queryContext', 'suggestionGroups'])
                 done();
             }).catch((err) => {
-                done(new Error("Error making request:" + err));
+                done(err);
             });
         })
     })
