@@ -14,8 +14,9 @@ class languageUnderstanding extends commonService {
      * @param {string} obj.apiKey
      * @param {string} obj.endpoint
      */
-    constructor({ apiKey, appID, endpoint }) {
+    constructor({ apiKey, appID, versionID, endpoint }) {
         super({ apiKey, endpoint });
+        this.versionID = versionID;
         this.appID = appID;
         this.serviceId = "LUIS.v2.0"
         this.endpoints = [
@@ -88,6 +89,36 @@ class languageUnderstanding extends commonService {
 
     };
 
+    /**
+     * Trains app for that version. All changes since last training are applied.
+     * @returns {Promise.<object>}
+     */
+    train() {
+        
+        const operation = {
+            "path": "luis/api/v2.0/apps/" + this.appID + "/versions/" + this.versionID + "/train",
+            "method": "POST"
+        };
+
+        return this.makeRequest({
+            operation: operation
+        })
+    };
+    /**
+     * Gets training status for that version. 
+     * @returns {Promise.<object>}
+     */
+    getTrainStatus() {
+        
+        const operation = {
+            "path": "luis/api/v2.0/apps/" + this.appID + "/versions/" + this.versionID + "/train",
+            "method": "GET"
+        };
+
+        return this.makeRequest({
+            operation: operation
+        })
+    };        
 };
 
 module.exports = languageUnderstanding;
