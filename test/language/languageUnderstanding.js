@@ -7,6 +7,7 @@ describe('Language understanding (LUIS)', () => {
     const client = new cognitive.languageUnderstanding({
         apiKey: config.languageUnderstanding.apiKey,
         appID: config.languageUnderstanding.appID,
+        versionID: config.languageUnderstanding.versionID,
         endpoint: config.languageUnderstanding.endpoint
     });
 
@@ -38,4 +39,45 @@ describe('Language understanding (LUIS)', () => {
         })
     })
 
+    describe('Train', () => {
+        it('should train model', (done) => {
+
+            var parameters = null;
+            var headers = null;
+            var body = null;
+
+            client.train({
+                parameters,
+                headers,
+                body
+            }).then((response) => {
+                should(response).not.be.undefined();
+                should(response).have.properties(['statusId','status']);
+                console.log(response);
+                done();
+            }).catch((err) => {
+                done(err);
+            });
+        })
+    })
+    describe('TrainStatus', () => {
+        it('should return training status', (done) => {
+
+            var parameters = null;
+            var headers = null;
+            var body = null;
+
+            client.trainStatus({
+                parameters,
+                headers,
+                body
+            }).then((response) => {
+                should(response).not.be.undefined();
+                response.should.be.instanceof(Array);
+                done();
+            }).catch((err) => {
+                done(err);
+            });
+        })
+    })
 })
