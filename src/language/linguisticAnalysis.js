@@ -20,7 +20,6 @@ class linguisticAnalysis extends commonService {
      */
     constructor({ apiKey, endpoint }) {
         super({ apiKey, endpoint });
-        this.serviceId = "56ea598f778daf01942505ff"
         this.endpoints = [
             "westus.api.cognitive.microsoft.com"
         ];

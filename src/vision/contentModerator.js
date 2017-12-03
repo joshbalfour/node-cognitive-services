@@ -43,8 +43,6 @@ class contentModerator extends commonService {
         const operation = {
             "path": "contentmoderator/moderate/v1.0/ProcessText/DetectLanguage",
             "method": "POST",
-            "serviceId": "57cf753a3f9b070c105bd2c1",
-            "operationId": "57cf753a3f9b070868a1f66e",
             "headers": [{
                 "name": "Content-Type",
                 "description": "Media type of the body sent to the API.",
@@ -78,8 +76,6 @@ class contentModerator extends commonService {
         const operation = {
             "path": "contentmoderator/moderate/v1.0/ProcessText/Screen/",
             "method": "POST",
-            "serviceId": "57cf753a3f9b070c105bd2c1",
-            "operationId": "57cf753a3f9b070868a1f66f",
             "headers": [{
                 "name": "Content-Type",
                 "description": "Media type of the body sent to the API.",
@@ -136,8 +132,6 @@ class contentModerator extends commonService {
         const operation = {
             "path": "contentmoderator/moderate/v1.0/ProcessImage/Evaluate",
             "method": "POST",
-            "serviceId": "57cf753a3f9b070c105bd2c1",
-            "operationId": "57cf753a3f9b070868a1f66c",
             "headers": [{
                 "name": "Content-Type",
                 "description": "Media type of the body sent to the API.",
@@ -188,8 +182,6 @@ class contentModerator extends commonService {
         const operation = {
             "path": "contentmoderator/moderate/v1.0/ProcessImage/FindFaces",
             "method": "POST",
-            "serviceId": "57cf753a3f9b070c105bd2c1",
-            "operationId": "57cf753a3f9b070868a1f66a",
             "headers": [{
                 "name": "Content-Type",
                 "description": "Media type of the body sent to the API.",
@@ -240,8 +232,6 @@ class contentModerator extends commonService {
         const operation = {
             "path": "contentmoderator/moderate/v1.0/ProcessImage/OCR",
             "method": "POST",
-            "serviceId": "57cf753a3f9b070c105bd2c1",
-            "operationId": "57cf753a3f9b070868a1f66b",
             "headers": [{
                 "name": "Content-Type",
                 "description": "Media type of the body sent to the API.",
@@ -309,8 +299,6 @@ class contentModerator extends commonService {
         const operation = {
             "path": "contentmoderator/moderate/v1.0/ProcessImage/Match",
             "method": "POST",
-            "serviceId": "57cf753a3f9b070c105bd2c1",
-            "operationId": "57cf753a3f9b070868a1f66b",
             "headers": [{
                 "name": "Content-Type",
                 "description": "Media type of the body sent to the API.",
@@ -366,9 +354,7 @@ class contentModerator extends commonService {
     createImageList({ body}) {
         const operation = {
             "path": "contentmoderator/lists/v1.0/imagelists",
-            "method": "POST",
-            "serviceId": "57cf755e3f9b070c105bd2c2",
-            "operationId": "57cf755e3f9b070868a1f672"
+            "method": "POST"
         };
 
         return this.makeRequest({
@@ -388,8 +374,6 @@ class contentModerator extends commonService {
         const operation = {
             "path": "contentmoderator/lists/v1.0/imagelists/{listId}/images",
             "method": "POST",
-            "serviceId": "57cf755e3f9b070c105bd2c2",
-            "operationId": "57cf755e3f9b070868a1f675",
             "headers": [{
                 "name": "Content-Type",
                 "description": "Media type of the body sent to the API.",
@@ -453,8 +437,6 @@ class contentModerator extends commonService {
         const operation = {
             "path": "contentmoderator/lists/v1.0/imagelists/{listId}/images",
             "method": "DELETE",
-            "serviceId": "57cf755e3f9b070c105bd2c2",
-            "operationId": "57cf755e3f9b070868a1f686",
             "parameters": [{
                 "name": "listId",
                 "description": "The list ID",
@@ -478,8 +460,6 @@ class contentModerator extends commonService {
         const operation = {
             "path": "contentmoderator/lists/v1.0/imagelists/{listId}",
             "method": "DELETE",
-            "serviceId": "57cf755e3f9b070c105bd2c2",
-            "operationId": "57cf755e3f9b070868a1f674",
             "parameters": [{
                 "name": "listId",
                 "description": "The list ID",
@@ -503,8 +483,6 @@ class contentModerator extends commonService {
         const operation = {
             "path": "contentmoderator/lists/v1.0/imagelists/{listId}/images/{imageId}",
             "method": "DELETE",
-            "serviceId": "57cf755e3f9b070c105bd2c2",
-            "operationId": "57cf755e3f9b070868a1f674",
             "parameters": [{
                 "name": "listId",
                 "description": "The list ID",
@@ -534,8 +512,6 @@ class contentModerator extends commonService {
         const operation = {
             "path": "contentmoderator/lists/v1.0/imagelists/{listId}",
             "method": "GET",
-            "serviceId": "57cf755e3f9b070c105bd2c2",
-            "operationId": "57cf755e3f9b070868a1f674",
             "parameters": [{
                 "name": "listId",
                 "description": "The list ID",
@@ -559,8 +535,6 @@ class contentModerator extends commonService {
         const operation = {
             "path": "contentmoderator/lists/v1.0/imagelists/{listId}/images",
             "method": "GET",
-            "serviceId": "57cf755e3f9b070c105bd2c2",
-            "operationId": "57cf755e3f9b070868a1f676",
             "parameters": [{
                 "name": "listId",
                 "description": "The list ID",
@@ -583,9 +557,7 @@ class contentModerator extends commonService {
     getAllImageLists() {
         const operation = {
             "path": "contentmoderator/lists/v1.0/imagelists",
-            "method": "GET",
-            "serviceId": "57cf755e3f9b070c105bd2c2",
-            "operationId": "57cf755e3f9b070868a1f673"
+            "method": "GET"
         };
 
         return this.makeRequest({
@@ -601,8 +573,6 @@ class contentModerator extends commonService {
         const operation = {
             "path": "contentmoderator/lists/v1.0/imagelists/{listId}/RefreshIndex",
             "method": "POST",
-            "serviceId": "57cf755e3f9b070c105bd2c2",
-            "operationId": "57cf755e3f9b070868a1f677",
             "parameters": [{
                 "name": "listId",
                 "description": "The list ID",
@@ -626,8 +596,6 @@ class contentModerator extends commonService {
         const operation = {
             "path": "contentmoderator/lists/v1.0/imagelists/{listId}",
             "method": "PUT",
-            "serviceId": "57cf755e3f9b070c105bd2c2",
-            "operationId": "57cf755e3f9b070868a1f67a",
             "parameters": [{
                 "name": "listId",
                 "description": "The list ID",
@@ -664,9 +632,7 @@ class contentModerator extends commonService {
     createTermList({ body}) {
         const operation = {
             "path": "contentmoderator/lists/v1.0/termlists",
-            "method": "POST",
-            "serviceId": "57cf755e3f9b070c105bd2c2",
-            "operationId": "57cf755e3f9b070868a1f67f"
+            "method": "POST"
         };
 
         return this.makeRequest({
@@ -684,8 +650,6 @@ class contentModerator extends commonService {
         const operation = {
             "path": "contentmoderator/lists/v1.0/termlists/{listId}/terms/{term}",
             "method": "POST",
-            "serviceId": "57cf755e3f9b070c105bd2c2",
-            "operationId": "57cf755e3f9b070868a1f675",
             "parameters": [{
                 "name": "listId",
                 "description": "The list ID",
@@ -722,8 +686,6 @@ class contentModerator extends commonService {
         const operation = {
             "path": "contentmoderator/lists/v1.0/termlists/{listId}/terms",
             "method": "DELETE",
-            "serviceId": "57cf755e3f9b070c105bd2c2",
-            "operationId": "57cf755e3f9b070868a1f67d",
             "parameters": [{
                 "name": "listId",
                 "description": "The list ID",
@@ -754,8 +716,6 @@ class contentModerator extends commonService {
         const operation = {
             "path": "contentmoderator/lists/v1.0/termlists/{listId}",
             "method": "DELETE",
-            "serviceId": "57cf755e3f9b070c105bd2c2",
-            "operationId": "57cf755e3f9b070868a1f680",
             "parameters": [{
                 "name": "listId",
                 "description": "The list ID",
@@ -786,8 +746,6 @@ class contentModerator extends commonService {
         const operation = {
             "path": "contentmoderator/lists/v1.0/termlists/{listId}/terms/{term}",
             "method": "DELETE",
-            "serviceId": "57cf755e3f9b070c105bd2c2",
-            "operationId": "57cf755e3f9b070868a1f67c",
             "parameters": [{
                 "name": "listId",
                 "description": "The list ID",
@@ -824,8 +782,6 @@ class contentModerator extends commonService {
         const operation = {
             "path": "contentmoderator/lists/v1.0/termlists/{listId}",
             "method": "GET",
-            "serviceId": "57cf755e3f9b070c105bd2c2",
-            "operationId": "57cf755e3f9b070868a1f682",
             "parameters": [{
                 "name": "listId",
                 "description": "The list ID",
@@ -849,8 +805,6 @@ class contentModerator extends commonService {
         const operation = {
             "path": "contentmoderator/lists/v1.0/termlists/{listId}/terms",
             "method": "GET",
-            "serviceId": "57cf755e3f9b070c105bd2c2",
-            "operationId": "57cf755e3f9b070868a1f67e",
             "parameters": [{
                 "name": "listId",
                 "description": "The list ID",
@@ -880,9 +834,7 @@ class contentModerator extends commonService {
     getAllTermLists() {
         const operation = {
             "path": "contentmoderator/lists/v1.0/termlists",
-            "method": "GET",
-            "serviceId": "57cf755e3f9b070c105bd2c2",
-            "operationId": "57cf755e3f9b070868a1f681"
+            "method": "GET"
         };
 
         return this.makeRequest({
@@ -898,8 +850,6 @@ class contentModerator extends commonService {
         const operation = {
             "path": "contentmoderator/lists/v1.0/termlists/{listId}/RefreshIndex",
             "method": "POST",
-            "serviceId": "57cf755e3f9b070c105bd2c2",
-            "operationId": "57cf755e3f9b070868a1f684",
             "parameters": [{
                 "name": "listId",
                 "description": "The list ID",
@@ -930,8 +880,6 @@ class contentModerator extends commonService {
         const operation = {
             "path": "contentmoderator/lists/v1.0/termlists/{listId}",
             "method": "PUT",
-            "serviceId": "57cf755e3f9b070c105bd2c2",
-            "operationId": "57cf755e3f9b070868a1f685",
             "parameters": [{
                 "name": "listId",
                 "description": "The list ID",

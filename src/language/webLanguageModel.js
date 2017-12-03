@@ -28,7 +28,6 @@ class webLanguageModel extends commonService {
      */
     constructor({ apiKey, endpoint }) {
         super({ apiKey, endpoint });
-        this.serviceId = "55de9ca4e597ed1fd4e2f104"
         this.endpoints = [
             "westus.api.cognitive.microsoft.com"
         ];

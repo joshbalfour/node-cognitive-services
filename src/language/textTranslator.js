@@ -14,13 +14,12 @@ class textTranslator extends commonService {
      * 
      * @param {Object} obj
      * @param {string} obj.apiKey
-     * @param {string} obj.endpoint
      */
-    constructor({ apiKey, endpoint }) {
+    constructor({ apiKey }) {
+        const endpoint = "api.microsofttranslator.com";
         super({ apiKey, endpoint });
-        this.serviceId = ""
         this.endpoints = [
-            "api.microsofttranslator.com"
+            endpoint
         ];
     }
 

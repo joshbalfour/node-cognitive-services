@@ -11,13 +11,12 @@ class bingEntitySearch extends commonService {
      * 
      * @param {Object} obj
      * @param {string} obj.apiKey
-     * @param {string} obj.endpoint
      */
-    constructor({ apiKey, endpoint }) {
+    constructor({ apiKey }) {
+        const endpoint = "api.cognitive.microsoft.com";
         super({ apiKey, endpoint });
-        this.serviceId = "7a3fb374be374859a823b79fd938cc65"
         this.endpoints = [
-            "api.cognitive.microsoft.com"
+            endpoint
         ];
     }
 

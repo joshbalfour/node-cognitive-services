@@ -15,7 +15,6 @@ class textAnalytics extends commonService {
      */
     constructor({ apiKey, endpoint }) {
         super({ apiKey, endpoint });
-        this.serviceId = "TextAnalytics.V2.0"
         this.endpoints = [
             "westus.api.cognitive.microsoft.com",
             "eastus2.api.cognitive.microsoft.com",

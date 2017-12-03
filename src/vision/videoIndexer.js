@@ -39,7 +39,6 @@ class videoIndexer extends commonService {
     constructor({ apiKey }) {
         const endpoint = "videobreakdown.azure-api.net/Breakdowns/Api";
         super({ apiKey, endpoint });
-        this.serviceId = "582074fb0dc56116504aed75"
         this.endpoints = [
             endpoint
         ];

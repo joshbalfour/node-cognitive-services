@@ -1,6 +1,5 @@
 const cognitive = require('../../src/index.js');
 const config = require('../config.js');
-const should = require('should');
 
 describe('Language understanding (LUIS)', () => {
 
@@ -31,7 +30,7 @@ describe('Language understanding (LUIS)', () => {
                 body
             }).then((response) => {
                 response.should.not.be.undefined();
-                response.should.have.properties(['query','topScoringIntent','entities']);
+                response.should.have.properties(['query', 'topScoringIntent', 'entities']);
                 done();
             }).catch((err) => {
                 done(err);
@@ -42,9 +41,10 @@ describe('Language understanding (LUIS)', () => {
     describe('Train', () => {
         it('should train model', (done) => {
 
-            client.train().then((response) => {
+            client.train()
+            .then((response) => {
                 response.should.not.be.undefined();
-                response.should.have.properties(['statusId','status']);
+                response.should.have.properties(['statusId', 'status']);
                 done();
             }).catch((err) => {
                 done(err);
@@ -54,7 +54,8 @@ describe('Language understanding (LUIS)', () => {
     describe('TrainStatus', () => {
         it('should return training status', (done) => {
 
-            client.getTrainStatus().then((response) => {
+            client.getTrainStatus()
+            .then((response) => {
                 response.should.not.be.undefined();
                 response.should.be.instanceof(Array);
                 response[0].should.have.properties(['modelId', 'details'])

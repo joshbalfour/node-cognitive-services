@@ -5,8 +5,7 @@ const should = require('should');
 describe('Bing news search v7', () => {
 
     const client = new cognitive.bingNewsSearchV7({
-        apiKey: config.bingSearchV7.apiKey,
-        endpoint: config.bingSearchV7.endpoint
+        apiKey: config.bingSearchV7.apiKey
     });
 
     describe('News by category', () => {

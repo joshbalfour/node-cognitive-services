@@ -33,7 +33,6 @@ class computerVision extends commonService {
      */
     constructor({ apiKey, endpoint }) {
         super({ apiKey, endpoint });
-        this.serviceId = "56f91f2d778daf23d8ec6739"
         this.endpoints = [
             "westus.api.cognitive.microsoft.com",
             "westus2.api.cognitive.microsoft.com",

@@ -19,7 +19,6 @@ class face extends commonService {
      */
     constructor({ apiKey, endpoint }) {
         super({ apiKey, endpoint });
-        this.serviceId = "563879b61984550e40cbbe8d"
         this.endpoints = [
             "westus.api.cognitive.microsoft.com",
             "eastus2.api.cognitive.microsoft.com",
@@ -295,7 +294,6 @@ class face extends commonService {
         const operation = {
             "path": "face/v1.0/verify",
             "method": "POST",
-            "serviceId": "563879b61984550e40cbbe8d",
             "headers": [{
                 "name": "Content-Type",
                 "description": "Media type of the body sent to the API.",

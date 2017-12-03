@@ -176,9 +176,7 @@ class commonService {
                     }
                 });
     
-                let host = operation.host || this.endpoint;
-    
-                let uri = `https://${host}/${path}`;
+                let uri = `https://${this.endpoint}/${path}`;
     
                 var options = {
                     uri,

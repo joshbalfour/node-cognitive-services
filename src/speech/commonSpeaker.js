@@ -16,7 +16,6 @@ class commonSpeaker extends commonService {
      */
     constructor({ apiKey, endpoint }) {
         super({ apiKey, endpoint });
-        this.serviceId = "563309b6778daf02acc0a508"
         this.endpoints = [
             "westus.api.cognitive.microsoft.com"
         ];

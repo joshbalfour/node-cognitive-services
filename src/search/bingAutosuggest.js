@@ -12,13 +12,12 @@ class bingAutosuggest extends commonService {
      * 
      * @param {Object} obj
      * @param {string} obj.apiKey
-     * @param {string} obj.endpoint
      */
-    constructor({ apiKey, endpoint }) {
+    constructor({ apiKey }) {
+        const endpoint = "api.cognitive.microsoft.com";
         super({ apiKey, endpoint });
-        this.serviceId = "56c7694ecf5ff801a090fbd1"
         this.endpoints = [
-            "api.cognitive.microsoft.com"
+            endpoint
         ];
     }
 

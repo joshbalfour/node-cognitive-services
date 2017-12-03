@@ -12,11 +12,9 @@ module.exports = {
         apiKey: "insert-key-here"
     },
     bingSearch: {
-        endpoint: "api.cognitive.microsoft.com",
         apiKey: "insert-key-here" 
     },
     bingSearchV7: {
-        endpoint: "api.cognitive.microsoft.com",
         apiKey: "insert-key-here" 
     },
     academicKnowledge: {
@@ -24,19 +22,15 @@ module.exports = {
         apiKey: "insert-key-here"
     },
     bingAutosuggest: {
-        endpoint: "api.cognitive.microsoft.com",
         apiKey: "insert-key-here"
     },
     bingAutosuggestV7: {
-        endpoint: "api.cognitive.microsoft.com",
         apiKey: "insert-key-here"
     },
     bingSpellCheck: {
-        endpoint: "api.cognitive.microsoft.com",
         apiKey: "insert-key-here"
     },
     bingSpellCheckV7: {
-        endpoint: "api.cognitive.microsoft.com",
         apiKey: "insert-key-here"
     },
     entityLinking: {
@@ -60,7 +54,6 @@ module.exports = {
         apiKey: "insert-key-here"
     },
     textTranslator: {
-        endpoint: "api.microsofttranslator.com",
         apiKey: "insert-key-here"
     },
     qnaMaker: {
@@ -79,7 +72,6 @@ module.exports = {
         apiKey: 'insert-key-here'
     },
     bingEntitySearch: {
-        endpoint: "api.cognitive.microsoft.com",
         apiKey: "insert-key-here"
     },
     contentModerator: {

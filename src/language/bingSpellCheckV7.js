@@ -23,13 +23,12 @@ class bingSpellCheckV7 extends commonService {
      * 
      * @param {Object} obj
      * @param {string} obj.apiKey
-     * @param {string} obj.endpoint
      */
-    constructor({ apiKey, endpoint }) {
+    constructor({ apiKey }) {
+        const endpoint = "api.cognitive.microsoft.com";
         super({ apiKey, endpoint });
-        this.serviceId = "5f7d486e04d2430193e1ca8f760cd7ed"
         this.endpoints = [
-            "api.cognitive.microsoft.com"
+            endpoint
         ];
         this.headers = [
             {

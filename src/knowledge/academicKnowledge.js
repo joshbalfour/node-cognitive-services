@@ -19,11 +19,11 @@ class academicKnowledge extends commonService {
      */
     constructor({ apiKey, endpoint }) {
         super({ apiKey, endpoint });
-        this.serviceId = "56332331778daf02acc0a50b"
         this.endpoints = [
             "westus.api.cognitive.microsoft.com"
         ];
     }
+
 
     /**
      * Calculate the distribution of attribute values for a set of paper entities.

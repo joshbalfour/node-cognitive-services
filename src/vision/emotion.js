@@ -15,7 +15,6 @@ class emotion extends commonService {
      */
     constructor({ apiKey, endpoint }) {
         super({ apiKey, endpoint });
-        this.serviceId = "5639d931ca73072154c1ce89"
         this.endpoints = [
             "westus.api.cognitive.microsoft.com"
         ];

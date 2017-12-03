@@ -11,13 +11,12 @@ class bingNewsSearch extends commonService {
      * 
      * @param {Object} obj
      * @param {string} obj.apiKey
-     * @param {string} obj.endpoint
      */
-    constructor({ apiKey, endpoint }) {
+    constructor({ apiKey }) {
+        const endpoint = "api.cognitive.microsoft.com";
         super({ apiKey, endpoint });
-        this.serviceId = "56b43f72cf5ff8098cef380a"
         this.endpoints = [
-            "api.cognitive.microsoft.com"
+            endpoint
         ];
     }
 

@@ -18,7 +18,6 @@ class qnaMaker extends commonService {
      */
     constructor({ apiKey, endpoint }) {
         super({ apiKey, endpoint });
-        this.serviceId = "58994a073d9e04097c7ba6fe"
         this.endpoints = [
             "westus.api.cognitive.microsoft.com"
         ];

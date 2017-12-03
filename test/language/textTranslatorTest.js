@@ -5,8 +5,7 @@ const should = require('should');
 describe('Text translator', () => {
 
     const client = new cognitive.textTranslator({
-        apiKey: config.textTranslator.apiKey,
-        endpoint: config.textTranslator.endpoint
+        apiKey: config.textTranslator.apiKey
     });
 
     describe('translate array', () => {

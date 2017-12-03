@@ -19,7 +19,6 @@ class recommendations extends commonService {
      */
     constructor({ apiKey, endpoint }) {
         super({ apiKey, endpoint });
-        this.serviceId = "Recommendations.V4.0"
         this.endpoints = [
             "westus.api.cognitive.microsoft.com"
         ];
@@ -119,7 +118,6 @@ You may create up to 10 models. If you need to delete unused models, you may use
         const operation = {
             "path": "recommendations/v4.0/models",
             "method": "POST",
-            "serviceId": "Recommendations.V4.0",
             "operationId": "56f30d77eda5650db055a3d6",
             "headers": [{
                 "name": "Content-Type",
@@ -245,7 +243,6 @@ You may create up to 10 models. If you need to delete unused models, you may use
         const operation = {
             "path": "recommendations/v4.0/models/{modelId}/usage",
             "method": "DELETE",
-            "serviceId": "Recommendations.V4.0",
             "operationId": "577ec1847270320f24da25b0",
             "parameters": [{
                 "name": "modelId",
@@ -352,7 +349,6 @@ You may create up to 10 models. If you need to delete unused models, you may use
         const operation = {
             "path": "recommendations/v4.0/models/{modelId}/catalog",
             "method": "DELETE",
-            "serviceId": "Recommendations.V4.0",
             "parameters": [{
                 "name": "modelId",
                 "description": "",
