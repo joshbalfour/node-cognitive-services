@@ -93,7 +93,7 @@ class languageUnderstanding extends commonService {
      * Trains app for that version. All changes since last training are applied.
      * @returns {Promise.<object>}
      */
-    train({parameters, headers, body}) {
+    train() {
         
         const operation = {
             "path": "luis/api/v2.0/apps/" + this.appID + "/versions/" + this.versionID + "/train",
@@ -101,16 +101,14 @@ class languageUnderstanding extends commonService {
         };
 
         return this.makeRequest({
-            operation: operation,
-            headers: headers,
-            body: body
+            operation: operation
         })
     };
     /**
      * Gets training status for that version. 
      * @returns {Promise.<object>}
      */
-    trainStatus({parameters, headers, body}) {
+    getTrainStatus() {
         
         const operation = {
             "path": "luis/api/v2.0/apps/" + this.appID + "/versions/" + this.versionID + "/train",
@@ -118,9 +116,7 @@ class languageUnderstanding extends commonService {
         };
 
         return this.makeRequest({
-            operation: operation,
-            headers: headers,
-            body: body
+            operation: operation
         })
     };        
 };

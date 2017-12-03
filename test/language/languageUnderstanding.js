@@ -30,8 +30,8 @@ describe('Language understanding (LUIS)', () => {
                 headers,
                 body
             }).then((response) => {
-                should(response).not.be.undefined();
-                should(response).have.properties(['query','topScoringIntent','entities']);
+                response.should.not.be.undefined();
+                response.should.have.properties(['query','topScoringIntent','entities']);
                 done();
             }).catch((err) => {
                 done(err);
@@ -42,18 +42,9 @@ describe('Language understanding (LUIS)', () => {
     describe('Train', () => {
         it('should train model', (done) => {
 
-            var parameters = null;
-            var headers = null;
-            var body = null;
-
-            client.train({
-                parameters,
-                headers,
-                body
-            }).then((response) => {
-                should(response).not.be.undefined();
-                should(response).have.properties(['statusId','status']);
-                console.log(response);
+            client.train().then((response) => {
+                response.should.not.be.undefined();
+                response.should.have.properties(['statusId','status']);
                 done();
             }).catch((err) => {
                 done(err);
@@ -63,17 +54,10 @@ describe('Language understanding (LUIS)', () => {
     describe('TrainStatus', () => {
         it('should return training status', (done) => {
 
-            var parameters = null;
-            var headers = null;
-            var body = null;
-
-            client.trainStatus({
-                parameters,
-                headers,
-                body
-            }).then((response) => {
-                should(response).not.be.undefined();
+            client.getTrainStatus().then((response) => {
+                response.should.not.be.undefined();
                 response.should.be.instanceof(Array);
+                response[0].should.have.properties(['modelId', 'details'])
                 done();
             }).catch((err) => {
                 done(err);
