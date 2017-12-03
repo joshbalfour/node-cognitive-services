@@ -84,26 +84,17 @@ class academicKnowledge extends commonService {
      * Calculate the distribution of attribute values for a set of paper entities.
      * @returns {Promise.<object>}
      */
-    calcHistogramPost({ headers, body }) {
+    calcHistogramPost({ body }) {
 
         const operation = {
             "path": "academic/v1.0/calchistogram",
             "method": "POST",
-            "operationId": "5951f894d2864531c0129ba2",
-            "headers": [{
-                "name": "Content-Type",
-                "description": "Media type of the body sent to the API.",
-                "options": [
-                    "application/x-www-form-urlencoded",
-                ],
-                "required": false,
-                "typeName": "string"
-            }]
+            "operationId": "5951f894d2864531c0129ba2"
         };
 
         return this.makeRequest({
             operation: operation,
-            headers: headers,
+            headers: {'Content-type': "application/x-www-form-urlencoded"},
             body: body
         })
 
@@ -175,26 +166,17 @@ class academicKnowledge extends commonService {
      * Return a set of academic entities based on a query expression.
      * @returns {Promise.<object>}
      */
-    evaluatePost({ headers, body }) {
+    evaluatePost({ body }) {
 
         const operation = {
             "path": "academic/v1.0/evaluate",
             "method": "POST",
             "operationId": "5951f78363b4fb31286b8ef4",
-            "headers": [{
-                "name": "Content-Type",
-                "description": "Media type of the body sent to the API.",
-                "options": [
-                    "application/x-www-form-urlencoded",
-                ],
-                "required": false,
-                "typeName": "string"
-            }]
         };
 
         return this.makeRequest({
             operation: operation,
-            headers: headers,
+            headers: {'Content-type': "application/x-www-form-urlencoded"},
             body: body
         })
     };
@@ -311,26 +293,17 @@ class academicKnowledge extends commonService {
      * If your application does not want auto-completion, you should set the complete parameter to 0.
      * @returns {Promise.<object>}
      */
-    interpretPost({ headers, body }) {
+    interpretPost({ body }) {
 
         const operation = {
             "path": "academic/v1.0/interpret",
             "method": "POST",
-            "operationId": "5951f6260ecf2621902c89e4",
-            "headers": [{
-                "name": "Content-Type",
-                "description": "Media type of the body sent to the API.",
-                "options": [
-                    "application/x-www-form-urlencoded",
-                ],
-                "required": false,
-                "typeName": "string"
-            }]
+            "operationId": "5951f6260ecf2621902c89e4"
         };
 
         return this.makeRequest({
             operation: operation,
-            headers: headers,
+            headers: {'Content-type': "application/x-www-form-urlencoded"},
             body: body
         })
 
@@ -374,26 +347,17 @@ class academicKnowledge extends commonService {
      * Calculate a floating point value based on 2 text inputs
      * @returns {Promise.<object>}
      */
-    postSimilarity({ headers, body }) {
+    postSimilarity({ body }) {
 
         const operation = {
             "path": "academic/v1.0/similarity",
             "method": "POST",
             "operationId": "58172b97dbe2d91538cc000b",
-            "headers": [{
-                "name": "Content-Type",
-                "description": "Media type of the body sent to the API.",
-                "options": [
-                    "application/x-www-form-urlencoded"
-                ],
-                "required": false,
-                "typeName": "string"
-            }],
         };
 
         return this.makeRequest({
             operation: operation,
-            headers: headers,
+            headers: {'Content-type': "application/x-www-form-urlencoded"},
             body: body
         })
 

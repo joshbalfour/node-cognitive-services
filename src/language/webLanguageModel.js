@@ -105,21 +105,12 @@ class webLanguageModel extends commonService {
     }
     @returns {Promise.<object>}
     */
-    calculateConditionalProbability({ parameters, headers, body }) {
+    calculateConditionalProbability({ parameters, body }) {
 
         const operation = {
             "path": "text/weblm/v1.0/calculateConditionalProbability",
             "method": "POST",
             "operationId": "55de9ca4e597ed19b0de8a4e",
-            "headers": [{
-                "name": "Content-Type",
-                "description": "Media type of the body sent to the API.",
-                "options": [
-                    "application/json",
-                ],
-                "required": false,
-                "typeName": "string"
-            }],
             "parameters": [{
                 "name": "model",
                 "description": "Which model to use.",
@@ -156,7 +147,7 @@ class webLanguageModel extends commonService {
         return this.makeRequest({
             operation: operation,
             parameters: parameters,
-            headers: headers,
+            headers: {"Content-type": "application/json"},
             body: body
         })
 
@@ -170,21 +161,12 @@ class webLanguageModel extends commonService {
     }
     @returns {Promise.<object>}
     */
-    calculateJointProbability({ parameters, headers, body }) {
+    calculateJointProbability({ parameters, body }) {
 
         const operation = {
             "path": "text/weblm/v1.0/calculateJointProbability",
             "method": "POST",
             "operationId": "55de9ca4e597ed19b0de8a4f",
-            "headers": [{
-                "name": "Content-Type",
-                "description": "Media type of the body sent to the API.",
-                "options": [
-                    "application/json",
-                ],
-                "required": false,
-                "typeName": "string"
-            }],
             "parameters": [{
                 "name": "model",
                 "description": "Which model to use.",
@@ -221,7 +203,7 @@ class webLanguageModel extends commonService {
         return this.makeRequest({
             operation: operation,
             parameters: parameters,
-            headers: headers,
+            headers: {"Content-type": "application/json"},
             body: body
         })
     };

@@ -37,14 +37,6 @@ class bingSpeech extends commonService {
             "path": "speech/{recognitionMode}/cognitiveservices/v1",
             "method": "POST",
             "headers": [{
-                "name": "Content-Type",
-                "description": "The Content-type field describes the format and codec of the audio stream. Currently only wav file and PCM Mono 16000 encoding is supported, and the Content-type value for this format is audio/wav; codec=audio/pcm; samplerate=16000",
-                "options": [
-                    "audio/wav; codec=audio/pcm; samplerate=16000",
-                ],
-                "required": true,
-                "typeName": "string"
-            }, {
                 "name": "Transfer-Encoding",
                 "description": "The field Transfer-Encoding is optional. Setting this field to chunked allows you to chop the audio into small chunks",
                 "options": [
@@ -88,7 +80,7 @@ class bingSpeech extends commonService {
         return this.makeRequest({
             operation: operation,
             parameters: parameters,
-            headers: headers,
+            headers: {'Content-type': "audio/wav; codec=audio/pcm; samplerate=16000"},
             body: body
         })
     }

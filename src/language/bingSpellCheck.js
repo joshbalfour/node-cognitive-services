@@ -42,15 +42,6 @@ class bingSpellCheck extends commonService {
             "path": "bing/v5.0/spellcheck/",
             "method": "POST",
             "operationId": "56e73036cf5ff81048ee6727",
-            "headers": [{
-                "name": "Content-Type",
-                "description": "Media type of the body sent to the API.",
-                "options": [
-                    "application/x-www-form-urlencoded",
-                ],
-                "required": false,
-                "typeName": "string"
-            }],
             "parameters": [{
                 "name": "mode",
                 "description": "Mode of spellcheck:\
@@ -74,14 +65,10 @@ class bingSpellCheck extends commonService {
             }]
         };
 
-        const headers = {
-            "Content-type": "application/x-www-form-urlencoded"
-        };
-
         return this.makeRequest({
             operation: operation,
             parameters: parameters,
-            headers: headers,
+            headers: {"Content-type": "application/x-www-form-urlencoded"},
             body: body
         })
     }

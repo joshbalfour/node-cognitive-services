@@ -17,9 +17,7 @@ describe('Bing speech', () => {
                 format: 'simple'
             };
 
-            const headers = {
-                'Content-Type': "audio/wav; codec=audio/pcm; samplerate=16000"
-            }
+            const headers = {};
 
             const body = fs.readFileSync('./test/assets/whatstheweatherlike.wav');
 

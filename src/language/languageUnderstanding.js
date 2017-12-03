@@ -34,20 +34,11 @@ class languageUnderstanding extends commonService {
      * Irrespective of the value, the intent with the highest score is returned.
      * @returns {Promise.<object>}
      */
-    detectIntent({parameters, headers, body}) {
+    detectIntent({parameters, body}) {
 
         const operation = {
             "path": "luis/v2.0/apps/" + this.appID,
             "method": "POST",
-            "headers": [{
-                "name": "Content-Type",
-                "description": "Media type of the body sent to the API.",
-                "options": [
-                    "application/json"
-                ],
-                "required": false,
-                "typeName":"string"
-            }],
             "parameters": [{
                 "name": "timezoneOffset",
                 "description": "The timezone offset for the location of the request",
@@ -83,7 +74,7 @@ class languageUnderstanding extends commonService {
 
         return this.makeRequest({
             operation: operation,
-            headers: headers,
+            headers: {'Content-type': 'application/json'},
             body: body
         })
 

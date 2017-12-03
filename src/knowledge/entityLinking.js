@@ -29,21 +29,12 @@ class entityLinking extends commonService {
     }
     @returns {Promise.<object>}
     */
-    linkEntity({ parameters, headers, body }) {
+    linkEntity({ parameters, body }) {
 
         const operation = {
             "path": "entitylinking/v1.0/link",
             "method": "POST",
             "operationId": "56f0eabfca73070e44d0f39c",
-            "headers": [{
-                "name": "Content-Type",
-                "description": "Media type of the body sent to the API.",
-                "options": [
-                    "text/plain",
-                ],
-                "required": false,
-                "typeName": "string"
-            }],
             "parameters": [{
                 "name": "selection",
                 "description": "The specific word or phrase within the text that is to be entity linked. If not specified, the service will try to recognize and identify all the entities within the input text.",
@@ -64,7 +55,7 @@ class entityLinking extends commonService {
         return this.makeRequest({
             operation: operation,
             parameters: parameters,
-            headers: headers,
+            headers: {'Content-type': 'text/plain'},
             body: body
         })
     }

@@ -36,10 +36,6 @@ describe('Web language model', () => {
                 "model": "body"
             };
 
-            const headers = {
-                "Content-type": "application/json"
-            };
-
             const body = {
                 "queries": [
                     {
@@ -59,7 +55,6 @@ describe('Web language model', () => {
 
             client.calculateConditionalProbability({
                 parameters,
-                headers,
                 body
             }).then((response) => {
                 should(response).not.be.undefined();
@@ -77,10 +72,6 @@ describe('Web language model', () => {
                 "model": "body",
             };
 
-            const headers = {
-                "Content-type": "application/json"
-            };
-
             const body = {
                 "queries":
                 [
@@ -92,7 +83,6 @@ describe('Web language model', () => {
 
             client.calculateJointProbability({
                 parameters,
-                headers,
                 body
             }).then((response) => {
                 should(response).not.be.undefined();

@@ -33,15 +33,6 @@ class qnaMaker extends commonService {
             "path": "qnamaker/v2.0/knowledgebases/create",
             "method": "POST",
             "operationId": "58994a073d9e041ad42d9baa",
-            "headers": [{
-                "name": "Content-Type",
-                "description": "Media type of the body sent to the API.",
-                "options": [
-                    "application/json",
-                ],
-                "required": false,
-                "typeName": "string"
-            }],
             "parameters": [{
                 "name": "name",
                 "description": "Friendly name for the knowledge base (Required).",
@@ -66,13 +57,9 @@ class qnaMaker extends commonService {
             }]
         };
 
-        const headers = {
-            'Content-type': operation.headers[0].options[0]
-        };
-
         return this.makeRequest({
             operation: operation,
-            headers: headers,
+            headers: {'Content-type': 'application/json'},
             body: body
         })
     };
@@ -139,15 +126,6 @@ class qnaMaker extends commonService {
             "path": "qnamaker/v2.0/knowledgebases/{knowledgeBaseId}/generateAnswer",
             "method": "POST",
             "operationId": "58994a073d9e041ad42d9baa",
-            "headers": [{
-                "name": "Content-Type",
-                "description": "Media type of the body sent to the API.",
-                "options": [
-                    "application/json",
-                ],
-                "required": false,
-                "typeName": "string"
-            }],
             "parameters": [{
                 "name": "knowledgeBaseId",
                 "description": "KB id",
@@ -172,14 +150,10 @@ class qnaMaker extends commonService {
             }]
         };
 
-        const headers = {
-            'Content-type': operation.headers[0].options[0]
-        };
-
         return this.makeRequest({
             operation: operation,
             parameters: parameters,
-            headers: headers,
+            headers: {'Content-type': 'application/json'},
             body: body
         })
     };
@@ -252,15 +226,6 @@ class qnaMaker extends commonService {
             "path": "qnamaker/v2.0/knowledgebases/{knowledgeBaseId}/train",
             "method": "PATCH",
             "operationId": "58edd31c3d9e041ffcef000f",
-            "headers": [{
-                "name": "Content-Type",
-                "description": "Media type of the body sent to the API.",
-                "options": [
-                    "application/json",
-                ],
-                "required": false,
-                "typeName": "string"
-            }],
             "parameters": [{
                 "name": "knowledgeBaseId",
                 "description": "KB id",
@@ -278,14 +243,10 @@ class qnaMaker extends commonService {
             }]
         };
 
-        const headers = {
-            'Content-type': operation.headers[0].options[0]
-        }
-
         return this.makeRequest({
             operation: operation,
             parameters: parameters,
-            headers: headers,
+            headers: {'Content-type': 'application/json'},
             body: body
         })
     };
@@ -300,15 +261,6 @@ class qnaMaker extends commonService {
             "path": "qnamaker/v2.0/knowledgebases/{knowledgeBaseId}/updateAlterations",
             "method": "PATCH",
             "operationId": "597804082bcd591200beb3a0",
-            "headers": [{
-                "name": "Content-Type",
-                "description": "Media type of the body sent to the API.",
-                "options": [
-                    "application/json",
-                ],
-                "required": false,
-                "typeName": "string"
-            }],
             "parameters": [{
                 "name": "knowledgeBaseId",
                 "description": "KB id",
@@ -339,14 +291,10 @@ class qnaMaker extends commonService {
             }]
         };
 
-        const headers = {
-            'Content-type': operation.headers[0].options[0]
-        }
-
         return this.makeRequest({
             operation: operation,
             parameters: parameters,
-            headers: headers,
+            headers: {'Content-type': 'application/json'},
             body: body
         })
     };
@@ -361,15 +309,6 @@ class qnaMaker extends commonService {
             "path": "qnamaker/v2.0/knowledgebases/{knowledgeBaseId}",
             "method": "PATCH",
             "operationId": "58994a083d9e041ad42d9bad",
-            "headers": [{
-                "name": "Content-Type",
-                "description": "Media type of the body sent to the API.",
-                "options": [
-                    "application/json",
-                ],
-                "required": false,
-                "typeName": "string"
-            }],
             "parameters": [{
                 "name": "knowledgeBaseId",
                 "description": "KB id",
@@ -394,14 +333,10 @@ class qnaMaker extends commonService {
             }]
         };
 
-        const headers = {
-            'Content-type': operation.headers[0].options[0]
-        }
-
         return this.makeRequest({
             operation: operation,
             parameters: parameters,
-            headers: headers,
+            headers: {'Content-type': 'application/json'},
             body: body
         })
     };

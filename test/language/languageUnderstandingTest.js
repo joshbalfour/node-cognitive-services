@@ -18,15 +18,11 @@ describe('Language understanding (LUIS)', () => {
                 "verbose": true // required to see all intents and scores
             };
 
-            // optional
-            var headers = {};
-
             // query/utterance
             var body = "forward to frank 30 dollars through HSBC";
 
             client.detectIntent({
                 parameters,
-                headers,
                 body
             }).then((response) => {
                 response.should.not.be.undefined();

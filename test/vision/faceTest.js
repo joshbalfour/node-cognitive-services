@@ -30,23 +30,16 @@ describe('Face', () => {
         var parameters = {
             "personGroupId": personGroupId
         };
-        var headers = {
-            'Content-type': 'application/json'
-        };
         var body = {
             "name": personGroupId
         };
 
         face.createAPersonGroup({
             parameters,
-            headers,
             body
         }).then((response) => {
             should(response).be.undefined();
             // create a person
-            headers = {
-                'Content-type': 'application/json'
-            };
             body = {
                 "name": "johndoe"
             }
@@ -56,7 +49,6 @@ describe('Face', () => {
 
             return face.createAPerson({
                 parameters,
-                headers,
                 body
             })
         }).then((response) => {
@@ -68,11 +60,11 @@ describe('Face', () => {
             done(err);
         })
 
-        
-
     })
 
     describe('Face', () => {
+        var faceId1, faceId2;
+
         it('should detect when body is in json format', (done) => {
             const parameters = {
                 returnFaceId: "true",
@@ -94,6 +86,7 @@ describe('Face', () => {
                 should(response).not.be.undefined();
                 should(response.length).eql(1);
                 should(response[0]).have.properties(['faceAttributes', 'faceId', 'faceLandmarks', 'faceRectangle']);
+                faceId1 = response[0].faceId;
                 done();
             }).catch((err) => {
                 done(err);
@@ -119,11 +112,64 @@ describe('Face', () => {
                 should(response).not.be.undefined();
                 should(response.length).eql(1);
                 should(response[0]).have.properties(['faceAttributes', 'faceId', 'faceLandmarks', 'faceRectangle']);
+                faceId2 = response[0].faceId;
                 done();
             }).catch((err) => {
                 done(err);
             });
         })
+
+        it('should find similar', (done) => {
+            const body = {
+                "faceId": faceId1,
+                "faceIds": [faceId1, faceId2]
+            }
+            
+            face.findSimilar({
+                body
+            }).then((response) => {
+                should(response).not.be.undefined();
+                should(response).be.Array;
+                should(response[0]).have.properties(['faceId', 'confidence']);
+                done();
+            }).catch((err) => {
+                done(err);
+            });
+        })
+
+        it('should group faces', done => {
+            const body = {
+                "faceIds": [faceId1, faceId2]
+            }
+            
+            face.group({
+                body
+            }).then((response) => {
+                should(response).not.be.undefined();
+                should(response).have.properties(['groups', 'messyGroup']);
+                done();
+            }).catch((err) => {
+                done(err);
+            });
+        })
+
+        it('should verify faces', done => {
+            const body = {
+                "faceId1": faceId1,
+                "faceId2": faceId2
+            }
+            
+            face.verify({
+                body
+            }).then((response) => {
+                should(response).not.be.undefined();
+                should(response).have.properties(['isIdentical', 'confidence']);
+                done();
+            }).catch((err) => {
+                done(err);
+            });
+        })
+
     })
 
     describe('Face list', () => {
@@ -134,16 +180,12 @@ describe('Face', () => {
             const parameters = {
                 faceListId: faceListId,
             };
-            const headers = {
-                'Content-type': 'application/json'
-            };
             const body = {
                 "name": "this is a sample face list",
             }
 
             face.createAFaceList({
                 parameters,
-                headers,
                 body
             }).then((response) => {
                 should(response).be.undefined();
@@ -231,9 +273,6 @@ describe('Face', () => {
             const parameters = {
                 faceListId: faceListId,
             };
-            const headers = {
-                'Content-type': 'application/json'
-            };
             const body = {
                 "name": "updated",
                 "userData": "updated"
@@ -241,7 +280,6 @@ describe('Face', () => {
 
             face.updateAFaceList({
                 parameters,
-                headers,
                 body
             }).then((response) => {
                 should(response).be.undefined();
@@ -311,16 +349,12 @@ describe('Face', () => {
             const parameters = {
                 personGroupId: personGroupId,
             };
-            const headers = {
-                'Content-type': 'application/json'
-            };
             const body = {
                 "name": "this is a sample person group",
             }
 
             face.createAPersonGroup({
                 parameters,
-                headers,
                 body
             }).then((response) => {
                 should(response).be.undefined();
@@ -381,9 +415,6 @@ describe('Face', () => {
             var parameters = {
                 personGroupId: personGroupId,
             };
-            const headers = {
-                'Content-type': 'application/json'
-            };
             const body = {
                 "name": "updated",
                 "userData": "updated"
@@ -391,7 +422,6 @@ describe('Face', () => {
 
             face.updateAPersonGroup({
                 parameters,
-                headers,
                 body
             }).then((response) => {
                 should(response).be.undefined();

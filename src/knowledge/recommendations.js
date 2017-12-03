@@ -1220,21 +1220,12 @@ You may create up to 10 models. If you need to delete unused models, you may use
 
         @returns {Promise.<object>}
     */
-    updateCatalogItems({ parameters, headers, body }) {
+    updateCatalogItems({ parameters, body }) {
 
         const operation = {
             "path": "recommendations/v4.0/models/{modelId}/catalog",
             "method": "PATCH",
             "operationId": "58926221b439b30ef8b40f58",
-            "headers": [{
-                "name": "Content-Type",
-                "description": "Media type of the body sent to the API.",
-                "options": [
-                    "application/octet-stream"
-                ],
-                "required": false,
-                "typeName": "string"
-            }],
             "parameters": [{
                 "name": "modelId",
                 "description": "Unique identifier of the model. Only letters (A-Z, a-z), numbers (0-9), hyphens (-) and underscore (_) are allowed. Max length: 50",
@@ -1248,7 +1239,7 @@ You may create up to 10 models. If you need to delete unused models, you may use
         return this.makeRequest({
             operation: operation,
             parameters: parameters,
-            headers: headers,
+            headers: {'Content-type': "application/octet-stream"},
             body: body
         })
 

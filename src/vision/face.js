@@ -108,26 +108,17 @@ class face extends commonService {
         Find similar has two working modes, "matchPerson" and "matchFace". "matchPerson" is the default mode that it tries to find faces of the same person as possible by using internal same-person thresholds. It is useful to find a known person's other photos. Note that an empty list will be returned if no faces pass the internal thresholds. "matchFace" mode ignores same-person thresholds and returns ranked similar faces anyway, even the similarity is low. It can be used in the cases like searching celebrity-looking faces.
         @returns {Promise.<object>}
         */
-    findSimilar({ parameters, headers, body }) {
+    findSimilar({ body }) {
 
         const operation = {
             "path": "face/v1.0/findsimilars",
             "method": "POST",
             "operationId": "563879b61984550f30395237",
-            "headers": [{
-                "name": "Content-Type",
-                "description": "Media type of the body sent to the API.",
-                "options": [
-                    "application/json",
-                ],
-                "required": false,
-                "typeName": "string"
-            }],
             "parameters": [{
                 "name": "faceId",
                 "description": "faceId of the query face. User needs to call Face - Detect first to get a valid faceId. Note that this faceId is not persisted and will expire 24 hours after the detection call.",
                 "value": null,
-                "required": false,
+                "required": true,
                 "type": "inBody",
                 "typeName": "string"
             }, {
@@ -163,8 +154,7 @@ class face extends commonService {
 
         return this.makeRequest({
             operation: operation,
-            parameters: parameters,
-            headers: headers,
+            headers: {'Content-type': "application/json"},
             body: body
         })
 
@@ -177,21 +167,12 @@ class face extends commonService {
         Group API needs at least 2 candidate faces and 1000 at most. We suggest to try Face - Verify when you only have 2 candidate faces.
         @returns {Promise.<object>}
     */
-    group({ parameters, headers, body }) {
+    group({ parameters, body }) {
 
         const operation = {
             "path": "face/v1.0/group",
             "method": "POST",
             "operationId": "563879b61984550f30395238",
-            "headers": [{
-                "name": "Content-Type",
-                "description": "Media type of the body sent to the API.",
-                "options": [
-                    "application/json",
-                ],
-                "required": false,
-                "typeName": "string"
-            }],
             "parameters": [{
                 "name": "faceIds",
                 "description": "Array of candidate faceId created by Face - Detect. The maximum is 1000 faces.",
@@ -205,7 +186,7 @@ class face extends commonService {
         return this.makeRequest({
             operation: operation,
             parameters: parameters,
-            headers: headers,
+            headers: {'Content-type': "application/json"},
             body: body
         })
 
@@ -225,21 +206,12 @@ class face extends commonService {
     Try Face - Find Similar when you need to identify similar faces from a face list instead of a person group.
     @returns {Promise.<object>}
     */
-    identify({ parameters, headers, body }) {
+    identify({ body }) {
 
         const operation = {
             "path": "face/v1.0/identify",
             "method": "POST",
             "operationId": "563879b61984550f30395239",
-            "headers": [{
-                "name": "Content-Type",
-                "description": "Media type of the body sent to the API.",
-                "options": [
-                    "application/json",
-                ],
-                "required": false,
-                "typeName": "string"
-            }],
             "parameters": [{
                 "name": "faceIds",
                 "description": "Array of query faces faceIds, created by the Face - Detect. Each of the faces are identified independently. The valid number of faceIds is between [1, 10].",
@@ -273,8 +245,7 @@ class face extends commonService {
 
         return this.makeRequest({
             operation: operation,
-            parameters: parameters,
-            headers: headers,
+            headers: {'Content-type': "application/json"},
             body: body
         })
 
@@ -289,20 +260,11 @@ class face extends commonService {
     For the scenarios that are sensitive to accuracy please make your own judgment.
     @returns {Promise.<object>}
     */
-    verify({ parameters, headers, body }) {
+    verify({ body }) {
 
         const operation = {
             "path": "face/v1.0/verify",
             "method": "POST",
-            "headers": [{
-                "name": "Content-Type",
-                "description": "Media type of the body sent to the API.",
-                "options": [
-                    "application/json",
-                ],
-                "required": false,
-                "typeName": "string"
-            }],
             "parameters": [{
                 "name": "faceId1",
                 "description": "faceId of one face, comes from Face - Detect.",
@@ -322,8 +284,7 @@ class face extends commonService {
 
         return this.makeRequest({
             operation: operation,
-            parameters: parameters,
-            headers: headers,
+            headers: {'Content-type': "application/json"},
             body: body
         })
 
@@ -414,15 +375,6 @@ class face extends commonService {
             "path": "face/v1.0/facelists/{faceListId}",
             "method": "PUT",
             "operationId": "563879b61984550f3039524b",
-            "headers": [{
-                "name": "Content-Type",
-                "description": "Media type of the body sent to the API.",
-                "options": [
-                    "application/json",
-                ],
-                "required": false,
-                "typeName": "string"
-            }],
             "parameters": [{
                 "name": "name",
                 "description": "Name of the created face list, maximum length is 128.",
@@ -450,7 +402,7 @@ class face extends commonService {
         return this.makeRequest({
             operation: operation,
             parameters: parameters,
-            headers: headers,
+            headers: {'Content-type': "application/json"},
             body: body
         })
 
@@ -578,15 +530,6 @@ class face extends commonService {
             "path": "face/v1.0/facelists/{faceListId}",
             "method": "PATCH",
             "operationId": "563879b61984550f3039524e",
-            "headers": [{
-                "name": "Content-Type",
-                "description": "Media type of the body sent to the API.",
-                "options": [
-                    "application/json",
-                ],
-                "required": false,
-                "typeName": "string"
-            }],
             "parameters": [{
                 "name": "faceListId",
                 "description": "Valid character is letter in lower case or digit or '-' or '_', maximum length is 64.",
@@ -614,7 +557,7 @@ class face extends commonService {
         return this.makeRequest({
             operation: operation,
             parameters: parameters,
-            headers: headers,
+            headers: {'Content-type': "application/json"},
             body: body
         })
 
@@ -701,21 +644,12 @@ Concurrency is supported in adding or deleting faces against different persons. 
 The number of persons has a subscription level limit and a person group level limit. Free tier subscriptions have a limit of 1,000 persons per Person Group and 1,000 persons total per subscription. The S0 tier subscriptions have these limits: 10,000 Persons per Person Group, 100M Persons total and 1M Person Groups per subscription.
 @returns {Promise.<object>}
         */
-    createAPerson({ parameters, headers, body }) {
+    createAPerson({ parameters, body }) {
 
         const operation = {
             "path": "face/v1.0/persongroups/{personGroupId}/persons",
             "method": "POST",
             "operationId": "563879b61984550f3039523c",
-            "headers": [{
-                "name": "Content-Type",
-                "description": "Media type of the body sent to the API.",
-                "options": [
-                    "application/json"
-                ],
-                "required": false,
-                "typeName": "string"
-            }],
             "parameters": [{
                 "name": "personGroupId",
                 "description": "The target person's belonging person group's ID.",
@@ -743,7 +677,7 @@ The number of persons has a subscription level limit and a person group level li
         return this.makeRequest({
             operation: operation,
             parameters: parameters,
-            headers: headers,
+            headers: {'Content-type': "application/json"},
             body: body
         })
 
@@ -759,15 +693,6 @@ The number of persons has a subscription level limit and a person group level li
             "path": "face/v1.0/persongroups/{personGroupId}/persons/{personId}",
             "method": "DELETE",
             "operationId": "563879b61984550f3039523d",
-            "headers": [{
-                "name": "Content-Type",
-                "description": "Media type of the body sent to the API.",
-                "options": [
-                    "application/json"
-                ],
-                "required": false,
-                "typeName": "string"
-            }],
             "parameters": [{
                 "name": "personGroupId",
                 "description": "The target person's belonging person group's ID.",
@@ -963,21 +888,12 @@ The last personId returned by current call can be used as the "start" of the nex
      *  Update name or userData of a person.
      * @returns {Promise.<object>}
     */
-    updateAPerson({ parameters, headers, body }) {
+    updateAPerson({ parameters, body }) {
 
         const operation = {
             "path": "face/v1.0/persongroups/{personGroupId}/persons/{personId}",
             "method": "PATCH",
             "operationId": "563879b61984550f30395242",
-            "headers": [{
-                "name": "Content-Type",
-                "description": "Media type of the body sent to the API.",
-                "options": [
-                    "application/json"
-                ],
-                "required": false,
-                "typeName": "string"
-            }],
             "parameters": [{
                 "name": "personGroupId",
                 "description": "The target person's belonging person group's ID.",
@@ -1012,7 +928,7 @@ The last personId returned by current call can be used as the "start" of the nex
         return this.makeRequest({
             operation: operation,
             parameters: parameters,
-            headers: headers,
+            headers: {'Content-type': "application/json"},
             body: body
         })
 
@@ -1022,21 +938,12 @@ The last personId returned by current call can be used as the "start" of the nex
      Update a person persisted face's userData field.
      @returns {Promise.<object>}
     */
-    updateAPersonFace({ parameters, headers, body }) {
+    updateAPersonFace({ parameters, body }) {
 
         const operation = {
             "path": "face/v1.0/persongroups/{personGroupId}/persons/{personId}/persistedFaces/{persistedFaceId}",
             "method": "PATCH",
             "operationId": "563879b61984550f30395243",
-            "headers": [{
-                "name": "Content-Type",
-                "description": "Media type of the body sent to the API.",
-                "options": [
-                    "application/json"
-                ],
-                "required": false,
-                "typeName": "string"
-            }],
             "parameters": [{
                 "name": "personGroupId",
                 "description": "The target person's belonging person group's ID.",
@@ -1071,7 +978,7 @@ The last personId returned by current call can be used as the "start" of the nex
         return this.makeRequest({
             operation: operation,
             parameters: parameters,
-            headers: headers,
+            headers: {'Content-type': "application/json"},
             body: body
         })
 
@@ -1089,15 +996,6 @@ The last personId returned by current call can be used as the "start" of the nex
             "path": "face/v1.0/persongroups/{personGroupId}",
             "method": "PUT",
             "operationId": "563879b61984550f30395244",
-            "headers": [{
-                "name": "Content-Type",
-                "description": "Media type of the body sent to the API.",
-                "options": [
-                    "application/json"
-                ],
-                "required": false,
-                "typeName": "string"
-            }],
             "parameters": [{
                 "name": "personGroupId",
                 "description": "User-provided person group ID as a string. The valid characters include numbers, english letters in lower case, '-' and '_'. The maximum length of the personGroupId is 64.\n	",
@@ -1125,7 +1023,7 @@ The last personId returned by current call can be used as the "start" of the nex
         return this.makeRequest({
             operation: operation,
             parameters: parameters,
-            headers: headers,
+            headers: {'Content-type': "application/json"},
             body: body
         })
 
@@ -1285,21 +1183,12 @@ The last personId returned by current call can be used as the "start" of the nex
      * Update an existing person group's display name and userData. The properties which does not appear in request body will not be updated.
      * @returns {Promise.<object>}
     */
-    updateAPersonGroup({ parameters, headers, body }) {
+    updateAPersonGroup({ parameters, body }) {
 
         const operation = {
             "path": "face/v1.0/persongroups/{personGroupId}",
             "method": "PATCH",
             "operationId": "563879b61984550f3039524a",
-            "headers": [{
-                "name": "Content-Type",
-                "description": "Media type of the body sent to the API.",
-                "options": [
-                    "application/json"
-                ],
-                "required": false,
-                "typeName": "string"
-            }],
             "parameters": [{
                 "name": "personGroupId",
                 "description": "personGroupId of the person group to be updated.",
@@ -1327,7 +1216,7 @@ The last personId returned by current call can be used as the "start" of the nex
         return this.makeRequest({
             operation: operation,
             parameters: parameters,
-            headers: headers,
+            headers: {'Content-type': "application/json"},
             body: body
         })
 

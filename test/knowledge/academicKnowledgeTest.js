@@ -30,12 +30,8 @@ describe('Academic knowledge', () => {
     describe('Calchistogram Post', () => {
         it('should return response', (done) => {
             const body = "expr=And(Composite(AA.AuN=='jaime teevan'),Y>2012)";
-            const headers = {
-                "Content-type": "application/x-www-form-urlencoded"
-            }
 
             client.calcHistogramPost({
-                headers,
                 body
             }).then((response) => {
                 should(response).not.be.undefined();
@@ -68,12 +64,8 @@ describe('Academic knowledge', () => {
     describe('Evaluate Post', () => {
         it('should return response', (done) => {
             const body = "expr=Composite(AA.AuN=='jaime teevan')";
-            const headers = {
-                "Content-type": "application/x-www-form-urlencoded"
-            }
 
             client.evaluatePost({
-                headers,
                 body
             }).then((response) => {
                 should(response).not.be.undefined();
@@ -145,12 +137,8 @@ describe('Academic knowledge', () => {
     describe('Interpret Post', () => {
         it('should return response', (done) => {
             const body = "query=\"papers by jaime\"";
-            const headers = {
-                "Content-type": "application/x-www-form-urlencoded"
-            }
 
             client.interpretPost({
-                headers,
                 body
             }).then((response) => {
                 should(response).not.be.undefined();
@@ -184,12 +172,8 @@ describe('Academic knowledge', () => {
     describe('Post similarity', () => {
         it('should return response', (done) => {
             const body = "s1=home&s2=house";
-            const headers = {
-                "Content-type": "application/x-www-form-urlencoded"
-            }
 
             client.postSimilarity({
-                headers,
                 body
             }).then((response) => {
                 should(response).not.be.undefined();
