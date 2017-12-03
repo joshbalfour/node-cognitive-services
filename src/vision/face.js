@@ -865,14 +865,14 @@ The last personId returned by current call can be used as the "start" of the nex
                 "description": "List persons from the least personId greater than the \"start\". It contains no more than 64 characters. Default is empty.",
                 "value": "",
                 "required": false,
-                "type": "routeParam",
+                "type": "queryStringParam",
                 "typeName": "string"
             }, {
                 "name": "top",
                 "description": "The number of persons to list, ranging in [1, 1000]. Default is 1000.",
                 "value": 1000,
                 "required": false,
-                "type": "routeParam",
+                "type": "queryStringParam",
                 "typeName": "number"
             }]
         };

@@ -164,15 +164,10 @@ class commonService {
                 });
     
                 // query params
-                let i = 0;
+                let queryStringParams = {};
                 operation.parameters.forEach((param) => {
                     if (parameters[param.name] && param.type == 'queryStringParam') {
-                        if (i == 0)
-                            path += '?'
-                        else
-                            path += '&'
-                        path += `${param.name}="${parameters[param.name]}"`
-                        i++;
+                        queryStringParams[param.name] = parameters[param.name];
                     }
                 });
     
@@ -182,7 +177,7 @@ class commonService {
                     uri,
                     method: operation.method,
                     headers,
-                    qs: parameters,
+                    qs: queryStringParams,
                     json: true // GET: Automatically parses the JSON string in the response, POST: Automatically stringifies the body to JSON
                 };
 

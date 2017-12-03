@@ -62,6 +62,33 @@ describe('Face', () => {
 
     })
 
+    after(done => {
+        // delete person
+        var parameters = {
+            personGroupId: personGroupId,
+            personId: personId
+        }
+
+        face.deleteAPerson({
+            parameters
+        }).then((response) => {
+            should(response).be.undefined();
+
+            // delete person group
+            parameters = {
+                personGroupId: personGroupId
+            }
+
+            return face.deleteAPersonGroup({parameters})
+        }).then((response) => {
+            should(response).be.undefined();
+            console.log(response);
+            done();
+        }).catch((err) => {
+            done(err);
+        })
+    })
+
     describe('Face', () => {
         var faceId1, faceId2;
 
@@ -339,10 +366,32 @@ describe('Face', () => {
                 done(err);
             });
         })
+
+        it('should update a person', done => {
+            const parameters = {
+                "personGroupId": personGroupId,
+                "personId": personId
+            };
+
+            const body = {
+                name: 'paul smith',
+                userData: 'updated 2'
+            }
+
+            face.updateAPerson({
+                parameters,
+                body
+            }).then((response) => {
+                should(response).be.undefined();
+                done();
+            }).catch((err) => {
+                done(err);
+            });
+        })
     })
 
     describe('Person group', () => {
-        const personGroupId = 'test-persongroupid';
+        const personGroupId = 'test-persongroup' + makeId(8);
 
         before((done) => {
             // create a face group
@@ -431,7 +480,7 @@ describe('Face', () => {
             })
         })
 
-        it('should train a person group', (done) => {
+        it('should train a person group and get training status', (done) => {
             // create a face list
             var parameters = {
                 personGroupId: personGroupId,
@@ -448,6 +497,22 @@ describe('Face', () => {
             }).then((response) => {
                 should(response).not.be.undefined();
                 should(response).have.properties(['status']);
+                done();
+            }).catch((err) => {
+                done(err);
+            })
+        })
+
+        it('should list persons in a person group', (done) => {
+            var parameters = {
+                personGroupId: personGroupId,
+            };
+
+            face.listPersonsInAPersonGroup({
+                parameters
+            }).then((response) => {
+                should(response).not.be.undefined();
+                should(response).be.Array;
                 done();
             }).catch((err) => {
                 done(err);
