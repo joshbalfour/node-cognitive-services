@@ -70,7 +70,7 @@ export interface computerVisionOptions {
 
 // Analyze Image
 export interface AnalyzeImageOptions {
-	parameters?: AnalyzeImageParameters,
+	parameters: AnalyzeImageParameters,
 	headers?: AnalyzeImageHeaders,
 	body?: { "url"?: string } | any
 }
