@@ -64,9 +64,10 @@ describe('Language understanding (LUIS)', () => {
     describe('ExportApplicationVersion', () => {
         it('should return application version in JSON', (done) => {
 
-            client.exportApplicationVersion().then((response) => {
+            client.exportApplicationVersion()
+            .then((response) => {
                 response.should.not.be.undefined();
-                response.should.have.properties(['luis_schema_version', 'name', 'desc','culture','intents','entities','composites','closedLists','model_features','utterances','model_features'])
+                response.should.have.properties(['luis_schema_version', 'name', 'desc', 'culture', 'intents', 'entities', 'composites', 'closedLists', 'model_features', 'utterances', 'model_features'])
                 done();
             }).catch((err) => {
                 done(err);
