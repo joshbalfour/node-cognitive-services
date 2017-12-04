@@ -51,7 +51,16 @@ export class speakerRecognition {
 	 * The returned JSON array consists of a list of objects that contain the supported phrases.
 	 */
 	listAllSupportedVerificationPhrases(options: listAllSupportedVerificationPhrasesOptions): Promise<listAllSupportedVerificationPhrasesReturnValue>;
-	speakerRecognitionGetStatus(_ref7: any): any;
+	
+	/**
+	 * 
+	 * Get operation status or result. The operation should be created by Speaker Recognition - Identification or Identification Profile - Create Enrollment. 
+	 * And the URL should be retrieved from Operation-Location header of initial POST 202 response
+	 */
+	speakerRecognitionGetStatus(options: speakerRecognitionGetStatusOptions): Promise<speakerRecognitionGetStatusReturnValue>;
+	
+	
+	
 	speakerRecognitionIdentification(_ref8: any): any;
 	speakerRecognitionVerification(_ref9: any): any;
 	verificationProfileCreateEnrollment(_ref11: any): any;
@@ -338,3 +347,89 @@ export interface listAllSupportedVerificationPhrasesOptionsHeaders {
 export interface listAllSupportedVerificationPhrasesReturnValue {
 	phrase: string []
 }
+
+export interface speakerRecognitionGetStatusOptions {
+	URL?: speakerRecognitionGetStatusURL,
+	parameters?: speakerRecognitionGetStatusParameters,
+	headers?: speakerRecognitionGetStatusHeaders
+}
+
+export interface speakerRecognitionGetStatusURL {
+	operationId: string
+	//url: "https://westus.api.cognitive.microsoft.com/spid/v1.0/operations/" + operationId
+}
+
+export interface speakerRecognitionGetStatusParameters {
+	/**
+	 * The operation Id, created by Speaker Recognition - Identification or Identification Profile - Create Enrollment.
+	 */
+	operationId: string
+}
+
+export interface speakerRecognitionGetStatusHeaders {
+	/**
+	 * Subscription key which provides access to this API.
+	 */
+	"Ocp-Apim-Subscription-Key": string
+}
+
+export interface speakerRecognitionGetStatusReturnValue {
+	/**
+	 * The status of the operation.
+		-	notstarted: The operation is not started.
+		- 	running: The operation is running.
+		- 	failed: The operation is finished and failed.
+        - 	succeeded: The operation is finished and succeeded.
+	 */
+	status: string,
+	/**
+	 * Created date of the operation.
+	 */
+	createdDateTime: Date,
+	/**
+	 * Last date of usage for this operation.
+	 */
+	lastActionDateTime: Date,
+	/**
+	 * Detail message returned by this operation. 
+	 * Used in operations with failed status to show detail failure message.
+	 */
+	message: string,
+	/**
+	 * An Json Object contains the processing result. 
+	 * This object exists only when the operation status is succeeded.
+	 */
+	processingResult: string,
+	/**
+	 * Speaker identification profile enrollment status:
+		-	Enrolling: profile is currently enrolling and is not ready for identification.
+		-	Training: profile is currently training and is not ready for identification.
+		-	Enrolled: profile is currently enrolled and is ready for identification.
+	 */
+	EnrollmentStatus: string,
+	/**
+	 * Speaker identification profile enrollment length in seconds of speech.
+	 */
+	enrollmentSpeechTime: number,
+	/**
+	 * Remaining number of speech seconds to complete minimum enrollment.
+	 */
+	remainingEnrollmentSpeechTime: number,
+	/**
+	 * Seconds of useful speech in enrollment audio.
+	 */
+	speechTime: number,
+	/**
+	 * The identified speaker identification profile id.
+	 * If this value is 00000000-0000-0000-0000-000000000000, it means there's no speaker identification profile identified and the audio file to be identified belongs to none of the provided speaker identification profiles.
+	 */
+	identifiedProfileId: number,
+	/**
+	 * The confidence value of the identification.
+		-	Low: The confidence of the identification is low.
+		-	Normal: The confidence of the identification is normal.
+		-	High: The confidence of the identification is high.
+	 */
+	confidence: string
+}
+
