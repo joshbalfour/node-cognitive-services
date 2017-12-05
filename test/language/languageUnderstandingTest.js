@@ -74,5 +74,16 @@ describe('Language understanding (LUIS)', () => {
             });
         })
     })    
-    
+    describe('DownloadApplicationQuerylog', () => {
+        it('should return application query log in CSV', (done) => {
+
+            client.downloadApplicationQuerylog()
+            .then((response) => {
+                response.should.not.be.undefined();
+                done();
+            }).catch((err) => {
+                done(err);
+            });
+        })
+    })      
 })

@@ -128,6 +128,24 @@ class languageUnderstanding extends commonService {
         })
         
     };     
+
+    /** 
+     * Download application query log
+     * @returns {Promise.<object>}
+     */
+    downloadApplicationQuerylog(){
+        
+        const operation = {
+            "path": "luis/api/v2.0/apps/" + this.appID + "/querylogs",
+            "method": "GET"
+        };
+
+        return this.makeRequest({
+            operation: operation
+        })
+        
+    }; 
+
 };
 
 module.exports = languageUnderstanding;
