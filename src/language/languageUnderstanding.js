@@ -95,6 +95,7 @@ class languageUnderstanding extends commonService {
             operation: operation
         })
     };
+    
     /**
      * Gets training status for that version. 
      * @returns {Promise.<object>}
@@ -109,7 +110,24 @@ class languageUnderstanding extends commonService {
         return this.makeRequest({
             operation: operation
         })
-    };        
+    }; 
+
+    /** 
+     * Exports Application version to JSON
+     * @returns {Promise.<object>}
+     */
+    exportApplicationVersion(){
+        
+        const operation = {
+            "path": "luis/api/v2.0/apps/" + this.appID + "/versions/" + this.versionID + "/export",
+            "method": "GET"
+        };
+
+        return this.makeRequest({
+            operation: operation
+        })
+        
+    };     
 };
 
 module.exports = languageUnderstanding;
