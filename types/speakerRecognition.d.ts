@@ -93,12 +93,47 @@ export class speakerRecognition {
 	 */
 	speakerRecognitionVerification(options: SpeakerRecognitionVerificationOptions): Promise<SpeakerRecognitionVerificationReturnValue>;
 	
+	/**
+	 * 
+	 * Enrollment for speaker verification is text-dependent, which means speaker need to choose a specific phrase to use in both enrollment and verification. 
+	 * List of supported phrases can be found in Verification Phrase - List All Supported Verification Phrases.
+	 * The service requires at least 3 enrollments for each speaker before the profile can be used in verification scenarios. 
+	 * It is recommended to use the same device (mic) in both enrollment and verification.
+	 * You should include the enrollment audio file in the request body. The audio file should be at least 1-second-long and no longer than 15 seconds. 
+	 * Each speaker must provide at least three enrollments to the service.
+	 * The audio file format must meet the following requirements.
+	 * Container: WAV
+	 * Encoding: PCM
+	 * Rate: 16K
+	 * Sample Format: 16 bit
+	 * Channels: Mono
+	 */
+	verificationProfileCreateEnrollment(options: VerificationProfileCreateEnrollmentOptions): Promise<VerificationProfileCreateEnrollmentReturnValue>;
 	
-	verificationProfileCreateEnrollment(_ref11: any): any;
-	verificationProfileCreateProfile(_ref12: any): any;
-	verificationProfileDeleteProfile(_ref13: any): any;
-	verificationProfileGetAllProfiles(): any;
-	verificationProfileGetProfile(_ref14: any): any;
+	/**
+	 * Create a new speaker verification profile with specific locale.
+	 * One subscription can only create 1000 speaker verification/identification profiles at most.
+	 */
+	verificationProfileCreateProfile(options: VerificationProfileCreateProfileOptions): Promise<VerificationProfileCreateProfileReturnValue>;
+	
+	/**
+	 * Deletes both speaker verification profile and all associated enrollments permanently from the service.
+	 */
+	verificationProfileDeleteProfile(options: VerificationProfileDeleteProfileOptions): Promise<void>;
+	
+	/**
+	 * Get all speaker verification profiles within the subscription.
+	 */
+	verificationProfileGetAllProfiles(options: VerificationProfileGetAllProfilesOptions): Promise<VerificationProfileGetAllProfilesReturnValue>;
+	
+	/**
+	 * Get a speaker verification profile by verificationProfileId
+	 */
+	verificationProfileGetProfile(options: VerificationProfileGetProfileOptions): Promise<VerificationProfileGetProfileReturnValue>;
+	
+	/**
+	 * 	
+	 */
 	verificationProfileResetEnrollments(_ref15: any): any;
 
 }
@@ -218,31 +253,37 @@ export interface identificationProfileGetReturnValue {
 	 * Id of the created speaker identification profile.
 	 */
 	identificationProfileId: string,
+	
 	/**
 	 * Language locale of the speaker identification profile.
 	 */
 	locale: string,
+	
 	/**
 	 * Total number of useful speech detected in all enrollment audio files provided (seconds).
 	 */
 	enrollmentSpeechTime: number,
+	
 	/**
 	 * Remaining number of speech needed for a successful enrollment (seconds).
 	 */
 	remainingEnrollmentSpeechTime: number,
+	
 	/**
 	 * Created date of the speaker identification profile.
 	 */
 	createdDateTime: Date,
+	
 	/**
 	 * Last date of usage for this profile.
 	 */
 	lastActionDateTime: Date,
+	
 	/**
 	 * Speaker identification profile enrollment status:
-			Enrolling: profile is currently enrolling and is not ready for identification.
-			Training: profile is currently training and is not ready for identification.
-			Enrolled: profile is currently enrolled and is ready for identification.
+	 * Enrolling: profile is currently enrolling and is not ready for identification.
+	 * Training: profile is currently training and is not ready for identification.
+	 * Enrolled: profile is currently enrolled and is ready for identification.
 	 */
 	EnrollmentStatus: string
 }
@@ -505,5 +546,206 @@ export interface SpeakerRecognitionVerificationReturnValue {
 	 * The recognized phrase of the verification audio file.
 	 */
 	phrase: string
+}
+
+export interface VerificationProfileCreateEnrollmentOptions {
+	parameters?: VerificationProfileCreateEnrollmentParameters,
+	headers?: VerificationProfileCreateEnrollmentHeaders
+}
+
+export interface VerificationProfileCreateEnrollmentParameters {
+	/**
+	 * ID of speaker verification profile. GUID returned from Verification Profile - Create Profile API
+	 */
+	verificationProfileId: string
+}
+
+export interface VerificationProfileCreateEnrollmentHeaders {
+	/**
+	 * Media type of the body sent to the API.
+	 */
+	"Content-Type"?: string,
+	
+	/**
+	 * Subscription key which provides access to this API.
+	 */
+	"Ocp-Apim-Subscription-Key"?: string
+}
+
+export interface VerificationProfileCreateEnrollmentReturnValue {
+	/**
+	 * Speaker identification profile enrollment status:
+	 * Enrolling: profile is currently enrolling and is not ready for identification.
+	 * Training: profile is currently training and is not ready for identification.
+	 * Enrolled: profile is currently enrolled and is ready for identification.
+	 */
+	enrollmentStatus: string,
+
+	/**
+	 * The current speaker verification profile enrollments count.
+	 */
+	enrollmentsCount: number,
+	
+	/**
+	 * Remaining number of required enrollments if enrollmentStatus== Enrolling.
+	 */
+	remainingEnrollments: number,	
+
+	/**
+	 * Recognized phrase of the enrollment audio.
+	 */
+	phrase: string
+}
+
+export interface VerificationProfileCreateProfileOptions {
+	headers: VerificationProfileCreateProfileHeaders
+}
+
+export interface VerificationProfileCreateProfileHeaders {
+	/**
+	 * Media type of the body sent to the API.
+	 */
+	"Content-Type"?: string,
+	
+	/**
+	 * Subscription key which provides access to this API.
+	 */
+	"Ocp-Apim-Subscription-Key"?: string
+}
+
+export interface VerificationProfileCreateProfileReturnValue {
+	/**
+	 * Id of the created speaker verification profile.
+	 */
+	verificationProfileId: string
+}
+
+export interface VerificationProfileDeleteProfileOptions {
+	parameters: VerificationProfileDeleteProfileParameters,
+	Headers: VerificationProfileDeleteProfileHeaders
+}
+
+export interface VerificationProfileDeleteProfileParameters {
+	/**
+	 * ID of speaker verification profile. It should be a GUID.
+	 */
+	verificationProfileId: string
+}
+
+export interface VerificationProfileDeleteProfileHeaders {
+	/**
+	 * Subscription key which provides access to this API.
+	 */
+	"Ocp-Apim-Subscription-Key"?: string 
+}
+
+export interface VerificationProfileGetAllProfilesOptions {
+	headers: VerificationProfileGetAllProfilesHeaders
+}
+
+export interface VerificationProfileGetAllProfilesHeaders {
+	/**
+	 * Subscription key which provides access to this API.
+	 */
+	"Ocp-Apim-Subscription-Key"?: string 
+}
+
+export interface VerificationProfileGetAllProfilesReturnValue {
+	/**
+	 * Id of the speaker verification profile.
+	 */
+	verificationProfileId: string,
+	
+	/**
+	 * Language locale of the speaker verification profile.
+	 */
+	locale: string,
+
+	/**
+	 * Speaker enrollments count.
+	 */
+	enrollmentsCount: number,
+
+	/**
+	 * Remaining number of required enrollments if enrollmentStatus== Enrolling.
+	 */
+	remainingEnrollmentsCount: number,
+
+	/**
+	 * Created date of the speaker verification profile.
+	 */
+	createdDateTime: Date,
+
+	/**
+	 * Last date of usage for this profile.
+	 */
+	lastActionDateTime: Date,
+
+	/**
+	 * Speaker identification profile enrollment status:
+	 * Enrolling: profile is currently enrolling and is not ready for identification.
+	 * Training: profile is currently training and is not ready for identification.
+	 * Enrolled: profile is currently enrolled and is ready for identification.
+	 */
+	EnrollmentStatus: string
+}
+
+export interface VerificationProfileGetProfileOptions {
+	parameters: VerificationProfileGetProfileParameters,
+	Headers: VerificationProfileGetProfileHeaders
+}
+
+export interface VerificationProfileGetProfileParameters {
+	/**
+	 * Id of the speaker verification profile.
+	 */
+	verificationProfileId: string,
+}
+
+export interface VerificationProfileGetProfileHeaders {
+	/**
+	 * Subscription key which provides access to this API.
+	 */
+	"Ocp-Apim-Subscription-Key"?: string 
+}
+
+export interface VerificationProfileGetProfileReturnValue {
+	/**
+	 * Id of the speaker verification profile.
+	 */
+	verificationProfileId: string,
+	
+	/**
+	 * Language locale of the speaker verification profile.
+	 */
+	locale: string,
+
+	/**
+	 * Speaker enrollments count.
+	 */
+	enrollmentsCount: number,
+
+	/**
+	 * Remaining number of required enrollments if enrollmentStatus== Enrolling.
+	 */
+	remainingEnrollmentsCount: number,
+
+	/**
+	 * Created date of the speaker verification profile.
+	 */
+	createdDateTime: Date,
+
+	/**
+	 * Last date of usage for this profile.
+	 */
+	lastActionDateTime: Date,
+
+	/**
+	 * Speaker identification profile enrollment status:
+	 * Enrolling: profile is currently enrolling and is not ready for identification.
+	 * Training: profile is currently training and is not ready for identification.
+	 * Enrolled: profile is currently enrolled and is ready for identification.
+	 */
+	EnrollmentStatus: string
 }
 
