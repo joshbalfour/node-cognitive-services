@@ -132,9 +132,9 @@ export class speakerRecognition {
 	verificationProfileGetProfile(options: VerificationProfileGetProfileOptions): Promise<VerificationProfileGetProfileReturnValue>;
 	
 	/**
-	 * 	
+	 * Deletes all enrollments associated with the given speaker’s verification profile permanently from the service.
 	 */
-	verificationProfileResetEnrollments(_ref15: any): any;
+	verificationProfileResetEnrollments(options: VerificationProfileResetEnrollmentsOptions): Promise<void>;
 
 }
 
@@ -747,5 +747,25 @@ export interface VerificationProfileGetProfileReturnValue {
 	 * Enrolled: profile is currently enrolled and is ready for identification.
 	 */
 	EnrollmentStatus: string
+}
+
+export interface VerificationProfileResetEnrollmentsOptions {
+	parameters: VerificationProfileResetEnrollmentsParameters,
+	Headers: VerificationProfileResetEnrollmentsHeaders
+}
+
+export interface VerificationProfileResetEnrollmentsParameters {
+	/**
+	 * Id of the speaker verification profile.
+	 */
+	verificationProfileId: string,
+}
+
+export interface VerificationProfileResetEnrollmentsHeaders {
+	/**
+	 * Subscription key which provides access to this API.
+	 */
+	"Ocp-Apim-Subscription-Key"?: string 
+}
 }
 
