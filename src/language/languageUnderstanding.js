@@ -128,6 +128,24 @@ class languageUnderstanding extends commonService {
         })
         
     };     
+
+    /**
+     * Publishes app. App must be trained before publishing.
+     * @returns {Promise.<object>}
+     */
+    publish(body) {
+        
+        const operation = {
+            "path": "luis/api/v2.0/apps/" + this.appID + "/publish",
+            "method": "POST",
+        };
+
+        return this.makeRequest({
+            operation: operation,
+            headers: {'Content-type': 'application/json'},
+            body:body
+        })
+    };
 };
 
 module.exports = languageUnderstanding;
