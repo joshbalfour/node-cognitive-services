@@ -74,6 +74,22 @@ describe('Language understanding (LUIS)', () => {
             });
         })
     })    
+    describe('DownloadApplicationQuerylog', () => {
+        it('should return array with queries', (done) => {
+
+            client.downloadApplicationQuerylog()
+            .then((response) => {
+                response.should.not.be.undefined();
+                response.should.be.Array;
+                if (response.length > 0) {
+                    response[0].should.have.properties(['Query', 'Response', 'UTC DateTime']);
+                }
+                done();
+            }).catch((err) => {
+                done(err);
+            });
+        })
+    }) 
     describe('Publish', () => {
         it('should publish model', (done) => {
 
@@ -92,5 +108,5 @@ describe('Language understanding (LUIS)', () => {
                 done(err);
             });
         })
-    })    
+    })   
 })

@@ -1,4 +1,5 @@
 const commonService = require('../commonService');
+const csv = require('fast-csv');
 
 /**
  * Language Understanding API is a cloud-based service that provides advanced natural language processing over raw text, and intent and entity detection.
@@ -128,7 +129,38 @@ class languageUnderstanding extends commonService {
         })
         
     };     
+    /** 
+     * Gets the query logs of the past month for the application.
+     * @returns {Promise.<object>}
+     */
+    downloadApplicationQuerylog(){
+        
+        const operation = {
+            "path": "luis/api/v2.0/apps/" + this.appID + "/querylogs",
+            "method": "GET"
+        };
 
+        let results = [];
+
+        return this.makeRequest({
+            operation: operation
+        })
+        .then(csvString => {
+            return new Promise((resolve, reject) => {
+                csv
+                .fromString(csvString, {headers: true})
+                .on("data", parsedObject => {
+                    results.push(parsedObject);
+                })
+                .on("end", () => {
+                    resolve(results);
+                })
+                .on("error", err => {
+                    reject(err);
+                })
+            })
+        })
+    }; 
     /**
      * Publishes app. App must be trained before publishing.
      * @returns {Promise.<object>}
