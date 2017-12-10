@@ -129,7 +129,6 @@ class languageUnderstanding extends commonService {
         })
         
     };     
-
     /** 
      * Gets the query logs of the past month for the application.
      * @returns {Promise.<object>}
@@ -162,7 +161,46 @@ class languageUnderstanding extends commonService {
             })
         })
     }; 
+    /**
+     * Publishes app. App must be trained before publishing.
+     * @returns {Promise.<object>}
+     */
+    publish(body) {
+        
+        const operation = {
+            "path": "luis/api/v2.0/apps/" + this.appID + "/publish",
+            "method": "POST",
+            "parameters": [{
+                "name": "versionId",
+                "description": "Version of the app. Default is '0.1', 10 char max ",
+                "value": "0.1",
+                "required": true,
+                "type": "inBody",
+                "typeName": "string"
+            }, {
+                "name": "isStaging",
+                "description": "Publish destination: staging or production.",
+                "value": null,
+                "required": false,
+                "type": "inBody",
+                "typeName": "boolean"
+            }, {
+                "name": "region",
+                "description": "Azure region",
+                "value": null,
+                "required": false,
+                "type": "inBody",
+                "typeName": "string",
+                "options" : ["westus", "eastus2", "westcentralus", "westeurope", "southeastasia"]
+            }]
+        };
 
+        return this.makeRequest({
+            operation: operation,
+            headers: {'Content-type': 'application/json'},
+            body:body
+        })
+    };
 };
 
 module.exports = languageUnderstanding;

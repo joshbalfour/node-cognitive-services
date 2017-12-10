@@ -89,5 +89,24 @@ describe('Language understanding (LUIS)', () => {
                 done(err);
             });
         })
-    })      
+    }) 
+    describe('Publish', () => {
+        it('should publish model', (done) => {
+
+            var body = {
+                "versionId": "0.1",
+                "isStaging": false,
+                "region": "westus"
+             };
+
+            client.publish(body)
+            .then((response) => {
+                response.should.not.be.undefined();
+                response.should.have.properties(['versionId', 'isStaging', 'endpointUrl','endpointRegion','region','assignedEndpointKey','endpointRegion','publishedDateTime']);
+                done();
+            }).catch((err) => {
+                done(err);
+            });
+        })
+    })   
 })
