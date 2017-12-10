@@ -28,6 +28,7 @@
   ],
   "repository": "https://github.com/joshbalfour/node-cognitive-services",
   "dependencies": {
+    "fast-csv": "^2.4.1", 
     "request": "^2.81.0",
     "request-promise": "^4.2.1",
     "xml2js": "^0.4.19",
