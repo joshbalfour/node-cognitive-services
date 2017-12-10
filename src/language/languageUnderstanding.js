@@ -131,7 +131,7 @@ class languageUnderstanding extends commonService {
     };     
 
     /** 
-     * Download application query log
+     * Gets the query logs of the past month for the application.
      * @returns {Promise.<object>}
      */
     downloadApplicationQuerylog(){

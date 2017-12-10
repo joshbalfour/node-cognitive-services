@@ -75,7 +75,7 @@ describe('Language understanding (LUIS)', () => {
         })
     })    
     describe('DownloadApplicationQuerylog', () => {
-        it('should return application query log in CSV', (done) => {
+        it('should return array with queries', (done) => {
 
             client.downloadApplicationQuerylog()
             .then((response) => {
