@@ -147,7 +147,7 @@ class languageUnderstanding extends commonService {
                 "typeName": "string"
             }, {
                 "name": "isStaging",
-                "description": "Publish destination: stage or production.",
+                "description": "Publish destination: staging or production.",
                 "value": null,
                 "required": false,
                 "type": "inBody",
