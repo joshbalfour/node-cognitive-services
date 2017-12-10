@@ -138,6 +138,29 @@ class languageUnderstanding extends commonService {
         const operation = {
             "path": "luis/api/v2.0/apps/" + this.appID + "/publish",
             "method": "POST",
+            "parameters": [{
+                "name": "versionId",
+                "description": "Version of the app. Default is '0.1', 10 char max ",
+                "value": "0.1",
+                "required": true,
+                "type": "inBody",
+                "typeName": "string"
+            }, {
+                "name": "isStaging",
+                "description": "Publish destination: stage or production.",
+                "value": null,
+                "required": false,
+                "type": "inBody",
+                "typeName": "boolean"
+            }, {
+                "name": "region",
+                "description": "Azure region",
+                "value": null,
+                "required": false,
+                "type": "inBody",
+                "typeName": "string",
+                "options" : ["westus", "eastus2", "westcentralus", "westeurope", "southeastasia"]
+            }]
         };
 
         return this.makeRequest({
