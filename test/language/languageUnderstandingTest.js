@@ -109,4 +109,25 @@ describe('Language understanding (LUIS)', () => {
             });
         })
     })   
+    describe('Applications', () => {
+        it('should get list of applications', (done) => {
+
+            let parameters = {
+                skip:0,
+                take:100
+            };
+
+            client.getApplications(parameters)
+            .then((response) => {
+                response.should.not.be.undefined();
+                response.should.be.Array;
+                if (response.length > 0) {
+                    response[0].should.have.properties(['id', 'name', 'description','culture','usageScenario','domain','versionsCount','createdDateTime','endpoints','endpointHitsCount','activeVersion']);
+                }
+                done();
+            }).catch((err) => {
+                done(err);
+            });
+        })
+    }) 
 })
