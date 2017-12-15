@@ -1,7 +1,7 @@
 const cognitive = require('../../src/index.js');
 const config = require('../config.js');
 
-describe.only('Language understanding (LUIS)', () => {
+describe('Language understanding (LUIS)', () => {
 
     const client = new cognitive.languageUnderstanding({
         apiKey: config.languageUnderstanding.apiKey,
