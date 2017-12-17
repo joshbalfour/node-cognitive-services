@@ -19,13 +19,20 @@ class languageUnderstanding extends commonService {
         super({ apiKey, endpoint });
         this.versionID = versionID;
         this.appID = appID;
-        this.serviceId = "LUIS.v2.0"
+        this.serviceId = "LUIS.v2.0";
         this.endpoints = [
-            "westus.api.cognitive.microsoft.com",
+            "australiaeast.api.cognitive.microsoft.com",
+            "brazilsouth.api.cognitive.microsoft.com",
+            "eastasia.api.cognitive.microsoft.com",
+            "eastus.api.cognitive.microsoft.com",
             "eastus2.api.cognitive.microsoft.com",
+            "northeurope.api.cognitive.microsoft.com",
+            "southcentralus.api.cognitive.microsoft.com",
+            "southeastasia.api.cognitive.microsoft.com",            
+            "westus.api.cognitive.microsoft.com",
+            "westus2.api.cognitive.microsoft.com",
             "westcentralus.api.cognitive.microsoft.com",
             "westeurope.api.cognitive.microsoft.com",
-            "southeastasia.api.cognitive.microsoft.com"
         ];
     }
 
@@ -204,6 +211,154 @@ class languageUnderstanding extends commonService {
             operation: operation,
             headers: {'Content-type': 'application/json'},
             body:body
+        })
+    };
+    /** 
+     * Returns list of applications for this subscription
+     * skip: default = 0
+     * take: default = 100, max = 500
+     * @returns {Promise.<object>}
+     */
+    getApplications(parameters){
+        
+        const operation = {
+            "path": "luis/api/v2.0/apps/",
+            "method": "GET",
+            "parameters": [{
+                "name": "skip",
+                "description": "Used for paging. The number of entries to skip. Default value is 0.",
+                "value": 0,
+                "required": false,
+                "typeName": "number",
+                "type": "queryStringParam"
+            }, {
+                "name": "take",
+                "description": "Used for paging. The number of entries to return. Maximum page size is 500. Default is 100.",
+                "value": 100,
+                "required": false,
+                "typeName": "number",
+                "type": "queryStringParam"
+            }]
+
+        };
+
+        return this.makeRequest({
+            operation: operation,
+            parameters: parameters
+        })
+        
+    };     
+    /** 
+     * Returns list of labeled example utterances
+     * skip: default = 0
+     * take: default = 100, max = 500
+     * @returns {Promise.<object>}
+     */
+    getLabeledExamples(parameters){
+        
+        const operation = {
+            "path": "luis/api/v2.0/apps/" + this.appID  + "/versions/" + this.versionID + "/examples",
+            "method": "GET",
+            "parameters": [{
+                "name": "skip",
+                "description": "Used for paging. The number of entries to skip. Default value is 0.",
+                "value": 0,
+                "required": false,
+                "typeName": "number",
+                "type": "queryStringParam"
+            }, {
+                "name": "take",
+                "description": "Used for paging. The number of entries to return. Maximum page size is 500. Default is 100.",
+                "value": 100,
+                "required": false,
+                "typeName": "number",
+                "type": "queryStringParam"
+            }]
+
+        };
+
+        return this.makeRequest({
+            operation: operation,
+            parameters: parameters
+        })
+        
+    };     
+    /** 
+     * Returns user access list
+     * @returns {Promise.<object>}
+     */
+    getUserAcessList(){
+        
+        const operation = {
+            "path": "luis/api/v2.0/apps/" + this.appID  + "/permissions",
+            "method": "GET",
+        };
+
+        return this.makeRequest({
+            operation: operation
+        })
+        
+    }; 
+    /** 
+     * Returns list of entities in version
+     * @returns {Promise.<object>}
+     */
+    getVersionEntities(parameters){
+        
+        const operation = {
+            "path": "luis/api/v2.0/apps/" + this.appID  + "/versions/" + this.versionID + "/entities",
+            "method": "GET",
+            "parameters": [{
+                "name": "skip",
+                "description": "Used for paging. The number of entries to skip. Default value is 0.",
+                "value": 0,
+                "required": false,
+                "typeName": "number",
+                "type": "queryStringParam"
+            }, {
+                "name": "take",
+                "description": "Used for paging. The number of entries to return. Maximum page size is 500. Default is 100.",
+                "value": 100,
+                "required": false,
+                "typeName": "number",
+                "type": "queryStringParam"
+            }]
+        };
+
+        return this.makeRequest({
+            operation: operation,
+            parameters
+        })
+    }; 
+    /** 
+     * Returns list of intents in version
+     * @returns {Promise.<object>}
+     */
+    getVersionIntents(parameters){
+        
+        const operation = {
+            "path": "luis/api/v2.0/apps/" + this.appID  + "/versions/" + this.versionID + "/intents",
+            "method": "GET",
+            "parameters": [{
+                "name": "skip",
+                "description": "Used for paging. The number of entries to skip. Default value is 0.",
+                "value": 0,
+                "required": false,
+                "typeName": "number",
+                "type": "queryStringParam"
+            }, {
+                "name": "take",
+                "description": "Used for paging. The number of entries to return. Maximum page size is 500. Default is 100.",
+                "value": 100,
+                "required": false,
+                "typeName": "number",
+                "type": "queryStringParam"
+            }]
+        };
+
+        return this.makeRequest({
+            operation: operation,
+            parameters
         })
     };
 };
