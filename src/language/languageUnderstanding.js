@@ -45,30 +45,35 @@ class languageUnderstanding extends commonService {
                 "description": "The timezone offset for the location of the request",
                 "value": null,
                 "required": false,
+                "type": "queryStringParam",
                 "typeName": "number"
             },{
                 "name": "verbose",
                 "description": "If true will return all intents instead of just the topscoring intent",
                 "value": false,
                 "required": false,
+                "type": "queryStringParam",
                 "typeName": "boolean"
             },{
                 "name": "spellCheck",
                 "description": "enable Bing Spell checking. You must have an Azure Bing spell checker subscription.",
                 "value": false,
                 "required": false,
+                "type": "queryStringParam",
                 "typeName": "boolean"
             },{
                 "name": "staging",
                 "description": "Use staging endpoint.",
                 "value": false,
                 "required": false,
+                "type": "queryStringParam",
                 "typeName": "boolean"
             },{
                 "name": "log",
                 "description": "Log query. Required for suggested review utterances.",
                 "value": false,
                 "required": false,
+                "type": "queryStringParam",
                 "typeName": "boolean"
             }]
         };

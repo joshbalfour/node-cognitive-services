@@ -16,11 +16,18 @@ class textAnalytics extends commonService {
     constructor({ apiKey, endpoint }) {
         super({ apiKey, endpoint });
         this.endpoints = [
-            "westus.api.cognitive.microsoft.com",
+            "australiaeast.api.cognitive.microsoft.com",
+            "brazilsouth.api.cognitive.microsoft.com",
+            "eastasia.api.cognitive.microsoft.com",
+            "eastus.api.cognitive.microsoft.com",
             "eastus2.api.cognitive.microsoft.com",
+            "northeurope.api.cognitive.microsoft.com",
+            "southcentralus.api.cognitive.microsoft.com",
+            "southeastasia.api.cognitive.microsoft.com",            
+            "westus.api.cognitive.microsoft.com",
+            "westus2.api.cognitive.microsoft.com",
             "westcentralus.api.cognitive.microsoft.com",
             "westeurope.api.cognitive.microsoft.com",
-            "southeastasia.api.cognitive.microsoft.com"
         ];
     }
 
@@ -44,7 +51,6 @@ class textAnalytics extends commonService {
                     "text/json"
                 ],
                 "required": false,
-                "typeName": "string"
             }],
         };
 
@@ -76,7 +82,6 @@ class textAnalytics extends commonService {
                     "text/json"
                 ],
                 "required": false,
-                "typeName": "string"
             }]
         };
 
@@ -108,8 +113,7 @@ class textAnalytics extends commonService {
                     "application/json",
                     "text/json"
                 ],
-                "required": false,
-                "typeName": "string"
+                "required": false
             }]
         };
 
