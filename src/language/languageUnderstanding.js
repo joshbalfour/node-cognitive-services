@@ -19,7 +19,7 @@ class languageUnderstanding extends commonService {
         super({ apiKey, endpoint });
         this.versionID = versionID;
         this.appID = appID;
-        this.serviceId = "LUIS.v2.0",
+        this.serviceId = "LUIS.v2.0";
         this.endpoints = [
             "australiaeast.api.cognitive.microsoft.com",
             "brazilsouth.api.cognitive.microsoft.com",
@@ -224,13 +224,15 @@ class languageUnderstanding extends commonService {
                 "description": "Used for paging. The number of entries to skip. Default value is 0.",
                 "value": 0,
                 "required": false,
-                "typeName": "number"
+                "typeName": "number",
+                "type": "queryStringParam"
             }, {
                 "name": "take",
                 "description": "Used for paging. The number of entries to return. Maximum page size is 500. Default is 100.",
                 "value": 100,
                 "required": false,
-                "typeName": "number"
+                "typeName": "number",
+                "type": "queryStringParam"
             }]
 
         };
@@ -257,13 +259,15 @@ class languageUnderstanding extends commonService {
                 "description": "Used for paging. The number of entries to skip. Default value is 0.",
                 "value": 0,
                 "required": false,
-                "typeName": "number"
+                "typeName": "number",
+                "type": "queryStringParam"
             }, {
                 "name": "take",
                 "description": "Used for paging. The number of entries to return. Maximum page size is 500. Default is 100.",
                 "value": 100,
                 "required": false,
-                "typeName": "number"
+                "typeName": "number",
+                "type": "queryStringParam"
             }]
 
         };
@@ -304,13 +308,15 @@ class languageUnderstanding extends commonService {
                 "description": "Used for paging. The number of entries to skip. Default value is 0.",
                 "value": 0,
                 "required": false,
-                "typeName": "number"
+                "typeName": "number",
+                "type": "queryStringParam"
             }, {
                 "name": "take",
                 "description": "Used for paging. The number of entries to return. Maximum page size is 500. Default is 100.",
                 "value": 100,
                 "required": false,
-                "typeName": "number"
+                "typeName": "number",
+                "type": "queryStringParam"
             }]
         };
 
@@ -333,13 +339,15 @@ class languageUnderstanding extends commonService {
                 "description": "Used for paging. The number of entries to skip. Default value is 0.",
                 "value": 0,
                 "required": false,
-                "typeName": "number"
+                "typeName": "number",
+                "type": "queryStringParam"
             }, {
                 "name": "take",
                 "description": "Used for paging. The number of entries to return. Maximum page size is 500. Default is 100.",
                 "value": 100,
                 "required": false,
-                "typeName": "number"
+                "typeName": "number",
+                "type": "queryStringParam"
             }]
         };
 
