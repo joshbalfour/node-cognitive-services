@@ -206,4 +206,137 @@ describe('Language understanding (LUIS)', () => {
             });
         })
     }) 
+    describe('Add Prebuilt Domain', () => {
+        it('should add prebuilt domain', (done) => {
+
+            let body = {
+                "domainName": "Web", 
+                "culture": "en-us"
+            }
+
+            client.addPrebuiltDomain(body)
+            .then((response) => {
+                response.should.not.be.undefined();
+                response.should.be.String().and.have.length(92);
+                done();
+            }).catch((err) => {
+                done(err);
+            });
+        })
+    })
+    describe('Delete app', () => {
+        it('should delete app', (done) => {
+
+            client.deleteApp()
+            .then((response) => {
+                response.should.not.be.undefined();
+                done();
+            }).catch((err) => {
+                done(err);
+            });
+        })
+    })
+    describe('Import app', () => {
+        it('should import app', (done) => {
+
+            var body = {
+                "luis_schema_version": "1.3.1",
+                "name": "TestImportedApp",
+                "versionId": "0.1",
+                "desc": "This is my dummy imported application",
+                "culture": "en-us",
+                "intents": [
+                  {
+                    "name": "BookFlight"
+                  },
+                  {
+                    "name": "GetWeather"
+                  },
+                  {
+                    "name": "None"
+                  }
+                ],
+                "entities": [
+                  {
+                    "name": "Location",
+                    "children": [
+                      "To",
+                      "From"
+                    ]
+                  }
+                ],
+                "composites": [],
+                "closedLists": [],
+                "bing_entities": [
+                  "datetimeV2"
+                ],
+                "actions": [],
+                "model_features": [
+                  {
+                    "name": "Cities",
+                    "mode": true,
+                    "words": "Seattle,New York,Paris,Moscow,Beijin",
+                    "activated": true
+                  }
+                ],
+                "regex_features": [],
+                "utterances": [
+                  {
+                    "text": "book me a flight from redmond to new york next saturday",
+                    "intent": "BookFlight",
+                    "entities": [
+                      {
+                        "entity": "Location::From",
+                        "startPos": 5,
+                        "endPos": 5
+                      },
+                      {
+                        "entity": "Location::To",
+                        "startPos": 7,
+                        "endPos": 8
+                      }
+                    ]
+                  },
+                  {
+                    "text": "what's the weather like in paris?",
+                    "intent": "GetWeather",
+                    "entities": [
+                      {
+                        "entity": "Location",
+                        "startPos": 7,
+                        "endPos": 7
+                      }
+                    ]
+                  }
+                ]
+              };
+
+            client.importApp(body)
+            .then((response) => {
+                response.should.not.be.undefined();
+                response.should.be.String().and.have.length(70);
+                done();
+            }).catch((err) => {
+                done(err);
+            });
+        })
+    })
+    describe('Rename app', () => {
+        it('should rename app', (done) => {
+
+            var body = {
+                "name": "MyFirstRenamedDummyAp",
+                "description": "This is my first modified dummy description"
+            };
+
+            client.deleteApp(body)
+            .then((response) => {
+                response.should.not.be.undefined();
+                response.should.have.properties(['code', 'message']);
+               done();
+            }).catch((err) => {
+                done(err);
+            });
+        })
+    })
 })

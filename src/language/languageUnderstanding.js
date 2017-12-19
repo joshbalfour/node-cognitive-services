@@ -361,6 +361,73 @@ class languageUnderstanding extends commonService {
             parameters
         })
     };
+    /**
+     * Add prebuilt domain
+     * @returns {Promise.<object>}
+     */
+    addPrebuiltDomain(body) {
+        
+        const operation = {
+            "path": "luis/api/v2.0/apps/customprebuiltdomains",
+            "method": "POST"
+        };
+
+        return this.makeRequest({
+            operation: operation,
+            headers: {'Content-type': 'application/json'},
+            body:body
+        })
+    };
+    /**
+     * Delete app
+     * @returns {Promise.<object>}
+     */
+    deleteApp() {
+        
+        const operation = {
+            "path": "luis/api/v2.0/apps/" + this.appID,
+            "method": "DELETE"
+        };
+
+        return this.makeRequest({
+            operation: operation,
+            headers: {'Content-type': 'application/json'}
+        })
+    };
+    /**
+     * Import app
+     * @returns {Promise.<object>}
+     */
+    importApp(body) {
+        
+        const operation = {
+            "path": "luis/api/v2.0/apps/import?appName",
+            "method": "POST"
+        };
+
+        return this.makeRequest({
+            operation: operation,
+            headers: {'Content-type': 'application/json'},
+            body:body
+        })
+    };
+    /**
+     * Rename app
+     * @returns {Promise.<object>}
+     */
+    renameApp(body) {
+        
+        const operation = {
+            "path": "luis/api/v2.0/apps/" + this.appID,
+            "method": "PUT"
+        };
+
+        return this.makeRequest({
+            operation: operation,
+            headers: {'Content-type': 'application/json'},
+            body:body
+        })
+    };
 };
 
 module.exports = languageUnderstanding;
