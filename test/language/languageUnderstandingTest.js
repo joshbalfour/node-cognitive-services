@@ -236,7 +236,7 @@ describe('Language understanding (LUIS)', () => {
             });
         })
     })
-    describe.only('Import app', () => {
+    describe('Import app', () => {
         it('should import app', (done) => {
 
             var parameters = {
@@ -318,7 +318,6 @@ describe('Language understanding (LUIS)', () => {
             client.importApp(parameters, body)
             .then((response) => {
                 response.should.not.be.undefined();
-                console.log(response);
                 response.should.be.String().and.have.length(70);
                 done();
             }).catch((err) => {

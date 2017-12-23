@@ -369,7 +369,22 @@ class languageUnderstanding extends commonService {
         
         const operation = {
             "path": "luis/api/v2.0/apps/customprebuiltdomains",
-            "method": "POST"
+            "method": "POST",
+            "parameters": [{
+                "name": "domainName",
+                "description": "The domain name",
+                "value": null,
+                "required": true,
+                "type": "inBody",
+                "typeName": "string"
+            }, {
+                "name": "culture",
+                "description": "The culture.",
+                "value": null,
+                "required": true,
+                "type": "inBody",
+                "typeName": "string"
+            }]
         };
 
         return this.makeRequest({
