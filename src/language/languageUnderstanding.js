@@ -436,7 +436,7 @@ class languageUnderstanding extends commonService {
         })
     };
     /**
-     * Rename app
+     * Updates the name or description of the application.
      * @returns {Promise.<object>}
      */
     renameApp(body) {
@@ -444,7 +444,21 @@ class languageUnderstanding extends commonService {
         const operation = {
             "path": "luis/api/v2.0/apps/" + this.appID,
             "method": "PUT",
-
+            "parameters": [{
+                "name": "name",
+                "description": "New name of the application",
+                "value": null,
+                "required": true,
+                "type": "inBody",
+                "typeName": "string"
+            }, {
+                "name": "description",
+                "description": "New description of the application",
+                "value": null,
+                "required": true,
+                "type": "inBody",
+                "typeName": "string"
+            }]
         };
 
         return this.makeRequest({
