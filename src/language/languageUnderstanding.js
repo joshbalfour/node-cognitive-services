@@ -398,17 +398,26 @@ class languageUnderstanding extends commonService {
      * Import app
      * @returns {Promise.<object>}
      */
-    importApp(body) {
+    importApp(parameters, body) {
         
         const operation = {
             "path": "luis/api/v2.0/apps/import?appName",
-            "method": "POST"
+            "method": "POST",
+            "parameters": [{
+                "name": "appName",
+                "description": "The imported application name.",
+                "value": null,
+                "required": false,
+                "type": "queryStringParam",
+                "typeName": "string"
+            }]
         };
 
         return this.makeRequest({
             operation: operation,
             headers: {'Content-type': 'application/json'},
-            body:body
+            body:body,
+            parameters:parameters
         })
     };
     /**
@@ -419,7 +428,8 @@ class languageUnderstanding extends commonService {
         
         const operation = {
             "path": "luis/api/v2.0/apps/" + this.appID,
-            "method": "PUT"
+            "method": "PUT",
+
         };
 
         return this.makeRequest({

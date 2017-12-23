@@ -236,8 +236,12 @@ describe('Language understanding (LUIS)', () => {
             });
         })
     })
-    describe('Import app', () => {
+    describe.only('Import app', () => {
         it('should import app', (done) => {
+
+            var parameters = {
+                "appName":"testName-nodeLib"
+            };
 
             var body = {
                 "luis_schema_version": "1.3.1",
@@ -311,9 +315,10 @@ describe('Language understanding (LUIS)', () => {
                 ]
               };
 
-            client.importApp(body)
+            client.importApp(parameters, body)
             .then((response) => {
                 response.should.not.be.undefined();
+                console.log(response);
                 response.should.be.String().and.have.length(70);
                 done();
             }).catch((err) => {
