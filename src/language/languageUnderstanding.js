@@ -362,7 +362,7 @@ class languageUnderstanding extends commonService {
         })
     };
     /**
-     * Add prebuilt domain
+     * Adds a prebuilt domain along with its models as a new application.
      * @returns {Promise.<object>}
      */
     addPrebuiltDomain(body) {
