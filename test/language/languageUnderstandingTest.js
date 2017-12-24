@@ -2,6 +2,21 @@ const cognitive = require('../../src/index.js');
 const config = require('../config.js');
 const promiseRetry = require('promise-retry');
 
+/*
+
+You only need to set the apiKey for these tests. 
+
+The app created is the prebuilt "Web" app. Creation of the app
+will fail if your LUIS account already has an app with the 
+name "Web". 
+
+Each time the app is created, its apiKey is displayed along
+with the count of training status calls. Usually, it takes more 
+than 1 call to return successfully trained status. This test will 
+not try more than retryCount times and wait retryInterval between tries. 
+
+*/
+
 describe.only('Language understanding (LUIS)', () => {
 
     const retryCount = 10;
