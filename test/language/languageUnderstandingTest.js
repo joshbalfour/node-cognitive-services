@@ -1,7 +1,7 @@
 const cognitive = require('../../src/index.js');
 const config = require('../config.js');
 const promiseRetry = require('promise-retry');
-
+const promiseDelay = require('sleep-promise');
 /*
 
 You only need to set the apiKey for these tests. 
@@ -19,64 +19,63 @@ not try more than retryCount times and wait retryInterval between tries.
 
 describe.only('Language understanding (LUIS)', () => {
 
+    const defaultVersionID = "0.1";
     const retryCount = 10;
     const retryInterval = 1000;
+    let count = 0;
 
     const client = new cognitive.languageUnderstanding({
         apiKey: config.languageUnderstanding.apiKey,
-        appID: config.languageUnderstanding.appID,
-        versionID: config.languageUnderstanding.versionID,
         endpoint: config.languageUnderstanding.endpoint
     });
-    var isTrained = (trainingStatus) => {
-        var untrainedModels = trainingStatus.filter(model => {
-            if( model.details.status === 'Fail' || model.details.status === 'InProgress') return model; 
-        });
-        return (untrainedModels.length===0) ? true : false;
-    }
+
     var waitUntilTrained = (client) => {
 
+        count += 1;
+
         return promiseRetry((retry, number) => {
-        
-            return client.getTrainStatus()
-            .then(response => {
+
+            return promiseDelay(retryInterval)
+            .then( () => {
+                return client.getTrainStatus();
+            }).then(response => {
                 // 2xx http response 
                 let trained = client.isTrained(response);
+
                 console.log(number + " trained = " + trained);
-                if (!trained)retry("not trained");
+
+                if (count < retryCount && !trained) retry("not trained");
+                
                 return response;
             })
             .catch((err) => {
-                if (err.code === 'ETIMEDOUT') {
-                    retry(err);
-                }
                 throw err;
             });
         });  
     }  
     var createTrainPublishApp = () => {
 
-        client.isTrained = isTrained;
         let body = {
             "domainName": "Web", 
             "culture": "en-us"
         };
-        return client.addPrebuiltDomain(body).then(results =>{
+        return client.addPrebuiltDomain(body)
+        .then(results =>{
             client.appID = results.substring(results.length-36, results.length);
+            client.versionID = defaultVersionID;
+
             console.log(client.appID);
+
             return client.train();
         }).then(results => {
             return waitUntilTrained(client);
         }).then((response) => {
             return client.publish({
-                    "versionId": "0.1",
+                    "versionId": client.versionID,
                     "isStaging": false,
                     "region": "westus"
                     });
-        }).then((response) => {
-            return response;
         }).catch(err => {
-            console.log(err);
             throw(err);
         });        
     }
@@ -437,7 +436,7 @@ describe.only('Language understanding (LUIS)', () => {
         })
     
 
-        it('should return response', (done) => {
+        it('should detect Intent', (done) => {
             // optional but recommended
             var parameters = {
                 "log": true, // required to review suggested utterances

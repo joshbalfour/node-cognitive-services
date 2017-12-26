@@ -108,7 +108,16 @@ class languageUnderstanding extends commonService {
             operation: operation
         })
     };
-    
+    /**
+     * Checks if all models of app are trained
+     * @returns {Boolean}
+     */
+    isTrained(trainingStatus) {
+        var untrainedModels = trainingStatus.filter(model => {
+            return model.details.status == 'Fail' || model.details.status == 'InProgress';
+        });
+        return (untrainedModels.length===0);
+    }
     /**
      * Gets training status for that version. 
      * @returns {Promise.<object>}
@@ -416,7 +425,7 @@ class languageUnderstanding extends commonService {
     importApp(parameters, body) {
         
         const operation = {
-            "path": "luis/api/v2.0/apps/import?appName",
+            "path": "luis/api/v2.0/apps/import",
             "method": "POST",
             "parameters": [{
                 "name": "appName",
