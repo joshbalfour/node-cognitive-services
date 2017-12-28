@@ -2,6 +2,10 @@ const cognitive = require('../../src/index.js');
 const config = require('../config.js');
 const promiseRetry = require('promise-retry');
 const promiseDelay = require('sleep-promise');
+
+const Promise = require("bluebird");
+const pLimit = require('p-limit');
+const limit = pLimit(1);
 /*
 
 You only need to set the apiKey for these tests. 
@@ -17,17 +21,34 @@ not try more than retryCount times and wait retryInterval between tries.
 
 */
 
-describe.only('Language understanding (LUIS)', () => {
+const CULTURECOUNT = 12;
+const PREBUILTDOMAIN = [
+    {"en-us" : 21}, 
+    {"zh-cn" : 13},
+    {"fr-fr" : 0}, 
+    {"fr-ca" : 0}, 
+    {"es-es" : 0}, 
+    {"es-mx" : 0}, 
+    {"it-it" : 0}, 
+    {"de-de" : 0}, 
+    {"ja-jp" : 0}, 
+    {"pt-br" : 0}, 
+    {"ko-kr" : 0},
+    {"nl-nl" : 0}
+];
+
+describe('Language understanding (LUIS)', () => {
 
     const defaultVersionID = "0.1";
     const retryCount = 10;
-    const retryInterval = 1000;
+    const retryInterval = 2000;
     let count = 0;
 
     const client = new cognitive.languageUnderstanding({
         apiKey: config.languageUnderstanding.apiKey,
         endpoint: config.languageUnderstanding.endpoint
     });
+
 
     var waitUntilTrained = (client) => {
 
@@ -131,7 +152,136 @@ describe.only('Language understanding (LUIS)', () => {
                 done(err);
             });
         })
+        it('should get list of LUIS assistants', (done) => {
+
+            client.getLUIS(client.INFO.ASSISTANT)
+            .then((response) => {
+                response.should.not.be.undefined();
+                response.should.have.properties(['endpointKeys', 'endpointUrls']);
+                done();
+            }).catch((err) => {
+                console.log(err);
+                done(err);
+            });
+        })
+        it('should get list of LUIS domains', (done) => {
+
+            client.getLUIS(client.INFO.DOMAIN)
+            .then((response) => {
+                response.should.not.be.undefined();
+                response.should.be.Array;
+                response.should.have.length(30);
+                done();
+            }).catch((err) => {
+                done(err);
+            });
+        })
+        it('should get list of LUIS usagescenarios', (done) => {
+
+            client.getLUIS(client.INFO.USAGESCENARIO)
+            .then((response) => {
+                response.should.not.be.undefined();
+                response.should.be.Array;
+                response.should.have.length(4);
+                done();
+            }).catch((err) => {
+                done(err);
+            });
+        })
+        it('should get list of LUIS cultures', (done) => {
+
+            client.getLUIS(client.INFO.CULTURE)
+            .then((response) => {
+                response.should.not.be.undefined();
+                response.should.be.Array;
+                response.should.have.length(12);
+                response[0].should.have.properties['name','code'];
+                console.log(response);
+                done();
+            }).catch((err) => {
+                done(err);
+            });
+        })
+        it('should get list of LUIS custom prebuilt domains', (done) => {
+    
+            client.getLUIS(client.INFO.PREBUILTDOMAIN)
+            .then((response) => {
+                response.should.not.be.undefined();
+                response.should.be.Array;
+                response.should.have.length(34);
+                response[0].should.have.properties['name','culture','description','examples','intents','entities'];
+                response[0].intents.should.be.Array;
+                response[0].entities.should.be.Array;
+                response[0].intents[0].should.have.properties['name','description','examples'];
+                response[0].entities[0].should.have.properties['name','description','examples'];
+                done();
+            }).catch((err) => {
+                done(err);
+            });
+        })
+        it('should get list of LUIS custom prebuilt domains for en-us culture', (done) => {
+
+            client.getLUIS(client.INFO.PREBUILTDOMAIN, 'en-us')
+            .then((response) => {
+                response.should.not.be.undefined();
+                response.should.be.Array;
+                response.should.have.length(34);
+                response[0].should.have.properties['name','culture','description','examples','intents','entities'];
+                response[0].intents.should.be.Array;
+                response[0].entities.should.be.Array;
+                response[0].intents[0].should.have.properties['name','description','examples'];
+                response[0].entities[0].should.have.properties['name','description','examples'];
+                done();
+            }).catch((err) => {
+                done(err);
+            });
+        })
+        it.only('should get list of LUIS custom prebuilt domains for each supported culture', (done) => {
+    
+            client.getLUIS(client.INFO.CULTURE)
+            .then(cultures => {
+                let arrPromises = [];
+                let waitForTime = retryInterval;
+    
+                cultures.forEach(culture => {
+                    arrPromises.push(limit(() => client.getLUIS(client.INFO.PREBUILTDOMAIN, culture.code)));
+                    arrPromises.push(limit(() => promiseDelay(2000)));
+                });
+                arrPromises.should.have.length(CULTURECOUNT*2);
+                return Promise.all(arrPromises);
+            }).then(returnedPromises => {
+    
+                // prune out the promiseDelay responses
+                let responses = returnedPromises.filter(x => x!==undefined);
+
+                responses.should.have.length(CULTURECOUNT);
+                responses.forEach(prebuiltDomainByCulture => {
+
+                    prebuiltDomainByCulture.should.not.be.undefined();
+                    prebuiltDomainByCulture.should.be.Array;
+
+                    if(prebuiltDomainByCulture.length>0){
+
+                        var foundCulture = PREBUILTDOMAIN.find((obj) => {
+                            return (Object.keys(obj)[0]===prebuiltDomainByCulture[0].culture);
+                        });
+
+                        foundCulture.should.not.be.undefined();
+                        var foundCount = foundCulture[prebuiltDomainByCulture[0].culture];
+                        foundCount.should.not.equal(0);
+
+                        prebuiltDomainByCulture.should.have.length(foundCount);
+                }
+                    
+                });
+                done();
+            }).catch((err) => {
+                done(err);
+            });
+        })
     })
+
+
     describe("Delete app after", () => {
         afterEach((done) => {
             deleteTestApp()
@@ -224,7 +374,7 @@ describe.only('Language understanding (LUIS)', () => {
             .then((response) => {
                 response.should.not.be.undefined();
                 response.should.be.String().and.have.length(70);
-
+                console.log("import app returns =" + response);
                 // get appID to delete in After()
                 client.appID = response.substring(response.length-36, response.length);
                 done();
@@ -243,7 +393,7 @@ describe.only('Language understanding (LUIS)', () => {
             .then((response) => {
                 response.should.not.be.undefined();
                 response.should.be.String().and.have.length(92);
-
+                console.log("addPrebuiltDomain app returns =" + response);
                 // get appID to delete in After()
                 client.appID = response.substring(response.length-36, response.length);
                 done();

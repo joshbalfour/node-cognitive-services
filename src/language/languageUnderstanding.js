@@ -1,6 +1,8 @@
 const commonService = require('../commonService');
 const csv = require('fast-csv');
 
+
+
 /**
  * Language Understanding API is a cloud-based service that provides advanced natural language processing over raw text, and intent and entity detection.
  * Your LUIS domain-specific model must be in built, trained, and published before using this endpoint.
@@ -34,7 +36,38 @@ class languageUnderstanding extends commonService {
             "westcentralus.api.cognitive.microsoft.com",
             "westeurope.api.cognitive.microsoft.com",
         ];
+        this.INFO = {
+            ASSISTANT: "assistants",
+            DOMAIN: "domains",
+            USAGESCENARIO: "usagescenarios",
+            CULTURE: "cultures",
+            PREBUILTDOMAIN: "customprebuiltdomains"
+        };
     }
+
+    /**
+     * info: INFO
+     * culture: string "en-us"
+     * Returns LUIS meta information using enum to determine request
+     * @returns {Promise.<object>}    
+     */
+    getLUIS(info, cultureOnly){
+
+        const operation = {
+            "path": "luis/api/v2.0/apps/" + info,
+            "method": "GET",
+        };
+
+        // add culture for prebult domain
+        if (info === this.INFO.PREBUILTDOMAIN && cultureOnly) operation.path += "/" + cultureOnly;
+
+        return this.makeRequest({
+            operation: operation,
+            headers: {'Content-type': 'application/json'}
+        })
+        
+    }
+
 
     /**
      * Returns the detected intent, entities and entity values with a score for each intent. 
@@ -254,7 +287,7 @@ class languageUnderstanding extends commonService {
         return this.makeRequest({
             operation: operation,
             parameters: parameters
-        })
+        });
         
     };     
     /** 
@@ -400,6 +433,22 @@ class languageUnderstanding extends commonService {
             operation: operation,
             headers: {'Content-type': 'application/json'},
             body:body
+        })
+    };
+    /**
+     * Get prebuilt domains.
+     * @returns {Promise.<object>}
+     */
+    getPrebuiltDomain() {
+        
+        const operation = {
+            "path": "luis/api/v2.0/apps/customprebuiltdomains",
+            "method": "GET"
+        };
+
+        return this.makeRequest({
+            operation: operation,
+            headers: {'Content-type': 'application/json'}
         })
     };
     /**
