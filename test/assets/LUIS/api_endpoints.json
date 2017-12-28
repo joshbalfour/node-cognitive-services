@@ -1,0 +1,9 @@
+{ "westus": "https: //westus.api.cognitive.microsoft.com/luis/v2.0/apps/1fbe915c-da49-44f5-bf9c-7fab8e467ee4",
+    "eastus2": "https: //eastus2.api.cognitive.microsoft.com/luis/v2.0/apps/1fbe915c-da49-44f5-bf9c-7fab8e467ee4",
+    "westcentralus": "https: //westcentralus.api.cognitive.microsoft.com/luis/v2.0/apps/1fbe915c-da49-44f5-bf9c-7fab8e467ee4",
+    "southeastasia": "https: //southeastasia.api.cognitive.microsoft.com/luis/v2.0/apps/1fbe915c-da49-44f5-bf9c-7fab8e467ee4",
+    "southcentralus": "https: //southcentralus.api.cognitive.microsoft.com/luis/v2.0/apps/1fbe915c-da49-44f5-bf9c-7fab8e467ee4",
+    "westus2": "https: //westus2.api.cognitive.microsoft.com/luis/v2.0/apps/1fbe915c-da49-44f5-bf9c-7fab8e467ee4",
+    "eastus": "https: //eastus.api.cognitive.microsoft.com/luis/v2.0/apps/1fbe915c-da49-44f5-bf9c-7fab8e467ee4",
+    "eastasia": "https: //eastasia.api.cognitive.microsoft.com/luis/v2.0/apps/1fbe915c-da49-44f5-bf9c-7fab8e467ee4",
+    "brazilsouth": "https: //brazilsouth.api.cognitive.microsoft.com/luis/v2.0/apps/1fbe915c-da49-44f5-bf9c-7fab8e467ee4" } 

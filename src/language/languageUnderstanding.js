@@ -43,6 +43,9 @@ class languageUnderstanding extends commonService {
             CULTURE: "cultures",
             PREBUILTDOMAIN: "customprebuiltdomains"
         };
+        this.APPINFO = {
+            ENDPOINTS: "endpoints"
+        }
     }
 
     /**
@@ -67,7 +70,24 @@ class languageUnderstanding extends commonService {
         })
         
     }
+    /**
+     * Get app info 
+     * Returns app info
+     * @returns {Promise.<object>}    
+     */
+    getAppInfo(info){
 
+        const operation = {
+            "path": "luis/api/v2.0/apps/" + this.appID + "/" + info,
+            "method": "GET",
+        };
+
+        return this.makeRequest({
+            operation: operation,
+            headers: {'Content-type': 'application/json'}
+        })
+        
+    }
 
     /**
      * Returns the detected intent, entities and entity values with a score for each intent. 
@@ -465,6 +485,41 @@ class languageUnderstanding extends commonService {
         return this.makeRequest({
             operation: operation,
             headers: {'Content-type': 'application/json'}
+        })
+    };
+    /**
+     * Clone app
+     * Body contains new version id: {"version":"0.2"}
+     * @returns {Promise.<object>}
+     */
+    cloneApp(parameters, body) {
+        
+        const operation = {
+            "path": "luis/api/v2.0/apps/" + this.appID + "/versions/" + this.versionID + "/clone",
+            "method": "POST",
+            "parameters": [{
+                "name": "appId",
+                "description": "The application id to clone.",
+                "value": null,
+                "required": true,
+                "type": "queryStringParam",
+                "typeName": "string"
+            },
+            {
+                "name": "versionId",
+                "description": "The version id to clone.",
+                "value": null,
+                "required": true,
+                "type": "queryStringParam",
+                "typeName": "string"
+            }
+        ]};
+
+        return this.makeRequest({
+            operation: operation,
+            headers: {'Content-type': 'application/json'},
+            body:body,
+            parameters:parameters
         })
     };
     /**

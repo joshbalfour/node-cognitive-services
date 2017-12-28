@@ -2,6 +2,9 @@ const cognitive = require('../../src/index.js');
 const config = require('../config.js');
 const promiseRetry = require('promise-retry');
 const promiseDelay = require('sleep-promise');
+const _ = require("underscore");
+const fs = require("fs");
+const path = require('path');
 
 const Promise = require("bluebird");
 const pLimit = require('p-limit');
@@ -236,7 +239,7 @@ describe('Language understanding (LUIS)', () => {
                 done(err);
             });
         })
-        it.only('should get list of LUIS custom prebuilt domains for each supported culture', (done) => {
+        it('should get list of LUIS custom prebuilt domains for each supported culture', (done) => {
     
             client.getLUIS(client.INFO.CULTURE)
             .then(cultures => {
@@ -575,9 +578,15 @@ describe('Language understanding (LUIS)', () => {
                 "description": "This is my first modified dummy description"
             };
 
-            client.renameApp(body)
+            let parameters = {
+                appId:client.appID,
+                versionId:client.versionID
+            };
+
+            client.renameApp(parameters, body)
             .then((response) => {
                 response.should.not.be.undefined();
+                response.should.
                 response.should.have.properties(['code', 'message']);
                 done();
             }).catch((err) => {
@@ -585,6 +594,37 @@ describe('Language understanding (LUIS)', () => {
             });
         })
     
+        it('should clone app', (done) => {
+
+            var body = {"version":"0.2"};
+            var params = {appId:client.appID,versionId:client.versionID};
+
+            client.cloneApp(params, body)
+            .then((response) => {
+                response.should.not.be.undefined();
+                response.should.equal(0.2);
+                done();
+            }).catch((err) => {
+                done(err);
+            });
+        })
+
+        it.only('should get app endpoints', (done) => {
+
+            var info = client.APPINFO.ENDPOINTS;
+
+            client.getAppInfo(info)
+            .then((response) => {
+                response.should.not.be.undefined();
+                let filePath = path.join(__dirname,"../assets/LUIS/api_endpoints.json");
+                let testData = JSON.parse(fs.readFileSync(filePath, "utf-8"));
+                // compare key count - not data since app id changes 
+                _.difference(_.keys(response),_.keys(testData)).should.have.length(0);
+                done();
+            }).catch((err) => {
+                done(err);
+            });
+        })
 
         it('should detect Intent', (done) => {
             // optional but recommended
