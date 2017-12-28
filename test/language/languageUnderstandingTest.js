@@ -40,7 +40,7 @@ const PREBUILTDOMAIN = [
     {"nl-nl" : 0}
 ];
 
-describe('Language understanding (LUIS)', () => {
+describe.only('Language understanding (LUIS)', () => {
 
     const defaultVersionID = "0.1";
     const retryCount = 10;
@@ -199,7 +199,6 @@ describe('Language understanding (LUIS)', () => {
                 response.should.be.Array;
                 response.should.have.length(12);
                 response[0].should.have.properties['name','code'];
-                console.log(response);
                 done();
             }).catch((err) => {
                 done(err);
@@ -228,7 +227,7 @@ describe('Language understanding (LUIS)', () => {
             .then((response) => {
                 response.should.not.be.undefined();
                 response.should.be.Array;
-                response.should.have.length(34);
+                response.should.have.length(21);
                 response[0].should.have.properties['name','culture','description','examples','intents','entities'];
                 response[0].intents.should.be.Array;
                 response[0].entities.should.be.Array;
@@ -298,7 +297,7 @@ describe('Language understanding (LUIS)', () => {
         it('should import app', (done) => {
 
             var parameters = {
-                "appName":"mochatest-importapp"
+                "appName":"Unit-" + new Date().toISOString()
             };
 
             var body = {
@@ -377,7 +376,6 @@ describe('Language understanding (LUIS)', () => {
             .then((response) => {
                 response.should.not.be.undefined();
                 response.should.be.String().and.have.length(70);
-                console.log("import app returns =" + response);
                 // get appID to delete in After()
                 client.appID = response.substring(response.length-36, response.length);
                 done();
@@ -396,7 +394,6 @@ describe('Language understanding (LUIS)', () => {
             .then((response) => {
                 response.should.not.be.undefined();
                 response.should.be.String().and.have.length(92);
-                console.log("addPrebuiltDomain app returns =" + response);
                 // get appID to delete in After()
                 client.appID = response.substring(response.length-36, response.length);
                 done();
@@ -578,15 +575,10 @@ describe('Language understanding (LUIS)', () => {
                 "description": "This is my first modified dummy description"
             };
 
-            let parameters = {
-                appId:client.appID,
-                versionId:client.versionID
-            };
-
-            client.renameApp(parameters, body)
+            client.renameApp(body)
             .then((response) => {
                 response.should.not.be.undefined();
-                response.should.
+                response.should.be.Array;
                 response.should.have.properties(['code', 'message']);
                 done();
             }).catch((err) => {
@@ -609,7 +601,7 @@ describe('Language understanding (LUIS)', () => {
             });
         })
 
-        it.only('should get app endpoints', (done) => {
+        it('should get app endpoints', (done) => {
 
             var info = client.APPINFO.ENDPOINTS;
 
@@ -620,6 +612,41 @@ describe('Language understanding (LUIS)', () => {
                 let testData = JSON.parse(fs.readFileSync(filePath, "utf-8"));
                 // compare key count - not data since app id changes 
                 _.difference(_.keys(response),_.keys(testData)).should.have.length(0);
+                done();
+            }).catch((err) => {
+                done(err);
+            });
+        })
+        it('should get app settings', (done) => {
+
+            var info = client.APPINFO.SETTINGS;
+
+            client.getAppInfo(info)
+            .then((response) => {
+                response.should.not.be.undefined();
+                response.should.have.properties(['id', 'public']);
+                response.id.should.have.length(36);
+                response.public.should.equal(false);
+                done();
+            }).catch((err) => {
+                done(err);
+            });
+        })
+        it('should get app versions', (done) => {
+
+            var info = client.APPINFO.VERSIONS;
+
+            client.getAppInfo(info)
+            .then((response) => {
+                response.should.not.be.undefined();
+                response.should.be.Array;
+                if(response.length>0){
+                    _.keys(response[0]).should.have.length(12);
+                    response[0].should.have.properties(['version', 'createdDateTime',"lastModifiedDateTime","lastTrainedDateTime","lastPublishedDateTime","endpointUrl","assignedEndpointKey","externalApiKeys","intentsCount","entitiesCount","endpointHitsCount"]);
+
+                    if(response[0].assignedEndpointKey) response[0].assignedEndpointKey.should.have.properties(["SubscriptionKey","SubscriptionName"]);
+
+                }
                 done();
             }).catch((err) => {
                 done(err);
@@ -642,7 +669,6 @@ describe('Language understanding (LUIS)', () => {
             }).then((response) => {
                 response.should.not.be.undefined();
                 response.should.have.properties(['query', 'topScoringIntent', 'entities']);
-                //console.log(response);
                 done();
             }).catch((err) => {
                 done(err);

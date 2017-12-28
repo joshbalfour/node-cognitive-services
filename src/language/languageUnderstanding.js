@@ -44,7 +44,9 @@ class languageUnderstanding extends commonService {
             PREBUILTDOMAIN: "customprebuiltdomains"
         };
         this.APPINFO = {
-            ENDPOINTS: "endpoints"
+            ENDPOINTS: "endpoints",
+            SETTINGS: "settings",
+            VERSIONS: "versions"
         }
     }
 
