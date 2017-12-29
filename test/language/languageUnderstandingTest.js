@@ -372,8 +372,10 @@ describe.only('Language understanding (LUIS)', () => {
                 ]
             };
 
-            client.importApp(parameters, body)
-            .then((response) => {
+            promiseDelay(retryInterval)
+            .then(() => {
+                return client.importApp(parameters, body);
+            }).then((response) => {
                 response.should.not.be.undefined();
                 response.should.be.String().and.have.length(70);
                 // get appID to delete in After()
@@ -390,8 +392,10 @@ describe.only('Language understanding (LUIS)', () => {
                 "culture": "en-us"
             }
 
-            client.addPrebuiltDomain(body)
-            .then((response) => {
+            promiseDelay(retryInterval)
+            .then(() => {
+                return client.addPrebuiltDomain(body);
+            }).then((response) => {
                 response.should.not.be.undefined();
                 response.should.be.String().and.have.length(92);
                 // get appID to delete in After()
@@ -404,16 +408,20 @@ describe.only('Language understanding (LUIS)', () => {
     })      
     describe("Create app before, delete app after", () => {
         before((done) => {
-            createTrainPublishApp()
-            .then(results => {
+            promiseDelay(retryInterval)
+            .then(() => {
+                return createTrainPublishApp();
+            }).then(results => {
                 done();
             }).catch(err => {
                 done(err);
             });
         });
         after((done) => {
-            deleteTestApp()
-            .then((response) => {
+            promiseDelay(retryInterval)
+            .then(() => {
+                return deleteTestApp();
+            }).then((response) => {
                 response.should.not.be.undefined();
                 done();
             }).catch((err) => {
@@ -422,8 +430,10 @@ describe.only('Language understanding (LUIS)', () => {
         });
         it('should train model', (done) => {
 
-            client.train()
-            .then((response) => {
+            promiseDelay(retryInterval)
+            .then(() => {
+                return client.train();
+            }).then((response) => {
                 response.should.not.be.undefined();
                 response.should.have.properties(['statusId', 'status']);
                 done();
@@ -434,8 +444,10 @@ describe.only('Language understanding (LUIS)', () => {
 
         it('should return training status', (done) => {
 
-            client.getTrainStatus()
-            .then((response) => {
+            promiseDelay(retryInterval)
+            .then(() => {
+                return client.getTrainStatus();
+            }).then((response) => {
                 response.should.not.be.undefined();
                 response.should.be.instanceof(Array);
                 response[0].should.have.properties(['modelId', 'details'])
@@ -447,8 +459,10 @@ describe.only('Language understanding (LUIS)', () => {
 
         it('should return application version in JSON', (done) => {
 
-            client.exportApplicationVersion()
-            .then((response) => {
+            promiseDelay(retryInterval)
+            .then(() => {
+                return client.exportApplicationVersion();
+            }).then((response) => {
                 response.should.not.be.undefined();
                 response.should.have.properties(['luis_schema_version', 'name', 'desc', 'culture', 'intents', 'entities', 'composites', 'closedLists', 'model_features', 'utterances', 'model_features'])
                 done();
@@ -460,8 +474,10 @@ describe.only('Language understanding (LUIS)', () => {
 
         it('should return array with queries', (done) => {
 
-            client.downloadApplicationQuerylog()
-            .then((response) => {
+            promiseDelay(retryInterval)
+            .then(() => {
+                return client.downloadApplicationQuerylog();
+            }).then((response) => {
                 response.should.not.be.undefined();
                 response.should.be.Array;
                 if (response.length > 0) {
@@ -481,8 +497,10 @@ describe.only('Language understanding (LUIS)', () => {
                 "region": "westus"
                 };
 
-            client.publish(body)
-            .then((response) => {
+            promiseDelay(retryInterval)
+            .then(() => {
+                    return client.publish(body);
+            }).then((response) => {
                 response.should.not.be.undefined();
                 response.should.have.properties(['versionId', 'isStaging', 'endpointUrl','endpointRegion','region','assignedEndpointKey','endpointRegion','publishedDateTime']);
                 done();
@@ -499,8 +517,10 @@ describe.only('Language understanding (LUIS)', () => {
                 take:100
             };
 
-            client.getLabeledExamples(parameters)
-            .then((response) => {
+            promiseDelay(retryInterval)
+            .then(() => {
+                return client.getLabeledExamples(parameters);
+            }).then((response) => {
                 response.should.not.be.undefined();
                 response.should.be.Array;
                 if (response.length > 0) {
@@ -512,20 +532,6 @@ describe.only('Language understanding (LUIS)', () => {
             });
         })
 
-
-        it('should get list of users that have permissions to access your application', (done) => {
-
-            client.getUserAcessList()
-            .then((response) => {
-                response.should.not.be.undefined();
-                response.should.have.properties(['owner', 'emails']);
-                done();
-            }).catch((err) => {
-                done(err);
-            });
-        })
-
-
         it('should get list of entities in version', (done) => {
 
             let parameters = {
@@ -533,8 +539,10 @@ describe.only('Language understanding (LUIS)', () => {
                 take:100
             };
 
-            client.getVersionEntities(parameters)
-            .then((response) => {
+            promiseDelay(retryInterval)
+            .then(() => {
+                return client.getVersionEntities(parameters);
+            }).then((response) => {
                 response.should.not.be.undefined();
                 response.should.be.Array;
                 if (response.length > 0) {
@@ -554,8 +562,10 @@ describe.only('Language understanding (LUIS)', () => {
                 take:100
             };
 
-            client.getVersionIntents(parameters)
-            .then((response) => {
+            promiseDelay(retryInterval)
+            .then(() => {
+                return client.getVersionIntents(parameters);
+            }).then((response) => {
                 response.should.not.be.undefined();
                 response.should.be.Array;
                 if (response.length > 0) {
@@ -575,8 +585,10 @@ describe.only('Language understanding (LUIS)', () => {
                 "description": "This is my first modified dummy description"
             };
 
-            client.updateAppInfo(body, client.APPINFO.RENAME)
-            .then((response) => {
+            promiseDelay(retryInterval)
+            .then(() => {
+                return client.updateAppInfo(body, client.APPINFO.RENAME);
+            }).then((response) => {
                 response.should.not.be.undefined();
                 response.should.be.Array;
                 response.should.have.properties(['code', 'message']);
@@ -587,13 +599,37 @@ describe.only('Language understanding (LUIS)', () => {
                 done(err);
             });
         })
-        it.only('should update app settings', (done) => {
+        it('should update app settings', (done) => {
             var body = {
                 "public": true
             };
 
-            client.updateAppInfo(body,client.APPINFO.SETTINGS)
-            .then((response) => {
+            promiseDelay(retryInterval)
+            .then(() => {
+                return client.updateAppInfo(body,client.APPINFO.SETTINGS);
+            }).then((response) => {
+                response.should.not.be.undefined();
+                response.should.be.Array;
+                response.should.have.properties(['code', 'message']);
+                response.code.should.equal("Success");
+                response.message.should.equal("Operation Successful");
+                done();
+            }).catch((err) => {
+                done(err);
+            });
+        })
+        it('should update app permissions', (done) => {
+            var body = {
+                "emails": [
+                    "test1@domain.com",
+                    "test2@domain.com"
+                ]
+            };
+
+            promiseDelay(retryInterval)
+            .then(() => {
+                return client.updateAppInfo(body,client.APPINFO.PERMISSIONS);
+            }).then((response) => {
                 response.should.not.be.undefined();
                 response.should.be.Array;
                 response.should.have.properties(['code', 'message']);
@@ -610,8 +646,10 @@ describe.only('Language understanding (LUIS)', () => {
             var body = {"version":"0.2"};
             var params = {appId:client.appID,versionId:client.versionID};
 
-            client.cloneApp(params, body)
-            .then((response) => {
+            promiseDelay(retryInterval)
+            .then(() => {
+                return client.cloneApp(params, body);
+            }).then((response) => {
                 response.should.not.be.undefined();
                 response.should.equal(0.2);
                 done();
@@ -624,8 +662,10 @@ describe.only('Language understanding (LUIS)', () => {
 
             var info = client.APPINFO.ENDPOINTS;
 
-            client.getAppInfo(info)
-            .then((response) => {
+            promiseDelay(retryInterval)
+            .then(() => {
+                return client.getAppInfo(info);
+            }).then((response) => {
                 response.should.not.be.undefined();
                 let filePath = path.join(__dirname,"../assets/LUIS/api_endpoints.json");
                 let testData = JSON.parse(fs.readFileSync(filePath, "utf-8"));
@@ -640,12 +680,30 @@ describe.only('Language understanding (LUIS)', () => {
 
             var info = client.APPINFO.SETTINGS;
 
-            client.getAppInfo(info)
-            .then((response) => {
+            promiseDelay(retryInterval)
+            .then(() => {
+                return client.getAppInfo(info);
+            }).then((response) => {
                 response.should.not.be.undefined();
                 response.should.have.properties(['id', 'public']);
                 response.id.should.have.length(36);
-                response.public.should.equal(false);
+                response.public.should.be.oneOf(true,false);
+                done();
+            }).catch((err) => {
+                done(err);
+            });
+        })
+        it('should get app permissions', (done) => {
+
+            var info = client.APPINFO.PERMISSIONS;
+
+            promiseDelay(retryInterval)
+            .then(() => {
+                return client.getAppInfo(info);
+            }).then((response) => {
+                response.should.not.be.undefined();
+                response.should.have.properties(['owner', 'emails']);
+                response.owner.should.not.be.undefined();
                 done();
             }).catch((err) => {
                 done(err);
@@ -655,8 +713,10 @@ describe.only('Language understanding (LUIS)', () => {
 
             var info = client.APPINFO.VERSIONS;
 
-            client.getAppInfo(info)
-            .then((response) => {
+            promiseDelay(retryInterval)
+            .then(() => {
+                return client.getAppInfo(info);
+            }).then((response) => {
                 response.should.not.be.undefined();
                 response.should.be.Array;
                 if(response.length>0){
@@ -682,9 +742,9 @@ describe.only('Language understanding (LUIS)', () => {
             // query/utterance
             var body = "forward to frank 30 dollars through HSBC";
 
-            client.detectIntent({
-                parameters,
-                body
+            promiseDelay(retryInterval)
+            .then(() => {
+                return client.detectIntent({parameters,body});
             }).then((response) => {
                 response.should.not.be.undefined();
                 response.should.have.properties(['query', 'topScoringIntent', 'entities']);

@@ -419,22 +419,6 @@ class languageUnderstanding extends commonService {
         
     };     
     /** 
-     * Returns user access list
-     * @returns {Promise.<object>}
-     */
-    getUserAcessList(){
-        
-        const operation = {
-            "path": "luis/api/v2.0/apps/" + this.appID  + "/permissions",
-            "method": "GET",
-        };
-
-        return this.makeRequest({
-            operation: operation
-        })
-        
-    }; 
-    /** 
      * Returns list of entities in version
      * @returns {Promise.<object>}
      */
@@ -620,38 +604,6 @@ class languageUnderstanding extends commonService {
             headers: {'Content-type': 'application/json'},
             body:body,
             parameters:parameters
-        })
-    };
-    /**
-     * Updates the name or description of the application.
-     * @returns {Promise.<object>}
-     */
-    renameApp(body) {
-        
-        const operation = {
-            "path": "luis/api/v2.0/apps/" + this.appID,
-            "method": "PUT",
-            "parameters": [{
-                "name": "name",
-                "description": "New name of the application",
-                "value": null,
-                "required": true,
-                "type": "inBody",
-                "typeName": "string"
-            }, {
-                "name": "description",
-                "description": "New description of the application",
-                "value": null,
-                "required": true,
-                "type": "inBody",
-                "typeName": "string"
-            }]
-        };
-
-        return this.makeRequest({
-            operation: operation,
-            headers: {'Content-type': 'application/json'},
-            body:body
         })
     };
 };
