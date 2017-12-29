@@ -51,6 +51,26 @@ class languageUnderstanding extends commonService {
             SETTINGS: "settings",
             RENAME: "" // rename is just leaving off the type of change in the URL
         }
+        this.VERSIONINFO = {
+            LISTS: "closedlists",
+            COMPOSITES: "compositeentities",
+            PREBUILTDOMAINS: "customprebuiltdomains",
+            PREBUILTENTITIES: "customprebuiltentities",
+            PREBUILTINTENTS: "customprebuiltintents",
+            PREBUILTMODELS: "customprebuiltmodels",
+            ENTITIES:"entities",
+            EXAMPLE: "example",
+            EXAMPLES: "examples",
+            FEATURES: "features",
+            HIERARCHICALS: "hierarchical",
+            INTENTS: "intents",
+            LISTPREBUILTS: "listprebuilts",
+            MODELS: "models",
+            //PATTERNS: "patterns", //deprecated
+            PHRASELISTS: "phraselists",
+            PREBUILTS:"prebuilts"
+            
+        }
     }
 
     /**
@@ -80,10 +100,10 @@ class languageUnderstanding extends commonService {
      * Returns app info
      * @returns {Promise.<object>}    
      */
-    getAppInfo(info){
+    getAppInfo(appinfo){
 
         const operation = {
-            "path": "luis/api/v2.0/apps/" + this.appID + "/" + info,
+            "path": "luis/api/v2.0/apps/" + this.appID + "/" + appinfo,
             "method": "GET",
         };
 
@@ -99,20 +119,20 @@ class languageUnderstanding extends commonService {
      * Returns no data
      * @returns {Promise.<object>}    
      */
-    updateAppInfo(body, info){
+    updateAppInfo(body, appinfo){
 
         const validAPPINFO=[this.APPINFO.RENAME,this.APPINFO.SETTINGS,this.APPINFO.PERMISSIONS];
 
-        if(!_.contains(validAPPINFO,info))throw Error("invalid info param '" + info + "'");
+        if(!_.contains(validAPPINFO,appinfo))throw Error("invalid info param '" + appinfo + "'");
 
         const operation = {
-            "path": "luis/api/v2.0/apps/" + this.appID + "/" + info,
+            "path": "luis/api/v2.0/apps/" + this.appID + "/" + appinfo,
             "method": "PUT",
         };
 
         console.log(operation.path);
 
-        switch(info){
+        switch(appinfo){
             case this.APPINFO.RENAME: 
                 operation.parameters = [{
                     "name": "name",
@@ -167,20 +187,20 @@ class languageUnderstanding extends commonService {
      * Returns no data
      * @returns {Promise.<object>}    
      */
-    deleteAppInfo(body, info){
+    deleteAppInfo(body, appinfo){
 
         const validAPPINFO=[this.APPINFO.PERMISSIONS];
 
-        if(!_.contains(validAPPINFO,info))throw Error("invalid info param '" + info + "'");
+        if(!_.contains(validAPPINFO,appinfo))throw Error("invalid info param '" + appinfo + "'");
 
         const operation = {
-            "path": "luis/api/v2.0/apps/" + this.appID + "/" + info,
+            "path": "luis/api/v2.0/apps/" + this.appID + "/" + appinfo,
             "method": "DELETE",
         };
 
         console.log(operation.path);
 
-        switch(info){
+        switch(appinfo){
             case this.APPINFO.PERMISSIONS: 
                 operation.parameters = [{
                     "name": "email",
