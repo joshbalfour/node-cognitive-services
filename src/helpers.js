@@ -4,12 +4,14 @@ function verifyBody(expected = [], actual = {}, contentType) {
 			for (let i = 0; i < expected.length; i++) {
 				let expectedParam = expected[i];
 				if (expectedParam.type == 'inBody') {
-					if (actual[expectedParam.name]) {
+					// if the property exists
+					// NOT is the property true
+					if (actual.hasOwnProperty(expectedParam.name)) {
 						let listOfOptions = expectedParam.options;
 						if (expectedParam.typeName === 'boolean') {
 							listOfOptions = ["true", "false"];
 						}
-						if (Array.isArray(listOfOptions) && listOfOptions.indexOf(actual[expectedParam.name]) == -1) {
+						if (Array.isArray(listOfOptions) && listOfOptions.indexOf((actual[expectedParam.name].toString())) == -1) {
 							return reject(new Error(`Body parameter "${actual[expectedParam.name]}" had a value not supported. Valid values are ${listOfOptions.join(',')}`));
 						}
 					}
