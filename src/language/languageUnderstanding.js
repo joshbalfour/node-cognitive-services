@@ -163,6 +163,46 @@ class languageUnderstanding extends commonService {
     }
 
     /**
+     * Delete app info 
+     * Returns no data
+     * @returns {Promise.<object>}    
+     */
+    deleteAppInfo(body, info){
+
+        const validAPPINFO=[this.APPINFO.PERMISSIONS];
+
+        if(!_.contains(validAPPINFO,info))throw Error("invalid info param '" + info + "'");
+
+        const operation = {
+            "path": "luis/api/v2.0/apps/" + this.appID + "/" + info,
+            "method": "DELETE",
+        };
+
+        console.log(operation.path);
+
+        switch(info){
+            case this.APPINFO.PERMISSIONS: 
+                operation.parameters = [{
+                    "name": "email",
+                    "description": "single email address",
+                    "value": null,
+                    "required": true,
+                    "type": "inBody",
+                    "typeName": "string"
+                }];
+                break;
+            default: throw Error("error in switch");
+        }
+
+        return this.makeRequest({
+            operation: operation,
+            headers: {'Content-type': 'application/json'},
+            body: body
+        })
+       
+    }
+
+    /**
      * Returns the detected intent, entities and entity values with a score for each intent. 
      * Scores close to 1 indicate 100% certainty that the identified intent is correct. 
      * Irrespective of the value, the intent with the highest score is returned.

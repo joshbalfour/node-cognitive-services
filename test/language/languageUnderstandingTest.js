@@ -7,7 +7,7 @@ const fs = require("fs");
 const path = require('path');
 
 const Promise = require("bluebird");
-const pLimit = require('p-limit');
+const pLimit = require('p-limit'); // for dealing with promise.all - turns into series
 const limit = pLimit(1);
 /*
 
@@ -618,28 +618,7 @@ describe.only('Language understanding (LUIS)', () => {
                 done(err);
             });
         })
-        it('should update app permissions', (done) => {
-            var body = {
-                "emails": [
-                    "test1@domain.com",
-                    "test2@domain.com"
-                ]
-            };
 
-            promiseDelay(retryInterval)
-            .then(() => {
-                return client.updateAppInfo(body,client.APPINFO.PERMISSIONS);
-            }).then((response) => {
-                response.should.not.be.undefined();
-                response.should.be.Array;
-                response.should.have.properties(['code', 'message']);
-                response.code.should.equal("Success");
-                response.message.should.equal("Operation Successful");
-                done();
-            }).catch((err) => {
-                done(err);
-            });
-        })
     
         it('should clone app', (done) => {
 
@@ -704,6 +683,87 @@ describe.only('Language understanding (LUIS)', () => {
                 response.should.not.be.undefined();
                 response.should.have.properties(['owner', 'emails']);
                 response.owner.should.not.be.undefined();
+                done();
+            }).catch((err) => {
+                done(err);
+            });
+        })
+        it('should update app permissions', (done) => {
+            var body = {
+                "emails": [
+                    "test1@domain.com",
+                    "test2@domain.com"
+                ]
+            };
+
+            promiseDelay(retryInterval)
+            .then(() => {
+                return client.updateAppInfo(body,client.APPINFO.PERMISSIONS);
+            }).then((response) => {
+                response.should.not.be.undefined();
+                response.should.be.Array;
+                response.should.have.properties(['code', 'message']);
+                response.code.should.equal("Success");
+                response.message.should.equal("Operation Successful");
+                done();
+            }).catch((err) => {
+                done(err);
+            });
+        })
+        xit('should delete app permissions - email doesn\'t exist', (done) => {
+
+            var info = client.APPINFO.PERMISSIONS;
+
+            var body = {
+                "email":"test@domain.com"
+            };
+            
+            promiseDelay(retryInterval)
+            .then(() => {
+                return client.deleteAppInfo(body,info);
+            }).then((response) => {
+                response.should.not.be.undefined();
+                response.should.have.properties(['code', 'message']);
+                response.code.should.equal("Success");
+                response.message.should.equal("Operation Successful");
+                done();
+            }).catch((err) => {
+                done(err);
+            });
+        })
+        it('should delete app permissions - email does exist', (done) => {
+
+            var info = client.APPINFO.PERMISSIONS;
+            var updateBody = {
+                "emails": [
+                    "test1@domain.com",
+                    "test2@domain.com"
+                ]
+            };
+
+            var deleteBody = {
+                "email":"test1@domain.com"
+            };
+            promiseDelay(retryInterval)
+            .then(() => {
+                return client.updateAppInfo(updateBody,client.APPINFO.PERMISSIONS);
+            }).then(() => { 
+                return promiseDelay(retryInterval);
+            }).then(() => {
+                return client.deleteAppInfo(deleteBody,info);
+            }).then((response) => {
+                response.should.not.be.undefined();
+                response.should.have.properties(['code', 'message']);
+                response.code.should.equal("Success");
+                response.message.should.equal("Operation Successful");
+            }).then(() => { 
+                return promiseDelay(retryInterval);
+            }).then((response) => {
+                return client.getAppInfo(info);
+            }).then(response => {
+                response.should.not.be.undefined();
+                response.emails.should.have.length(1);
+                response.emails[0].should.equal(updateBody.emails[1]);
                 done();
             }).catch((err) => {
                 done(err);
