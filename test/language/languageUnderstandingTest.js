@@ -568,18 +568,37 @@ describe.only('Language understanding (LUIS)', () => {
         })
 
 
-        it('should rename app', (done) => {
+        it('should update app name', (done) => {
 
             var body = {
                 "name": "MyFirstRenamedDummyAp",
                 "description": "This is my first modified dummy description"
             };
 
-            client.renameApp(body)
+            client.updateAppInfo(body, client.APPINFO.RENAME)
             .then((response) => {
                 response.should.not.be.undefined();
                 response.should.be.Array;
                 response.should.have.properties(['code', 'message']);
+                response.code.should.equal("Success");
+                response.message.should.equal("Operation Successful");
+                done();
+            }).catch((err) => {
+                done(err);
+            });
+        })
+        it.only('should update app settings', (done) => {
+            var body = {
+                "public": true
+            };
+
+            client.updateAppInfo(body,client.APPINFO.SETTINGS)
+            .then((response) => {
+                response.should.not.be.undefined();
+                response.should.be.Array;
+                response.should.have.properties(['code', 'message']);
+                response.code.should.equal("Success");
+                response.message.should.equal("Operation Successful");
                 done();
             }).catch((err) => {
                 done(err);

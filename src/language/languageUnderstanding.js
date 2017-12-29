@@ -1,6 +1,6 @@
 const commonService = require('../commonService');
 const csv = require('fast-csv');
-
+const _ = require("underscore");
 
 
 /**
@@ -46,7 +46,10 @@ class languageUnderstanding extends commonService {
         this.APPINFO = {
             ENDPOINTS: "endpoints",
             SETTINGS: "settings",
-            VERSIONS: "versions"
+            VERSIONS: "versions",
+            PERMISSIONS: "permissions",
+            SETTINGS: "settings",
+            RENAME: "" // rename is just leaving off the type of change in the URL
         }
     }
 
@@ -89,6 +92,74 @@ class languageUnderstanding extends commonService {
             headers: {'Content-type': 'application/json'}
         })
         
+    }
+
+    /**
+     * Update app info 
+     * Returns no data
+     * @returns {Promise.<object>}    
+     */
+    updateAppInfo(body, info){
+
+        const validAPPINFO=[this.APPINFO.RENAME,this.APPINFO.SETTINGS,this.APPINFO.PERMISSIONS];
+
+        if(!_.contains(validAPPINFO,info))throw Error("invalid info param '" + info + "'");
+
+        const operation = {
+            "path": "luis/api/v2.0/apps/" + this.appID + "/" + info,
+            "method": "PUT",
+        };
+
+        console.log(operation.path);
+
+        switch(info){
+            case this.APPINFO.RENAME: 
+                operation.parameters = [{
+                    "name": "name",
+                    "description": "New name of the application",
+                    "value": null,
+                    "required": true,
+                    "type": "inBody",
+                    "typeName": "string"
+                }, {
+                    "name": "description",
+                    "description": "New description of the application",
+                    "value": null,
+                    "required": true,
+                    "type": "inBody",
+                    "typeName": "string"
+                }];
+                break;
+            case this.APPINFO.SETTINGS: 
+                operation.parameters = [{
+                    "name": "public",
+                    "description": "",
+                    "value": null,
+                    "required": false,
+                    "type": "inBody",
+                    "typeName": "boolean"
+                }];
+                break;
+            case this.APPINFO.PERMISSIONS: 
+                operation.parameters = [{
+                    "name": "emails",
+                    "description": "array of emails",
+                    "value": null,
+                    "required": true,
+                    "type": "inBody",
+                    "typeName": "array"
+                }];
+                break;
+            default: throw Error("error in switch");
+
+        }
+
+        return this.makeRequest({
+            operation: operation,
+            headers: {'Content-type': 'application/json'},
+            body: body
+        })
+       
     }
 
     /**
@@ -489,6 +560,7 @@ class languageUnderstanding extends commonService {
             headers: {'Content-type': 'application/json'}
         })
     };
+
     /**
      * Clone app
      * Body contains new version id: {"version":"0.2"}
