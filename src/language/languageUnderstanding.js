@@ -52,6 +52,7 @@ class languageUnderstanding extends commonService {
             RENAME: "" // rename is just leaving off the type of change in the URL
         }
         this.VERSIONINFO = {
+            VERSION: "",
             LISTS: "closedlists",
             COMPOSITES: "compositeentities",
             PREBUILTDOMAINS: "customprebuiltdomains",
@@ -68,8 +69,7 @@ class languageUnderstanding extends commonService {
             MODELS: "models",
             //PATTERNS: "patterns", //deprecated
             PHRASELISTS: "phraselists",
-            PREBUILTS:"prebuilts"
-            
+            PREBUILTS:"prebuilts" 
         }
     }
 
@@ -221,7 +221,48 @@ class languageUnderstanding extends commonService {
         })
        
     }
+    /**
+     * Get version info 
+     * Returns version info
+     * @returns {Promise.<object>}    
+     */
+    getVersionInfo(versioninfo){
 
+        const validVERSIONINFO=[
+            this.VERSIONINFO.VERSION,
+            this.VERSIONINFO.LISTS
+        ];
+
+        if(!_.contains(validVERSIONINFO,versioninfo))throw Error("invalid info param '" + versioninfo + "'");
+
+        const operation = {
+            "path": "luis/api/v2.0/apps/" + this.appID + "/versions/" + this.versionID + "/" + versioninfo,
+            "method": "GET",
+            "parameters": [{
+                "name": "skip",
+                "description": "Used for paging. The number of entries to skip. Default value is 0.",
+                "value": 0,
+                "required": false,
+                "typeName": "number",
+                "type": "queryStringParam"
+            }, {
+                "name": "take",
+                "description": "Used for paging. The number of entries to return. Maximum page size is 500. Default is 100.",
+                "value": 100,
+                "required": false,
+                "typeName": "number",
+                "type": "queryStringParam"
+            }]
+        };
+
+        console.log(operation.path);
+
+        return this.makeRequest({
+            operation: operation,
+            headers: {'Content-type': 'application/json'}
+        })
+        
+    }
     /**
      * Returns the detected intent, entities and entity values with a score for each intent. 
      * Scores close to 1 indicate 100% certainty that the identified intent is correct. 
@@ -231,7 +272,7 @@ class languageUnderstanding extends commonService {
     detectIntent({parameters, body}) {
 
         const operation = {
-            "path": "luis/v2.0/apps/" + this.appID,
+            "path": "luis/v2.0/apps/" + this.appID + "?" + "verbose=" + parameters.verbose + "&log=" + parameters.log,
             "method": "POST",
             "parameters": [{
                 "name": "timezoneOffset",

@@ -113,6 +113,42 @@ describe.only('Language understanding (LUIS)', () => {
             throw(err);
         });
     }
+    var importTrainPublishApp = (appName, appJSON) => {
+
+        var parameters = {
+            "appName":appName
+        };
+
+        return client.importApp(parameters, appJSON)
+        .then(results =>{
+            client.appID = results.substring(results.length-36, results.length);
+            client.versionID = defaultVersionID;
+
+            console.log(client.appID);
+
+            return client.train();
+        }).then(results => {
+            return waitUntilTrained(client);
+        }).then((response) => {
+            return client.publish({
+                    "versionId": client.versionID,
+                    "isStaging": false,
+                    "region": "westus"
+                    });
+        }).catch(err => {
+            throw(err);
+        });        
+    }
+    var deleteTestApp = () =>{
+        return client.deleteApp()
+        .then((response) => {
+            response.should.not.be.undefined();
+            client.appID = undefined;
+            return response;
+        }).catch((err) => {
+            throw(err);
+        });
+    }
     describe("create app before, don't delete after", () => {
         before((done) => {
             createTrainPublishApp()
@@ -126,7 +162,7 @@ describe.only('Language understanding (LUIS)', () => {
             client.deleteApp()
             .then((response) => {
                 response.should.not.be.undefined();
-                response.should.have.properties(['code', 'message']);
+                response.should.have.only.keys('code', 'message');
                 response.code.should.equal("Success");
                 response.message.should.equal("Operation Successful");
                 done();
@@ -148,7 +184,7 @@ describe.only('Language understanding (LUIS)', () => {
                 response.should.not.be.undefined();
                 response.should.be.Array;
                 if (response.length > 0) {
-                    response[0].should.have.properties(['id', 'name', 'description','culture','usageScenario','domain','versionsCount','createdDateTime','endpoints','endpointHitsCount','activeVersion']);
+                    response[0].should.have.only.properties('id', 'name', 'description','culture','usageScenario','domain','versionsCount','createdDateTime','endpoints','endpointHitsCount','activeVersion');
                 }
                 done();
             }).catch((err) => {
@@ -160,14 +196,14 @@ describe.only('Language understanding (LUIS)', () => {
             client.getLUIS(client.INFO.ASSISTANT)
             .then((response) => {
                 response.should.not.be.undefined();
-                response.should.have.properties(['endpointKeys', 'endpointUrls']);
+                response.should.have.only.properties('endpointKeys', 'endpointUrls');
                 done();
             }).catch((err) => {
-                console.log(err);
                 done(err);
             });
         })
         it('should get list of LUIS domains', (done) => {
+
 
             client.getLUIS(client.INFO.DOMAIN)
             .then((response) => {
@@ -186,6 +222,7 @@ describe.only('Language understanding (LUIS)', () => {
                 response.should.not.be.undefined();
                 response.should.be.Array;
                 response.should.have.length(4);
+
                 done();
             }).catch((err) => {
                 done(err);
@@ -198,7 +235,7 @@ describe.only('Language understanding (LUIS)', () => {
                 response.should.not.be.undefined();
                 response.should.be.Array;
                 response.should.have.length(12);
-                response[0].should.have.properties['name','code'];
+                response[0].should.have.only.keys('name','code');
                 done();
             }).catch((err) => {
                 done(err);
@@ -211,11 +248,11 @@ describe.only('Language understanding (LUIS)', () => {
                 response.should.not.be.undefined();
                 response.should.be.Array;
                 response.should.have.length(34);
-                response[0].should.have.properties['name','culture','description','examples','intents','entities'];
+                response[0].should.have.only.keys['name','culture','description','examples','intents','entities'];
                 response[0].intents.should.be.Array;
                 response[0].entities.should.be.Array;
-                response[0].intents[0].should.have.properties['name','description','examples'];
-                response[0].entities[0].should.have.properties['name','description','examples'];
+                response[0].intents[0].should.have.only.keys('name','description','examples');
+                response[0].entities[0].should.have.only.keys('name','description','examples');
                 done();
             }).catch((err) => {
                 done(err);
@@ -228,11 +265,12 @@ describe.only('Language understanding (LUIS)', () => {
                 response.should.not.be.undefined();
                 response.should.be.Array;
                 response.should.have.length(21);
-                response[0].should.have.properties['name','culture','description','examples','intents','entities'];
+                response[0].should.have.only.keys('name','culture','description','examples','intents','entities');
                 response[0].intents.should.be.Array;
                 response[0].entities.should.be.Array;
-                response[0].intents[0].should.have.properties['name','description','examples'];
-                response[0].entities[0].should.have.properties['name','description','examples'];
+                response[0].intents[0].should.have.only.keys('name','description','examples');
+                response[0].entities[0].should.have.only.keys('name','description','examples');
+
                 done();
             }).catch((err) => {
                 done(err);
@@ -250,9 +288,10 @@ describe.only('Language understanding (LUIS)', () => {
                     arrPromises.push(limit(() => promiseDelay(2000)));
                 });
                 arrPromises.should.have.length(CULTURECOUNT*2);
+
                 return Promise.all(arrPromises);
             }).then(returnedPromises => {
-    
+                
                 // prune out the promiseDelay responses
                 let responses = returnedPromises.filter(x => x!==undefined);
 
@@ -378,6 +417,7 @@ describe.only('Language understanding (LUIS)', () => {
             }).then((response) => {
                 response.should.not.be.undefined();
                 response.should.be.String().and.have.length(70);
+                // TBD: fix this when origin-location is fixed
                 // get appID to delete in After()
                 client.appID = response.substring(response.length-36, response.length);
                 done();
@@ -398,8 +438,35 @@ describe.only('Language understanding (LUIS)', () => {
             }).then((response) => {
                 response.should.not.be.undefined();
                 response.should.be.String().and.have.length(92);
+                // TBD: fix this when origin-location is fixed
                 // get appID to delete in After()
                 client.appID = response.substring(response.length-36, response.length);
+                done();
+            }).catch((err) => {
+                done(err);
+            });
+        })
+        it('should get app version closedlist (LIST)', (done) => {
+            // use travel agent json for closedlists
+
+            var info = client.VERSIONINFO.LISTS;
+
+            promiseDelay(retryInterval)
+            .then(() => {
+                // test set up
+                
+                let filePath = path.join(__dirname,"../assets/LUIS/TravelAgent.json");
+                let testData = JSON.parse(fs.readFileSync(filePath, "utf-8"));
+                return importTrainPublishApp("mocha-travelagent-" + new Date().toISOString(),testData);
+            }).then((response) => {
+                // SUT
+                return client.getVersionInfo(info);
+            }).then(response => {
+                response.should.not.be.undefined();
+                response.should.be.Array;
+                response.should.have.length(3);
+                response[0].should.have.only.keys('id', 'name','typeId','readableType','subLists');
+
                 done();
             }).catch((err) => {
                 done(err);
@@ -435,7 +502,7 @@ describe.only('Language understanding (LUIS)', () => {
                 return client.train();
             }).then((response) => {
                 response.should.not.be.undefined();
-                response.should.have.properties(['statusId', 'status']);
+                response.should.have.only.keys('statusId', 'status');
                 done();
             }).catch((err) => {
                 done(err);
@@ -450,7 +517,7 @@ describe.only('Language understanding (LUIS)', () => {
             }).then((response) => {
                 response.should.not.be.undefined();
                 response.should.be.instanceof(Array);
-                response[0].should.have.properties(['modelId', 'details'])
+                response[0].should.have.only.keys('modelId', 'details');
                 done();
             }).catch((err) => {
                 done(err);
@@ -459,12 +526,30 @@ describe.only('Language understanding (LUIS)', () => {
 
         it('should return application version in JSON', (done) => {
 
+            // todo - if using a different app, might return:
+            // bing_entities (prebuilt entities)
+            // regex_features (deprecated but can still exist in older apps)
+            // actions - not sure 
+
             promiseDelay(retryInterval)
             .then(() => {
                 return client.exportApplicationVersion();
             }).then((response) => {
                 response.should.not.be.undefined();
-                response.should.have.properties(['luis_schema_version', 'name', 'desc', 'culture', 'intents', 'entities', 'composites', 'closedLists', 'model_features', 'utterances', 'model_features'])
+                response.should.have.only.keys(
+                    'luis_schema_version', 
+                    'versionId',
+                    'name', 
+                    'desc', 
+                    'culture', 
+                    'intents', 
+                    'entities', 
+                    'composites', 
+                    'closedLists', 
+                    'bing_entities',
+                    'model_features', 
+                    'regex_features',
+                    'utterances');
                 done();
             }).catch((err) => {
                 done(err);
@@ -481,7 +566,7 @@ describe.only('Language understanding (LUIS)', () => {
                 response.should.not.be.undefined();
                 response.should.be.Array;
                 if (response.length > 0) {
-                    response[0].should.have.properties(['Query', 'Response', 'UTC DateTime']);
+                    response[0].should.have.only.keys('Query', 'Response', 'UTC DateTime');
                 }
                 done();
             }).catch((err) => {
@@ -502,7 +587,14 @@ describe.only('Language understanding (LUIS)', () => {
                     return client.publish(body);
             }).then((response) => {
                 response.should.not.be.undefined();
-                response.should.have.properties(['versionId', 'isStaging', 'endpointUrl','endpointRegion','region','assignedEndpointKey','endpointRegion','publishedDateTime']);
+                response.should.have.only.keys(
+                    'versionId', 
+                    'isStaging', 
+                    'endpointUrl',
+                    'region',
+                    'assignedEndpointKey',
+                    'endpointRegion',
+                    'publishedDateTime');
                 done();
             }).catch((err) => {
                 done(err);
@@ -524,7 +616,7 @@ describe.only('Language understanding (LUIS)', () => {
                 response.should.not.be.undefined();
                 response.should.be.Array;
                 if (response.length > 0) {
-                    response[0].should.have.properties(['id', 'text', 'tokenizedText','intentLabel','entityLabels','intentPredictions','entityPredictions']);
+                    response[0].should.have.only.keys('id', 'text', 'tokenizedText','intentLabel','entityLabels','intentPredictions','entityPredictions');
                 }
                 done();
             }).catch((err) => {
@@ -533,6 +625,12 @@ describe.only('Language understanding (LUIS)', () => {
         })
 
         it('should get list of entities in version', (done) => {
+
+            /*
+            can return 
+                "customPrebuiltDomainName": "Camera",
+                "customPrebuiltModelName": "AppName"
+            */
 
             let parameters = {
                 skip:0,
@@ -546,7 +644,7 @@ describe.only('Language understanding (LUIS)', () => {
                 response.should.not.be.undefined();
                 response.should.be.Array;
                 if (response.length > 0) {
-                    response[0].should.have.properties(['id', 'name','typeId','readableType']);
+                    response[0].should.have.only.keys('id', 'name','typeId','readableType');
                 }
                 done();
             }).catch((err) => {
@@ -556,6 +654,12 @@ describe.only('Language understanding (LUIS)', () => {
 
 
         it('should get list of intents in version', (done) => {
+
+            /*
+            can return 
+                "customPrebuiltDomainName": "Camera",
+                "customPrebuiltModelName": "AppName"
+            */
 
             let parameters = {
                 skip:0,
@@ -569,7 +673,7 @@ describe.only('Language understanding (LUIS)', () => {
                 response.should.not.be.undefined();
                 response.should.be.Array;
                 if (response.length > 0) {
-                    response[0].should.have.properties(['id', 'name','typeId','readableType']);
+                    response[0].should.have.only.keys('id', 'name','typeId','readableType');
                 }
                 done();
             }).catch((err) => {
@@ -581,7 +685,7 @@ describe.only('Language understanding (LUIS)', () => {
         it('should update app name', (done) => {
 
             var body = {
-                "name": "MyFirstRenamedDummyAp",
+                "name": "mocha-" + new Date().getTime(),
                 "description": "This is my first modified dummy description"
             };
 
@@ -591,7 +695,7 @@ describe.only('Language understanding (LUIS)', () => {
             }).then((response) => {
                 response.should.not.be.undefined();
                 response.should.be.Array;
-                response.should.have.properties(['code', 'message']);
+                response.should.have.only.keys('code', 'message');
                 response.code.should.equal("Success");
                 response.message.should.equal("Operation Successful");
                 done();
@@ -610,7 +714,7 @@ describe.only('Language understanding (LUIS)', () => {
             }).then((response) => {
                 response.should.not.be.undefined();
                 response.should.be.Array;
-                response.should.have.properties(['code', 'message']);
+                response.should.have.only.keys('code', 'message');
                 response.code.should.equal("Success");
                 response.message.should.equal("Operation Successful");
                 done();
@@ -620,7 +724,7 @@ describe.only('Language understanding (LUIS)', () => {
         })
 
     
-        it('should clone app', (done) => {
+        it('should clone version', (done) => {
 
             var body = {"version":"0.2"};
             var params = {appId:client.appID,versionId:client.versionID};
@@ -645,6 +749,7 @@ describe.only('Language understanding (LUIS)', () => {
             .then(() => {
                 return client.getAppInfo(info);
             }).then((response) => {
+
                 response.should.not.be.undefined();
                 let filePath = path.join(__dirname,"../assets/LUIS/api_endpoints.json");
                 let testData = JSON.parse(fs.readFileSync(filePath, "utf-8"));
@@ -663,8 +768,9 @@ describe.only('Language understanding (LUIS)', () => {
             .then(() => {
                 return client.getAppInfo(info);
             }).then((response) => {
+
                 response.should.not.be.undefined();
-                response.should.have.properties(['id', 'public']);
+                response.should.have.only.keys('id', 'public');
                 response.id.should.have.length(36);
                 response.public.should.be.oneOf(true,false);
                 done();
@@ -681,7 +787,7 @@ describe.only('Language understanding (LUIS)', () => {
                 return client.getAppInfo(info);
             }).then((response) => {
                 response.should.not.be.undefined();
-                response.should.have.properties(['owner', 'emails']);
+                response.should.have.only.keys('owner', 'emails');
                 response.owner.should.not.be.undefined();
                 done();
             }).catch((err) => {
@@ -702,7 +808,7 @@ describe.only('Language understanding (LUIS)', () => {
             }).then((response) => {
                 response.should.not.be.undefined();
                 response.should.be.Array;
-                response.should.have.properties(['code', 'message']);
+                response.should.have.only.keys('code', 'message');
                 response.code.should.equal("Success");
                 response.message.should.equal("Operation Successful");
                 done();
@@ -722,8 +828,9 @@ describe.only('Language understanding (LUIS)', () => {
             .then(() => {
                 return client.deleteAppInfo(body,info);
             }).then((response) => {
+
                 response.should.not.be.undefined();
-                response.should.have.properties(['code', 'message']);
+                response.should.have.only.keys('code', 'message');
                 response.code.should.equal("Success");
                 response.message.should.equal("Operation Successful");
                 done();
@@ -753,7 +860,7 @@ describe.only('Language understanding (LUIS)', () => {
                 return client.deleteAppInfo(deleteBody,info);
             }).then((response) => {
                 response.should.not.be.undefined();
-                response.should.have.properties(['code', 'message']);
+                response.should.have.only.keys('code', 'message');
                 response.code.should.equal("Success");
                 response.message.should.equal("Operation Successful");
             }).then(() => { 
@@ -781,9 +888,10 @@ describe.only('Language understanding (LUIS)', () => {
                 response.should.be.Array;
                 if(response.length>0){
                     _.keys(response[0]).should.have.length(12);
-                    response[0].should.have.properties(['version', 'createdDateTime',"lastModifiedDateTime","lastTrainedDateTime","lastPublishedDateTime","endpointUrl","assignedEndpointKey","externalApiKeys","intentsCount","entitiesCount","endpointHitsCount"]);
+                    response[0].should.have.only.keys('version', 'createdDateTime',"lastModifiedDateTime","lastTrainedDateTime","lastPublishedDateTime","endpointUrl","assignedEndpointKey","externalApiKeys","intentsCount","entitiesCount","endpointHitsCount","trainingStatus");
 
-                    if(response[0].assignedEndpointKey) response[0].assignedEndpointKey.should.have.properties(["SubscriptionKey","SubscriptionName"]);
+                    _.keys(response[0].assignedEndpointKey).should.have.length(3);
+                    if(response[0].assignedEndpointKey) response[0].assignedEndpointKey.should.have.only.keys("SubscriptionKey","SubscriptionName","SubscriptionRegion");
 
                 }
                 done();
@@ -791,6 +899,39 @@ describe.only('Language understanding (LUIS)', () => {
                 done(err);
             });
         })
+        it('should get app version info', (done) => {
+
+            var info = client.VERSIONINFO.VERSION;
+
+            promiseDelay(retryInterval)
+            .then(() => {
+                return client.getVersionInfo(info);
+            }).then((response) => {
+
+                response.should.not.be.undefined();
+                response.should.be.Object;
+                _.keys(response).should.have.length(12);
+                response.should.have.only.keys(
+                    'version', 
+                    'createdDateTime',
+                    "lastModifiedDateTime",
+                    "lastTrainedDateTime",
+                    "lastPublishedDateTime",
+                    "endpointUrl",
+                    "assignedEndpointKey",
+                    "externalApiKeys",
+                    "intentsCount",
+                    "entitiesCount",
+                    "endpointHitsCount","trainingStatus");
+
+                _.keys(response.assignedEndpointKey).should.have.length(3);
+                response.assignedEndpointKey.should.have.only.keys("SubscriptionKey","SubscriptionName","SubscriptionRegion");
+                done();
+            }).catch((err) => {
+                done(err);
+            });
+        })
+
 
         it('should detect Intent', (done) => {
             // optional but recommended
@@ -806,12 +947,39 @@ describe.only('Language understanding (LUIS)', () => {
             .then(() => {
                 return client.detectIntent({parameters,body});
             }).then((response) => {
+
                 response.should.not.be.undefined();
-                response.should.have.properties(['query', 'topScoringIntent', 'entities']);
+                _.keys(response).should.have.length(4);
+                response.should.have.only.keys('query', 'intents', 'topScoringIntent', 'entities');
                 done();
             }).catch((err) => {
                 done(err);
             });
+        })
+    
+        describe('should return 410 gone', (done) => {
+            it('', (done) => {
+                // optional but recommended
+                var parameters = {
+                    "log": true, // required to review suggested utterances
+                    "verbose": true // required to see all intents and scores
+                };
+
+                // query/utterance
+                var body = "forward to frank 30 dollars through HSBC";
+
+                promiseDelay(retryInterval)
+                .then(() => {
+                    return client.detectIntent({parameters,body});
+                }).then((response) => {
+                    response.should.not.be.undefined();
+                    response.should.have.properties(['query', 'topScoringIntent', 'entities']);
+                    done();
+                }).catch((err) => {
+                    done(err);
+                });
+            });
+
         })
     })
 }) 
