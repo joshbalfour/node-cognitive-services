@@ -50,7 +50,7 @@ class speakerIdentification extends commonSpeaker {
 
         return this.makeRequest({
             operation: operation,
-            headers: {'Content-type': 'application/json'},
+            headers: { 'Content-type': 'application/json' },
             body: body
         })
     };
@@ -172,7 +172,7 @@ class speakerIdentification extends commonSpeaker {
             return this.getOperationIdFromUrl(response);
         })
     };
-        
+
     /**
      * Deletes all enrollments associated with the given speaker identification profile permanently from the service.
      * @returns {Promise.<object>}
