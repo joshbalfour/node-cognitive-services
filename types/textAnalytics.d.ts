@@ -35,29 +35,15 @@ export interface TextAnalyticsOptions {
 }
 
 export interface DetectLanguageOptions {
-	parameters?: DetectLanguageParameters,
 	headers: DetectLanguageHeaders,
 	body: DetectLanguageBody
-}
-
-export interface DetectLanguageParameters {
-	/**
-	 * Format - int32. (Optional. Deprecated) Number of languages to detect. Set to 1 by default. 
-	 * Irrespective of the value, the language with the highest score is returned.
-	 */
-	numberOfLanguagesToDetect?: number
 }
 
 export interface DetectLanguageHeaders {
 	/**
 	 * Media type of the body sent to the API.
 	 */
-	"Content-Type"?: string,
-	
-	/**
-	 * Subscription key which provides access to this API.
-	 */
-	"Ocp-Apim-Subscription-Key"?: string
+	"Content-Type"?: string
 }
 
 export interface DetectLanguageBody {
@@ -87,12 +73,7 @@ export interface KeyPhrasesHeaders {
 	/**
 	 * Media type of the body sent to the API.
 	 */
-	"Content-Type"?: string,
-	
-	/**
-	 * Subscription key which provides access to this API.
-	 */
-	"Ocp-Apim-Subscription-Key"?: string
+	"Content-Type"?: string
 }
 
 export interface KeyPhrasesBody {
@@ -119,12 +100,7 @@ export interface SentimentHeaders {
 	/**
 	 * Media type of the body sent to the API.
 	 */
-	"Content-Type"?: string,
-	
-	/**
-	 * Subscription key which provides access to this API.
-	 */
-	"Ocp-Apim-Subscription-Key"?: string
+	"Content-Type"?: string
 }
 
 export interface SentimentBody {
