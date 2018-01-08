@@ -44,14 +44,14 @@ export class textTranslator {
 	 * Retrieves the languages available for speech synthesis.
 	 * A return value: A string array containing the language codes supported for speech synthesis by the Translator Service.
 	 */
-	getLanguagesForSpeak(options: GetLanguagesForSpeakOptions): Promise<void>;
+	getLanguagesForSpeak(): Promise<void>;
 	
 	/**
 	 * Obtain a list of language codes representing languages that are supported by the Translation Service. 
 	 * Translate and TranslateArray can translate between any two of these languages.
 	 * A return value: A string array containing the language codes supported by the Translator Services.
 	 */
-	getLanguagesForTranslate(optinos: GetLanguagesForTranslateOptions): Promise <void>;
+	getLanguagesForTranslate(): Promise <void>;
 
 	/**
 	 * Retrieves an array of translations for a given language pair from the store and the MT engine. 
@@ -86,16 +86,11 @@ export interface TextTranslatorOptions {
 }
 
 export interface AddTranslationOptions {
-	parameters: AddTranslationParameters,
-	headers: AddTranslationHeaders
+	parameters: AddTranslationParameters
 }
 
 export interface AddTranslationParameters {
-	/**
-	 * If the Authorization or  Ocp-Apim-Subscription-Key header is used, leave the appid field empty else include a string containing  "Bearer" + " " + "access_token".
-	 */
-	appid: string,
-
+	
 	/**
 	 * A string containing the text to translate from. 
 	 * The string has a maximum length of 1000 characters.
@@ -139,34 +134,21 @@ export interface AddTranslationParameters {
 	/**
 	 *  A string used to track the originator of the submission.
 	 */
-	user?: string
+	user: string,
+
+	/**
+	 * A string containing the content location of this translation.
+	 */
+	uri?: string
 }
 
-export interface AddTranslationHeaders {
-	/**
-	 * Required if the appid field or  Ocp-Apim-Subscription-Key header is not specified. 
-	 * Authorization token:  "Bearer" + " " + "access_token".
-	 */
-	"Authorization"?: string,
-
-	/**
-	 * Required if the appid field or Authorization header is not specified.
-	 */
-	"Ocp-Apim-Subscription-Key"?: string
-} 
-
 export interface AddTranslationArrayOptions {
-	parameters: AddTranslationArrayParameters,
-	headers: AddTranslationArrayHeaders,
 	body: AddTranslationArrayBody
 }
 
-export interface AddTranslationArrayParameters {
-	/**
-	 * If the Authorization or  Ocp-Apim-Subscription-Key header is used, leave the appid field empty else include a string containing  "Bearer" + " " + "access_token".
-	 */
-	appid: string,
 
+export interface AddTranslationArrayBody {
+	
 	/**
 	 * A string containing the language code of the source language. 
 	 * Must be one of the languages returned by theGetLanguagesForTranslate method.
@@ -177,30 +159,14 @@ export interface AddTranslationArrayParameters {
 	 * A string containing the language code of the target language. 
 	 * Must be one of the languages returned by the GetLanguagesForTranslate method.
 	 */
+
 	to: string,
-
-	
-}
-
-export interface AddTranslationArrayHeaders {
-	/**
-	 * Required if the appid field or  Ocp-Apim-Subscription-Key header is not specified. 
-	 * Authorization token:  "Bearer" + " " + "access_token".
-	 */
-	"Authorization"?: string,
-	
-	/**
-	 * Required if the appid field or Authorization header is not specified.
-	 */
-	"Ocp-Apim-Subscription-Key"?: string
-}
-
-export interface AddTranslationArrayBody {
 	/**
 	 * An array of translations to add to translation memory. Each translation must contain: originalText, translatedText and rating. 
 	 * The size of each originalText and translatedText is limited to 1000 chars. The total of all the originalText(s) and translatedText(s) must not exceed 10000 characters. 
 	 * The maximum number of array elements is 100.
 	 */
+
 	Translations:{
 		OriginalText: string,
 		Rating: number,
@@ -221,16 +187,10 @@ export interface AddTranslationArrayBody {
 }
 
 export interface BreakSentencesOptions {
-	parameters: BreakSentencesParameters,
-	headers: BreakSentencesHeaders
+	parameters: BreakSentencesParameters
 }
 
 export interface BreakSentencesParameters {
-	/**
-	 * If the Authorization or  Ocp-Apim-Subscription-Key header is used, leave the appid field empty else include a string containing  "Bearer" + " " + "access_token".
-	 */
-	appid: string,
-
 	/**
 	 * A string representing the text to split into sentences. 
 	 * The size of the text must not exceed 10000 characters.
@@ -243,29 +203,11 @@ export interface BreakSentencesParameters {
 	language: string
 }
 
-export interface BreakSentencesHeaders {
-	/**
-	 * Required if the appid field or  Ocp-Apim-Subscription-Key header is not specified. 
-	 * Authorization token:  "Bearer" + " " + "access_token".
-	 */
-	"Authorization"?: string,
-	
-	/**
-	 * Required if the appid field or Authorization header is not specified.
-	 */
-	"Ocp-Apim-Subscription-Key"?: string
-}
-
 export interface DetectOptions {
-	parameters: DetectParameters,
-	headers: DetectHeaders
+	parameters: DetectParameters
 }
 
 export interface DetectParameters {
-	/**
-	 * If the Authorization or  Ocp-Apim-Subscription-Key header is used, leave the appid field empty else include a string containing  "Bearer" + " " + "access_token".
-	 */
-	appid: string,
 	
 	/**
 	 * A string representing the text to split into sentences. 
@@ -274,52 +216,16 @@ export interface DetectParameters {
 	text: string,
 }
 
-export interface DetectHeaders {
-	/**
-	 * Required if the appid field or  Ocp-Apim-Subscription-Key header is not specified. 
-	 * Authorization token:  "Bearer" + " " + "access_token".
-	 */
-	"Authorization"?: string,
-	
-	/**
-	 * Required if the appid field or Authorization header is not specified.
-	 */
-	"Ocp-Apim-Subscription-Key"?: string
-}
-
 export interface DetectArrayOptions {
-	parameters: DetectArrayParameters,
-	headers: DetectArrayHeaders,
-
 	/**
 	 * The size of the text must not exceed 10000 characters.
 	 */
 	body: DetectArrayBody
 }
 
-export interface DetectArrayParameters {
-	/**
-	 * If the Authorization or  Ocp-Apim-Subscription-Key header is used, leave the appid field empty else include a string containing  "Bearer" + " " + "access_token".
-	 */
-	appid: string,
-}
-
-export interface DetectArrayHeaders {
-	/**
-	 * Required if the appid field or  Ocp-Apim-Subscription-Key header is not specified. 
-	 * Authorization token:  "Bearer" + " " + "access_token".
-	 */
-	"Authorization"?: string,
-	
-	/**
-	 * Required if the appid field or Authorization header is not specified.
-	 */
-	"Ocp-Apim-Subscription-Key"?: string
-}
-
 export interface DetectArrayBody {
 	ArrayOfstring: {
-		string: string [2]
+		string: string []
 	}
 }
 
@@ -328,40 +234,29 @@ export interface DetectArrayBody {
  */
 export interface DetectArrayReturnValue {
 	ArrayOfstring: {
-		string: string[2]
+		string: string[]
 	}
 }
 
 export interface GetLanguageNamesOptions {
-	parameters: GetLanguageNamesParameters,
-	headers: GetLanguageNamesHeaders,
+	parameters: GetLanguageNamesParameters
 	body: GetLanguageNamesBody
 }
 
 export interface GetLanguageNamesParameters {
-	/**
-	 * If the Authorization or  Ocp-Apim-Subscription-Key header is used, leave the appid field empty else include a string containing  "Bearer" + " " + "access_token".
-	 */
-	appid: string,
-
+	
 	/**
 	 * A string representing a combination of an ISO 639 two-letter lowercase culture code associated with 
 	 * a language and an ISO 3166 two-letter uppercase subculture code to localize the language names or a ISO 639 lowercase culture code by itself.
 	 */
-	locale: string
-}
+	locale: string,
 
-export interface GetLanguageNamesHeaders {
 	/**
-	 * Required if the appid field or  Ocp-Apim-Subscription-Key header is not specified. 
-	 * Authorization token:  "Bearer" + " " + "access_token".
+	 * A string array representing the ISO 639-1 language codes to retrieve the friendly name for.
 	 */
-	"Authorization"?: string,
-	
-	/**
-	 * Required if the appid field or Authorization header is not specified.
-	 */
-	"Ocp-Apim-Subscription-Key"?: string
+	languageCodes: {
+		string:string[]
+	}
 }
 
 export interface GetLanguageNamesBody {
@@ -370,67 +265,11 @@ export interface GetLanguageNamesBody {
 	}
 }
 
-export interface GetLanguagesForSpeakOptions {
-	parameters: GetLanguagesForSpeakParameters,
-	headers: GetLanguagesForSpeakHeaders
-}
-
-export interface GetLanguagesForSpeakParameters {
-	/**
-	 * If the Authorization or  Ocp-Apim-Subscription-Key header is used, leave the appid field empty else include a string containing  "Bearer" + " " + "access_token".
-	 */
-	appid: string
-}
-
-export interface GetLanguagesForSpeakHeaders {
-	/**
-	 * Required if the appid field or  Ocp-Apim-Subscription-Key header is not specified. 
-	 * Authorization token:  "Bearer" + " " + "access_token".
-	 */
-	"Authorization"?: string,
-	
-	/**
-	 * Required if the appid field or Authorization header is not specified.
-	 */
-	"Ocp-Apim-Subscription-Key"?: string
-}
-
-export interface GetLanguagesForTranslateOptions {
-	parameters: GetLanguagesForTranslateParameters,
-	headers: GetLanguagesForTranslateHeaders
-}
-
-export interface GetLanguagesForTranslateParameters {
-	/**
-	 * If the Authorization or  Ocp-Apim-Subscription-Key header is used, leave the appid field empty else include a string containing  "Bearer" + " " + "access_token".
-	 */
-	appid: string
-}
-
-export interface GetLanguagesForTranslateHeaders {
-	/**
-	 * Required if the appid field or  Ocp-Apim-Subscription-Key header is not specified. 
-	 * Authorization token:  "Bearer" + " " + "access_token".
-	 */
-	"Authorization"?: string,
-	
-	/**
-	 * Required if the appid field or Authorization header is not specified.
-	 */
-	"Ocp-Apim-Subscription-Key"?: string
-}
-
 export interface GetTranslationsOptions {
-	parameters: GetTranslationsParameters,
-	headers: GetTranslationsHeaders,
-	body: GetTranslationsBody
+	parameters: GetTranslationsParameters
 }
 
 export interface GetTranslationsParameters {
-	/**
-	 * If the Authorization or  Ocp-Apim-Subscription-Key header is used, leave the appid field empty else include a string containing  "Bearer" + " " + "access_token".
-	 */
-	appid: string,
 	
 	/**
 	 * A string representing the text to translate. 
@@ -452,22 +291,7 @@ export interface GetTranslationsParameters {
 	 *  An integer representing the maximum number of translations to return.
 	 */
 	maxTranslations: number,
-}
 
-export interface GetTranslationsHeaders {
-	/**
-	 * Required if the appid field or  Ocp-Apim-Subscription-Key header is not specified. 
-	 * Authorization token:  "Bearer" + " " + "access_token".
-	 */
-	"Authorization"?: string,
-	
-	/**
-	 * Required if the appid field or Authorization header is not specified.
-	 */
-	"Ocp-Apim-Subscription-Key"?: string
-}
-
-export interface GetTranslationsBody {
 	/**
 	 * object contains the values listed below. They are all optional and default to the most common settings. Specified elements must be listed in alphabetical order.
 	 */
@@ -490,11 +314,7 @@ export interface GetTranslationsBody {
 		 */
 		includeMultipleMTAlternatives: boolean,
 		
-		/**
-		 * 
-		 */
-		reservedFlags?: string,
-
+	
 		/**
 		 * User state to help correlate request and response. The same contents will be returned in the response.
 		 */
@@ -568,28 +388,10 @@ export interface GetTranslationsReturnValue {
 }
 
 export interface GetTranslationsArrayOptions {
-	headers: GetTranslationsArrayHeaders,
 	body: GetTranslationsArrayBody
 }
 
-export interface GetTranslationsArrayHeaders {
-	/**
-	 * Required if the appid field or  Ocp-Apim-Subscription-Key header is not specified. 
-	 * Authorization token:  "Bearer" + " " + "access_token".
-	 */
-	"Authorization"?: string,
-	
-	/**
-	 * Required if the appid field or Authorization header is not specified.
-	 */
-	"Ocp-Apim-Subscription-Key"?: string
-}
-
 export interface GetTranslationsArrayBody {
-	/**
-	 * If Authorization header is used, leave the appid field empty else include a string containing "Bearer" + " " + "access_token".
-	 */
-	appId: string,
 
 	/**
 	 * A string representing the language code of the translation text.
@@ -609,11 +411,6 @@ export interface GetTranslationsArrayBody {
 		 * A string containing the category (domain) of the translation. Defaults to general.
 		 */
 		category?: string,
-
-		/**
-		 * The only supported, and the default, option is text/plain.
-		 */
-		contentType?: "text/plain",
 			
 		/**
 		 * lag to determine whether more than one alternatives should be returned from the MT engine. Valid values are true and false (case-sensitive). Default is false and includes only 1 alternative. 
@@ -621,8 +418,6 @@ export interface GetTranslationsArrayBody {
 		 * The feature allows for returning alternatives for sentences that have no alternatives in CTF, by adding artificial alternatives from the n-best list of the decoder.
 		 */
 		includeMultipleMTAlternatives?: boolean,
-			
-		reservedFlags?: boolean,
 			
 		/**
 		 * User state to help correlate request and response. The same contents will be returned in the response.
@@ -709,16 +504,11 @@ export interface GetTranslationsArrayReturnValue {
 }
 
 export interface SpeakOptions {
-	parameters: SpeakParameters,
-	headers: SpeakHeaders
+	parameters: SpeakParameters
 }
 
 export interface SpeakParameters {
-	/**
-	 * If Authorization header is used, leave the appid field empty else include a string containing "Bearer" + " " + "access_token".
-	 */
-	appId: string,
-
+	
 	/**
 	 * A string containing a sentence or sentences of the specified language to be spoken for the wave stream. 
 	 * The size of the text to speak must not exceed 2000 characters.
@@ -744,29 +534,11 @@ export interface SpeakParameters {
 	options?: string,
 }
 
-export interface SpeakHeaders {
-	/**
-	 * Required if the appid field or  Ocp-Apim-Subscription-Key header is not specified. 
-	 * Authorization token:  "Bearer" + " " + "access_token".
-	 */
-	"Authorization"?: string,
-	
-	/**
-	 * Required if the appid field or Authorization header is not specified.
-	 */
-	"Ocp-Apim-Subscription-Key"?: string
-}
-
 export interface TranslateOptions {
-	parameter: TranslateParameters,
-	headers: TranslateHeaders
+	parameter: TranslateParameters
 }
 
 export interface TranslateParameters {
-	/**
-	 * If Authorization header is used, leave the appid field empty else include a string containing "Bearer" + " " + "access_token".
-	 */
-	appId: string,
 	
 	/**
 	 * A string containing a sentence or sentences of the specified language to be spoken for the wave stream. 
@@ -783,54 +555,24 @@ export interface TranslateParameters {
 	 * A string representing the language code to translate the text into.
 	 */
 	to: string,
-	/**
-	 * The only supported, and the default, option is text/plain.
-	 */
-	contentType?: "text/plain",
 
 	/**
 	 * A string containing the category (domain) of the translation. Defaults to general.
 	 */
-	category?: string		
-}
+	category?: string,
 
-export interface TranslateHeaders {
 	/**
-	 * Required if the appid field or  Ocp-Apim-Subscription-Key header is not specified. 
-	 * Authorization token:  "Bearer" + " " + "access_token".
+	 * The only supported, and the default, option is text/plain.
 	 */
-	"Authorization"?: string,
-	
-	/**
-	 * Required if the appid field or Authorization header is not specified.
-	 */
-	"Ocp-Apim-Subscription-Key"?: string
+	contentType?: "text/plain"	
 }
 
 export interface TranslateArrayOptions {
-	headers: TranslateArrayHeaders,
 	body: TranslateArrayBody
 }
 
-export interface TranslateArrayHeaders {
-	/**
-	 * Required if the appid field or  Ocp-Apim-Subscription-Key header is not specified. 
-	 * Authorization token:  "Bearer" + " " + "access_token".
-	 */
-	"Authorization"?: string,
-	
-	/**
-	 * Required if the appid field or Authorization header is not specified.
-	 */
-	"Ocp-Apim-Subscription-Key"?: string
-}
-
 export interface TranslateArrayBody {
-	/**
-	 * If Authorization header is used, leave the appid field empty else include a string containing "Bearer" + " " + "access_token".
-	 */
-	appId: string,
-	
+
 	/**
 	 * A string representing the language code to translate the text from. 
 	 * If left empty the response will include the result of language auto-detection.
@@ -838,8 +580,12 @@ export interface TranslateArrayBody {
 	from?: string,
 
 	/**
-	 * They are all optional and default to the most common settings. Specified elements must be listed in alphabetical order.
+	 * An array containing the texts for translation. All strings must be of the same language. 
+	 * The total of all texts to be translated must not exceed 10000 characters. 
+	 * The maximum number of array elements is 2000.
 	 */
+	to: string,
+
 	options?: {
 		/**
 		 * A string containing the category (domain) of the translation. Defaults to general.
@@ -847,22 +593,20 @@ export interface TranslateArrayBody {
 		category?: string,
 
 		/**
-		 * The only supported, and the default, option is text/plain.
-		 */
-		contentType?: "text/plain",
-
-		/**
 		 * Specifies how profanities are handled as explained above. 
 		 * Accepted values of ProfanityAction are NoAction (default), Marked and Deleted. 
 		 */
-		profanityAction: string, 
-			
-		reservedFlags?: boolean,
+		profanityAction?: string, 
+
+		/**
+		 * The only supported, and the default, option is text/plain.
+		 */
+		contentType?: string,
 			
 		/**
 		 * User state to help correlate request and response. The same contents will be returned in the response.
 		 */
-		state?: number,
+		state?: string,
 
 		/**
 		 * Filter results by this URI. If no value is set, the default is all.
@@ -880,16 +624,9 @@ export interface TranslateArrayBody {
 	 * The total of all texts to be translated must not exceed 10000 characters.
 	 * The maximum number of array elements is 2000.
 	 */
-	texts: {
+	sourceTexts: {
 		string: string[]
-	},
-
-	/**
-	 * An array containing the texts for translation. All strings must be of the same language. 
-	 * The total of all texts to be translated must not exceed 10000 characters. 
-	 * The maximum number of array elements is 2000.
-	 */
-	to: string
+	}
 }
 
 export interface TranslateArrayReturnValue {
