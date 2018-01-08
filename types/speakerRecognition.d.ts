@@ -25,29 +25,29 @@ export class speakerRecognition {
 	 * Create a new speaker identification profile with specified locale.
 	 * One subscription can only create 1000 speaker verification/identification profiles at most. 
 	 */
-	identificationProfileCreateProfile(options: identificationProfileCreateProfileOptions): Promise<identificationProfileCreateProfileReturnValue>;
+	identificationProfileCreateProfile(options: IdentificationProfileCreateProfileOptions): Promise<IdentificationProfileCreateProfileReturnValue>;
 	
 	/**
 	 * 
 	 * Deletes both speaker identification profile and all associated enrollments permanently from the service.
 	 */
-	identificationProfileDeleteProfile(options: identificationProfileDeleteProfileOptions): Promise<void>;
+	identificationProfileDeleteProfile(options: IdentificationProfileDeleteProfileOptions): Promise<void>;
 
 	/**
 	 * Get a speaker identification profile by identificationProfileId.
 	 */
-	identificationProfileGet(options: identificationProfileGetOptions): Promise<identificationProfileGetReturnValue>;
+	identificationProfileGet(options: IdentificationProfileGetOptions): Promise<IdentificationProfileGetReturnValue>;
 	
 	
 	/**
 	 * Get all speaker identification profiles within the subscription.
 	 */
-	identificationProfileGetAll(options: identificationProfileGetAllOptions): Promise<identificationProfileGetAllReturnValue>;
+	identificationProfileGetAll(): Promise<IdentificationProfileGetAllReturnValue>;
 
 	/**
 	 * Deletes all enrollments associated with the given speaker identification profile permanently from the service.
 	 */
-	identificationProfileResetEnrollments(options: identificationProfileResetEnrollmentsOptions): Promise<void>;
+	identificationProfileResetEnrollments(options: IdentificationProfileResetEnrollmentsOptions): Promise<void>;
 
 	/**
 	 * Returns the list of supported verification phrases that can be used 
@@ -55,7 +55,7 @@ export class speakerRecognition {
 	 * Request processed successfully and the list of supported phrases are returned. 
 	 * The returned JSON array consists of a list of objects that contain the supported phrases.
 	 */
-	listAllSupportedVerificationPhrases(options: listAllSupportedVerificationPhrasesOptions): Promise<ListAllSupportedVerificationPhrasesReturnValue[]>;
+	listAllSupportedVerificationPhrases(options: ListAllSupportedVerificationPhrasesOptions): Promise<ListAllSupportedVerificationPhrasesReturnValue[]>;
 	
 	/**
 	 * Get operation status or result. The operation should be created by Speaker Recognition - Identification or Identification Profile - Create Enrollment. 
@@ -114,7 +114,7 @@ export class speakerRecognition {
 	 * Create a new speaker verification profile with specific locale.
 	 * One subscription can only create 1000 speaker verification/identification profiles at most.
 	 */
-	verificationProfileCreateProfile(options: VerificationProfileCreateProfileOptions): Promise<VerificationProfileCreateProfileReturnValue>;
+	verificationProfileCreateProfile(): Promise<VerificationProfileCreateProfileReturnValue>;
 	
 	/**
 	 * Deletes both speaker verification profile and all associated enrollments permanently from the service.
@@ -124,7 +124,7 @@ export class speakerRecognition {
 	/**
 	 * Get all speaker verification profiles within the subscription.
 	 */
-	verificationProfileGetAllProfiles(options: VerificationProfileGetAllProfilesOptions): Promise<VerificationProfileGetAllProfilesReturnValue>;
+	verificationProfileGetAllProfiles(): Promise<VerificationProfileGetAllProfilesReturnValue>;
 	
 	/**
 	 * Get a speaker verification profile by verificationProfileId
@@ -145,8 +145,9 @@ export interface SpeakerRecognitionOptions {
 
 //Identification Profile Create Enrollment Options
 export interface IdentificationProfileCreateEnrollmentOptions {
-	parameters?: identificationProfileCreateEnrollmentParameters,
-	headers?: identificationProfileCreateEnrollmentHeaders
+	parameters?: IdentificationProfileCreateEnrollmentParameters,
+	headers?: IdentificationProfileCreateEnrollmentHeaders,
+	body: { "url"?: string } | any
 }
 
 export interface identificationProfileCreateEnrollmentParameters {
@@ -159,39 +160,21 @@ export interface identificationProfileCreateEnrollmentParameters {
 	 * Instruct the service to waive the recommended minimum audio limit needed for enrollment. 
 	 * Set value to “true” to force enrollment using any audio length (min. 1 second).
 	 */
-	shortAudio?: boolean
+	shortAudio?: string
 }
 
-export interface identificationProfileCreateEnrollmentHeaders {
+export interface IdentificationProfileCreateEnrollmentHeaders {
 	/**
 	 * Media type of the body sent to the API.
 	 */
-	"Content-Type"?: string,
-
-	/**
-	 * Subscription key which provides access to this API.
-	 */
-	"Ocp-Apim-Subscription-Key"?: string
+	"Content-Type"?: string
 }
 
-export interface identificationProfileCreateProfileOptions {
-	headers?: identificationProfileCreateProfileHeaders
-    body?: identificationProfileCreateProfileBody
+export interface IdentificationProfileCreateProfileOptions {
+    body?: IdentificationProfileCreateProfileBody
 }
 
-export interface identificationProfileCreateProfileHeaders {
-	/**
-	 * Media type of the body sent to the API.
-	 */
-	"Content-Type"?: string,
-	
-	/**
-	 * Subscription key which provides access to this API.
-	 */
-	"Ocp-Apim-Subscription-Key"?: string
-}
-
-export interface identificationProfileCreateProfileBody {
+export interface IdentificationProfileCreateProfileBody {
 	/**
 	 * Locale for the language of this speaker identification profile .
 	 * A complete supported locale list is here: 
@@ -201,19 +184,18 @@ export interface identificationProfileCreateProfileBody {
 	locale?: string
 }
 
-export interface identificationProfileCreateProfileReturnValue {
+export interface IdentificationProfileCreateProfileReturnValue {
 	/**
 	 * Id of the created speaker identification profile.
 	 */
 	identificationProfileId?: string
 }
 
-export interface identificationProfileDeleteProfileOptions {
-	parameters?: identificationProfileDeleteProfileParameters,
-	headers?: identificationProfileDeleteProfileHeaders
+export interface IdentificationProfileDeleteProfileOptions {
+	parameters?: IdentificationProfileDeleteProfileParameters
 }
 
-export interface identificationProfileDeleteProfileParameters {
+export interface IdentificationProfileDeleteProfileParameters {
 	/**
 	 * ID of speaker identification profile.
 	 * GUID returned from Identification Profile - Create Profile API
@@ -221,19 +203,11 @@ export interface identificationProfileDeleteProfileParameters {
 	identificationProfileId: string
 }
 
-export interface identificationProfileDeleteProfileHeaders {
-	/**
-	 * Subscription key which provides access to this API.
-	 */
-	"Ocp-Apim-Subscription-Key"?: string
+export interface IdentificationProfileGetOptions {
+	parameters?: IdentificationProfileGetParameters
 }
 
-export interface identificationProfileGetOptions {
-	parameters?: identificationProfileGetParameters,
-	headers?: identificationProfileGetHeaders
-}
-
-export interface identificationProfileGetParameters {
+export interface IdentificationProfileGetParameters {
 	/**
 	 * ID of speaker identification profile.
 	 * GUID returned from Identification Profile - Create Profile API
@@ -241,14 +215,7 @@ export interface identificationProfileGetParameters {
 	identificationProfileId: string
 }
 
-export interface identificationProfileGetHeaders {
-	/**
-	 * Subscription key which provides access to this API.
-	 */
-	"Ocp-Apim-Subscription-Key"?: string
-}
-
-export interface identificationProfileGetReturnValue {
+export interface IdentificationProfileGetReturnValue {
 	/**
 	 * Id of the created speaker identification profile.
 	 */
@@ -288,18 +255,7 @@ export interface identificationProfileGetReturnValue {
 	EnrollmentStatus: string
 }
 
-export interface identificationProfileGetAllOptions {
-	headers?: identificationProfileGetAllHeaders
-}
-
-export interface identificationProfileGetAllHeaders {
-	/**
-	 * Subscription key which provides access to this API.
-	 */
-	"Ocp-Apim-Subscription-Key"?: string
-}
-
-export interface identificationProfileGetAllReturnValue {
+export interface IdentificationProfileGetAllReturnValue {
 	/**
 	 * Id of the created speaker identification profile.
 	 */
@@ -339,12 +295,11 @@ export interface identificationProfileGetAllReturnValue {
 	EnrollmentStatus: string
 }
 
-export interface identificationProfileResetEnrollmentsOptions {
-	parameters?: identificationProfileResetEnrollmentsParameters,
-	headers?: identificationProfileResetEnrollmentsHeaders
+export interface IdentificationProfileResetEnrollmentsOptions {
+	parameters?: IdentificationProfileResetEnrollmentsParameters
 }
 
-export interface identificationProfileResetEnrollmentsParameters {
+export interface IdentificationProfileResetEnrollmentsParameters {
 	/**
 	 * ID of speaker identification profile.
 	 * GUID returned from Identification Profile - Create Profile API
@@ -352,40 +307,23 @@ export interface identificationProfileResetEnrollmentsParameters {
 	identificationProfileId: string
 }
 
-export interface identificationProfileResetEnrollmentsHeaders {
-	/**
-	 * Subscription key which provides access to this API.
-	 */
-	"Ocp-Apim-Subscription-Key"?: string
+export interface ListAllSupportedVerificationPhrasesOptions {
+	parameters?: ListAllSupportedVerificationPhrasesParameters
 }
 
-export interface listAllSupportedVerificationPhrasesOptions {
-	parameters?: listAllSupportedVerificationPhrasesParameters,
-	headers?: listAllSupportedVerificationPhrasesOptionsHeaders
-}
-
-export interface listAllSupportedVerificationPhrasesParameters {
+export interface ListAllSupportedVerificationPhrasesParameters {
 	/**
 	 * Locale for the language when retrieving verification phrases.
 	 */
 	locale: string
 }
 
-export interface listAllSupportedVerificationPhrasesOptionsHeaders {
-	/**
-	 * Subscription key which provides access to this API.
-	 */
-	"Ocp-Apim-Subscription-Key"?: string
-}
-
-//to-do rename the interface
 export interface ListAllSupportedVerificationPhrasesReturnValue {
 	phrase:string
 }
 
 export interface SpeakerRecognitionGetStatusOptions {
-	parameters?: SpeakerRecognitionGetStatusParameters,
-	headers?: SpeakerRecognitionGetStatusHeaders
+	parameters?: SpeakerRecognitionGetStatusParameters
 }
 
 export interface SpeakerRecognitionGetStatusParameters {
@@ -393,13 +331,6 @@ export interface SpeakerRecognitionGetStatusParameters {
 	 * The operation Id, created by Speaker Recognition - Identification or Identification Profile - Create Enrollment.
 	 */
 	operationId: string
-}
-
-export interface SpeakerRecognitionGetStatusHeaders {
-	/**
-	 * Subscription key which provides access to this API.
-	 */
-	"Ocp-Apim-Subscription-Key"?: string
 }
 
 export interface SpeakerRecognitionGetStatusReturnValue {
@@ -473,8 +404,7 @@ export interface SpeakerRecognitionGetStatusReturnValue {
 }
 
 export interface SpeakerRecognitionIdentificationOptions {
-	parameters?: SpeakerRecognitionIdentificationParameters,
-	headers?: SpeakerRecognitionIdentificationHeaders
+	parameters?: SpeakerRecognitionIdentificationParameters
 }
 
 export interface SpeakerRecognitionIdentificationParameters {
@@ -490,21 +420,8 @@ export interface SpeakerRecognitionIdentificationParameters {
 	shortAudio?: boolean
 }
 
-export interface SpeakerRecognitionIdentificationHeaders {
-	/**
-	 * Media type of the body sent to the API.
-	 */
-	"Content-Type"?: string,
-	
-	/**
-	 * Subscription key which provides access to this API.
-	 */
-	"Ocp-Apim-Subscription-Key"?: string
-}
-
 export interface SpeakerRecognitionVerificationOptions {
-	parameters?: SpeakerRecognitionVerificationParameters,
-	headers?: SpeakerRecognitionVerificationHeaders
+	parameters?: SpeakerRecognitionVerificationParameters
 }
 
 export interface SpeakerRecognitionVerificationParameters {
@@ -512,18 +429,6 @@ export interface SpeakerRecognitionVerificationParameters {
 	 * ID of speaker verification profile. It should be a GUID.
 	 */
 	verificationProfileId: string
-}
-
-export interface SpeakerRecognitionVerificationHeaders {
-	/**
-	 * Media type of the body sent to the API.
-	 */
-	"Content-Type"?: string,
-	
-	/**
-	 * Subscription key which provides access to this API.
-	 */
-	"Ocp-Apim-Subscription-Key"?: string
 }
 
 export interface SpeakerRecognitionVerificationReturnValue {
@@ -549,8 +454,7 @@ export interface SpeakerRecognitionVerificationReturnValue {
 }
 
 export interface VerificationProfileCreateEnrollmentOptions {
-	parameters?: VerificationProfileCreateEnrollmentParameters,
-	headers?: VerificationProfileCreateEnrollmentHeaders
+	parameters?: VerificationProfileCreateEnrollmentParameters
 }
 
 export interface VerificationProfileCreateEnrollmentParameters {
@@ -558,18 +462,6 @@ export interface VerificationProfileCreateEnrollmentParameters {
 	 * ID of speaker verification profile. GUID returned from Verification Profile - Create Profile API
 	 */
 	verificationProfileId: string
-}
-
-export interface VerificationProfileCreateEnrollmentHeaders {
-	/**
-	 * Media type of the body sent to the API.
-	 */
-	"Content-Type"?: string,
-	
-	/**
-	 * Subscription key which provides access to this API.
-	 */
-	"Ocp-Apim-Subscription-Key"?: string
 }
 
 export interface VerificationProfileCreateEnrollmentReturnValue {
@@ -597,22 +489,6 @@ export interface VerificationProfileCreateEnrollmentReturnValue {
 	phrase: string
 }
 
-export interface VerificationProfileCreateProfileOptions {
-	headers: VerificationProfileCreateProfileHeaders
-}
-
-export interface VerificationProfileCreateProfileHeaders {
-	/**
-	 * Media type of the body sent to the API.
-	 */
-	"Content-Type"?: string,
-	
-	/**
-	 * Subscription key which provides access to this API.
-	 */
-	"Ocp-Apim-Subscription-Key"?: string
-}
-
 export interface VerificationProfileCreateProfileReturnValue {
 	/**
 	 * Id of the created speaker verification profile.
@@ -621,8 +497,7 @@ export interface VerificationProfileCreateProfileReturnValue {
 }
 
 export interface VerificationProfileDeleteProfileOptions {
-	parameters: VerificationProfileDeleteProfileParameters,
-	Headers: VerificationProfileDeleteProfileHeaders
+	parameters: VerificationProfileDeleteProfileParameters
 }
 
 export interface VerificationProfileDeleteProfileParameters {
@@ -630,24 +505,6 @@ export interface VerificationProfileDeleteProfileParameters {
 	 * ID of speaker verification profile. It should be a GUID.
 	 */
 	verificationProfileId: string
-}
-
-export interface VerificationProfileDeleteProfileHeaders {
-	/**
-	 * Subscription key which provides access to this API.
-	 */
-	"Ocp-Apim-Subscription-Key"?: string 
-}
-
-export interface VerificationProfileGetAllProfilesOptions {
-	headers: VerificationProfileGetAllProfilesHeaders
-}
-
-export interface VerificationProfileGetAllProfilesHeaders {
-	/**
-	 * Subscription key which provides access to this API.
-	 */
-	"Ocp-Apim-Subscription-Key"?: string 
 }
 
 export interface VerificationProfileGetAllProfilesReturnValue {
@@ -691,22 +548,14 @@ export interface VerificationProfileGetAllProfilesReturnValue {
 }
 
 export interface VerificationProfileGetProfileOptions {
-	parameters: VerificationProfileGetProfileParameters,
-	Headers: VerificationProfileGetProfileHeaders
+	parameters: VerificationProfileGetProfileParameters
 }
 
 export interface VerificationProfileGetProfileParameters {
 	/**
 	 * Id of the speaker verification profile.
 	 */
-	verificationProfileId: string,
-}
-
-export interface VerificationProfileGetProfileHeaders {
-	/**
-	 * Subscription key which provides access to this API.
-	 */
-	"Ocp-Apim-Subscription-Key"?: string 
+	verificationProfileId: string
 }
 
 export interface VerificationProfileGetProfileReturnValue {
@@ -750,22 +599,14 @@ export interface VerificationProfileGetProfileReturnValue {
 }
 
 export interface VerificationProfileResetEnrollmentsOptions {
-	parameters: VerificationProfileResetEnrollmentsParameters,
-	Headers: VerificationProfileResetEnrollmentsHeaders
+	parameters: VerificationProfileResetEnrollmentsParameters
 }
 
 export interface VerificationProfileResetEnrollmentsParameters {
 	/**
 	 * Id of the speaker verification profile.
 	 */
-	verificationProfileId: string,
+	verificationProfileId: string
 }
 
-export interface VerificationProfileResetEnrollmentsHeaders {
-	/**
-	 * Subscription key which provides access to this API.
-	 */
-	"Ocp-Apim-Subscription-Key"?: string 
-}
-}
 
