@@ -341,5 +341,8 @@ export interface IdentifyParameters {
 }
 
 export interface IdentifyHeaders {
-    "Content-Type"?: string
+   /**
+	 * Media type of the body sent to the API.
+	 */
+	"Content-Type"?: string
 }
