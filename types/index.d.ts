@@ -16,7 +16,8 @@ export * from './entityLinking';
 export * from './face';
 export * from './qnaMaker';
 export * from './recommendations';
-export * from './speakerRecognition';
+export * from './speakerIdentification';
+export * from './speakerVerification'
 export * from './textAnalytics';
 export * from './textTranslator';
 export * from './video';
