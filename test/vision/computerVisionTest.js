@@ -37,6 +37,29 @@ describe('Computer vision', () => {
                 done(err);
             });
         });
+
+        it('should accept application/octet-stream', (done) => {
+            const parameters = {
+                "visualFeatures": "Categories",
+                "details": "Celebrities,Landmarks"
+            };
+            const headers = {
+                'Content-type': 'application/octet-stream'
+            };
+            const body = fs.readFileSync('test/assets/cat.jpg');
+
+            client.analyzeImage({
+                parameters,
+                headers,
+                body
+            }).then((response) => {
+                should(response).not.be.undefined();
+                should(response).have.properties(["categories", "metadata", "requestId"]);
+                done();
+            }).catch((err) => {
+                done(err);
+            });
+        });
     });
 
     describe('Describe image (POST)',  () => {
