@@ -1,7 +1,7 @@
 import { exec } from "child_process";
 
-export class speakerRecognition {
-	constructor(options: SpeakerRecognitionOptions);
+export class speakerRVerification {
+	constructor(options: SpeakerRVerification);
 
 	/**
 	 * Returns the list of supported verification phrases that can be used 
@@ -71,6 +71,10 @@ export class speakerRecognition {
 
 }
 
+export interface SpeakerIdentificationOptions {
+	apiKey: string,
+	endpoint: string
+}
 
 export interface SpeakerRecognitionVerificationOptions {
 	parameters: SpeakerRecognitionVerificationParameters,
