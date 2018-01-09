@@ -14,7 +14,7 @@ export class bingImageSearch {
 	/**
 	 * Get currently trending images.
 	 */
-	trending(options: TrendingOptions): Promise<TrendingReturnValue>;
+	trending(): Promise<TrendingReturnValue>;
 }
 
 export interface BingImageSearchOptions {
@@ -42,8 +42,7 @@ export interface ImageInsightsParameters {
 }
 
 export interface SearchOptions {
-	parameters: SearchParameters,
-	header: any
+	parameters: SearchParameters
 }
 
 export interface SearchParameters {
@@ -138,13 +137,8 @@ export interface SearchReturnValue {
     displayRecipeSourcesBadges: boolean
 }
 
-export interface TrendingOptions {
-	parameters: TrendingParameters,
-	headers: any
-}
-
 export interface TrendingReturnValue {
-	_type: TrendingImages,
+	_type: string,
     instrumentation: {
         pingUrlBase: string,
         pageLoadPingUrl: string
