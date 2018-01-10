@@ -2,73 +2,14 @@ import { exec } from "child_process";
 
 export class speakerRVerification {
 	constructor(options: SpeakerRVerification);
-
-	/**
-	 * Returns the list of supported verification phrases that can be used 
-	 * for Verification Profile - Create Enrollment and Speaker Recognition - Verification.
-	 * Request processed successfully and the list of supported phrases are returned. 
-	 * The returned JSON array consists of a list of objects that contain the supported phrases.
-	 */
 	listAllSupportedVerificationPhrases(options: ListAllSupportedVerificationPhrasesOptions): Promise<ListAllSupportedVerificationPhrasesReturnValue[]>;
-	
-	/**
-	 * To automatically verify and authenticate users using their voice or speech.
-	 * You should include the test (verification) audio file in the request body. 
-	 * The audio file should be at least 1-second-long and no longer than 15 seconds.
-	 * It is recommended to use the same device (mic) used in enrollment.
-	 * The audio file format must meet the following requirements.
-	 * Container: WAV
-	 * Encoding: PCM
-	 * Rate: 16K
-	 * Sample Format: 16 bit
-	 * Channels: Mono
-	 */
-	
 	verify(options: SpeakerRecognitionVerificationOptions): Promise<SpeakerRecognitionVerificationReturnValue>;
-	
-	/**
-	 * 
-	 * Enrollment for speaker verification is text-dependent, which means speaker need to choose a specific phrase to use in both enrollment and verification. 
-	 * List of supported phrases can be found in Verification Phrase - List All Supported Verification Phrases.
-	 * The service requires at least 3 enrollments for each speaker before the profile can be used in verification scenarios. 
-	 * It is recommended to use the same device (mic) in both enrollment and verification.
-	 * You should include the enrollment audio file in the request body. The audio file should be at least 1-second-long and no longer than 15 seconds. 
-	 * Each speaker must provide at least three enrollments to the service.
-	 * The audio file format must meet the following requirements.
-	 * Container: WAV
-	 * Encoding: PCM
-	 * Rate: 16K
-	 * Sample Format: 16 bit
-	 * Channels: Mono
-	 */
 	createEnrollment(options: VerificationProfileCreateEnrollmentOptions): Promise<VerificationProfileCreateEnrollmentReturnValue>;
-	
-	/**
-	 * Create a new speaker verification profile with specific locale.
-	 * One subscription can only create 1000 speaker verification/identification profiles at most.
-	 */
 	createProfile(options: VerificationProfileCreateProfileOptions): Promise<VerificationProfileCreateProfileReturnValue>;
-	
-	/**
-	 * Deletes both speaker verification profile and all associated enrollments permanently from the service.
-	 */
 	deleteProfile(options: VerificationProfileDeleteProfileOptions): Promise<void>;
-	
-	/**
-	 * Get all speaker verification profiles within the subscription.
-	 */
 	getAllProfiles(): Promise<VerificationProfileGetAllProfilesReturnValue>;
-	
-	/**
-	 * Get a speaker verification profile by verificationProfileId
-	 */
 	getProfile(options: VerificationProfileGetProfileOptions): Promise<VerificationProfileGetProfileReturnValue>;
-	
-	/**
-	 * Deletes all enrollments associated with the given speaker’s verification profile permanently from the service.
-	 */
 	resetEnrollments(options: VerificationProfileResetEnrollmentsOptions): Promise<void>;
-
 }
 
 export interface SpeakerIdentificationOptions {

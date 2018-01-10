@@ -2,76 +2,14 @@ import { exec } from "child_process";
 
 export class speakerIdentification {
 	constructor(options: SpeakerIdentificationOptions);
-
-	/**
-	 * Enrollment for speaker identification is text-independent, which means that there are no restrictions on what the speaker says in the audio.
-	 * You should include the enrollment audio file in the request body. The audio file should be at least 5 seconds long and no longer than 5 minutes. 
-	 * The minimum recommended amount of accumulated speech for enrollment, after removing silence, is 30 seconds.
-	 * After accumulating 30 seconds of speech, the profile’s enrollment status is changed from enrolling to enrolled to indicate that it is ready for identification.
-	 * In the case you wish to enroll using any amount of speech time, you should include the "shortAudio" parameter.
-	 * It instructs the service to waive the recommended amount of audio limit needed for enrollment and accordingly the profile’s enrollment status is changed from enrolling to enrolled. 
-	 * When doing so you can send audio files starting 1-second-long but no longer than 5 minutes.
-	 * The audio file format must meet the following requirements.
-	 * Container: WAV
-	 * Encoding: PCM
-	 * Rate: 16K
-	 * Sample Format: 16 bit
-	 * Channels: Mono
-	 */
 	createEnrollment(options: IdentificationProfileCreateEnrollmentOptions): Promise <void>;
-
-	/**
-	 * 
-	 * Create a new speaker identification profile with specified locale.
-	 * One subscription can only create 1000 speaker verification/identification profiles at most. 
-	 */
 	createProfile(options: IdentificationProfileCreateProfileOptions): Promise<IdentificationProfileCreateProfileReturnValue>;
-	
-	/**
-	 * 
-	 * Deletes both speaker identification profile and all associated enrollments permanently from the service.
-	 */
 	deleteProfile(options: IdentificationProfileDeleteProfileOptions): Promise<void>;
-
-	/**
-	 * Get a speaker identification profile by identificationProfileId.
-	 */
 	getProfile(options: IdentificationProfileGetOptions): Promise<IdentificationProfileGetReturnValue>;
-	
-	
-	/**
-	 * Get all speaker identification profiles within the subscription.
-	 */
 	getAllProfiles(): Promise<IdentificationProfileGetAllReturnValue>;
-
-	/**
-	 * Deletes all enrollments associated with the given speaker identification profile permanently from the service.
-	 */
 	resetEnrollmentsForProfile(options: IdentificationProfileResetEnrollmentsOptions): Promise<void>;
-
-	
-	/**
-	 * Get operation status or result. The operation should be created by Speaker Recognition - Identification or Identification Profile - Create Enrollment. 
-	 * And the URL should be retrieved from Operation-Location header of initial POST 202 response
-	 */
 	getOperationStatus(options: GetOperationStatusOptions): Promise<GetOperationStatusReturnValue>;
-	
-	/**
-	 * To automatically identify who is speaking given a group of speakers.
-	 * You should include the enrollment audio file in the request body. 
-	 * The minimum recommended amount of accumulated speech for identification, after removing silence, is 30 seconds.
-	 * In the case you wish to start identification using any amount of speech time, you should include the "shortAudio" parameter. 
-	 * It instructs the service to waive the recommended 30 seconds of audio needed to do identification. 
-	 * When doing so you can send audio files starting 1-second-long but no longer than 5 minutes.
-	 * The audio file format must meet the following requirements.
-	 * Container: WAV
-	 * Encoding: PCM
-	 * Rate: 16K
-	 * Sample Format: 16 bit
-	 * Channels: Mono
-	 */
 	identify(options: IdentifyOptions): Promise<void>;
-	
 }
 
 export interface SpeakerIdentificationOptions {
