@@ -1,7 +1,7 @@
 import { exec } from "child_process";
 
-export class speakerRVerification {
-	constructor(options: SpeakerRVerification);
+export class speakerVerification {
+	constructor(options: SpeakerVerification);
 	listAllSupportedVerificationPhrases(options: ListAllSupportedVerificationPhrasesOptions): Promise<ListAllSupportedVerificationPhrasesReturnValue[]>;
 	verify(options: SpeakerRecognitionVerificationOptions): Promise<SpeakerRecognitionVerificationReturnValue>;
 	createEnrollment(options: VerificationProfileCreateEnrollmentOptions): Promise<VerificationProfileCreateEnrollmentReturnValue>;
@@ -20,7 +20,7 @@ export interface SpeakerIdentificationOptions {
 export interface SpeakerRecognitionVerificationOptions {
 	parameters: SpeakerRecognitionVerificationParameters,
 	headers: SpeakerRecognitionVerificationHeaders,
-	body: {"url?: string"} | any
+	body: { "url?: string" } | any
 }
 
 export interface SpeakerRecognitionVerificationParameters {
@@ -30,7 +30,7 @@ export interface SpeakerRecognitionVerificationParameters {
 	verificationProfileId: string
 }
 
-export interface SpeakerRecognitionVerificationHeaders{
+export interface SpeakerRecognitionVerificationHeaders {
 	"Content-Type"?: string
 }
 
@@ -41,7 +41,7 @@ export interface SpeakerRecognitionVerificationReturnValue {
 	 * Reject: The verification is rejected.
 	 */
 	result: string,
-	
+
 	/**
 	 * 	The confidence level of the verification.
 	 * Low: The confidence of the verification is low.
@@ -49,7 +49,7 @@ export interface SpeakerRecognitionVerificationReturnValue {
 	 * High: The confidence of the verification is high.
 	 */
 	confidence: string,
-	
+
 	/**
 	 * The recognized phrase of the verification audio file.
 	 */
@@ -59,7 +59,7 @@ export interface SpeakerRecognitionVerificationReturnValue {
 export interface VerificationProfileCreateEnrollmentOptions {
 	parameters: VerificationProfileCreateEnrollmentParameters,
 	headers: VerificationProfileCreateEnrollmentHeaders
-	body: {"url"?: string} | any
+	body: { "url"?: string } | any
 }
 
 export interface VerificationProfileCreateEnrollmentParameters {
@@ -86,11 +86,11 @@ export interface VerificationProfileCreateEnrollmentReturnValue {
 	 * The current speaker verification profile enrollments count.
 	 */
 	enrollmentsCount: number,
-	
+
 	/**
 	 * Remaining number of required enrollments if enrollmentStatus== Enrolling.
 	 */
-	remainingEnrollments: number,	
+	remainingEnrollments: number,
 
 	/**
 	 * Recognized phrase of the enrollment audio.
@@ -98,8 +98,8 @@ export interface VerificationProfileCreateEnrollmentReturnValue {
 	phrase: string
 }
 
-export interface VerificationProfileCreateProfileOptions{
-	body: {"url"?: string} | any
+export interface VerificationProfileCreateProfileOptions {
+	body: { "url"?: string } | any
 }
 
 export interface VerificationProfileCreateProfileReturnValue {
@@ -125,7 +125,7 @@ export interface VerificationProfileGetAllProfilesReturnValue {
 	 * Id of the speaker verification profile.
 	 */
 	verificationProfileId: string,
-	
+
 	/**
 	 * Language locale of the speaker verification profile.
 	 */
@@ -176,7 +176,7 @@ export interface VerificationProfileGetProfileReturnValue {
 	 * Id of the speaker verification profile.
 	 */
 	verificationProfileId: string,
-	
+
 	/**
 	 * Language locale of the speaker verification profile.
 	 */
@@ -234,7 +234,7 @@ export interface ListAllSupportedVerificationPhrasesParameters {
 }
 
 export interface ListAllSupportedVerificationPhrasesReturnValue {
-	phrase:string
+	phrase: string
 }
 
 
