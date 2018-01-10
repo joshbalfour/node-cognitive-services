@@ -174,7 +174,7 @@ export interface DetectReturnValue {
 			/**
 			 * an age number in years. 
 			 */
-			age: 71.0,
+			age: number,
 
 			/**
 			 * male or female
