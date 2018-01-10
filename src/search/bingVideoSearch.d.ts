@@ -13,7 +13,15 @@ export class bingVideoSearch {
 	 * Get videos relevant for a given query.
 	 */
 	search(options: SearchOptions): Promise<SearchReturnValue>;
+	
+	/**
+	 * 
+	 */
 	details(options: DetailsOptions): Promise<DetailsReturnValue>;
+	
+	/**
+	 * Get currently trending videos.
+	 */
 	trending(): Promise<TrendingReturnValue>;
 }
 
@@ -23,8 +31,7 @@ export interface BingVideoSearchOptions {
 }
 
 export interface SearchOptions {
-	parameters: SearchParameters,
-	headers: SearchHeaders
+	parameters: SearchParameters
 }
 
 export interface SearchParameters {
@@ -53,14 +60,6 @@ export interface SearchParameters {
 	 * A filter used to filter results for adult content.
 	 */
 	safeSearch?: string
-	
-}
-
-export interface SearchHeaders {
-	/**
-	 * Media type of the body sent to the API.
-	 */
-	"Content-Type"?: string
 }
 
 export interface SearchReturnValue {
@@ -106,15 +105,15 @@ export interface SearchReturnValue {
 	}[],
     nextOffsetAddCount: number,
     queryExpansions: {
-            text: string,
-            displayText: string,
-            webSearchUrl: string,
-            webSearchUrlPingSuffix: string,
-			searchLink: string,
-            thumbnail: {
-                thumbnailUrl: string
-            }
-        }[],
+		text: string,
+		displayText: string,
+		webSearchUrl: string,
+		webSearchUrlPingSuffix: string,
+		searchLink: string,
+		thumbnail: {
+			thumbnailUrl: string
+		}
+	}[],
     pivotSuggestions: {
 		pivot: string,
 		suggestions: {
@@ -128,4 +127,100 @@ export interface SearchReturnValue {
 			}
 		}[]
     }[]
+}
+
+export interface DetailsOptions {
+	parameters: DetailsParameters
+}
+
+export interface DetailsParameters {
+	
+	/**
+	 * An ID that uniquely identifies a video. The Video object's videoId field contains the ID that you set this parameter to.
+	 */
+	id: string,
+	
+	/**
+	 * A comma-delimited list of one or more insights to request.
+	 */
+	modules: string
+}
+
+export interface DetailsReturnValue {
+	_type: string,
+    instrumentation: {
+      pingUrlBase: string,
+      pageLoadPingUrl: string
+    },
+    videoResult: {
+      webSearchUrl: string,
+      webSearchUrlPingSuffix: string,
+      name: string,
+      description: string,
+      thumbnailUrl: string,
+      datePublished: string,
+      publisher: {
+        name: string
+      }[],
+      creator: {
+        name: string
+      },
+      contentUrl: string,
+      hostPageUrl: string,
+      hostPageUrlPingSuffix: string,
+      encodingFormat: string,
+      hostPageDisplayUrl: string,
+      width: number,
+      height: number,
+      embedHtml: string,
+      allowHttpsEmbed: boolean,
+      thumbnail: {
+        width: 480,
+        height: 270
+      },
+      videoId: string,
+      allowMobileEmbed: boolean,
+      isSuperfresh: boolean
+    }
+}
+
+export interface TrendingReturnValue {
+	_type: string,
+    instrumentation: {
+        pingUrlBase: string,
+        pageLoadPingUrl: string
+    },
+    bannerTiles: {
+		query: {
+			text: string,
+			displayText: string,
+			webSearchUrl: string,
+			webSearchUrlPingSuffix: string
+		},
+		image: {
+			description: string,
+			thumbnailUrl: string,
+			headLine: string,
+			contentUrl: string
+		}
+	}[],
+    categories: {
+		title: string,
+		subcategories: {
+			tiles: {
+				query: {
+					text: string,
+					displayText: string,
+					webSearchUrl: string,
+					webSearchUrlPingSuffix: string
+				},
+				image: {
+					description: string,
+					thumbnailUrl: string,
+					contentUrl: string
+				}
+			}[],
+			title: string
+		}[]
+     }[]
 }
