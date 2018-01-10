@@ -1,5 +1,3 @@
-import { exec } from "child_process";
-
 export class speakerVerification {
 	constructor(options: SpeakerVerification);
 	listAllSupportedVerificationPhrases(options: ListAllSupportedVerificationPhrasesOptions): Promise<ListAllSupportedVerificationPhrasesReturnValue[]>;

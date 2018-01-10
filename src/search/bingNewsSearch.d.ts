@@ -9,7 +9,7 @@ export class bingNewsSearch {
 	 */
 	categoryNews(options: CategoryNewsOptions): Promise<void>;
 	
-	search(options: SearchOptions): Promise<SearchReturnValue>;
+	search(options: SearchNewsOptions): Promise<SearchNewsReturnValue>;
 	
 	trendingTopics(options: TrendingTopicsOptions): Promise<TrendingTopicsReturnValue>;
 	 
@@ -33,12 +33,12 @@ export interface CategoryNewsParameters {
 	Category?: string
 }
 
-export interface SearchOptions {
-	parameters: SearchParameters,
+export interface SearchNewsOptions {
+	parameters: SearchNewsParameters,
 	headers: any
 }
 
-export interface SearchParameters {
+export interface SearchNewsParameters {
 	
 	/**
 	 * The user's search query string
@@ -66,7 +66,7 @@ export interface SearchParameters {
 	safeSearch?: string
 }
 
-export interface SearchReturnValue {
+export interface SearchNewsReturnValue {
 	_type: string,
     instrumentation: {
         pingUrlBase: string,

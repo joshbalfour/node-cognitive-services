@@ -170,6 +170,6 @@ export interface SearchWebReturnValue {
 				height: number
 			}
 		}[],
-        scenario: List
+        scenario: string
     }
 }

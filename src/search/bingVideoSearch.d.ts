@@ -1,5 +1,3 @@
-import { Url } from "url";
-
 /**
  * The Video API lets partners send a search query to Bing and get back a list of relevant videos. 
  * Note you should call the Video API if you need video content only. 
