@@ -12,7 +12,7 @@ export class speakerVerification {
 	resetEnrollments(options: VerificationProfileResetEnrollmentsOptions): Promise<void>;
 }
 
-export interface SpeakerIdentificationOptions {
+export interface SpeakerVerification {
 	apiKey: string,
 	endpoint: string
 }
