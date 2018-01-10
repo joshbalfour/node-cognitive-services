@@ -1,5 +1,3 @@
-import { exec } from "child_process";
-
 export class speakerIdentification {
 	constructor(options: SpeakerIdentificationOptions);
 	createEnrollment(options: IdentificationProfileCreateEnrollmentOptions): Promise <void>;
@@ -9,7 +7,7 @@ export class speakerIdentification {
 	getAllProfiles(): Promise<IdentificationProfileGetAllReturnValue>;
 	resetEnrollmentsForProfile(options: IdentificationProfileResetEnrollmentsOptions): Promise<void>;
 	getOperationStatus(options: GetOperationStatusOptions): Promise<GetOperationStatusReturnValue>;
-	identify(options: IdentifyOptions): Promise<void>;
+	identify(options: IdentifySpeakerOptions): Promise<void>;
 }
 
 export interface SpeakerIdentificationOptions {
@@ -24,7 +22,7 @@ export interface IdentificationProfileCreateEnrollmentOptions {
 	body: { "url"?: string } | any
 }
 
-export interface identificationProfileCreateEnrollmentParameters {
+export interface IdentificationProfileCreateEnrollmentParameters {
 	/**
 	 * ID of speaker identification profile
 	 */
@@ -178,18 +176,18 @@ export interface IdentificationProfileResetEnrollmentsParameters {
 }
 
 
-export interface getOperationStatusOptions {
-	parameters: getOperationStatusParameters
+export interface GetOperationStatusOptions {
+	parameters: GetOperationStatusParameters
 }
 
-export interface getOperationStatusParameters {
+export interface GetOperationStatusParameters {
 	/**
 	 * The operation Id, created by Speaker Recognition - Identification or Identification Profile - Create Enrollment.
 	 */
 	operationId: string
 }
 
-export interface getOperationStatusReturnValue {
+export interface GetOperationStatusReturnValue {
 	/**
 	 * The status of the operation.
 	 * notstarted: The operation is not started.
@@ -259,13 +257,13 @@ export interface getOperationStatusReturnValue {
 	confidence: string
 }
 
-export interface IdentifyOptions {
-    parameters: IdentifyParameters,
-    headers: IdentifyHeaaders,
+export interface IdentifySpeakerOptions {
+    parameters: IdentifySpeakerParameters,
+    headers: IdentifySpeakerHeaders,
     body: { "url"?: string } | any
 }
 
-export interface IdentifyParameters {
+export interface IdentifySpeakerParameters {
 	/**
 	 * ID of speaker identification profile
 	 */
@@ -278,7 +276,7 @@ export interface IdentifyParameters {
 	shortAudio?: boolean
 }
 
-export interface IdentifyHeaders {
+export interface IdentifySpeakerHeaders {
    /**
 	 * Media type of the body sent to the API.
 	 */

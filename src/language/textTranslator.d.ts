@@ -27,7 +27,7 @@ export class textTranslator {
 	 * Use the Detect method to identify the language of a selected piece of text.
 	 * The return value: A string containing a two-character Language code for the given text.
 	 */
-	detect(options: DetectOptions): Promise<void>;
+	detect(options: DetectTextTranslatorOptions): Promise<void>;
 	
 	/**
 	 * Use the DetectArray method to identify the language of an array of string at once. 
@@ -203,11 +203,11 @@ export interface BreakSentencesParameters {
 	language: string
 }
 
-export interface DetectOptions {
-	parameters: DetectParameters
+export interface DetectTextTranslatorOptions {
+	parameters: DetectTextTranslatorParameters
 }
 
-export interface DetectParameters {
+export interface DetectTextTranslatorParameters {
 	
 	/**
 	 * A string representing the text to split into sentences. 

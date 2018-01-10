@@ -9,12 +9,12 @@ export class bingImageSearch {
 	/**
 	 * Get relevant images for a given query.
 	 */
-	search(options: SearchOptions): Promise<SearchReturnValue>;
+	search(options: SearchImageOptions): Promise<SearchImageReturnValue>;
 	
 	/**
 	 * Get currently trending images.
 	 */
-	trending(): Promise<TrendingReturnValue>;
+	trending(): Promise<TrendingImageReturnValue>;
 }
 
 export interface BingImageSearchOptions {
@@ -41,11 +41,11 @@ export interface ImageInsightsParameters {
 	query?: string
 }
 
-export interface SearchOptions {
-	parameters: SearchParameters
+export interface SearchImageOptions {
+	parameters: SearchImageParameters
 }
 
-export interface SearchParameters {
+export interface SearchImageParameters {
 	
 	/**
 	 * The user's search query string
@@ -73,7 +73,7 @@ export interface SearchParameters {
 	safeSearch?: string
 }
 
-export interface SearchReturnValue {
+export interface SearchImageReturnValue {
 	_type: string,
     instrumentation: {
         pingUrlBase: string,
@@ -137,7 +137,7 @@ export interface SearchReturnValue {
     displayRecipeSourcesBadges: boolean
 }
 
-export interface TrendingReturnValue {
+export interface TrendingImageReturnValue {
 	_type: string,
     instrumentation: {
         pingUrlBase: string,

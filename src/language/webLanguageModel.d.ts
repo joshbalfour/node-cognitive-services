@@ -1,5 +1,3 @@
-import { exec } from "child_process";
-
 export class webLanguageModel {
 	constructor(options: WebLanguageModelOptions);
 
@@ -186,7 +184,7 @@ export interface GenerateNextWordsReturnValue {
 
 export interface ListAvailableModelsReturnValue {
 	models:{
-		corpus: sring,
+		corpus: string,
 		model: string,
 		maxOrder: number,
 		supportedOperations: {
