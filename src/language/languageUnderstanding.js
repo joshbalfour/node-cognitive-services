@@ -108,7 +108,16 @@ class languageUnderstanding extends commonService {
             operation: operation
         })
     };
-    
+    /**
+     * Checks if all models of app are trained
+     * @returns {Boolean}
+     */
+    isTrained(trainingStatus) {
+        var untrainedModels = trainingStatus.filter(model => {
+            return model.details.status == 'Fail' || model.details.status == 'InProgress';
+        });
+        return (untrainedModels.length===0);
+    }
     /**
      * Gets training status for that version. 
      * @returns {Promise.<object>}
@@ -359,6 +368,112 @@ class languageUnderstanding extends commonService {
         return this.makeRequest({
             operation: operation,
             parameters
+        })
+    };
+    /**
+     * Adds a prebuilt domain along with its models as a new application.
+     * @returns {Promise.<object>}
+     */
+    addPrebuiltDomain(body) {
+        
+        const operation = {
+            "path": "luis/api/v2.0/apps/customprebuiltdomains",
+            "method": "POST",
+            "parameters": [{
+                "name": "domainName",
+                "description": "The domain name",
+                "value": null,
+                "required": true,
+                "type": "inBody",
+                "typeName": "string"
+            }, {
+                "name": "culture",
+                "description": "The culture.",
+                "value": null,
+                "required": true,
+                "type": "inBody",
+                "typeName": "string"
+            }]
+        };
+
+        return this.makeRequest({
+            operation: operation,
+            headers: {'Content-type': 'application/json'},
+            body:body
+        })
+    };
+    /**
+     * Delete app
+     * @returns {Promise.<object>}
+     */
+    deleteApp() {
+        
+        const operation = {
+            "path": "luis/api/v2.0/apps/" + this.appID,
+            "method": "DELETE"
+        };
+
+        return this.makeRequest({
+            operation: operation,
+            headers: {'Content-type': 'application/json'}
+        })
+    };
+    /**
+     * Import app
+     * @returns {Promise.<object>}
+     */
+    importApp(parameters, body) {
+        
+        const operation = {
+            "path": "luis/api/v2.0/apps/import",
+            "method": "POST",
+            "parameters": [{
+                "name": "appName",
+                "description": "The imported application name.",
+                "value": null,
+                "required": false,
+                "type": "queryStringParam",
+                "typeName": "string"
+            }]
+        };
+
+        return this.makeRequest({
+            operation: operation,
+            headers: {'Content-type': 'application/json'},
+            body:body,
+            parameters:parameters
+        })
+    };
+    /**
+     * Updates the name or description of the application.
+     * @returns {Promise.<object>}
+     */
+    renameApp(body) {
+        
+        const operation = {
+            "path": "luis/api/v2.0/apps/" + this.appID,
+            "method": "PUT",
+            "parameters": [{
+                "name": "name",
+                "description": "New name of the application",
+                "value": null,
+                "required": true,
+                "type": "inBody",
+                "typeName": "string"
+            }, {
+                "name": "description",
+                "description": "New description of the application",
+                "value": null,
+                "required": true,
+                "type": "inBody",
+                "typeName": "string"
+            }]
+        };
+
+        return this.makeRequest({
+            operation: operation,
+            headers: {'Content-type': 'application/json'},
+            body:body
         })
     };
 };
