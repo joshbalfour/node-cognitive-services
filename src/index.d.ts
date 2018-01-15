@@ -21,3 +21,11 @@ export * from './vision/computerVision';
 export * from './vision/emotion';
 export * from './vision/face';
 export * from './vision/video';
+
+export interface ContentTypeHeaders {
+	/**
+	 * Media type of the body sent to the API. 
+	 */
+	"Content-Type"?: ContentTypeHeaderTypes
+}
+export type ContentTypeHeaderTypes = 'application/json'|'application/octet-stream'|'multipart/form-data';

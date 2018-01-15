@@ -1,10 +1,12 @@
+import { ContentTypeHeader, ContentTypeHeaders } from "..";
+
 export class computerVision {
 	constructor(options: computerVisionOptions);
 	analyzeImage(options: AnalyzeImageOptions): Promise<AnalyzeImageReturnValue>;
 	describeImage(options: DescribeImageOptions): Promise<DescribeImageReturnValue>;
 	getHandwrittenTextOperationResult(options: GetHandwrittenTextOperationResultOptions): Promise<GetHandwrittenTextOperationResultReturnValue>;
 	getThumbnail(options: GetThumbnailOptions): Promise<GetThumbnailReturnValue>;
-	listDomainSpecificModels(): Promise<ListDomainSpecificModelsReturnValue>;
+	listDomainSpecificModels(): Promise<void>;
 	ocr(options: OCROptions): Promise<OCRReturnValue>;
 	recognizeDomainSpecificContent(options: RecognizeDomainSpecificContentOptions): Promise<RecognizeDomainSpecificContentReturnValue>;
 	recognizeHandwrittenText(options: RecognizeHandwrittenTextOptions): Promise<RecognizeHandwrittenTextReturnValue>;
@@ -19,18 +21,29 @@ export interface computerVisionOptions {
 // Analyze Image
 export interface AnalyzeImageOptions {
 	parameters: AnalyzeImageParameters,
-	headers?: AnalyzeImageHeaders,
+	headers?: ContentTypeHeaders,
 	body?: { "url"?: string } | any
 }
 
 export interface AnalyzeImageParameters {
 	/** 
-	 * A string indicating what visual feature types to return. Multiple values should be comma-separated. 
+	 * A string indicating what visual feature types to return. Multiple values should be comma-separated.
+	 * Valid visual feature types include: 
+	 * Categories - categorizes image content according to a taxonomy defined in documentation. 
+	 * Tags - tags the image with a detailed list of words related to the image content. 
+	 * Description - describes the image content with a complete English sentence. 
+	 * Faces - detects if faces are present. If present, generate coordinates, gender and age.
+	 * ImageType - detects if image is clipart or a line drawing.
+	 * Color - determines the accent color, dominant color, and whether an image is black&white.
+	 * Adult - detects if the image is pornographic in nature (depicts nudity or a sex act). Sexually suggestive content is also detected.
 	 */
 	visualFeatures?: string,
 
 	/** 
 	 * A string indicating which domain-specific details to return. Multiple values should be comma-separated. 
+	 * Valid visual feature types include: 
+	 * Celebrities - identifies celebrities if detected in the image.
+	 * Landmarks - identifies landmarks if detected in the image
 	 */
 	details?: string,
 
@@ -38,18 +51,6 @@ export interface AnalyzeImageParameters {
 	 * A string indicating which language to return. The service will return recognition results in specified language. If this parameter is not specified, the default value is "en".
 	 */
 	language?: string
-}
-
-export interface AnalyzeImageHeaders {
-	/** 
-	 * Media type of the body sent to the API. 
-	 */
-	"Content-Type"?: string,
-
-	/**
-	 * Subscription key which provides access to this API.
-	 */
-	"Ocp-Apim-Subscription-Key"?: string
 }
 
 export interface AnalyzeImageReturnValue {
@@ -71,16 +72,28 @@ export interface AnalyzeImageReturnValue {
 		isBWImg: boolean
 	},
 	imageType: {
-		clipArtType: number,
-		lineDrawingType: number
+		clipArtType: ClipartType,
+		lineDrawingType: LineDrawingType
 	}
+}
+
+export enum ClipartType {
+	"Non-clipart" = 0,
+	"ambiguous" = 1,
+	"normal-clipart" = 2,
+	"good-clipart" = 3
+}
+
+export enum LineDrawingType {
+	"Non-LineDrawing" = 0,
+	"LineDrawing" = 1
 }
 
 // Describe Image
 
 export interface DescribeImageOptions {
 	parameters?: DescribeImageParameters,
-	headers?: DescribeImageHeaders,
+	headers?: ContentTypeHeaders,
 	body: { "url"?: string } | any
 }
 
@@ -90,19 +103,6 @@ export interface DescribeImageParameters {
 	 */
 	maxCandidates?: string
 }
-
-export interface DescribeImageHeaders {
-	/**
-	 * Media type of the body sent to the API. 
-	 */
-	"Content-Type"?: string,
-
-	/**
-	 * Subscription key which provides access to this API.
-	 */
-	"Ocp-Apim-Subscription-Key"?: string
-}
-
 export interface DescribeImageReturnValue {
 	"description"?: {
 		"tags"?: string[],
@@ -112,11 +112,10 @@ export interface DescribeImageReturnValue {
 	"metadata"?: { "width": number, "height": number, "format": number }
 }
 
-// getHandwrittenTextOperationResult
+//# region getHandwrittenTextOperationResult
 
 export interface GetHandwrittenTextOperationResultOptions {
-	parameters?: GetHandwrittenTextOperationResultParameters,
-	headers?: GetHandwrittenTextOperationResultHeaders
+	parameters?: GetHandwrittenTextOperationResultParameters
 }
 
 export interface GetHandwrittenTextOperationResultParameters {
@@ -124,13 +123,6 @@ export interface GetHandwrittenTextOperationResultParameters {
 	 * Id of the text operation returned in the response of the Recognize Handwritten Text interface.
 	 */
 	operationId?: string
-}
-
-export interface GetHandwrittenTextOperationResultHeaders {
-	/**
-	 * Subscription key which provides access to this API.
-	 */
-	"Ocp-Apim-Subscription-Key"?: string
 }
 
 export interface GetHandwrittenTextOperationResultReturnValue {
@@ -144,11 +136,12 @@ export interface GetHandwrittenTextOperationResultReturnValue {
 	}
 
 }
+//# endregion
 
-// getThumbnail
+//# region getThumbnail
 export interface GetThumbnailOptions {
 	parameters?: GetThumbnailParameters,
-	headers?: GetThumbnailHeaders,
+	headers?: ContentTypeHeaders,
 	body?: { "url"?: string } | any
 }
 
@@ -169,38 +162,21 @@ export interface GetThumbnailParameters {
 	smartCropping?: boolean
 }
 
-export interface GetThumbnailHeaders {
-	/**
-	 * Media type of the body sent to the API. 
-	 */
-	"Content-Type"?: string,
-	"Ocp-Apim-Subscription-Key"?: string
-}
-
 export interface GetThumbnailReturnValue {
 	"models": { "name": string, "categories": string[] }[]
 }
+//# endregion
 
-// List Domain Specific Models
-export interface ListDomainSpecificModelsOptions {
-	headers?: ListDomainSpecificModelsHeaders,
-}
-
-export interface ListDomainSpecificModelsHeaders {
-	/**
-	 * Subscription key which provides access to this API.
-	 */
-	"Ocp-Apim-Subscription-Key"?: string
-}
-
+//# region List Domain Specific Models
 export interface ListDomainSpecificModelsReturnValue {
 	"models": { "name": string, "categories": string[] }[]
 }
+//# endregion
 
-// OCR
+//# region OCR
 export interface OCROptions {
 	parameters?: OCRParameters,
-	headers?: OCRHeaders,
+	headers?: ContentTypeHeaders,
 	body?: { "url"?: string } | any
 }
 
@@ -214,18 +190,6 @@ export interface OCRParameters {
 	 * Whether detect the text orientation in the image. With detectOrientation=true the OCR service tries to detect the image orientation and correct it before further processing (e.g. if it's upside-down).
 	 */
 	detectOrientation?: boolean
-}
-
-export interface OCRHeaders {
-	/**
-	 * Media type of the body sent to the API. 
-	 */
-	"Content-Type"?: string,
-
-	/**
-	 * Subscription key which provides access to this API.
-	 */
-	"Ocp-Apim-Subscription-Key"?: string
 }
 
 export interface OCRReturnValue {
@@ -242,11 +206,12 @@ export interface OCRReturnValue {
 		}[]
 	}[]
 }
+//# endregion
 
-// Recognize Domain Specific Content
+//# region Recognize Domain Specific Content
 export interface RecognizeDomainSpecificContentOptions {
 	parameters?: RecognizeDomainSpecificContentParameters,
-	headers?: RecognizeDomainSpecificContentHeaders,
+	headers?: ContentTypeHeaders,
 	body?: { "url"?: string } | any
 }
 
@@ -255,18 +220,6 @@ export interface RecognizeDomainSpecificContentParameters {
 	 * The domain-specific content to recognize.
 	 */
 	model: string
-}
-
-export interface RecognizeDomainSpecificContentHeaders {
-	/**
-	 * Media type of the body sent to the API. 
-	 */
-	"Content-Type"?: string,
-
-	/**
-	 * Subscription key which provides access to this API.
-	 */
-	"Ocp-Apim-Subscription-Key"?: string
 }
 
 export interface RecognizeDomainSpecificContentReturnValue {
@@ -280,11 +233,12 @@ export interface RecognizeDomainSpecificContentReturnValue {
 		}[]
 	}
 }
+//# endregion
 
-// Recognize Domain Specific Content
+//# region Recognize Domain Specific Content
 export interface RecognizeHandwrittenTextOptions {
 	parameters?: RecognizeHandwrittenTextParameters,
-	headers?: RecognizeHandwrittenTextHeaders,
+	headers?: ContentTypeHeaders,
 	body?: { "url"?: string } | any
 }
 
@@ -295,18 +249,6 @@ export interface RecognizeHandwrittenTextParameters {
 	handwriting: boolean
 }
 
-export interface RecognizeHandwrittenTextHeaders {
-	/**
-	 * Media type of the body sent to the API. 
-	 */
-	"Content-Type"?: string,
-
-	/**
-	 * Subscription key which provides access to this API.
-	 */
-	"Ocp-Apim-Subscription-Key"?: string
-}
-
 export interface RecognizeHandwrittenTextReturnValue {
 	/**
 	 * Client side should use this URL to query operation status/result. 
@@ -314,25 +256,14 @@ export interface RecognizeHandwrittenTextReturnValue {
 	 */
 	"Operation-Location"?: string
 }
+//# endregion
 
 
-// Tag Image
+//# region Tag Image
 
 export interface TagImageOptions {
-	headers?: TagImageHeaders,
+	headers?: ContentTypeHeaders,
 	body?: { "url"?: string } | any
-}
-
-export interface TagImageHeaders {
-	/**
-	 * Media type of the body sent to the API. 
-	 */
-	"Content-Type"?: string,
-
-	/**
-	 * Subscription key which provides access to this API.
-	 */
-	"Ocp-Apim-Subscription-Key"?: string
 }
 
 export interface TagImageReturnValue {
@@ -340,3 +271,4 @@ export interface TagImageReturnValue {
 	requestId: string,
 	metadata: { width: number, height: number, format: string }
 }
+//# endregion
