@@ -1,4 +1,4 @@
-import { ContentTypeHeader, ContentTypeHeaders } from "..";
+import { ContentTypeHeaders } from "..";
 
 export class computerVision {
 	constructor(options: computerVisionOptions);
@@ -268,7 +268,7 @@ export interface TagImageOptions {
 
 export interface TagImageReturnValue {
 	tags: { name: string, confidence: number }[],
-	requestId: string,
+	requestId	: string,
 	metadata: { width: number, height: number, format: string }
 }
 //# endregion
