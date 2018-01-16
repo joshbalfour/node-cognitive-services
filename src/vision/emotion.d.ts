@@ -1,34 +1,9 @@
+import { ContentTypeHeaders } from "..";
+
 export class emotion {
 	constructor(options: EmotionOptions);
-	
-	/**
-	 * 
-	 * Recognizes the emotions expressed by one or more people in an image, as well as returns a bounding box for the face. 
-	 * The emotions detected are happiness, sadness, surprise, anger, fear, contempt, and disgust or neutral. 
-		• The supported input image formats includes JPEG, PNG, GIF(the first frame), BMP. Image file size should be no larger than 4MB. 
-		• If a user has already called the Face API, they can submit the face rectangles as an optional input. Otherwise, Emotion API will first compute the rectangles. 
-		• The detectable face size range is 36x36 to 4096x4096 pixels. Faces out of this range will not be detected. 
-		• For each image, the maximum number of faces detected is 64 and the faces are ranked by face rectangle size in descending order.
-		  If no face is detected, an empty array will be returned. 
-		• Some faces may not be detected due to technical challenges, e.g. very large face angles (head-pose), large occlusion. Frontal and near-frontal faces have the best results. 
-		• The emotions contempt and disgust are experimental.
-	 */
 	emotionRecognition(options: EmotionRecognitionOptions): Promise<EmotionRecognitionReturnValue>;
-	emotionRecognitionInVideo(options: any): any;
-	
-	/**
-	 * 
-	 * Recognizes the emotions expressed by one or more people in an image, as well as returns a bounding box for the face. 
-	 * The emotions detected are happiness, sadness, surprise, anger, fear, contempt, and disgust or neutral. 
-		• The supported input image formats includes JPEG, PNG, GIF(the first frame), BMP. Image file size should be no larger than 4MB. 
-		• If a user has already called the Face API, they can submit the face rectangles as an optional input. Otherwise, Emotion API will first compute the rectangles. 
-		• The detectable face size range is 36x36 to 4096x4096 pixels. Faces out of this range will not be detected. 
-		• For each image, the maximum number of faces detected is 64 and the faces are ranked by face rectangle size in descending order. If no face is detected, an empty array will be returned. 
-		• Some faces may not be detected due to technical challenges, e.g. very large face angles (head-pose), large occlusion. Frontal and near-frontal faces have the best results. 
-		• The emotions contempt and disgust are experimental.
-	 */
 	emotionRecognitionWithFaceRectangles(options: EmotionRecognitionWithFaceRectanglesOptions): Promise<EmotionRecognitionWithFaceRectanglesReturnValue>;
-	getRecognitionInVideoOperationResult(options: any): any;
 }
 
 export interface EmotionOptions {
@@ -36,17 +11,10 @@ export interface EmotionOptions {
 	endpoint: string
 }
 
+//# region emotionRecognition
 export interface EmotionRecognitionOptions {
-	headers: EmotionRecognitionHeaders,
-	body: { "url?: string" } | any
-}
-
-
-export interface EmotionRecognitionHeaders {
-	/**
-	 * Media type of the body sent to the API.
-	 */
-	"Content-Type"?: string
+	headers: ContentTypeHeaders,
+	body: { url?: string } | any
 }
 
 export interface EmotionRecognitionReturnValue {
@@ -67,11 +35,13 @@ export interface EmotionRecognitionReturnValue {
 		surprise: string
 	  }
 }
+//# endregion
 
+//# region emotionRecognitionWithFaceRectangles
 export interface EmotionRecognitionWithFaceRectanglesOptions {
 	parameters: EmotionRecognitionWithFaceRectanglesParameters,
-	headers: EmotionRecognitionWithFaceRectanglesHeaders,
-	body: {"url?: string"} | any
+	headers?: ContentTypeHeaders,
+	body: {url?: string} | any
 }
 
 export interface EmotionRecognitionWithFaceRectanglesParameters {
@@ -83,20 +53,21 @@ export interface EmotionRecognitionWithFaceRectanglesParameters {
 	faceRectangles: string
 }
 
-export interface EmotionRecognitionWithFaceRectanglesHeaders {
-	/**
-	 * Media type of the body sent to the API.
-	 */
-	"Content-Type"?: string
-}
-
+//TODO: add docs to properties if available
 export interface EmotionRecognitionWithFaceRectanglesReturnValue {
+	/**
+	 * Rectangle location of face in the image.
+	 */
 	faceRectangle: {
 		left: number,
 		top: number,
 		width: number,
 		height: number
 	},
+
+	/**
+	 * Emotion scores for each face in the image. 
+	 */
 	scores: {
 		anger: string,
 		contempt: string,
@@ -108,3 +79,4 @@ export interface EmotionRecognitionWithFaceRectanglesReturnValue {
 		surprise: string
 	}
 }
+//# endregion
