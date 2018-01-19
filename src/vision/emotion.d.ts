@@ -1,3 +1,5 @@
+import { ContentTypeHeaders } from "../index";
+
 export class emotion {
 	constructor(options: EmotionOptions);
 	
@@ -37,16 +39,8 @@ export interface EmotionOptions {
 }
 
 export interface EmotionRecognitionOptions {
-	headers: EmotionRecognitionHeaders,
+	headers: ContentTypeHeaders,
 	body: { "url?: string" } | any
-}
-
-
-export interface EmotionRecognitionHeaders {
-	/**
-	 * Media type of the body sent to the API.
-	 */
-	"Content-Type"?: string
 }
 
 export interface EmotionRecognitionReturnValue {
@@ -70,7 +64,7 @@ export interface EmotionRecognitionReturnValue {
 
 export interface EmotionRecognitionWithFaceRectanglesOptions {
 	parameters: EmotionRecognitionWithFaceRectanglesParameters,
-	headers: EmotionRecognitionWithFaceRectanglesHeaders,
+	headers: ContentTypeHeaders,
 	body: {"url?: string"} | any
 }
 
@@ -81,13 +75,6 @@ export interface EmotionRecognitionWithFaceRectanglesParameters {
 	 * Delimited multiple face rectangles with a “;”.
 	 */
 	faceRectangles: string
-}
-
-export interface EmotionRecognitionWithFaceRectanglesHeaders {
-	/**
-	 * Media type of the body sent to the API.
-	 */
-	"Content-Type"?: string
 }
 
 export interface EmotionRecognitionWithFaceRectanglesReturnValue {

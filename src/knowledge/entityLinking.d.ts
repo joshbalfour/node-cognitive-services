@@ -1,3 +1,5 @@
+import { ContentTypeHeaders } from "../index";
+
 /**
 * Entity Linking is a natural language processing tool to help analyzing text for your application. 
 * Entity Linking recognize a named-entity from given text and aligning a textual mention of the entity to an appropriate entry in a knowledge base.
@@ -14,7 +16,7 @@ export interface EntityLinkingOptions{
 
 export interface LinkEntityOptions {
     parameters: LinkEntityParameters,
-    headers: LinkEntityHeaders,
+    headers: ContentTypeHeaders,
     body: string
 }
 
@@ -28,13 +30,6 @@ export interface LinkEntityParameters {
 	 * The location (in offset by characters) of the selected word or phrase within the input text. Used to distinguish when there are multiple instances of the same words or phrases within the input text. Only valid when the selection is specified.
 	 */
 	offset?: string
-}
-
-export interface LinkEntityHeaders {
-    /**
-     * Media type of the body sent to the API.
-     */
-    "Content-Type"?: string
 }
 
 export interface LinkEntityReturnValue {

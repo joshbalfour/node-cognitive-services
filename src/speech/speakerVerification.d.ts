@@ -1,3 +1,5 @@
+import { ContentTypeHeaders } from "../index";
+
 export class speakerVerification {
 	constructor(options: SpeakerVerification);
 	listAllSupportedVerificationPhrases(options: ListAllSupportedVerificationPhrasesOptions): Promise<ListAllSupportedVerificationPhrasesReturnValue[]>;
@@ -17,7 +19,7 @@ export interface SpeakerVerification {
 
 export interface SpeakerRecognitionVerificationOptions {
 	parameters: SpeakerRecognitionVerificationParameters,
-	headers: SpeakerRecognitionVerificationHeaders,
+	headers: ContentTypeHeaders,
 	body: { "url?: string" } | any
 }
 
@@ -26,10 +28,6 @@ export interface SpeakerRecognitionVerificationParameters {
 	 * ID of speaker verification profile. It should be a GUID.
 	 */
 	verificationProfileId: string
-}
-
-export interface SpeakerRecognitionVerificationHeaders {
-	"Content-Type"?: string
 }
 
 export interface SpeakerRecognitionVerificationReturnValue {
@@ -56,7 +54,7 @@ export interface SpeakerRecognitionVerificationReturnValue {
 
 export interface VerificationProfileCreateEnrollmentOptions {
 	parameters: VerificationProfileCreateEnrollmentParameters,
-	headers: VerificationProfileCreateEnrollmentHeaders
+	headers: ContentTypeHeaders
 	body: { "url"?: string } | any
 }
 
@@ -65,10 +63,6 @@ export interface VerificationProfileCreateEnrollmentParameters {
 	 * ID of speaker verification profile. GUID returned from Verification Profile - Create Profile API
 	 */
 	verificationProfileId: string
-}
-
-export interface VerificationProfileCreateEnrollmentHeaders {
-	"Content-Type"?: string
 }
 
 export interface VerificationProfileCreateEnrollmentReturnValue {

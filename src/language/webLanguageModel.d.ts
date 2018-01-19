@@ -70,7 +70,7 @@ export interface BreakIntoWordsReturnValue {
 
 export interface CalculateConditionalProbabilityOptions {
 	parameters: CalculateConditionalProbabilityParameters,
-	headers: CalculateConditionalProbabilityHeaders,
+	headers: ContentTypeHeaders,
 	body: {"url"?: string} | any
 }
 
@@ -94,13 +94,6 @@ export interface CalculateConditionalProbabilityParameters {
 	}[]
 }
 
-export interface CalculateConditionalProbabilityHeaders {
-	/**
-	 * Media type of the body sent to the API.
-	 */
-	"Content-Type"?: string
-}
-
 export interface CalculateConditionalProbabilityReturnValue {
 	queries: {
 		words : string,
@@ -111,7 +104,7 @@ export interface CalculateConditionalProbabilityReturnValue {
 
 export interface CalculateJointProbabilityOptions {
 	parameters: CalculateJointProbabilityParameters,
-	headers: CalculateJointProbabilityHeaders,
+	headers: ContentTypeHeaders,
 	body: {"url"?: string} | any
 }
 
@@ -132,13 +125,6 @@ export interface CalculateJointProbabilityParameters {
 	queries?: {
 		words : string
 	}[]
-}
-
-export interface CalculateJointProbabilityHeaders {
-	/**
-	 * Media type of the body sent to the API.
-	 */
-	"Content-Type"?: string
 }
 
 export interface CalculateJointProbabilityReturnValue {

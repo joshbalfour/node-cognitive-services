@@ -1,3 +1,5 @@
+import { ContentTypeHeaders } from "../index";
+
 
 /**
  * The Text Analytics API is a suite of text analytics web services built with best-in-class Microsoft machine learning algorithms. 
@@ -35,15 +37,8 @@ export interface TextAnalyticsOptions {
 }
 
 export interface DetectLanguageOptions {
-	headers: DetectLanguageHeaders,
+	headers: ContentTypeHeaders,
 	body: DetectLanguageBody
-}
-
-export interface DetectLanguageHeaders {
-	/**
-	 * Media type of the body sent to the API.
-	 */
-	"Content-Type"?: string
 }
 
 export interface DetectLanguageBody {
@@ -65,15 +60,8 @@ export interface DetectLanguageReturnValue {
 }
 
 export interface KeyPhrasesOptions {
-	headers: KeyPhrasesHeaders,
+	headers: ContentTypeHeaders,
 	body: KeyPhrasesBody
-}
-
-export interface KeyPhrasesHeaders {
-	/**
-	 * Media type of the body sent to the API.
-	 */
-	"Content-Type"?: string
 }
 
 export interface KeyPhrasesBody {
@@ -92,15 +80,8 @@ export interface KeyPhrasesReturnValue {
 }
 
 export interface SentimentOptions {
-	headers: SentimentHeaders,
+	headers: ContentTypeHeaders,
 	body: SentimentBody
-}
-
-export interface SentimentHeaders {
-	/**
-	 * Media type of the body sent to the API.
-	 */
-	"Content-Type"?: string
 }
 
 export interface SentimentBody {

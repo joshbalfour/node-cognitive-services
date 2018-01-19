@@ -1,3 +1,5 @@
+import { ContentTypeHeaders } from "../index";
+
 export class bingSpellCheck {
 	constructor(options: BingSpellCheckOptions);
 	spellCheck(options: SpellCheckOptions): Promise<SpellCheckReturnValue>;
@@ -10,7 +12,7 @@ export interface BingSpellCheckOptions {
 
 export interface SpellCheckOptions {
 	parameters: SpellCheckParameters,
-	headers: SpellCheckOHeaders,
+	headers: ContentTypeHeaders,
 	body: any
 }
 
@@ -28,13 +30,6 @@ export interface SpellCheckParameters {
 	 */
 	mkt?: string
 
-}
-
-export interface SpellCheckOHeaders {
-	/**
-	 * Media type of the body sent to the API.
-	 */
-	"Content-Type"?: string
 }
 
 export interface SpellCheckReturnValue {

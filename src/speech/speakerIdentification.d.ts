@@ -1,3 +1,5 @@
+import { ContentTypeHeaders } from "../index";
+
 export class speakerIdentification {
 	constructor(options: SpeakerIdentificationOptions);
 	createEnrollment(options: IdentificationProfileCreateEnrollmentOptions): Promise <void>;
@@ -18,7 +20,7 @@ export interface SpeakerIdentificationOptions {
 //Identification Profile Create Enrollment Options
 export interface IdentificationProfileCreateEnrollmentOptions {
 	parameters: IdentificationProfileCreateEnrollmentParameters,
-	headers?: IdentificationProfileCreateEnrollmentHeaders,
+	headers?: ContentTypeHeaders,
 	body: { "url"?: string } | any
 }
 
@@ -33,13 +35,6 @@ export interface IdentificationProfileCreateEnrollmentParameters {
 	 * Set value to “true” to force enrollment using any audio length (min. 1 second).
 	 */
 	shortAudio?: string
-}
-
-export interface IdentificationProfileCreateEnrollmentHeaders {
-	/**
-	 * Media type of the body sent to the API.
-	 */
-	"Content-Type"?: string
 }
 
 export interface IdentificationProfileCreateProfileOptions {
@@ -259,7 +254,7 @@ export interface GetOperationStatusReturnValue {
 
 export interface IdentifySpeakerOptions {
     parameters: IdentifySpeakerParameters,
-    headers: IdentifySpeakerHeaders,
+    headers: ContentTypeHeaders,
     body: { "url"?: string } | any
 }
 
@@ -274,11 +269,4 @@ export interface IdentifySpeakerParameters {
 	 * Set value to “true” to force enrollment using any audio length (min. 1 second).
 	 */
 	shortAudio?: boolean
-}
-
-export interface IdentifySpeakerHeaders {
-   /**
-	 * Media type of the body sent to the API.
-	 */
-	"Content-Type"?: string
 }
