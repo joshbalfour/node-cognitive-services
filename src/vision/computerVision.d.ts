@@ -1,7 +1,7 @@
-import { ContentTypeHeaders } from "..";
+import { ContentTypeHeaders, CommonConstructorOptions } from "..";
 
 export class computerVision {
-	constructor(options: computerVisionOptions);
+	constructor(options: CommonConstructorOptions);
 	analyzeImage(options: AnalyzeImageOptions): Promise<AnalyzeImageReturnValue>;
 	describeImage(options: DescribeImageOptions): Promise<DescribeImageReturnValue>;
 	getHandwrittenTextOperationResult(options: GetHandwrittenTextOperationResultOptions): Promise<GetHandwrittenTextOperationResultReturnValue>;
@@ -13,16 +13,11 @@ export class computerVision {
 	tagImage(options: TagImageOptions): Promise<TagImageReturnValue>;
 }
 
-export interface computerVisionOptions {
-	apiKey: string,
-	endpoint: string
-}
-
 // Analyze Image
 export interface AnalyzeImageOptions {
 	parameters: AnalyzeImageParameters,
 	headers?: ContentTypeHeaders,
-	body?: { "url"?: string } | any
+	body?: { "url"?: string }
 }
 
 export interface AnalyzeImageParameters {
@@ -142,7 +137,7 @@ export interface GetHandwrittenTextOperationResultReturnValue {
 export interface GetThumbnailOptions {
 	parameters?: GetThumbnailParameters,
 	headers?: ContentTypeHeaders,
-	body?: { "url"?: string } | any
+	body?: { "url"?: string }
 }
 
 export interface GetThumbnailParameters {
@@ -177,7 +172,7 @@ export interface ListDomainSpecificModelsReturnValue {
 export interface OCROptions {
 	parameters?: OCRParameters,
 	headers?: ContentTypeHeaders,
-	body?: { "url"?: string } | any
+	body?: { "url"?: string }
 }
 
 export interface OCRParameters {
@@ -212,7 +207,7 @@ export interface OCRReturnValue {
 export interface RecognizeDomainSpecificContentOptions {
 	parameters?: RecognizeDomainSpecificContentParameters,
 	headers?: ContentTypeHeaders,
-	body?: { "url"?: string } | any
+	body?: { "url"?: string }
 }
 
 export interface RecognizeDomainSpecificContentParameters {
@@ -239,7 +234,7 @@ export interface RecognizeDomainSpecificContentReturnValue {
 export interface RecognizeHandwrittenTextOptions {
 	parameters?: RecognizeHandwrittenTextParameters,
 	headers?: ContentTypeHeaders,
-	body?: { "url"?: string } | any
+	body?: { "url"?: string }
 }
 
 export interface RecognizeHandwrittenTextParameters {
@@ -263,7 +258,7 @@ export interface RecognizeHandwrittenTextReturnValue {
 
 export interface TagImageOptions {
 	headers?: ContentTypeHeaders,
-	body?: { "url"?: string } | any
+	body?: { "url"?: string }
 }
 
 export interface TagImageReturnValue {

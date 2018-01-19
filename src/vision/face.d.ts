@@ -1,105 +1,42 @@
+import { ContentTypeHeaders, CommonConstructorOptions } from "..";
+
 export class face {
-	constructor(options: FaceOptions);
-	addAFaceToAFaceList(options: AddAFaceToAFaceListOptions): Promise<AddAFaceToAFaceListReturnValue>;
-	addAPersonFace(options: any): any;
-	createAFaceList(options: any): any;
-	createAPerson(options: any): any;
-	createAPersonGroup(options: any): any;
-	deleteAFaceFromAFaceList(options: any): any;
-	deleteAFaceList(options: any): any;
-	deleteAPerson(options: any): any;
-	deleteAPersonFace(options: any): any;
-	deleteAPersonGroup(options: DeleteAPersonGroupOptions): any;
+	constructor(options: CommonConstructorOptions);
 	detect(options: DetectOptions): Promise<DetectReturnValue>;
 	findSimilar(options: FindSimilarOptions): Promise<FindSimilarReturnValue>;
-	getAFaceList(options: GetAFaceListOptions): Promise<GetAFaceListReturnValue>;
-	getAPerson(options: GetAPersonOptions): Promise<GetAPersonReturnValue>;
-	getAPersonFace(options: GetAPersonFaceOptions): Promise<GetAPersonFaceReturnValue>;
-	getAPersonGroup(options: GetAPersonGroupOptions): Promise<GetAPersonGroupReturnValue>;
-	getPersonGroupTrainingStatus(options: GetPersonGroupTrainingStatusOptions): Promise<GetPersonGroupTrainingStatusReturnValue>;
 	group(options: GroupOptions): Promise<GroupReturnValue>;
 	identify(options: IdentifyOptions): Promise<IdentifyReturnValue>;
+	verify(options: VerifyOptions): Promise<VerifyReturnValue>;
+	addAFaceToAFaceList(options: AddAFaceToAFaceListOptions): Promise<AddAFaceToAFaceListReturnValue>;
+	createAFaceList(options: any): any;
+	deleteAFaceFromAFaceList(options: any): any;
+	deleteAFaceList(options: any): any;
+	getAFaceList(options: GetAFaceListOptions): Promise<GetAFaceListReturnValue>;
 	listFaceLists(): ListFaceListsReturnValue;
-	listPersonGroups(options: any): any;
+	updateAFaceList(options: UpdateAFaceListOptions): Promise<void>;
+	addAPersonFace(options: any): any;
+	createAPerson(options: any): any;
+	deleteAPerson(options: any): any;
+	deleteAPersonFace(options: any): any;
+	getAPerson(options: GetAPersonOptions): Promise<GetAPersonReturnValue>;
+	getAPersonFace(options: GetAPersonFaceOptions): Promise<GetAPersonFaceReturnValue>;
 	listPersonsInAPersonGroup(options: any): any;
-	trainPersonGroup(options: any): any;
-	updateAFaceList(options: any): any;
 	updateAPerson(options: any): any;
 	updateAPersonFace(options: any): any;
+	createAPersonGroup(options: any): any;
+	deleteAPersonGroup(options: DeleteAPersonGroupOptions): any;
+	getAPersonGroup(options: GetAPersonGroupOptions): Promise<GetAPersonGroupReturnValue>;
+	getPersonGroupTrainingStatus(options: GetPersonGroupTrainingStatusOptions): Promise<GetPersonGroupTrainingStatusReturnValue>;
+	listPersonGroups(options: any): any;
+	trainPersonGroup(options: any): any;
 	updateAPersonGroup(options: any): any;
-	verify(options: VerifyOptions): Promise<VerifyReturnValue>;
 }
 
-//#region Common Interfaces
-export interface CommonHeaders {
-	/**
-	 * Media type of the body sent to the API. 
-	 */
-	"Content-Type"?: string,
-
-	/**
-	 * Subscription key which provides access to this API.
-	 */
-	"Ocp-Apim-Subscription-Key": string
-}
-
-export interface FaceOptions {
-	//TODO
-}
-//#endregion
-
-//#region addAFaceToAFaceList
-export interface AddAFaceToAFaceListOptions {
-	headers?: CommonHeaders	
-}
-
-export interface AddAFaceToAFaceListParameters {
-	faceListId:string,
-	userData?:string,
-	targetFace?:string
-}
-
-export interface AddAFaceToAFaceListReturnValue {
-
-}
-
-//#endregion
-
-//#region deleteAPersonGroup
-export interface DeleteAPersonGroupOptions {
-	headers?:DeleteAPersonGroupHeaders,
-	parameters?:DeleteAPersonGroupParameters
-}
-
-export interface DeleteAPersonGroupHeaders {
-	/**
-	 * Subscription key which provides access to this API. Found in your Cognitive Services accounts. 
-	 */
-	"Ocp-Apim-Subscription-Key":string
-}
-
-
-export interface DeleteAPersonGroupParameters {
-	/**
-	 * The personGroupId of the person group to be deleted.
-	 */
-	personGroupId:string
-}
-
-//#endregion
-
-//#region detect
+//#region detect (DONE)
 export interface DetectOptions {
-	body?: DetectBody,
-	headers?: CommonHeaders,
+	body?: { url?: string },
+	headers?: ContentTypeHeaders,
 	parameters?: DetectParameters
-}
-
-export interface DetectBody {
-	/**
-	 * URL of input image.
-	 */
-	url: string
 }
 
 export interface DetectParameters {
@@ -141,7 +78,6 @@ export interface DetectReturnValue {
 		 * An array of 27-point face landmarks pointing to the important positions of face components. To return this, it requires "returnFaceLandmarks" parameter to be true.
 		 */
 		faceLandmarks: {
-
 			pupilLeft: Coordinate,
 			pupilRight: Coordinate,
 			noseTip: Coordinate,
@@ -277,10 +213,10 @@ export interface DetectReturnValue {
 export interface Coordinate { x: number, y: number }
 //#endregion
 
-//#region findSimilar
+//#region findSimilar (DONE)
 export interface FindSimilarOptions {
 	body?: FindSimilarBody,
-	headers?: CommonHeaders
+	headers?: ContentTypeHeaders
 }
 
 export interface FindSimilarBody {
@@ -329,6 +265,146 @@ export interface FindSimilarReturnValue {
 }
 //#endregion
 
+//#region group (DONE)
+export interface GroupOptions {
+	body?: GroupBody,
+	headers?: ContentTypeHeaders
+}
+
+export interface GroupBody {
+	/**
+	 * Array of candidate faceId created by Face - Detect. The maximum is 1000 faces.
+	 */
+	faceIds: string[]
+}
+
+export interface GroupReturnValue {
+
+	/**
+	 * A partition of the original faces based on face similarity. Groups are ranked by number of faces.
+	 */
+	groups: [
+		string[],
+		string[]
+	],
+
+	/**
+	 * Face ids array of faces that cannot find any similar faces from original faces.
+	 */
+	messyGroup: string[]
+}
+//#endregion
+
+//#region identify
+export interface IdentifyOptions {
+	body?: IdentifyBody,
+	headers?: ContentTypeHeaders
+}
+
+export interface IdentifyBody {
+	/**
+	 * personGroupId of the target person group, created by Person Group - Create a Person Group.
+	 */
+	personGroupId: string,
+
+	/**
+	 * Array of query faces faceIds, created by the Face - Detect. Each of the faces are identified independently. The valid number of faceIds is between [1, 10].
+	 */
+	faceIds: [string, string],
+
+	/**
+	 * The range of maxNumOfCandidatesReturned is between 1 and 5 (default is 1).
+	 */
+	maxNumOfCandidatesReturned?: number,
+
+	/**
+	 * Confidence threshold of identification, used to judge whether one face belong to one person. The range of confidenceThreshold is [0, 1] (default specified by algorithm).
+	 */
+	confidenceThreshold?: number
+}
+
+export interface IdentifyReturnValue {
+	Results: {
+		faceId: string,
+		candidates: {
+			personId: string,
+			confidence: number
+		}[]
+	}[]
+}
+//#endregion
+
+//#region verify
+export interface VerifyOptions {
+	body?: VerifyBody,
+	headers?: ContentTypeHeaders
+}
+
+export interface VerifyBody {
+	/**
+	 * faceId of one face, comes from Face - Detect.
+	 */
+	faceId1: string,
+
+	/**
+	 * faceId of another face, comes from Face - Detect.
+	 */
+	faceId2: string,
+
+	/**
+	 * faceId the face, comes from Face - Detect.
+	 */
+	faceId: string,
+
+	/**
+	 * Using existing personGroupId and personId for fast loading a specified person. personGroupId is created in Person Group - Create a Person Group.
+	 */
+	personId: string,
+
+	/**
+	 * Specify a certain person in a person group. personId is created in Person - Create a Person.
+	 */
+	personGroupId: string
+}
+
+export interface VerifyReturnValue {
+	/**
+	 * True if the two faces belong to the same person or the face belongs to the person, otherwise false.
+	 */
+	isIdentical: boolean,
+
+	/**
+	 * A number indicates the similarity confidence of whether two faces belong to the same person, or whether the face belongs to the person. By default, isIdentical is set to True if similarity confidence is greater than or equal to 0.5. This is useful for advanced users to override "isIdentical" and fine-tune the result on their own data.
+	 */
+	confidence: number
+}
+//#endregion
+
+//#region addAFaceToAFaceList
+export interface AddAFaceToAFaceListOptions {
+	headers?: ContentTypeHeaders
+}
+
+export interface AddAFaceToAFaceListParameters {
+	faceListId: string,
+	userData?: string,
+	targetFace?: string
+}
+
+export interface AddAFaceToAFaceListReturnValue {
+
+}
+//#endregion
+
+//#region createAFaceList
+//#endregion
+
+//#region deleteAFaceFromAFaceList
+//#endregion
+
+//#region deleteAFaceList
+//#endregion
+
 //#region getAFaceList
 export interface GetAFaceListOptions {
 	headers?: GetAFaceListHeaders,
@@ -373,7 +449,73 @@ export interface GetAFaceListReturnValue {
 		userData: string
 	}[]
 }
+//#endregion
 
+//#region listFaceLists
+export interface ListFaceListsHeaders {
+	/**
+	 * Subscription key which provides access to this API. Found in your Cognitive Services accounts. 
+	 */
+	"Ocp-Apim-Subscription-Key ": string
+}
+
+export interface ListFaceListsReturnValue {
+	faceLists: {
+		/**
+		 * Face list ID
+		 */
+		faceListId: string,
+
+		/**
+		 * Face list name which user assigned
+		 */
+		name: string,
+
+		/**
+		 * User-provided data attached to the face list
+		 */
+		userData: string
+	}[]
+}
+//#endregion
+
+//#region updateAFaceList (DONE)
+export interface UpdateAFaceListOptions {
+	headers?: ContentTypeHeaders,
+	parameters?: UpdateAFaceListParameters,
+	body?: UpdateAFaceListBody
+}
+
+export interface UpdateAFaceListParameters {
+	/**
+	 * Valid character is letter in lower case or digit or '-' or '_', maximum length is 64.
+	 */
+	faceListId: string
+}
+
+export interface UpdateAFaceListBody {
+	/**
+	 * Name of the face list, maximum length is 128
+	 */
+	name: string,
+
+	/**
+	 * Optional user defined data for the face list. Length should not exceed 16KB
+	 */
+	userData?: string
+}
+//#endregion
+
+//#region addAPersonFace
+//#endregion
+
+//#region createAPerson
+//#endregion
+
+//#region deleteAPerson
+//#endregion
+
+//#region deleteAPersonFace
 //#endregion
 
 //#region getAPerson
@@ -461,6 +603,39 @@ export interface GetAPersonFaceReturnValue {
 	 * User-provided data attached to the face.
 	 */
 	userData: string
+}//#endregion
+
+//#region listPersonsInAPersonGroup
+//#endregion
+
+//#region updateAPerson
+//#endregion
+
+//#region updateAPersonFace
+//#endregion
+
+//#region createAPersonGroup
+//#endregion
+
+//#region deleteAPersonGroup
+export interface DeleteAPersonGroupOptions {
+	headers?: DeleteAPersonGroupHeaders,
+	parameters?: DeleteAPersonGroupParameters
+}
+
+export interface DeleteAPersonGroupHeaders {
+	/**
+	 * Subscription key which provides access to this API. Found in your Cognitive Services accounts. 
+	 */
+	"Ocp-Apim-Subscription-Key": string
+}
+
+
+export interface DeleteAPersonGroupParameters {
+	/**
+	 * The personGroupId of the person group to be deleted.
+	 */
+	personGroupId: string
 }
 //#endregion
 
@@ -537,142 +712,14 @@ export interface GetPersonGroupTrainingStatusReturnValue {
 	 */
 	message: string
 }
-
 //#endregion
 
-//#region group
-export interface GroupOptions {
-	body?: GroupBody,
-	headers?: CommonHeaders
-}
-
-export interface GroupBody {
-	/**
-	 * Array of candidate faceId created by Face - Detect. The maximum is 1000 faces.
-	 */
-	faceIds: string[]
-}
-
-export interface GroupReturnValue {
-
-	/**
-	 * A partition of the original faces based on face similarity. Groups are ranked by number of faces.
-	 */
-	groups: [
-		string[],
-		string[]
-	],
-
-	/**
-	 * Face ids array of faces that cannot find any similar faces from original faces.
-	 */
-	messyGroup: string[]
-}
+//#region listPersonGroups
 //#endregion
 
-//#region identify
-export interface IdentifyOptions {
-	body?: IdentifyBody,
-	headers?: CommonHeaders
-}
-
-export interface IdentifyBody {
-	/**
-	 * personGroupId of the target person group, created by Person Group - Create a Person Group.
-	 */
-	personGroupId: string,
-
-	/**
-	 * Array of query faces faceIds, created by the Face - Detect. Each of the faces are identified independently. The valid number of faceIds is between [1, 10].
-	 */
-	faceIds: [string, string],
-
-	/**
-	 * The range of maxNumOfCandidatesReturned is between 1 and 5 (default is 1).
-	 */
-	maxNumOfCandidatesReturned?: number,
-
-	/**
-	 * Confidence threshold of identification, used to judge whether one face belong to one person. The range of confidenceThreshold is [0, 1] (default specified by algorithm).
-	 */
-	confidenceThreshold?: number
-}
-
-export interface IdentifyReturnValue {
-
-}
+//#region trainPersonGroup
 //#endregion
 
-//#region listFaceLists
-export interface ListFaceListsHeaders {
-	/**
-	 * Subscription key which provides access to this API. Found in your Cognitive Services accounts. 
-	 */
-	"Ocp-Apim-Subscription-Key ": string
-}
-
-export interface ListFaceListsReturnValue {
-	faceLists: {
-		/**
-		 * Face list ID
-		 */
-		faceListId: string,
-
-		/**
-		 * Face list name which user assigned
-		 */
-		name: string,
-
-		/**
-		 * User-provided data attached to the face list
-		 */
-		userData: string
-	}[]
-}
+//#region updateAPersonGroup
 //#endregion
 
-//#region verify
-export interface VerifyOptions {
-	body?: VerifyBody,
-	headers?: CommonHeaders
-}
-
-export interface VerifyBody {
-	/**
-	 * faceId of one face, comes from Face - Detect.
-	 */
-	faceId1: string,
-
-	/**
-	 * faceId of another face, comes from Face - Detect.
-	 */
-	faceId2: string,
-
-	/**
-	 * faceId the face, comes from Face - Detect.
-	 */
-	faceId: string,
-
-	/**
-	 * Using existing personGroupId and personId for fast loading a specified person. personGroupId is created in Person Group - Create a Person Group.
-	 */
-	personId: string,
-
-	/**
-	 * Specify a certain person in a person group. personId is created in Person - Create a Person.
-	 */
-	personGroupId: string
-}
-
-export interface VerifyReturnValue {
-	/**
-	 * True if the two faces belong to the same person or the face belongs to the person, otherwise false.
-	 */
-	isIdentical: boolean,
-
-	/**
-	 * A number indicates the similarity confidence of whether two faces belong to the same person, or whether the face belongs to the person. By default, isIdentical is set to True if similarity confidence is greater than or equal to 0.5. This is useful for advanced users to override "isIdentical" and fine-tune the result on their own data.
-	 */
-	confidence: number
-}
-//#endregion
