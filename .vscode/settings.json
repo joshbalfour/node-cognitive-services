@@ -2,6 +2,7 @@
     "files.exclude": {
         "coverage": true,
         "node_modules": true,
-        "dist": true
+        "dist": true,
+        "test/**/*TypeTest.js": true
     }
 }

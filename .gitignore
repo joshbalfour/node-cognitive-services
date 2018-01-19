@@ -38,3 +38,6 @@ jspm_packages
 
 # babel
 dist
+
+#Type Tests
+test/**/*TypeTest.js
