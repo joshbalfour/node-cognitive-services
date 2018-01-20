@@ -2,7 +2,6 @@ const commonService = require('../commonService');
 const csv = require('fast-csv');
 const _ = require("underscore");
 
-
 /**
  * Language Understanding API is a cloud-based service that provides advanced natural language processing over raw text, and intent and entity detection.
  * Your LUIS domain-specific model must be in built, trained, and published before using this endpoint.
@@ -130,8 +129,6 @@ class languageUnderstanding extends commonService {
             "method": "PUT",
         };
 
-        console.log(operation.path);
-
         switch(appinfo){
             case this.APPINFO.RENAME: 
                 operation.parameters = [{
@@ -197,8 +194,6 @@ class languageUnderstanding extends commonService {
             "path": "luis/api/v2.0/apps/" + this.appID + "/" + appinfo,
             "method": "DELETE",
         };
-
-        console.log(operation.path);
 
         switch(appinfo){
             case this.APPINFO.PERMISSIONS: 

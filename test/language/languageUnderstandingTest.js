@@ -87,8 +87,6 @@ describe.only('Language understanding (LUIS)', () => {
             client.appID = results.substring(results.length-36, results.length);
             client.versionID = defaultVersionID;
 
-            console.log(client.appID);
-
             return client.train();
         }).then(results => {
             return waitUntilTrained(client);
@@ -122,8 +120,6 @@ describe.only('Language understanding (LUIS)', () => {
         .then(results =>{
             client.appID = results.substring(results.length-36, results.length);
             client.versionID = defaultVersionID;
-
-            console.log(client.appID);
 
             return client.train();
         }).then(results => {
