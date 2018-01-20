@@ -52,7 +52,6 @@ describe.only('Language understanding (LUIS)', () => {
         endpoint: config.languageUnderstanding.endpoint
     });
 
-
     var waitUntilTrained = (client) => {
 
         count += 1;
@@ -149,179 +148,6 @@ describe.only('Language understanding (LUIS)', () => {
             throw(err);
         });
     }
-    describe("create app before, don't delete after", () => {
-        before((done) => {
-            createTrainPublishApp()
-            .then(results => {
-                done();
-            }).catch(err => {
-                done(err);
-            });
-        });
-        it('should delete app', (done) => {   
-            client.deleteApp()
-            .then((response) => {
-                response.should.not.be.undefined();
-                response.should.have.only.keys('code', 'message');
-                response.code.should.equal("Success");
-                response.message.should.equal("Operation Successful");
-                done();
-            }).catch((err) => {
-                done(err);
-            });
-        })         
-    })
-    describe("Does not create app, no need to delete", () => {
-        it('should get list of applications', (done) => {
-
-            let parameters = {
-                skip:0,
-                take:100
-            };
-
-            client.getApplications(parameters)
-            .then((response) => {
-                response.should.not.be.undefined();
-                response.should.be.Array;
-                if (response.length > 0) {
-                    response[0].should.have.only.properties('id', 'name', 'description','culture','usageScenario','domain','versionsCount','createdDateTime','endpoints','endpointHitsCount','activeVersion');
-                }
-                done();
-            }).catch((err) => {
-                done(err);
-            });
-        })
-        it('should get list of LUIS assistants', (done) => {
-
-            client.getLUIS(client.INFO.ASSISTANT)
-            .then((response) => {
-                response.should.not.be.undefined();
-                response.should.have.only.properties('endpointKeys', 'endpointUrls');
-                done();
-            }).catch((err) => {
-                done(err);
-            });
-        })
-        it('should get list of LUIS domains', (done) => {
-
-
-            client.getLUIS(client.INFO.DOMAIN)
-            .then((response) => {
-                response.should.not.be.undefined();
-                response.should.be.Array;
-                response.should.have.length(30);
-                done();
-            }).catch((err) => {
-                done(err);
-            });
-        })
-        it('should get list of LUIS usagescenarios', (done) => {
-
-            client.getLUIS(client.INFO.USAGESCENARIO)
-            .then((response) => {
-                response.should.not.be.undefined();
-                response.should.be.Array;
-                response.should.have.length(4);
-
-                done();
-            }).catch((err) => {
-                done(err);
-            });
-        })
-        it('should get list of LUIS cultures', (done) => {
-
-            client.getLUIS(client.INFO.CULTURE)
-            .then((response) => {
-                response.should.not.be.undefined();
-                response.should.be.Array;
-                response.should.have.length(12);
-                response[0].should.have.only.keys('name','code');
-                done();
-            }).catch((err) => {
-                done(err);
-            });
-        })
-        it('should get list of LUIS custom prebuilt domains', (done) => {
-    
-            client.getLUIS(client.INFO.PREBUILTDOMAIN)
-            .then((response) => {
-                response.should.not.be.undefined();
-                response.should.be.Array;
-                response.should.have.length(34);
-                response[0].should.have.only.keys['name','culture','description','examples','intents','entities'];
-                response[0].intents.should.be.Array;
-                response[0].entities.should.be.Array;
-                response[0].intents[0].should.have.only.keys('name','description','examples');
-                response[0].entities[0].should.have.only.keys('name','description','examples');
-                done();
-            }).catch((err) => {
-                done(err);
-            });
-        })
-        it('should get list of LUIS custom prebuilt domains for en-us culture', (done) => {
-
-            client.getLUIS(client.INFO.PREBUILTDOMAIN, 'en-us')
-            .then((response) => {
-                response.should.not.be.undefined();
-                response.should.be.Array;
-                response.should.have.length(21);
-                response[0].should.have.only.keys('name','culture','description','examples','intents','entities');
-                response[0].intents.should.be.Array;
-                response[0].entities.should.be.Array;
-                response[0].intents[0].should.have.only.keys('name','description','examples');
-                response[0].entities[0].should.have.only.keys('name','description','examples');
-
-                done();
-            }).catch((err) => {
-                done(err);
-            });
-        })
-        it('should get list of LUIS custom prebuilt domains for each supported culture', (done) => {
-    
-            client.getLUIS(client.INFO.CULTURE)
-            .then(cultures => {
-                let arrPromises = [];
-                let waitForTime = retryInterval;
-    
-                cultures.forEach(culture => {
-                    arrPromises.push(limit(() => client.getLUIS(client.INFO.PREBUILTDOMAIN, culture.code)));
-                    arrPromises.push(limit(() => promiseDelay(2000)));
-                });
-                arrPromises.should.have.length(CULTURECOUNT*2);
-
-                return Promise.all(arrPromises);
-            }).then(returnedPromises => {
-                
-                // prune out the promiseDelay responses
-                let responses = returnedPromises.filter(x => x!==undefined);
-
-                responses.should.have.length(CULTURECOUNT);
-                responses.forEach(prebuiltDomainByCulture => {
-
-                    prebuiltDomainByCulture.should.not.be.undefined();
-                    prebuiltDomainByCulture.should.be.Array;
-
-                    if(prebuiltDomainByCulture.length>0){
-
-                        var foundCulture = PREBUILTDOMAIN.find((obj) => {
-                            return (Object.keys(obj)[0]===prebuiltDomainByCulture[0].culture);
-                        });
-
-                        foundCulture.should.not.be.undefined();
-                        var foundCount = foundCulture[prebuiltDomainByCulture[0].culture];
-                        foundCount.should.not.equal(0);
-
-                        prebuiltDomainByCulture.should.have.length(foundCount);
-                }
-                    
-                });
-                done();
-            }).catch((err) => {
-                done(err);
-            });
-        })
-    })
-
 
     describe("Delete app after", () => {
         afterEach((done) => {
@@ -446,32 +272,7 @@ describe.only('Language understanding (LUIS)', () => {
                 done(err);
             });
         })
-        it('should get app version closedlist (LIST)', (done) => {
-            // use travel agent json for closedlists
 
-            var info = client.VERSIONINFO.LISTS;
-
-            promiseDelay(retryInterval)
-            .then(() => {
-                // test set up
-                
-                let filePath = path.join(__dirname,"../assets/LUIS/TravelAgent.json");
-                let testData = JSON.parse(fs.readFileSync(filePath, "utf-8"));
-                return importTrainPublishApp("mocha-travelagent-" + new Date().toISOString(),testData);
-            }).then((response) => {
-                // SUT
-                return client.getVersionInfo(info);
-            }).then(response => {
-                response.should.not.be.undefined();
-                response.should.be.Array;
-                response.should.have.length(3);
-                response[0].should.have.only.keys('id', 'name','typeId','readableType','subLists');
-
-                done();
-            }).catch((err) => {
-                done(err);
-            });
-        })
     })      
     describe("Create app before, delete app after", () => {
         before((done) => {
@@ -495,34 +296,6 @@ describe.only('Language understanding (LUIS)', () => {
                 done(err);
             });
         });
-        it('should train model', (done) => {
-
-            promiseDelay(retryInterval)
-            .then(() => {
-                return client.train();
-            }).then((response) => {
-                response.should.not.be.undefined();
-                response.should.have.only.keys('statusId', 'status');
-                done();
-            }).catch((err) => {
-                done(err);
-            });
-        })
-
-        it('should return training status', (done) => {
-
-            promiseDelay(retryInterval)
-            .then(() => {
-                return client.getTrainStatus();
-            }).then((response) => {
-                response.should.not.be.undefined();
-                response.should.be.instanceof(Array);
-                response[0].should.have.only.keys('modelId', 'details');
-                done();
-            }).catch((err) => {
-                done(err);
-            });
-        })
 
         it('should return application version in JSON', (done) => {
 
@@ -556,7 +329,6 @@ describe.only('Language understanding (LUIS)', () => {
             });
         })
 
-
         it('should return array with queries', (done) => {
 
             promiseDelay(retryInterval)
@@ -574,34 +346,7 @@ describe.only('Language understanding (LUIS)', () => {
             });
         })
 
-        it('should publish model', (done) => {
-
-            var body = {
-                "versionId": "0.1",
-                "isStaging": false,
-                "region": "westus"
-                };
-
-            promiseDelay(retryInterval)
-            .then(() => {
-                    return client.publish(body);
-            }).then((response) => {
-                response.should.not.be.undefined();
-                response.should.have.only.keys(
-                    'versionId', 
-                    'isStaging', 
-                    'endpointUrl',
-                    'region',
-                    'assignedEndpointKey',
-                    'endpointRegion',
-                    'publishedDateTime');
-                done();
-            }).catch((err) => {
-                done(err);
-            });
-        })
-
-
+        // TBD - need to provide example utterances that are questionable so this list has examples
         it('should get list of example labeled utterances', (done) => {
 
             let parameters = {
@@ -816,29 +561,7 @@ describe.only('Language understanding (LUIS)', () => {
                 done(err);
             });
         })
-        xit('should delete app permissions - email doesn\'t exist', (done) => {
-
-            var info = client.APPINFO.PERMISSIONS;
-
-            var body = {
-                "email":"test@domain.com"
-            };
-            
-            promiseDelay(retryInterval)
-            .then(() => {
-                return client.deleteAppInfo(body,info);
-            }).then((response) => {
-
-                response.should.not.be.undefined();
-                response.should.have.only.keys('code', 'message');
-                response.code.should.equal("Success");
-                response.message.should.equal("Operation Successful");
-                done();
-            }).catch((err) => {
-                done(err);
-            });
-        })
-        it('should delete app permissions - email does exist', (done) => {
+        it('should delete app permissions', (done) => {
 
             var info = client.APPINFO.PERMISSIONS;
             var updateBody = {
@@ -956,30 +679,179 @@ describe.only('Language understanding (LUIS)', () => {
                 done(err);
             });
         })
-    
-        describe('should return 410 gone', (done) => {
-            it('', (done) => {
-                // optional but recommended
-                var parameters = {
-                    "log": true, // required to review suggested utterances
-                    "verbose": true // required to see all intents and scores
-                };
+        it('should get list of applications', (done) => {
 
-                // query/utterance
-                var body = "forward to frank 30 dollars through HSBC";
+            let parameters = {
+                skip:0,
+                take:100
+            };
 
-                promiseDelay(retryInterval)
-                .then(() => {
-                    return client.detectIntent({parameters,body});
-                }).then((response) => {
-                    response.should.not.be.undefined();
-                    response.should.have.properties(['query', 'topScoringIntent', 'entities']);
-                    done();
-                }).catch((err) => {
-                    done(err);
-                });
+            client.getApplications(parameters)
+            .then((response) => {
+                response.should.not.be.undefined();
+                response.should.be.Array;
+                if (response.length > 0) {
+                    response[0].should.have.only.properties('id', 'name', 'description','culture','usageScenario','domain','versionsCount','createdDateTime','endpoints','endpointHitsCount','activeVersion');
+                }
+                done();
+            }).catch((err) => {
+                done(err);
             });
+        })
+        it('should get list of LUIS assistants', (done) => {
 
+            client.getLUIS(client.INFO.ASSISTANT)
+            .then((response) => {
+                response.should.not.be.undefined();
+                response.should.have.only.properties('endpointKeys', 'endpointUrls');
+                done();
+            }).catch((err) => {
+                done(err);
+            });
+        })
+        it('should get list of LUIS domains', (done) => {
+
+
+            client.getLUIS(client.INFO.DOMAIN)
+            .then((response) => {
+                response.should.not.be.undefined();
+                response.should.be.Array;
+                response.should.have.length(30);
+                done();
+            }).catch((err) => {
+                done(err);
+            });
+        })
+        it('should get list of LUIS usagescenarios', (done) => {
+
+            client.getLUIS(client.INFO.USAGESCENARIO)
+            .then((response) => {
+                response.should.not.be.undefined();
+                response.should.be.Array;
+                response.should.have.length(4);
+
+                done();
+            }).catch((err) => {
+                done(err);
+            });
+        })
+        it('should get list of LUIS cultures', (done) => {
+
+            client.getLUIS(client.INFO.CULTURE)
+            .then((response) => {
+                response.should.not.be.undefined();
+                response.should.be.Array;
+                response.should.have.length(12);
+                response[0].should.have.only.keys('name','code');
+                done();
+            }).catch((err) => {
+                done(err);
+            });
+        })
+        it('should get list of LUIS custom prebuilt domains', (done) => {
+    
+            client.getLUIS(client.INFO.PREBUILTDOMAIN)
+            .then((response) => {
+                response.should.not.be.undefined();
+                response.should.be.Array;
+                response.should.have.length(34);
+                response[0].should.have.only.keys['name','culture','description','examples','intents','entities'];
+                response[0].intents.should.be.Array;
+                response[0].entities.should.be.Array;
+                response[0].intents[0].should.have.only.keys('name','description','examples');
+                response[0].entities[0].should.have.only.keys('name','description','examples');
+                done();
+            }).catch((err) => {
+                done(err);
+            });
+        })
+        it('should get list of LUIS custom prebuilt domains for en-us culture', (done) => {
+
+            client.getLUIS(client.INFO.PREBUILTDOMAIN, 'en-us')
+            .then((response) => {
+                response.should.not.be.undefined();
+                response.should.be.Array;
+                response.should.have.length(21);
+                response[0].should.have.only.keys('name','culture','description','examples','intents','entities');
+                response[0].intents.should.be.Array;
+                response[0].entities.should.be.Array;
+                response[0].intents[0].should.have.only.keys('name','description','examples');
+                response[0].entities[0].should.have.only.keys('name','description','examples');
+
+                done();
+            }).catch((err) => {
+                done(err);
+            });
+        })
+        it('should get list of LUIS custom prebuilt domains for each supported culture', (done) => {
+    
+            client.getLUIS(client.INFO.CULTURE)
+            .then(cultures => {
+                let arrPromises = [];
+                let waitForTime = retryInterval;
+    
+                cultures.forEach(culture => {
+                    arrPromises.push(limit(() => client.getLUIS(client.INFO.PREBUILTDOMAIN, culture.code)));
+                    arrPromises.push(limit(() => promiseDelay(2000)));
+                });
+                arrPromises.should.have.length(CULTURECOUNT*2);
+
+                return Promise.all(arrPromises);
+            }).then(returnedPromises => {
+                
+                // prune out the promiseDelay responses
+                let responses = returnedPromises.filter(x => x!==undefined);
+
+                responses.should.have.length(CULTURECOUNT);
+                responses.forEach(prebuiltDomainByCulture => {
+
+                    prebuiltDomainByCulture.should.not.be.undefined();
+                    prebuiltDomainByCulture.should.be.Array;
+
+                    if(prebuiltDomainByCulture.length>0){
+
+                        var foundCulture = PREBUILTDOMAIN.find((obj) => {
+                            return (Object.keys(obj)[0]===prebuiltDomainByCulture[0].culture);
+                        });
+
+                        foundCulture.should.not.be.undefined();
+                        var foundCount = foundCulture[prebuiltDomainByCulture[0].culture];
+                        foundCount.should.not.equal(0);
+
+                        prebuiltDomainByCulture.should.have.length(foundCount);
+                }
+                    
+                });
+                done();
+            }).catch((err) => {
+                done(err);
+            });
+        })
+        it('should get app version closedlist (LIST)', (done) => {
+            // use travel agent json for closedlists
+
+            var info = client.VERSIONINFO.LISTS;
+
+            promiseDelay(retryInterval)
+            .then(() => {
+                // test set up
+                
+                let filePath = path.join(__dirname,"../assets/LUIS/TravelAgent.json");
+                let testData = JSON.parse(fs.readFileSync(filePath, "utf-8"));
+                return importTrainPublishApp("mocha-travelagent-" + new Date().toISOString(),testData);
+            }).then((response) => {
+                // SUT
+                return client.getVersionInfo(info);
+            }).then(response => {
+                response.should.not.be.undefined();
+                response.should.be.Array;
+                response.should.have.length(3);
+                response[0].should.have.only.keys('id', 'name','typeId','readableType','subLists');
+
+                done();
+            }).catch((err) => {
+                done(err);
+            });
         })
     })
 }) 
