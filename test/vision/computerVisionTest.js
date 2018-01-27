@@ -133,7 +133,7 @@ describe('Computer vision', () => {
     describe('Recognize domain specific content (POST)',  () => {
         it('should accept application/json', (done) => {
             const parameters = {
-                "model": "Celebrities"
+                "model": "celebrities"
             };
             const headers = {
                 'Content-type': 'application/json'
