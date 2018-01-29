@@ -91,17 +91,18 @@ describe.only('Language understanding (LUIS)', () => {
         }).then(results => {
             return waitUntilTrained(client);
         }).then((response) => {
-            return client.publish({
+            return client.setAppInfo({
                     "versionId": client.versionID,
                     "isStaging": false,
                     "region": "westus"
-                    });
+                    }, client.APPINFO.PUBLISH);
         }).catch(err => {
             throw(err);
         });        
     }
     var deleteTestApp = () =>{
-        return client.deleteApp()
+        var body=undefined;
+        return client.deleteAppInfo(body,this.APPINFO.APP)
         .then((response) => {
             response.should.not.be.undefined();
             client.appID = undefined;
@@ -125,11 +126,11 @@ describe.only('Language understanding (LUIS)', () => {
         }).then(results => {
             return waitUntilTrained(client);
         }).then((response) => {
-            return client.publish({
+            return client.setAppInfo({
                     "versionId": client.versionID,
                     "isStaging": false,
                     "region": "westus"
-                    });
+                    },client.APPINFO.PUBLISH);
         }).catch(err => {
             throw(err);
         });        
@@ -238,9 +239,8 @@ describe.only('Language understanding (LUIS)', () => {
                 return client.importApp(parameters, body);
             }).then((response) => {
                 response.should.not.be.undefined();
-                response.should.be.String().and.have.length(70);
-                // TBD: fix this when origin-location is fixed
-                // get appID to delete in After()
+                response.should.be.String().and.have.length(98);
+
                 client.appID = response.substring(response.length-36, response.length);
                 done();
             }).catch((err) => {
@@ -259,8 +259,8 @@ describe.only('Language understanding (LUIS)', () => {
                 return client.addPrebuiltDomain(body);
             }).then((response) => {
                 response.should.not.be.undefined();
-                response.should.be.String().and.have.length(92);
-                // TBD: fix this when origin-location is fixed
+                response.should.be.String().and.have.length(120);
+
                 // get appID to delete in After()
                 client.appID = response.substring(response.length-36, response.length);
                 done();
@@ -325,11 +325,11 @@ describe.only('Language understanding (LUIS)', () => {
             });
         })
 
-        it('should return array with queries', (done) => {
+        it('should return array with endpoint queries', (done) => {
 
             promiseDelay(retryInterval)
             .then(() => {
-                return client.downloadApplicationQuerylog();
+                return client.getAppInfo(client.APPINFO.QUERYLOGS);
             }).then((response) => {
                 response.should.not.be.undefined();
                 response.should.be.Array;
@@ -422,7 +422,21 @@ describe.only('Language understanding (LUIS)', () => {
             });
         })
 
+        it('should get app', (done) => {
 
+            var info = client.APPINFO.APP;
+
+            promiseDelay(retryInterval)
+            .then(() => {
+                return client.getAppInfo(info);
+            }).then((response) => {
+                response.should.not.be.undefined();
+                response.should.have.only.keys('id', 'name','description','culture','usageScenario','domain','versionsCount','createdDateTime','endpoints','endpointHitsCount','activeVersion','ownerEmail');
+                done();
+            }).catch((err) => {
+                done(err);
+            });
+        })
         it('should update app name', (done) => {
 
             var body = {
@@ -432,7 +446,7 @@ describe.only('Language understanding (LUIS)', () => {
 
             promiseDelay(retryInterval)
             .then(() => {
-                return client.updateAppInfo(body, client.APPINFO.RENAME);
+                return client.updateAppInfo(body, client.APPINFO.APP);
             }).then((response) => {
                 response.should.not.be.undefined();
                 response.should.be.Array;
@@ -481,7 +495,6 @@ describe.only('Language understanding (LUIS)', () => {
                 done(err);
             });
         })
-
         it('should get app endpoints', (done) => {
 
             var info = client.APPINFO.ENDPOINTS;
@@ -496,6 +509,23 @@ describe.only('Language understanding (LUIS)', () => {
                 let testData = JSON.parse(fs.readFileSync(filePath, "utf-8"));
                 // compare key count - not data since app id changes 
                 _.difference(_.keys(response),_.keys(testData)).should.have.length(0);
+                done();
+            }).catch((err) => {
+                done(err);
+            });
+        })
+        it('should get app querylogs', (done) => {
+
+            var info = client.APPINFO.QUERYLOGS;
+
+            promiseDelay(retryInterval)
+            .then(() => {
+                return client.getAppInfo(info);
+            }).then((response) => {
+
+                response.should.not.be.undefined();
+                // TBD: response validation
+
                 done();
             }).catch((err) => {
                 done(err);
@@ -530,6 +560,24 @@ describe.only('Language understanding (LUIS)', () => {
                 response.should.not.be.undefined();
                 response.should.have.only.keys('owner', 'emails');
                 response.owner.should.not.be.undefined();
+                done();
+            }).catch((err) => {
+                done(err);
+            });
+        })
+        it('should add email to permissions', (done) => {
+            var body = {
+                "email":"addEmailToPermissionsTest@domain.com"
+            };
+
+            promiseDelay(retryInterval)
+            .then(() => {
+                return client.setAppInfo(body,client.APPINFO.PERMISSIONS);
+            }).then((response) => {
+                response.should.not.be.undefined();
+                response.should.have.only.keys('code', 'message');
+                response.code.should.equal("Success");
+                response.message.should.equal("Operation Successful");
                 done();
             }).catch((err) => {
                 done(err);
@@ -682,10 +730,13 @@ describe.only('Language understanding (LUIS)', () => {
                 take:100
             };
 
-            client.getApplications(parameters)
+            let culture = undefined;
+
+            client.getLUIS(client.INFO.APPS, culture,parameters)
             .then((response) => {
                 response.should.not.be.undefined();
                 response.should.be.Array;
+
                 if (response.length > 0) {
                     response[0].should.have.only.properties('id', 'name', 'description','culture','usageScenario','domain','versionsCount','createdDateTime','endpoints','endpointHitsCount','activeVersion');
                 }
@@ -826,7 +877,7 @@ describe.only('Language understanding (LUIS)', () => {
         it('should get app version closedlist (LIST)', (done) => {
             // use travel agent json for closedlists
 
-            var info = client.VERSIONINFO.LISTS;
+            var info = client.VERSIONINFO.CLOSEDLISTS;
 
             promiseDelay(retryInterval)
             .then(() => {

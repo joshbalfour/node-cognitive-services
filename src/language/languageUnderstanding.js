@@ -36,6 +36,7 @@ class languageUnderstanding extends commonService {
             "westeurope.api.cognitive.microsoft.com",
         ];
         this.INFO = {
+            APPS:"",
             ASSISTANT: "assistants",
             DOMAIN: "domains",
             USAGESCENARIO: "usagescenarios",
@@ -47,13 +48,18 @@ class languageUnderstanding extends commonService {
             SETTINGS: "settings",
             VERSIONS: "versions",
             PERMISSIONS: "permissions",
-            SETTINGS: "settings",
-            RENAME: "" // rename is just leaving off the type of change in the URL
-        }
+            PUBLISH: "publish",
+            QUERYLOGS: "querylogs",
+            APP: ""
+        };
+        
         this.VERSIONINFO = {
+            ASSIGNEDKEY:"assignedkey",
+            CLONE: "clone",
+            CLOSEDLISTS: "closedlists",
+            COMPOSITEENTITIES: "compositeentities",
             VERSION: "",
-            LISTS: "closedlists",
-            COMPOSITES: "compositeentities",
+            //LISTS: "closedlists",
             PREBUILTDOMAINS: "customprebuiltdomains",
             PREBUILTENTITIES: "customprebuiltentities",
             PREBUILTINTENTS: "customprebuiltintents",
@@ -76,9 +82,10 @@ class languageUnderstanding extends commonService {
      * info: INFO
      * culture: string "en-us"
      * Returns LUIS meta information using enum to determine request
+
      * @returns {Promise.<object>}    
      */
-    getLUIS(info, cultureOnly){
+    getLUIS(info, cultureOnly, parameters){
 
         const operation = {
             "path": "luis/api/v2.0/apps/" + info,
@@ -87,6 +94,28 @@ class languageUnderstanding extends commonService {
 
         // add culture for prebult domain
         if (info === this.INFO.PREBUILTDOMAIN && cultureOnly) operation.path += "/" + cultureOnly;
+
+        switch(info){
+            case this.INFO.APPS: 
+                operation.parameters = [{
+                    "name": "skip",
+                    "description": "Used for paging. The number of entries to skip. Default value is 0.",
+                    "value": 0,
+                    "required": false,
+                    "typeName": "number",
+                    "type": "queryStringParam"
+                }, {
+                    "name": "take",
+                    "description": "Used for paging. The number of entries to return. Maximum page size is 500. Default is 100.",
+                    "value": 100,
+                    "required": false,
+                    "typeName": "number",
+                    "type": "queryStringParam"
+                }];
+                break;
+            default: 
+
+        }
 
         return this.makeRequest({
             operation: operation,
@@ -97,20 +126,127 @@ class languageUnderstanding extends commonService {
     /**
      * Get app info 
      * Returns app info
+     * @param {APPINFO}
      * @returns {Promise.<object>}    
      */
     getAppInfo(appinfo){
+
+        const validAPPINFO=[
+            this.APPINFO.APP,
+            this.APPINFO.ENDPOINTS,
+            this.APPINFO.PERMISSIONS,
+            this.APPINFO.QUERYLOGS,
+            this.APPINFO.SETTINGS,
+            this.APPINFO.VERSIONS
+        ];
+
+        if(!_.contains(validAPPINFO,appinfo))throw Error("invalid info param '" + appinfo + "'");
+
+        switch(appinfo){
+            case this.APPINFO.APP: 
+            case this.APPINFO.ENDPOINTS: 
+            case this.APPINFO.PERMISSIONS: 
+            case this.APPINFO.QUERYLOGS: 
+            case this.APPINFO.SETTINGS: 
+            case this.APPINFO.VERSIONS: 
+            /*
+                operation.parameters = [{
+                    "name": "email",
+                    "description": "email",
+                    "value": null,
+                    "required": true,
+                    "type": "inBody",
+                    "typeName": "string"
+                }];*/
+                break;
+            default: throw Error("error in switch");
+
+        }
+
 
         const operation = {
             "path": "luis/api/v2.0/apps/" + this.appID + "/" + appinfo,
             "method": "GET",
         };
 
+        switch(appinfo){
+            case this.APPINFO.QUERYLOGS:
+                return this.makeRequest({
+                    operation: operation,
+                    headers: {'Content-type': 'application/json'}
+                }).then(csvString => {
+                    return this.queryStringConversion(csvString);
+                })
+                break;
+            default:
+                return this.makeRequest({
+                    operation: operation,
+                    headers: {'Content-type': 'application/json'}
+                })
+        }
+    }
+
+    /**
+     * Set app info 
+     * Returns no data
+     * @returns {Promise.<object>}    
+     */
+    setAppInfo(body, appinfo){
+
+        const validAPPINFO=[this.APPINFO.PUBLISH,this.APPINFO.PERMISSIONS];
+
+        if(!_.contains(validAPPINFO,appinfo))throw Error("invalid info param '" + appinfo + "'");
+
+        const operation = {
+            "path": "luis/api/v2.0/apps/" + this.appID + "/" + appinfo,
+            "method": "POST",
+        };
+
+        switch(appinfo){
+            case this.APPINFO.PERMISSIONS: 
+                operation.parameters = [{
+                    "name": "email",
+                    "description": "email",
+                    "value": null,
+                    "required": true,
+                    "type": "inBody",
+                    "typeName": "string"
+                }];
+                break;
+            case this.APPINFO.PUBLISH:
+                operation.parameters = [{
+                    "name": "versionId",
+                    "description": "Version of the app. Default is '0.1', 10 char max ",
+                    "value": "0.1",
+                    "required": true,
+                    "type": "inBody",
+                    "typeName": "string"
+                }, {
+                    "name": "isStaging",
+                    "description": "Publish destination: staging or production.",
+                    "value": null,
+                    "required": false,
+                    "type": "inBody",
+                    "typeName": "boolean"
+                }, {
+                    "name": "region",
+                    "description": "Azure region",
+                    "value": null,
+                    "required": false,
+                    "type": "inBody",
+                    "typeName": "string",
+                    "options" : ["westus", "eastus2", "westcentralus", "westeurope", "southeastasia"]
+                }];
+                break;
+            default: throw Error("error in switch");
+        }
+
         return this.makeRequest({
             operation: operation,
-            headers: {'Content-type': 'application/json'}
+            headers: {'Content-type': 'application/json'},
+            body: body
         })
-        
+       
     }
 
     /**
@@ -120,7 +256,7 @@ class languageUnderstanding extends commonService {
      */
     updateAppInfo(body, appinfo){
 
-        const validAPPINFO=[this.APPINFO.RENAME,this.APPINFO.SETTINGS,this.APPINFO.PERMISSIONS];
+        const validAPPINFO=[this.APPINFO.APP,this.APPINFO.SETTINGS,this.APPINFO.PERMISSIONS];
 
         if(!_.contains(validAPPINFO,appinfo))throw Error("invalid info param '" + appinfo + "'");
 
@@ -130,7 +266,7 @@ class languageUnderstanding extends commonService {
         };
 
         switch(appinfo){
-            case this.APPINFO.RENAME: 
+            case this.APPINFO.APP: 
                 operation.parameters = [{
                     "name": "name",
                     "description": "New name of the application",
@@ -225,7 +361,7 @@ class languageUnderstanding extends commonService {
 
         const validVERSIONINFO=[
             this.VERSIONINFO.VERSION,
-            this.VERSIONINFO.LISTS
+            this.VERSIONINFO.CLOSEDLISTS
         ];
 
         if(!_.contains(validVERSIONINFO,versioninfo))throw Error("invalid info param '" + versioninfo + "'");
@@ -249,8 +385,6 @@ class languageUnderstanding extends commonService {
                 "type": "queryStringParam"
             }]
         };
-
-        console.log(operation.path);
 
         return this.makeRequest({
             operation: operation,
@@ -372,113 +506,22 @@ class languageUnderstanding extends commonService {
         })
         
     };     
-    /** 
-     * Gets the query logs of the past month for the application.
-     * @returns {Promise.<object>}
-     */
-    downloadApplicationQuerylog(){
-        
-        const operation = {
-            "path": "luis/api/v2.0/apps/" + this.appID + "/querylogs",
-            "method": "GET"
-        };
-
-        let results = [];
-
-        return this.makeRequest({
-            operation: operation
-        })
-        .then(csvString => {
-            return new Promise((resolve, reject) => {
-                csv
-                .fromString(csvString, {headers: true})
-                .on("data", parsedObject => {
-                    results.push(parsedObject);
-                })
-                .on("end", () => {
-                    resolve(results);
-                })
-                .on("error", err => {
-                    reject(err);
-                })
+    queryStringConversion(csvString){
+        return new Promise((resolve, reject) => {
+            let results = [];
+            csv
+            .fromString(csvString, {headers: true})
+            .on("data", parsedObject => {
+                results.push(parsedObject);
+            })
+            .on("end", () => {
+                resolve(results);
+            })
+            .on("error", err => {
+                reject(err);
             })
         })
-    }; 
-    /**
-     * Publishes app. App must be trained before publishing.
-     * @returns {Promise.<object>}
-     */
-    publish(body) {
-        
-        const operation = {
-            "path": "luis/api/v2.0/apps/" + this.appID + "/publish",
-            "method": "POST",
-            "parameters": [{
-                "name": "versionId",
-                "description": "Version of the app. Default is '0.1', 10 char max ",
-                "value": "0.1",
-                "required": true,
-                "type": "inBody",
-                "typeName": "string"
-            }, {
-                "name": "isStaging",
-                "description": "Publish destination: staging or production.",
-                "value": null,
-                "required": false,
-                "type": "inBody",
-                "typeName": "boolean"
-            }, {
-                "name": "region",
-                "description": "Azure region",
-                "value": null,
-                "required": false,
-                "type": "inBody",
-                "typeName": "string",
-                "options" : ["westus", "eastus2", "westcentralus", "westeurope", "southeastasia"]
-            }]
-        };
-
-        return this.makeRequest({
-            operation: operation,
-            headers: {'Content-type': 'application/json'},
-            body:body
-        })
-    };
-    /** 
-     * Returns list of applications for this subscription
-     * skip: default = 0
-     * take: default = 100, max = 500
-     * @returns {Promise.<object>}
-     */
-    getApplications(parameters){
-        
-        const operation = {
-            "path": "luis/api/v2.0/apps/",
-            "method": "GET",
-            "parameters": [{
-                "name": "skip",
-                "description": "Used for paging. The number of entries to skip. Default value is 0.",
-                "value": 0,
-                "required": false,
-                "typeName": "number",
-                "type": "queryStringParam"
-            }, {
-                "name": "take",
-                "description": "Used for paging. The number of entries to return. Maximum page size is 500. Default is 100.",
-                "value": 100,
-                "required": false,
-                "typeName": "number",
-                "type": "queryStringParam"
-            }]
-
-        };
-
-        return this.makeRequest({
-            operation: operation,
-            parameters: parameters
-        });
-        
-    };     
+    }
     /** 
      * Returns list of labeled example utterances
      * skip: default = 0
@@ -702,6 +745,7 @@ class languageUnderstanding extends commonService {
             parameters:parameters
         })
     };
+
 };
 
 module.exports = languageUnderstanding;
