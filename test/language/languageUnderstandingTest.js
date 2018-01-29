@@ -87,7 +87,9 @@ describe.only('Language understanding (LUIS)', () => {
             client.appID = results.substring(results.length-36, results.length);
             client.versionID = defaultVersionID;
 
-            return client.train();
+            var parameters = undefined;
+            var body = undefined;
+            return client.setVersionInfo(parameters,body,client.VERSIONINFO.TRAIN);
         }).then(results => {
             return waitUntilTrained(client);
         }).then((response) => {
@@ -117,12 +119,15 @@ describe.only('Language understanding (LUIS)', () => {
             "appName":appName
         };
 
-        return client.importApp(parameters, appJSON)
+        return client.setLUIS(client.INFO.IMPORT, appJSON, parameters)
         .then(results =>{
+            console.log(results);
             client.appID = results.substring(results.length-36, results.length);
             client.versionID = defaultVersionID;
 
-            return client.train();
+            var parameters = undefined;
+            var body = undefined;
+            return client.setVersionInfo(parameters,body,client.VERSIONINFO.TRAIN);
         }).then(results => {
             return waitUntilTrained(client);
         }).then((response) => {
@@ -136,7 +141,8 @@ describe.only('Language understanding (LUIS)', () => {
         });        
     }
     var deleteTestApp = () =>{
-        return client.deleteApp()
+        var body=undefined;
+        return client.deleteAppInfo(body,client.APPINFO.APP)
         .then((response) => {
             response.should.not.be.undefined();
             client.appID = undefined;
@@ -236,7 +242,7 @@ describe.only('Language understanding (LUIS)', () => {
 
             promiseDelay(retryInterval)
             .then(() => {
-                return client.importApp(parameters, body);
+                return client.setLUIS(client.INFO.IMPORT,body, parameters);
             }).then((response) => {
                 response.should.not.be.undefined();
                 response.should.be.String().and.have.length(98);
@@ -486,7 +492,7 @@ describe.only('Language understanding (LUIS)', () => {
 
             promiseDelay(retryInterval)
             .then(() => {
-                return client.cloneApp(params, body);
+                return client.setVersionInfo(params, body, client.VERSIONINFO.CLONE);
             }).then((response) => {
                 response.should.not.be.undefined();
                 response.should.equal(0.2);

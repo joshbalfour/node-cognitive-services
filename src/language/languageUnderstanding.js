@@ -39,6 +39,7 @@ class languageUnderstanding extends commonService {
             APPS:"",
             ASSISTANT: "assistants",
             DOMAIN: "domains",
+            IMPORT: "import",
             USAGESCENARIO: "usagescenarios",
             CULTURE: "cultures",
             PREBUILTDOMAIN: "customprebuiltdomains"
@@ -74,7 +75,8 @@ class languageUnderstanding extends commonService {
             MODELS: "models",
             //PATTERNS: "patterns", //deprecated
             PHRASELISTS: "phraselists",
-            PREBUILTS:"prebuilts" 
+            PREBUILTS:"prebuilts",
+            TRAIN: "train"
         }
     }
 
@@ -122,6 +124,45 @@ class languageUnderstanding extends commonService {
             headers: {'Content-type': 'application/json'}
         })
         
+    }
+    /**
+     * 
+     * @param {*} info 
+     * @param {*} body 
+     * @param {*} params 
+     * @returns {Promise.<object>}
+     */
+    setLUIS(info, body, parameters){
+        const validINFO=[this.INFO.IMPORT];
+
+        if(!_.contains(validINFO,info))throw Error("invalid info param '" + info + "'");
+
+        const operation = {
+            "path": "luis/api/v2.0/apps/" + info,
+            "method": "POST",
+        };
+
+        switch(info){
+            case this.INFO.IMPORT: 
+                operation.parameters = [{
+                    "name": "appName",
+                    "description": "The imported application name.",
+                    "value": null,
+                    "required": false,
+                    "type": "queryStringParam",
+                    "typeName": "string"
+                }]
+                break;
+            default: throw Error("error in switch");
+        }
+
+        return this.makeRequest({
+            operation: operation,
+            headers: {'Content-type': 'application/json'},
+            body: body,
+            parameters:parameters
+        })
+       
     }
     /**
      * Get app info 
@@ -322,7 +363,7 @@ class languageUnderstanding extends commonService {
      */
     deleteAppInfo(body, appinfo){
 
-        const validAPPINFO=[this.APPINFO.PERMISSIONS];
+        const validAPPINFO=[this.APPINFO.PERMISSIONS,this.APPINFO.APP];
 
         if(!_.contains(validAPPINFO,appinfo))throw Error("invalid info param '" + appinfo + "'");
 
@@ -341,6 +382,9 @@ class languageUnderstanding extends commonService {
                     "type": "inBody",
                     "typeName": "string"
                 }];
+                break;
+            case this.APPINFO.APP:
+                // no params
                 break;
             default: throw Error("error in switch");
         }
@@ -391,6 +435,54 @@ class languageUnderstanding extends commonService {
             headers: {'Content-type': 'application/json'}
         })
         
+    }
+    /**
+     * 
+     */
+    setVersionInfo(parameters, body, versioninfo){
+        const validVERSIONINFO=[
+            this.VERSIONINFO.CLONE,
+            this.VERSIONINFO.TRAIN
+        ];
+
+        if(!_.contains(validVERSIONINFO,versioninfo))throw Error("invalid version info param '" + versioninfo + "'");
+
+        const operation = {
+            "path": "luis/api/v2.0/apps/" + this.appID + "/versions/" + this.versionID + "/" + versioninfo,
+            "method": "POST",
+        };
+
+        switch(versioninfo){
+            case this.VERSIONINFO.CLONE: 
+                operation.parameters =  [{
+                    "name": "appId",
+                    "description": "The application id to clone.",
+                    "value": null,
+                    "required": true,
+                    "type": "queryStringParam",
+                    "typeName": "string"
+                },
+                {
+                    "name": "versionId",
+                    "description": "The version id to clone.",
+                    "value": null,
+                    "required": true,
+                    "type": "queryStringParam",
+                    "typeName": "string"
+                }];
+                break;
+            case this.VERSIONINFO.TRAIN:
+                // no parameters
+                break;
+            default: throw Error("error in switch");
+        }
+
+        return this.makeRequest({
+            operation: operation,
+            headers: {'Content-type': 'application/json'},
+            body: body,
+            parameters: parameters
+        })
     }
     /**
      * Returns the detected intent, entities and entity values with a score for each intent. 
@@ -447,22 +539,6 @@ class languageUnderstanding extends commonService {
             body: body
         })
 
-    };
-
-    /**
-     * Trains app for that version. All changes since last training are applied.
-     * @returns {Promise.<object>}
-     */
-    train() {
-        
-        const operation = {
-            "path": "luis/api/v2.0/apps/" + this.appID + "/versions/" + this.versionID + "/train",
-            "method": "POST"
-        };
-
-        return this.makeRequest({
-            operation: operation
-        })
     };
     /**
      * Checks if all models of app are trained
@@ -667,85 +743,6 @@ class languageUnderstanding extends commonService {
             headers: {'Content-type': 'application/json'}
         })
     };
-    /**
-     * Delete app
-     * @returns {Promise.<object>}
-     */
-    deleteApp() {
-        
-        const operation = {
-            "path": "luis/api/v2.0/apps/" + this.appID,
-            "method": "DELETE"
-        };
-
-        return this.makeRequest({
-            operation: operation,
-            headers: {'Content-type': 'application/json'}
-        })
-    };
-
-    /**
-     * Clone app
-     * Body contains new version id: {"version":"0.2"}
-     * @returns {Promise.<object>}
-     */
-    cloneApp(parameters, body) {
-        
-        const operation = {
-            "path": "luis/api/v2.0/apps/" + this.appID + "/versions/" + this.versionID + "/clone",
-            "method": "POST",
-            "parameters": [{
-                "name": "appId",
-                "description": "The application id to clone.",
-                "value": null,
-                "required": true,
-                "type": "queryStringParam",
-                "typeName": "string"
-            },
-            {
-                "name": "versionId",
-                "description": "The version id to clone.",
-                "value": null,
-                "required": true,
-                "type": "queryStringParam",
-                "typeName": "string"
-            }
-        ]};
-
-        return this.makeRequest({
-            operation: operation,
-            headers: {'Content-type': 'application/json'},
-            body:body,
-            parameters:parameters
-        })
-    };
-    /**
-     * Import app
-     * @returns {Promise.<object>}
-     */
-    importApp(parameters, body) {
-        
-        const operation = {
-            "path": "luis/api/v2.0/apps/import",
-            "method": "POST",
-            "parameters": [{
-                "name": "appName",
-                "description": "The imported application name.",
-                "value": null,
-                "required": false,
-                "type": "queryStringParam",
-                "typeName": "string"
-            }]
-        };
-
-        return this.makeRequest({
-            operation: operation,
-            headers: {'Content-type': 'application/json'},
-            body:body,
-            parameters:parameters
-        })
-    };
-
 };
 
 module.exports = languageUnderstanding;
