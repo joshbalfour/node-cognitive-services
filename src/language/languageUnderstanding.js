@@ -68,6 +68,7 @@ class languageUnderstanding extends commonService {
             ENTITIES:"entities",
             EXAMPLE: "example",
             EXAMPLES: "examples",
+            EXPORT: "export",
             FEATURES: "features",
             HIERARCHICALS: "hierarchical",
             INTENTS: "intents",
@@ -76,7 +77,8 @@ class languageUnderstanding extends commonService {
             //PATTERNS: "patterns", //deprecated
             PHRASELISTS: "phraselists",
             PREBUILTS:"prebuilts",
-            TRAIN: "train"
+            TRAIN: "train",
+            TRAINSTATUS: "train"
         }
     }
 
@@ -126,14 +128,14 @@ class languageUnderstanding extends commonService {
         
     }
     /**
-     * 
+     * Set LUIS values
      * @param {*} info 
      * @param {*} body 
      * @param {*} params 
      * @returns {Promise.<object>}
      */
     setLUIS(info, body, parameters){
-        const validINFO=[this.INFO.IMPORT];
+        const validINFO=[this.INFO.IMPORT,this.INFO.PREBUILTDOMAIN];
 
         if(!_.contains(validINFO,info))throw Error("invalid info param '" + info + "'");
 
@@ -152,6 +154,23 @@ class languageUnderstanding extends commonService {
                     "type": "queryStringParam",
                     "typeName": "string"
                 }]
+                break;
+            case this.INFO.PREBUILTDOMAIN:
+                operation.parameters =  [{
+                    "name": "domainName",
+                    "description": "The domain name",
+                    "value": null,
+                    "required": true,
+                    "type": "inBody",
+                    "typeName": "string"
+                }, {
+                    "name": "culture",
+                    "description": "The culture.",
+                    "value": null,
+                    "required": true,
+                    "type": "inBody",
+                    "typeName": "string"
+                }];
                 break;
             default: throw Error("error in switch");
         }
@@ -397,47 +416,113 @@ class languageUnderstanding extends commonService {
        
     }
     /**
-     * Get version info 
      * Returns version info
      * @returns {Promise.<object>}    
      */
-    getVersionInfo(versioninfo){
+    getVersionInfo(versioninfo, parameters){
 
         const validVERSIONINFO=[
+            this.VERSIONINFO.EXPORT,
             this.VERSIONINFO.VERSION,
-            this.VERSIONINFO.CLOSEDLISTS
+            this.VERSIONINFO.CLOSEDLISTS,
+            this.VERSIONINFO.TRAINSTATUS,
+            this.VERSIONINFO.ENTITIES,
+            this.VERSIONINFO.EXAMPLES,
+            this.VERSIONINFO.INTENTS
         ];
 
         if(!_.contains(validVERSIONINFO,versioninfo))throw Error("invalid info param '" + versioninfo + "'");
 
         const operation = {
             "path": "luis/api/v2.0/apps/" + this.appID + "/versions/" + this.versionID + "/" + versioninfo,
-            "method": "GET",
-            "parameters": [{
-                "name": "skip",
-                "description": "Used for paging. The number of entries to skip. Default value is 0.",
-                "value": 0,
-                "required": false,
-                "typeName": "number",
-                "type": "queryStringParam"
-            }, {
-                "name": "take",
-                "description": "Used for paging. The number of entries to return. Maximum page size is 500. Default is 100.",
-                "value": 100,
-                "required": false,
-                "typeName": "number",
-                "type": "queryStringParam"
-            }]
+            "method": "GET"
+        };
+
+        switch(versioninfo){
+            case this.VERSIONINFO.IMPORT: 
+                operation.parameters = [{
+                    "name": "skip",
+                    "description": "Used for paging. The number of entries to skip. Default value is 0.",
+                    "value": 0,
+                    "required": false,
+                    "typeName": "number",
+                    "type": "queryStringParam"
+                }, {
+                    "name": "take",
+                    "description": "Used for paging. The number of entries to return. Maximum page size is 500. Default is 100.",
+                    "value": 100,
+                    "required": false,
+                    "typeName": "number",
+                    "type": "queryStringParam"
+                }];
+                break;
+            case this.VERSIONINFO.TRAINSTATUS:
+                // no parameters
+                break;
+            case this.VERSIONINFO.EXAMPLES:
+                operation.parameters = [{
+                    "name": "skip",
+                    "description": "Used for paging. The number of entries to skip. Default value is 0.",
+                    "value": 0,
+                    "required": false,
+                    "typeName": "number",
+                    "type": "queryStringParam"
+                }, {
+                    "name": "take",
+                    "description": "Used for paging. The number of entries to return. Maximum page size is 500. Default is 100.",
+                    "value": 100,
+                    "required": false,
+                    "typeName": "number",
+                    "type": "queryStringParam"
+                }];
+                break;
+            case this.VERSIONINFO.ENTITIES:
+                operation.parameters = [{
+                        "name": "skip",
+                        "description": "Used for paging. The number of entries to skip. Default value is 0.",
+                        "value": 0,
+                        "required": false,
+                        "typeName": "number",
+                        "type": "queryStringParam"
+                    }, {
+                        "name": "take",
+                        "description": "Used for paging. The number of entries to return. Maximum page size is 500. Default is 100.",
+                        "value": 100,
+                        "required": false,
+                        "typeName": "number",
+                        "type": "queryStringParam"
+                    }];
+                break;
+            case this.VERSIONINFO.INTENTS:
+                operation.parameters = [{
+                    "name": "skip",
+                    "description": "Used for paging. The number of entries to skip. Default value is 0.",
+                    "value": 0,
+                    "required": false,
+                    "typeName": "number",
+                    "type": "queryStringParam"
+                }, {
+                    "name": "take",
+                    "description": "Used for paging. The number of entries to return. Maximum page size is 500. Default is 100.",
+                    "value": 100,
+                    "required": false,
+                    "typeName": "number",
+                    "type": "queryStringParam"
+                }];
+                break;
+            default:
         };
 
         return this.makeRequest({
             operation: operation,
-            headers: {'Content-type': 'application/json'}
+            headers: {'Content-type': 'application/json'},
+            parameters: parameters
         })
         
     }
     /**
-     * 
+     * Set Version info
+     * @returns {Promise.<object>}    
      */
     setVersionInfo(parameters, body, versioninfo){
         const validVERSIONINFO=[
@@ -549,39 +634,12 @@ class languageUnderstanding extends commonService {
             return model.details.status == 'Fail' || model.details.status == 'InProgress';
         });
         return (untrainedModels.length===0);
-    }
+    }    
     /**
-     * Gets training status for that version. 
-     * @returns {Promise.<object>}
+     * Convert csv string to array
+     * @param {string} csvString 
+     * @returns {Promise.<object>}   
      */
-    getTrainStatus() {
-        
-        const operation = {
-            "path": "luis/api/v2.0/apps/" + this.appID + "/versions/" + this.versionID + "/train",
-            "method": "GET"
-        };
-
-        return this.makeRequest({
-            operation: operation
-        })
-    }; 
-
-    /** 
-     * Exports Application version to JSON
-     * @returns {Promise.<object>}
-     */
-    exportApplicationVersion(){
-        
-        const operation = {
-            "path": "luis/api/v2.0/apps/" + this.appID + "/versions/" + this.versionID + "/export",
-            "method": "GET"
-        };
-
-        return this.makeRequest({
-            operation: operation
-        })
-        
-    };     
     queryStringConversion(csvString){
         return new Promise((resolve, reject) => {
             let results = [];
@@ -598,151 +656,6 @@ class languageUnderstanding extends commonService {
             })
         })
     }
-    /** 
-     * Returns list of labeled example utterances
-     * skip: default = 0
-     * take: default = 100, max = 500
-     * @returns {Promise.<object>}
-     */
-    getLabeledExamples(parameters){
-        
-        const operation = {
-            "path": "luis/api/v2.0/apps/" + this.appID  + "/versions/" + this.versionID + "/examples",
-            "method": "GET",
-            "parameters": [{
-                "name": "skip",
-                "description": "Used for paging. The number of entries to skip. Default value is 0.",
-                "value": 0,
-                "required": false,
-                "typeName": "number",
-                "type": "queryStringParam"
-            }, {
-                "name": "take",
-                "description": "Used for paging. The number of entries to return. Maximum page size is 500. Default is 100.",
-                "value": 100,
-                "required": false,
-                "typeName": "number",
-                "type": "queryStringParam"
-            }]
-
-        };
-
-        return this.makeRequest({
-            operation: operation,
-            parameters: parameters
-        })
-        
-    };     
-    /** 
-     * Returns list of entities in version
-     * @returns {Promise.<object>}
-     */
-    getVersionEntities(parameters){
-        
-        const operation = {
-            "path": "luis/api/v2.0/apps/" + this.appID  + "/versions/" + this.versionID + "/entities",
-            "method": "GET",
-            "parameters": [{
-                "name": "skip",
-                "description": "Used for paging. The number of entries to skip. Default value is 0.",
-                "value": 0,
-                "required": false,
-                "typeName": "number",
-                "type": "queryStringParam"
-            }, {
-                "name": "take",
-                "description": "Used for paging. The number of entries to return. Maximum page size is 500. Default is 100.",
-                "value": 100,
-                "required": false,
-                "typeName": "number",
-                "type": "queryStringParam"
-            }]
-        };
-
-        return this.makeRequest({
-            operation: operation,
-            parameters
-        })
-    }; 
-    /** 
-     * Returns list of intents in version
-     * @returns {Promise.<object>}
-     */
-    getVersionIntents(parameters){
-        
-        const operation = {
-            "path": "luis/api/v2.0/apps/" + this.appID  + "/versions/" + this.versionID + "/intents",
-            "method": "GET",
-            "parameters": [{
-                "name": "skip",
-                "description": "Used for paging. The number of entries to skip. Default value is 0.",
-                "value": 0,
-                "required": false,
-                "typeName": "number",
-                "type": "queryStringParam"
-            }, {
-                "name": "take",
-                "description": "Used for paging. The number of entries to return. Maximum page size is 500. Default is 100.",
-                "value": 100,
-                "required": false,
-                "typeName": "number",
-                "type": "queryStringParam"
-            }]
-        };
-
-        return this.makeRequest({
-            operation: operation,
-            parameters
-        })
-    };
-    /**
-     * Adds a prebuilt domain along with its models as a new application.
-     * @returns {Promise.<object>}
-     */
-    addPrebuiltDomain(body) {
-        
-        const operation = {
-            "path": "luis/api/v2.0/apps/customprebuiltdomains",
-            "method": "POST",
-            "parameters": [{
-                "name": "domainName",
-                "description": "The domain name",
-                "value": null,
-                "required": true,
-                "type": "inBody",
-                "typeName": "string"
-            }, {
-                "name": "culture",
-                "description": "The culture.",
-                "value": null,
-                "required": true,
-                "type": "inBody",
-                "typeName": "string"
-            }]
-        };
-
-        return this.makeRequest({
-            operation: operation,
-            headers: {'Content-type': 'application/json'},
-            body:body
-        })
-    };
-    /**
-     * Get prebuilt domains.
-     * @returns {Promise.<object>}
-     */
-    getPrebuiltDomain() {
-        
-        const operation = {
-            "path": "luis/api/v2.0/apps/customprebuiltdomains",
-            "method": "GET"
-        };
-
-        return this.makeRequest({
-            operation: operation,
-            headers: {'Content-type': 'application/json'}
-        })
-    };
 };
 
 module.exports = languageUnderstanding;

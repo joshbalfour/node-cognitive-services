@@ -60,7 +60,7 @@ describe.only('Language understanding (LUIS)', () => {
 
             return promiseDelay(retryInterval)
             .then( () => {
-                return client.getTrainStatus();
+                return client.getVersionInfo(client.VERSIONINFO.TRAINSTATUS);
             }).then(response => {
                 // 2xx http response 
                 let trained = client.isTrained(response);
@@ -82,7 +82,8 @@ describe.only('Language understanding (LUIS)', () => {
             "domainName": "Web", 
             "culture": "en-us"
         };
-        return client.addPrebuiltDomain(body)
+        var parameters = undefined;
+        return client.setLUIS(client.INFO.PREBUILTDOMAIN, body, parameters)
         .then(results =>{
             client.appID = results.substring(results.length-36, results.length);
             client.versionID = defaultVersionID;
@@ -262,7 +263,8 @@ describe.only('Language understanding (LUIS)', () => {
 
             promiseDelay(retryInterval)
             .then(() => {
-                return client.addPrebuiltDomain(body);
+                var parameters = undefined;
+                return client.setLUIS(client.INFO.PREBUILTDOMAIN, body, parameters);
             }).then((response) => {
                 response.should.not.be.undefined();
                 response.should.be.String().and.have.length(120);
@@ -308,7 +310,7 @@ describe.only('Language understanding (LUIS)', () => {
 
             promiseDelay(retryInterval)
             .then(() => {
-                return client.exportApplicationVersion();
+                return client.getVersionInfo(client.VERSIONINFO.EXPORT);
             }).then((response) => {
                 response.should.not.be.undefined();
                 response.should.have.only.keys(
@@ -358,7 +360,7 @@ describe.only('Language understanding (LUIS)', () => {
 
             promiseDelay(retryInterval)
             .then(() => {
-                return client.getLabeledExamples(parameters);
+                return client.getVersionInfo(client.VERSIONINFO.EXAMPLES,parameters);
             }).then((response) => {
                 response.should.not.be.undefined();
                 response.should.be.Array;
@@ -386,7 +388,7 @@ describe.only('Language understanding (LUIS)', () => {
 
             promiseDelay(retryInterval)
             .then(() => {
-                return client.getVersionEntities(parameters);
+                return client.getVersionInfo(client.VERSIONINFO.ENTITIES,parameters);
             }).then((response) => {
                 response.should.not.be.undefined();
                 response.should.be.Array;
@@ -415,7 +417,7 @@ describe.only('Language understanding (LUIS)', () => {
 
             promiseDelay(retryInterval)
             .then(() => {
-                return client.getVersionIntents(parameters);
+                return client.getVersionInfo(client.VERSIONINFO.INTENTS,parameters);
             }).then((response) => {
                 response.should.not.be.undefined();
                 response.should.be.Array;
