@@ -55,7 +55,7 @@ class languageUnderstanding extends commonService {
         };
         
         this.VERSIONINFO = {
-            ASSIGNEDKEY:"assignedkey",
+            //DEPRECATED - ASSIGNEDKEY:"assignedkey",
             CLONE: "clone",
             CLOSEDLISTS: "closedlists",
             COMPOSITEENTITIES: "compositeentities",
