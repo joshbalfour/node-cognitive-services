@@ -1,6 +1,10 @@
 const commonService = require('../commonService');
 const csv = require('fast-csv');
 const _ = require("underscore");
+const promiseRetry = require('promise-retry');
+const promiseDelay = require('sleep-promise');
+
+let count = 0;
 
 /**
  * Language Understanding API is a cloud-based service that provides advanced natural language processing over raw text, and intent and entity detection.
@@ -79,7 +83,10 @@ class languageUnderstanding extends commonService {
             PREBUILTS:"prebuilts",
             TRAIN: "train",
             TRAINSTATUS: "train"
-        }
+        };
+        this.retryInterval = 2000;
+        this.retryCount = 10;
+
     }
 
     /**
@@ -635,6 +642,30 @@ class languageUnderstanding extends commonService {
         });
         return (untrainedModels.length===0);
     }    
+    waitUntilTrained(client){
+
+        count += 1;
+
+        return promiseRetry((retry, number) => {
+
+            return promiseDelay(this.retryInterval)
+            .then( () => {
+                return client.getVersionInfo(client.VERSIONINFO.TRAINSTATUS);
+            }).then(response => {
+                // 2xx http response 
+                let trained = client.isTrained(response);
+
+                console.log(number + " trained = " + trained);
+
+                if (count < this.retryCount && !trained) retry("not trained");
+                
+                return response;
+            })
+            .catch((err) => {
+                throw err;
+            });
+        });  
+    } 
     /**
      * Convert csv string to array
      * @param {string} csvString 

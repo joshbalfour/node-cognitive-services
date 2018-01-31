@@ -1,6 +1,5 @@
 const cognitive = require('../../src/index.js');
 const config = require('../config.js');
-const promiseRetry = require('promise-retry');
 const promiseDelay = require('sleep-promise');
 const _ = require("underscore");
 const fs = require("fs");
@@ -43,39 +42,12 @@ const PREBUILTDOMAIN = [
 describe.only('Language understanding (LUIS)', () => {
 
     const defaultVersionID = "0.1";
-    const retryCount = 10;
-    const retryInterval = 2000;
-    let count = 0;
 
     const client = new cognitive.languageUnderstanding({
         apiKey: config.languageUnderstanding.apiKey,
         endpoint: config.languageUnderstanding.endpoint
     });
 
-    var waitUntilTrained = (client) => {
-
-        count += 1;
-
-        return promiseRetry((retry, number) => {
-
-            return promiseDelay(retryInterval)
-            .then( () => {
-                return client.getVersionInfo(client.VERSIONINFO.TRAINSTATUS);
-            }).then(response => {
-                // 2xx http response 
-                let trained = client.isTrained(response);
-
-                console.log(number + " trained = " + trained);
-
-                if (count < retryCount && !trained) retry("not trained");
-                
-                return response;
-            })
-            .catch((err) => {
-                throw err;
-            });
-        });  
-    }  
     var createTrainPublishApp = () => {
 
         let body = {
@@ -92,7 +64,7 @@ describe.only('Language understanding (LUIS)', () => {
             var body = undefined;
             return client.setVersionInfo(parameters,body,client.VERSIONINFO.TRAIN);
         }).then(results => {
-            return waitUntilTrained(client);
+            return client.waitUntilTrained(client);
         }).then((response) => {
             return client.setAppInfo({
                     "versionId": client.versionID,
@@ -105,7 +77,7 @@ describe.only('Language understanding (LUIS)', () => {
     }
     var deleteTestApp = () =>{
         var body=undefined;
-        return promiseDelay(retryInterval).then(() => {
+        return promiseDelay(client.retryInterval).then(() => {
             return client.deleteAppInfo(body,client.APPINFO.APP);
         }).then((response) => {
             response.should.not.be.undefined();
@@ -133,7 +105,7 @@ describe.only('Language understanding (LUIS)', () => {
             var body = undefined;
             return client.setVersionInfo(parameters,body,client.VERSIONINFO.TRAIN);
         }).then(results => {
-            return waitUntilTrained(client);
+            return client.waitUntilTrained(client);
         }).then((response) => {
             return client.setAppInfo({
                     "versionId": client.versionID,
@@ -232,7 +204,7 @@ describe.only('Language understanding (LUIS)', () => {
                 ]
             };
 
-            promiseDelay(retryInterval)
+            promiseDelay(client.retryInterval)
             .then(() => {
                 return client.setLUIS(client.INFO.IMPORT,body, parameters);
             }).then((response) => {
@@ -252,7 +224,7 @@ describe.only('Language understanding (LUIS)', () => {
                 "culture": "en-us"
             }
 
-            promiseDelay(retryInterval)
+            promiseDelay(client.retryInterval)
             .then(() => {
                 var parameters = undefined;
                 return client.setLUIS(client.INFO.PREBUILTDOMAIN, body, parameters);
@@ -271,7 +243,7 @@ describe.only('Language understanding (LUIS)', () => {
     })      
     describe("Create app before, delete app after", () => {
         before((done) => {
-            promiseDelay(retryInterval)
+            promiseDelay(client.retryInterval)
             .then(() => {
                 return createTrainPublishApp();
             }).then(results => {
@@ -281,7 +253,7 @@ describe.only('Language understanding (LUIS)', () => {
             });
         });
         after((done) => {
-            promiseDelay(retryInterval)
+            promiseDelay(client.retryInterval)
             .then(() => {
                 return deleteTestApp();
             }).then((response) => {
@@ -291,415 +263,7 @@ describe.only('Language understanding (LUIS)', () => {
                 done(err);
             });
         });
-
-        it('should return application version in JSON', (done) => {
-
-            // todo - if using a different app, might return:
-            // bing_entities (prebuilt entities)
-            // regex_features (deprecated but can still exist in older apps)
-            // actions - not sure 
-
-            promiseDelay(retryInterval)
-            .then(() => {
-                return client.getVersionInfo(client.VERSIONINFO.EXPORT);
-            }).then((response) => {
-                response.should.not.be.undefined();
-                response.should.have.only.keys(
-                    'luis_schema_version', 
-                    'versionId',
-                    'name', 
-                    'desc', 
-                    'culture', 
-                    'intents', 
-                    'entities', 
-                    'composites', 
-                    'closedLists', 
-                    'bing_entities',
-                    'model_features', 
-                    'regex_features',
-                    'utterances');
-                done();
-            }).catch((err) => {
-                done(err);
-            });
-        })
-
-        it('should return array with endpoint queries', (done) => {
-
-            promiseDelay(retryInterval)
-            .then(() => {
-                return client.getAppInfo(client.APPINFO.QUERYLOGS);
-            }).then((response) => {
-                response.should.not.be.undefined();
-                response.should.be.Array;
-                if (response.length > 0) {
-                    response[0].should.have.only.keys('Query', 'Response', 'UTC DateTime');
-                }
-                done();
-            }).catch((err) => {
-                done(err);
-            });
-        })
-
-        // TBD - need to provide example utterances that are questionable so this list has examples
-        it('should get list of example labeled utterances', (done) => {
-
-            let parameters = {
-                skip:0,
-                take:100
-            };
-
-            promiseDelay(retryInterval)
-            .then(() => {
-                return client.getVersionInfo(client.VERSIONINFO.EXAMPLES,parameters);
-            }).then((response) => {
-                response.should.not.be.undefined();
-                response.should.be.Array;
-                if (response.length > 0) {
-                    response[0].should.have.only.keys('id', 'text', 'tokenizedText','intentLabel','entityLabels','intentPredictions','entityPredictions');
-                }
-                done();
-            }).catch((err) => {
-                done(err);
-            });
-        })
-
-        it('should get list of entities in version', (done) => {
-
-            /*
-            can return 
-                "customPrebuiltDomainName": "Camera",
-                "customPrebuiltModelName": "AppName"
-            */
-
-            let parameters = {
-                skip:0,
-                take:100
-            };
-
-            promiseDelay(retryInterval)
-            .then(() => {
-                return client.getVersionInfo(client.VERSIONINFO.ENTITIES,parameters);
-            }).then((response) => {
-                response.should.not.be.undefined();
-                response.should.be.Array;
-                if (response.length > 0) {
-                    response[0].should.have.only.keys('id', 'name','typeId','readableType');
-                }
-                done();
-            }).catch((err) => {
-                done(err);
-            });
-        })
-
-
-        it('should get list of intents in version', (done) => {
-
-            /*
-            can return 
-                "customPrebuiltDomainName": "Camera",
-                "customPrebuiltModelName": "AppName"
-            */
-
-            let parameters = {
-                skip:0,
-                take:100
-            };
-
-            promiseDelay(retryInterval)
-            .then(() => {
-                return client.getVersionInfo(client.VERSIONINFO.INTENTS,parameters);
-            }).then((response) => {
-                response.should.not.be.undefined();
-                response.should.be.Array;
-                if (response.length > 0) {
-                    response[0].should.have.only.keys('id', 'name','typeId','readableType');
-                }
-                done();
-            }).catch((err) => {
-                done(err);
-            });
-        })
-
-        it('should get app', (done) => {
-
-            var info = client.APPINFO.APP;
-
-            promiseDelay(retryInterval)
-            .then(() => {
-                return client.getAppInfo(info);
-            }).then((response) => {
-                response.should.not.be.undefined();
-                response.should.have.only.keys('id', 'name','description','culture','usageScenario','domain','versionsCount','createdDateTime','endpoints','endpointHitsCount','activeVersion','ownerEmail');
-                done();
-            }).catch((err) => {
-                done(err);
-            });
-        })
-        it('should update app name', (done) => {
-
-            var body = {
-                "name": "mocha-" + new Date().getTime(),
-                "description": "This is my first modified dummy description"
-            };
-
-            promiseDelay(retryInterval)
-            .then(() => {
-                return client.updateAppInfo(body, client.APPINFO.APP);
-            }).then((response) => {
-                response.should.not.be.undefined();
-                response.should.be.Array;
-                response.should.have.only.keys('code', 'message');
-                response.code.should.equal("Success");
-                response.message.should.equal("Operation Successful");
-                done();
-            }).catch((err) => {
-                done(err);
-            });
-        })
-        it('should update app settings', (done) => {
-            var body = {
-                "public": true
-            };
-
-            promiseDelay(retryInterval)
-            .then(() => {
-                return client.updateAppInfo(body,client.APPINFO.SETTINGS);
-            }).then((response) => {
-                response.should.not.be.undefined();
-                response.should.be.Array;
-                response.should.have.only.keys('code', 'message');
-                response.code.should.equal("Success");
-                response.message.should.equal("Operation Successful");
-                done();
-            }).catch((err) => {
-                done(err);
-            });
-        })
-
-    
-        it('should clone version', (done) => {
-
-            var body = {"version":"0.2"};
-            var params = {appId:client.appID,versionId:client.versionID};
-
-            promiseDelay(retryInterval)
-            .then(() => {
-                return client.setVersionInfo(params, body, client.VERSIONINFO.CLONE);
-            }).then((response) => {
-                response.should.not.be.undefined();
-                response.should.equal(0.2);
-                done();
-            }).catch((err) => {
-                done(err);
-            });
-        })
-        it('should get app endpoints', (done) => {
-
-            var info = client.APPINFO.ENDPOINTS;
-
-            promiseDelay(retryInterval)
-            .then(() => {
-                return client.getAppInfo(info);
-            }).then((response) => {
-
-                response.should.not.be.undefined();
-                let filePath = path.join(__dirname,"../assets/LUIS/api_endpoints.json");
-                let testData = JSON.parse(fs.readFileSync(filePath, "utf-8"));
-                // compare key count - not data since app id changes 
-                _.difference(_.keys(response),_.keys(testData)).should.have.length(0);
-                done();
-            }).catch((err) => {
-                done(err);
-            });
-        })
-        it('should get app querylogs', (done) => {
-
-            var info = client.APPINFO.QUERYLOGS;
-
-            promiseDelay(retryInterval)
-            .then(() => {
-                return client.getAppInfo(info);
-            }).then((response) => {
-
-                response.should.not.be.undefined();
-                // TBD: response validation
-
-                done();
-            }).catch((err) => {
-                done(err);
-            });
-        })
-        it('should get app settings', (done) => {
-
-            var info = client.APPINFO.SETTINGS;
-
-            promiseDelay(retryInterval)
-            .then(() => {
-                return client.getAppInfo(info);
-            }).then((response) => {
-
-                response.should.not.be.undefined();
-                response.should.have.only.keys('id', 'public');
-                response.id.should.have.length(36);
-                response.public.should.be.oneOf(true,false);
-                done();
-            }).catch((err) => {
-                done(err);
-            });
-        })
-        it('should get app permissions', (done) => {
-
-            var info = client.APPINFO.PERMISSIONS;
-
-            promiseDelay(retryInterval)
-            .then(() => {
-                return client.getAppInfo(info);
-            }).then((response) => {
-                response.should.not.be.undefined();
-                response.should.have.only.keys('owner', 'emails');
-                response.owner.should.not.be.undefined();
-                done();
-            }).catch((err) => {
-                done(err);
-            });
-        })
-        it('should add email to permissions', (done) => {
-            var body = {
-                "email":"addEmailToPermissionsTest@domain.com"
-            };
-
-            promiseDelay(retryInterval)
-            .then(() => {
-                return client.setAppInfo(body,client.APPINFO.PERMISSIONS);
-            }).then((response) => {
-                response.should.not.be.undefined();
-                response.should.have.only.keys('code', 'message');
-                response.code.should.equal("Success");
-                response.message.should.equal("Operation Successful");
-                done();
-            }).catch((err) => {
-                done(err);
-            });
-        })
-        it('should update app permissions', (done) => {
-            var body = {
-                "emails": [
-                    "test1@domain.com",
-                    "test2@domain.com"
-                ]
-            };
-
-            promiseDelay(retryInterval)
-            .then(() => {
-                return client.updateAppInfo(body,client.APPINFO.PERMISSIONS);
-            }).then((response) => {
-                response.should.not.be.undefined();
-                response.should.be.Array;
-                response.should.have.only.keys('code', 'message');
-                response.code.should.equal("Success");
-                response.message.should.equal("Operation Successful");
-                done();
-            }).catch((err) => {
-                done(err);
-            });
-        })
-        it('should delete app permissions', (done) => {
-
-            var info = client.APPINFO.PERMISSIONS;
-            var updateBody = {
-                "emails": [
-                    "test1@domain.com",
-                    "test2@domain.com"
-                ]
-            };
-
-            var deleteBody = {
-                "email":"test1@domain.com"
-            };
-            promiseDelay(retryInterval)
-            .then(() => {
-                return client.updateAppInfo(updateBody,client.APPINFO.PERMISSIONS);
-            }).then(() => { 
-                return promiseDelay(retryInterval);
-            }).then(() => {
-                return client.deleteAppInfo(deleteBody,info);
-            }).then((response) => {
-                response.should.not.be.undefined();
-                response.should.have.only.keys('code', 'message');
-                response.code.should.equal("Success");
-                response.message.should.equal("Operation Successful");
-            }).then(() => { 
-                return promiseDelay(retryInterval);
-            }).then((response) => {
-                return client.getAppInfo(info);
-            }).then(response => {
-                response.should.not.be.undefined();
-                response.emails.should.have.length(1);
-                response.emails[0].should.equal(updateBody.emails[1]);
-                done();
-            }).catch((err) => {
-                done(err);
-            });
-        })
-        it('should get app versions', (done) => {
-
-            var info = client.APPINFO.VERSIONS;
-
-            promiseDelay(retryInterval)
-            .then(() => {
-                return client.getAppInfo(info);
-            }).then((response) => {
-                response.should.not.be.undefined();
-                response.should.be.Array;
-                if(response.length>0){
-                    _.keys(response[0]).should.have.length(12);
-                    response[0].should.have.only.keys('version', 'createdDateTime',"lastModifiedDateTime","lastTrainedDateTime","lastPublishedDateTime","endpointUrl","assignedEndpointKey","externalApiKeys","intentsCount","entitiesCount","endpointHitsCount","trainingStatus");
-
-                    _.keys(response[0].assignedEndpointKey).should.have.length(3);
-                    if(response[0].assignedEndpointKey) response[0].assignedEndpointKey.should.have.only.keys("SubscriptionKey","SubscriptionName","SubscriptionRegion");
-
-                }
-                done();
-            }).catch((err) => {
-                done(err);
-            });
-        })
-        it('should get app version info', (done) => {
-
-            var info = client.VERSIONINFO.VERSION;
-
-            promiseDelay(retryInterval)
-            .then(() => {
-                return client.getVersionInfo(info);
-            }).then((response) => {
-
-                response.should.not.be.undefined();
-                response.should.be.Object;
-                _.keys(response).should.have.length(12);
-                response.should.have.only.keys(
-                    'version', 
-                    'createdDateTime',
-                    "lastModifiedDateTime",
-                    "lastTrainedDateTime",
-                    "lastPublishedDateTime",
-                    "endpointUrl",
-                    "assignedEndpointKey",
-                    "externalApiKeys",
-                    "intentsCount",
-                    "entitiesCount",
-                    "endpointHitsCount","trainingStatus");
-
-                _.keys(response.assignedEndpointKey).should.have.length(3);
-                response.assignedEndpointKey.should.have.only.keys("SubscriptionKey","SubscriptionName","SubscriptionRegion");
-                done();
-            }).catch((err) => {
-                done(err);
-            });
-        })
-
-
-        it('should detect Intent', (done) => {
+        it('should detect Intent from ENDPOINT', (done) => {
             // optional but recommended
             var parameters = {
                 "log": true, // required to review suggested utterances
@@ -709,7 +273,7 @@ describe.only('Language understanding (LUIS)', () => {
             // query/utterance
             var body = "forward to frank 30 dollars through HSBC";
 
-            promiseDelay(retryInterval)
+            promiseDelay(client.retryInterval)
             .then(() => {
                 return client.detectIntent({parameters,body});
             }).then((response) => {
@@ -722,7 +286,7 @@ describe.only('Language understanding (LUIS)', () => {
                 done(err);
             });
         })
-        it('should get list of applications', (done) => {
+        it('should get list of LUIS applications', (done) => {
 
             let parameters = {
                 skip:0,
@@ -731,7 +295,7 @@ describe.only('Language understanding (LUIS)', () => {
 
             let culture = undefined;
 
-            promiseDelay(retryInterval)
+            promiseDelay(client.retryInterval)
             .then(() => {
                 return client.getLUIS(client.INFO.APPS, culture,parameters);
             }).then((response) => {
@@ -748,7 +312,7 @@ describe.only('Language understanding (LUIS)', () => {
         })
         it('should get list of LUIS assistants', (done) => {
 
-            promiseDelay(retryInterval)
+            promiseDelay(client.retryInterval)
             .then(() => {
                 return client.getLUIS(client.INFO.ASSISTANT);
             }).then((response) => {
@@ -762,7 +326,7 @@ describe.only('Language understanding (LUIS)', () => {
         it('should get list of LUIS domains', (done) => {
 
 
-            promiseDelay(retryInterval)
+            promiseDelay(client.retryInterval)
             .then(() => {
                 return client.getLUIS(client.INFO.DOMAIN);
             }).then((response) => {
@@ -776,7 +340,7 @@ describe.only('Language understanding (LUIS)', () => {
         })
         it('should get list of LUIS usagescenarios', (done) => {
 
-            promiseDelay(retryInterval)
+            promiseDelay(client.retryInterval)
             .then(() => {
                 return client.getLUIS(client.INFO.USAGESCENARIO);
             }).then((response) => {
@@ -791,7 +355,7 @@ describe.only('Language understanding (LUIS)', () => {
         })
         it('should get list of LUIS cultures', (done) => {
 
-            promiseDelay(retryInterval)
+            promiseDelay(client.retryInterval)
             .then(() => {
                 return client.getLUIS(client.INFO.CULTURE);
             }).then((response) => {
@@ -806,7 +370,7 @@ describe.only('Language understanding (LUIS)', () => {
         })
         it('should get list of LUIS custom prebuilt domains', (done) => {
     
-            promiseDelay(retryInterval)
+            promiseDelay(client.retryInterval)
             .then(() => {
                 return client.getLUIS(client.INFO.PREBUILTDOMAIN);
             }).then((response) => {
@@ -825,7 +389,7 @@ describe.only('Language understanding (LUIS)', () => {
         })
         it('should get list of LUIS custom prebuilt domains for en-us culture', (done) => {
 
-            promiseDelay(retryInterval)
+            promiseDelay(client.retryInterval)
             .then(() => {
                 return client.getLUIS(client.INFO.PREBUILTDOMAIN, 'en-us');
             }).then((response) => {
@@ -845,12 +409,12 @@ describe.only('Language understanding (LUIS)', () => {
         })
         it('should get list of LUIS custom prebuilt domains for each supported culture', (done) => {
     
-            promiseDelay(retryInterval)
+            promiseDelay(client.retryInterval)
             .then(() => {
                 return client.getLUIS(client.INFO.CULTURE);
             }).then(cultures => {
                 let arrPromises = [];
-                let waitForTime = retryInterval;
+                let waitForTime = client.retryInterval;
     
                 cultures.forEach(culture => {
                     arrPromises.push(limit(() => client.getLUIS(client.INFO.PREBUILTDOMAIN, culture.code)));
@@ -889,5 +453,411 @@ describe.only('Language understanding (LUIS)', () => {
                 done(err);
             });
         });
+        it('should return array with endpoint queries for this APP', (done) => {
+
+            promiseDelay(client.retryInterval)
+            .then(() => {
+                return client.getAppInfo(client.APPINFO.QUERYLOGS);
+            }).then((response) => {
+                response.should.not.be.undefined();
+                response.should.be.Array;
+                if (response.length > 0) {
+                    response[0].should.have.only.keys('Query', 'Response', 'UTC DateTime');
+                }
+                done();
+            }).catch((err) => {
+                done(err);
+            });
+        })
+        it('should get APP', (done) => {
+
+            var info = client.APPINFO.APP;
+
+            promiseDelay(client.retryInterval)
+            .then(() => {
+                return client.getAppInfo(info);
+            }).then((response) => {
+                response.should.not.be.undefined();
+                response.should.have.only.keys('id', 'name','description','culture','usageScenario','domain','versionsCount','createdDateTime','endpoints','endpointHitsCount','activeVersion','ownerEmail');
+                done();
+            }).catch((err) => {
+                done(err);
+            });
+        })
+        it('should update APP name', (done) => {
+
+            var body = {
+                "name": "mocha-" + new Date().getTime(),
+                "description": "This is my first modified dummy description"
+            };
+
+            promiseDelay(client.retryInterval)
+            .then(() => {
+                return client.updateAppInfo(body, client.APPINFO.APP);
+            }).then((response) => {
+                response.should.not.be.undefined();
+                response.should.be.Array;
+                response.should.have.only.keys('code', 'message');
+                response.code.should.equal("Success");
+                response.message.should.equal("Operation Successful");
+                done();
+            }).catch((err) => {
+                done(err);
+            });
+        })
+        it('should update APP settings', (done) => {
+            var body = {
+                "public": true
+            };
+
+            promiseDelay(client.retryInterval)
+            .then(() => {
+                return client.updateAppInfo(body,client.APPINFO.SETTINGS);
+            }).then((response) => {
+                response.should.not.be.undefined();
+                response.should.be.Array;
+                response.should.have.only.keys('code', 'message');
+                response.code.should.equal("Success");
+                response.message.should.equal("Operation Successful");
+                done();
+            }).catch((err) => {
+                done(err);
+            });
+        })
+        it('should get APP endpoints', (done) => {
+
+            var info = client.APPINFO.ENDPOINTS;
+
+            promiseDelay(client.retryInterval)
+            .then(() => {
+                return client.getAppInfo(info);
+            }).then((response) => {
+
+                response.should.not.be.undefined();
+                let filePath = path.join(__dirname,"../assets/LUIS/api_endpoints.json");
+                let testData = JSON.parse(fs.readFileSync(filePath, "utf-8"));
+                // compare key count - not data since app id changes 
+                _.difference(_.keys(response),_.keys(testData)).should.have.length(0);
+                done();
+            }).catch((err) => {
+                done(err);
+            });
+        })
+        it('should get APP querylogs', (done) => {
+
+            var info = client.APPINFO.QUERYLOGS;
+
+            promiseDelay(client.retryInterval)
+            .then(() => {
+                return client.getAppInfo(info);
+            }).then((response) => {
+
+                response.should.not.be.undefined();
+                // TBD: response validation
+
+                done();
+            }).catch((err) => {
+                done(err);
+            });
+        })
+        it('should get APP settings', (done) => {
+
+            var info = client.APPINFO.SETTINGS;
+
+            promiseDelay(client.retryInterval)
+            .then(() => {
+                return client.getAppInfo(info);
+            }).then((response) => {
+
+                response.should.not.be.undefined();
+                response.should.have.only.keys('id', 'public');
+                response.id.should.have.length(36);
+                response.public.should.be.oneOf(true,false);
+                done();
+            }).catch((err) => {
+                done(err);
+            });
+        })
+        it('should get APP permissions', (done) => {
+
+            var info = client.APPINFO.PERMISSIONS;
+
+            promiseDelay(client.retryInterval)
+            .then(() => {
+                return client.getAppInfo(info);
+            }).then((response) => {
+                response.should.not.be.undefined();
+                response.should.have.only.keys('owner', 'emails');
+                response.owner.should.not.be.undefined();
+                done();
+            }).catch((err) => {
+                done(err);
+            });
+        })
+        it('should add email to permissions to APP', (done) => {
+            var body = {
+                "email":"addEmailToPermissionsTest@domain.com"
+            };
+
+            promiseDelay(client.retryInterval)
+            .then(() => {
+                return client.setAppInfo(body,client.APPINFO.PERMISSIONS);
+            }).then((response) => {
+                response.should.not.be.undefined();
+                response.should.have.only.keys('code', 'message');
+                response.code.should.equal("Success");
+                response.message.should.equal("Operation Successful");
+                done();
+            }).catch((err) => {
+                done(err);
+            });
+        })
+        it('should update APP permissions', (done) => {
+            var body = {
+                "emails": [
+                    "test1@domain.com",
+                    "test2@domain.com"
+                ]
+            };
+
+            promiseDelay(client.retryInterval)
+            .then(() => {
+                return client.updateAppInfo(body,client.APPINFO.PERMISSIONS);
+            }).then((response) => {
+                response.should.not.be.undefined();
+                response.should.be.Array;
+                response.should.have.only.keys('code', 'message');
+                response.code.should.equal("Success");
+                response.message.should.equal("Operation Successful");
+                done();
+            }).catch((err) => {
+                done(err);
+            });
+        })
+        it('should delete APP permissions', (done) => {
+
+            var info = client.APPINFO.PERMISSIONS;
+            var updateBody = {
+                "emails": [
+                    "test1@domain.com",
+                    "test2@domain.com"
+                ]
+            };
+
+            var deleteBody = {
+                "email":"test1@domain.com"
+            };
+            promiseDelay(client.retryInterval)
+            .then(() => {
+                return client.updateAppInfo(updateBody,client.APPINFO.PERMISSIONS);
+            }).then(() => { 
+                return promiseDelay(client.retryInterval);
+            }).then(() => {
+                return client.deleteAppInfo(deleteBody,info);
+            }).then((response) => {
+                response.should.not.be.undefined();
+                response.should.have.only.keys('code', 'message');
+                response.code.should.equal("Success");
+                response.message.should.equal("Operation Successful");
+            }).then(() => { 
+                return promiseDelay(client.retryInterval);
+            }).then((response) => {
+                return client.getAppInfo(info);
+            }).then(response => {
+                response.should.not.be.undefined();
+                response.emails.should.have.length(1);
+                response.emails[0].should.equal(updateBody.emails[1]);
+                done();
+            }).catch((err) => {
+                done(err);
+            });
+        })
+        it('should return application version in JSON for this VERSION', (done) => {
+
+            // todo - if using a different app, might return:
+            // bing_entities (prebuilt entities)
+            // regex_features (deprecated but can still exist in older apps)
+            // actions - not sure 
+
+            promiseDelay(client.retryInterval)
+            .then(() => {
+                return client.getVersionInfo(client.VERSIONINFO.EXPORT);
+            }).then((response) => {
+                response.should.not.be.undefined();
+                response.should.have.only.keys(
+                    'luis_schema_version', 
+                    'versionId',
+                    'name', 
+                    'desc', 
+                    'culture', 
+                    'intents', 
+                    'entities', 
+                    'composites', 
+                    'closedLists', 
+                    'bing_entities',
+                    'model_features', 
+                    'regex_features',
+                    'utterances');
+                done();
+            }).catch((err) => {
+                done(err);
+            });
+        })
+
+        // TBD - need to provide example utterances that are questionable so this list has examples
+        it('should get list of example labeled utterances for this VERSION', (done) => {
+
+            let parameters = {
+                skip:0,
+                take:100
+            };
+
+            promiseDelay(client.retryInterval)
+            .then(() => {
+                return client.getVersionInfo(client.VERSIONINFO.EXAMPLES,parameters);
+            }).then((response) => {
+                response.should.not.be.undefined();
+                response.should.be.Array;
+                if (response.length > 0) {
+                    response[0].should.have.only.keys('id', 'text', 'tokenizedText','intentLabel','entityLabels','intentPredictions','entityPredictions');
+                }
+                done();
+            }).catch((err) => {
+                done(err);
+            });
+        })
+
+        it('should get list of entities in this VERSION', (done) => {
+
+            /*
+            can return 
+                "customPrebuiltDomainName": "Camera",
+                "customPrebuiltModelName": "AppName"
+            */
+
+            let parameters = {
+                skip:0,
+                take:100
+            };
+
+            promiseDelay(client.retryInterval)
+            .then(() => {
+                return client.getVersionInfo(client.VERSIONINFO.ENTITIES,parameters);
+            }).then((response) => {
+                response.should.not.be.undefined();
+                response.should.be.Array;
+                if (response.length > 0) {
+                    response[0].should.have.only.keys('id', 'name','typeId','readableType');
+                }
+                done();
+            }).catch((err) => {
+                done(err);
+            });
+        })
+
+
+        it('should get list of intents in VERSION', (done) => {
+
+            /*
+            can return 
+                "customPrebuiltDomainName": "Camera",
+                "customPrebuiltModelName": "AppName"
+            */
+
+            let parameters = {
+                skip:0,
+                take:100
+            };
+
+            promiseDelay(client.retryInterval)
+            .then(() => {
+                return client.getVersionInfo(client.VERSIONINFO.INTENTS,parameters);
+            }).then((response) => {
+                response.should.not.be.undefined();
+                response.should.be.Array;
+                if (response.length > 0) {
+                    response[0].should.have.only.keys('id', 'name','typeId','readableType');
+                }
+                done();
+            }).catch((err) => {
+                done(err);
+            });
+        })
+        it('should get APP versions', (done) => {
+
+            var info = client.APPINFO.VERSIONS;
+
+            promiseDelay(client.retryInterval)
+            .then(() => {
+                return client.getAppInfo(info);
+            }).then((response) => {
+                response.should.not.be.undefined();
+                response.should.be.Array;
+                if(response.length>0){
+                    _.keys(response[0]).should.have.length(12);
+                    response[0].should.have.only.keys('version', 'createdDateTime',"lastModifiedDateTime","lastTrainedDateTime","lastPublishedDateTime","endpointUrl","assignedEndpointKey","externalApiKeys","intentsCount","entitiesCount","endpointHitsCount","trainingStatus");
+
+                    _.keys(response[0].assignedEndpointKey).should.have.length(3);
+                    if(response[0].assignedEndpointKey) response[0].assignedEndpointKey.should.have.only.keys("SubscriptionKey","SubscriptionName","SubscriptionRegion");
+
+                }
+                done();
+            }).catch((err) => {
+                done(err);
+            });
+        })
+    
+        it('should clone VERSION', (done) => {
+
+            var body = {"version":"0.2"};
+            var params = {appId:client.appID,versionId:client.versionID};
+
+            promiseDelay(client.retryInterval)
+            .then(() => {
+                return client.setVersionInfo(params, body, client.VERSIONINFO.CLONE);
+            }).then((response) => {
+                response.should.not.be.undefined();
+                response.should.equal(0.2);
+                done();
+            }).catch((err) => {
+                done(err);
+            });
+        })
+
+        it('should get app VERSION info', (done) => {
+
+            var info = client.VERSIONINFO.VERSION;
+
+            promiseDelay(client.retryInterval)
+            .then(() => {
+                return client.getVersionInfo(info);
+            }).then((response) => {
+
+                response.should.not.be.undefined();
+                response.should.be.Object;
+                _.keys(response).should.have.length(12);
+                response.should.have.only.keys(
+                    'version', 
+                    'createdDateTime',
+                    "lastModifiedDateTime",
+                    "lastTrainedDateTime",
+                    "lastPublishedDateTime",
+                    "endpointUrl",
+                    "assignedEndpointKey",
+                    "externalApiKeys",
+                    "intentsCount",
+                    "entitiesCount",
+                    "endpointHitsCount","trainingStatus");
+
+                _.keys(response.assignedEndpointKey).should.have.length(3);
+                response.assignedEndpointKey.should.have.only.keys("SubscriptionKey","SubscriptionName","SubscriptionRegion");
+                done();
+            }).catch((err) => {
+                done(err);
+            });
+        })
+
+
+
     });
 }) 
