@@ -20,10 +20,11 @@ class languageUnderstanding extends commonService {
      * @param {string} obj.apiKey
      * @param {string} obj.endpoint
      */
-    constructor({ apiKey, appID, versionID, endpoint }) {
+    constructor({ apiKey, appId, versionId, endpoint }) {
         super({ apiKey, endpoint });
-        this.versionID = versionID;
-        this.appID = appID;
+        this.APIVersion = "2.1.0";
+        this.versionId = versionId;
+        this.appId = appId;
         this.serviceId = "LUIS.v2.0";
         this.endpoints = [
             "australiaeast.api.cognitive.microsoft.com",
@@ -41,12 +42,12 @@ class languageUnderstanding extends commonService {
         ];
         this.INFO = {
             APPS:"",
-            ASSISTANT: "assistants",
-            DOMAIN: "domains",
+            ASSISTANTS: "assistants",
+            DOMAINS: "domains",
             IMPORT: "import",
-            USAGESCENARIO: "usagescenarios",
+            USAGESCENARIOS: "usagescenarios",
             CULTURE: "cultures",
-            PREBUILTDOMAIN: "customprebuiltdomains"
+            CUSTOMPREBUILTDOMAINS: "customprebuiltdomains"
         };
         this.APPINFO = {
             ENDPOINTS: "endpoints",
@@ -74,7 +75,7 @@ class languageUnderstanding extends commonService {
             EXAMPLES: "examples",
             EXPORT: "export",
             FEATURES: "features",
-            HIERARCHICALS: "hierarchical",
+            HIERARCHICALENTITIES: "hierarchicalentities",
             INTENTS: "intents",
             LISTPREBUILTS: "listprebuilts",
             MODELS: "models",
@@ -84,10 +85,40 @@ class languageUnderstanding extends commonService {
             TRAIN: "train",
             TRAINSTATUS: "train"
         };
+        this.PREBUILTDOMAINCULTURES = [
+            {"en-us" : 21}, 
+            {"zh-cn" : 13},
+            {"fr-fr" : 0}, 
+            {"fr-ca" : 0}, 
+            {"es-es" : 0}, 
+            {"es-mx" : 0}, 
+            {"it-it" : 0}, 
+            {"de-de" : 0}, 
+            {"ja-jp" : 0}, 
+            {"pt-br" : 0}, 
+            {"ko-kr" : 0},
+            {"nl-nl" : 0}
+        ];
+        this.CULTURECOUNT = this.PREBUILTDOMAINCULTURES.length;
+        this.PREBUILTDOMAINTOTALCOUNT=0;
+        this.PREBUILTDOMAINCULTURES.forEach((culture) => { 
+            this.PREBUILTDOMAINTOTALCOUNT += Object.values(culture)[0];
+        });
+        
         this.retryInterval = 2000;
         this.retryCount = 10;
 
     }
+    propertyNamesToArray(obj){
+
+        let myNameArray = [];
+        for (var key in obj) {
+            myNameArray.push(key);
+        }
+
+        return myNameArray;
+    }
+    
 
     /**
      * info: INFO
@@ -98,13 +129,28 @@ class languageUnderstanding extends commonService {
      */
     getLUIS(info, cultureOnly, parameters){
 
+        const validINFO=[
+            this.INFO.ASSISTANTS,
+            this.INFO.APPS,
+            this.INFO.CULTURE,
+            this.INFO.DOMAINS,
+            this.INFO.USAGESCENARIOS,
+            this.INFO.CUSTOMPREBUILTDOMAINS
+        ];
+
+        if(!_.contains(validINFO,info))throw Error("invalid info param '" + info + "'");
+
         const operation = {
             "path": "luis/api/v2.0/apps/" + info,
             "method": "GET",
         };
+        console.log("cultureOnly = " + cultureOnly);
 
         // add culture for prebult domain
-        if (info === this.INFO.PREBUILTDOMAIN && cultureOnly) operation.path += "/" + cultureOnly;
+        if (info===this.INFO.CUSTOMPREBUILTDOMAINS && cultureOnly) {
+            console.log("test passed");
+            operation.path += "/" + cultureOnly;
+        }
 
         switch(info){
             case this.INFO.APPS: 
@@ -124,7 +170,13 @@ class languageUnderstanding extends commonService {
                     "type": "queryStringParam"
                 }];
                 break;
-            default: 
+            case this.INFO.CULTURE:
+            case this.INFO.DOMAINS:
+            case this.INFO.USAGESCENARIOS:
+            case this.INFO.CUSTOMPREBUILTDOMAINS:
+            case this.INFO.ASSISTANTS:
+                break;
+            default: throw Error(`error in switch - unknown info ${info}`);
 
         }
 
@@ -142,7 +194,10 @@ class languageUnderstanding extends commonService {
      * @returns {Promise.<object>}
      */
     setLUIS(info, body, parameters){
-        const validINFO=[this.INFO.IMPORT,this.INFO.PREBUILTDOMAIN];
+        const validINFO=[
+            this.INFO.IMPORT,
+            this.INFO.CUSTOMPREBUILTDOMAINS
+        ];
 
         if(!_.contains(validINFO,info))throw Error("invalid info param '" + info + "'");
 
@@ -162,7 +217,7 @@ class languageUnderstanding extends commonService {
                     "typeName": "string"
                 }]
                 break;
-            case this.INFO.PREBUILTDOMAIN:
+            case this.INFO.CUSTOMPREBUILTDOMAINS:
                 operation.parameters =  [{
                     "name": "domainName",
                     "description": "The domain name",
@@ -179,7 +234,7 @@ class languageUnderstanding extends commonService {
                     "typeName": "string"
                 }];
                 break;
-            default: throw Error("error in switch");
+            default: throw Error(`error in switch - unknown info ${info}`);
         }
 
         return this.makeRequest({
@@ -232,7 +287,7 @@ class languageUnderstanding extends commonService {
 
 
         const operation = {
-            "path": "luis/api/v2.0/apps/" + this.appID + "/" + appinfo,
+            "path": "luis/api/v2.0/apps/" + this.appId + "/" + appinfo,
             "method": "GET",
         };
 
@@ -265,7 +320,7 @@ class languageUnderstanding extends commonService {
         if(!_.contains(validAPPINFO,appinfo))throw Error("invalid info param '" + appinfo + "'");
 
         const operation = {
-            "path": "luis/api/v2.0/apps/" + this.appID + "/" + appinfo,
+            "path": "luis/api/v2.0/apps/" + this.appId + "/" + appinfo,
             "method": "POST",
         };
 
@@ -305,7 +360,7 @@ class languageUnderstanding extends commonService {
                     "options" : ["westus", "eastus2", "westcentralus", "westeurope", "southeastasia"]
                 }];
                 break;
-            default: throw Error("error in switch");
+            default: throw Error(`error in switch - unknown appinfo ${appinfo}` );
         }
 
         return this.makeRequest({
@@ -323,12 +378,16 @@ class languageUnderstanding extends commonService {
      */
     updateAppInfo(body, appinfo){
 
-        const validAPPINFO=[this.APPINFO.APP,this.APPINFO.SETTINGS,this.APPINFO.PERMISSIONS];
+        const validAPPINFO=[
+            this.APPINFO.APP,
+            this.APPINFO.SETTINGS,
+            this.APPINFO.PERMISSIONS
+        ];
 
         if(!_.contains(validAPPINFO,appinfo))throw Error("invalid info param '" + appinfo + "'");
 
         const operation = {
-            "path": "luis/api/v2.0/apps/" + this.appID + "/" + appinfo,
+            "path": "luis/api/v2.0/apps/" + this.appId + "/" + appinfo,
             "method": "PUT",
         };
 
@@ -370,7 +429,7 @@ class languageUnderstanding extends commonService {
                     "typeName": "array"
                 }];
                 break;
-            default: throw Error("error in switch");
+            default: throw Error(`error in switch - unknown appinfo ${appinfo}`);
 
         }
 
@@ -394,7 +453,7 @@ class languageUnderstanding extends commonService {
         if(!_.contains(validAPPINFO,appinfo))throw Error("invalid info param '" + appinfo + "'");
 
         const operation = {
-            "path": "luis/api/v2.0/apps/" + this.appID + "/" + appinfo,
+            "path": "luis/api/v2.0/apps/" + this.appId + "/" + appinfo,
             "method": "DELETE",
         };
 
@@ -435,28 +494,36 @@ class languageUnderstanding extends commonService {
             this.VERSIONINFO.TRAINSTATUS,
             this.VERSIONINFO.ENTITIES,
             this.VERSIONINFO.EXAMPLES,
-            this.VERSIONINFO.INTENTS
+            this.VERSIONINFO.INTENTS,
+            this.VERSIONINFO.FEATURES,
+            this.VERSIONINFO.HIERARCHICALENTITIES,
+            this.VERSIONINFO.LISTPREBUILTS,
+            this.VERSIONINFO.MODELS
         ];
 
         if(!_.contains(validVERSIONINFO,versioninfo))throw Error("invalid info param '" + versioninfo + "'");
 
         const operation = {
-            "path": "luis/api/v2.0/apps/" + this.appID + "/versions/" + this.versionID + "/" + versioninfo,
+            "path": "luis/api/v2.0/apps/" + this.appId + "/versions/" + this.versionId + "/" + versioninfo,
             "method": "GET"
         };
 
         switch(versioninfo){
-            case this.VERSIONINFO.IMPORT: 
+            case this.VERSIONINFO.INTENTS:
+            case this.VERSIONINFO.FEATURES:
+            case this.VERSIONINFO.ENTITIES:
+            case this.VERSIONINFO.EXAMPLES: 
+            case this.VERSIONINFO.LISTPREBUILTS:
+            case this.VERSIONINFO.HIERARCHICALENTITIES:   
+            case this.VERSIONINFO.MODELS:
                 operation.parameters = [{
                     "name": "skip",
-                    "description": "Used for paging. The number of entries to skip. Default value is 0.",
                     "value": 0,
                     "required": false,
                     "typeName": "number",
                     "type": "queryStringParam"
                 }, {
                     "name": "take",
-                    "description": "Used for paging. The number of entries to return. Maximum page size is 500. Default is 100.",
                     "value": 100,
                     "required": false,
                     "typeName": "number",
@@ -465,57 +532,6 @@ class languageUnderstanding extends commonService {
                 break;
             case this.VERSIONINFO.TRAINSTATUS:
                 // no parameters
-                break;
-            case this.VERSIONINFO.EXAMPLES:
-                operation.parameters = [{
-                    "name": "skip",
-                    "description": "Used for paging. The number of entries to skip. Default value is 0.",
-                    "value": 0,
-                    "required": false,
-                    "typeName": "number",
-                    "type": "queryStringParam"
-                }, {
-                    "name": "take",
-                    "description": "Used for paging. The number of entries to return. Maximum page size is 500. Default is 100.",
-                    "value": 100,
-                    "required": false,
-                    "typeName": "number",
-                    "type": "queryStringParam"
-                }];
-                break;
-            case this.VERSIONINFO.ENTITIES:
-                operation.parameters = [{
-                        "name": "skip",
-                        "description": "Used for paging. The number of entries to skip. Default value is 0.",
-                        "value": 0,
-                        "required": false,
-                        "typeName": "number",
-                        "type": "queryStringParam"
-                    }, {
-                        "name": "take",
-                        "description": "Used for paging. The number of entries to return. Maximum page size is 500. Default is 100.",
-                        "value": 100,
-                        "required": false,
-                        "typeName": "number",
-                        "type": "queryStringParam"
-                    }];
-                break;
-            case this.VERSIONINFO.INTENTS:
-                operation.parameters = [{
-                    "name": "skip",
-                    "description": "Used for paging. The number of entries to skip. Default value is 0.",
-                    "value": 0,
-                    "required": false,
-                    "typeName": "number",
-                    "type": "queryStringParam"
-                }, {
-                    "name": "take",
-                    "description": "Used for paging. The number of entries to return. Maximum page size is 500. Default is 100.",
-                    "value": 100,
-                    "required": false,
-                    "typeName": "number",
-                    "type": "queryStringParam"
-                }];
                 break;
             default:
         };
@@ -534,18 +550,20 @@ class languageUnderstanding extends commonService {
     setVersionInfo(parameters, body, versioninfo){
         const validVERSIONINFO=[
             this.VERSIONINFO.CLONE,
-            this.VERSIONINFO.TRAIN
+            this.VERSIONINFO.TRAIN,
+            this.VERSIONINFO.CLOSEDLISTS
         ];
 
         if(!_.contains(validVERSIONINFO,versioninfo))throw Error("invalid version info param '" + versioninfo + "'");
 
         const operation = {
-            "path": "luis/api/v2.0/apps/" + this.appID + "/versions/" + this.versionID + "/" + versioninfo,
+            "path": "luis/api/v2.0/apps/" + this.appId + "/versions/" + this.versionId + "/" + versioninfo,
             "method": "POST",
         };
 
         switch(versioninfo){
             case this.VERSIONINFO.CLONE: 
+            case this.VERSIONINFO.CLOSEDLISTS:
                 operation.parameters =  [{
                     "name": "appId",
                     "description": "The application id to clone.",
@@ -566,7 +584,7 @@ class languageUnderstanding extends commonService {
             case this.VERSIONINFO.TRAIN:
                 // no parameters
                 break;
-            default: throw Error("error in switch");
+            default: throw Error("error in switch - unexpected VERSIONINFO");
         }
 
         return this.makeRequest({
@@ -585,7 +603,7 @@ class languageUnderstanding extends commonService {
     detectIntent({parameters, body}) {
 
         const operation = {
-            "path": "luis/v2.0/apps/" + this.appID + "?" + "verbose=" + parameters.verbose + "&log=" + parameters.log,
+            "path": "luis/v2.0/apps/" + this.appId + "?" + "verbose=" + parameters.verbose + "&log=" + parameters.log,
             "method": "POST",
             "parameters": [{
                 "name": "timezoneOffset",

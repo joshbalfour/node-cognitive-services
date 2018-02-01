@@ -1,0 +1,120 @@
+{
+    "luis_schema_version": "2.1.0",
+    "versionId": "0.3",
+    "name": "TravelAgent x",
+    "desc": "",
+    "culture": "en-us",
+    "intents": [
+      {
+        "name": "BookFlight"
+      },
+      {
+        "name": "Concierge"
+      },
+      {
+        "name": "None"
+      }
+    ],
+    "entities": [
+      {
+        "name": "Airline"
+      },
+      {
+        "name": "Location",
+        "children": [
+          "ToLocation",
+          "FromLocation"
+        ]
+      }
+    ],
+    "composites": [],
+    "closedLists": [
+      {
+        "name": "Category",
+        "subLists": [
+          {
+            "canonicalForm": "adult",
+            "list": [
+              "adult",
+              "child",
+              "baby"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Menu",
+        "subLists": [
+          {
+            "canonicalForm": "EgyptAir",
+            "list": [
+              "hindu",
+              "hot diabetic"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Seat",
+        "subLists": [
+          {
+            "canonicalForm": "business",
+            "list": [
+              "bus.",
+              "bus",
+              "biz"
+            ]
+          }
+        ]
+      }
+    ],
+    "bing_entities": [
+      "datetimeV2",
+      "number"
+    ],
+    "model_features": [],
+    "regex_features": [],
+    "utterances": [
+      {
+        "text": "pizza",
+        "intent": "None",
+        "entities": []
+      },
+      {
+        "text": "when do you open?",
+        "intent": "Concierge",
+        "entities": []
+      },
+      {
+        "text": "can someone call me?",
+        "intent": "Concierge",
+        "entities": []
+      },
+      {
+        "text": "book me 2 adult business tickets to paris tomorrow on air france",
+        "intent": "BookFlight",
+        "entities": [
+          {
+            "entity": "Location::ToLocation",
+            "startPos": 36,
+            "endPos": 40
+          },
+          {
+            "entity": "Airline",
+            "startPos": 54,
+            "endPos": 63
+          }
+        ]
+      },
+      {
+        "text": "i see a unicorn",
+        "intent": "None",
+        "entities": []
+      },
+      {
+        "text": "book a first class seat to seattle",
+        "intent": "BookFlight",
+        "entities": []
+      }
+    ]
+  }
