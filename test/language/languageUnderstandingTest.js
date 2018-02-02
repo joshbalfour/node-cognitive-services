@@ -12,9 +12,13 @@ const limit = pLimit(1);
 
 You only need to set the apiKey for these tests. 
 
-The app created is the prebuilt "Web" app. Creation of the app
-will fail if your LUIS account already has an app with the 
-name "Web". 
+The tests create both the prebuilt domain Web and 
+imports the ../asserts/LUIS/TravelAgent-import-app.json.
+
+The tests now generally use the TravelAgent-import-app.json
+because it has more of the custom entities. TBD: add phrase
+list feature to TravelAgent-import-app.json that makes
+sense for the domain. 
 
 Each time the app is created, its apiKey is displayed along
 with the count of training status calls. Usually, it takes more 
@@ -41,7 +45,7 @@ describe.only('Language understanding (LUIS)', () => {
         var parameters = undefined;
         return client.setLUIS(client.INFO.CUSTOMPREBUILTDOMAINS, body, parameters)
         .then(results =>{
-            client.appId = results.substring(results.length-36, results.length);
+            client.appId = results.substring(results.length - client.KeyLength, results.length);
             client.versionId = defaultVersionId;
 
             var parameters = undefined;
@@ -82,7 +86,7 @@ describe.only('Language understanding (LUIS)', () => {
 
         return client.setLUIS(client.INFO.IMPORT, appJSON, parameters)
         .then(results =>{
-            client.appId = results.substring(results.length-36, results.length);
+            client.appId = results.substring(results.length - client.KeyLength, results.length);
             client.versionId = defaultVersionId;
 
             var parameters = undefined;
@@ -125,7 +129,7 @@ describe.only('Language understanding (LUIS)', () => {
                 response.should.not.be.undefined();
                 response.should.be.String().and.have.length(98);
 
-                client.appId = response.substring(response.length-36, response.length);
+                client.appId = response.substring(response.length - client.KeyLength, response.length);
                 done();
             }).catch((err) => {
                 done(err);
@@ -147,7 +151,7 @@ describe.only('Language understanding (LUIS)', () => {
                 response.should.be.String().and.have.length(120);
 
                 // get appId to delete in After()
-                client.appId = response.substring(response.length-36, response.length);
+                client.appId = response.substring(response.length - client.KeyLength, response.length);
                 done();
             }).catch((err) => {
                 done(err);
@@ -317,8 +321,6 @@ describe.only('Language understanding (LUIS)', () => {
     
                 cultures.forEach(culture => {
 
-                    console.log(culture.code);
-
                     arrPromises.push(limit(() => client.getLUIS(client.INFO.CUSTOMPREBUILTDOMAINS, culture.code)));
                     arrPromises.push(limit(() => promiseDelay(2000)));
                 });
@@ -473,7 +475,7 @@ describe.only('Language understanding (LUIS)', () => {
 
                 response.should.not.be.undefined();
                 response.should.have.only.keys('id', 'public');
-                response.id.should.have.length(36);
+                response.id.should.have.length(client.KeyLength);
                 response.public.should.be.oneOf(true,false);
                 done();
             }).catch((err) => {
@@ -817,8 +819,6 @@ describe.only('Language understanding (LUIS)', () => {
                     myNameArray.push(obj.name);
                 });
 
-                console.log(myNameArray);
-
                 const listprebuiltsArray = [
                         "number",
                         "ordinal",
@@ -866,42 +866,44 @@ describe.only('Language understanding (LUIS)', () => {
                 done(err);
             });
         });
-    });
-    xit(' should post VERSION closedlists', function(done) {
-            
-        let body = {
-            "name": "States",
-            "sublists": 
-            [
-                {
-                    "canonicalForm": "New York",
-                    "list": [ "NY", "New York" ]
-                },
-                {
-                    "canonicalForm": "Washington",
-                    "list": [ "Washington", "WA" ]
-                },
-                {
-                    "canonicalForm": "California",
-                    "list": [ "California", "CA", "Calif.", "Cal." ]
-                }
-            ]
-        };
 
-        let parameters = {appId:client.appId,versionId:client.versionId};
-
-        promiseDelay(client.retryInterval)
-        .then(() => {
-            return client.setVersionInfo(parameters, body, client.VERSIONINFO.CLOSEDLISTS);
-        }).then((response) => {
-            response.should.not.be.undefined();
-            //console.log(response);
-            //response.should.be.String;
-            //response.length.should.be(32);
+        it(' should post VERSION closedlists', function(done) {
             
-            done();
-        }).catch((err) => {
-            done(err);
+            let body = {
+                "name": "States",
+                "sublists": 
+                [
+                    {
+                        "canonicalForm": "New York",
+                        "list": [ "NY", "New York" ]
+                    },
+                    {
+                        "canonicalForm": "Washington",
+                        "list": [ "Washington", "WA" ]
+                    },
+                    {
+                        "canonicalForm": "California",
+                        "list": [ "California", "CA", "Calif.", "Cal." ]
+                    }
+                ]
+            };
+            let parameters = undefined;
+    
+            promiseDelay(client.retryInterval)
+            .then(() => {
+                return client.setVersionInfo(parameters, body, client.VERSIONINFO.CLOSEDLISTS);
+            }).then((response) => {
+                response.should.not.be.undefined();
+
+                //TBD: not sure how I want to test the response
+                //since the url is getting stuck on the front of it by
+                //commonService.js usage of "operation-location"
+                
+                done();
+            }).catch((err) => {
+                done(err);
+            });
         });
     });
+
 }) 

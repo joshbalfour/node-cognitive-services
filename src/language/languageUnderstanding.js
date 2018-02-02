@@ -22,6 +22,7 @@ class languageUnderstanding extends commonService {
      */
     constructor({ apiKey, appId, versionId, endpoint }) {
         super({ apiKey, endpoint });
+        this.KeyLength = 36;
         this.APIVersion = "2.1.0";
         this.versionId = versionId;
         this.appId = appId;
@@ -118,7 +119,6 @@ class languageUnderstanding extends commonService {
 
         return myNameArray;
     }
-    
 
     /**
      * info: INFO
@@ -144,11 +144,9 @@ class languageUnderstanding extends commonService {
             "path": "luis/api/v2.0/apps/" + info,
             "method": "GET",
         };
-        console.log("cultureOnly = " + cultureOnly);
 
         // add culture for prebult domain
         if (info===this.INFO.CUSTOMPREBUILTDOMAINS && cultureOnly) {
-            console.log("test passed");
             operation.path += "/" + cultureOnly;
         }
 
@@ -548,6 +546,9 @@ class languageUnderstanding extends commonService {
      * @returns {Promise.<object>}    
      */
     setVersionInfo(parameters, body, versioninfo){
+
+        if(parameters===undefined)parameters={};
+
         const validVERSIONINFO=[
             this.VERSIONINFO.CLONE,
             this.VERSIONINFO.TRAIN,
@@ -580,6 +581,8 @@ class languageUnderstanding extends commonService {
                     "type": "queryStringParam",
                     "typeName": "string"
                 }];
+                parameters.appId = this.appId;
+                parameters.versionId = this.versionId;
                 break;
             case this.VERSIONINFO.TRAIN:
                 // no parameters
