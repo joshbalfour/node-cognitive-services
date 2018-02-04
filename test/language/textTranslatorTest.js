@@ -186,58 +186,6 @@ describe('Text translator', () => {
         })
     })
 
-    describe('add translation', () => {
-        it('should return response', (done) => {
-            const parameters = {
-                originalText: "mi nombre es pedro",
-                translatedText: "my name is peter",
-                from: "es",
-                to: "en",
-                user: "default"
-            };
-
-            client.addTranslation({
-                parameters
-            })
-            .then(response => {
-                should(response).be.undefined();
-                done();
-            }).catch(err => {
-                done(err);
-            });
-        })
-    })
-
-    describe('add translation array', () => {
-        it('should return response', (done) => {
-            const body = {
-                from: "es",
-                to: "en",
-                user: "default",
-                translations: [{
-                    originalText: "mi nombre es pedro",
-                    translatedText: "my name is peter",
-                    rating: 1
-                }, {
-                    originalText: "como te va?",
-                    translatedText: "how are you doing?",
-                    rating: 1
-                }],
-                contentType: "text/plain"
-            };
-
-            client.addTranslationArray({
-                body
-            })
-            .then(response => {
-                should(response).eql("");
-                done();
-            }).catch(err => {
-                done(err);
-            });
-        })
-    })
-
     describe('break sentences', () => {
         it('should return response', (done) => {
             const parameters = {
