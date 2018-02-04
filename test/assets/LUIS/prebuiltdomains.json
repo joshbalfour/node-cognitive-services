@@ -1,0 +1,2459 @@
+[
+    {
+        "name": "Calendar",
+        "culture": "en-us",
+        "description": "The Calendar domain provides intents and entities related to calendar entries. The Calendar intents include adding, deleting or editing an appointment, checking availability, and finding information about a calendar entry or appointment.",
+        "examples": "Make an appointment with Lisa at 2pm on Sunday; When is Jim available to meet?; Delete my 9 am meeting",
+        "intents": [
+            {
+                "name": "Add",
+                "description": "Add a new one-time item to the calendar.",
+                "examples": "Make an appointment with Lisa at 2pm on Sunday; I want to schedule a meeting ; I need to set up a meeting"
+            },
+            {
+                "name": "CheckAvailability",
+                "description": "Find availability for an appointment or meeting on the user's calendar or another person's calendar.",
+                "examples": "When is Jim available to meet?; Show when Carol is available tomorrow; Is Chris free on Saturday?"
+            },
+            {
+                "name": "Delete",
+                "description": "Request to delete a calendar entry.",
+                "examples": "Cancel my appointment with Carol; Delete my 9 am meeting"
+            },
+            {
+                "name": "Edit",
+                "description": "Request to change an existing meeting or calendar entry.",
+                "examples": "Move my 9 am meeting to 10 am; I want to update my schedule; Reschdule my meeting with Ryan"
+            },
+            {
+                "name": "Find",
+                "description": "Request to view or find information about their calendar or any specific existing calendar entry.",
+                "examples": "Display my weekly calendar;  Show my calendar;  Find the dentist review appointment."
+            }
+        ],
+        "entities": [
+            {
+                "name": "Location",
+                "description": "\"Location of calendar item, meeting or appointment. Addresses, cities, and regions are good examples of locations.\"",
+                "examples": "209 Nashville Gym; 897 Pancake house; Garage"
+            },
+            {
+                "name": "Subject",
+                "description": "The title of a meeting or appointment.",
+                "examples": "Dentist's appointment;  Lunch with Julia; Doctor's appointment"
+            }
+        ]
+    },
+    {
+        "name": "Camera",
+        "culture": "en-us",
+        "description": "The Camera domain provides intents and entities related to using a camera. The intents cover capturing a photo, selfie, screenshot or video, and broadcasting video to an application.",
+        "examples": "Capture the screen; Take a selfie; Start broadcasting to Facebook",
+        "intents": [
+            {
+                "name": "CapturePhoto",
+                "description": "Capture a photo.",
+                "examples": "Take a photo; capture"
+            },
+            {
+                "name": "CaptureScreenshot",
+                "description": "Capture a screenshot.",
+                "examples": "Take screen shot; capture the screen"
+            },
+            {
+                "name": "CaptureSelfie",
+                "description": "Capture a selfie.",
+                "examples": "Take a selfie; take a picture of me"
+            },
+            {
+                "name": "CaptureVideo",
+                "description": "Start recording video.",
+                "examples": "Start recording; Begin recording"
+            },
+            {
+                "name": "StartBroadcasting",
+                "description": "Start broadcasting video.",
+                "examples": "Start broadcasting to Facebook"
+            },
+            {
+                "name": "StopBroadcasting",
+                "description": "Stop broadcasting video.",
+                "examples": "Stop broadcasting"
+            },
+            {
+                "name": "StopVideoRecording",
+                "description": "Stop recording a video.",
+                "examples": "That's enough; stop recording"
+            }
+        ],
+        "entities": [
+            {
+                "name": "AppName",
+                "description": "The name of an application to broadcast video to.",
+                "examples": "OneNote; Facebook; Skype"
+            }
+        ]
+    },
+    {
+        "name": "Communication",
+        "culture": "en-us",
+        "description": "The Communication domain provides intents and entities related to email, messages and phone calls.",
+        "examples": "Connect me to my voicemail box; Save this number and put the name as Carol; Switch on call forwarding to 3333",
+        "intents": [
+            {
+                "name": "AddContact",
+                "description": "Add a new contact to the user's list of contacts.",
+                "examples": "Add new contact; Save this number and put the name as Carol"
+            },
+            {
+                "name": "AddMore",
+                "description": "\"Add more to an email or text, as part of a step-wise email or text composition.\"",
+                "examples": "Add more to text; Add more to email body"
+            },
+            {
+                "name": "Answer",
+                "description": "Answer an incoming phone call.",
+                "examples": "Answer the call; Pick it up"
+            },
+            {
+                "name": "AssignContactNickname",
+                "description": "Assign a nickname to a contact.",
+                "examples": "Change Isaac to dad; Add nickname to Carol Hanna; Edit Jim's nickname"
+            },
+            {
+                "name": "CallVoiceMail",
+                "description": "Connect to the user's voice mail.",
+                "examples": "Connect me to my voicemail box; Call voicemail; Voice mail"
+            },
+            {
+                "name": "CheckIMStatus",
+                "description": "Check the status of a contact in Skype.",
+                "examples": "Is Jim's online status set to away?; Is Carol available to chat with?"
+            },
+            {
+                "name": "Confirm",
+                "description": "Confirm an action.",
+                "examples": "Yes; Okay; All right; I confirm that I want to send this email."
+            },
+            {
+                "name": "FindContact",
+                "description": "Find contact information by name.",
+                "examples": "Find Carol's number; Show me Carol's number"
+            },
+            {
+                "name": "TurnForwardingOff",
+                "description": "Turn off call forwarding.",
+                "examples": "Stop forwarding my calls; Switch off call forwarding"
+            },
+            {
+                "name": "TurnForwardingOn",
+                "description": "Turn on call forwarding.",
+                "examples": "Forwarding my calls to 3333; Switch on call forwarding to 3333"
+            },
+            {
+                "name": "GetForwardingsStatus",
+                "description": "Get the current status of call forwarding.",
+                "examples": "Is my call forwarding turned on?; Tell me if my call status is on or off"
+            },
+            {
+                "name": "GoBack",
+                "description": "Go back to the previous step.",
+                "examples": "Go back to twitter; Go back a step; Go back"
+            },
+            {
+                "name": "Ignore",
+                "description": "Ignore an incoming call.",
+                "examples": "Don't answer; Ignore call"
+            },
+            {
+                "name": "IgnoreWithMessage",
+                "description": "Ignore an incoming call and reply with text instead.",
+                "examples": "Don't answer that call but send a message instead; Ignore and send a text back"
+            },
+            {
+                "name": "Dial",
+                "description": "Make a phone call.",
+                "examples": "Call Jim; Please dial 311"
+            },
+            {
+                "name": "PressKey",
+                "description": "Press a button or number on the keypad.",
+                "examples": "Dial star; Press the 1 2 3"
+            },
+            {
+                "name": "ReadAloud",
+                "description": "Read a message or email to the user.",
+                "examples": "read text; what did she say in the message"
+            },
+            {
+                "name": "Redial",
+                "description": "Redial or call a number again.",
+                "examples": "redial; redial my last call"
+            },
+            {
+                "name": "SendEmail",
+                "description": "Send an email. This intent applies to email but not text messages.",
+                "examples": "email to mike waters mike that dinner last week was splendid; send an email to bob"
+            },
+            {
+                "name": "SendMessage",
+                "description": "Send a text message or an instant message.",
+                "examples": "Send text to Chris and Carol"
+            },
+            {
+                "name": "SetSpeedDial",
+                "description": "Set a speed dial shortcut for a contact's phone number.",
+                "examples": "Set speed dial one for Carol; setup speed dial for mom"
+            },
+            {
+                "name": "ShowNext",
+                "description": "\"See the next item, for example, in a list of text messages or emails.\"",
+                "examples": "Show the next one; go to the next page"
+            },
+            {
+                "name": "ShowPrevious",
+                "description": "\"See the previous item, for example, in a list of text messages or emails.\"",
+                "examples": "show the previous one; previous; go to previous"
+            },
+            {
+                "name": "TurnSpeakerOff",
+                "description": "Turn off the speaker phone.",
+                "examples": "take me off speaker; turn off speakerphone"
+            },
+            {
+                "name": "TurnSpeakerOn",
+                "description": "Turn on the speaker phone.",
+                "examples": "speakerphone mode; put speakerphone on"
+            },
+            {
+                "name": "StartOver",
+                "description": "Start the system over or start a new session.",
+                "examples": "Start over;  New session; restart"
+            },
+            {
+                "name": "FindSpeedDial",
+                "description": "Find the speedial number a phone number is set to and vice versa.",
+                "examples": "What is my dial number 5?; Do I have speed dial set?; What is the dial number for 941-5555-333?"
+            },
+            {
+                "name": "Reject",
+                "description": "Reject an incoming call.",
+                "examples": "Reject call; Can't answer now; Not available at the moment and will call back later"
+            }
+        ],
+        "entities": [
+            {
+                "name": "ContactName",
+                "description": "The name of a contact or message recipient.",
+                "examples": "Carol; Jim; Chris"
+            },
+            {
+                "name": "EmailSubject",
+                "description": "The text used as the subject line for an email.",
+                "examples": "RE: interesting story"
+            },
+            {
+                "name": "SenderName",
+                "description": "The name of the sender.",
+                "examples": "Patti Owens"
+            },
+            {
+                "name": "Message",
+                "description": "The message to send as an email or text.",
+                "examples": "It was great meeting you today. See you again soon!"
+            },
+            {
+                "name": "Category",
+                "description": "The category of a message or email.",
+                "examples": "Important; High priority"
+            },
+            {
+                "name": "MessageType",
+                "description": "The type of message to search for.",
+                "examples": "Text; Email"
+            },
+            {
+                "name": "OrderReference",
+                "description": "\"The ordinal or relative position in a list, identifying an item to retrieve. For example, last or recent in What was the last message I sent?.\"",
+                "examples": "Last; Recent"
+            },
+            {
+                "name": "AudioDeviceType",
+                "description": "\"Type of audio device (speaker, headset, microphone, etc).\"",
+                "examples": "Speaker; Hands-free; Bluetooth"
+            },
+            {
+                "name": "ContactAttribute",
+                "description": "The attribute of the contact the user inquires about.",
+                "examples": "Birthdays; Address; Phone number"
+            },
+            {
+                "name": "Line",
+                "description": "The line the user wants to use to make a call or send a text/email from.",
+                "examples": "Work line; British cell; Skype"
+            }
+        ]
+    },
+    {
+        "name": "Entertainment",
+        "culture": "en-us",
+        "description": "The Entertainment domain provides intents and entities related to searching for movies, music, games and TV shows.",
+        "examples": "Search the store for Halo; Search for Avatar; Look for Comedies",
+        "intents": [
+            {
+                "name": "Search",
+                "description": "\"Search for movies, music, apps, games and TV shows.\"",
+                "examples": "Search the store for Halo; search for Avatar"
+            }
+        ],
+        "entities": [
+            {
+                "name": "ContentRating",
+                "description": "\"Media content rating like G, or R for movies.\"",
+                "examples": "Kids video;PG rated"
+            },
+            {
+                "name": "Genre",
+                "description": "\"The genre of a movie, game, app or song.\"",
+                "examples": "Comedies; Dramas; Funny"
+            },
+            {
+                "name": "Language",
+                "description": "\"The language of a movie, show, or music.\"",
+                "examples": "French; English; Korean"
+            },
+            {
+                "name": "Nationality",
+                "description": "\"The country where a movie, show, or song was created.\"",
+                "examples": "French; German; Korean"
+            },
+            {
+                "name": "Person",
+                "description": "\"The actor, director, producer, musician or artist associated with a movie, app, game or TV show.\"",
+                "examples": "Madonna; Stanley Kubrick"
+            },
+            {
+                "name": "Role",
+                "description": "Role played by a person in the creation of media.",
+                "examples": "Sings; Directed by; By"
+            },
+            {
+                "name": "Title",
+                "description": "\"The name of a movie, app, game, TV show, or song.\"",
+                "examples": "Friends; Minecraft"
+            },
+            {
+                "name": "Type",
+                "description": "\"The type or media format of a movie, app, game, TV show, or song.\"",
+                "examples": "Music; Movie; TV shows"
+            },
+            {
+                "name": "UserRating",
+                "description": "User user star or thumbs rating.",
+                "examples": "5 stars; 3 stars;  4 stars"
+            },
+            {
+                "name": "Keyword",
+                "description": "A generic search keyword specifying an attribute the doesn't exist in the more specific media slots.",
+                "examples": "Soundtracks; Moon River; Amelia Earhart"
+            },
+            {
+                "name": "MediaSource",
+                "description": "Mentions of the store/marketplace.",
+                "examples": "Halo; Netflix; Prime"
+            },
+            {
+                "name": "MediaSubTypes",
+                "description": "Media types smaller than movies and games.",
+                "examples": "Demos; Dlc; Trailers"
+            },
+            {
+                "name": "MediaFormat",
+                "description": "The additional special technical type in which the media is formatted.",
+                "examples": "HD movies; 3D movies; Downloadable"
+            }
+        ]
+    },
+    {
+        "name": "Events",
+        "culture": "en-us",
+        "description": "The Events domain provides intents and entities related to booking tickets for events like concerts, festivals, sports games and comedy shows.",
+        "examples": "I'd like to buy a ticket for the symphony this weekend; Get tickets for Shakespeare in the Park; Cancel my ticket order",
+        "intents": [
+            {
+                "name": "Book",
+                "description": "Purchase tickets to an event.",
+                "examples": "I'd like to buy a ticket for the symphony this weekend."
+            }
+        ],
+        "entities": [
+            {
+                "name": "Address",
+                "description": "Event location or address.",
+                "examples": "Palo Alto;  300 112th Ave SE; Seattle"
+            },
+            {
+                "name": "Name",
+                "description": "The name of an event.",
+                "examples": "Shakespeare in the Park"
+            },
+            {
+                "name": "Type",
+                "description": "The type of an event.",
+                "examples": "Concert; Sports game"
+            },
+            {
+                "name": "PlaceName",
+                "description": "The event location name.",
+                "examples": "Louvre; Opera House; Broadway"
+            },
+            {
+                "name": "PlaceType",
+                "description": "The type of the location the event will be held in.",
+                "examples": "Cafe; Theatre; Library"
+            }
+        ]
+    },
+    {
+        "name": "Fitness",
+        "culture": "en-us",
+        "description": "The Fitness domain provides intents and entities related to tracking fitness activities. The intents include saving notes, remaining time or distance, or saving activity results.",
+        "examples": "The difficulty of this run was 6/10; How much time till the next lap?;  Log my Saturday morning walk",
+        "intents": [
+            {
+                "name": "AddNote",
+                "description": "Adds supplemental notes to a tracked activity.",
+                "examples": "The difficulty of this run was 6/10; The terrain I am on running on is asphalt; I am using a 3 speed bike"
+            },
+            {
+                "name": "GetRemaining",
+                "description": "Gets the remaining time or distance for an activity.",
+                "examples": "How much time till the next lap?; How many miles are remaining in my run? How much time for the split?"
+            },
+            {
+                "name": "LogActivity",
+                "description": "Save or log completed activity results.",
+                "examples": "Save my last run; Log my Saturday morning walk; store my previous swim"
+            },
+            {
+                "name": "LogWeight",
+                "description": "Save or log the user's current weight.",
+                "examples": "Save my current weight; log my weight now; store my current body weight"
+            }
+        ],
+        "entities": [
+            {
+                "name": "ActivityType",
+                "description": "The type of activity to track.",
+                "examples": "Run; Walk; Swim; Cycle"
+            },
+            {
+                "name": "Food",
+                "description": "A type of food to track in a fitness app.",
+                "examples": "Banana; Salmon; Protein Shake"
+            },
+            {
+                "name": "MealType",
+                "description": "The meal type to track in a health or fitness app.",
+                "examples": "Breakfast; Dinner; Lunch; Supper"
+            },
+            {
+                "name": "Measurement",
+                "description": "\"A type of measurements for time, distance or weight, for use in a fitness or health app.\"",
+                "examples": "Kilometers; Miles; Minutes; Kilograms"
+            },
+            {
+                "name": "Number",
+                "description": "A numeric quantity for use in a fitness or health app.",
+                "examples": "19; three; 200; one"
+            },
+            {
+                "name": "StatType",
+                "description": "\"A statistic type on aggregated data, for use in a fitness or health app. For example, sum, average, maximum, minimum.\"",
+                "examples": "Sum; Average; Maximum; Minimum"
+            }
+        ]
+    },
+    {
+        "name": "Gaming",
+        "culture": "en-us",
+        "description": "The Gaming domain provides intents and entities related to managing a game party in a multiplayer game.",
+        "examples": "Join my clan;  I'm leaving this party for another; should we start a clan tonight",
+        "intents": [
+            {
+                "name": "InviteParty",
+                "description": "Invite a contact to join a gaming party.",
+                "examples": "Invite this player to my party; Come to my party; Join my clan"
+            },
+            {
+                "name": "LeaveParty",
+                "description": "Leave a gaming party in a multiplayer game.",
+                "examples": "I'm out; I'm leaving this party for another; I am quitting"
+            },
+            {
+                "name": "StartParty",
+                "description": "Start a gaming party in a multiplayer game.",
+                "examples": "Dude let's start a party; start a party; should we start a clan tonight"
+            }
+        ],
+        "entities": [
+            {
+                "name": "Contact",
+                "description": "A contact name to use in a multiplayer game.",
+                "examples": "Carol; Jim; Chris"
+            }
+        ]
+    },
+    {
+        "name": "HomeAutomation",
+        "culture": "en-us",
+        "description": "The Home Automation domain provides intents and entities related to controlling smart home devices like lights and appliances.",
+        "examples": "Turn off the lights; Turn on my coffee maker; Close garage door",
+        "intents": [
+            {
+                "name": "TurnOff",
+                "description": "\"Turn off, close, or unlock a device.\"",
+                "examples": "Turn off the lights; Stop the coffee maker; Close garage door"
+            },
+            {
+                "name": "TurnOn",
+                "description": "Turn on a device or set the device to a particular setting or mode.",
+                "examples": "turn on my coffee maker;  can you turn on my coffee maker?;  Set the thermostat to 72 degrees."
+            }
+        ],
+        "entities": [
+            {
+                "name": "Device",
+                "description": "A type of device that can be turned on or off .",
+                "examples": "coffee maker; thermostat; lights"
+            },
+            {
+                "name": "Room",
+                "description": "The location or room the device is in.",
+                "examples": "living room; bedroom; kitchen"
+            },
+            {
+                "name": "Operation",
+                "description": "The current state of the device.",
+                "examples": "lock; open; on; off"
+            }
+        ]
+    },
+    {
+        "name": "MovieTickets",
+        "culture": "en-us",
+        "description": "The Movie Tickets domain provides intents and entities related to booking tickets to movies at a movie theater.",
+        "examples": "Book me two tickets for Captain Omar and the two Musketeers; Cancel tickets; When is Captain Omar showing?",
+        "intents": [
+            {
+                "name": "Book",
+                "description": "Purchase movie tickets.",
+                "examples": "Book me two tickets for Captain Omar and the two musketeers; I want to buy a ticket for tomorrow's movie; I want a ticket for Captian Omar Part 2 next Wednesday"
+            },
+            {
+                "name": "GetShowTime",
+                "description": "Get the showtime of a movie.",
+                "examples": "When is Captain Omar showing?"
+            }
+        ],
+        "entities": [
+            {
+                "name": "Address",
+                "description": "The address of a movie theater.",
+                "examples": "Palo Alto;  300 112th Ave SE; Seattle"
+            },
+            {
+                "name": "MovieTitle",
+                "description": "The title of a movie.",
+                "examples": "Life of Pi;Hunger Games;Inception"
+            },
+            {
+                "name": "PlaceName",
+                "description": "The name of a movie theater or cinema.",
+                "examples": "Cinema Amir; Alexandria Theatre; New York Theater"
+            },
+            {
+                "name": "PlaceType",
+                "description": "The type of location a movie is showing at.",
+                "examples": "cinema; theater; IMAX cinema"
+            }
+        ]
+    },
+    {
+        "name": "Music",
+        "culture": "en-us",
+        "description": "The Music domain provides intents and entities related to playing music on a music player.",
+        "examples": "play Kevin Durant; Increase track volume; Skip to the next song",
+        "intents": [
+            {
+                "name": "DecreaseVolume",
+                "description": "Decrease the device volume.",
+                "examples": "increase track volume; volume up"
+            },
+            {
+                "name": "IncreaseVolume",
+                "description": "Increase the device volume.",
+                "examples": "decrease track volume; volume down"
+            },
+            {
+                "name": "PlayMusic",
+                "description": "Play music on a device.",
+                "examples": "play Kevin Durant; play Paradise by Coldplay; play Hello by Adele"
+            },
+            {
+                "name": "SkipBack",
+                "description": "Skip backwards a track.",
+                "examples": "Skip to the next song; Play the next song"
+            },
+            {
+                "name": "SkipForward",
+                "description": "Skip forward a track.",
+                "examples": "Play the previous song; Go back to the previous track"
+            },
+            {
+                "name": "Stop",
+                "description": "Stop an action relating to music playback.",
+                "examples": "Stop playing this album"
+            },
+            {
+                "name": "Unmute",
+                "description": "Unmute a music playback device.",
+                "examples": "Unmute."
+            },
+            {
+                "name": "Mute",
+                "description": "Mute the playing music.",
+                "examples": "Mute song; Put the track on mute; Mute music"
+            },
+            {
+                "name": "Pause",
+                "description": "Pause the playing music.",
+                "examples": "Pause; Pause music; Pause track"
+            },
+            {
+                "name": "Repeat",
+                "description": "Repeat the playing music.",
+                "examples": "Repeat song; Play the track gain; Repeat music"
+            },
+            {
+                "name": "Resume",
+                "description": "Resume the playing music.",
+                "examples": "Resume song; Start music again; Unpause"
+            }
+        ],
+        "entities": [
+            {
+                "name": "ArtistName",
+                "description": "\"The actor, director, producer, writer, musician or artist associated with media to play on a device.\"",
+                "examples": "Elvis Presley; Taylor Swift; Adele; Mozart"
+            },
+            {
+                "name": "Genre",
+                "description": "The genre of the music being requested.",
+                "examples": "Country music; Broadway classics; Play my classical music from the Baroque period"
+            }
+        ]
+    },
+    {
+        "name": "Note",
+        "culture": "en-us",
+        "description": "The Note domain provides intents and entities related to finding, editing and creating notes.",
+        "examples": "Add to my groceries note lettuce tomato bread coffee; Check off bananas from my grocery list; Remove all items from my vacation list",
+        "intents": [
+            {
+                "name": "AddToNote",
+                "description": "Add information to a note.",
+                "examples": "Add to my groceries note lettuce tomato bread coffee;  Add to my todo list; add cupcakes to my Wunderlist"
+            },
+            {
+                "name": "CheckOffItem",
+                "description": "Check off items from a pre-existing note.",
+                "examples": "Check off bananas from my grocery list;  Mark cheese cake on my holiday shopping list as done"
+            },
+            {
+                "name": "Clear",
+                "description": "Clear all items from a pre-existing note.",
+                "examples": "Remove all items from my vacation list; Clear all from my reading list"
+            },
+            {
+                "name": "Confirm",
+                "description": "Confirm an action relating to a note.",
+                "examples": "It's okay by me;yes;I am confirming keeping all items on lists"
+            },
+            {
+                "name": "Create",
+                "description": "Create a new note.",
+                "examples": "Create a list;  Note to remind me that Jason is in town first week of May"
+            },
+            {
+                "name": "Delete",
+                "description": "Delete an entire note.",
+                "examples": "Delete my vacation list; delete my groceries note"
+            },
+            {
+                "name": "DeleteNoteItem",
+                "description": "Delete items from a pre-existing note.",
+                "examples": "Delete chips from my grocery list; Remove pens from my school shopping list"
+            },
+            {
+                "name": "ReadAloud",
+                "description": "Read a list out loud",
+                "examples": "Read me the first one;  Read me the details"
+            },
+            {
+                "name": "ShowNext",
+                "description": "See the next item in a list of notes.",
+                "examples": "Show the next one; Next page; Next"
+            }
+        ],
+        "entities": [
+            {
+                "name": "AppName",
+                "description": "The note-taking application name.",
+                "examples": "Wunderlist; OneNote"
+            },
+            {
+                "name": "ContactName",
+                "description": "The name of a contact in a note.",
+                "examples": "Carol; Jim; Chris"
+            },
+            {
+                "name": "Text",
+                "description": "The text of a note or reminder.",
+                "examples": "stretch before walking; long run tomorrow"
+            },
+            {
+                "name": "Title",
+                "description": "Title of a note.",
+                "examples": "groceries; people to call; to-do"
+            },
+            {
+                "name": "DataSource",
+                "description": "Location of notes.",
+                "examples": "OneDrive; Google docs; my computer"
+            },
+            {
+                "name": "DataType",
+                "description": "The type of file or document, usually associated with particular software programs.",
+                "examples": "Slides; Spreadsheet; Worksheet"
+            }
+        ]
+    },
+    {
+        "name": "OnDevice",
+        "culture": "en-us",
+        "description": "The OnDevice domain provides intents and entities related to controlling the  devices.",
+        "examples": "Close video player; Cancel playback; Can you make the screen brighter?",
+        "intents": [
+            {
+                "name": "AreYouListening",
+                "description": "Ask if the device is listening.",
+                "examples": "is this on?; are you listening?"
+            },
+            {
+                "name": "CloseApplication",
+                "description": "Close the device application.",
+                "examples": "close video player"
+            },
+            {
+                "name": "FileBug",
+                "description": "File a bug on the device.",
+                "examples": "file a bug please;Can you file a bug for me ?;Let me report this bug"
+            },
+            {
+                "name": "GoBack",
+                "description": "Ask to go back one step or return to the previous step.",
+                "examples": "Go back please;Go to previous screen;Go back stop listening"
+            },
+            {
+                "name": "Help",
+                "description": "Request help.",
+                "examples": "Help please;Hello; What can you do?;I need help"
+            },
+            {
+                "name": "LocateDevice",
+                "description": "Locate the device.",
+                "examples": "Can you locate my phone;Find tom's iphone;Find my phone"
+            },
+            {
+                "name": "LogIn",
+                "description": "Log in to a service using the device.",
+                "examples": "Login please;Facebook log in;Log into LinkedIn"
+            },
+            {
+                "name": "LogOut",
+                "description": "Log out of a service using the device.",
+                "examples": "Log off my phone;Log on to twitter;Log out"
+            },
+            {
+                "name": "MainMenu",
+                "description": "View the main menu of a device.",
+                "examples": "View menu."
+            },
+            {
+                "name": "OpenApplication",
+                "description": "Open an application on the device.",
+                "examples": "Open the alarm please;Turn on camera;Launch calendar"
+            },
+            {
+                "name": "OpenSetting",
+                "description": "Open a setting on the device.",
+                "examples": "Open network settings."
+            },
+            {
+                "name": "PairDevice",
+                "description": "Pair the device.",
+                "examples": "Can you help me in pairing Bluetooth signal to phone;Turn the bluetooth on and pair it with laptop;Pair Bluetooth signal to my laptop"
+            },
+            {
+                "name": "PowerOff",
+                "description": "Turn off the device.",
+                "examples": "Can you shut down my computer;Shutdown;Turn off my mobile"
+            },
+            {
+                "name": "QueryBattery",
+                "description": "Get information about battery life.",
+                "examples": "Show me battery life."
+            },
+            {
+                "name": "QueryWifi",
+                "description": "Get information about WiFi.",
+                "examples": "What's my battery status;How much battery left now?;Show me battery"
+            },
+            {
+                "name": "Restart",
+                "description": "Restart the device.",
+                "examples": "Please restart."
+            },
+            {
+                "name": "RingDevice",
+                "description": "\"Ask the device to ring, in order to find it when it's lost.\"",
+                "examples": "Ring my phone."
+            },
+            {
+                "name": "SetBrightness",
+                "description": "Set the device brightness.",
+                "examples": "Set brightness to medium;Set brightness to high;Set brightness to low"
+            },
+            {
+                "name": "SetupDevice",
+                "description": "Initiate device setup.",
+                "examples": "I want to install OS setup;Setup please;Do setup for me"
+            },
+            {
+                "name": "ShowAppBar",
+                "description": "Show an app bar.",
+                "examples": "Show me the application bar;Application bar please;Let me see the application bar"
+            },
+            {
+                "name": "ShowContextMenu",
+                "description": "Show a context menu.",
+                "examples": "Let me see the context menu;Context menu please;Can you show me the context menu"
+            },
+            {
+                "name": "Sleep",
+                "description": "Put the device to sleep.",
+                "examples": "Go to sleep;Sleep;My computer sleep"
+            },
+            {
+                "name": "SwitchApplication",
+                "description": "Switch the application to use on the device.",
+                "examples": "Switch to my media player."
+            },
+            {
+                "name": "TurnDownBrightness",
+                "description": "Turn down device brightness.",
+                "examples": "Dim the screen."
+            },
+            {
+                "name": "TurnOffSetting",
+                "description": "Turn off a device setting.",
+                "examples": "Deactivate Bluetooth;Disable data;Disconnect bluetooth"
+            },
+            {
+                "name": "TurnOnSetting",
+                "description": "Turn on a device setting.",
+                "examples": "On;Off"
+            },
+            {
+                "name": "TurnUpBrightness",
+                "description": "Turn up device brightness.",
+                "examples": "Can you make the screen brighter?"
+            }
+        ],
+        "entities": [
+            {
+                "name": "AppName",
+                "description": "Name of an application on the device.",
+                "examples": "SoundCloud; YouTube"
+            },
+            {
+                "name": "BrightnessLevel",
+                "description": "Set the brightness level on the device.",
+                "examples": "One hundred percent;Fifty;40%"
+            },
+            {
+                "name": "ContactName",
+                "description": "The name of a contact on the device.",
+                "examples": "Paul;Marlen Max"
+            },
+            {
+                "name": "DeviceType",
+                "description": "The type of device.",
+                "examples": "Phone;kindle;Laptop"
+            },
+            {
+                "name": "MediaType",
+                "description": "The media type handled by the device.",
+                "examples": "Music; Movie; TV shows"
+            },
+            {
+                "name": "SettingType",
+                "description": "A type of setting or settings panel that the user wants to edit.",
+                "examples": "WiFi; Wireless Network;  Color Scheme; Notification [Center]"
+            }
+        ]
+    },
+    {
+        "name": "Places",
+        "culture": "en-us",
+        "description": "The Places domain provides intents for handling queries related to places like businesses, institution, restaurants, public spaces and addresses.",
+        "examples": "Save this location to my favorites; How far away is Holiday Inn?; At what time does Safeway close?",
+        "intents": [
+            {
+                "name": "AddFavoritePlace",
+                "description": "Add a location to the the user's favorites list.",
+                "examples": "Save this location to my favorites; Add this address to my favorites"
+            },
+            {
+                "name": "CheckAccident",
+                "description": "Ask whether there is an accident on a specified road.",
+                "examples": "Is there an accident on 880?; Show me accident information"
+            },
+            {
+                "name": "CheckAreaTraffic",
+                "description": "\"Check the traffic for a general area or highway, not on a specified route.\"",
+                "examples": "Traffic in Seattle;  What's the traffic like in Seattle?"
+            },
+            {
+                "name": "CheckIntoPlace",
+                "description": "Check in to a place using social media.",
+                "examples": "Check me in on Foursquare; Check in here"
+            },
+            {
+                "name": "Confirm",
+                "description": "Confirm an action relating to a place.",
+                "examples": "Confirm my restaurant reservation."
+            },
+            {
+                "name": "Exit",
+                "description": "Action to exit a task relating to a place.",
+                "examples": "Quit please;Quit giving me directions"
+            },
+            {
+                "name": "FindPlace",
+                "description": "\"Search for a place (business, institution, restaurant, public space, address).\"",
+                "examples": "Where's the nearest library?; Find me a good Italian restaurant in Mountain View"
+            },
+            {
+                "name": "GetAddress",
+                "description": "Ask for the address of a place.",
+                "examples": "Show me the address of Guu on Robson street;  What is the address of the nearest Starbucks?"
+            },
+            {
+                "name": "GetDistance",
+                "description": "Ask about distance to a specific place.",
+                "examples": "How far away is Holiday Inn?;  how far is it to Bellevue square from here;  what's the distance to Tahoe"
+            },
+            {
+                "name": "GetHours",
+                "description": "Ask about the operating hours for a place.",
+                "examples": "At what time does Safeway close?;  What are the hours for Home Depot?;  Is Starbucks still open?"
+            },
+            {
+                "name": "GetMenu",
+                "description": "Ask for the menu items for a restaurant.",
+                "examples": "Does Zucca serve anything vegan?;  What's on the menu at Sizzler;  Show me Applebee's menu"
+            },
+            {
+                "name": "GetPhoneNumber",
+                "description": "Ask for the phone number of a place.",
+                "examples": "What is the phone number of the nearest Starbucks?; Give the number for Home Depot"
+            },
+            {
+                "name": "GetReviews",
+                "description": "Ask for reviews of a place.",
+                "examples": "Show me reviews for Cheesecase Factory; Read Cineplex reviews in Yelp"
+            },
+            {
+                "name": "GetRoute",
+                "description": "Ask for directions to a place.",
+                "examples": "How to walk to Bellevue square;  Show me the shortest way to 8th and 59th from here; Get me directions to Mountain View CA"
+            },
+            {
+                "name": "GetStarRating",
+                "description": "Ask for the star rating of a place.",
+                "examples": "How is Zucca rated according to Yelp?;  How many stars does the French Laundry have?;  Is the aquarium in Monterrey good?"
+            },
+            {
+                "name": "GetTransportationSchedule",
+                "description": "Get the bus schedule for a place.",
+                "examples": "What time is the next bus to downtown?;  Show me the buses in King County"
+            },
+            {
+                "name": "GetTravelTime",
+                "description": "Ask  for the travel time to a specified destination.",
+                "examples": "How long will it take to get to San Francisco from here;  What's the driving time to Denver from SF"
+            },
+            {
+                "name": "MakeCall",
+                "description": "Make a phone call to a place.",
+                "examples": "Call mom;  I would like to place a Skype call to Anna; Call Jim"
+            },
+            {
+                "name": "MakeReservation",
+                "description": "Request a reservation for a restaurant or other business.",
+                "examples": "Reserve at Zucca for two for tonight;  Book a table for tomorrow; Table for 3 in Palo Alto at 8"
+            },
+            {
+                "name": "MapQuestions",
+                "description": "Request information about directions or whether a specified road goes to a destination.",
+                "examples": "Does 13 pass through downtown?; Can I take 880 to Oakland?"
+            },
+            {
+                "name": "Rating",
+                "description": "Get the rating description of a restaurant or place.",
+                "examples": "How many stars does the Contoso Inn have?"
+            },
+            {
+                "name": "ReadAloud",
+                "description": "Read a list of places out loud.",
+                "examples": "Read me the first one;  Read me the details"
+            },
+            {
+                "name": "SelectItem",
+                "description": "Choose an item from a list of choices relating to a place or places.",
+                "examples": "Pick the second one; Select the first"
+            },
+            {
+                "name": "ShowMap",
+                "description": "Show a map of an area.",
+                "examples": "Show a map for the second one ; Show map; Find San Francisco on the map"
+            },
+            {
+                "name": "ShowNext",
+                "description": "Show the next item in a series.",
+                "examples": "Show the next one; go to the next page"
+            },
+            {
+                "name": "ShowPrevious",
+                "description": "Show the previous item in a series.",
+                "examples": "show previous one; previous; go to previous"
+            },
+            {
+                "name": "StartOver",
+                "description": "Restart the app or start a new session.",
+                "examples": "Start over;  New session; restart"
+            },
+            {
+                "name": "TakesReservations",
+                "description": "Ask whether a place accepts reservations.",
+                "examples": "Does the art gallery accept reservations; Is it possible to make a reservation at the Olive Garden"
+            },
+            {
+                "name": "CheckRouteTraffic",
+                "description": "Check the traffic of a specific route specified by the user.",
+                "examples": "How is the traffic to Mashiko?; Show me the traffice to Kirkland; How is the traffic to Seattle?"
+            },
+            {
+                "name": "GetPriceRange",
+                "description": "User asks for the price range of a place.",
+                "examples": "Is Zucca cheap?; Is the Cineplex half price on Wednesdays?; How much does a whole lobster dinner cost at Sizzler?"
+            }
+        ],
+        "entities": [
+            {
+                "name": "AbsoluteLocation",
+                "description": "The location or address of a place.",
+                "examples": "Palo Alto;  300 112th Ave SE; Seattle"
+            },
+            {
+                "name": "DestinationAddress",
+                "description": "A destination location or address.",
+                "examples": "Palo Alto;  300 112th Ave SE; Seattle"
+            },
+            {
+                "name": "DestinationPlaceName",
+                "description": "\"The name of a destination that is a business, restaurant, public attraction, or institution. \"",
+                "examples": "central park; safeway; walmart"
+            },
+            {
+                "name": "DestinationPlaceType",
+                "description": "\"The type of a destination that is a business, restaurant, public attraction, or institution. \"",
+                "examples": "Cafe; Theatre; Library"
+            },
+            {
+                "name": "MealType",
+                "description": "Type of meal like breakfast or lunch.",
+                "examples": "breakfast; dinner; lunch; supper"
+            },
+            {
+                "name": "OpenStatus",
+                "description": "Indicates whether a place is open or closed.",
+                "examples": "Open; closed; opening"
+            },
+            {
+                "name": "PlaceName",
+                "description": "The name of a place.",
+                "examples": "Cheesecake Factory;"
+            },
+            {
+                "name": "PlaceType",
+                "description": "The type of a place.",
+                "examples": "Cafe; Theatre; Library"
+            },
+            {
+                "name": "TransportationCompany",
+                "description": "The name of a public transport provider.",
+                "examples": "Amtrack;  Acela; Greyhound"
+            },
+            {
+                "name": "TransportationType",
+                "description": "A type of transportation.",
+                "examples": "Bus; Train; Driving"
+            },
+            {
+                "name": "Amenities",
+                "description": "The objective characteristics/benefits of a place.",
+                "examples": "kids eat free; waterfront; free parking"
+            },
+            {
+                "name": "Atmosphere",
+                "description": "The atmosphere of a place.",
+                "examples": "kid-friendly; casual restaurant; sporty"
+            },
+            {
+                "name": "RouteAvoidanceCriteria",
+                "description": "\"Criteria for avoiding specific routes like avoiding accidents, constructions or tolls.\"",
+                "examples": "Tolls; Constructions; Route 11"
+            },
+            {
+                "name": "Cuisine",
+                "description": "The cuisine of a place.",
+                "examples": "Mediterranean; Italian; Indian"
+            },
+            {
+                "name": "Distance",
+                "description": "The distance to a place.",
+                "examples": "15 miles; 5 miles; 10 miles away"
+            },
+            {
+                "name": "PreferredRoute",
+                "description": "The preferred route specified by the user.",
+                "examples": "101; 202; Route 401"
+            },
+            {
+                "name": "Product",
+                "description": "The product offered by a place.",
+                "examples": "Clothes; Digital ASR Cameras; Fresh fish"
+            },
+            {
+                "name": "PublicTransportationRoute",
+                "description": "The name of the public transportation route that the user is searching for.",
+                "examples": "Northeast corridor train; Bus route 3X"
+            },
+            {
+                "name": "Rating",
+                "description": "The rating of a place.",
+                "examples": "5 stars; 3 stars;  4 stars"
+            },
+            {
+                "name": "ServiceProvided",
+                "description": "\"This is the service provided by a business or place such as haircut, snow plowing, landscaping.\"",
+                "examples": "haircut; mechanic; plumber"
+            }
+        ]
+    },
+    {
+        "name": "Reminder",
+        "culture": "en-us",
+        "description": "The reminder domain provides intents and entities for creating, editing, and finding reminders.",
+        "examples": "Change my interview to 9 am tomorrow; Remind me to buy milk on my way back home; Can you check if I have a reminder about Christine's birthday?",
+        "intents": [
+            {
+                "name": "Change",
+                "description": "Change a reminder.",
+                "examples": "Change my interview to 9 am tomorrow ; Move my assignment reminder to tomorrow"
+            },
+            {
+                "name": "Create",
+                "description": "Create a new reminder.",
+                "examples": "Create a reminder; Remind me to buy milk;  I want to remember to call Rebecca when I'm at home"
+            },
+            {
+                "name": "Delete",
+                "description": "Delete a reminder.",
+                "examples": "Delete my picture reminder; Delete this reminder"
+            },
+            {
+                "name": "Find",
+                "description": "Find a reminder.",
+                "examples": "Do I have a reminder about my anniversary?; Can you check if I have a reminder about Christine's birthday?"
+            }
+        ],
+        "entities": [
+            {
+                "name": "Text",
+                "description": "The text description of a reminder.",
+                "examples": "pick up dry cleaning; dropping my car off at the service center"
+            }
+        ]
+    },
+    {
+        "name": "RestaurantReservation",
+        "culture": "en-us",
+        "description": "The Reservation domain provides intents and entities related to managing restaurant reservations.",
+        "examples": "Reserve at Zucca for two for tonight; Book a table at BJ's for tomorrow;  Table for 3 in Palo Alto at 7",
+        "intents": [
+            {
+                "name": "Reserve",
+                "description": "Request a reservation for a restaurant.",
+                "examples": "Reserve at Zucca for two for tonight;  Book a table for tomorrow; Table for 3 in Palo Alto at 7"
+            }
+        ],
+        "entities": [
+            {
+                "name": "Address",
+                "description": "An event location or address for a reservation.",
+                "examples": "Palo Alto;  300 112th Ave SE; Seattle"
+            },
+            {
+                "name": "Amenities",
+                "description": "An attribute describing the amenities of a place.",
+                "examples": "ocean view;  non smoking;"
+            },
+            {
+                "name": "AppName",
+                "description": "The name of an application for making reservations.",
+                "examples": "OpenTable; Yelp; TripAdvisor"
+            },
+            {
+                "name": "Atmosphere",
+                "description": "A description of the atmosphere of a restaurant or other place.",
+                "examples": "romantic; casual; good for groups"
+            },
+            {
+                "name": "Cuisine",
+                "description": "\"A type of food, cuisine or cuisine nationality.\"",
+                "examples": "Chinese; Italian; Mexican"
+            },
+            {
+                "name": "MealType",
+                "description": "A meal type associated with a reservation.",
+                "examples": "breakfast; dinner; lunch; supper"
+            },
+            {
+                "name": "PlaceName",
+                "description": "\"The name of a local business, restaurant, public attraction, or institution. \"",
+                "examples": "IHOP; Cheesecake Factory; Louvre"
+            },
+            {
+                "name": "PlaceType",
+                "description": "\"The type of a local business, restaurant, public attraction, or institution. \"",
+                "examples": "restaurant; opera; cinema"
+            },
+            {
+                "name": "Rating",
+                "description": "The rating of a place or restaurant.",
+                "examples": "5 stars; 3 stars;  4 stars"
+            }
+        ]
+    },
+    {
+        "name": "Taxi",
+        "culture": "en-us",
+        "description": "The Taxi domain provides intents and entities for creating and managing taxi bookings.",
+        "examples": "Get me a cab at 3 pm; How much longer do I have to wait for my taxi?; Cancel my Uber",
+        "intents": [
+            {
+                "name": "Book",
+                "description": "Call a taxi.",
+                "examples": "Get me a cab; Find a taxi;  Book me an uber x"
+            },
+            {
+                "name": "Cancel",
+                "description": "Cancel an action relating to booking a taxi.",
+                "examples": "Cancel my taxi; Cancel my Uber"
+            },
+            {
+                "name": "Track",
+                "description": "Track a taxi route.",
+                "examples": "How much longer do I have to wait for my taxi?; Where is my Uber?"
+            }
+        ],
+        "entities": [
+            {
+                "name": "Address",
+                "description": "The address associated with booking a taxi.",
+                "examples": "Palo Alto;  300 112th Ave SE; Seattle"
+            },
+            {
+                "name": "DestinationAddress",
+                "description": "A destination location or address.",
+                "examples": "Palo Alto;  300 112th Ave SE; Seattle"
+            },
+            {
+                "name": "DestinationPlaceName",
+                "description": "\"The name of a destination that is a local business, restaurant, public attraction, or institution. \"",
+                "examples": "Central Park; Safeway; Walmart"
+            },
+            {
+                "name": "DestinationPlaceType",
+                "description": "\"The type of a destination that is a local business, restaurant, public attraction, or institution. \"",
+                "examples": "Restaurant; Opera; Cinema"
+            },
+            {
+                "name": "PlaceName",
+                "description": "\"Name of local business, restaurant, public attraction, or institution. \"",
+                "examples": "Central Park; Safeway; Walmart"
+            },
+            {
+                "name": "PlaceType",
+                "description": "The type of place in a request to book a taxi.",
+                "examples": "Restaurant; Opera; Cinema"
+            },
+            {
+                "name": "TransportationCompany",
+                "description": "The name of a transport provider.",
+                "examples": "Amtrack;  Acela; Greyhound"
+            },
+            {
+                "name": "TransportationType",
+                "description": "The transportation type.",
+                "examples": "Bus; Train; Driving"
+            }
+        ]
+    },
+    {
+        "name": "Translate",
+        "culture": "en-us",
+        "description": "The Translate domain provides intents and entities related to translating text to a target language.",
+        "examples": "Translate to French;  Translate hello to German; Translate this sentence to English",
+        "intents": [
+            {
+                "name": "Translate",
+                "description": "Translate text to another language.",
+                "examples": "Translate to French;  Translate hello to German"
+            }
+        ],
+        "entities": [
+            {
+                "name": "TargetLanguage",
+                "description": "The target language of a translation.",
+                "examples": "French; German; Korean"
+            },
+            {
+                "name": "Text",
+                "description": "The text to translate.",
+                "examples": "Hello World;Good morning;Good evening"
+            }
+        ]
+    },
+    {
+        "name": "TV",
+        "culture": "en-us",
+        "description": "The TV domain provides intents and entities for controlling TVs.",
+        "examples": "Switch channel to BBC; Show TV guide; Watch National Geographic",
+        "intents": [
+            {
+                "name": "ChangeChannel",
+                "description": "Change a channel on a TV.",
+                "examples": "Change channel to CNN;  Switch channel to BBC; Go to channel 4"
+            },
+            {
+                "name": "ShowGuide",
+                "description": "Show the TV guide.",
+                "examples": "Show TV guide; what is on movie channel now?; show my program list"
+            },
+            {
+                "name": "WatchTV",
+                "description": "Ask to watch a TV channel.",
+                "examples": "I want to watch the Disney channel; go to TV please; Watch National Geographic"
+            }
+        ],
+        "entities": [
+            {
+                "name": "ChannelName",
+                "description": "The name of a TV channel.",
+                "examples": "CNN; BBC; Movie channel"
+            }
+        ]
+    },
+    {
+        "name": "Utilities",
+        "culture": "en-us",
+        "description": "The Utilities domain provides intents for tasks that are common to many tasks, such as greetings, cancellation, confirmation, help, repetition, navigation, starting and stopping.",
+        "examples": "Go back to Twitter; Please help; Repeat last question please",
+        "intents": [
+            {
+                "name": "Cancel",
+                "description": "Cancel an action.",
+                "examples": "Cancel the message; I don't want to send the email anymore"
+            },
+            {
+                "name": "Confirm",
+                "description": "Confirm an action.",
+                "examples": "Yeah ohh I confirm;Good I am confirming;Okay I am confirming"
+            },
+            {
+                "name": "GoBack",
+                "description": "Go back one step or return to a previous step.",
+                "examples": "Go back to Twitter; Go back a step; Go back"
+            },
+            {
+                "name": "Help",
+                "description": "Request for help.",
+                "examples": "Please help; open help; help"
+            },
+            {
+                "name": "Repeat",
+                "description": "Repeat an action.",
+                "examples": "Repeat last question please; repeat last song"
+            },
+            {
+                "name": "ShowNext",
+                "description": "Show the next item in a series.",
+                "examples": "Show the next one; go to the next page"
+            },
+            {
+                "name": "ShowPrevious",
+                "description": "Show the previous item in a series.",
+                "examples": "show previous one"
+            },
+            {
+                "name": "StartOver",
+                "description": "Restart the app or start a new session.",
+                "examples": "Start over;  New session; restart"
+            },
+            {
+                "name": "Stop",
+                "description": "Stop an action.",
+                "examples": "Stop saying this please;Shut up;Stop please"
+            },
+            {
+                "name": "FinishTask",
+                "description": "Finish a task the user started.",
+                "examples": "I am done; I am finished; It is done"
+            }
+        ],
+        "entities": []
+    },
+    {
+        "name": "Weather",
+        "culture": "en-us",
+        "description": "The Weather domain provides intents and entities for getting weather reports and forecasts",
+        "examples": "weather in London in september; What's the 10 day forecast?; What's the average temperature in India in september?",
+        "intents": [
+            {
+                "name": "GetCondition",
+                "description": "Get historic facts related to weather.",
+                "examples": "weather in London in september;  what's the average temperature in India in september"
+            },
+            {
+                "name": "GetForecast",
+                "description": "Get the current weather and forecast for the next few days.",
+                "examples": "How is the weather today?; What's the 10 day forecast; How will the weather be this weekend"
+            }
+        ],
+        "entities": [
+            {
+                "name": "Location",
+                "description": "The absolute location for a weather request.",
+                "examples": "Seattle; Paris; Palo Alto"
+            }
+        ]
+    },
+    {
+        "name": "Web",
+        "culture": "en-us",
+        "description": "The Web domain provides intents and entities for navigating to a website.",
+        "examples": "Navigate to facebook.com; Go to www.twitter.com; Navigate to www.bing.com",
+        "intents": [
+            {
+                "name": "Navigate",
+                "description": "A request to navigate to a specified website.",
+                "examples": "Navigate to facebook.com; Go to www.twitter.com"
+            }
+        ],
+        "entities": []
+    },
+    {
+        "name": "日程",
+        "culture": "zh-cn",
+        "description": "日程主题提供与日程规划相关的意图和实体，包括添加、删除和编辑日程待办事项，查询信息等意图。",
+        "examples": "在周日下午2点与莉莉约会;阿明什么时候有空参加会议;取消我上午九点的会议",
+        "intents": [
+            {
+                "name": "添加日程",
+                "description": "增加一个新的日程事项",
+                "examples": "周日下午两点与莉莉约会;我想安排一个会议;我需要指定一个会议日程"
+            },
+            {
+                "name": "核查",
+                "description": "核查用户日程，寻找适宜的会议时间",
+                "examples": "阿明什么时候有空参加会议;查看罗琳明天什么时候有空;李斯周六有空吗？"
+            },
+            {
+                "name": "删除",
+                "description": "请求删除日程事项",
+                "examples": "取消我和罗琳的约会;删除我九点的会议日程"
+            },
+            {
+                "name": "编辑",
+                "description": "请求修改日程信息",
+                "examples": "将上午九点的会议改为十点;我想更新我的日程;重新安排我和卢斯的会议"
+            },
+            {
+                "name": "查询",
+                "description": "查询会议信息或日程安排",
+                "examples": "告诉我周末的日程安排;查询我牙齿复查的日程安排."
+            }
+        ],
+        "entities": [
+            {
+                "name": "地点",
+                "description": "日程事项的位置信息，包含城市、区域等地址信息",
+                "examples": "纳什维尔健身房209;897煎饼屋;车库"
+            },
+            {
+                "name": "主题",
+                "description": "会议的主题信息",
+                "examples": "牙齿复查日程;和朱莉吃午餐"
+            }
+        ]
+    },
+    {
+        "name": "通讯",
+        "culture": "zh-cn",
+        "description": "通讯主题提供与电话、电子邮件和发送信息相关的意图和实体",
+        "examples": "转接到我的语音信箱;记录这个号码，将联系人保存为罗琳;请将我的电话转接到3333号码",
+        "intents": [
+            {
+                "name": "添加联系人",
+                "description": "将新联系人添加到用户的联系人列表中",
+                "examples": "添加新联系人;保存此号码并将其命名为Carol"
+            },
+            {
+                "name": "添加更多信息",
+                "description": "添加更多的电子邮件或文本，作为逐步的电子邮件或文本构成的一部分",
+                "examples": "添加更多文字;添加更多到电子邮件正文"
+            },
+            {
+                "name": "回复",
+                "description": "接听电话",
+                "examples": "接电话;回复他"
+            },
+            {
+                "name": "编辑联系人姓名",
+                "description": "为联系人分配昵称",
+                "examples": "将何伟设置为爸爸;添加昵称卡罗尔·汉娜;编辑吉姆的昵称"
+            },
+            {
+                "name": "拨打语音信箱",
+                "description": "连接到用户的语音信箱",
+                "examples": "将我连接到我的语音信箱;致电语音信箱;语音信箱"
+            },
+            {
+                "name": "检查状态",
+                "description": "在Skype中检查联系人的状态",
+                "examples": "吉姆的在线状态是否脱离了？;卡罗尔可以聊天吗？"
+            },
+            {
+                "name": "确认",
+                "description": "确认指令",
+                "examples": "是;好的;好吧;我确认我要发送这封电子邮件。"
+            },
+            {
+                "name": "寻找联系人",
+                "description": "按名称查找联系人信息",
+                "examples": "查找卡罗尔的号码;告诉我卡罗的号码"
+            },
+            {
+                "name": "关闭呼叫转移",
+                "description": "关闭呼叫转移",
+                "examples": "停止转发我的电话;关闭呼叫转移"
+            },
+            {
+                "name": "开启呼叫转移",
+                "description": "打开呼叫转移",
+                "examples": "转发我的电话3333;切换呼叫转移到3333"
+            },
+            {
+                "name": "呼叫转接状态",
+                "description": "呼叫转移的状态",
+                "examples": "是我的呼叫转移了吗？;告诉我通话状态是开或关 "
+            },
+            {
+                "name": "回退",
+                "description": "返回前一步",
+                "examples": "回到必应搜索;回头一步;回去"
+            },
+            {
+                "name": "忽略",
+                "description": "忽略来电",
+                "examples": "不要接听;忽略呼叫"
+            },
+            {
+                "name": "忽略并回复",
+                "description": "忽略来电和文本代替回答",
+                "examples": "不要回答电话而是发送消息;忽略发送回来 "
+            },
+            {
+                "name": "打电话",
+                "description": "打电话",
+                "examples": "打电话给吉姆;请拨311。 "
+            },
+            {
+                "name": "按键",
+                "description": "按键盘上的按钮或数",
+                "examples": "拨星号;按1 2 3 "
+            },
+            {
+                "name": "朗读",
+                "description": "阅读邮件或电子邮件给用户",
+                "examples": "阅读文本;她说什么的消息"
+            },
+            {
+                "name": "重拨",
+                "description": "重拨或拨打一个号码",
+                "examples": "重拨;重拨我的最后一次通话"
+            },
+            {
+                "name": "发送电子邮件",
+                "description": "发送电子邮件。本文适用于邮件而不是短信",
+                "examples": "电子邮件给麦克麦克晚餐上周精彩;发送一封电子邮件给鲍勃"
+            },
+            {
+                "name": "发送信息",
+                "description": "发送短信或即时消息",
+                "examples": "发送文本给克里斯和凯罗尔"
+            },
+            {
+                "name": "设置快速拨号",
+                "description": "联系人的电话号码设置快速拨号快捷方式",
+                "examples": "设置快速拨号给卡罗尔;妈妈设置快速拨号"
+            },
+            {
+                "name": "显示下一项",
+                "description": "看下一个项目，例如，在一个列表中的短信或邮件",
+                "examples": "显示下一个;进入下一页"
+            },
+            {
+                "name": "显示上一项",
+                "description": "看到以前的项目，例如，在一个列表中的短信或邮件",
+                "examples": "显示前一个;以前的;去之前"
+            },
+            {
+                "name": "关闭扬声器",
+                "description": "关掉扬声器电话",
+                "examples": "关闭免提;关掉扬声器"
+            },
+            {
+                "name": "开启扬声器",
+                "description": "打开扬声器电话",
+                "examples": "免提模式;放扬声器"
+            },
+            {
+                "name": "查询快速拨号",
+                "description": "查询快速拨号",
+                "examples": "我的电话号码是多少?;我有速拨盘吗?;941 - 5555 - 333的拨号数是多少?"
+            },
+            {
+                "name": "拒接",
+                "description": "拒绝一个来电",
+                "examples": "拒绝呼叫;不能回答现在;不是此刻和以后会回电话"
+            }
+        ],
+        "entities": [
+            {
+                "name": "联系人姓名",
+                "description": "一个联系人或邮件收件人。",
+                "examples": "卡罗尔;吉姆;克里斯"
+            },
+            {
+                "name": "邮件主题",
+                "description": "文本作为一个电子邮件的主题行",
+                "examples": "回复： 有趣的故事"
+            },
+            {
+                "name": "信息内容",
+                "description": "消息发送电子邮件或文本",
+                "examples": "今天很高兴见到你。很快再见到你！"
+            },
+            {
+                "name": "类别",
+                "description": "消息或邮件类别",
+                "examples": "重要;高优先级"
+            },
+            {
+                "name": "信息种类",
+                "description": "信息搜索的类型",
+                "examples": "文本;电子邮件"
+            },
+            {
+                "name": "参照位置",
+                "description": "序号或相关列表中的位置，确定一个项目检索。例如，在我发的最后一条消息是什么最后或最近的？",
+                "examples": "上一个;最近的"
+            },
+            {
+                "name": "音频设备种类",
+                "description": "音频设备(扬声器，耳机，麦克风等",
+                "examples": "耳机;免提;蓝牙"
+            },
+            {
+                "name": "联系人属性",
+                "description": "用户查询的联系的属性",
+                "examples": "生日;地址;电话号码"
+            },
+            {
+                "name": "线路",
+                "description": "用户想使用打电话或发短信/电子邮件从线路",
+                "examples": "工作线;英国线;Skype "
+            }
+        ]
+    },
+    {
+        "name": "智能家居",
+        "culture": "zh-cn",
+        "description": "智能家居主题提供控制灯光、家电等智能家居装置相关的意图和实体",
+        "examples": "关闭灯光;把咖啡机打开;关闭车库门",
+        "intents": [
+            {
+                "name": "关闭",
+                "description": "关闭、关闭或解锁设备",
+                "examples": "关灯;停止咖啡壶;关闭车库门"
+            },
+            {
+                "name": "打开",
+                "description": "打开设备或将设备设置为特定的设置或模式",
+                "examples": "打开我的咖啡壶;你能打开我的咖啡壶吗?将恒温器设置为72度"
+            }
+        ],
+        "entities": [
+            {
+                "name": "装置",
+                "description": "可以打开或关闭的一种设备",
+                "examples": "咖啡壶;恒温器;灯"
+            },
+            {
+                "name": "地点",
+                "description": "设备所在的位置或房间",
+                "examples": "客厅;卧室;厨房"
+            },
+            {
+                "name": "操作",
+                "description": "设备的当前状态",
+                "examples": "锁;开放;关"
+            }
+        ]
+    },
+    {
+        "name": "音乐",
+        "culture": "zh-cn",
+        "description": "音乐主题提供与音乐播放相关的主题和实体",
+        "examples": "播放周杰伦的歌;增加音量;下一首音乐",
+        "intents": [
+            {
+                "name": "减少音量",
+                "description": "减少音量",
+                "examples": "减少轨道音量;音量 "
+            },
+            {
+                "name": "增加音量",
+                "description": "增加音量",
+                "examples": "增加轨道音量;音量 "
+            },
+            {
+                "name": "播放音乐",
+                "description": "在设备上播放音乐",
+                "examples": "播放凯文杜兰特;播放游玩曲;播放阿黛勒的hello "
+            },
+            {
+                "name": "下一首",
+                "description": "跳过一个磁道",
+                "examples": "跳到下一首歌曲;播放下一首歌曲"
+            },
+            {
+                "name": "上一首",
+                "description": "跳过轨道 ",
+                "examples": "播放上一首歌曲;回到以前的轨道"
+            },
+            {
+                "name": "停止",
+                "description": "停止有关音乐的播放动作",
+                "examples": "停止播放这张专辑"
+            },
+            {
+                "name": "解除静音",
+                "description": "解除音乐播放静音状态",
+                "examples": "解除静音"
+            },
+            {
+                "name": "静音",
+                "description": "音乐静音",
+                "examples": "静音音乐;暂时让设备静音;乐曲静音"
+            },
+            {
+                "name": "暂停",
+                "description": "暂停音乐播放",
+                "examples": "暂停;暂停音乐播放;暂停音乐轨道"
+            },
+            {
+                "name": "继续",
+                "description": "继续播放音乐",
+                "examples": "继续音乐;再一次播放音乐;去除暂停"
+            }
+        ],
+        "entities": [
+            {
+                "name": "艺术家名",
+                "description": "演员、导演、作家、音乐家等艺术家的名称",
+                "examples": "爱丽丝;泰勒斯威夫特;阿黛尔;莫扎特"
+            },
+            {
+                "name": "风格",
+                "description": "音乐风格类型",
+                "examples": "乡村音乐;百老汇经典;播放巴洛克古典音乐"
+            }
+        ]
+    },
+    {
+        "name": "笔记",
+        "culture": "zh-cn",
+        "description": "笔记主题提供记录、查询和修改笔记相关的意图和实体",
+        "examples": "在我的杂货笔记中加入生菜、番茄、面包和咖啡;从我的杂货单清除香蕉;从我的假期清单中删除所有项目",
+        "intents": [
+            {
+                "name": "加入记录",
+                "description": "在笔记中加入信息",
+                "examples": "在我的杂货笔记中加入生菜、番茄、面包和咖啡;加入到我的待办事项;在我的愿望单中加入蛋糕"
+            },
+            {
+                "name": "创建",
+                "description": "创建新的笔记",
+                "examples": "创建一个新的列表;记录提醒我杰克会在五月第一周来到城镇"
+            },
+            {
+                "name": "删除",
+                "description": "删除笔记",
+                "examples": "删除假日笔记;删除我的杂货笔记"
+            },
+            {
+                "name": "删除项目",
+                "description": "删除笔记中的项目",
+                "examples": "删除杂货笔记中的奶酪项;Remove pens from my school shopping list"
+            },
+            {
+                "name": "朗读",
+                "description": "朗读列表",
+                "examples": "朗读第一个;朗读细节"
+            },
+            {
+                "name": "显示下一项",
+                "description": "显示笔记列表的下一项",
+                "examples": "显示下一个;下一页;之后的一项"
+            }
+        ],
+        "entities": [
+            {
+                "name": "笔记文本",
+                "description": "笔记文本内容",
+                "examples": "运动之前进行拉伸;明天长跑"
+            },
+            {
+                "name": "题目",
+                "description": "笔记题目",
+                "examples": "杂物;联系人列表;待办事项"
+            },
+            {
+                "name": "笔记数据源",
+                "description": "笔记所在位置",
+                "examples": "微软笔记;谷歌文档;我的电脑"
+            },
+            {
+                "name": "数据类型",
+                "description": "文档类型",
+                "examples": "演示文稿;电子表格;工作表"
+            }
+        ]
+    },
+    {
+        "name": "设备控制",
+        "culture": "zh-cn",
+        "description": "设备控制主题包含控制设备的意图和实体",
+        "examples": "关闭视频播放器;取消播放;能让显示器屏幕亮一些吗?",
+        "intents": [
+            {
+                "name": "在听吗",
+                "description": "询问装置是否在线",
+                "examples": "在线吗？;你在听吗？"
+            },
+            {
+                "name": "关闭应用",
+                "description": "关闭应用",
+                "examples": "关闭视频播放器"
+            },
+            {
+                "name": "回退",
+                "description": "回退一个步骤或到之前状态",
+                "examples": "回到上一个步骤"
+            },
+            {
+                "name": "帮助",
+                "description": "请求帮助",
+                "examples": "请求帮助;你可以帮我做什么？;我需要帮助"
+            },
+            {
+                "name": "定位设备",
+                "description": "定位设备",
+                "examples": "帮我定位我的手机;寻找托尼的iphone;寻找我的电话"
+            },
+            {
+                "name": "登录",
+                "description": "登录装置服务",
+                "examples": "请登录;登陆脸谱网;登陆微软"
+            },
+            {
+                "name": "登出",
+                "description": "等处装置服务",
+                "examples": "从手机中登出;登出"
+            },
+            {
+                "name": "打开应用",
+                "description": "从设备中打开应用",
+                "examples": "请打开闹钟;打开照相机;运行日历应用"
+            },
+            {
+                "name": "打开设置",
+                "description": "打开设备设置",
+                "examples": "打开网络设置"
+            },
+            {
+                "name": "关机",
+                "description": "关闭设备",
+                "examples": "请帮我关闭电脑;关机;关闭手机"
+            },
+            {
+                "name": "查询电量",
+                "description": "获得电池信息",
+                "examples": "告诉我现在电量"
+            },
+            {
+                "name": "重启",
+                "description": "重新启动设备",
+                "examples": "请重启电脑"
+            },
+            {
+                "name": "设备响铃",
+                "description": "让设备响铃",
+                "examples": "让我的电话响铃"
+            },
+            {
+                "name": "显示上下文菜单",
+                "description": "显示上下文菜单",
+                "examples": "请显示上下文菜单;请为我显示上下文菜单"
+            },
+            {
+                "name": "休眠",
+                "description": "设备休眠",
+                "examples": "休眠;电脑休眠"
+            },
+            {
+                "name": "切换应用",
+                "description": "切换设备应用",
+                "examples": "切换到音乐播放器"
+            },
+            {
+                "name": "降低亮度",
+                "description": "降低设备亮度",
+                "examples": "屏幕变暗"
+            },
+            {
+                "name": "关闭设备",
+                "description": "关闭设备",
+                "examples": "关闭蓝牙;断开显示器"
+            },
+            {
+                "name": "开启设备",
+                "description": "使设置中的项目开启",
+                "examples": "打开蓝牙;打开WIFI网络"
+            },
+            {
+                "name": "增加亮度",
+                "description": "增加设备亮度",
+                "examples": "可以让显示器变亮点吗？"
+            }
+        ],
+        "entities": [
+            {
+                "name": "应用名",
+                "description": "应用的名称",
+                "examples": "微信;支付宝"
+            },
+            {
+                "name": "设备种类",
+                "description": "设备种类",
+                "examples": "电话;平板电脑;个人电脑"
+            },
+            {
+                "name": "设置类别",
+                "description": "设置类别",
+                "examples": "无线网络;颜色种类;通知中心"
+            }
+        ]
+    },
+    {
+        "name": "地点",
+        "culture": "zh-cn",
+        "description": "地点主题提供处理与企业机构、餐馆等公共场所地址相关的查询的意图",
+        "examples": "收藏这个位置;假日酒店还有多远？;百货大厦什么时候关门？",
+        "intents": [
+            {
+                "name": "添加到收藏",
+                "description": "加入到用户的收藏夹中",
+                "examples": "将这个地点加入的我的收藏夹中"
+            },
+            {
+                "name": "检查事故",
+                "description": "询问地点是否有事故",
+                "examples": "880路上有事故吗？"
+            },
+            {
+                "name": "查询区域交通",
+                "description": "检查地点交通状况",
+                "examples": "西雅图交通状况"
+            },
+            {
+                "name": "记录地点",
+                "description": "记录地点",
+                "examples": "记录当前我的位置"
+            },
+            {
+                "name": "确认",
+                "description": "确认地点相关的动作",
+                "examples": "确认我预定的餐厅"
+            },
+            {
+                "name": "查询地点",
+                "description": "查询某一地点",
+                "examples": "附近最近的餐厅是哪一家"
+            },
+            {
+                "name": "查询地址",
+                "description": "查询地点地址",
+                "examples": "告诉我最近的星巴克地址"
+            },
+            {
+                "name": "查询距离",
+                "description": "查询到某一地点的距离",
+                "examples": "请问到北大图书馆有多远？"
+            },
+            {
+                "name": "查询运营时间",
+                "description": "查询地点的运营时间",
+                "examples": "请问地铁的营运时间是多少？"
+            },
+            {
+                "name": "查询菜单",
+                "description": "查询餐厅的菜单",
+                "examples": "请告诉我全聚德的菜单"
+            },
+            {
+                "name": "查询电话号码",
+                "description": "查询地点的电话号码",
+                "examples": "最近的星巴克电话号码是多少？"
+            },
+            {
+                "name": "查询评论",
+                "description": "查询地点的评论",
+                "examples": "查询这家餐厅的评论"
+            },
+            {
+                "name": "导航",
+                "description": "查询地点的方向",
+                "examples": "如何步行到天安门广场？"
+            },
+            {
+                "name": "查询评级",
+                "description": "查询地点评价分数",
+                "examples": "请问这家餐厅的评分是多少？"
+            },
+            {
+                "name": "查询公交",
+                "description": "查询公交时刻",
+                "examples": "请问下次公交什么时候到达？"
+            },
+            {
+                "name": "查询出行时间",
+                "description": "询问到指定地点的出行时间",
+                "examples": "请问还有多久到达中关村？"
+            },
+            {
+                "name": "打电话",
+                "description": "打电话",
+                "examples": "请给安娜打一个电话"
+            },
+            {
+                "name": "预定位置",
+                "description": "预定位置",
+                "examples": "预定这家餐厅明晚的桌位"
+            },
+            {
+                "name": "查询评分",
+                "description": "查询某一地点的评分",
+                "examples": "请问这家餐厅的推荐评分是多少？"
+            },
+            {
+                "name": "朗读",
+                "description": "朗读地点列表",
+                "examples": "请为我朗读餐厅信息"
+            },
+            {
+                "name": "选择项目",
+                "description": "选择地点相关选项",
+                "examples": "选择第一项"
+            },
+            {
+                "name": "显示地图",
+                "description": "显示区域地图",
+                "examples": "显示北京地图"
+            },
+            {
+                "name": "显示下一项",
+                "description": "显示下一个选项",
+                "examples": "显示下一页"
+            },
+            {
+                "name": "重新开始",
+                "description": "重新启动应用",
+                "examples": "重启"
+            },
+            {
+                "name": "预定餐厅查询",
+                "description": "询问餐厅预定情况",
+                "examples": "这家餐厅是否能够预定？"
+            },
+            {
+                "name": "查询导航路线",
+                "description": "查询导航路线",
+                "examples": "告诉我怎么样去北京;如何去西雅图？"
+            },
+            {
+                "name": "获得价格范围",
+                "description": "获得价格范围",
+                "examples": "必胜客很便宜吗？;今天全聚德有折扣吗？"
+            }
+        ],
+        "entities": [
+            {
+                "name": "具体地址",
+                "description": "地址信息",
+                "examples": "丹棱街5号"
+            },
+            {
+                "name": "目的地地址",
+                "description": "目的地地址",
+                "examples": "善缘街"
+            },
+            {
+                "name": "目的地名称",
+                "description": "目的地名称",
+                "examples": "中关村地铁站"
+            },
+            {
+                "name": "目的地类别",
+                "description": "目的地类别 ",
+                "examples": "咖啡厅;电影院"
+            },
+            {
+                "name": "餐点类别",
+                "description": "餐点类别，如早餐、晚餐",
+                "examples": "早餐;晚餐"
+            },
+            {
+                "name": "营业状态",
+                "description": "地点的运营状态",
+                "examples": "开门;关闭"
+            },
+            {
+                "name": "地点名称",
+                "description": "地点名称",
+                "examples": "必胜客;"
+            },
+            {
+                "name": "地点类别",
+                "description": "地点类别",
+                "examples": "咖啡厅;电影院"
+            },
+            {
+                "name": "交通类别",
+                "description": "交通类别",
+                "examples": "公交;火车"
+            },
+            {
+                "name": "地点设施",
+                "description": "地点的设施",
+                "examples": "儿童座椅;停车位"
+            },
+            {
+                "name": "地点环境",
+                "description": "地点的环境.",
+                "examples": "运动型场地;"
+            },
+            {
+                "name": "地点美食",
+                "description": "地点的美食",
+                "examples": "意大利菜;火锅"
+            },
+            {
+                "name": "地点距离",
+                "description": "地点的距离",
+                "examples": "15公里;200米"
+            },
+            {
+                "name": "推荐线路",
+                "description": "推荐线路",
+                "examples": "三环"
+            },
+            {
+                "name": "地点产品",
+                "description": "地点提供的产品信息",
+                "examples": "新鲜鱼类"
+            },
+            {
+                "name": "公共交通路线",
+                "description": "公共交通线路",
+                "examples": "公交300"
+            },
+            {
+                "name": "地点评级",
+                "description": "地点评级",
+                "examples": "3颗星"
+            },
+            {
+                "name": "服务提供",
+                "description": "地点所提供的服务",
+                "examples": "理发;美容"
+            }
+        ]
+    },
+    {
+        "name": "提醒",
+        "culture": "zh-cn",
+        "description": "提醒主题提供创建、修改和查询提醒的意图和实体",
+        "examples": "把面试时间改成明早九点;提醒我回家时购买牛奶;检查下我是否有关于李斯生日的提醒",
+        "intents": [
+            {
+                "name": "更改提醒",
+                "description": "更改提醒",
+                "examples": "更改我的面试到明早九点;移动这个提示到已完成"
+            },
+            {
+                "name": "创建提醒",
+                "description": "创建提醒",
+                "examples": "创建一个提醒;提醒我购买牛奶;提醒我回家的时候给艾莉打电话"
+            },
+            {
+                "name": "删除提醒",
+                "description": "删除提醒",
+                "examples": "删除我的图片提醒;删除这个提醒"
+            },
+            {
+                "name": "查询提醒",
+                "description": "查询提醒",
+                "examples": "我有关于周年庆的提醒吗？;能够帮我查询关于克里斯生日的提醒吗？"
+            }
+        ],
+        "entities": [
+            {
+                "name": "提醒文本",
+                "description": "提醒描述文本",
+                "examples": "将干洗店的衣服拿回来"
+            }
+        ]
+    },
+    {
+        "name": "餐厅",
+        "culture": "zh-cn",
+        "description": "餐厅主题提供管理餐厅预定的意图和实体",
+        "examples": "今晚保留卓卡餐厅的两人位置;预定一个明天北京餐厅的位置;预定保罗餐厅晚上七点的三人桌位",
+        "intents": [
+            {
+                "name": "预定位置",
+                "description": "预定位置",
+                "examples": "预定这个餐厅明晚的位置;预定明天11点20人的餐位"
+            }
+        ],
+        "entities": [
+            {
+                "name": "具体地址",
+                "description": "餐厅地址",
+                "examples": "丹棱街五号;北京西"
+            },
+            {
+                "name": "地点设施",
+                "description": "餐厅场所的设施",
+                "examples": "海景;无烟区"
+            },
+            {
+                "name": "地点环境",
+                "description": "餐厅环境信息",
+                "examples": "浪漫的;适合团队聚餐"
+            },
+            {
+                "name": "地点美食",
+                "description": "餐厅美食种类",
+                "examples": "川菜;西餐;意大利餐"
+            },
+            {
+                "name": "餐点类别",
+                "description": "餐品类别如早餐",
+                "examples": "早餐;晚餐;"
+            },
+            {
+                "name": "地点名称",
+                "description": "地点名称",
+                "examples": "必胜客;东来顺"
+            },
+            {
+                "name": "地点类别",
+                "description": "地点类别",
+                "examples": "餐厅;饭店;歌剧院"
+            },
+            {
+                "name": "地点评级",
+                "description": "餐厅的评级",
+                "examples": "5颗星"
+            }
+        ]
+    },
+    {
+        "name": "出租车",
+        "culture": "zh-cn",
+        "description": "出租车主题提供创建和管理预定出租车服务的意图和实体",
+        "examples": "帮我预定下午三点的出租车;我还要等待出租车多久？;取消优步预定",
+        "intents": [
+            {
+                "name": "预定",
+                "description": "预定出租车",
+                "examples": "寻找一辆出租车;"
+            },
+            {
+                "name": "取消",
+                "description": "取消预订的出租车",
+                "examples": "取消我的出租车"
+            },
+            {
+                "name": "查询",
+                "description": "查询出租车路线",
+                "examples": "出租车距离我还有多远;我的出租车在哪？"
+            }
+        ],
+        "entities": [
+            {
+                "name": "具体地址",
+                "description": "目标地址",
+                "examples": "丹棱街5号"
+            },
+            {
+                "name": "目的地名称",
+                "description": "目的地名称",
+                "examples": "微软大厦;家乐福超市"
+            },
+            {
+                "name": "地点名称",
+                "description": "地点名称",
+                "examples": "中央公园"
+            },
+            {
+                "name": "地点类别",
+                "description": "地点类别",
+                "examples": "餐厅;剧院"
+            },
+            {
+                "name": "交通公司",
+                "description": "交通公司",
+                "examples": "北京地铁"
+            },
+            {
+                "name": "交通类别",
+                "description": "交通类别",
+                "examples": "公交;火车"
+            }
+        ]
+    },
+    {
+        "name": "翻译",
+        "culture": "zh-cn",
+        "description": "翻译主题提供翻译语言相关的意图和实体",
+        "examples": "翻译成法语;把你好翻译成德语;翻译这句话为英语",
+        "intents": [
+            {
+                "name": "翻译",
+                "description": "翻译到另一种语言",
+                "examples": "翻译成法语;翻译成德语"
+            }
+        ],
+        "entities": [
+            {
+                "name": "目标语言",
+                "description": "目标语言",
+                "examples": "法语;德语;韩语"
+            },
+            {
+                "name": "文本",
+                "description": "翻译文本",
+                "examples": "你好;早上好"
+            }
+        ]
+    },
+    {
+        "name": "天气",
+        "culture": "zh-cn",
+        "description": "天气主题提供获取天气报告和预测信息",
+        "examples": "九月份伦敦的天气怎么样？;告诉我这十天的天气预测信息;印度九月份的平均温度是多少？",
+        "intents": [
+            {
+                "name": "查询天气",
+                "description": "查询历史天气",
+                "examples": "九月份北京天气如何？"
+            },
+            {
+                "name": "天气预测",
+                "description": "获得未来天气预测",
+                "examples": "周末的天气怎么样？;今天的天气如何？"
+            }
+        ],
+        "entities": [
+            {
+                "name": "地点",
+                "description": "天气涉及的地点信息",
+                "examples": "北京;上海"
+            }
+        ]
+    },
+    {
+        "name": "网页导航",
+        "culture": "zh-cn",
+        "description": "网页导航主题提供与网页导航相关的意图和实体",
+        "examples": "导航到必应搜索;查看新浪微博;导航到www.bing.com",
+        "intents": [
+            {
+                "name": "网页导航",
+                "description": "导航到目标网站页面",
+                "examples": "导航到必应搜索;导航到微博"
+            }
+        ],
+        "entities": []
+    }
+]
