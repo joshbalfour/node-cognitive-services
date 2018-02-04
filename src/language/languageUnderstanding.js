@@ -127,7 +127,7 @@ class languageUnderstanding extends commonService {
 
      * @returns {Promise.<object>}    
      */
-    getLUIS(info, cultureOnly, parameters){
+    getLUIS(info, cultureOnly){
 
         const validINFO=[
             this.INFO.ASSISTANTS,
@@ -145,7 +145,7 @@ class languageUnderstanding extends commonService {
             "method": "GET",
         };
 
-        // add culture for prebult domain
+        // add culture for prebuilt domain
         if (info===this.INFO.CUSTOMPREBUILTDOMAINS && cultureOnly) {
             operation.path += "/" + cultureOnly;
         }
@@ -675,8 +675,6 @@ class languageUnderstanding extends commonService {
             }).then(response => {
                 // 2xx http response 
                 let trained = client.isTrained(response);
-
-                console.log(number + " trained = " + trained);
 
                 if (count < this.retryCount && !trained) retry("not trained");
                 

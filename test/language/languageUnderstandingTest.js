@@ -27,7 +27,7 @@ not try more than retryCount times and wait retryInterval between tries.
 
 */
 
-describe.only('Language understanding (LUIS)', () => {
+describe('Language understanding (LUIS)', () => {
 
     const defaultVersionId = "0.1";
 
@@ -36,35 +36,8 @@ describe.only('Language understanding (LUIS)', () => {
         endpoint: config.languageUnderstanding.endpoint
     });
 
-    var createTrainPublishApp = () => {
-
-        let body = {
-            "domainName": "Web", 
-            "culture": "en-us"
-        };
-        var parameters = undefined;
-        return client.setLUIS(client.INFO.CUSTOMPREBUILTDOMAINS, body, parameters)
-        .then(results =>{
-            client.appId = results.substring(results.length - client.KeyLength, results.length);
-            client.versionId = defaultVersionId;
-
-            var parameters = undefined;
-            var body = undefined;
-            return client.setVersionInfo(parameters,body,client.VERSIONINFO.TRAIN);
-        }).then(results => {
-            return client.waitUntilTrained(client);
-        }).then((response) => {
-            return client.setAppInfo({
-                    "versionId": client.versionId,
-                    "isStaging": false,
-                    "region": "westus"
-                    }, client.APPINFO.PUBLISH);
-        }).catch(err => {
-            throw(err);
-        });        
-    }
     var deleteTestApp = () =>{
-        var body=undefined;
+        var body;
         return promiseDelay(client.retryInterval).then(() => {
             return client.deleteAppInfo(body,client.APPINFO.APP);
         }).then((response) => {
@@ -89,8 +62,8 @@ describe.only('Language understanding (LUIS)', () => {
             client.appId = results.substring(results.length - client.KeyLength, results.length);
             client.versionId = defaultVersionId;
 
-            var parameters = undefined;
-            var body = undefined;
+            var parameters;
+            var body;
             return client.setVersionInfo(parameters,body,client.VERSIONINFO.TRAIN);
         }).then(results => {
             return client.waitUntilTrained(client);
@@ -144,7 +117,7 @@ describe.only('Language understanding (LUIS)', () => {
 
             promiseDelay(client.retryInterval)
             .then(() => {
-                var parameters = undefined;
+                var parameters;
                 return client.setLUIS(client.INFO.CUSTOMPREBUILTDOMAINS, body, parameters);
             }).then((response) => {
                 response.should.not.be.undefined();
@@ -163,7 +136,7 @@ describe.only('Language understanding (LUIS)', () => {
         before((done) => {
             promiseDelay(client.retryInterval)
             .then(() => {
-                //return createTrainPublishApp();
+                
                 var body = require("../assets/LUIS/TravelAgent-import-app.json");
 
                 var name = "describe-" + new Date().toISOString();
@@ -211,16 +184,11 @@ describe.only('Language understanding (LUIS)', () => {
         })
         it('should get list of LUIS applications', (done) => {
 
-            let parameters = {
-                skip:0,
-                take:100
-            };
-
-            let culture = undefined;
+            let culture;
 
             promiseDelay(client.retryInterval)
             .then(() => {
-                return client.getLUIS(client.INFO.APPS, culture,parameters);
+                return client.getLUIS(client.INFO.APPS, culture);
             }).then((response) => {
                 response.should.not.be.undefined();
                 response.should.be.Array;
@@ -261,7 +229,7 @@ describe.only('Language understanding (LUIS)', () => {
                 done(err);
             });
         })
-        it('should get list of LUIS usagescenarios', (done) => {
+        it('should get list of LUIS usage scenarios', (done) => {
 
             promiseDelay(client.retryInterval)
             .then(() => {
@@ -300,7 +268,7 @@ describe.only('Language understanding (LUIS)', () => {
                 response.should.not.be.undefined();
                 response.should.be.Array;
                 response.should.have.length(client.PREBUILTDOMAINTOTALCOUNT);
-                response[0].should.have.only.keys['name','culture','description','examples','intents','entities'];
+                response[0].should.have.only.keys('name','culture','description','examples','intents','entities');
                 response[0].intents.should.be.Array;
                 response[0].entities.should.be.Array;
                 response[0].intents[0].should.have.only.keys('name','description','examples');
@@ -317,7 +285,6 @@ describe.only('Language understanding (LUIS)', () => {
                 return client.getLUIS(client.INFO.CULTURE);
             }).then(cultures => {
                 let arrPromises = [];
-                let waitForTime = client.retryInterval;
     
                 cultures.forEach(culture => {
 
@@ -887,7 +854,7 @@ describe.only('Language understanding (LUIS)', () => {
                     }
                 ]
             };
-            let parameters = undefined;
+            let parameters;
     
             promiseDelay(client.retryInterval)
             .then(() => {
