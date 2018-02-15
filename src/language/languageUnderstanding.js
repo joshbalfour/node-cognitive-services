@@ -9,25 +9,35 @@ let count = 0;
 /**
  * Language Understanding API is a cloud-based service that provides advanced natural language processing over raw text, and intent and entity detection.
  * Your LUIS domain-specific model must be in built, trained, and published before using this endpoint.
- * @augments commonService
  * {@link https://docs.microsoft.com/en-us/azure/cognitive-services/luis/home}
  */
-class languageUnderstanding extends commonService {
+class languageUnderstanding {
     /**
      * Constructor.
      * 
      * @param {Object} obj
-     * @param {string} obj.apiKey
-     * @param {string} obj.endpoint
+     * @param {string} obj.programmaticKey authoring key found in LUIS.ai user     * @param {string} obj.apiKey LUIS query endpoint key only
+     * @param {string} obj.authoringEndpoint 3 authoring endpoints
+     * @param {string} obj.endpoint 12 querying endpoints
+     * @param {string} obj.appId LUIS application Id
+     * @param {string} obj.versionId 10 alphanum char version
+account
      */
-    constructor({ apiKey, appId, versionId, endpoint }) {
-        super({ apiKey, endpoint });
-        this.KeyLength = 36;
-        this.APIVersion = "2.1.0";
-        this.versionId = versionId;
-        this.appId = appId;
-        this.serviceId = "LUIS.v2.0";
-        this.endpoints = [
+    constructor({ programmaticKey, apiKey, authoringEndpoint, endpoint, appId, versionId}) {
+
+        // endpoint query only due to regions and keys
+        this.query = new commonService({ apiKey, endpoint });
+
+        // authoring only due to regions and keys
+        this.author = new commonService({apiKey:programmaticKey, endpoint: authoringEndpoint});
+        
+        this.author.endpoints = [
+            "australiaeast.api.cognitive.microsoft.com",
+            "westus.api.cognitive.microsoft.com",
+            "westeurope.api.cognitive.microsoft.com"
+        ];
+
+        this.query.endpoints = [
             "australiaeast.api.cognitive.microsoft.com",
             "brazilsouth.api.cognitive.microsoft.com",
             "eastasia.api.cognitive.microsoft.com",
@@ -41,6 +51,15 @@ class languageUnderstanding extends commonService {
             "westcentralus.api.cognitive.microsoft.com",
             "westeurope.api.cognitive.microsoft.com",
         ];
+
+        this.KeyLength = 36;
+        this.APIVersion = "2.1.0";
+        this.serviceId = "LUIS.v2.0";
+
+        this.versionId = versionId;
+        this.appId = appId;
+
+
         this.INFO = {
             APPS:"",
             ASSISTANTS: "assistants",
@@ -178,7 +197,7 @@ class languageUnderstanding extends commonService {
 
         }
 
-        return this.makeRequest({
+        return this.author.makeRequest({
             operation: operation,
             headers: {'Content-type': 'application/json'}
         })
@@ -235,7 +254,7 @@ class languageUnderstanding extends commonService {
             default: throw Error(`error in switch - unknown info ${info}`);
         }
 
-        return this.makeRequest({
+        return this.author.makeRequest({
             operation: operation,
             headers: {'Content-type': 'application/json'},
             body: body,
@@ -291,7 +310,7 @@ class languageUnderstanding extends commonService {
 
         switch(appinfo){
             case this.APPINFO.QUERYLOGS:
-                return this.makeRequest({
+                return this.author.makeRequest({
                     operation: operation,
                     headers: {'Content-type': 'application/json'}
                 }).then(csvString => {
@@ -299,7 +318,7 @@ class languageUnderstanding extends commonService {
                 })
                 break;
             default:
-                return this.makeRequest({
+                return this.author.makeRequest({
                     operation: operation,
                     headers: {'Content-type': 'application/json'}
                 })
@@ -361,7 +380,7 @@ class languageUnderstanding extends commonService {
             default: throw Error(`error in switch - unknown appinfo ${appinfo}` );
         }
 
-        return this.makeRequest({
+        return this.author.makeRequest({
             operation: operation,
             headers: {'Content-type': 'application/json'},
             body: body
@@ -431,7 +450,7 @@ class languageUnderstanding extends commonService {
 
         }
 
-        return this.makeRequest({
+        return this.author.makeRequest({
             operation: operation,
             headers: {'Content-type': 'application/json'},
             body: body
@@ -472,7 +491,7 @@ class languageUnderstanding extends commonService {
             default: throw Error("error in switch");
         }
 
-        return this.makeRequest({
+        return this.author.makeRequest({
             operation: operation,
             headers: {'Content-type': 'application/json'},
             body: body
@@ -534,7 +553,7 @@ class languageUnderstanding extends commonService {
             default:
         };
 
-        return this.makeRequest({
+        return this.author.makeRequest({
             operation: operation,
             headers: {'Content-type': 'application/json'},
             parameters: parameters
@@ -590,7 +609,7 @@ class languageUnderstanding extends commonService {
             default: throw Error("error in switch - unexpected VERSIONINFO");
         }
 
-        return this.makeRequest({
+        return this.author.makeRequest({
             operation: operation,
             headers: {'Content-type': 'application/json'},
             body: body,
@@ -646,7 +665,7 @@ class languageUnderstanding extends commonService {
             }]
         };
 
-        return this.makeRequest({
+        return this.query.makeRequest({
             operation: operation,
             headers: {'Content-type': 'application/json'},
             body: body

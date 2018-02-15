@@ -12,6 +12,13 @@ const limit = pLimit(1);
 
 You only need to set the apiKey for these tests. 
 
+If you plan to use this code for many queries or in different regions,
+you need to make sure the apiKey is a LUIS subscription key (free or paid), and not
+the programmatic/starter key (meant for authoring only). This code defaults to 
+West US. If you change the authoring and endpoint regions for the tests, you 
+need to make sure those two regions align correctly using the table at
+https://aka.ms/luis-regions
+
 The tests create both the prebuilt domain Web and 
 imports the ../asserts/LUIS/TravelAgent-import-app.json.
 
@@ -27,13 +34,19 @@ not try more than retryCount times and wait retryInterval between tries.
 
 */
 
-describe('Language understanding (LUIS)', () => {
+describe.only('Language understanding (LUIS)', () => {
 
-    const defaultVersionId = "0.1";
+    const defaultVersionId = config.languageUnderstanding.versionId;
 
+    // set these values in ../config.js
+    // app id set during import - not here
     const client = new cognitive.languageUnderstanding({
+        programmaticKey: config.languageUnderstanding.programmaticKey,
         apiKey: config.languageUnderstanding.apiKey,
-        endpoint: config.languageUnderstanding.endpoint
+        authoringEndpoint: config.languageUnderstanding.authoringEndpoint,
+        endpoint: config.languageUnderstanding.endpoint,
+        apiId: undefined,
+        versionId: config.languageUnderstanding.versionId
     });
 
     var deleteTestApp = () =>{

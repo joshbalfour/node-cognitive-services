@@ -83,8 +83,10 @@ module.exports = {
     },
     languageUnderstanding: {
         endpoint: "westus.api.cognitive.microsoft.com",
-        apiKey: "insert-key-here",
-        appID: "insert-appID-here",
-        versionID: "0.1"
+        authoringEndpoint: "westus.api.cognitive.microsoft.com",
+        apiKey: "insert-endpoint-key-here",
+        programmaticKey: "insert-authoring-key-here",
+        appId: "insert-appID-here",
+        versionId: "0.1"
     }
 }
