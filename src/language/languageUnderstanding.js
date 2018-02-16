@@ -16,7 +16,8 @@ class languageUnderstanding {
      * Constructor.
      * 
      * @param {Object} obj
-     * @param {string} obj.programmaticKey authoring key found in LUIS.ai user     * @param {string} obj.apiKey LUIS query endpoint key only
+     * @param {string} obj.programmaticKey authoring key found in LUIS.ai user    
+     * @param {string} obj.apiKey LUIS query endpoint key only
      * @param {string} obj.authoringEndpoint 3 authoring endpoints
      * @param {string} obj.endpoint 12 querying endpoints
      * @param {string} obj.appId LUIS application Id
