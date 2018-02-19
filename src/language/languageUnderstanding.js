@@ -16,21 +16,24 @@ class languageUnderstanding {
      * Constructor.
      * 
      * @param {Object} obj
-     * @param {string} obj.programmaticKey authoring key found in LUIS.ai user    
+     * @param {string} obj.authoringKey authoring key found in LUIS.ai user    
      * @param {string} obj.apiKey LUIS query endpoint key only
      * @param {string} obj.authoringEndpoint 3 authoring endpoints
      * @param {string} obj.endpoint 12 querying endpoints
      * @param {string} obj.appId LUIS application Id
      * @param {string} obj.versionId 10 alphanum char version
+     * @param {Object} obj.options commonService.js options, ex: { headerAndBody: true, uriAndMethod: true}
 account
      */
-    constructor({ programmaticKey, apiKey, authoringEndpoint, endpoint, appId, versionId}) {
+    constructor({ authoringKey, apiKey, authoringEndpoint, endpoint, appId, versionId, options}) {
 
         // endpoint query only due to regions and keys
-        this.query = new commonService({ apiKey, endpoint });
+        this.query = new commonService({ apiKey, endpoint, options });
+        this.query.debugOptions = options;
 
         // authoring only due to regions and keys
-        this.author = new commonService({apiKey:programmaticKey, endpoint: authoringEndpoint});
+        this.author = new commonService({apiKey:authoringKey, endpoint: authoringEndpoint, options: options});
+        this.author.debugOptions = options;
         
         this.author.endpoints = [
             "australiaeast.api.cognitive.microsoft.com",
@@ -63,7 +66,7 @@ account
 
         this.INFO = {
             APPS:"",
-            ASSISTANTS: "assistants",
+            //ASSISTANTS: "assistants", DEPRECATED 2/18/18
             DOMAINS: "domains",
             IMPORT: "import",
             USAGESCENARIOS: "usagescenarios",
@@ -83,7 +86,8 @@ account
         this.VERSIONINFO = {
             //DEPRECATED - ASSIGNEDKEY:"assignedkey",
             CLONE: "clone",
-            CLOSEDLISTS: "closedlists",
+            CLOSEDLISTS: "closedlists", 
+            CLOSEDLISTSPATCH: "closedlists",
             COMPOSITEENTITIES: "compositeentities",
             VERSION: "",
             //LISTS: "closedlists",
@@ -551,6 +555,10 @@ account
             case this.VERSIONINFO.TRAINSTATUS:
                 // no parameters
                 break;
+            case this.VERSIONINFO.CLOSEDLISTS:
+                operation.path += `/${parameters.clEntityId}`;
+                parameters = {};
+                break;
             default:
         };
 
@@ -579,7 +587,7 @@ account
 
         const operation = {
             "path": "luis/api/v2.0/apps/" + this.appId + "/versions/" + this.versionId + "/" + versioninfo,
-            "method": "POST",
+            "method": "POST"
         };
 
         switch(versioninfo){
@@ -617,6 +625,41 @@ account
             parameters: parameters
         })
     }
+    /**
+     * Update version info (PUT)
+     * 
+     * @returns {Promise.<object>}    
+     */
+    updateVersionInfo(versioninfo, parameters, body){
+
+        const validVERSIONINFO=[
+            this.VERSIONINFO.CLOSEDLISTSPATCH
+        ];
+
+        if(!_.contains(validVERSIONINFO,versioninfo))throw Error("invalid info param '" + versioninfo + "'");
+
+        const operation = {
+            "path": "luis/api/v2.0/apps/" + this.appId + "/versions/" + this.versionId + "/" + versioninfo,
+            "method": "PUT",
+        };
+
+        switch(versioninfo){
+            case this.VERSIONINFO.CLOSEDLISTSPATCH:
+                operation.method = "PATCH";
+                operation.path += `/${parameters.clEntityId}`
+                break;
+            default: throw Error(`error in switch - unknown versioninfo ${versioninfo}`);
+
+        }
+
+        return this.author.makeRequest({
+            operation: operation,
+            headers: {'Content-type': 'application/json'},
+            body: body
+        })
+       
+    }
+
     /**
      * Returns the detected intent, entities and entity values with a score for each intent. 
      * Scores close to 1 indicate 100% certainty that the identified intent is correct. 

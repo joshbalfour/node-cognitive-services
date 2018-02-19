@@ -6,6 +6,11 @@ class commonService {
     constructor({ apiKey, endpoint }) {
         this.apiKey = apiKey;
         this.endpoint = endpoint;
+        this.debugOptions = {};
+    }
+
+    debugOptions(vals){
+        this.debugOptions = vals;
     }
 
     getIso3CodesForLanguages() {
@@ -132,6 +137,7 @@ class commonService {
     }
 
     makeRequest(data = {}) {
+        let self = this;
         const operation = data.operation || {};
         operation.parameters = operation.parameters || [];
         const parameters = data.parameters || {};
@@ -181,6 +187,8 @@ class commonService {
                     json: true // GET: Automatically parses the JSON string in the response, POST: Automatically stringifies the body to JSON
                 };
 
+                if (this.debugOptions.uriAndMethod) console.log(`${options.uri} ${options.method}`);
+
                 if (contentTypeHeader == 'multipart/form-data' && parameters.path && parameters.path !== null) {
                     options.formData = {
                         file: fs.createReadStream(parameters.path)
@@ -203,7 +211,15 @@ class commonService {
                             }
                         }
                         if (res.headers['operation-location']) {
-                            return res.headers['operation-location'];
+                            if (self.debugOptions.headerAndBody){
+                                return {
+                                    "operation-location":res.headers['operation-location'],
+                                    "body": body,
+                                    "statusCode":res.statusCode
+                                };
+                            } else {
+                                return res.headers['operation-location'];
+                            }
                         }
                         return body;
                     }

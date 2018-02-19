@@ -14,7 +14,7 @@ You only need to set the apiKey for these tests.
 
 If you plan to use this code for many queries or in different regions,
 you need to make sure the apiKey is a LUIS subscription key (free or paid), and not
-the programmatic/starter key (meant for authoring only). This code defaults to 
+the authoring key (meant for authoring only). This code defaults to 
 West US. If you change the authoring and endpoint regions for the tests, you 
 need to make sure those two regions align correctly using the table at
 https://aka.ms/luis-regions
@@ -27,26 +27,22 @@ because it has more of the custom entities. TBD: add phrase
 list feature to TravelAgent-import-app.json that makes
 sense for the domain. 
 
-Each time the app is created, its apiKey is displayed along
-with the count of training status calls. Usually, it takes more 
-than 1 call to return successfully trained status. This test will 
-not try more than retryCount times and wait retryInterval between tries. 
-
 */
 
-describe.only('Language understanding (LUIS)', () => {
+describe('Language understanding (LUIS)', () => {
 
     const defaultVersionId = config.languageUnderstanding.versionId;
 
     // set these values in ../config.js
     // app id set during import - not here
     const client = new cognitive.languageUnderstanding({
-        programmaticKey: config.languageUnderstanding.programmaticKey,
+        authoringKey: config.languageUnderstanding.authoringKey,
         apiKey: config.languageUnderstanding.apiKey,
         authoringEndpoint: config.languageUnderstanding.authoringEndpoint,
         endpoint: config.languageUnderstanding.endpoint,
         apiId: undefined,
-        versionId: config.languageUnderstanding.versionId
+        versionId: config.languageUnderstanding.versionId,
+        options: config.languageUnderstanding.options
     });
 
     var deleteTestApp = () =>{
@@ -72,7 +68,7 @@ describe.only('Language understanding (LUIS)', () => {
 
         return client.setLUIS(client.INFO.IMPORT, appJSON, parameters)
         .then(results =>{
-            client.appId = results.substring(results.length - client.KeyLength, results.length);
+            client.appId = results.body.substring(results.body.length - client.KeyLength, results.body.length);
             client.versionId = defaultVersionId;
 
             var parameters;
@@ -90,11 +86,15 @@ describe.only('Language understanding (LUIS)', () => {
             throw(err);
         });        
     }
-    describe("Delete app after", () => {
+    describe("[Delete app after] ", () => {
         afterEach((done) => {
             deleteTestApp()
             .then((response) => {
                 response.should.not.be.undefined();
+                response.should.be.Array;
+                response.should.have.only.keys('code', 'message');
+                response.code.should.equal("Success");
+                response.message.should.equal("Operation Successful");
                 done();
             }).catch((err) => {
                 done(err);
@@ -112,10 +112,15 @@ describe.only('Language understanding (LUIS)', () => {
             .then(() => {
                 return client.setLUIS(client.INFO.IMPORT,body, parameters);
             }).then((response) => {
-                response.should.not.be.undefined();
-                response.should.be.String().and.have.length(98);
 
-                client.appId = response.substring(response.length - client.KeyLength, response.length);
+                response.should.not.be.undefined();
+                response['operation-location'].should.not.be.undefined();
+                response['operation-location'].should.containEql(config.languageUnderstanding.authoringEndpoint);
+                response.body.should.not.be.undefined();
+                response.body.should.have.length(client.KeyLength);
+                response.statusCode.should.equal(201);
+
+                client.appId = response.body.substring(response.body.length - client.KeyLength, response.body.length);
                 done();
             }).catch((err) => {
                 done(err);
@@ -125,7 +130,8 @@ describe.only('Language understanding (LUIS)', () => {
 
             let body = {
                 "domainName": "Web", 
-                "culture": "en-us"
+                "culture": "en-us",
+                "appName": "describe-" + new Date().toISOString()
             }
 
             promiseDelay(client.retryInterval)
@@ -134,10 +140,13 @@ describe.only('Language understanding (LUIS)', () => {
                 return client.setLUIS(client.INFO.CUSTOMPREBUILTDOMAINS, body, parameters);
             }).then((response) => {
                 response.should.not.be.undefined();
-                response.should.be.String().and.have.length(120);
+                response['operation-location'].should.not.be.undefined();
+                response['operation-location'].should.containEql(config.languageUnderstanding.authoringEndpoint);
+                response.body.should.not.be.undefined();
+                response.body.should.have.length(client.KeyLength);
+                response.statusCode.should.equal(201);
 
-                // get appId to delete in After()
-                client.appId = response.substring(response.length - client.KeyLength, response.length);
+                client.appId = response.body.substring(response.body.length - client.KeyLength, response.body.length);
                 done();
             }).catch((err) => {
                 done(err);
@@ -145,7 +154,7 @@ describe.only('Language understanding (LUIS)', () => {
         })
 
     })      
-    describe("Create app before, delete app after", () => {
+    describe("[Create app before, delete app after ", () => {
         before((done) => {
             promiseDelay(client.retryInterval)
             .then(() => {
@@ -156,6 +165,27 @@ describe.only('Language understanding (LUIS)', () => {
 
                 return importTrainPublishApp(name,body)
             }).then(results => {
+                results.should.not.be.undefined();
+                results.should.have.only.keys(
+                    'assignedEndpointKey', 
+                    'endpointRegion',
+                    'endpointUrl',
+                    'isStaging',
+                    'publishedDateTime',
+                    'region',
+                    'versionId'
+                );
+
+                (results.assignedEndpointKey === null).should.be.true;
+                results.endpointRegion.should.equal('westus');
+                results.endpointUrl.should.containEql ("https://westus.api.cognitive.microsoft.com/luis/v2.0/apps/");
+                results.endpointUrl.length.should.equal("https://westus.api.cognitive.microsoft.com/luis/v2.0/apps/74954c4e-1999-4d90-af74-f295b5830d3a".length);
+                results.isStaging.should.equal(false);
+                //results.publishedDateTime //"2018-02-19T14:27:07Z"
+                results.publishedDateTime.length.should.equal("2018-02-19T14:27:07Z".length);
+                results.region.should.equal('westus');
+                results.versionId.should.equal('0.1');
+
                 done();
             }).catch(err => {
                 done(err);
@@ -167,6 +197,10 @@ describe.only('Language understanding (LUIS)', () => {
                 return deleteTestApp();
             }).then((response) => {
                 response.should.not.be.undefined();
+                response.should.be.Array;
+                response.should.have.only.keys('code', 'message');
+                response.code.should.equal("Success");
+                response.message.should.equal("Operation Successful");
                 done();
             }).catch((err) => {
                 done(err);
@@ -214,7 +248,8 @@ describe.only('Language understanding (LUIS)', () => {
                 done(err);
             });
         })
-        it('should get list of LUIS assistants', (done) => {
+        //DEPRECATED
+        xit('should get list of LUIS assistants', (done) => {
 
             promiseDelay(client.retryInterval)
             .then(() => {
@@ -681,8 +716,9 @@ describe.only('Language understanding (LUIS)', () => {
                     _.keys(response[0]).should.have.length(12);
                     response[0].should.have.only.keys('version', 'createdDateTime',"lastModifiedDateTime","lastTrainedDateTime","lastPublishedDateTime","endpointUrl","assignedEndpointKey","externalApiKeys","intentsCount","entitiesCount","endpointHitsCount","trainingStatus");
 
-                    _.keys(response[0].assignedEndpointKey).should.have.length(3);
-                    if(response[0].assignedEndpointKey) response[0].assignedEndpointKey.should.have.only.keys("SubscriptionKey","SubscriptionName","SubscriptionRegion");
+                    // empty as of 2/18/18
+                    //_.keys(response[0].assignedEndpointKey).should.have.length(3);
+                    //if(response[0].assignedEndpointKey) response[0].assignedEndpointKey.should.have.only.keys("SubscriptionKey","SubscriptionName","SubscriptionRegion");
 
                 }
                 done();
@@ -733,8 +769,9 @@ describe.only('Language understanding (LUIS)', () => {
                     "entitiesCount",
                     "endpointHitsCount","trainingStatus");
 
-                _.keys(response.assignedEndpointKey).should.have.length(3);
-                response.assignedEndpointKey.should.have.only.keys("SubscriptionKey","SubscriptionName","SubscriptionRegion");
+                // empty as of 2/18/18
+                //_.keys(response.assignedEndpointKey).should.have.length(3);
+                //response.assignedEndpointKey.should.have.only.keys("SubscriptionKey","SubscriptionName","SubscriptionRegion");
                 done();
             }).catch((err) => {
                 done(err);
@@ -848,10 +885,12 @@ describe.only('Language understanding (LUIS)', () => {
         });
 
         it(' should post VERSION closedlists', function(done) {
-            
+
+            // docs use both capital L and lowercase l for sublists
+            // doesn't seem to matter - both work
             let body = {
                 "name": "States",
-                "sublists": 
+                "subLists": 
                 [
                     {
                         "canonicalForm": "New York",
@@ -868,17 +907,56 @@ describe.only('Language understanding (LUIS)', () => {
                 ]
             };
             let parameters;
-    
+
             promiseDelay(client.retryInterval)
             .then(() => {
                 return client.setVersionInfo(parameters, body, client.VERSIONINFO.CLOSEDLISTS);
             }).then((response) => {
-                response.should.not.be.undefined();
 
-                //TBD: not sure how I want to test the response
-                //since the url is getting stuck on the front of it by
-                //commonService.js usage of "operation-location"
-                
+                response.should.not.be.undefined();
+                response['operation-location'].should.not.be.undefined();
+                response['operation-location'].should.containEql(config.languageUnderstanding.authoringEndpoint);
+                response.body.should.not.be.undefined();
+                response.body.should.have.length(client.KeyLength);
+                response.statusCode.should.equal(201);
+
+                var getParams = {
+                    clEntityId:response.body
+                };
+
+                return client.getVersionInfo(client.VERSIONINFO.CLOSEDLISTS,getParams);
+            }).then(response2 => {
+                response2.should.not.be.undefined();
+
+                response2.should.have.only.keys('id', 'name','typeId','readableType','subLists');
+                response2.subLists.should.be.Array;
+                response2.subLists[0].should.have.only.keys('id', 'canonicalForm','list');
+                response2.subLists[0].list.should.be.Array;
+                response2.subLists[0].list[0].length.should.be.equalOneOf([2,4]);
+
+                let patchParams = {
+                    clEntityId: response2.id
+                };
+
+                patchBody = {
+                    "subLists":
+                    [
+                        {
+                            "canonicalForm": "Ohio",
+                            "list": [ "Ohio", "OH" ]
+                        }
+                    ]
+                };
+
+                //patch
+                return client.updateVersionInfo(client.VERSIONINFO.CLOSEDLISTSPATCH, patchParams, patchBody);
+            }).then(response3 => {
+
+                response3.should.not.be.undefined();
+                response3.should.have.only.keys('code', 'message');
+                response3.code.should.equal("Success");
+                response3.message.should.equal("Operation Successful");
+
                 done();
             }).catch((err) => {
                 done(err);

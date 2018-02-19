@@ -85,8 +85,12 @@ module.exports = {
         endpoint: "westus.api.cognitive.microsoft.com",
         authoringEndpoint: "westus.api.cognitive.microsoft.com",
         apiKey: "insert-endpoint-key-here",
-        programmaticKey: "insert-authoring-key-here",
+        authoringKey: "insert-authoring-key-here",
         appId: "insert-appID-here",
-        versionId: "0.1"
+        versionId: "0.1",
+        options: {
+            headerAndBody: true,
+            uriAndMethod: true
+        }
     }
 }
