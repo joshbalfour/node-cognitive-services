@@ -778,6 +778,27 @@ describe('Language understanding (LUIS)', () => {
             });
         })
 
+        it('should rename app VERSION ', (done) => {
+
+            var acton = client.VERSIONINFO.VERSION;
+            var params = {};
+            var body = {
+                "version": "1.x"
+            };
+
+            promiseDelay(client.retryInterval)
+            .then(() => {
+                return client.updateVersionInfo(client.VERSIONINFO.VERSION, params, body);
+            }).then((response) => {
+
+                (response === undefined).should.be.true;
+
+                done();
+            }).catch((err) => {
+                done(err);
+            });
+        })
+
         it(' should get VERSION features', function(done) {
             
             let parameters = {

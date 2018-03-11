@@ -633,7 +633,8 @@ account
     updateVersionInfo(versioninfo, parameters, body){
 
         const validVERSIONINFO=[
-            this.VERSIONINFO.CLOSEDLISTSPATCH
+            this.VERSIONINFO.CLOSEDLISTSPATCH,
+            this.VERSIONINFO.VERSION
         ];
 
         if(!_.contains(validVERSIONINFO,versioninfo))throw Error("invalid info param '" + versioninfo + "'");
@@ -644,6 +645,9 @@ account
         };
 
         switch(versioninfo){
+            case this.VERSIONINFO.VERSION:
+                operation.path = "luis/api/v2.0/apps/" + this.appId + "/versions/" + this.versionId + "/";
+                break;
             case this.VERSIONINFO.CLOSEDLISTSPATCH:
                 operation.method = "PATCH";
                 operation.path += `/${parameters.clEntityId}`
