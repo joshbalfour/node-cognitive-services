@@ -798,6 +798,32 @@ describe('Language understanding (LUIS)', () => {
                 done(err);
             });
         })
+        it('should delete VERSION ', (done) => {
+
+            var clonedName = {"version":"0.2"};
+            var clonedParams = {appId:client.appId,versionId:client.versionId};
+
+            promiseDelay(client.retryInterval)
+            .then(() => {
+                // clone version
+                return client.setVersionInfo(clonedParams, clonedName, client.VERSIONINFO.CLONE);
+            }).then(() => {
+                return promiseDelay(client.retryInterval);
+            }).then(() => {
+                // delete version
+                client.versionId = clonedName.version;
+                let params={};
+                let body={};
+                return client.deleteVersionInfo(client.VERSIONINFO.VERSION, params, body);
+            }).then((response) => {
+
+                (response === undefined).should.be.true;
+
+                done();
+            }).catch((err) => {
+                done(err);
+            });
+        })
 
         it(' should get VERSION features', function(done) {
             

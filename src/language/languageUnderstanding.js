@@ -663,7 +663,36 @@ account
         })
        
     }
+    /**
+     * Delete version info 
+     * Returns no data
+     * @returns {Promise.<object>}    
+     */
+    deleteVersionInfo(versioninfo, params, body){
 
+        const validINFO=[this.VERSIONINFO.VERSION];
+
+        if(!_.contains(validINFO,versioninfo))throw Error("invalid info param '" + versioninfo + "'");
+
+        const operation = {
+            "path": "luis/api/v2.0/apps/" + this.appId + "/versions/" + this.versionId + "/" + versioninfo,
+            "method": "DELETE",
+        };
+/*
+        switch(versioninfo){
+            case this.VERSION:
+                // no params
+                break;
+            default: throw Error("error in switch");
+        }
+*/
+        return this.author.makeRequest({
+            operation: operation,
+            headers: {'Content-type': 'application/json'},
+            body: body
+        })
+       
+    }
     /**
      * Returns the detected intent, entities and entity values with a score for each intent. 
      * Scores close to 1 indicate 100% certainty that the identified intent is correct. 
