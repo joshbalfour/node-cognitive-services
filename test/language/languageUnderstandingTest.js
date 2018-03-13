@@ -29,7 +29,7 @@ sense for the domain.
 
 */
 
-describe('Language understanding (LUIS)', () => {
+describe.only('Language understanding (LUIS)', () => {
 
     const defaultVersionId = config.languageUnderstanding.versionId;
 
@@ -790,9 +790,17 @@ describe('Language understanding (LUIS)', () => {
             .then(() => {
                 return client.updateVersionInfo(client.VERSIONINFO.VERSION, params, body);
             }).then((response) => {
-
+                client.versionId = body.version;
                 (response === undefined).should.be.true;
-
+                return promiseDelay(client.retryInterval);
+            }).then((response) => {
+                // name it back to 0.1 because the rest of the tests expect that name
+                body = {
+                    "version": "0.1"
+                };
+                return client.updateVersionInfo(client.VERSIONINFO.VERSION, params, body);
+            }).then((response) => {
+                client.versionId = "0.1";
                 done();
             }).catch((err) => {
                 done(err);
@@ -800,7 +808,7 @@ describe('Language understanding (LUIS)', () => {
         })
         it('should delete VERSION ', (done) => {
 
-            var clonedName = {"version":"0.2"};
+            var clonedName = {"version":"0.3"};
             var clonedParams = {appId:client.appId,versionId:client.versionId};
 
             promiseDelay(client.retryInterval)
@@ -816,9 +824,8 @@ describe('Language understanding (LUIS)', () => {
                 let body={};
                 return client.deleteVersionInfo(client.VERSIONINFO.VERSION, params, body);
             }).then((response) => {
-
+                client.versionId = "0.1";
                 (response === undefined).should.be.true;
-
                 done();
             }).catch((err) => {
                 done(err);
@@ -931,7 +938,9 @@ describe('Language understanding (LUIS)', () => {
             });
         });
 
-        it(' should post VERSION closedlists', function(done) {
+        it(' should create VERSION closedlists', function(done) {
+
+            let closedListid;
 
             // docs use both capital L and lowercase l for sublists
             // doesn't seem to matter - both work
@@ -981,6 +990,8 @@ describe('Language understanding (LUIS)', () => {
                 response2.subLists[0].list.should.be.Array;
                 response2.subLists[0].list[0].length.should.be.equalOneOf([2,4]);
 
+                closedListid=response2.id;
+
                 let patchParams = {
                     clEntityId: response2.id
                 };
@@ -997,12 +1008,61 @@ describe('Language understanding (LUIS)', () => {
 
                 //patch
                 return client.updateVersionInfo(client.VERSIONINFO.CLOSEDLISTSPATCH, patchParams, patchBody);
-            }).then(response3 => {
+            }).then(response2a => {
 
+                response2a.should.not.be.undefined();
+                response2a.should.have.only.keys('code', 'message');
+                response2a.code.should.equal("Success");
+                response2a.message.should.equal("Operation Successful");
+
+                // put - replace entire model
+
+                let putParams = {
+                    clEntityId: closedListid
+                };
+
+                let replaceBody = {
+                    "name": "Days",
+                    "subLists": 
+                    [
+                        {
+                            "canonicalForm": "Monday",
+                            "list": [ "1", "M","Mon" ]
+                        },
+                        {
+                            "canonicalForm": "Tuesday",
+                            "list": [ "1", "T","Tu" ]
+                        },
+                        {
+                            "canonicalForm": "Wednesday",
+                            "list": [ "3", "W","We" ]
+                        },
+                        {
+                            "canonicalForm": "Thursday",
+                            "list": [ "4", "T","Th" ]
+                        },
+                    ]
+                };
+
+                //put
+                return client.replaceVersionInfo(client.VERSIONINFO.CLOSEDLISTS, putParams, replaceBody);
+            }).then(response3 => {
                 response3.should.not.be.undefined();
                 response3.should.have.only.keys('code', 'message');
                 response3.code.should.equal("Success");
                 response3.message.should.equal("Operation Successful");
+
+                let params={clEntityId:closedListid};
+                let body=undefined;
+
+                // delete closed list entity
+                return client.deleteVersionInfo(client.VERSIONINFO.CLOSEDLISTS, params, body);
+            }).then(response4 => {
+
+                response4.should.not.be.undefined();
+                response4.should.have.only.keys('code', 'message');
+                response4.code.should.equal("Success");
+                response4.message.should.equal("Operation Successful");
 
                 done();
             }).catch((err) => {
@@ -1011,4 +1071,5 @@ describe('Language understanding (LUIS)', () => {
         });
     });
 
-}) 
+});
+ 
