@@ -1011,9 +1011,8 @@ describe.only('Language understanding (LUIS)', () => {
             }).then(response2a => {
 
                 response2a.should.not.be.undefined();
-                response2a.should.have.only.keys('code', 'message');
-                response2a.code.should.equal("Success");
-                response2a.message.should.equal("Operation Successful");
+                response2a.should.have.only.keys('id', 'name','typeId', 'readableType','subLists');
+                response2a.name.should.eql("States");
 
                 // put - replace entire model
 
@@ -1052,17 +1051,28 @@ describe.only('Language understanding (LUIS)', () => {
                 response3.code.should.equal("Success");
                 response3.message.should.equal("Operation Successful");
 
+                //get list of closed lists
+                let getParams=undefined;
+                return client.getVersionInfo(client.VERSIONINFO.CLOSEDLISTS,getParams);
+            }).then(response4 => {
+                // check success
+                response4.should.not.be.undefined();
+                response4.should.be.Array;
+                response4.length.should.eql(2);
+                response4[0].should.have.only.keys('id', 'name','typeId', 'readableType','subLists');
+                response4[0].name.should.eql("Coastal Cities");
+
                 let params={clEntityId:closedListid};
                 let body=undefined;
 
                 // delete closed list entity
                 return client.deleteVersionInfo(client.VERSIONINFO.CLOSEDLISTS, params, body);
-            }).then(response4 => {
+            }).then(response5 => {
 
-                response4.should.not.be.undefined();
-                response4.should.have.only.keys('code', 'message');
-                response4.code.should.equal("Success");
-                response4.message.should.equal("Operation Successful");
+                response5.should.not.be.undefined();
+                response5.should.have.only.keys('code', 'message');
+                response5.code.should.equal("Success");
+                response5.message.should.equal("Operation Successful");
 
                 done();
             }).catch((err) => {

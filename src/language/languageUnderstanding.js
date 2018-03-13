@@ -520,7 +520,8 @@ account
             this.VERSIONINFO.FEATURES,
             this.VERSIONINFO.HIERARCHICALENTITIES,
             this.VERSIONINFO.LISTPREBUILTS,
-            this.VERSIONINFO.MODELS
+            this.VERSIONINFO.MODELS,
+            this.VERSIONINFO.COMPOSITEENTITIES
         ];
 
         if(!_.contains(validVERSIONINFO,versioninfo))throw Error("invalid info param '" + versioninfo + "'");
@@ -536,7 +537,8 @@ account
             case this.VERSIONINFO.ENTITIES:
             case this.VERSIONINFO.EXAMPLES: 
             case this.VERSIONINFO.LISTPREBUILTS:
-            case this.VERSIONINFO.HIERARCHICALENTITIES:   
+            case this.VERSIONINFO.HIERARCHICALENTITIES:  
+            case this.VERSIONINFO.COMPOSITEENTITIES: 
             case this.VERSIONINFO.MODELS:
                 operation.parameters = [{
                     "name": "skip",
@@ -556,7 +558,9 @@ account
                 // no parameters
                 break;
             case this.VERSIONINFO.CLOSEDLISTS:
-                operation.path += `/${parameters.clEntityId}`;
+                // without params, get all closed lists
+                // with params, get single closed list
+                if (parameters && parameters.clEntityId) operation.path += `/${parameters.clEntityId}`;
                 parameters = {};
                 break;
             default:
@@ -580,7 +584,8 @@ account
         const validVERSIONINFO=[
             this.VERSIONINFO.CLONE,
             this.VERSIONINFO.TRAIN,
-            this.VERSIONINFO.CLOSEDLISTS
+            this.VERSIONINFO.CLOSEDLISTS,
+            this.VERSIONINFO.COMPOSITEENTITIES,
         ];
 
         if(!_.contains(validVERSIONINFO,versioninfo))throw Error("invalid version info param '" + versioninfo + "'");
@@ -592,6 +597,7 @@ account
 
         switch(versioninfo){
             case this.VERSIONINFO.CLONE: 
+            case this.VERSIONINFO.COMPOSITEENTITIES:
             case this.VERSIONINFO.CLOSEDLISTS:
                 operation.parameters =  [{
                     "name": "appId",
@@ -649,7 +655,6 @@ account
                 operation.path = "luis/api/v2.0/apps/" + this.appId + "/versions/" + this.versionId + "/";
                 break;
             case this.VERSIONINFO.CLOSEDLISTSPATCH:
-                operation.method = "PATCH";
                 operation.path += `/${parameters.clEntityId}`
                 break;
             default: throw Error(`error in switch - unknown versioninfo ${versioninfo}`);
