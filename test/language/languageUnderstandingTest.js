@@ -980,6 +980,7 @@ describe.only('Language understanding (LUIS)', () => {
                     clEntityId:response.body
                 };
 
+                // get 1
                 return client.getVersionInfo(client.VERSIONINFO.CLOSEDLISTS,getParams);
             }).then(response2 => {
                 response2.should.not.be.undefined();
@@ -1067,6 +1068,175 @@ describe.only('Language understanding (LUIS)', () => {
 
                 // delete closed list entity
                 return client.deleteVersionInfo(client.VERSIONINFO.CLOSEDLISTS, params, body);
+            }).then(response5 => {
+
+                response5.should.not.be.undefined();
+                response5.should.have.only.keys('code', 'message');
+                response5.code.should.equal("Success");
+                response5.message.should.equal("Operation Successful");
+
+                done();
+            }).catch((err) => {
+                done(err);
+            });
+        });
+
+        it(' should create VERSION compositeentities', function(done) {
+
+            let compositeentitiesid;
+
+            let body = {
+                "name": "Reservation",
+                "children": [ "Location::LocationTo", "datetimeV2" ]
+            };
+            let parameters;
+
+            promiseDelay(client.retryInterval)
+            .then(() => {
+                return client.setVersionInfo(parameters, body, client.VERSIONINFO.COMPOSITEENTITIES);
+            }).then((response) => {
+
+                response.should.not.be.undefined();
+                response['operation-location'].should.not.be.undefined();
+                response['operation-location'].should.containEql(config.languageUnderstanding.authoringEndpoint);
+                response.body.should.have.length(client.KeyLength);
+                response.statusCode.should.equal(201);
+                
+                compositeentitiesid = response.body; 
+
+                var getParams = {
+                    cEntityId:compositeentitiesid
+                };
+
+                // get 1
+                return client.getVersionInfo(client.VERSIONINFO.COMPOSITEENTITIES,getParams);
+            }).then(response2 => {
+                response2.should.not.be.undefined();
+                response2.should.have.only.keys('id', 'name','typeId','readableType','children');
+                response2.children.should.be.Array;
+                response2.name.should.eql(body.name);
+                response2.children[0].should.have.only.keys('id', 'name');
+                response2.children[0].name.should.eql("Location::LocationTo");
+
+                let putParams = {
+                    cEntityId: compositeentitiesid
+                };
+
+                putBody = {
+                    "name": "Reservation2",
+                    "children": [ "Location::LocationTo","number" ]
+                };
+
+                //put
+                return client.updateVersionInfo(client.VERSIONINFO.COMPOSITEENTITIES, putParams, putBody);
+            }).then(response2a => {
+
+                response2a.should.not.be.undefined();
+                response2a.should.have.only.keys('code', 'message');
+                response2a.code.should.equal("Success");
+                response2a.message.should.equal("Operation Successful");
+
+                //get list of all composite entities
+                let getParams=undefined;
+                return client.getVersionInfo(client.VERSIONINFO.COMPOSITEENTITIES,getParams);
+            }).then(response4 => {
+                // check success
+                response4.should.not.be.undefined();
+                response4.should.be.Array;
+                response4.length.should.eql(2);
+                response4[0].should.have.only.keys('id', 'name','typeId', 'readableType','children');
+                response4[0].readableType.should.eql("Composite Entity Extractor");
+                response4[0].name.should.eql("Reservation2");
+                response4[0].children.should.be.Array;
+                response4[0].children.length.should.eql(2);
+
+                let params={cEntityId:compositeentitiesid};
+                let body=undefined;
+
+                // delete composite entity
+                return client.deleteVersionInfo(client.VERSIONINFO.COMPOSITEENTITIES, params, body);
+            }).then(response5 => {
+
+                response5.should.not.be.undefined();
+                response5.should.have.only.keys('code', 'message');
+                response5.code.should.equal("Success");
+                response5.message.should.equal("Operation Successful");
+
+                done();
+            }).catch((err) => {
+                done(err);
+            });
+        });
+
+        it(' should create VERSION simple entities', function(done) {
+
+            let simpleentitiesid;
+
+            let body = {
+                "name": "Employee"
+            };
+            let parameters;
+
+            promiseDelay(client.retryInterval)
+            .then(() => {
+                return client.setVersionInfo(parameters, body, client.VERSIONINFO.SIMPLEENTITIES);
+            }).then((response) => {
+
+                response.should.not.be.undefined();
+                response['operation-location'].should.not.be.undefined();
+                response['operation-location'].should.containEql(config.languageUnderstanding.authoringEndpoint);
+                response.body.should.have.length(client.KeyLength);
+                response.statusCode.should.equal(201);
+                
+                simpleentitiesid = response.body; 
+
+                var getParams = {
+                    entityId:simpleentitiesid
+                };
+
+                // get 1
+                return client.getVersionInfo(client.VERSIONINFO.SIMPLEENTITIES,getParams);
+            }).then(response2 => {
+                response2.should.not.be.undefined();
+                response2.should.have.only.keys('id', 'name','typeId','readableType');
+                response2.id.should.eql(simpleentitiesid);
+                response2.readableType.should.eql("Entity Extractor");
+                response2.name.should.eql(body.name);
+
+                let putParams = {
+                    entityId: simpleentitiesid
+                };
+
+                putBody = {
+                    "name": "DaysOfWeek"
+                };
+
+                //put
+                return client.updateVersionInfo(client.VERSIONINFO.SIMPLEENTITIES, putParams, putBody);
+            }).then(response2a => {
+
+                response2a.should.not.be.undefined();
+                response2a.should.have.only.keys('code', 'message');
+                response2a.code.should.equal("Success");
+                response2a.message.should.equal("Operation Successful");
+
+                //get list of all simple entities
+                let getParams=undefined;
+                return client.getVersionInfo(client.VERSIONINFO.SIMPLEENTITIES,getParams);
+            }).then(response4 => {
+                // check success
+                response4.should.not.be.undefined();
+                response4.should.be.Array;
+                response4.length.should.eql(3);
+                response4[0].should.have.only.keys('id', 'name','typeId', 'readableType');
+                response4[0].readableType.should.eql("Entity Extractor");
+                response4[0].name.should.eql("Airline");
+
+                let params={entityId:simpleentitiesid};
+                let body=undefined;
+
+                // delete simple entity
+                return client.deleteVersionInfo(client.VERSIONINFO.SIMPLEENTITIES, params, body);
             }).then(response5 => {
 
                 response5.should.not.be.undefined();

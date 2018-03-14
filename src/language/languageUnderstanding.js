@@ -95,6 +95,7 @@ account
             PREBUILTENTITIES: "customprebuiltentities",
             PREBUILTINTENTS: "customprebuiltintents",
             PREBUILTMODELS: "customprebuiltmodels",
+            SIMPLEENTITIES: "entities",
             ENTITIES:"entities",
             EXAMPLE: "example",
             EXAMPLES: "examples",
@@ -521,7 +522,8 @@ account
             this.VERSIONINFO.HIERARCHICALENTITIES,
             this.VERSIONINFO.LISTPREBUILTS,
             this.VERSIONINFO.MODELS,
-            this.VERSIONINFO.COMPOSITEENTITIES
+            this.VERSIONINFO.COMPOSITEENTITIES,
+            this.VERSIONINFO.SIMPLEENTITIES
         ];
 
         if(!_.contains(validVERSIONINFO,versioninfo))throw Error("invalid info param '" + versioninfo + "'");
@@ -534,11 +536,9 @@ account
         switch(versioninfo){
             case this.VERSIONINFO.INTENTS:
             case this.VERSIONINFO.FEATURES:
-            case this.VERSIONINFO.ENTITIES:
             case this.VERSIONINFO.EXAMPLES: 
             case this.VERSIONINFO.LISTPREBUILTS:
             case this.VERSIONINFO.HIERARCHICALENTITIES:  
-            case this.VERSIONINFO.COMPOSITEENTITIES: 
             case this.VERSIONINFO.MODELS:
                 operation.parameters = [{
                     "name": "skip",
@@ -557,12 +557,74 @@ account
             case this.VERSIONINFO.TRAINSTATUS:
                 // no parameters
                 break;
+
             case this.VERSIONINFO.CLOSEDLISTS:
                 // without params, get all closed lists
                 // with params, get single closed list
-                if (parameters && parameters.clEntityId) operation.path += `/${parameters.clEntityId}`;
-                parameters = {};
+                if (parameters && parameters.clEntityId) {
+                    operation.path += `/${parameters.clEntityId}`;
+                    parameters = {};
+                } else {
+                    operation.parameters = [{
+                        "name": "skip",
+                        "value": 0,
+                        "required": false,
+                        "typeName": "number",
+                        "type": "queryStringParam"
+                    }, {
+                        "name": "take",
+                        "value": 100,
+                        "required": false,
+                        "typeName": "number",
+                        "type": "queryStringParam"
+                    }];
+                }
+
                 break;
+            case this.VERSIONINFO.COMPOSITEENTITIES: 
+                if (parameters && parameters.cEntityId){
+                    // get 1
+                    operation.path += `/${parameters.cEntityId}`;
+                    parameters = undefined;
+                } else {
+                    // get all
+                    operation.parameters = [{
+                        "name": "skip",
+                        "value": 0,
+                        "required": false,
+                        "typeName": "number",
+                        "type": "queryStringParam"
+                    }, {
+                        "name": "take",
+                        "value": 100,
+                        "required": false,
+                        "typeName": "number",
+                        "type": "queryStringParam"
+                    }];
+                }
+                break;
+            case this.VERSIONINFO.SIMPLEENTITIES: 
+                if (parameters && parameters.entityId){
+                    // get 1
+                    operation.path += `/${parameters.entityId}`;
+                    parameters = undefined;
+                } else {
+                    // get all
+                    operation.parameters = [{
+                        "name": "skip",
+                        "value": 0,
+                        "required": false,
+                        "typeName": "number",
+                        "type": "queryStringParam"
+                    }, {
+                        "name": "take",
+                        "value": 100,
+                        "required": false,
+                        "typeName": "number",
+                        "type": "queryStringParam"
+                    }];
+                }
+                break;            
             default:
         };
 
@@ -586,6 +648,7 @@ account
             this.VERSIONINFO.TRAIN,
             this.VERSIONINFO.CLOSEDLISTS,
             this.VERSIONINFO.COMPOSITEENTITIES,
+            this.VERSIONINFO.SIMPLEENTITIES
         ];
 
         if(!_.contains(validVERSIONINFO,versioninfo))throw Error("invalid version info param '" + versioninfo + "'");
@@ -596,6 +659,7 @@ account
         };
 
         switch(versioninfo){
+            case this.VERSIONINFO.SIMPLEENTITIES:
             case this.VERSIONINFO.CLONE: 
             case this.VERSIONINFO.COMPOSITEENTITIES:
             case this.VERSIONINFO.CLOSEDLISTS:
@@ -640,7 +704,9 @@ account
 
         const validVERSIONINFO=[
             this.VERSIONINFO.CLOSEDLISTSPATCH,
-            this.VERSIONINFO.VERSION
+            this.VERSIONINFO.VERSION,
+            this.VERSIONINFO.COMPOSITEENTITIES,
+            this.VERSIONINFO.SIMPLEENTITIES
         ];
 
         if(!_.contains(validVERSIONINFO,versioninfo))throw Error("invalid info param '" + versioninfo + "'");
@@ -656,6 +722,12 @@ account
                 break;
             case this.VERSIONINFO.CLOSEDLISTSPATCH:
                 operation.path += `/${parameters.clEntityId}`
+                break;
+            case this.VERSIONINFO.COMPOSITEENTITIES:
+                operation.path += `/${parameters.cEntityId}`
+                break;
+            case this.VERSIONINFO.SIMPLEENTITIES:
+                operation.path += `/${parameters.entityId}`
                 break;
             default: throw Error(`error in switch - unknown versioninfo ${versioninfo}`);
 
@@ -709,7 +781,9 @@ account
 
         const validINFO=[
             this.VERSIONINFO.VERSION,
-            this.VERSIONINFO.CLOSEDLISTS
+            this.VERSIONINFO.CLOSEDLISTS,
+            this.VERSIONINFO.COMPOSITEENTITIES,
+            this.VERSIONINFO.SIMPLEENTITIES
         ];
 
         if(!_.contains(validINFO,versioninfo))throw Error("invalid info param '" + versioninfo + "'");
@@ -722,8 +796,14 @@ account
         switch(versioninfo){
             case this.VERSIONINFO.VERSION:
                 break;
+            case this.VERSIONINFO.SIMPLEENTITIES:
+                operation.path += "/" + params.entityId;
+                break;
             case this.VERSIONINFO.CLOSEDLISTS:
                 operation.path += "/" + params.clEntityId;
+                break;
+            case this.VERSIONINFO.COMPOSITEENTITIES:
+                operation.path += "/" + params.cEntityId;
                 break;
             default: throw Error("error in switch");
         }
