@@ -538,7 +538,6 @@ account
             case this.VERSIONINFO.FEATURES:
             case this.VERSIONINFO.EXAMPLES: 
             case this.VERSIONINFO.LISTPREBUILTS:
-            case this.VERSIONINFO.HIERARCHICALENTITIES:  
             case this.VERSIONINFO.MODELS:
                 operation.parameters = [{
                     "name": "skip",
@@ -624,7 +623,29 @@ account
                         "type": "queryStringParam"
                     }];
                 }
-                break;            
+                break; 
+            case this.VERSIONINFO.HIERARCHICALENTITIES: 
+                if (parameters && parameters.hEntityId){
+                    // get 1
+                    operation.path += `/${parameters.hEntityId}`;
+                    parameters = undefined;
+                } else {
+                    // get all
+                    operation.parameters = [{
+                        "name": "skip",
+                        "value": 0,
+                        "required": false,
+                        "typeName": "number",
+                        "type": "queryStringParam"
+                    }, {
+                        "name": "take",
+                        "value": 100,
+                        "required": false,
+                        "typeName": "number",
+                        "type": "queryStringParam"
+                    }];
+                }
+                break;           
             default:
         };
 
@@ -648,7 +669,8 @@ account
             this.VERSIONINFO.TRAIN,
             this.VERSIONINFO.CLOSEDLISTS,
             this.VERSIONINFO.COMPOSITEENTITIES,
-            this.VERSIONINFO.SIMPLEENTITIES
+            this.VERSIONINFO.SIMPLEENTITIES,
+            this.VERSIONINFO.HIERARCHICALENTITIES
         ];
 
         if(!_.contains(validVERSIONINFO,versioninfo))throw Error("invalid version info param '" + versioninfo + "'");
@@ -663,6 +685,7 @@ account
             case this.VERSIONINFO.CLONE: 
             case this.VERSIONINFO.COMPOSITEENTITIES:
             case this.VERSIONINFO.CLOSEDLISTS:
+            case this.VERSIONINFO.HIERARCHICALENTITIES:
                 operation.parameters =  [{
                     "name": "appId",
                     "description": "The application id to clone.",
@@ -706,7 +729,8 @@ account
             this.VERSIONINFO.CLOSEDLISTSPATCH,
             this.VERSIONINFO.VERSION,
             this.VERSIONINFO.COMPOSITEENTITIES,
-            this.VERSIONINFO.SIMPLEENTITIES
+            this.VERSIONINFO.SIMPLEENTITIES,
+            this.VERSIONINFO.HIERARCHICALENTITIES
         ];
 
         if(!_.contains(validVERSIONINFO,versioninfo))throw Error("invalid info param '" + versioninfo + "'");
@@ -728,6 +752,9 @@ account
                 break;
             case this.VERSIONINFO.SIMPLEENTITIES:
                 operation.path += `/${parameters.entityId}`
+                break;
+            case this.VERSIONINFO.HIERARCHICALENTITIES:
+                operation.path += `/${parameters.hEntityId}`
                 break;
             default: throw Error(`error in switch - unknown versioninfo ${versioninfo}`);
 
@@ -783,7 +810,8 @@ account
             this.VERSIONINFO.VERSION,
             this.VERSIONINFO.CLOSEDLISTS,
             this.VERSIONINFO.COMPOSITEENTITIES,
-            this.VERSIONINFO.SIMPLEENTITIES
+            this.VERSIONINFO.SIMPLEENTITIES,
+            this.VERSIONINFO.HIERARCHICALENTITIES
         ];
 
         if(!_.contains(validINFO,versioninfo))throw Error("invalid info param '" + versioninfo + "'");
@@ -804,6 +832,9 @@ account
                 break;
             case this.VERSIONINFO.COMPOSITEENTITIES:
                 operation.path += "/" + params.cEntityId;
+                break;
+            case this.VERSIONINFO.HIERARCHICALENTITIES:
+                operation.path += "/" + params.hEntityId;
                 break;
             default: throw Error("error in switch");
         }

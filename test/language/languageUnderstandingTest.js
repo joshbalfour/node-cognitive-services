@@ -29,7 +29,7 @@ sense for the domain.
 
 */
 
-describe.only('Language understanding (LUIS)', () => {
+describe('Language understanding (LUIS)', () => {
 
     const defaultVersionId = config.languageUnderstanding.versionId;
 
@@ -1237,6 +1237,173 @@ describe.only('Language understanding (LUIS)', () => {
 
                 // delete simple entity
                 return client.deleteVersionInfo(client.VERSIONINFO.SIMPLEENTITIES, params, body);
+            }).then(response5 => {
+
+                response5.should.not.be.undefined();
+                response5.should.have.only.keys('code', 'message');
+                response5.code.should.equal("Success");
+                response5.message.should.equal("Operation Successful");
+
+                done();
+            }).catch((err) => {
+                done(err);
+            });
+        });
+
+        it(' should create VERSION simple entities', function(done) {
+
+            let simpleentitiesid;
+
+            let body = {
+                "name": "Employee"
+            };
+            let parameters;
+
+            promiseDelay(client.retryInterval)
+            .then(() => {
+                return client.setVersionInfo(parameters, body, client.VERSIONINFO.SIMPLEENTITIES);
+            }).then((response) => {
+
+                response.should.not.be.undefined();
+                response['operation-location'].should.not.be.undefined();
+                response['operation-location'].should.containEql(config.languageUnderstanding.authoringEndpoint);
+                response.body.should.have.length(client.KeyLength);
+                response.statusCode.should.equal(201);
+                
+                simpleentitiesid = response.body; 
+
+                var getParams = {
+                    entityId:simpleentitiesid
+                };
+
+                // get 1
+                return client.getVersionInfo(client.VERSIONINFO.SIMPLEENTITIES,getParams);
+            }).then(response2 => {
+                response2.should.not.be.undefined();
+                response2.should.have.only.keys('id', 'name','typeId','readableType');
+                response2.id.should.eql(simpleentitiesid);
+                response2.readableType.should.eql("Entity Extractor");
+                response2.name.should.eql(body.name);
+
+                let putParams = {
+                    entityId: simpleentitiesid
+                };
+
+                putBody = {
+                    "name": "DaysOfWeek"
+                };
+
+                //put
+                return client.updateVersionInfo(client.VERSIONINFO.SIMPLEENTITIES, putParams, putBody);
+            }).then(response2a => {
+
+                response2a.should.not.be.undefined();
+                response2a.should.have.only.keys('code', 'message');
+                response2a.code.should.equal("Success");
+                response2a.message.should.equal("Operation Successful");
+
+                //get list of all simple entities
+                let getParams=undefined;
+                return client.getVersionInfo(client.VERSIONINFO.SIMPLEENTITIES,getParams);
+            }).then(response4 => {
+                // check success
+                response4.should.not.be.undefined();
+                response4.should.be.Array;
+                response4.length.should.eql(3);
+                response4[0].should.have.only.keys('id', 'name','typeId', 'readableType');
+                response4[0].readableType.should.eql("Entity Extractor");
+                response4[0].name.should.eql("Airline");
+
+                let params={entityId:simpleentitiesid};
+                let body=undefined;
+
+                // delete simple entity
+                return client.deleteVersionInfo(client.VERSIONINFO.SIMPLEENTITIES, params, body);
+            }).then(response5 => {
+
+                response5.should.not.be.undefined();
+                response5.should.have.only.keys('code', 'message');
+                response5.code.should.equal("Success");
+                response5.message.should.equal("Operation Successful");
+
+                done();
+            }).catch((err) => {
+                done(err);
+            });
+        });
+
+
+        it(' should create VERSION hierarchical entities', function(done) {
+
+            let hierarchicalentitiesid;
+
+            let body = {
+                "name": "LocationTest",
+                "children": [ "From", "To" ]
+            };
+            let parameters;
+
+            promiseDelay(client.retryInterval)
+            .then(() => {
+                return client.setVersionInfo(parameters, body, client.VERSIONINFO.HIERARCHICALENTITIES);
+            }).then((response) => {
+
+                response.should.not.be.undefined();
+                response['operation-location'].should.not.be.undefined();
+                response['operation-location'].should.containEql(config.languageUnderstanding.authoringEndpoint);
+                response.body.should.have.length(client.KeyLength);
+                response.statusCode.should.equal(201);
+                
+                hierarchicalentitiesid = response.body; 
+
+                var getParams = {
+                    hEntityId:hierarchicalentitiesid
+                };
+
+                // get 1
+                return client.getVersionInfo(client.VERSIONINFO.HIERARCHICALENTITIES,getParams);
+            }).then(response2 => {
+                response2.should.not.be.undefined();
+                response2.should.have.only.keys('id', 'name','typeId','readableType','children');
+                response2.id.should.eql(hierarchicalentitiesid);
+                response2.readableType.should.eql("Hierarchical Entity Extractor");
+                response2.name.should.eql(body.name);
+
+                let putParams = {
+                    hEntityId: hierarchicalentitiesid
+                };
+
+                putBody = {
+                    "name": "LocationTest2",
+                    "children": [ "SourceLocation", "DestinationLocation" ]
+                };
+
+                //put
+                return client.updateVersionInfo(client.VERSIONINFO.HIERARCHICALENTITIES, putParams, putBody);
+            }).then(response2a => {
+
+                response2a.should.not.be.undefined();
+                response2a.should.have.only.keys('code', 'message');
+                response2a.code.should.equal("Success");
+                response2a.message.should.equal("Operation Successful");
+
+                //get list of all 
+                let getParams=undefined;
+                return client.getVersionInfo(client.VERSIONINFO.HIERARCHICALENTITIES,getParams);
+            }).then(response4 => {
+                // check success
+                response4.should.not.be.undefined();
+                response4.should.be.Array;
+                response4.length.should.eql(4);
+                response4[0].should.have.only.keys('id', 'name','typeId', 'readableType','children');
+                response4[0].readableType.should.eql("Hierarchical Entity Extractor");
+                response4[0].name.should.eql("Location");
+
+                let params={hEntityId:hierarchicalentitiesid};
+                let body=undefined;
+
+                // delete 
+                return client.deleteVersionInfo(client.VERSIONINFO.HIERARCHICALENTITIES, params, body);
             }).then(response5 => {
 
                 response5.should.not.be.undefined();
