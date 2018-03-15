@@ -535,6 +535,28 @@ account
 
         switch(versioninfo){
             case this.VERSIONINFO.INTENTS:
+                // without params, get all closed lists
+                // with params, get single closed list
+                if (parameters && parameters.intentId) {
+                    operation.path += `/${parameters.intentId}`;
+                    parameters = {};
+                } else {
+                    operation.parameters = [{
+                        "name": "skip",
+                        "value": 0,
+                        "required": false,
+                        "typeName": "number",
+                        "type": "queryStringParam"
+                    }, {
+                        "name": "take",
+                        "value": 100,
+                        "required": false,
+                        "typeName": "number",
+                        "type": "queryStringParam"
+                    }];
+                }
+
+                break;
             case this.VERSIONINFO.FEATURES:
             case this.VERSIONINFO.EXAMPLES: 
             case this.VERSIONINFO.LISTPREBUILTS:
@@ -670,7 +692,8 @@ account
             this.VERSIONINFO.CLOSEDLISTS,
             this.VERSIONINFO.COMPOSITEENTITIES,
             this.VERSIONINFO.SIMPLEENTITIES,
-            this.VERSIONINFO.HIERARCHICALENTITIES
+            this.VERSIONINFO.HIERARCHICALENTITIES,
+            this.VERSIONINFO.INTENTS
         ];
 
         if(!_.contains(validVERSIONINFO,versioninfo))throw Error("invalid version info param '" + versioninfo + "'");
@@ -681,6 +704,7 @@ account
         };
 
         switch(versioninfo){
+            case this.VERSIONINFO.INTENTS:
             case this.VERSIONINFO.SIMPLEENTITIES:
             case this.VERSIONINFO.CLONE: 
             case this.VERSIONINFO.COMPOSITEENTITIES:
@@ -730,7 +754,8 @@ account
             this.VERSIONINFO.VERSION,
             this.VERSIONINFO.COMPOSITEENTITIES,
             this.VERSIONINFO.SIMPLEENTITIES,
-            this.VERSIONINFO.HIERARCHICALENTITIES
+            this.VERSIONINFO.HIERARCHICALENTITIES,
+            this.VERSIONINFO.INTENTS
         ];
 
         if(!_.contains(validVERSIONINFO,versioninfo))throw Error("invalid info param '" + versioninfo + "'");
@@ -755,6 +780,9 @@ account
                 break;
             case this.VERSIONINFO.HIERARCHICALENTITIES:
                 operation.path += `/${parameters.hEntityId}`
+                break;
+            case this.VERSIONINFO.INTENTS:
+                operation.path += `/${parameters.intentId}`
                 break;
             default: throw Error(`error in switch - unknown versioninfo ${versioninfo}`);
 
@@ -811,7 +839,8 @@ account
             this.VERSIONINFO.CLOSEDLISTS,
             this.VERSIONINFO.COMPOSITEENTITIES,
             this.VERSIONINFO.SIMPLEENTITIES,
-            this.VERSIONINFO.HIERARCHICALENTITIES
+            this.VERSIONINFO.HIERARCHICALENTITIES,
+            this.VERSIONINFO.INTENTS
         ];
 
         if(!_.contains(validINFO,versioninfo))throw Error("invalid info param '" + versioninfo + "'");
@@ -835,6 +864,9 @@ account
                 break;
             case this.VERSIONINFO.HIERARCHICALENTITIES:
                 operation.path += "/" + params.hEntityId;
+                break;
+            case this.VERSIONINFO.INTENTS:
+                operation.path += `/${params.intentId}`
                 break;
             default: throw Error("error in switch");
         }

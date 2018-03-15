@@ -1416,6 +1416,88 @@ describe('Language understanding (LUIS)', () => {
                 done(err);
             });
         });
+
+        it(' should create VERSION intents', function(done) {
+
+            let intentid;
+            let intentname = "mochatest-" + new Date().toISOString();
+
+            let body = {
+                "name": intentname
+            };
+            let parameters;
+
+            promiseDelay(client.retryInterval)
+            .then(() => {
+                return client.setVersionInfo(parameters, body, client.VERSIONINFO.INTENTS);
+            }).then((response) => {
+
+                response.should.not.be.undefined();
+                response['operation-location'].should.not.be.undefined();
+                response['operation-location'].should.containEql(config.languageUnderstanding.authoringEndpoint);
+                response.body.should.have.length(client.KeyLength);
+                response.statusCode.should.equal(201);
+                
+                intentid = response.body; 
+
+                var getParams = {
+                    intentId:intentid
+                };
+
+                // get 1
+                return client.getVersionInfo(client.VERSIONINFO.INTENTS,getParams);
+            }).then(response2 => {
+                response2.should.not.be.undefined();
+                response2.should.have.only.keys('id', 'name','typeId','readableType');
+                response2.id.should.eql(intentid);
+                response2.name.should.eql(body.name);
+
+                let putParams = {
+                    intentId: intentid
+                };
+
+                putBody = {
+                    "name": intentname + "-2"
+                };
+
+                //put
+                return client.updateVersionInfo(client.VERSIONINFO.INTENTS, putParams, putBody);
+            }).then(response2a => {
+
+                response2a.should.not.be.undefined();
+                response2a.should.have.only.keys('code', 'message');
+                response2a.code.should.equal("Success");
+                response2a.message.should.equal("Operation Successful");
+
+                //get list of all 
+                let getParams=undefined;
+                return client.getVersionInfo(client.VERSIONINFO.INTENTS,getParams);
+            }).then(response4 => {
+                // check success
+                response4.should.not.be.undefined();
+                response4.should.be.Array;
+                response4.length.should.eql(5);
+                response4[0].should.have.only.keys('id', 'name','typeId', 'readableType');
+                response4[0].readableType.should.eql("Intent Classifier");
+                response4[0].name.should.eql( "BookFlight");
+
+                let params={intentId:intentid};
+                let body=undefined;
+
+                // delete 
+                return client.deleteVersionInfo(client.VERSIONINFO.INTENTS, params, body);
+            }).then(response5 => {
+
+                response5.should.not.be.undefined();
+                response5.should.have.only.keys('code', 'message');
+                response5.code.should.equal("Success");
+                response5.message.should.equal("Operation Successful");
+
+                done();
+            }).catch((err) => {
+                done(err);
+            });
+        });
     });
 
 });
