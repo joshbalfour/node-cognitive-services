@@ -1498,6 +1498,91 @@ describe('Language understanding (LUIS)', () => {
                 done(err);
             });
         });
+        it(' should create VERSION phrase lists', function(done) {
+
+            let phraselistid;
+            let phraselistname = "mochatest-" + new Date().toISOString();
+
+            let body = {
+                
+                    "name": "Eno",
+                    "phrases": "hello,goodbye know,e know,eno",
+                    "isExchangeable": true,
+                    "isActive": true
+                
+            };
+            let parameters;
+
+            promiseDelay(client.retryInterval)
+            .then(() => {
+                return client.setVersionInfo(parameters, body, client.VERSIONINFO.PHRASELISTS);
+            }).then((response) => {
+
+                response.should.not.be.undefined();
+
+                phraselistid = response; 
+
+                var getParams = {
+                    phraselistId:phraselistid
+                };
+
+                // get 1
+                return client.getVersionInfo(client.VERSIONINFO.PHRASELISTS,getParams);
+            }).then(response2 => {
+                response2.should.not.be.undefined();
+                response2.should.have.only.keys('id', 'name','phrases','isExchangeable','isActive');
+                response2.id.should.eql(phraselistid);
+                response2.name.should.eql(body.name);
+
+                let putParams = {
+                    phraselistId: phraselistid
+                };
+
+                putBody = {
+                    "id": phraselistid,
+                    "name": "Eno2",
+                    "phrases": "hello2,goodbye know2,e know,eno",
+                    "isExchangeable": false,
+                    "isActive": false
+                
+            };;
+
+                //put
+                return client.updateVersionInfo(client.VERSIONINFO.PHRASELISTS, putParams, putBody);
+            }).then(response2a => {
+
+                response2a.should.not.be.undefined();
+                response2a.should.have.only.keys('code', 'message');
+                response2a.code.should.equal("Success");
+                response2a.message.should.equal("Operation Successful");
+
+                //get list of all 
+                let getParams=undefined;
+                return client.getVersionInfo(client.VERSIONINFO.PHRASELISTS,getParams);
+            }).then(response4 => {
+                // check success
+                response4.should.not.be.undefined();
+                response4.should.be.Array;
+                response4.length.should.eql(1);
+                response4[0].should.have.only.keys('id', 'name','phrases','isExchangeable','isActive');
+
+                let params={phraselistId:phraselistid};
+                let body=undefined;
+
+                // delete 
+                return client.deleteVersionInfo(client.VERSIONINFO.PHRASELISTS, params, body);
+            }).then(response5 => {
+
+                response5.should.not.be.undefined();
+                response5.should.have.only.keys('code', 'message');
+                response5.code.should.equal("Success");
+                response5.message.should.equal("Operation Successful");
+
+                done();
+            }).catch((err) => {
+                done(err);
+            });
+        });
     });
 
 });
