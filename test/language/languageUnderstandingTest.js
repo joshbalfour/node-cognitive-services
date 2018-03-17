@@ -1583,6 +1583,68 @@ describe('Language understanding (LUIS)', () => {
                 done(err);
             });
         });
+        it(' should create VERSION prebuilts', function(done) {
+
+            let prebuiltId;
+
+            let body = [ "email" ];
+            let parameters;
+
+            promiseDelay(client.retryInterval)
+            .then(() => {
+                return client.setVersionInfo(parameters, body, client.VERSIONINFO.PREBUILTS);
+            }).then((response) => {
+
+                response.should.not.be.undefined();
+                response.should.be.Array;
+                response.length.should.eql(1);
+                response[0].should.have.only.keys('id', 'name','readableType','typeId');
+                prebuiltId = response[0].id;
+                response[0].name.should.be.eql("email");
+                response[0].readableType.should.be.eql("Prebuilt Entity Extractor");
+                
+
+                var getParams = {
+                    prebuiltId:prebuiltId
+                };
+
+                // get 1
+                return client.getVersionInfo(client.VERSIONINFO.PREBUILTS,getParams);
+            }).then(response2 => {
+                response2.should.not.be.undefined();
+                response2.should.have.only.keys('id', 'name','readableType','typeId');
+                response2.id.should.eql(prebuiltId);
+                response2.readableType.should.be.eql("Prebuilt Entity Extractor");                
+                response2.name.should.eql(body[0]);
+
+                //get list of all 
+                let getParams=undefined;
+                return client.getVersionInfo(client.VERSIONINFO.PREBUILTS,getParams);
+            }).then(response4 => {
+                // check success
+                response4.should.not.be.undefined();
+                response4.should.be.Array;
+                response4.length.should.eql(3);
+                response4[0].should.have.only.keys('id', 'name','readableType','typeId');
+                response4[0].readableType.should.be.eql("Prebuilt Entity Extractor");
+
+                let params={prebuiltId:prebuiltId};
+                let body=undefined;
+
+                // delete 
+                return client.deleteVersionInfo(client.VERSIONINFO.PREBUILTS, params, body);
+            }).then(response5 => {
+
+                response5.should.not.be.undefined();
+                response5.should.have.only.keys('code', 'message');
+                response5.code.should.equal("Success");
+                response5.message.should.equal("Operation Successful");
+                prebuiltId
+                done();
+            }).catch((err) => {
+                done(err);
+            });
+        });
     });
 
 });

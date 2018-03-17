@@ -524,7 +524,8 @@ account
             this.VERSIONINFO.MODELS,
             this.VERSIONINFO.COMPOSITEENTITIES,
             this.VERSIONINFO.SIMPLEENTITIES,
-            this.VERSIONINFO.PHRASELISTS
+            this.VERSIONINFO.PHRASELISTS,
+            this.VERSIONINFO.PREBUILTS
         ];
 
         if(!_.contains(validVERSIONINFO,versioninfo))throw Error("invalid info param '" + versioninfo + "'");
@@ -690,7 +691,29 @@ account
                         "type": "queryStringParam"
                     }];
                 }
-                break;           
+                break;
+                case this.VERSIONINFO.PREBUILTS: 
+                if (parameters && parameters.prebuiltId){
+                    // get 1
+                    operation.path += `/${parameters.prebuiltId}`;
+                    parameters = undefined;
+                } else {
+                    // get all
+                    operation.parameters = [{
+                        "name": "skip",
+                        "value": 0,
+                        "required": false,
+                        "typeName": "number",
+                        "type": "queryStringParam"
+                    }, {
+                        "name": "take",
+                        "value": 100,
+                        "required": false,
+                        "typeName": "number",
+                        "type": "queryStringParam"
+                    }];
+                }
+                break;
             default:
         };
 
@@ -717,7 +740,8 @@ account
             this.VERSIONINFO.SIMPLEENTITIES,
             this.VERSIONINFO.HIERARCHICALENTITIES,
             this.VERSIONINFO.INTENTS,
-            this.VERSIONINFO.PHRASELISTS
+            this.VERSIONINFO.PHRASELISTS,
+            this.VERSIONINFO.PREBUILTS
         ];
 
         if(!_.contains(validVERSIONINFO,versioninfo))throw Error("invalid version info param '" + versioninfo + "'");
@@ -734,6 +758,7 @@ account
             case this.VERSIONINFO.COMPOSITEENTITIES:
             case this.VERSIONINFO.CLOSEDLISTS:
             case this.VERSIONINFO.PHRASELISTS:
+            case this.VERSIONINFO.PREBUILTS:
             case this.VERSIONINFO.HIERARCHICALENTITIES:
                 operation.parameters =  [{
                     "name": "appId",
@@ -870,7 +895,8 @@ account
             this.VERSIONINFO.SIMPLEENTITIES,
             this.VERSIONINFO.HIERARCHICALENTITIES,
             this.VERSIONINFO.INTENTS,
-            this.VERSIONINFO.PHRASELISTS
+            this.VERSIONINFO.PHRASELISTS,
+            this.VERSIONINFO.PREBUILTS
         ];
 
         if(!_.contains(validINFO,versioninfo))throw Error("invalid info param '" + versioninfo + "'");
@@ -900,6 +926,9 @@ account
                 break;
             case this.VERSIONINFO.PHRASELISTS:
                 operation.path += `/${params.phraselistId}`
+                break;
+            case this.VERSIONINFO.PREBUILTS:
+                operation.path += `/${params.prebuiltId}`
                 break;
             default: throw Error("error in switch");
         }
