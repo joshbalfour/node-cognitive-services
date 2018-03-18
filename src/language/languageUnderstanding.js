@@ -96,6 +96,7 @@ account
             PREBUILTINTENTS: "customprebuiltintents",
             PREBUILTMODELS: "customprebuiltmodels",
             SIMPLEENTITIES: "entities",
+            SUGGEST: "suggest",
             ENTITIES:"entities",
             EXAMPLE: "example",
             EXAMPLES: "examples",
@@ -525,7 +526,8 @@ account
             this.VERSIONINFO.COMPOSITEENTITIES,
             this.VERSIONINFO.SIMPLEENTITIES,
             this.VERSIONINFO.PHRASELISTS,
-            this.VERSIONINFO.PREBUILTS
+            this.VERSIONINFO.PREBUILTS,
+            this.VERSIONINFO.SUGGEST
         ];
 
         if(!_.contains(validVERSIONINFO,versioninfo))throw Error("invalid info param '" + versioninfo + "'");
@@ -560,6 +562,7 @@ account
 
                 break;
             case this.VERSIONINFO.FEATURES:
+            case this.VERSIONINFO.SUGGEST:
             case this.VERSIONINFO.EXAMPLES: 
             case this.VERSIONINFO.LISTPREBUILTS:
             case this.VERSIONINFO.MODELS:
@@ -717,11 +720,28 @@ account
             default:
         };
 
-        return this.author.makeRequest({
-            operation: operation,
-            headers: {'Content-type': 'application/json'},
-            parameters: parameters
-        })
+        if(this.VERSIONINFO.SUGGEST){
+            // undocumented
+            let referer = 'https://www.luis.ai/applications/' + this.appId + '/versions/' + this.versionId + '/build/review';
+            let options = {
+                operation: operation,
+                headers: {
+                    'Content-type': 'application/json; charset=utf-8',
+                    'Host': 'westus.api.cognitive.microsoft.com',
+                    'Origin': 'https://www.luis.ai',
+                    'Referer': referer
+                },
+                parameters: parameters
+            };
+            return this.author.makeRequest(options);
+
+        } else {
+            return this.author.makeRequest({
+                operation: operation,
+                headers: {'Content-type': 'application/json'},
+                parameters: parameters
+            });
+        }
         
     }
     /**
@@ -896,7 +916,8 @@ account
             this.VERSIONINFO.HIERARCHICALENTITIES,
             this.VERSIONINFO.INTENTS,
             this.VERSIONINFO.PHRASELISTS,
-            this.VERSIONINFO.PREBUILTS
+            this.VERSIONINFO.PREBUILTS,
+            this.VERSIONINFO.SUGGEST
         ];
 
         if(!_.contains(validINFO,versioninfo))throw Error("invalid info param '" + versioninfo + "'");
@@ -929,6 +950,8 @@ account
                 break;
             case this.VERSIONINFO.PREBUILTS:
                 operation.path += `/${params.prebuiltId}`
+                break;
+            case this.VERSIONINFO.SUGGEST:
                 break;
             default: throw Error("error in switch");
         }
@@ -1048,6 +1071,55 @@ account
                 reject(err);
             })
         })
+    }
+    /**
+     * GetAppsList
+     * culture list
+     * @param {string} culture, example "en-us"
+     * @returns {Promise.<object>}  
+     */
+    getApps(culture){
+        return this.getLUIS(this.INFO.APPS, culture).then(apps=>{
+           return(apps);
+        }).catch(err=>{
+            throw Error(err);
+        });
+    }
+    /**
+     * GetAppAuthorsList
+     *
+     * @returns {Promise.<object>}  
+     */
+    GetAppAuthorsList(){
+        return this.getAppInfo(this.APPINFO.PERMISSIONS).then(authors=>{
+           return(authors);
+        }).catch(err=>{
+            throw Error(err);
+        });
+    }
+    /**
+     * SetAppAuthor
+     * add author to app (as collaborator, not owner)
+     * @returns {Promise.<object>}  
+     */
+    SetAppAuthor(email){
+        return this.setAppInfo({"email":email}, this.APPINFO.PERMISSIONS ).then(success=>{
+           return(success.code);
+        }).catch(err=>{
+            throw Error(err);
+        });
+    }
+    /**
+     * RemoveAppAuthor
+     * remove author from app (as collaborator, not owner)
+     * @returns {Promise.<object>}  
+     */
+    RemoveAppAuthor(email){
+        return this.deleteAppInfo({"email":email}, this.APPINFO.PERMISSIONS ).then(success=>{
+           return(success.code);
+        }).catch(err=>{
+            throw Error(err);
+        });
     }
 };
 

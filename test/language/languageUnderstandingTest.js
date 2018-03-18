@@ -1639,9 +1639,101 @@ describe('Language understanding (LUIS)', () => {
                 response5.should.have.only.keys('code', 'message');
                 response5.code.should.equal("Success");
                 response5.message.should.equal("Operation Successful");
-                prebuiltId
+
                 done();
             }).catch((err) => {
+                done(err);
+            });
+        });
+        it(' should create VERSION suggest', function(done) {
+
+            // an unlabeled utterance is added to the app by the endpoint
+            // LUIS decides it is not confident based on the score
+            // and adds it to the Review Endpoints list
+
+            let prebuiltId;
+
+            // purposely bad utterance so that it gets sent 
+            // to low confidence list
+            let body = "Paris Hilton's dog, London, reads a book inflight";
+
+            var parameters = {
+                "log": true, // required to review suggested utterances
+                "verbose": true // required to see all intents and scores
+            };
+            promiseDelay(client.retryInterval)
+            .then(() => {
+                // endpoint utterance
+                return client.detectIntent({parameters,body});
+            }).then((response) => {
+                // longer wait period
+                return promiseDelay(9000);
+            }).then(() => {
+                parameters = undefined;
+
+                // has to be lower case
+                return client.deleteVersionInfo(client.VERSIONINFO.SUGGEST, parameters, body.toLowerCase());
+            }).then((response) => {
+                response.should.not.be.undefined();
+                response.should.have.only.keys('code', 'message');
+                response.code.should.equal("Success");
+                response.message.should.equal("Operation Successful");
+
+                done();
+            }).catch((err) => {
+                console.log(err);
+                done(err);
+            });
+        });
+        it(' should get apps list', function(done) {
+
+            client.getApps().then(apps=>{
+
+                apps.should.not.be.undefined();
+                apps.should.be.Array;
+                if(apps.length>0){
+                    apps.should.not.be.undefined();
+                    apps[0].should.have.only.keys('id', 'name','description','culture','usageScenario',"domain","versionsCount","createdDateTime","endpoints","endpointHitsCount","activeVersion","ownerEmail");
+                }
+                done();
+            }).catch(err=>{
+                done(err);
+            });
+        });
+        it(' should get authors list', function(done) {
+
+            client.GetAppAuthorsList().then(authors=>{
+
+                authors.should.not.be.undefined();
+                authors.should.have.only.keys('owner', 'emails');
+                authors.emails.should.be.Array;
+
+                done();
+            }).catch(err=>{
+                done(err);
+            });
+        });
+        it(' should set author ', function(done) {
+
+            client.SetAppAuthor("jane@doe.com").then(response=>{
+
+                response.should.not.be.undefined();
+                response.should.eql("Success");
+
+                done();
+            }).catch(err=>{
+                done(err);
+            });
+        });
+        it(' should remove author ', function(done) {
+
+            client.RemoveAppAuthor("jane@doe.com").then(response=>{
+
+                response.should.not.be.undefined();
+                response.should.eql("Success");
+
+                done();
+            }).catch(err=>{
                 done(err);
             });
         });
