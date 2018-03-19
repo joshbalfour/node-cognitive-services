@@ -5,6 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "prepublish": "babel src --out-dir dist --quiet",
+    "prepublish2": "babel src --out-dir dist",
     "test": "gulp test"
   },
   "author": "Josh Balfour <josh@joshbalfour.co.uk>",
