@@ -187,7 +187,7 @@ class commonService {
                     json: true // GET: Automatically parses the JSON string in the response, POST: Automatically stringifies the body to JSON
                 };
 
-                if (this.debugOptions.uriAndMethod) console.log(`${options.uri} ${options.method}`);
+                if (this.debugOptions && this.debugOptions.uriAndMethod) console.log(`${options.uri} ${options.method}`);
 
                 if (contentTypeHeader == 'multipart/form-data' && parameters.path && parameters.path !== null) {
                     options.formData = {
@@ -211,7 +211,7 @@ class commonService {
                             }
                         }
                         if (res.headers['operation-location']) {
-                            if (self.debugOptions.headerAndBody){
+                            if (self.debugOptions && self.debugOptions.headerAndBody){
                                 return {
                                     "operation-location":res.headers['operation-location'],
                                     "body": body,
