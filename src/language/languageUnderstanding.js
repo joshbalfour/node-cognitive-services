@@ -128,8 +128,9 @@ account
         ];
         this.CULTURECOUNT = this.PREBUILTDOMAINCULTURES.length;
         this.PREBUILTDOMAINTOTALCOUNT=0;
-        this.PREBUILTDOMAINCULTURES.forEach((culture) => { 
-            this.PREBUILTDOMAINTOTALCOUNT += Object.values(culture)[0];
+        
+        this.PREBUILTDOMAINCULTURES.forEach(item =>{
+            this.PREBUILTDOMAINTOTALCOUNT += _.values(item)[0];
         });
         
         this.retryInterval = 2000;
