@@ -612,7 +612,8 @@ describe('Language understanding (LUIS)', () => {
                     'intents', 
                     'entities', 
                     'composites', 
-                    'closedLists', 
+                    'closedLists',
+                    'regex_entities',
                     'bing_entities',
                     'model_features', 
                     'regex_features',
@@ -1688,6 +1689,47 @@ describe('Language understanding (LUIS)', () => {
                 done(err);
             });
         });
+        it(' should create VERSION prebuilt domain', function(done) {
+
+            // chosen because it is one of the small domains
+            let prebuiltdomain="HomeAutomation";
+
+            let body = { 
+                "domainName": "HomeAutomation" 
+            };
+            
+            promiseDelay(client.retryInterval)
+            .then(() => {
+                // add prebuilt domain to current verion
+                return client.setVersionInfo(undefined,body,client.VERSIONINFO.PREBUILTDOMAINS);
+            }).then((response) => {
+                
+                // array of models in domain
+                response.should.not.be.undefined();
+                response.should.be.Array;
+                response.length.should.eql(5);
+
+                // longer wait period
+                return promiseDelay(9000);
+            }).then(() => {
+                parameters = undefined;
+
+                // need to delete for every item in response array
+                return client.deleteVersionInfo(client.VERSIONINFO.PREBUILTDOMAINS, {domainName: body.domainName}, undefined);
+            }).then((response) => {
+                response.should.not.be.undefined();
+                response.should.have.only.keys('code', 'message');
+                response.code.should.equal("Success");
+                response.message.should.equal("Operation Successful");
+
+                done();
+            }).catch((err) => {
+                console.log(err);
+                done(err);
+            });
+        });
+
+
         it(' should get apps list', function(done) {
 
             client.getApps().then(apps=>{
@@ -1737,6 +1779,110 @@ describe('Language understanding (LUIS)', () => {
 
                 done();
             }).catch(err=>{
+                done(err);
+            });
+        });
+        it(' should create VERSION customprebuiltmodels', function(done) {
+            
+            promiseDelay(client.retryInterval)
+            .then(() => {
+                return client.getVersionInfo(client.VERSIONINFO.PREBUILTMODELS,undefined);
+            }).then((response) => {
+                
+                // array of models in domain
+                response.should.not.be.undefined();
+                response.should.have.only.keys('Result', 'Id','Exception','Status','IsCanceled','IsCompleted','CreationOptions','AsyncState','IsFaulted');
+                response.Result.should.be.Array;
+                response.Result.length.should.eql(1);
+                response.Result[0].should.have.only.keys('id','name','typeId','readableType','customPrebuiltDomainName','customPrebuiltModelName');
+
+                done();
+            }).catch((err) => {
+                console.log(err);
+                done(err);
+            });
+        });
+        it(' should create VERSION customprebuiltentities', function(done) {
+            
+            let entityId=undefined;
+
+            promiseDelay(client.retryInterval)
+            .then(() => {
+                return client.setVersionInfo(undefined, {"domainName": "Camera","modelName": "AppName"}, client.VERSIONINFO.PREBUILTENTITIES);
+            }).then((response) => {
+
+                console.log(response);
+                response.should.not.be.undefined();
+                response.body.length.should.eql(client.KeyLength);
+                entityId = response.body;
+
+                return promiseDelay(client.retryInterval);
+            }).then(()=>{
+                return client.getVersionInfo(client.VERSIONINFO.PREBUILTENTITIES,undefined);
+            }).then((response2) => {         
+                response2.should.not.be.undefined();
+                response2.should.have.only.keys('Result', 'Id','Exception','Status','IsCanceled','IsCompleted','CreationOptions','AsyncState','IsFaulted');
+                response2.Result.should.be.Array;
+                response2.Result.length.should.eql(1);
+                response2.Result[0].should.have.only.keys('id','name','typeId','readableType','customPrebuiltDomainName','customPrebuiltModelName');
+                response2.Result[0].customPrebuiltDomainName.should.eql("Camera");
+                response2.Result[0].customPrebuiltModelName.should.eql("AppName");
+                
+                return client.deleteVersionInfo(client.VERSIONINFO.SIMPLEENTITIES,{entityId: entityId},undefined);
+            }).then((response3) => {
+
+                response3.should.not.be.undefined();
+                response3.should.have.only.keys('code', 'message');
+                response3.code.should.equal("Success");
+                response3.message.should.equal("Operation Successful");
+
+                done();
+            }).catch((err) => {
+                console.log(err);
+                done(err);
+            });
+        });
+        it(' should create VERSION customprebuiltintents', function(done) {
+            
+            let intentId=undefined;
+
+            promiseDelay(client.retryInterval)
+            .then(() => {
+                return client.setVersionInfo(undefined, {"domainName": "Camera","modelName": "CapturePhoto"}, client.VERSIONINFO.PREBUILTINTENTS);
+            }).then((response) => {
+
+                response.should.not.be.undefined();
+                response.body.length.should.eql(client.KeyLength);
+                intentId = response.body;
+
+                return promiseDelay(client.retryInterval);
+            }).then(()=>{
+                return client.getVersionInfo(client.VERSIONINFO.PREBUILTINTENTS,undefined);
+            }).then((response2) => {         
+                response2.should.not.be.undefined();
+                response2.should.have.only.keys('Result', 'Id','Exception','Status','IsCanceled','IsCompleted','CreationOptions','AsyncState','IsFaulted');
+                response2.Result.should.be.Array;
+
+                // 2 returned, make sure CapturePhoto is in array
+                let arrayOfIntentIds=response2.Result.map(item =>{
+                    return item.id;
+                });
+
+                // assert test here
+                _.contains(arrayOfIntentIds,intentId).should.eql(true);
+
+                response2.Result.length.should.eql(2);
+                return client.deleteVersionInfo(client.VERSIONINFO.INTENTS,{intentId: intentId},undefined);
+            }).then((response3) => {
+
+                response3.should.not.be.undefined();
+                response3.should.have.only.keys('code', 'message');
+                response3.code.should.equal("Success");
+                response3.message.should.equal("Operation Successful");
+
+                done();
+            }).catch((err) => {
+                console.log(err);
                 done(err);
             });
         });

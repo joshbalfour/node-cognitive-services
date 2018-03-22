@@ -528,6 +528,9 @@ account
             this.VERSIONINFO.SIMPLEENTITIES,
             this.VERSIONINFO.PHRASELISTS,
             this.VERSIONINFO.PREBUILTS,
+            this.VERSIONINFO.PREBUILTMODELS,
+            this.VERSIONINFO.PREBUILTENTITIES,
+            this.VERSIONINFO.PREBUILTINTENTS,
             this.VERSIONINFO.SUGGEST
         ];
 
@@ -562,6 +565,9 @@ account
                 }
 
                 break;
+            case this.VERSIONINFO.PREBUILTMODELS:
+            case this.VERSIONINFO.PREBUILTENTITIES:
+            case this.VERSIONINFO.PREBUILTINTENTS:
             case this.VERSIONINFO.FEATURES:
             case this.VERSIONINFO.SUGGEST:
             case this.VERSIONINFO.EXAMPLES: 
@@ -762,7 +768,10 @@ account
             this.VERSIONINFO.HIERARCHICALENTITIES,
             this.VERSIONINFO.INTENTS,
             this.VERSIONINFO.PHRASELISTS,
-            this.VERSIONINFO.PREBUILTS
+            this.VERSIONINFO.PREBUILTS,
+            this.VERSIONINFO.PREBUILTDOMAINS,
+            this.VERSIONINFO.PREBUILTENTITIES,
+            this.VERSIONINFO.PREBUILTINTENTS
         ];
 
         if(!_.contains(validVERSIONINFO,versioninfo))throw Error("invalid version info param '" + versioninfo + "'");
@@ -774,6 +783,7 @@ account
 
         switch(versioninfo){
             case this.VERSIONINFO.INTENTS:
+            case this.VERSIONINFO.PREBUILTDOMAINS:
             case this.VERSIONINFO.SIMPLEENTITIES:
             case this.VERSIONINFO.CLONE: 
             case this.VERSIONINFO.COMPOSITEENTITIES:
@@ -781,6 +791,8 @@ account
             case this.VERSIONINFO.PHRASELISTS:
             case this.VERSIONINFO.PREBUILTS:
             case this.VERSIONINFO.HIERARCHICALENTITIES:
+            case this.VERSIONINFO.PREBUILTENTITIES:
+            case this.VERSIONINFO.PREBUILTINTENTS:
                 operation.parameters =  [{
                     "name": "appId",
                     "description": "The application id to clone.",
@@ -918,7 +930,8 @@ account
             this.VERSIONINFO.INTENTS,
             this.VERSIONINFO.PHRASELISTS,
             this.VERSIONINFO.PREBUILTS,
-            this.VERSIONINFO.SUGGEST
+            this.VERSIONINFO.SUGGEST,
+            this.VERSIONINFO.PREBUILTDOMAINS
         ];
 
         if(!_.contains(validINFO,versioninfo))throw Error("invalid info param '" + versioninfo + "'");
@@ -953,6 +966,9 @@ account
                 operation.path += `/${params.prebuiltId}`
                 break;
             case this.VERSIONINFO.SUGGEST:
+                break;
+            case this.VERSIONINFO.PREBUILTDOMAINS:
+                operation.path += `/${params.domainName}`
                 break;
             default: throw Error("error in switch");
         }
