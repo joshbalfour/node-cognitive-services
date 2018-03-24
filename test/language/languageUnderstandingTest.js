@@ -1685,7 +1685,6 @@ describe('Language understanding (LUIS)', () => {
 
                 done();
             }).catch((err) => {
-                console.log(err);
                 done(err);
             });
         });
@@ -1724,7 +1723,6 @@ describe('Language understanding (LUIS)', () => {
 
                 done();
             }).catch((err) => {
-                console.log(err);
                 done(err);
             });
         });
@@ -1798,7 +1796,6 @@ describe('Language understanding (LUIS)', () => {
 
                 done();
             }).catch((err) => {
-                console.log(err);
                 done(err);
             });
         });
@@ -1810,8 +1807,6 @@ describe('Language understanding (LUIS)', () => {
             .then(() => {
                 return client.setVersionInfo(undefined, {"domainName": "Camera","modelName": "AppName"}, client.VERSIONINFO.PREBUILTENTITIES);
             }).then((response) => {
-
-                console.log(response);
                 response.should.not.be.undefined();
                 response.body.length.should.eql(client.KeyLength);
                 entityId = response.body;
@@ -1838,7 +1833,6 @@ describe('Language understanding (LUIS)', () => {
 
                 done();
             }).catch((err) => {
-                console.log(err);
                 done(err);
             });
         });
@@ -1882,7 +1876,49 @@ describe('Language understanding (LUIS)', () => {
 
                 done();
             }).catch((err) => {
-                console.log(err);
+                done(err);
+            });
+        });
+        it(' should import VERSION',(done)=>{
+
+            let originalVersionId = client.versionId;
+            var body = require("../assets/LUIS/TravelAgent-import-version.2.json");
+
+            promiseDelay(client.retryInterval)
+            .then(() => {
+                return client.setVersionInfo(undefined, body, client.VERSIONINFO.IMPORT);
+            }).then((response) => {
+                response.should.not.be.undefined();
+                response.toString().should.eql(body.versionId);
+
+                client.versionId = body.versionId;
+                return client.getVersionInfo(client.VERSIONINFO.VERSION, undefined);
+            }).then((response2) => {
+                response2.should.not.be.undefined();
+                response2.version.should.eql(body.versionId);
+                response2.trainingStatus.should.eql('NeedsTraining');
+                (response2.lastTrainedDateTime === null).should.be.true;
+                (response2.lastPublishedDateTime === null).should.be.true;
+
+                return client.getAppInfo(client.APPINFO.APP);
+            }).then((response3) => {
+
+                // validate that imported version is active version
+                response3.activeVersion.should.eql(body.versionId);
+                return client.deleteVersionInfo(client.VERSIONINFO.VERSION, undefined, undefined);
+            }).then((response4) => {
+                client.versionId = originalVersionId;
+
+                // currently doesn't return anything except status
+                (response4 === null).should.be.true;
+
+                //response4.should.not.be.undefined();
+                //response4.should.have.only.keys('code', 'message');
+                //response4.code.should.equal("Success");
+                //response4.message.should.equal("Operation Successful");
+
+                done();
+            }).catch((err) => {
                 done(err);
             });
         });

@@ -104,6 +104,7 @@ account
             FEATURES: "features",
             HIERARCHICALENTITIES: "hierarchicalentities",
             INTENTS: "intents",
+            IMPORT: "import",
             LISTPREBUILTS: "listprebuilts",
             MODELS: "models",
             //PATTERNS: "patterns", //deprecated
@@ -542,6 +543,8 @@ account
         };
 
         switch(versioninfo){
+            case this.VERSIONINFO.VERSION:
+                break;
             case this.VERSIONINFO.INTENTS:
                 // without params, get all closed lists
                 // with params, get single closed list
@@ -767,6 +770,7 @@ account
             this.VERSIONINFO.SIMPLEENTITIES,
             this.VERSIONINFO.HIERARCHICALENTITIES,
             this.VERSIONINFO.INTENTS,
+            this.VERSIONINFO.IMPORT,
             this.VERSIONINFO.PHRASELISTS,
             this.VERSIONINFO.PREBUILTS,
             this.VERSIONINFO.PREBUILTDOMAINS,
@@ -812,6 +816,8 @@ account
                 parameters.appId = this.appId;
                 parameters.versionId = this.versionId;
                 break;
+            case this.VERSIONINFO.IMPORT:
+                operation.path = "luis/api/v2.0/apps/" + this.appId + "/versions/" + versioninfo;
             case this.VERSIONINFO.TRAIN:
                 // no parameters
                 break;
