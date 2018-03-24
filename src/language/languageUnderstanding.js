@@ -764,6 +764,8 @@ account
 
         const validVERSIONINFO=[
             this.VERSIONINFO.CLONE,
+            this.VERSIONINFO.EXAMPLE,
+            this.VERSIONINFO.EXAMPLES,
             this.VERSIONINFO.TRAIN,
             this.VERSIONINFO.CLOSEDLISTS,
             this.VERSIONINFO.COMPOSITEENTITIES,
@@ -787,6 +789,8 @@ account
 
         switch(versioninfo){
             case this.VERSIONINFO.INTENTS:
+            case this.VERSIONINFO.EXAMPLE:
+            case this.VERSIONINFO.EXAMPLES:
             case this.VERSIONINFO.PREBUILTDOMAINS:
             case this.VERSIONINFO.SIMPLEENTITIES:
             case this.VERSIONINFO.CLONE: 
@@ -937,7 +941,8 @@ account
             this.VERSIONINFO.PHRASELISTS,
             this.VERSIONINFO.PREBUILTS,
             this.VERSIONINFO.SUGGEST,
-            this.VERSIONINFO.PREBUILTDOMAINS
+            this.VERSIONINFO.PREBUILTDOMAINS,
+            this.VERSIONINFO.EXAMPLES
         ];
 
         if(!_.contains(validINFO,versioninfo))throw Error("invalid info param '" + versioninfo + "'");
@@ -975,6 +980,9 @@ account
                 break;
             case this.VERSIONINFO.PREBUILTDOMAINS:
                 operation.path += `/${params.domainName}`
+                break;
+            case this.VERSIONINFO.EXAMPLES:
+                operation.path += `/${params.exampleId}`
                 break;
             default: throw Error("error in switch");
         }

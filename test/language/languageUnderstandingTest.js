@@ -29,7 +29,7 @@ sense for the domain.
 
 */
 
-describe('Language understanding (LUIS)', () => {
+describe.only('Language understanding (LUIS)', () => {
 
     const defaultVersionId = config.languageUnderstanding.versionId;
 
@@ -625,26 +625,102 @@ describe('Language understanding (LUIS)', () => {
         })
 
         // TBD - need to provide example utterances that are questionable so this list has examples
-        it('should get list of example labeled utterances for this VERSION', (done) => {
+        it('should get VERSION examples', (done) => {
 
             let parameters = {
                 skip:0,
                 take:100
             };
 
+            let exampleId = undefined;
+
+            let singleUtterance =       {
+                "text": "book me 2 adult business tickets to san diego tomorrow on air france",
+                "intentName": "BookFlight",
+                "entities": [
+                  {
+                    "entityName": "Location::ToLocation",
+                    "startCharIndex": 36,
+                    "endCharIndex": 44
+                  },
+                  {
+                    "entityName": "Airline",
+                    "startCharIndex": 58,
+                    "endCharIndex": 67
+                  }
+                ]
+              }
+            
             promiseDelay(client.retryInterval)
             .then(() => {
-                return client.getVersionInfo(client.VERSIONINFO.EXAMPLES,parameters);
+                return client.setVersionInfo(undefined, singleUtterance, client.VERSIONINFO.EXAMPLE);
             }).then((response) => {
                 response.should.not.be.undefined();
-                response.should.be.Array;
-                if (response.length > 0) {
-                    response[0].should.have.only.keys('id', 'text', 'tokenizedText','intentLabel','entityLabels','intentPredictions','entityPredictions');
-                }
+                response.should.have.only.keys("ExampleId","UtteranceText");
+                response.UtteranceText.should.eql(singleUtterance.text);
+                exampleId = response.ExampleId;
+
+                return client.deleteVersionInfo(client.VERSIONINFO.EXAMPLES, {exampleId:exampleId});
+            }).then((response2) => {
+                response2.should.not.be.undefined();
+                response2.should.have.only.keys('code', 'message');
+                response2.code.should.equal("Success");
+                response2.message.should.equal("Operation Successful");
+
+                let batchUtterances =      [ {
+                    "text": "book me 1 adult business tickets to san diego tomorrow on air france",
+                    "intentName": "BookFlight",
+                    "entities": [
+                      {
+                        "entityName": "Location::ToLocation",
+                        "startCharIndex": 36,
+                        "endCharIndex": 44
+                      },
+                      {
+                        "entityName": "Airline",
+                        "startCharIndex": 58,
+                        "endCharIndex": 67
+                      }
+                    ]
+                  }, {
+                    "text": "book me 3 adult business tickets to san diego tomorrow on air france",
+                    "intentName": "BookFlight",
+                    "entities": [
+                      {
+                        "entityName": "Location::ToLocation",
+                        "startCharIndex": 36,
+                        "endCharIndex": 44
+                      },
+                      {
+                        "entityName": "Airline",
+                        "startCharIndex": 58,
+                        "endCharIndex": 67
+                      }
+                    ]
+                  }];
+
+
+                return client.setVersionInfo(undefined, batchUtterances, client.VERSIONINFO.EXAMPLES);
+            }).then((response3) => {
+                response3.should.not.be.undefined();
+                response3.should.be.Array;
+                response3.length.should.eql(2);
+                response3[0].should.have.only.keys('value', 'hasError');
+                response3[0].value.should.have.only.keys('ExampleId',"UtteranceText");
+                response3[0].hasError.should.eql(false);
+
+                return client.getVersionInfo(client.VERSIONINFO.EXAMPLES, undefined);
+            }).then((response4) => {
+                response4.should.not.be.undefined();
+                response4.should.be.Array;
+                response4.length.should.eql(24)
+
                 done();
             }).catch((err) => {
                 done(err);
             });
+
+
         })
 
         it('should get list of entities in this VERSION', (done) => {
