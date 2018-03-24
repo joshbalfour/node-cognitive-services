@@ -29,7 +29,7 @@ sense for the domain.
 
 */
 
-describe.only('Language understanding (LUIS)', () => {
+describe('Language understanding (LUIS)', () => {
 
     const defaultVersionId = config.languageUnderstanding.versionId;
 
@@ -185,6 +185,22 @@ describe.only('Language understanding (LUIS)', () => {
                 results.publishedDateTime.length.should.equal("2018-02-19T14:27:07Z".length);
                 results.region.should.equal('westus');
                 results.versionId.should.equal('0.1');
+
+                return promiseDelay(client.retryInterval);
+            }).then(() => {
+                // add utterance that is bad and should hit review endpoints list
+                var body = "pizza is blue where london today several";
+                var parameters = {
+                    "log": true, // required to review suggested utterances
+                    "verbose": true // required to see all intents and scores
+                };
+                return client.detectIntent({parameters,body});
+            }).then((response) => {
+
+                response.should.not.be.undefined();
+                _.keys(response).should.have.length(4);
+                response.should.have.only.keys('query', 'intents', 'topScoringIntent', 'entities');
+;
 
                 done();
             }).catch(err => {
@@ -725,16 +741,12 @@ describe.only('Language understanding (LUIS)', () => {
 
         it('should get list of entities in this VERSION', (done) => {
 
-            /*
-            can return 
-                "customPrebuiltDomainName": "Camera",
-                "customPrebuiltModelName": "AppName"
-            */
-
             let parameters = {
                 skip:0,
                 take:100
             };
+
+            let entityId = undefined;
 
             promiseDelay(client.retryInterval)
             .then(() => {
@@ -745,6 +757,18 @@ describe.only('Language understanding (LUIS)', () => {
                 if (response.length > 0) {
                     response[0].should.have.only.keys('id', 'name','typeId','readableType');
                 }
+                entityId = response[0].id;
+                
+                return promiseDelay(client.retryInterval);
+            }).then(() => {
+                // get suggestion for first item
+                return client.getVersionInfo(client.VERSIONINFO.SUGGEST,{entityId:entityId});
+            }).then(response2 =>{
+
+                // test is almost pointless - can it be smarter?
+                response2.should.not.be.undefined();
+                response2.should.be.Array;
+
                 done();
             }).catch((err) => {
                 done(err);
@@ -754,11 +778,7 @@ describe.only('Language understanding (LUIS)', () => {
 
         it('should get list of intents in VERSION', (done) => {
 
-            /*
-            can return 
-                "customPrebuiltDomainName": "Camera",
-                "customPrebuiltModelName": "AppName"
-            */
+            let intentId = undefined;
 
             let parameters = {
                 skip:0,
@@ -771,9 +791,21 @@ describe.only('Language understanding (LUIS)', () => {
             }).then((response) => {
                 response.should.not.be.undefined();
                 response.should.be.Array;
+
                 if (response.length > 0) {
                     response[0].should.have.only.keys('id', 'name','typeId','readableType');
                 }
+                intentId = response[0].id;
+                
+                return promiseDelay(client.retryInterval);
+            }).then(() => {
+                // get suggestion for first item
+                return client.getVersionInfo(client.VERSIONINFO.SUGGEST,{intentId:intentId});
+            }).then(response2 =>{
+
+                // test is almost pointless - can it be smarter?
+                response2.should.not.be.undefined();
+                response2.should.be.Array;
                 done();
             }).catch((err) => {
                 done(err);
@@ -1722,48 +1754,6 @@ describe.only('Language understanding (LUIS)', () => {
                 done(err);
             });
         });
-        // this test needs a longer delay for LUIS
-        // to categorize the utterance
-        // not sure what the right value for delay is
-        xit(' should create VERSION suggest', function(done) {
-
-            // an unlabeled utterance is added to the app by the endpoint
-            // LUIS decides it is not confident based on the score
-            // and adds it to the Review Endpoints list
-
-            let prebuiltId;
-
-            // purposely bad utterance so that it gets sent 
-            // to low confidence list
-            let body = "Paris Hilton's dog, London, reads a book inflight";
-
-            var parameters = {
-                "log": true, // required to review suggested utterances
-                "verbose": true // required to see all intents and scores
-            };
-            promiseDelay(client.retryInterval)
-            .then(() => {
-                // endpoint utterance
-                return client.detectIntent({parameters,body});
-            }).then((response) => {
-                // longer wait period
-                return promiseDelay(9000);
-            }).then(() => {
-                parameters = undefined;
-
-                // has to be lower case
-                return client.deleteVersionInfo(client.VERSIONINFO.SUGGEST, parameters, body.toLowerCase());
-            }).then((response) => {
-                response.should.not.be.undefined();
-                response.should.have.only.keys('code', 'message');
-                response.code.should.equal("Success");
-                response.message.should.equal("Operation Successful");
-
-                done();
-            }).catch((err) => {
-                done(err);
-            });
-        });
         it(' should create VERSION prebuilt domain', function(done) {
 
             // chosen because it is one of the small domains
@@ -1988,16 +1978,32 @@ describe.only('Language understanding (LUIS)', () => {
                 // currently doesn't return anything except status
                 (response4 === null).should.be.true;
 
-                //response4.should.not.be.undefined();
-                //response4.should.have.only.keys('code', 'message');
-                //response4.code.should.equal("Success");
-                //response4.message.should.equal("Operation Successful");
-
                 done();
             }).catch((err) => {
                 done(err);
             });
         });
+        // this test is at the end on purpose so LUIS has time to 
+        // classify it as a review utterance
+        it(' should delete unlabeled utterance', function(done) {
+
+            let body = "pizza is blue where london today several";
+
+            promiseDelay(client.retryInterval)
+            .then(() => {
+                // has to be lower case
+                return client.deleteVersionInfo(client.VERSIONINFO.SUGGEST, undefined, body.toLowerCase());
+            }).then((response) => {
+                response.should.not.be.undefined();
+                response.should.have.only.keys('code', 'message');
+                response.code.should.equal("Success");
+                response.message.should.equal("Operation Successful");
+
+                done();
+            }).catch((err) => {
+                done(err);
+            });
+        });     
     });
 
 });

@@ -572,7 +572,6 @@ account
             case this.VERSIONINFO.PREBUILTENTITIES:
             case this.VERSIONINFO.PREBUILTINTENTS:
             case this.VERSIONINFO.FEATURES:
-            case this.VERSIONINFO.SUGGEST:
             case this.VERSIONINFO.EXAMPLES: 
             case this.VERSIONINFO.LISTPREBUILTS:
             case this.VERSIONINFO.MODELS:
@@ -705,7 +704,7 @@ account
                     }];
                 }
                 break;
-                case this.VERSIONINFO.PREBUILTS: 
+            case this.VERSIONINFO.PREBUILTS: 
                 if (parameters && parameters.prebuiltId){
                     // get 1
                     operation.path += `/${parameters.prebuiltId}`;
@@ -727,11 +726,26 @@ account
                     }];
                 }
                 break;
+            case this.VERSIONINFO.SUGGEST:
+                if (parameters && parameters.entityId){
+                    // get 1
+                    operation.path = "luis/api/v2.0/apps/" + this.appId + "/versions/" + this.versionId + "/entities/" + parameters.entityId + "/suggest";
+                    parameters = {};
+                } else if (parameters && parameters.intentId){
+                    // get 1
+                    operation.path = "luis/api/v2.0/apps/" + this.appId + "/versions/" + this.versionId + "/intents/" + parameters.intentId + "/suggest";
+                    parameters = {};
+
+                } else { 
+                    throw Error("entityId is missing for SUGGEST");
+                }
+                break;
             default:
         };
 
-        if(this.VERSIONINFO.SUGGEST){
+        if(this.VERSIONINFO.SUGGEST && !parameters){
             // undocumented
+
             let referer = 'https://www.luis.ai/applications/' + this.appId + '/versions/' + this.versionId + '/build/review';
             let options = {
                 operation: operation,
@@ -744,7 +758,6 @@ account
                 parameters: parameters
             };
             return this.author.makeRequest(options);
-
         } else {
             return this.author.makeRequest({
                 operation: operation,
