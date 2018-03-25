@@ -88,7 +88,9 @@ account
             CLONE: "clone",
             CLOSEDLISTS: "closedlists", 
             CLOSEDLISTSPATCH: "closedlists",
+            CLOSEDLISTSCHILD: "closedlistschild",
             COMPOSITEENTITIES: "compositeentities",
+            COMPOSITEENTITIESCHILD: "compositeentitieschild",
             VERSION: "",
             //LISTS: "closedlists",
             PREBUILTDOMAINS: "customprebuiltdomains",
@@ -103,6 +105,7 @@ account
             EXPORT: "export",
             FEATURES: "features",
             HIERARCHICALENTITIES: "hierarchicalentities",
+            HIERARCHICALENTITIESCHILD: "hierarchicalentitieschild",
             INTENTS: "intents",
             IMPORT: "import",
             LISTPREBUILTS: "listprebuilts",
@@ -523,6 +526,7 @@ account
             this.VERSIONINFO.INTENTS,
             this.VERSIONINFO.FEATURES,
             this.VERSIONINFO.HIERARCHICALENTITIES,
+            this.VERSIONINFO.HIERARCHICALENTITIESCHILD,
             this.VERSIONINFO.LISTPREBUILTS,
             this.VERSIONINFO.MODELS,
             this.VERSIONINFO.COMPOSITEENTITIES,
@@ -681,7 +685,10 @@ account
                         "type": "queryStringParam"
                     }];
                 }
-                break;           
+                break;  
+            case this.VERSIONINFO.HIERARCHICALENTITIESCHILD:
+                operation.path = "luis/api/v2.0/apps/" + this.appId + "/versions/" + this.versionId + "/hierarchicalentities/" + parameters.hEntityId + "/children/" + parameters.hChildId;
+                parameters = {};
             case this.VERSIONINFO.PHRASELISTS: 
                 if (parameters && parameters.phraselistId){
                     // get 1
@@ -781,9 +788,12 @@ account
             this.VERSIONINFO.EXAMPLES,
             this.VERSIONINFO.TRAIN,
             this.VERSIONINFO.CLOSEDLISTS,
+            this.VERSIONINFO.CLOSEDLISTSCHILD,
             this.VERSIONINFO.COMPOSITEENTITIES,
+            this.VERSIONINFO.COMPOSITEENTITIESCHILD,
             this.VERSIONINFO.SIMPLEENTITIES,
             this.VERSIONINFO.HIERARCHICALENTITIES,
+            this.VERSIONINFO.HIERARCHICALENTITIESCHILD,
             this.VERSIONINFO.INTENTS,
             this.VERSIONINFO.IMPORT,
             this.VERSIONINFO.PHRASELISTS,
@@ -838,6 +848,18 @@ account
             case this.VERSIONINFO.TRAIN:
                 // no parameters
                 break;
+            case this.VERSIONINFO.CLOSEDLISTSCHILD:
+                operation.path = "luis/api/v2.0/apps/" + this.appId + "/versions/" + this.versionId + "/closedlists/" + parameters.clEntityId + "/sublists/";
+                parameters = {};
+                break;
+            case this.VERSIONINFO.COMPOSITEENTITIESCHILD:
+                operation.path = "luis/api/v2.0/apps/" + this.appId + "/versions/" + this.versionId + "/compositeentities/" + parameters.cEntityId + "/children/";
+                parameters = {};
+                break;
+            case this.VERSIONINFO.HIERARCHICALENTITIESCHILD:
+                operation.path = "luis/api/v2.0/apps/" + this.appId + "/versions/" + this.versionId + "/hierarchicalentities/" + parameters.hEntityId + "/children/";
+                parameters = {};
+                break;
             default: throw Error("error in switch - unexpected VERSIONINFO");
         }
 
@@ -857,10 +879,12 @@ account
 
         const validVERSIONINFO=[
             this.VERSIONINFO.CLOSEDLISTSPATCH,
+            this.VERSIONINFO.CLOSEDLISTSCHILD,
             this.VERSIONINFO.VERSION,
             this.VERSIONINFO.COMPOSITEENTITIES,
             this.VERSIONINFO.SIMPLEENTITIES,
             this.VERSIONINFO.HIERARCHICALENTITIES,
+            this.VERSIONINFO.HIERARCHICALENTITIESCHILD,
             this.VERSIONINFO.INTENTS,
             this.VERSIONINFO.PHRASELISTS
         ];
@@ -893,6 +917,14 @@ account
                 break;
             case this.VERSIONINFO.PHRASELISTS:
                 operation.path += `/${parameters.phraselistId}`
+                break;
+            case this.VERSIONINFO.CLOSEDLISTSCHILD:
+                operation.path = "luis/api/v2.0/apps/" + this.appId + "/versions/" + this.versionId + "/closedlists/" + parameters.clEntityId + "/sublists/" + parameters.subListId;
+                parameters = {};
+                break;
+            case this.VERSIONINFO.HIERARCHICALENTITIESCHILD:
+                operation.path = "luis/api/v2.0/apps/" + this.appId + "/versions/" + this.versionId + "/hierarchicalentities/" + parameters.hEntityId + "/children/" + parameters.hChildId;
+                parameters = {};
                 break;
             default: throw Error(`error in switch - unknown versioninfo ${versioninfo}`);
 
@@ -947,9 +979,12 @@ account
         const validINFO=[
             this.VERSIONINFO.VERSION,
             this.VERSIONINFO.CLOSEDLISTS,
+            this.VERSIONINFO.CLOSEDLISTSCHILD,
             this.VERSIONINFO.COMPOSITEENTITIES,
+            this.VERSIONINFO.COMPOSITEENTITIESCHILD,
             this.VERSIONINFO.SIMPLEENTITIES,
             this.VERSIONINFO.HIERARCHICALENTITIES,
+            this.VERSIONINFO.HIERARCHICALENTITIESCHILD,
             this.VERSIONINFO.INTENTS,
             this.VERSIONINFO.PHRASELISTS,
             this.VERSIONINFO.PREBUILTS,
@@ -974,11 +1009,23 @@ account
             case this.VERSIONINFO.CLOSEDLISTS:
                 operation.path += "/" + params.clEntityId;
                 break;
+            case this.VERSIONINFO.CLOSEDLISTSCHILD:
+                operation.path = "luis/api/v2.0/apps/" + this.appId + "/versions/" + this.versionId + "/closedlists/" + params.clEntityId + "/sublists/" + params.subListId;
+                params = {};
+                break;
             case this.VERSIONINFO.COMPOSITEENTITIES:
                 operation.path += "/" + params.cEntityId;
                 break;
+            case this.VERSIONINFO.COMPOSITEENTITIESCHILD:
+                operation.path = "luis/api/v2.0/apps/" + this.appId + "/versions/" + this.versionId + "/compositeentities/" + params.cEntityId + "/children/" + params.cChildId;
+                params = {};
+                break;
             case this.VERSIONINFO.HIERARCHICALENTITIES:
                 operation.path += "/" + params.hEntityId;
+                break;
+            case this.VERSIONINFO.HIERARCHICALENTITIESCHILD:
+                operation.path = "luis/api/v2.0/apps/" + this.appId + "/versions/" + this.versionId + "/hierarchicalentities/" + params.hEntityId + "/children/" + params.hChildId;
+                params = {};
                 break;
             case this.VERSIONINFO.INTENTS:
                 operation.path += `/${params.intentId}`

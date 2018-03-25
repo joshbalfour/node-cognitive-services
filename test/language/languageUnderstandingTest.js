@@ -1049,7 +1049,8 @@ describe('Language understanding (LUIS)', () => {
 
         it(' should create VERSION closedlists', function(done) {
 
-            let closedListid;
+            let closedListid=undefined;
+            let cChildId=undefined;
 
             // docs use both capital L and lowercase l for sublists
             // doesn't seem to matter - both work
@@ -1161,6 +1162,41 @@ describe('Language understanding (LUIS)', () => {
                 response3.code.should.equal("Success");
                 response3.message.should.equal("Operation Successful");
 
+                // add sublist to the list
+                let sublistParams = {clEntityId:closedListid};
+                let sublistBody = {
+                    "canonicalForm": "Friday",
+                    "list": ["5","F","Fr"]
+                };
+
+                // post
+                return client.setVersionInfo(sublistParams, sublistBody, client.VERSIONINFO.CLOSEDLISTSCHILD);
+            }).then(sublistResponse1 => {
+                sublistResponse1.should.not.be.undefined();
+                (typeof sublistResponse1).should.eql("number");
+                cChildId=sublistResponse1;
+
+                // modify sublist 
+                sublistParams={clEntityId: closedListid, subListId: cChildId};
+                let sublistBody = {
+                    "canonicalForm": "Friday",
+                    "list": ["a","b","c","f"]
+                };
+
+                // put
+                return client.updateVersionInfo(client.VERSIONINFO.CLOSEDLISTSCHILD, sublistParams, sublistBody);
+            }).then(sublistResponse1a => {
+                sublistResponse1a.should.not.be.undefined();
+
+                sublistParams={clEntityId: closedListid, subListId: cChildId};
+
+                return client.deleteVersionInfo(client.VERSIONINFO.CLOSEDLISTSCHILD,sublistParams, undefined);
+            }).then(sublistResponse2 => {
+                sublistResponse2.should.not.be.undefined();
+                sublistResponse2.should.have.only.keys('code', 'message');
+                sublistResponse2.code.should.equal("Success");
+                sublistResponse2.message.should.equal("Operation Successful");
+
                 //get list of closed lists
                 let getParams=undefined;
                 return client.getVersionInfo(client.VERSIONINFO.CLOSEDLISTS,getParams);
@@ -1193,6 +1229,7 @@ describe('Language understanding (LUIS)', () => {
         it(' should create VERSION compositeentities', function(done) {
 
             let compositeentitiesid;
+            let childid;
 
             let body = {
                 "name": "Reservation",
@@ -1244,6 +1281,29 @@ describe('Language understanding (LUIS)', () => {
                 response2a.should.have.only.keys('code', 'message');
                 response2a.code.should.equal("Success");
                 response2a.message.should.equal("Operation Successful");
+
+
+                // modify sublist 
+                sublistParams={cEntityId: compositeentitiesid};
+                let sublistBody = {
+                    "name" : "Location::LocationFrom"
+                };
+
+                // post
+                return client.setVersionInfo(sublistParams, sublistBody,client.VERSIONINFO.COMPOSITEENTITIESCHILD);
+            }).then(sublistResponse1a => {
+                sublistResponse1a.should.not.be.undefined();
+                childid = sublistResponse1a.body;
+                sublistParams={cEntityId: compositeentitiesid, cChildId: childid};
+
+                return client.deleteVersionInfo(client.VERSIONINFO.COMPOSITEENTITIESCHILD,sublistParams, undefined);
+            }).then(sublistResponse2 => {
+                sublistResponse2.should.not.be.undefined();
+                sublistResponse2.should.have.only.keys('code', 'message');
+                sublistResponse2.code.should.equal("Success");
+                sublistResponse2.message.should.equal("Operation Successful");
+
+
 
                 //get list of all composite entities
                 let getParams=undefined;
@@ -1445,6 +1505,7 @@ describe('Language understanding (LUIS)', () => {
         it(' should create VERSION hierarchical entities', function(done) {
 
             let hierarchicalentitiesid;
+            let childid;
 
             let body = {
                 "name": "LocationTest",
@@ -1495,6 +1556,55 @@ describe('Language understanding (LUIS)', () => {
                 response2a.should.have.only.keys('code', 'message');
                 response2a.code.should.equal("Success");
                 response2a.message.should.equal("Operation Successful");
+
+
+
+                // modify sublist 
+                sublistParams={hEntityId: hierarchicalentitiesid};
+                let sublistBody = {
+                    "name" : "HierChild1"
+                };
+
+                // post
+                return client.setVersionInfo(sublistParams, sublistBody,client.VERSIONINFO.HIERARCHICALENTITIESCHILD);
+            }).then(sublistResponse1a => {
+                sublistResponse1a.should.not.be.undefined();
+                childid = sublistResponse1a.body;
+                
+                sublistParams={hEntityId: hierarchicalentitiesid, hChildId: childid};
+                let sublistBody = {
+                    "name" : "HierChild2"
+                };
+
+                //put
+                return client.updateVersionInfo(client.VERSIONINFO.HIERARCHICALENTITIESCHILD, sublistParams, sublistBody);
+            }).then(sublistResponse1b => {
+                sublistResponse1b.should.not.be.undefined();
+                sublistResponse1b.should.not.be.undefined();
+                sublistResponse1b.should.have.only.keys('code', 'message');
+                sublistResponse1b.code.should.equal("Success");
+                sublistResponse1b.message.should.equal("Operation Successful");
+            
+                sublistParams={hEntityId: hierarchicalentitiesid, hChildId: childid};
+
+                //get
+                return client.getVersionInfo(client.VERSIONINFO.HIERARCHICALENTITIESCHILD, sublistParams);
+            }).then(sublistResponse1b => {
+                sublistResponse1b.should.not.be.undefined();
+
+                sublistResponse1b.should.have.only.keys('id', 'name','typeId','readableType');
+                sublistParams={hEntityId: hierarchicalentitiesid, hChildId: sublistResponse1b.id};
+
+                //delete
+                return client.deleteVersionInfo(client.VERSIONINFO.HIERARCHICALENTITIESCHILD,sublistParams, undefined);
+            }).then(sublistResponse2 => {
+                sublistResponse2.should.not.be.undefined();
+                sublistResponse2.should.have.only.keys('code', 'message');
+                sublistResponse2.code.should.equal("Success");
+                sublistResponse2.message.should.equal("Operation Successful");
+
+
+
 
                 //get list of all 
                 let getParams=undefined;
