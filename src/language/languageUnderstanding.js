@@ -9,25 +9,39 @@ let count = 0;
 /**
  * Language Understanding API is a cloud-based service that provides advanced natural language processing over raw text, and intent and entity detection.
  * Your LUIS domain-specific model must be in built, trained, and published before using this endpoint.
- * @augments commonService
  * {@link https://docs.microsoft.com/en-us/azure/cognitive-services/luis/home}
  */
-class languageUnderstanding extends commonService {
+class languageUnderstanding {
     /**
      * Constructor.
      * 
      * @param {Object} obj
-     * @param {string} obj.apiKey
-     * @param {string} obj.endpoint
+     * @param {string} obj.authoringKey authoring key found in LUIS.ai user    
+     * @param {string} obj.apiKey LUIS query endpoint key only
+     * @param {string} obj.authoringEndpoint 3 authoring endpoints
+     * @param {string} obj.endpoint 12 querying endpoints
+     * @param {string} obj.appId LUIS application Id
+     * @param {string} obj.versionId 10 alphanum char version
+     * @param {Object} obj.options commonService.js options, ex: { headerAndBody: true, uriAndMethod: true}
+account
      */
-    constructor({ apiKey, appId, versionId, endpoint }) {
-        super({ apiKey, endpoint });
-        this.KeyLength = 36;
-        this.APIVersion = "2.1.0";
-        this.versionId = versionId;
-        this.appId = appId;
-        this.serviceId = "LUIS.v2.0";
-        this.endpoints = [
+    constructor({ authoringKey, apiKey, authoringEndpoint, endpoint, appId, versionId, options}) {
+
+        // endpoint query only due to regions and keys
+        this.query = new commonService({ apiKey, endpoint, options });
+        this.query.debugOptions = options;
+
+        // authoring only due to regions and keys
+        this.author = new commonService({apiKey:authoringKey, endpoint: authoringEndpoint, options: options});
+        this.author.debugOptions = options;
+        
+        this.author.endpoints = [
+            "australiaeast.api.cognitive.microsoft.com",
+            "westus.api.cognitive.microsoft.com",
+            "westeurope.api.cognitive.microsoft.com"
+        ];
+
+        this.query.endpoints = [
             "australiaeast.api.cognitive.microsoft.com",
             "brazilsouth.api.cognitive.microsoft.com",
             "eastasia.api.cognitive.microsoft.com",
@@ -41,9 +55,18 @@ class languageUnderstanding extends commonService {
             "westcentralus.api.cognitive.microsoft.com",
             "westeurope.api.cognitive.microsoft.com",
         ];
+
+        this.KeyLength = 36;
+        this.APIVersion = "2.1.0";
+        this.serviceId = "LUIS.v2.0";
+
+        this.versionId = versionId;
+        this.appId = appId;
+
+
         this.INFO = {
             APPS:"",
-            ASSISTANTS: "assistants",
+            //ASSISTANTS: "assistants", DEPRECATED 2/18/18
             DOMAINS: "domains",
             IMPORT: "import",
             USAGESCENARIOS: "usagescenarios",
@@ -63,21 +86,28 @@ class languageUnderstanding extends commonService {
         this.VERSIONINFO = {
             //DEPRECATED - ASSIGNEDKEY:"assignedkey",
             CLONE: "clone",
-            CLOSEDLISTS: "closedlists",
+            CLOSEDLISTS: "closedlists", 
+            CLOSEDLISTSPATCH: "closedlists",
+            CLOSEDLISTSCHILD: "closedlistschild",
             COMPOSITEENTITIES: "compositeentities",
+            COMPOSITEENTITIESCHILD: "compositeentitieschild",
             VERSION: "",
             //LISTS: "closedlists",
             PREBUILTDOMAINS: "customprebuiltdomains",
             PREBUILTENTITIES: "customprebuiltentities",
             PREBUILTINTENTS: "customprebuiltintents",
             PREBUILTMODELS: "customprebuiltmodels",
+            SIMPLEENTITIES: "entities",
+            SUGGEST: "suggest",
             ENTITIES:"entities",
             EXAMPLE: "example",
             EXAMPLES: "examples",
             EXPORT: "export",
             FEATURES: "features",
             HIERARCHICALENTITIES: "hierarchicalentities",
+            HIERARCHICALENTITIESCHILD: "hierarchicalentitieschild",
             INTENTS: "intents",
+            IMPORT: "import",
             LISTPREBUILTS: "listprebuilts",
             MODELS: "models",
             //PATTERNS: "patterns", //deprecated
@@ -102,8 +132,9 @@ class languageUnderstanding extends commonService {
         ];
         this.CULTURECOUNT = this.PREBUILTDOMAINCULTURES.length;
         this.PREBUILTDOMAINTOTALCOUNT=0;
-        this.PREBUILTDOMAINCULTURES.forEach((culture) => { 
-            this.PREBUILTDOMAINTOTALCOUNT += Object.values(culture)[0];
+        
+        this.PREBUILTDOMAINCULTURES.forEach(item =>{
+            this.PREBUILTDOMAINTOTALCOUNT += _.values(item)[0];
         });
         
         this.retryInterval = 2000;
@@ -178,7 +209,7 @@ class languageUnderstanding extends commonService {
 
         }
 
-        return this.makeRequest({
+        return this.author.makeRequest({
             operation: operation,
             headers: {'Content-type': 'application/json'}
         })
@@ -235,7 +266,7 @@ class languageUnderstanding extends commonService {
             default: throw Error(`error in switch - unknown info ${info}`);
         }
 
-        return this.makeRequest({
+        return this.author.makeRequest({
             operation: operation,
             headers: {'Content-type': 'application/json'},
             body: body,
@@ -291,7 +322,7 @@ class languageUnderstanding extends commonService {
 
         switch(appinfo){
             case this.APPINFO.QUERYLOGS:
-                return this.makeRequest({
+                return this.author.makeRequest({
                     operation: operation,
                     headers: {'Content-type': 'application/json'}
                 }).then(csvString => {
@@ -299,7 +330,7 @@ class languageUnderstanding extends commonService {
                 })
                 break;
             default:
-                return this.makeRequest({
+                return this.author.makeRequest({
                     operation: operation,
                     headers: {'Content-type': 'application/json'}
                 })
@@ -361,7 +392,7 @@ class languageUnderstanding extends commonService {
             default: throw Error(`error in switch - unknown appinfo ${appinfo}` );
         }
 
-        return this.makeRequest({
+        return this.author.makeRequest({
             operation: operation,
             headers: {'Content-type': 'application/json'},
             body: body
@@ -431,7 +462,7 @@ class languageUnderstanding extends commonService {
 
         }
 
-        return this.makeRequest({
+        return this.author.makeRequest({
             operation: operation,
             headers: {'Content-type': 'application/json'},
             body: body
@@ -472,7 +503,7 @@ class languageUnderstanding extends commonService {
             default: throw Error("error in switch");
         }
 
-        return this.makeRequest({
+        return this.author.makeRequest({
             operation: operation,
             headers: {'Content-type': 'application/json'},
             body: body
@@ -495,8 +526,17 @@ class languageUnderstanding extends commonService {
             this.VERSIONINFO.INTENTS,
             this.VERSIONINFO.FEATURES,
             this.VERSIONINFO.HIERARCHICALENTITIES,
+            this.VERSIONINFO.HIERARCHICALENTITIESCHILD,
             this.VERSIONINFO.LISTPREBUILTS,
-            this.VERSIONINFO.MODELS
+            this.VERSIONINFO.MODELS,
+            this.VERSIONINFO.COMPOSITEENTITIES,
+            this.VERSIONINFO.SIMPLEENTITIES,
+            this.VERSIONINFO.PHRASELISTS,
+            this.VERSIONINFO.PREBUILTS,
+            this.VERSIONINFO.PREBUILTMODELS,
+            this.VERSIONINFO.PREBUILTENTITIES,
+            this.VERSIONINFO.PREBUILTINTENTS,
+            this.VERSIONINFO.SUGGEST
         ];
 
         if(!_.contains(validVERSIONINFO,versioninfo))throw Error("invalid info param '" + versioninfo + "'");
@@ -507,12 +547,37 @@ class languageUnderstanding extends commonService {
         };
 
         switch(versioninfo){
+            case this.VERSIONINFO.VERSION:
+                break;
             case this.VERSIONINFO.INTENTS:
+                // without params, get all closed lists
+                // with params, get single closed list
+                if (parameters && parameters.intentId) {
+                    operation.path += `/${parameters.intentId}`;
+                    parameters = {};
+                } else {
+                    operation.parameters = [{
+                        "name": "skip",
+                        "value": 0,
+                        "required": false,
+                        "typeName": "number",
+                        "type": "queryStringParam"
+                    }, {
+                        "name": "take",
+                        "value": 100,
+                        "required": false,
+                        "typeName": "number",
+                        "type": "queryStringParam"
+                    }];
+                }
+
+                break;
+            case this.VERSIONINFO.PREBUILTMODELS:
+            case this.VERSIONINFO.PREBUILTENTITIES:
+            case this.VERSIONINFO.PREBUILTINTENTS:
             case this.VERSIONINFO.FEATURES:
-            case this.VERSIONINFO.ENTITIES:
             case this.VERSIONINFO.EXAMPLES: 
             case this.VERSIONINFO.LISTPREBUILTS:
-            case this.VERSIONINFO.HIERARCHICALENTITIES:   
             case this.VERSIONINFO.MODELS:
                 operation.parameters = [{
                     "name": "skip",
@@ -531,14 +596,182 @@ class languageUnderstanding extends commonService {
             case this.VERSIONINFO.TRAINSTATUS:
                 // no parameters
                 break;
+
+            case this.VERSIONINFO.CLOSEDLISTS:
+                // without params, get all closed lists
+                // with params, get single closed list
+                if (parameters && parameters.clEntityId) {
+                    operation.path += `/${parameters.clEntityId}`;
+                    parameters = {};
+                } else {
+                    operation.parameters = [{
+                        "name": "skip",
+                        "value": 0,
+                        "required": false,
+                        "typeName": "number",
+                        "type": "queryStringParam"
+                    }, {
+                        "name": "take",
+                        "value": 100,
+                        "required": false,
+                        "typeName": "number",
+                        "type": "queryStringParam"
+                    }];
+                }
+
+                break;
+            case this.VERSIONINFO.COMPOSITEENTITIES: 
+                if (parameters && parameters.cEntityId){
+                    // get 1
+                    operation.path += `/${parameters.cEntityId}`;
+                    parameters = undefined;
+                } else {
+                    // get all
+                    operation.parameters = [{
+                        "name": "skip",
+                        "value": 0,
+                        "required": false,
+                        "typeName": "number",
+                        "type": "queryStringParam"
+                    }, {
+                        "name": "take",
+                        "value": 100,
+                        "required": false,
+                        "typeName": "number",
+                        "type": "queryStringParam"
+                    }];
+                }
+                break;
+            case this.VERSIONINFO.SIMPLEENTITIES: 
+                if (parameters && parameters.entityId){
+                    // get 1
+                    operation.path += `/${parameters.entityId}`;
+                    parameters = undefined;
+                } else {
+                    // get all
+                    operation.parameters = [{
+                        "name": "skip",
+                        "value": 0,
+                        "required": false,
+                        "typeName": "number",
+                        "type": "queryStringParam"
+                    }, {
+                        "name": "take",
+                        "value": 100,
+                        "required": false,
+                        "typeName": "number",
+                        "type": "queryStringParam"
+                    }];
+                }
+                break; 
+            case this.VERSIONINFO.HIERARCHICALENTITIES: 
+                if (parameters && parameters.hEntityId){
+                    // get 1
+                    operation.path += `/${parameters.hEntityId}`;
+                    parameters = undefined;
+                } else {
+                    // get all
+                    operation.parameters = [{
+                        "name": "skip",
+                        "value": 0,
+                        "required": false,
+                        "typeName": "number",
+                        "type": "queryStringParam"
+                    }, {
+                        "name": "take",
+                        "value": 100,
+                        "required": false,
+                        "typeName": "number",
+                        "type": "queryStringParam"
+                    }];
+                }
+                break;  
+            case this.VERSIONINFO.HIERARCHICALENTITIESCHILD:
+                operation.path = "luis/api/v2.0/apps/" + this.appId + "/versions/" + this.versionId + "/hierarchicalentities/" + parameters.hEntityId + "/children/" + parameters.hChildId;
+                parameters = {};
+            case this.VERSIONINFO.PHRASELISTS: 
+                if (parameters && parameters.phraselistId){
+                    // get 1
+                    operation.path += `/${parameters.phraselistId}`;
+                    parameters = undefined;
+                } else {
+                    // get all
+                    operation.parameters = [{
+                        "name": "skip",
+                        "value": 0,
+                        "required": false,
+                        "typeName": "number",
+                        "type": "queryStringParam"
+                    }, {
+                        "name": "take",
+                        "value": 100,
+                        "required": false,
+                        "typeName": "number",
+                        "type": "queryStringParam"
+                    }];
+                }
+                break;
+            case this.VERSIONINFO.PREBUILTS: 
+                if (parameters && parameters.prebuiltId){
+                    // get 1
+                    operation.path += `/${parameters.prebuiltId}`;
+                    parameters = undefined;
+                } else {
+                    // get all
+                    operation.parameters = [{
+                        "name": "skip",
+                        "value": 0,
+                        "required": false,
+                        "typeName": "number",
+                        "type": "queryStringParam"
+                    }, {
+                        "name": "take",
+                        "value": 100,
+                        "required": false,
+                        "typeName": "number",
+                        "type": "queryStringParam"
+                    }];
+                }
+                break;
+            case this.VERSIONINFO.SUGGEST:
+                if (parameters && parameters.entityId){
+                    // get 1
+                    operation.path = "luis/api/v2.0/apps/" + this.appId + "/versions/" + this.versionId + "/entities/" + parameters.entityId + "/suggest";
+                    parameters = {};
+                } else if (parameters && parameters.intentId){
+                    // get 1
+                    operation.path = "luis/api/v2.0/apps/" + this.appId + "/versions/" + this.versionId + "/intents/" + parameters.intentId + "/suggest";
+                    parameters = {};
+
+                } else { 
+                    throw Error("entityId is missing for SUGGEST");
+                }
+                break;
             default:
         };
 
-        return this.makeRequest({
-            operation: operation,
-            headers: {'Content-type': 'application/json'},
-            parameters: parameters
-        })
+        if(this.VERSIONINFO.SUGGEST && !parameters){
+            // undocumented
+
+            let referer = 'https://www.luis.ai/applications/' + this.appId + '/versions/' + this.versionId + '/build/review';
+            let options = {
+                operation: operation,
+                headers: {
+                    'Content-type': 'application/json; charset=utf-8',
+                    'Host': 'westus.api.cognitive.microsoft.com',
+                    'Origin': 'https://www.luis.ai',
+                    'Referer': referer
+                },
+                parameters: parameters
+            };
+            return this.author.makeRequest(options);
+        } else {
+            return this.author.makeRequest({
+                operation: operation,
+                headers: {'Content-type': 'application/json'},
+                parameters: parameters
+            });
+        }
         
     }
     /**
@@ -551,20 +784,46 @@ class languageUnderstanding extends commonService {
 
         const validVERSIONINFO=[
             this.VERSIONINFO.CLONE,
+            this.VERSIONINFO.EXAMPLE,
+            this.VERSIONINFO.EXAMPLES,
             this.VERSIONINFO.TRAIN,
-            this.VERSIONINFO.CLOSEDLISTS
+            this.VERSIONINFO.CLOSEDLISTS,
+            this.VERSIONINFO.CLOSEDLISTSCHILD,
+            this.VERSIONINFO.COMPOSITEENTITIES,
+            this.VERSIONINFO.COMPOSITEENTITIESCHILD,
+            this.VERSIONINFO.SIMPLEENTITIES,
+            this.VERSIONINFO.HIERARCHICALENTITIES,
+            this.VERSIONINFO.HIERARCHICALENTITIESCHILD,
+            this.VERSIONINFO.INTENTS,
+            this.VERSIONINFO.IMPORT,
+            this.VERSIONINFO.PHRASELISTS,
+            this.VERSIONINFO.PREBUILTS,
+            this.VERSIONINFO.PREBUILTDOMAINS,
+            this.VERSIONINFO.PREBUILTENTITIES,
+            this.VERSIONINFO.PREBUILTINTENTS
         ];
 
         if(!_.contains(validVERSIONINFO,versioninfo))throw Error("invalid version info param '" + versioninfo + "'");
 
         const operation = {
             "path": "luis/api/v2.0/apps/" + this.appId + "/versions/" + this.versionId + "/" + versioninfo,
-            "method": "POST",
+            "method": "POST"
         };
 
         switch(versioninfo){
+            case this.VERSIONINFO.INTENTS:
+            case this.VERSIONINFO.EXAMPLE:
+            case this.VERSIONINFO.EXAMPLES:
+            case this.VERSIONINFO.PREBUILTDOMAINS:
+            case this.VERSIONINFO.SIMPLEENTITIES:
             case this.VERSIONINFO.CLONE: 
+            case this.VERSIONINFO.COMPOSITEENTITIES:
             case this.VERSIONINFO.CLOSEDLISTS:
+            case this.VERSIONINFO.PHRASELISTS:
+            case this.VERSIONINFO.PREBUILTS:
+            case this.VERSIONINFO.HIERARCHICALENTITIES:
+            case this.VERSIONINFO.PREBUILTENTITIES:
+            case this.VERSIONINFO.PREBUILTINTENTS:
                 operation.parameters =  [{
                     "name": "appId",
                     "description": "The application id to clone.",
@@ -584,18 +843,216 @@ class languageUnderstanding extends commonService {
                 parameters.appId = this.appId;
                 parameters.versionId = this.versionId;
                 break;
+            case this.VERSIONINFO.IMPORT:
+                operation.path = "luis/api/v2.0/apps/" + this.appId + "/versions/" + versioninfo;
             case this.VERSIONINFO.TRAIN:
                 // no parameters
+                break;
+            case this.VERSIONINFO.CLOSEDLISTSCHILD:
+                operation.path = "luis/api/v2.0/apps/" + this.appId + "/versions/" + this.versionId + "/closedlists/" + parameters.clEntityId + "/sublists/";
+                parameters = {};
+                break;
+            case this.VERSIONINFO.COMPOSITEENTITIESCHILD:
+                operation.path = "luis/api/v2.0/apps/" + this.appId + "/versions/" + this.versionId + "/compositeentities/" + parameters.cEntityId + "/children/";
+                parameters = {};
+                break;
+            case this.VERSIONINFO.HIERARCHICALENTITIESCHILD:
+                operation.path = "luis/api/v2.0/apps/" + this.appId + "/versions/" + this.versionId + "/hierarchicalentities/" + parameters.hEntityId + "/children/";
+                parameters = {};
                 break;
             default: throw Error("error in switch - unexpected VERSIONINFO");
         }
 
-        return this.makeRequest({
+        return this.author.makeRequest({
             operation: operation,
             headers: {'Content-type': 'application/json'},
             body: body,
             parameters: parameters
         })
+    }
+    /**
+     * Update version info (PUT)
+     * 
+     * @returns {Promise.<object>}    
+     */
+    updateVersionInfo(versioninfo, parameters, body){
+
+        const validVERSIONINFO=[
+            this.VERSIONINFO.CLOSEDLISTSPATCH,
+            this.VERSIONINFO.CLOSEDLISTSCHILD,
+            this.VERSIONINFO.VERSION,
+            this.VERSIONINFO.COMPOSITEENTITIES,
+            this.VERSIONINFO.SIMPLEENTITIES,
+            this.VERSIONINFO.HIERARCHICALENTITIES,
+            this.VERSIONINFO.HIERARCHICALENTITIESCHILD,
+            this.VERSIONINFO.INTENTS,
+            this.VERSIONINFO.PHRASELISTS
+        ];
+
+        if(!_.contains(validVERSIONINFO,versioninfo))throw Error("invalid info param '" + versioninfo + "'");
+
+        const operation = {
+            "path": "luis/api/v2.0/apps/" + this.appId + "/versions/" + this.versionId + "/" + versioninfo,
+            "method": "PUT",
+        };
+
+        switch(versioninfo){
+            case this.VERSIONINFO.VERSION:
+                operation.path = "luis/api/v2.0/apps/" + this.appId + "/versions/" + this.versionId + "/";
+                break;
+            case this.VERSIONINFO.CLOSEDLISTSPATCH:
+                operation.path += `/${parameters.clEntityId}`
+                break;
+            case this.VERSIONINFO.COMPOSITEENTITIES:
+                operation.path += `/${parameters.cEntityId}`
+                break;
+            case this.VERSIONINFO.SIMPLEENTITIES:
+                operation.path += `/${parameters.entityId}`
+                break;
+            case this.VERSIONINFO.HIERARCHICALENTITIES:
+                operation.path += `/${parameters.hEntityId}`
+                break;
+            case this.VERSIONINFO.INTENTS:
+                operation.path += `/${parameters.intentId}`
+                break;
+            case this.VERSIONINFO.PHRASELISTS:
+                operation.path += `/${parameters.phraselistId}`
+                break;
+            case this.VERSIONINFO.CLOSEDLISTSCHILD:
+                operation.path = "luis/api/v2.0/apps/" + this.appId + "/versions/" + this.versionId + "/closedlists/" + parameters.clEntityId + "/sublists/" + parameters.subListId;
+                parameters = {};
+                break;
+            case this.VERSIONINFO.HIERARCHICALENTITIESCHILD:
+                operation.path = "luis/api/v2.0/apps/" + this.appId + "/versions/" + this.versionId + "/hierarchicalentities/" + parameters.hEntityId + "/children/" + parameters.hChildId;
+                parameters = {};
+                break;
+            default: throw Error(`error in switch - unknown versioninfo ${versioninfo}`);
+
+        }
+
+        return this.author.makeRequest({
+            operation: operation,
+            headers: {'Content-type': 'application/json'},
+            body: body
+        })
+       
+    }
+    /**
+     * replace version info
+     * Returns no data
+     * @returns {Promise.<object>}    
+     */
+    replaceVersionInfo(versioninfo, params, body){
+
+        const validINFO=[
+            this.VERSIONINFO.CLOSEDLISTS
+        ];
+
+        if(!_.contains(validINFO,versioninfo))throw Error("invalid info param '" + versioninfo + "'");
+
+        const operation = {
+            "path": "luis/api/v2.0/apps/" + this.appId + "/versions/" + this.versionId + "/" + versioninfo,
+            "method": "PATCH",
+        };
+
+        switch(versioninfo){
+            case this.VERSIONINFO.CLOSEDLISTS:
+                operation.path += "/" + params.clEntityId;
+                break;
+            default: throw Error("error in switch");
+        }
+
+        return this.author.makeRequest({
+            operation: operation,
+            headers: {'Content-type': 'application/json'},
+            body: body
+        })
+       
+    }
+    /**
+     * Delete version info 
+     * Returns no data
+     * @returns {Promise.<object>}    
+     */
+    deleteVersionInfo(versioninfo, params, body){
+
+        const validINFO=[
+            this.VERSIONINFO.VERSION,
+            this.VERSIONINFO.CLOSEDLISTS,
+            this.VERSIONINFO.CLOSEDLISTSCHILD,
+            this.VERSIONINFO.COMPOSITEENTITIES,
+            this.VERSIONINFO.COMPOSITEENTITIESCHILD,
+            this.VERSIONINFO.SIMPLEENTITIES,
+            this.VERSIONINFO.HIERARCHICALENTITIES,
+            this.VERSIONINFO.HIERARCHICALENTITIESCHILD,
+            this.VERSIONINFO.INTENTS,
+            this.VERSIONINFO.PHRASELISTS,
+            this.VERSIONINFO.PREBUILTS,
+            this.VERSIONINFO.SUGGEST,
+            this.VERSIONINFO.PREBUILTDOMAINS,
+            this.VERSIONINFO.EXAMPLES
+        ];
+
+        if(!_.contains(validINFO,versioninfo))throw Error("invalid info param '" + versioninfo + "'");
+
+        const operation = {
+            "path": "luis/api/v2.0/apps/" + this.appId + "/versions/" + this.versionId + "/" + versioninfo,
+            "method": "DELETE",
+        };
+
+        switch(versioninfo){
+            case this.VERSIONINFO.VERSION:
+                break;
+            case this.VERSIONINFO.SIMPLEENTITIES:
+                operation.path += "/" + params.entityId;
+                break;
+            case this.VERSIONINFO.CLOSEDLISTS:
+                operation.path += "/" + params.clEntityId;
+                break;
+            case this.VERSIONINFO.CLOSEDLISTSCHILD:
+                operation.path = "luis/api/v2.0/apps/" + this.appId + "/versions/" + this.versionId + "/closedlists/" + params.clEntityId + "/sublists/" + params.subListId;
+                params = {};
+                break;
+            case this.VERSIONINFO.COMPOSITEENTITIES:
+                operation.path += "/" + params.cEntityId;
+                break;
+            case this.VERSIONINFO.COMPOSITEENTITIESCHILD:
+                operation.path = "luis/api/v2.0/apps/" + this.appId + "/versions/" + this.versionId + "/compositeentities/" + params.cEntityId + "/children/" + params.cChildId;
+                params = {};
+                break;
+            case this.VERSIONINFO.HIERARCHICALENTITIES:
+                operation.path += "/" + params.hEntityId;
+                break;
+            case this.VERSIONINFO.HIERARCHICALENTITIESCHILD:
+                operation.path = "luis/api/v2.0/apps/" + this.appId + "/versions/" + this.versionId + "/hierarchicalentities/" + params.hEntityId + "/children/" + params.hChildId;
+                params = {};
+                break;
+            case this.VERSIONINFO.INTENTS:
+                operation.path += `/${params.intentId}`
+                break;
+            case this.VERSIONINFO.PHRASELISTS:
+                operation.path += `/${params.phraselistId}`
+                break;
+            case this.VERSIONINFO.PREBUILTS:
+                operation.path += `/${params.prebuiltId}`
+                break;
+            case this.VERSIONINFO.SUGGEST:
+                break;
+            case this.VERSIONINFO.PREBUILTDOMAINS:
+                operation.path += `/${params.domainName}`
+                break;
+            case this.VERSIONINFO.EXAMPLES:
+                operation.path += `/${params.exampleId}`
+                break;
+            default: throw Error("error in switch");
+        }
+
+        return this.author.makeRequest({
+            operation: operation,
+            headers: {'Content-type': 'application/json'},
+            body: body
+        })
+       
     }
     /**
      * Returns the detected intent, entities and entity values with a score for each intent. 
@@ -646,7 +1103,7 @@ class languageUnderstanding extends commonService {
             }]
         };
 
-        return this.makeRequest({
+        return this.query.makeRequest({
             operation: operation,
             headers: {'Content-type': 'application/json'},
             body: body
@@ -705,6 +1162,55 @@ class languageUnderstanding extends commonService {
                 reject(err);
             })
         })
+    }
+    /**
+     * GetAppsList
+     * culture list
+     * @param {string} culture, example "en-us"
+     * @returns {Promise.<object>}  
+     */
+    getApps(culture){
+        return this.getLUIS(this.INFO.APPS, culture).then(apps=>{
+           return(apps);
+        }).catch(err=>{
+            throw Error(err);
+        });
+    }
+    /**
+     * GetAppAuthorsList
+     *
+     * @returns {Promise.<object>}  
+     */
+    GetAppAuthorsList(){
+        return this.getAppInfo(this.APPINFO.PERMISSIONS).then(authors=>{
+           return(authors);
+        }).catch(err=>{
+            throw Error(err);
+        });
+    }
+    /**
+     * SetAppAuthor
+     * add author to app (as collaborator, not owner)
+     * @returns {Promise.<object>}  
+     */
+    SetAppAuthor(email){
+        return this.setAppInfo({"email":email}, this.APPINFO.PERMISSIONS ).then(success=>{
+           return(success.code);
+        }).catch(err=>{
+            throw Error(err);
+        });
+    }
+    /**
+     * RemoveAppAuthor
+     * remove author from app (as collaborator, not owner)
+     * @returns {Promise.<object>}  
+     */
+    RemoveAppAuthor(email){
+        return this.deleteAppInfo({"email":email}, this.APPINFO.PERMISSIONS ).then(success=>{
+           return(success.code);
+        }).catch(err=>{
+            throw Error(err);
+        });
     }
 };
 
