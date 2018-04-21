@@ -185,9 +185,9 @@ describe('Computer vision', () => {
             const headers = {
                 'Content-type': 'application/octet-stream'
             };
-            const body = fs.readFileSync('test/assets/handwritten_text.png');
+            const body = fs.readFileSync('test/assets/license_plate.png');
             var parameters = {
-                "handwriting": true,
+                "handwriting": false,
             };
 
             client.recognizeHandwrittenText({
@@ -229,6 +229,29 @@ describe('Computer vision', () => {
             const body = {
                 "url": "https://pbs.twimg.com/profile_images/808958766628605952/yB14UlXl_400x400.jpg"
             };
+
+            client.ocr({
+                parameters,
+                headers,
+                body
+            }).then((response) => {
+                should(response).not.be.undefined();
+                should(response).have.properties(["language", "orientation", "regions", "textAngle"]);
+                done();
+            }).catch((err) => {
+                done(err);
+            });
+        });
+
+        it('should accept file', (done) => {
+            const parameters = {
+                "language": "en",
+                "detectOrientation": "false"
+            };
+            const headers = {
+                'Content-type': 'application/octet-stream'
+            };
+            const body = fs.readFileSync('test/assets/license_plate.png');
 
             client.ocr({
                 parameters,

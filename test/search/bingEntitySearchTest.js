@@ -22,7 +22,7 @@ describe('Bing entity search', () => {
                 should(response).not.be.undefined();
                 should(response).have.properties(['_type', 'queryContext', 'entities']);
                 should(response.entities).have.property('value');
-                should(response.entities.value[0]).have.properties(['bingId', 'contractualRules', 'description', 'image', 'name', 'url', 'webSearchUrl']);
+                should(response.entities.value[0]).have.properties(['bingId', 'id', 'contractualRules', 'description', 'image', 'name', 'webSearchUrl']);
                 done();
             }).catch((err) => {
                 done(err);

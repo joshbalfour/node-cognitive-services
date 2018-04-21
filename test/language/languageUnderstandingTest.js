@@ -565,6 +565,7 @@ describe('Language understanding (LUIS)', () => {
                     'entities', 
                     'composites', 
                     'closedLists', 
+                    'regex_entities',
                     'bing_entities',
                     'model_features', 
                     'regex_features',
