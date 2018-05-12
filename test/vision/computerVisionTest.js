@@ -187,7 +187,7 @@ describe('Computer vision', () => {
             };
             const body = fs.readFileSync('test/assets/license_plate.png');
             var parameters = {
-                "handwriting": false,
+                "mode": "Handwritten",
             };
 
             client.recognizeHandwrittenText({
@@ -227,7 +227,7 @@ describe('Computer vision', () => {
                 'Content-type': 'application/json'
             };
             const body = {
-                "url": "https://pbs.twimg.com/profile_images/808958766628605952/yB14UlXl_400x400.jpg"
+                "url": "https://wrhsstampede.com/wp-content/uploads/2017/02/image-4-900x431.jpeg"
             };
 
             client.ocr({

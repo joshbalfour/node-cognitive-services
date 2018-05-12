@@ -241,7 +241,7 @@ export interface RecognizeHandwrittenTextParameters {
 	/**
 	 * If this parameter is set to “true” or is not specified, handwriting recognition is performed. If “false” is specified, printed text recognition is performed by calling OCR operation.
 	 */
-	handwriting: boolean
+	mode: string
 }
 
 export interface RecognizeHandwrittenTextReturnValue {

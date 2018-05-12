@@ -60,7 +60,7 @@ class computerVision extends commonService {
     analyzeImage({ parameters, headers, body }) {
 
         const operation = {
-            "path": "vision/v1.0/analyze",
+            "path": "vision/v2.0/analyze",
             "method": "POST",
             "operationId": "56f91f2e778daf14a499e1fa",
             "headers": [{
@@ -134,7 +134,7 @@ class computerVision extends commonService {
     describeImage({ parameters, headers, body }) {
 
         const operation = {
-            "path": "vision/v1.0/describe",
+            "path": "vision/v2.0/describe",
             "method": "POST",
             "operationId": "56f91f2e778daf14a499e1fe",
             "headers": [{
@@ -177,7 +177,7 @@ class computerVision extends commonService {
     getThumbnail({ parameters, headers, body }) {
 
         const operation = {
-            "path": "vision/v1.0/generateThumbnail",
+            "path": "vision/v2.0/generateThumbnail",
             "method": "POST",
             "operationId": "56f91f2e778daf14a499e1fb",
             "headers": [{
@@ -232,7 +232,7 @@ class computerVision extends commonService {
     listDomainSpecificModels() {
 
         const operation = {
-            "path": "vision/v1.0/models",
+            "path": "vision/v2.0/models",
             "method": "GET",
             "operationId": "56f91f2e778daf14a499e1fd",
         };
@@ -253,7 +253,7 @@ class computerVision extends commonService {
     ocr({ parameters, headers, body }) {
 
         const operation = {
-            "path": "vision/v1.0/ocr",
+            "path": "vision/v2.0/ocr",
             "method": "POST",
             "operationId": "56f91f2e778daf14a499e1fc",
             "headers": [{
@@ -338,7 +338,7 @@ class computerVision extends commonService {
     recognizeDomainSpecificContent({ parameters, headers, body }) {
 
         const operation = {
-            "path": "vision/v1.0/models/{model}/analyze",
+            "path": "vision/v2.0/models/{model}/analyze",
             "method": "POST",
             "operationId": "56f91f2e778daf14a499e200",
             "headers": [{
@@ -383,7 +383,7 @@ class computerVision extends commonService {
     tagImage({ headers, body }) {
 
         const operation = {
-            "path": "vision/v1.0/tag",
+            "path": "vision/v2.0/tag",
             "method": "POST",
             "operationId": "56f91f2e778daf14a499e1ff",
             "headers": [{
@@ -413,7 +413,7 @@ class computerVision extends commonService {
     getHandwrittenTextOperationResult({ parameters }) {
 
         const operation = {
-            "path": "vision/v1.0/textOperations/{operationId}",
+            "path": "vision/v2.0/textOperations/{operationId}",
             "method": "GET",
             "operationId": "587f2cf1154055056008f201",
             "parameters": [{
@@ -445,7 +445,7 @@ class computerVision extends commonService {
     recognizeHandwrittenText({ parameters, headers, body }) {
 
         const operation = {
-            "path": "vision/v1.0/recognizeText",
+            "path": "vision/v2.0/recognizeText",
             "method": "POST",
             "operationId": "587f2c6a154055056008f200",
             "headers": [{
@@ -459,12 +459,15 @@ class computerVision extends commonService {
                 "typeName": "string"
             }],
             "parameters": [{
-                "name": "handwriting",
-                "description": "If this parameter is set to “true” or is not specified, handwriting recognition is performed. If “false” is specified, printed text recognition is performed by calling OCR operation.",
-                "value": null,
+                "name": "mode",
+                "description": "If this parameter is set to “Printed”, printed text recognition is performed. If “Handwritten” is specified, handwriting recognition is performed. (Note: This parameter is case sensitive.) This is a required parameter and cannot be empty.​",
                 "required": true,
-                "type": "routeParam",
-                "typeName": "boolean"
+                "type": "queryStringParam",
+                "typeName": "string",
+                "options": [
+                    "Printed",
+                    "Handwritten"
+                ]
             }]
         };
 
