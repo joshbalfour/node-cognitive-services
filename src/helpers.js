@@ -93,8 +93,11 @@ function verifyHeaders(expectedHeaders = [], actualHeaders = {}) {
 	});
 }
 
-function verifyEndpoint(endpointsAllowed = [], endpoint) {
+function verifyEndpoint(endpointsAllowed, endpoint, validateEndpoint) {
 	return new Promise((resolve, reject) => {
+		if (validateEndpoint == false) {
+			resolve();
+		}
 		if (endpointsAllowed && endpointsAllowed.indexOf(endpoint) != -1) {
 			resolve();
 		} else {

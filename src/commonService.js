@@ -3,9 +3,12 @@ const request = require('request-promise');
 const fs = require('fs');
 
 class commonService {
-    constructor({ apiKey, endpoint }) {
+    constructor({ apiKey, endpoint, validateEndpoint = true}) {
+        this.endpoints = [];
         this.apiKey = apiKey;
         this.endpoint = endpoint;
+        this.validateEndpoint = validateEndpoint;
+        this.apiKeyHeaderName = 'Ocp-Apim-Subscription-Key';
     }
 
     getIso3CodesForLanguages() {
@@ -149,10 +152,10 @@ class commonService {
                 return verifyHeaders(operation.headers, headers);
             })
             .then(() => {
-                return verifyEndpoint(this.endpoints, this.endpoint)
+                return verifyEndpoint(this.endpoints, this.endpoint, this.validateEndpoint)
             })
             .then(() => {
-                headers['Ocp-Apim-Subscription-Key'] = this.apiKey;
+                headers[this.apiKeyHeaderName] = this.apiKey;
     
                 let path = operation.path;
     
