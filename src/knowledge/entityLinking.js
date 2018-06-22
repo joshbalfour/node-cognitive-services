@@ -17,7 +17,8 @@ class entityLinking extends commonService {
     constructor({ apiKey, endpoint }) {
         super({ apiKey, endpoint });
         this.endpoints = [
-            "westus.api.cognitive.microsoft.com"
+            "westus.api.cognitive.microsoft.com",
+            "api.labs.cognitive.microsoft.com"
         ];
     }
 
