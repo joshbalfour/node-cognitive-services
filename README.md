@@ -1,6 +1,6 @@
 # Microsoft® Cognitive Services SDK for Node.JS
 
-### By [Josh Balfour](https://joshbalfour.co.uk)
+### By [Maria Ines Parnisari](https://miparnisariblog.wordpress.com/) and [Josh Balfour](https://joshbalfour.co.uk)
 
 ![npm-version](https://img.shields.io/npm/v/cognitive-services.svg)
 ![npm-installs](https://img.shields.io/npm/dw/cognitive-services.svg)
