@@ -18,7 +18,7 @@ module.exports = {
         apiKey: "insert-key-here" 
     },
     academicKnowledge: {
-        endpoint: "westus.api.cognitive.microsoft.com",
+        endpoint: "api.labs.cognitive.microsoft.com",
         apiKey: "insert-key-here"
     },
     bingAutosuggest: {
