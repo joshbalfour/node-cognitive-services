@@ -34,7 +34,7 @@ class bingSpeech extends commonService {
     getText({ parameters, headers, body }) {
 
         const operation = {
-            "path": "speech/{recognitionMode}/cognitiveservices/v1",
+            "path": "speech/recognition/{recognitionMode}/cognitiveservices/v1",
             "method": "POST",
             "headers": [{
                 "name": "Transfer-Encoding",
