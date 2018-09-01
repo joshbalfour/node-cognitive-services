@@ -66,7 +66,6 @@ PRs are welcome! If you want to contribute, follow these steps:
 
 - Knowledge
     - [x] Academic knowledge
-    - [x] Entity Linking
     - [x] Recommendations
     - [x] QnA maker
     - [ ] Knowledge exploration

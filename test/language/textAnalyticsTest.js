@@ -107,4 +107,37 @@ describe('Text analytics', () => {
             });
         })
     })
+
+    describe('Link entity', () => {
+        it('should return response', (done) => {
+            const headers = {
+                'Content-type': 'application/json'
+            };
+            const body = {
+                "documents": [
+                  {
+                    "language": "en",
+                    "id": "1",
+                    "text": "Microsoft released Windows 10"
+                  },
+                  {
+                    "language": "en",
+                    "id": "2",
+                    "text": "In 1975, Bill Gates III and Paul Allen founded the company."
+                  }
+                ]
+            };
+
+            client.linkEntity({
+                headers,
+                body
+            }).then((response) => {
+                should(response).not.be.undefined();
+                should(response).have.properties(['documents'])
+                done();
+            }).catch((err) => {
+                done(err);
+            });
+        })
+    })
 })

@@ -29,6 +29,41 @@ export class textAnalytics {
 	 * Sentiment score is generated using classification techniques. The input features to the classifier include n-grams, features generated from part-of-speech tags, and word embeddings.
 	 */
 	sentiment(options: SentimentOptions): Promise<SentimentReturnValue>;
+
+	/**
+	 * The API returns a list of recognized entities in a given document. To get even more information on each recognized entity we recommend using the Bing Entity Search API by querying for the recognized entities names.
+	 */
+	linkEntity(options: LinkEntityOptions): Promise<LinkEntityReturnValue>;
+}
+
+export interface LinkEntityOptions {
+	body: LinkEntityBody
+}
+
+export interface LinkEntityBody {
+	documents: {
+		language: string,
+		id: string,
+		text: string
+	}[]
+}
+
+export interface LinkEntityReturnValue {
+	documents: {
+		id: string,
+		entities: {
+			name: string,
+			wikipediaLanguage: string,
+			wikipediaId: string,
+			wikipediaUrl: string,
+			bingId: string,
+			matches: {
+				text: string,
+				offset: number,
+				length: number
+			}
+		}[]
+	}[]
 }
 
 export interface DetectLanguageOptions {

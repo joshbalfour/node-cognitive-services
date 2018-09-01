@@ -125,6 +125,34 @@ class textAnalytics extends commonService {
 
     };
 
+    /**
+	The API returns a list of recognized entities in a given document. To get even more information on each recognized entity we recommend using the Bing Entity Search API by querying for the recognized entities names.
+    @returns {Promise.<object>}
+    */
+   linkEntity({ headers, body }) {
+
+        const operation = {
+            "path": "text/analytics/v2.0/entities",
+            "method": "POST",
+            "operationId": "5ac4251d5b4ccd1554da7634",
+            "headers": [{
+                "name": "Content-Type",
+                "description": "Media type of the body sent to the API.",
+                "options": [
+                    "application/json",
+                    "text/json"
+                ],
+                "required": false
+            }],
+        };
+
+        return this.makeRequest({
+            operation: operation,
+            headers: headers,
+            body: body
+        })
+    }
+
 };
 
 module.exports = textAnalytics;

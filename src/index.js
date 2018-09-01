@@ -14,7 +14,6 @@ module.exports = {
     bingWebSearchV7: require('./search/bingWebSearchV7'),
     computerVision: require('./vision/computerVision'),
     emotion: require('./vision/emotion'),
-    entityLinking: require('./knowledge/entityLinking'),
     qnaMaker: require('./knowledge/qnaMaker'),
     face: require('./vision/face'),
     recommendations: require('./knowledge/recommendations'),
