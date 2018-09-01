@@ -10,7 +10,7 @@ describe('Bing speech', () => {
     });
 
     describe('Speech to text', () => {
-        it.skip('should get text', done => {
+        it('should get text', done => {
             const parameters = {
                 recognitionMode: 'dictation',
                 language: 'en-US',
