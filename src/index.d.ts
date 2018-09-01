@@ -7,7 +7,6 @@ export * from './language/bingSpellCheck';
 export * from './language/linguisticAnalysis';
 export * from './language/textAnalytics';
 export * from './language/textTranslator';
-export * from './language/webLanguageModel';
 
 export * from './search/bingAutosuggest';
 export * from './search/bingEntitySearch';
