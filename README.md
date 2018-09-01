@@ -75,7 +75,6 @@ PRs are welcome! If you want to contribute, follow these steps:
     - [x] Bing spell check (v5 and v7)
     - [x] Text analytics
     - [x] Translator Text
-    - [x] Linguistic Analysis
     - [x] LUIS
 - Search
     - [x] Bing Autosuggest (v5 and v7)

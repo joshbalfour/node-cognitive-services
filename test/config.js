@@ -63,10 +63,6 @@ module.exports = {
     bingSpeech: {
         apiKey: "insert-key-here"
     },
-    linguisticAnalysis: {
-        endpoint: 'westus.api.cognitive.microsoft.com',
-        apiKey: 'insert-key-here'
-    },
     bingEntitySearch: {
         apiKey: "insert-key-here"
     },

@@ -4,7 +4,6 @@ export * from './knowledge/qnaMaker';
 export * from './knowledge/recommendations';
 
 export * from './language/bingSpellCheck';
-export * from './language/linguisticAnalysis';
 export * from './language/textAnalytics';
 export * from './language/textTranslator';
 
