@@ -15,6 +15,7 @@ module.exports = {
     computerVision: require('./vision/computerVision'),
     emotion: require('./vision/emotion'),
     qnaMaker: require('./knowledge/qnaMaker'),
+    qnaMakerV4: require('./knowledge/qnaMakerV4'),
     face: require('./vision/face'),
     recommendations: require('./knowledge/recommendations'),
     speakerIdentification: require('./speech/speakerIdentification'),

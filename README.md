@@ -67,7 +67,7 @@ PRs are welcome! If you want to contribute, follow these steps:
 - Knowledge
     - [x] Academic knowledge
     - [x] Recommendations
-    - [x] QnA maker
+    - [x] QnA maker (v2 and v4)
     - [ ] Knowledge exploration
     - [ ] Custom decision service
 - Language
