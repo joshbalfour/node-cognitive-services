@@ -130,7 +130,7 @@ describe('Face', () => {
                 'Content-type': 'application/octet-stream'
             };
             const body = fs.readFileSync('./test/assets/happy_face.jpg');
-            
+
             face.detect({
                 parameters,
                 headers,
@@ -151,7 +151,7 @@ describe('Face', () => {
                 "faceId": faceId1,
                 "faceIds": [faceId1, faceId2]
             }
-            
+
             face.findSimilar({
                 body
             }).then((response) => {
@@ -168,7 +168,7 @@ describe('Face', () => {
             const body = {
                 "faceIds": [faceId1, faceId2]
             }
-            
+
             face.group({
                 body
             }).then((response) => {
@@ -185,7 +185,7 @@ describe('Face', () => {
                 "faceId1": faceId1,
                 "faceId2": faceId2
             }
-            
+
             face.verify({
                 body
             }).then((response) => {
@@ -317,6 +317,248 @@ describe('Face', () => {
         })
     })
 
+    describe('Large face list', () => {
+        const largeFaceListId = 'test-largefacelistid';
+
+        before((done) => {
+            const parameters = {
+                largeFaceListId,
+            };
+            const body = {
+                name: 'this is a sample large face list',
+            }
+
+            face.createALargeFaceList({
+                parameters,
+                body,
+            }).then((response) => {
+                should(response).be.undefined();
+                done();
+            }).catch((err) => {
+                done(err);
+            });
+        });
+
+        after((done) => {
+            const parameters = {
+                largeFaceListId,
+            };
+
+            face.deleteALargeFaceList({
+                parameters,
+            })
+            .then(() => {
+                done();
+            })
+            .catch((err) => {
+                done(err);
+            });
+        });
+
+        it('should get a large face list, list them all', (done) => {
+            var parameters = {
+                largeFaceListId
+            };
+
+            face.getALargeFaceList({
+                parameters,
+            }).then((response) => {
+                should(response).not.be.undefined();
+                should(response).have.properties(['largeFaceListId', 'name', 'userData']);
+
+                return face.listLargeFaceLists();
+            }).then((response) => {
+                should(response).not.be.undefined();
+                should(response).be.Array().and.have.length(1);
+                done();
+            }).catch((err) => {
+                done(err);
+            });
+        });
+
+        it('should add a face to the large face list, get it and delete it', (done) => {
+            var parameters = {
+                largeFaceListId,
+            };
+
+            const headers = {
+                'Content-type': 'application/octet-stream',
+            };
+
+            const body = fs.readFileSync('./test/assets/happy_face.jpg');
+
+            face.addAFaceToALargeFaceList({
+                parameters,
+                headers,
+                body,
+            })
+            .then((response) => {
+                should(response).not.be.undefined();
+                should(response).have.property('persistedFaceId');
+
+                parameters = {
+                    largeFaceListId,
+                    persistedFaceId: response.persistedFaceId,
+                };
+
+                return face.getAFaceFromALargeFaceList({
+                    parameters,
+                });
+            })
+            .then((response) => {
+                should(response).not.be.undefined();
+                should(response).have.property('persistedFaceId');
+
+                parameters = {
+                    largeFaceListId,
+                    persistedFaceId: response.persistedFaceId,
+                };
+
+                return face.deleteAFaceFromALargeFaceList({
+                    parameters,
+                });
+            }).then((response) => {
+                should(response).be.undefined();
+                done();
+            }).catch((err) => {
+                done(err);
+            });
+        });
+
+        it('should add a face to the large face list and update it and list it', (done) => {
+            var parameters = {
+                largeFaceListId,
+            };
+
+            const addFacePromise = face.addAFaceToALargeFaceList({
+                parameters,
+                headers: {'Content-type': 'application/octet-stream'},
+                body: fs.readFileSync('./test/assets/happy_face.jpg'),
+            }).then((response) => {
+                should(response).not.be.undefined();
+                should(response).have.property('persistedFaceId');
+                return response;
+            });
+
+            const updateFacePromise = addFacePromise.then((response) => {
+                parameters = {
+                    largeFaceListId,
+                    persistedFaceId: response.persistedFaceId,
+                };
+
+                body = {
+                    userData: 'updated user data',
+                };
+
+                return face.updateFaceInALargeFaceList({
+                    parameters,
+                    body,
+                });
+            }).then((response) => {
+                should(response).be.undefined();
+                return response;
+            });
+
+            Promise.all([addFacePromise, updateFacePromise])
+            .then(([addFaceResponse, _]) => {
+                parameters = {
+                    largeFaceListId,
+                    persistedFaceId: addFaceResponse.persistedFaceId,
+                };
+
+                return face.deleteAFaceFromALargeFaceList({
+                    parameters,
+                });
+            }).then((response) => {
+                should(response).be.undefined();
+                done();
+            }).catch((err) => {
+                done(err);
+            });
+        });
+
+        it('should list faces in a large face list', (done) => {
+            var parameters = {
+                largeFaceListId,
+            };
+
+            face.addAFaceToALargeFaceList({
+                parameters,
+                headers: {'Content-type': 'application/octet-stream'},
+                body: fs.readFileSync('./test/assets/happy_face.jpg'),
+            })
+            .then((response) => {
+                should(response).not.be.undefined();
+                should(response).have.property('persistedFaceId');
+
+                return face.listFacesInALargeFaceList({
+                    parameters,
+                });
+            })
+            .then((response) => {
+                should(response).be.not.undefined();
+                should(response).be.Array().and.have.length(1);
+
+                parameters = {
+                    largeFaceListId,
+                    persistedFaceId: response[0].persistedFaceId,
+                };
+
+                return face.deleteAFaceFromALargeFaceList({
+                    parameters,
+                });
+            }).then((response) => {
+                should(response).be.undefined();
+                done();
+            }).catch((err) => {
+                done(err);
+            });
+        });
+
+        it('should update a large face list', (done) => {
+            const parameters = {
+                largeFaceListId,
+            };
+
+            const body = {
+                name: 'updated',
+                'userData': 'updated',
+            };
+
+            face.updateALargeFaceList({
+                parameters,
+                body,
+            }).then((response) => {
+                should(response).be.undefined();
+                done();
+            }).catch((err) => {
+                done(err);
+            });
+        });
+
+        it('should train a large face list and get training status', (done) => {
+            const parameters = {
+                largeFaceListId,
+            };
+
+            face.trainALargeFaceList({
+                parameters,
+            }).then((response) => {
+                should(response).be.undefined();
+
+                return face.getALargeFaceListTrainingStatus({
+                    parameters
+                });
+            }).then((response) => {
+                should(response).not.be.undefined();
+                should(response).have.properties(['status']);
+                done();
+            }).catch((err) => {
+                done(err);
+            });
+        });
+    });
+
     describe('Person', () => {
         it('should add a person face with a picture in a URL', (done) => {
             const headers = {
@@ -347,7 +589,7 @@ describe('Face', () => {
             const headers = {
                 'Content-type': 'application/octet-stream'
             };
-            
+
             const body = fs.readFileSync('test/assets/happy_face.jpg');
             const parameters = {
                 "personGroupId": personGroupId,
