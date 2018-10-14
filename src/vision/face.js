@@ -524,7 +524,7 @@ class face extends commonService {
       Face List simply represents a list of persisted faces, and could be treated as a searchable data source in Face - Find Similar.
       @returns {Promise.<object>}
       */
-    updateAFaceList({ parameters, headers, body }) {
+    updateAFaceList({ parameters, body }) {
 
         const operation = {
             "path": "face/v1.0/facelists/{faceListId}",
@@ -826,7 +826,7 @@ class face extends commonService {
 
     @returns {Promise.<object>}
     */
-    listFacesInALargeFaceList(parameters = {}) {
+    listFacesInALargeFaceList(parameters) {
 
         const operation = {
             "path": "face/v1.0/largefacelists/{largeFaceListId}/persistedfaces",
@@ -910,7 +910,7 @@ class face extends commonService {
 
     @returns {Promise.<object>}
     */
-    updateFaceInALargeFaceList({ parameters, body }) {
+    updateAFaceInALargeFaceList({ parameters, body }) {
 
         const operation = {
             "path": "face/v1.0/largefacelists/{largeFaceListId}/persistedfaces/{persistedFaceId}",

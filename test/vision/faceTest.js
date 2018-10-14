@@ -450,7 +450,7 @@ describe('Face', () => {
                     userData: 'updated user data',
                 };
 
-                return face.updateFaceInALargeFaceList({
+                return face.updateAFaceInALargeFaceList({
                     parameters,
                     body,
                 });
