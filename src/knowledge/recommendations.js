@@ -19,22 +19,6 @@ class recommendations extends commonService {
         this.apiKeyHeaderName = 'x-api-key';
     }
 
-    /**
-     * Lists all models.
-     * @returns {Promise.<string>}  ID of operation
-    */
-    getAllModels() {
-
-        const operation = {
-            "path": "api/models",
-            "method": "GET",
-        };
-
-        return this.makeRequest({
-            operation: operation
-        });
-
-    };
 
 };
 

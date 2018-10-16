@@ -9,17 +9,4 @@ describe('Recommendations', () => {
         endpoint: config.recommendations.endpoint
     });
 
-    describe('Get all models', () => {
-        it('should get response', done => {
-            client.getAllModels()
-            .then(response => {
-                should(response).not.be.undefined();
-                should(response).be.Array;
-                done();
-            })
-            .catch(err => {
-                done(err);
-            })
-        })
-    })
 })
