@@ -566,7 +566,6 @@ describe('Language understanding (LUIS)', () => {
                     'composites', 
                     'closedLists', 
                     'regex_entities',
-                    'bing_entities',
                     'model_features', 
                     'regex_features',
                     'utterances');
@@ -619,7 +618,7 @@ describe('Language understanding (LUIS)', () => {
                 response.should.not.be.undefined();
                 response.should.be.Array;
                 if (response.length > 0) {
-                    response[0].should.have.only.keys('id', 'name','typeId','readableType');
+                    response[0].should.have.only.keys('id', 'name','typeId','readableType', 'roles');
                 }
                 done();
             }).catch((err) => {
@@ -828,7 +827,7 @@ describe('Language understanding (LUIS)', () => {
                 response.should.be.Array;
                 
                 // not validating customPrebuiltModel Properties
-                response[0].should.have.only.keys('id', 'name','typeId','readableType');
+                response[0].should.have.only.keys('id', 'name','typeId','readableType','roles');
                 done();
             }).catch((err) => {
                 done(err);

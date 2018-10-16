@@ -24,7 +24,7 @@ describe('Bing Image Search v7', () => {
             })
             .then((response) => {
                 should(response).not.be.undefined();
-                should(response).have.properties(['imageInsightsToken', 'bestRepresentativeQuery'])
+                should(response).have.properties(['imageInsightsToken'])
                 done();
             }).catch((err) => {
                 done(err);
