@@ -22,6 +22,8 @@ export * from './vision/emotion';
 export * from './vision/face';
 export * from './vision/video';
 
+export * from './geo/navjoin';
+
 export interface ContentTypeHeaders {
 	/**
 	 * Media type of the body sent to the API. 
