@@ -18,6 +18,15 @@ class videoIndexerV2 extends commonService {
         ];
     }
 
+    /**
+     * Get Accounts - returns the account details associated
+     * with an API key.
+     * @param {Object} obj
+     * @param {string} obj.location
+     * @param {boolean} obj.generateAccessTokens
+     * @param {boolean} obj.allowEdit
+     * @returns {Promise<[Object]>} A promise containing an array of objects
+     */
     getAccounts({
             location,
             generateAccessTokens,
@@ -27,17 +36,23 @@ class videoIndexerV2 extends commonService {
             parameters: [
                 {
                     name: 'location',
-                    type: 'queryStringParam'
+                    required: true,
+                    type: 'routeParam',
+                    typeName: 'string'
                 },
                 {
                     name: 'generateAccessTokens',
-                    type: 'queryStringParam'
+                    required: false,
+                    type: 'queryStringParam',
+                    typeName: 'boolean',
                 },{
                     name: 'allowEdit',
-                    type: 'queryStringParam'
+                    required: false,
+                    type: 'queryStringParam',
+                    typeName: 'boolean'
                 },
             ],
-            path: `auth/${location}/Accounts`,
+            path: `auth/{location}/Accounts`,
             method: 'GET'
         };
 
