@@ -68,6 +68,14 @@ class videoIndexerV2 extends commonService {
         })
     }
 
+    /**
+     * Get Account Access Token - returns an account access token as a string.
+     * @param {Object} obj
+     * @param {string} obj.location
+     * @param {boolean} obj.accountId
+     * @param {boolean} obj.allowEdit
+     * @returns {Promise<string>} A promise containing an array of objects
+     */
     getAccountAccessToken({
         location,
         accountId,
