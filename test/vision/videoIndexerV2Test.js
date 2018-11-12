@@ -15,11 +15,14 @@ describe.only('Video Indexer V2', () => {
             generateAccessTokens: true
         };
         
-        it('should return an array showing url and accounts access token', done => {
+        it('should return an array contain an object with url, id and accounts access token', done => {
             client.getAccounts(requestParams)
             .then(response => {
                 should(response).not.be.undefined();
                 should(response).be.an.Array();
+                should(response[0]).have.property('id');
+                should(response[0]).have.property('url');
+                should(response[0]).have.property('accessToken');
                 done();         
             })
             .catch(err => {
