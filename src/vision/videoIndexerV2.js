@@ -67,6 +67,47 @@ class videoIndexerV2 extends commonService {
             parameters: requestParameters
         })
     }
+
+    getAccountAccessToken({
+        location,
+        accountId,
+        allowEdit,
+    }){
+        const operation = {
+            parameters: [
+                {
+                    name: 'location',
+                    required: true,
+                    type: 'routeParam',
+                    typeName: 'string'
+                },
+                {
+                    name: 'accountId',
+                    required: true,
+                    type: 'routeParam',
+                    typeName: 'string',
+                },{
+                    name: 'allowEdit',
+                    required: false,
+                    type: 'queryStringParam',
+                    typeName: 'boolean'
+                },
+            ],
+            path: `auth/{location}/Accounts/{accountId}/AccessToken`,
+            method: 'GET'
+        };
+
+        const requestParameters = {
+            location,
+            accountId,
+            allowEdit
+        }
+
+        return this.makeRequest({
+            operation: operation,
+            parameters: requestParameters
+        })
+    }
 }
 
 module.exports = videoIndexerV2;
