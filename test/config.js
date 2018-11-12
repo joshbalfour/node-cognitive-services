@@ -76,7 +76,6 @@ module.exports = {
         versionID: "0.1"
     },
     videoIndexerV2: {
-        endpoint: "api.videoindexer.ai",
         apiKey: "insert-key-here"
     }
 }

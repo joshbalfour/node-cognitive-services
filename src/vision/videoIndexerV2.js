@@ -11,7 +11,7 @@ class videoIndexerV2 extends commonService {
      * @param {string} obj.apiKey
      */
     constructor({ apiKey }) {
-        const endpoint = "api.videoindexer.ai/";
+        const endpoint = "api.videoindexer.ai";
         super({ apiKey, endpoint });
         this.endpoints = [
             endpoint
@@ -36,7 +36,9 @@ class videoIndexerV2 extends commonService {
                     name: 'allowEdit',
                     type: 'queryStringParam'
                 },
-            ]
+            ],
+            path: `auth/${location}/Accounts`,
+            method: 'GET'
         };
 
         const requestParameters = {
