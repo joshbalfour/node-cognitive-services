@@ -31,7 +31,7 @@ describe.only('Video Indexer V2', () => {
         })
     })
 
-    describe('Get Account Access Tokens', () => {
+    describe('Get Account Access Token', () => {
         const requestParams = {
             location: "trial",
             accountId: config.videoIndexerV2.accountId,
@@ -40,6 +40,25 @@ describe.only('Video Indexer V2', () => {
         
         it('should return an account access token', done => {
             client.getAccountAccessToken(requestParams)
+            .then(response => {
+                should(response).not.be.undefined();
+                should(response).startWith("ey", "the encoding of brackets alwys generates this at the start");
+                done();         
+            })
+            .catch(err => {
+                done(err);
+            })
+        })
+    })
+
+    describe('Get User Access Token', () => {
+        const requestParams = {
+            location: "trial",
+            allowEdit: false
+        };
+        
+        it('should return a user access token', done => {
+            client.getUserAccessToken(requestParams)
             .then(response => {
                 should(response).not.be.undefined();
                 should(response).startWith("ey", "the encoding of brackets alwys generates this at the start");

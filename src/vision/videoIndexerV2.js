@@ -74,7 +74,7 @@ class videoIndexerV2 extends commonService {
      * @param {string} obj.location
      * @param {boolean} obj.accountId
      * @param {boolean} obj.allowEdit
-     * @returns {Promise<string>} A promise containing an array of objects
+     * @returns {Promise<string>} A promise containing an access token
      */
     getAccountAccessToken({
         location,
@@ -108,6 +108,46 @@ class videoIndexerV2 extends commonService {
         const requestParameters = {
             location,
             accountId,
+            allowEdit
+        }
+
+        return this.makeRequest({
+            operation: operation,
+            parameters: requestParameters
+        })
+    }
+
+    /**
+     * Get User Access Token - returns a user access token as a string.
+     * @param {Object} obj
+     * @param {string} obj.location
+     * @param {boolean} obj.allowEdit
+     * @returns {Promise<string>} A promise containing an access token
+     */
+    getUserAccessToken({
+        location,
+        allowEdit,
+    }){
+        const operation = {
+            parameters: [
+                {
+                    name: 'location',
+                    required: true,
+                    type: 'routeParam',
+                    typeName: 'string'
+                },{
+                    name: 'allowEdit',
+                    required: false,
+                    type: 'queryStringParam',
+                    typeName: 'boolean'
+                },
+            ],
+            path: `auth/{location}/Users/Me/AccessToken`,
+            method: 'GET'
+        };
+
+        const requestParameters = {
+            location,
             allowEdit
         }
 
