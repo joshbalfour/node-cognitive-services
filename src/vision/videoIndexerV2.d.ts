@@ -8,6 +8,7 @@ export class videoIndexer {
     constructor(options: videoIndexerV2Options);
     getAccounts(options: GetAccountOptions): Promise<Object[]>;
     getAccountAccessToken(options: GetAccountAccessTokenOptions): Promise<string>
+    getUserAccessToken(options: GetUserAccessTokenOptions): Promise<string>
 }
 
 export interface videoIndexerV2Options {
@@ -23,5 +24,10 @@ export interface GetAccountOptions {
 export interface GetAccountAccessTokenOptions {
     location: string,
     accountId: string,
+    allowEdit?: boolean
+}
+
+export interface GetUserAccessTokenOptions {
+    location: string,
     allowEdit?: boolean
 }
