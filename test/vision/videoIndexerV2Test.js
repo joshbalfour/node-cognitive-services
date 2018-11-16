@@ -2,11 +2,14 @@ const cognitive = require('../../src/index.js');
 const config = require('../config.js');
 const should = require('should');
 
-describe.only('Video Indexer V2', () => {
+describe('Video Indexer V2', () => {
 
     const client = new cognitive.videoIndexerV2({
         apiKey: config.videoIndexerV2.apiKey
     });
+
+    const videoUrl = 'https://mparnisari.blob.core.windows.net/storage/video_girl_laughing.mp4';
+    const videoPath = './test/assets/video_girl_laughing.mp4';
 
     describe('Get Accounts', () => {
         const requestParams = {
@@ -68,5 +71,45 @@ describe.only('Video Indexer V2', () => {
                 done(err);
             })
         })
+    })
+
+    describe.only('Upload Video', () => {
+        let accessToken;
+        const videoName = 'A girl laughing';
+        
+        beforeEach('generate an access token', (done) => {
+            const requestParams = {
+                location: "trial",
+                accountId: config.videoIndexerV2.accountId,
+                allowEdit: true
+            };
+            client.getAccountAccessToken(requestParams)
+            .then(response => {
+                accessToken = response;
+                done();
+            })
+        });
+        
+        it(`should return a json with state, "Uploaded" or "Processing", and a video with name, ${videoName} and a Video id`, done => {
+            const requestParams = {
+                path: videoPath,
+                location: "trial",
+                accountId: config.videoIndexerV2.accountId,
+                accessToken: accessToken,
+                name: videoName,
+                privacy: 'Public'
+            };
+
+            client.uploadVideo(requestParams)
+            .then(response => {
+                should(response).have.property('name', requestParams.name);
+                should(response.state).be.equalOneOf('Processing', 'Uploaded')
+                should(response.id).not.be.null();
+                done();         
+            })
+            .catch(err => {
+                done(err);
+            })
+        });
     })
 })
