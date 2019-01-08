@@ -74,5 +74,8 @@ module.exports = {
         apiKey: "insert-key-here",
         appID: "insert-appID-here",
         versionID: "0.1"
+    },
+    navJoin: {
+        apiKey: "insert-key-here"
     }
 }
