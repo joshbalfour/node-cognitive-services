@@ -94,7 +94,7 @@ PRs are welcome! If you want to contribute, follow these steps:
     - [x] Emotion
     - [x] Face
     - [x] Content moderator
-    - [x] Video indexer
+    - [x] Video indexer v2 (in progress)
     - [ ] Custom vision service
 
 ## Legal

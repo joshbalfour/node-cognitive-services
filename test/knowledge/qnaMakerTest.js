@@ -2,7 +2,7 @@ const cognitive = require('../../src/index.js');
 const config = require('../config.js');
 const should = require('should');
 
-describe.skip('QnA maker', () => {
+describe('QnA maker', () => {
 
     const client = new cognitive.qnaMaker({
         apiKey: config.qnaMaker.apiKey,
