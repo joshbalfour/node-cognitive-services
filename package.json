@@ -1,6 +1,6 @@
 {
   "name": "cognitive-services",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "Microsoft Cognitive Services SDK for Node.js",
   "main": "dist/index.js",
   "scripts": {
