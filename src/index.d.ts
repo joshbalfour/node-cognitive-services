@@ -18,7 +18,6 @@ export * from './speech/speakerIdentification';
 export * from './speech/speakerVerification'
 
 export * from './vision/computerVision';
-export * from './vision/emotion';
 export * from './vision/face';
 export * from './vision/video';
 
