@@ -1,6 +1,7 @@
 const cognitive = require('../../src/index.js');
 const config = require('../config.js');
 const should = require('should');
+const promiseDelay = require('sleep-promise');
 
 describe('QnA maker', () => {
 
@@ -9,7 +10,7 @@ describe('QnA maker', () => {
         endpoint: config.qnaMaker.endpoint
     });
 
-    var knowledgeBaseId;
+    var knowledgeBaseId = false;
 
     before(done => {
         console.log('Generating knowledge base...')
@@ -32,13 +33,24 @@ describe('QnA maker', () => {
 
         client.createKnowledgeBase({
             body
+      }).then(response => {
+          should(response).not.be.undefined();
+          should(response).have.properties(['operationState', 'userId', 'operationId', 'createdTimestamp', 'lastActionTimestamp']);
+          var parameters = {
+            operationId: response.operationId
+          }
+          return promiseDelay(client.retryInterval)
+            .then(() => {
+              return client.getOperationStatus({
+                parameters
+            })
+          });
+          
         }).then(response => {
-            should(response).not.be.undefined();
-            should(response).have.properties(['kbId', 'dataExtractionResults']);
-            should(response.dataExtractionResults).be.Array().and.have.length(1);
-            should(response.dataExtractionResults[0]).have.properties(['sourceType', 'extractionStatusCode', 'source']);
-            knowledgeBaseId = response.kbId;
-            done();
+          should(response).not.be.undefined();
+          should(response).have.properties(['knowledgeBaseId']);
+          knowledgeBaseId = response.knowledgeBaseId;
+          done();
         }).catch(err => {
             done(err);
         });
