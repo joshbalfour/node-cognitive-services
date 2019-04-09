@@ -113,7 +113,13 @@ class contentModerator extends commonService {
                 "required": false,
                 "type": "queryStringParam",
                 "typeName": "string"
-            }]
+            }, {
+              "name": "classify",
+              "description": "Enables Text Classification.",
+              "required": false,
+              "type": "queryStringParam",
+              "typeName": "boolean"
+          }]
         };
 
         return this.makeRequest({
