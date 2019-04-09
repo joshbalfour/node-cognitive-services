@@ -28,10 +28,6 @@ export class academicKnowledge {
 	 */
 	getSimilarity(options: GetSimilarityOptions): Promise<string>;
 
-	/**
-	 * For retrieving paths and subgraphs from Microsoft Academic Graph. The graph query interface powered by Graph Engine allows us to not only query entities that meet certain criteria (e.g. find a paper with a given title), but also perform pattern matching via graph exploration (e.g. detect co-authorship).
-	 */
-	graphSearch(options: GraphSearchOptions): Promise<GraphSearchReturnValue>;
 
 	/**
 	 * The interpret REST API takes an end user query string (i.e., a query entered by a user of your application) and returns formatted interpretations of user intent based on the Academic Graph data and the Academic Grammar. To provide an interactive experience, you can call this method repeatedly after each character entered by the user. In that case, you should set the complete parameter to 1 to enable auto-complete suggestions. If your application does not want auto-completion, you should set the complete parameter to 0.
@@ -194,42 +190,6 @@ export interface GetSimilarityParameters {
 	 * String to be compared, input length is bounded by the limitation of the length of URL. When the strings are too long to be processed using GET, use POST instead.
 	 */
 	s2: string
-}
-
-//Graph Search
-export interface GraphSearchOptions {
-	body: GraphSearchBody,
-	headers?: ContentTypeHeaders & OcpApimSubscriptionKeyHeaders,
-	parameters: GraphSearchParameters
-}
-
-export interface GraphSearchParameters {
-	/**
-	 * Request type of query. Should be "json" or "lambda".
-	 */
-	mode: string
-}
-
-export interface GraphSearchBody {
-	path: string,
-	paper: {
-		type: string,
-		NormalizedTitle: string,
-		select: string[]
-	},
-	author: {
-		return: {
-			type: string,
-			Name: string
-		}
-	}
-}
-
-/**
- * A successful call returns an array of entities for a given query.
- */
-export interface GraphSearchReturnValue {
-	Results: [{ CellID: number, OriginalTitle: string }, { CellID: number }][]
 }
 
 //Interpret
