@@ -182,45 +182,6 @@ class academicKnowledge extends commonService {
         })
     };
 
-    /**
-     * Allows us to not only query entities that meet certain criteria (e.g. find a paper with a given title), bu
-     * t also perform pattern matching via graph exploration (e.g. detect co-authorship).
-     * @returns {Promise.<object>}
-     */
-    graphSearch({ parameters, headers, body }) {
-
-        const operation = {
-            "path": "academic/v1.0/graph/search",
-            "method": "POST",
-            "operationId": "5951f78363b4fb31286b8ef4",
-            "headers": [{
-                "name": "Content-Type",
-                "description": "Media type of the body sent to the API.",
-                "options": [
-                    "application/json",
-                    "text/plain"
-                ],
-                "required": false,
-                "typeName": "string"
-            }],
-            "parameters": [{
-                "name": "mode",
-                "description": "Request type of query. Should be \"json\" or \"lambda\"",
-                "value": null,
-                "options": ["json", "lambda"],
-                "required": true,
-                "type": "queryStringParam",
-                "typeName": "string"
-            }]
-        };
-
-        return this.makeRequest({
-            operation: operation,
-            parameters: parameters,
-            headers: headers,
-            body: body
-        })
-    };
 
     /**
      * Takes an end user query string (i.e., a query entered by a user of your application) and returns formatted interpretations of user intent 

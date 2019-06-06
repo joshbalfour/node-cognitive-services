@@ -77,45 +77,6 @@ describe('Academic knowledge', () => {
         })
     })
 
-    describe('GraphSearch', () => {
-        it('should return response', (done) => {
-            const parameters = {
-                "mode": "json"
-            };
-            const body = {
-                "path": "/paper/AuthorIDs/author",
-                "paper": {
-                    "type": "Paper",
-                    "NormalizedTitle": "graph engine",
-                    "select": [
-                        "OriginalTitle"
-                    ]
-                },
-                "author": {
-                    "return": {
-                        "type": "Author",
-                        "Name": "bin shao"
-                    }
-                }
-            };
-            const headers = {
-                "Content-type": "application/json"
-            };
-
-            client.graphSearch({
-                parameters,
-                headers,
-                body
-            }).then((response) => {
-                should(response).not.be.undefined();
-                should(response).have.property("Results")
-                done();
-            }).catch((err) => {
-                done(err);
-            });
-        })
-    })
-
     describe('Interpret', () => {
         it('should return response', (done) => {
             const parameters = {

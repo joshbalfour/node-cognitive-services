@@ -13,7 +13,6 @@ module.exports = {
     bingVideoSearchV7: require('./search/bingVideoSearchV7'),
     bingWebSearchV7: require('./search/bingWebSearchV7'),
     computerVision: require('./vision/computerVision'),
-    emotion: require('./vision/emotion'),
     qnaMaker: require('./knowledge/qnaMaker'),
     qnaMakerV4: require('./knowledge/qnaMakerV4'),
     face: require('./vision/face'),

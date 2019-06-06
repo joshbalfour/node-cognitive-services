@@ -21,7 +21,30 @@ class qnaMaker extends commonService {
         this.endpoints = [
             "westus.api.cognitive.microsoft.com"
         ];
+        this.retryInterval = 10000;
     }
+
+    getOperationStatus({ parameters }) {
+
+      const operation = {
+          "path": "qnamaker/v4.0/operations/{operationId}",
+          "method": "GET",
+          "operationId": "5645c725ca73070ee8845bd6",
+          "parameters": [{
+              "name": "operationId",
+              "description": "Gets details of a specific long running operation.",
+              "value": null,
+              "required": true,
+              "type": "routeParam",
+              "typeName": "string"
+          }]
+      };
+
+      return this.makeRequest({
+          operation: operation,
+          parameters: parameters
+      })
+  };
 
     /**
      * Creates a new knowledge base.
@@ -30,7 +53,7 @@ class qnaMaker extends commonService {
     createKnowledgeBase({ body }) {
 
         const operation = {
-            "path": "qnamaker/v2.0/knowledgebases/create",
+            "path": "qnamaker/v4.0/knowledgebases/create",
             "method": "POST",
             "operationId": "58994a073d9e041ad42d9baa",
             "parameters": [{
@@ -71,7 +94,7 @@ class qnaMaker extends commonService {
     deleteKnowledgeBase({ parameters }) {
 
         const operation = {
-            "path": "qnamaker/v2.0/knowledgebases/{knowledgeBaseId}",
+            "path": "qnamaker/v4.0/knowledgebases/{knowledgeBaseId}",
             "method": "DELETE",
             "operationId": "58994a073d9e041ad42d9bab",
             "parameters": [{
@@ -97,7 +120,7 @@ class qnaMaker extends commonService {
     downloadKnowledgeBase({ parameters }) {
 
         const operation = {
-            "path": "qnamaker/v2.0/knowledgebases/{knowledgeBaseId}",
+            "path": "qnamaker/v4.0/knowledgebases/{knowledgeBaseId}",
             "method": "GET",
             "operationId": "58994a073d9e041ad42d9bac",
             "parameters": [{
@@ -123,7 +146,7 @@ class qnaMaker extends commonService {
     generateAnswer({ parameters, body }) {
 
         const operation = {
-            "path": "qnamaker/v2.0/knowledgebases/{knowledgeBaseId}/generateAnswer",
+            "path": "qnamaker/4.0/knowledgebases/{knowledgeBaseId}/generateAnswer",
             "method": "POST",
             "operationId": "58994a073d9e041ad42d9baa",
             "parameters": [{
@@ -165,7 +188,7 @@ class qnaMaker extends commonService {
     getAlterations({ parameters }) {
 
         const operation = {
-            "path": "qnamaker/v2.0/knowledgebases/{knowledgeBaseId}/downloadAlterations",
+            "path": "qnamaker/v4.0/knowledgebases/{knowledgeBaseId}/downloadAlterations",
             "method": "GET",
             "operationId": "597804332bcd591200beb3a1",
             "parameters": [{
@@ -191,7 +214,7 @@ class qnaMaker extends commonService {
     publishKnowledgeBase({ parameters }) {
 
         const operation = {
-            "path": "qnamaker/v2.0/knowledgebases/{knowledgeBaseId}",
+            "path": "qnamaker/v4.0/knowledgebases/{knowledgeBaseId}",
             "method": "PUT",
             "operationId": "589ab9223d9e041d18da6433",
             "parameters": [{
@@ -258,7 +281,7 @@ class qnaMaker extends commonService {
     updateAlterations({ parameters, body }) {
 
         const operation = {
-            "path": "qnamaker/v2.0/knowledgebases/{knowledgeBaseId}/updateAlterations",
+            "path": "qnamaker/v4.0/knowledgebases/{knowledgeBaseId}/updateAlterations",
             "method": "PATCH",
             "operationId": "597804082bcd591200beb3a0",
             "parameters": [{
@@ -306,7 +329,7 @@ class qnaMaker extends commonService {
     updateKnowledgeBase({ parameters, body }) {
 
         const operation = {
-            "path": "qnamaker/v2.0/knowledgebases/{knowledgeBaseId}",
+            "path": "qnamaker/v4.0/knowledgebases/{knowledgeBaseId}",
             "method": "PATCH",
             "operationId": "58994a083d9e041ad42d9bad",
             "parameters": [{

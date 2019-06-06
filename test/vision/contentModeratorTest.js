@@ -45,7 +45,8 @@ describe('Content moderator', () => {
             const parameters = {
                 'PII': true,
                 'language': 'eng',
-                'autocorrect': true
+                'autocorrect': true,
+                'classify': true
             };
 
             client.screenText({
