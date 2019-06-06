@@ -88,6 +88,9 @@ describe('Video Indexer V2', () => {
                 accessToken = response;
                 done();
             })
+            .catch((err) => {
+                done(err);
+            })
         });
         
         it(`should return a json with state, "Uploaded" or "Processing", and a video with name, ${videoName} and a Video id`, done => {
