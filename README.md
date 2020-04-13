@@ -58,9 +58,9 @@ PRs are welcome! If you want to contribute, follow these steps:
 1. You need to have Node >= 10.0.0. (Tip: use [`nvm`](https://github.com/creationix/nvm)!)
 1. Download the source code and run `npm install`.
 1. Update the file `tests/config.js` with your own API keys.
-1. Run `gulp test`.
+1. Run `npm test`.
 
-> NOTE: if you want to run the tests in just one class, change `describe` to `describe.only` and run `gulp test`.
+> NOTE: if you want to run the tests in just one class, change `describe` to `describe.only` and run `npm test`.
 
 ## Supported APIs
 

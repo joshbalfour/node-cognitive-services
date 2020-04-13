@@ -5,7 +5,7 @@ const fs = require('fs');
 
 describe('Computer vision', () => {
 
-    const FRIENDS_IMAGE_URL = 'http://az616578.vo.msecnd.net/files/2016/10/09/636115830685164048-686058602_friends.jpg';
+    const FRIENDS_IMAGE_URL = 'https://m.media-amazon.com/images/M/MV5BNDVkYjU0MzctMWRmZi00NTkxLTgwZWEtOWVhYjZlYjllYmU4XkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1_UY268_CR0,0,182,268_AL_.jpg';
 
     const client = new cognitive.computerVision({
         apiKey: config.computerVision.apiKey,

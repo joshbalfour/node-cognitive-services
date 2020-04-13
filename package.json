@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "prepublishOnly": "babel src --out-dir dist --quiet",
-    "test": "gulp test"
+    "test": "mocha --timeout 999999 test/**/*.js"
   },
   "types": "./src/index.d.ts",
   "author": "Josh Balfour <josh@joshbalfour.co.uk>",
@@ -43,10 +43,6 @@
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-preset-es2015": "^6.24.1",
-    "coverage-node": "^2.0.3",
-    "gulp": "^4.0.2",
-    "gulp-coverage": "^0.3.38",
-    "gulp-mocha": "^7.0.2",
     "jshint": "^2.10.2",
     "mocha": "^7.1.0",
     "should": "^13.2.3",
