@@ -1430,7 +1430,7 @@ The last personId returned by current call can be used as the "start" of the nex
      * A person group is one of the most important parameters for the Face - Identify API. The Identify searches person faces in a specified person group.
      * @returns {Promise.<object>}
     */
-    createAPersonGroup({ parameters, headers, body }) {
+    createAPersonGroup({ parameters, body }) {
 
         const operation = {
             "path": "face/v1.0/persongroups/{personGroupId}",

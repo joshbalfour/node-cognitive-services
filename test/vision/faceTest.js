@@ -13,7 +13,7 @@ function makeId(length) {
     return text;
 }
 
-describe('Face', () => {
+describe.only('Face', () => {
 
     const SATYA_NADELLA_IMAGE_URL = "http://s3.amazonaws.com/digitaltrends-uploads-prod/2014/02/Satya-Nadella-quotes.jpg";
 
@@ -27,42 +27,37 @@ describe('Face', () => {
 
     before((done) => {
         // create a person group
-        var parameters = {
-            "personGroupId": personGroupId
-        };
-        var body = {
-            "name": personGroupId
-        };
-
         face.createAPersonGroup({
-            parameters,
-            body
-        }).then((response) => {
-            should(response).be.undefined();
-            // create a person
-            body = {
-                "name": "johndoe"
-            }
-            parameters = {
-                'personGroupId': personGroupId
-            }
-
-            return face.createAPerson({
-                parameters,
-                body
-            })
-        }).then((response) => {
-            should(response).not.be.undefined();
-            should(response).has.property('personId');
-            personId = response.personId;
+          parameters: {
+          "personGroupId": personGroupId
+          },
+          body: {
+            "name" : "Test Person Group",
+            "userData": "this-is-test-data"
+          }
+          }).then(res => {
+            console.log(res);
             done();
-        }).catch((err) => {
-            done(err);
-        })
-
+          }).catch(err => {
+            console.log("Create A PERSON Group: " + err);
+            done(err)
+          });
     })
 
     after(done => {
+        if (!personId) {
+            // no person ID, only delete the group
+            var parameters = {
+              personGroupId: personGroupId
+          }
+            return face.deleteAPersonGroup({parameters})
+            .then((response) => {
+              should(response).be.undefined();
+              done();
+          }).catch((err) => {
+              done(err);
+          })
+        }
         // delete person
         var parameters = {
             personGroupId: personGroupId,
@@ -82,7 +77,6 @@ describe('Face', () => {
             return face.deleteAPersonGroup({parameters})
         }).then((response) => {
             should(response).be.undefined();
-            console.log(response);
             done();
         }).catch((err) => {
             done(err);
