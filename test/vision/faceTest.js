@@ -13,7 +13,7 @@ function makeId(length) {
     return text;
 }
 
-describe.only('Face', () => {
+describe('Face', () => {
 
     const SATYA_NADELLA_IMAGE_URL = "http://s3.amazonaws.com/digitaltrends-uploads-prod/2014/02/Satya-Nadella-quotes.jpg";
 
