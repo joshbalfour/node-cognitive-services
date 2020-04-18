@@ -6,6 +6,7 @@
 ![npm-installs](https://img.shields.io/npm/dw/cognitive-services.svg)
 ![dev-deps](https://david-dm.org/joshbalfour/node-cognitive-services.svg)
 ![issues](https://img.shields.io/github/issues/joshbalfour/node-cognitive-services.svg)
+![Node.js CI](https://github.com/joshbalfour/node-cognitive-services/workflows/Node.js%20CI/badge.svg)
 
 ## Description
 
