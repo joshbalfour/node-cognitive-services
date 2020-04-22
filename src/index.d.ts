@@ -12,6 +12,7 @@ export * from './search/bingImageSearch';
 export * from './search/bingNewsSearch';
 export * from './search/bingVideoSearch';
 export * from './search/bingWebSearch';
+export * from './search/bingCustomSearchV7';
 
 export * from './speech/bingSpeech';
 export * from './speech/speakerIdentification';
@@ -23,14 +24,14 @@ export * from './vision/video';
 
 export interface ContentTypeHeaders {
 	/**
-	 * Media type of the body sent to the API. 
+	 * Media type of the body sent to the API.
 	 */
 	"Content-Type"?: ContentTypeHeaderTypes
 }
 
 export interface OcpApimSubscriptionKeyHeaders {
 	/**
-	 * Subscription key which provides access to this API. Found in your Cognitive Services accounts. 
+	 * Subscription key which provides access to this API. Found in your Cognitive Services accounts.
 	 */
 	"Ocp-Apim-Subscription-Key"?: String
 }
