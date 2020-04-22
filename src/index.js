@@ -24,5 +24,6 @@ module.exports = {
     textTranslator: require('./language/textTranslator'),
     bingSpeech: require('./speech/bingSpeech'),
     bingEntitySearch: require('./search/bingEntitySearch'),
-    contentModerator: require('./vision/contentModerator')
+    contentModerator: require('./vision/contentModerator'),
+    videoIndexerV2: require('./vision/videoIndexerV2')
 };
