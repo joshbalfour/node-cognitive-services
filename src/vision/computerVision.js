@@ -2,7 +2,7 @@ const commonService = require('../commonService');
 
 /**
  * The cloud-based Computer Vision API provides developers with access to advanced algorithms for processing images and returning information. By uploading an image or specifying an image URL, Microsoft Computer Vision algorithms can analyze visual content in different ways based on inputs and user choices. With the Computer Vision API users can analyze images to:
- * 
+ *
 - Tag images based on content.
 - Categorize images.
 - Identify the type and quality of images.
@@ -26,7 +26,7 @@ Requirements
 class computerVision extends commonService {
     /**
      * Constructor.
-     * 
+     *
      * @param {Object} obj
      * @param {string} obj.apiKey
      * @param {string} obj.endpoint
@@ -51,9 +51,9 @@ class computerVision extends commonService {
     }
 
     /**
-     * Extracts a rich set of visual features based on the image content. 
+     * Extracts a rich set of visual features based on the image content.
 
-    Two input methods are supported -- (1) Uploading an image or (2) specifying an image URL. Within your request, there is an optional parameter to allow you to choose which features to return. By default, image categories are returned in the response. 
+    Two input methods are supported -- (1) Uploading an image or (2) specifying an image URL. Within your request, there is an optional parameter to allow you to choose which features to return. By default, image categories are returned in the response.
 
     A successful response will be returned in JSON. If the request failed, the response will contain an error code and a message to help understand what went wrong.
     */
@@ -107,7 +107,9 @@ class computerVision extends commonService {
                 "value": "en",
                 "options": [
                     "en",
-                    "zh"
+                    "zh",
+                    "ja",
+                    "pt",
                 ],
                 "required": false,
                 "type": "queryStringParam",
@@ -125,7 +127,7 @@ class computerVision extends commonService {
     };
 
     /**
-     * Generates a description of an image in human readable language with complete sentences. The description is based on a collection of content tags, which are also returned by the operation. More than one description can be generated for each image. Descriptions are ordered by their confidence score. All descriptions are in English. 
+     * Generates a description of an image in human readable language with complete sentences. The description is based on a collection of content tags, which are also returned by the operation. More than one description can be generated for each image. Descriptions are ordered by their confidence score. All descriptions are in English.
 
     Two input methods are supported -- (1) Uploading an image or (2) specifying an image URL.
 
@@ -152,6 +154,19 @@ class computerVision extends commonService {
                 "name": "maxCandidates",
                 "description": "Maximum number of candidate descriptions to be returned. The default is 1.",
                 "value": "1",
+                "required": false,
+                "type": "queryStringParam",
+                "typeName": "string"
+            }, {
+                "name": "language",
+                "description": "A string indicating which language to return. The service will return recognition results in specified language. If this parameter is not specified, the default value is \"en\".",
+                "value": "en",
+                "options": [
+                    "en",
+                    "zh",
+                    "ja",
+                    "pt",
+                ],
                 "required": false,
                 "type": "queryStringParam",
                 "typeName": "string"
@@ -225,7 +240,7 @@ class computerVision extends commonService {
     };
 
     /**
-     * Returns the list of domain-specific models that are supported by the Computer Vision API. Currently, the API supports following domain-specific models: celebrity recognizer, landmark recognizer. 
+     * Returns the list of domain-specific models that are supported by the Computer Vision API. Currently, the API supports following domain-specific models: celebrity recognizer, landmark recognizer.
 
     A successful response will be returned in JSON. If the request failed, the response will contain an error code and a message to help understand what went wrong.
     */
@@ -327,9 +342,9 @@ class computerVision extends commonService {
 
     Two input methods are supported:
     - Uploading an image
-    - Specifying an image URL. 
+    - Specifying an image URL.
 
-    A successful response will be returned in JSON.  If the request failed, the response will contain an error code and a message to help understand what went wrong. 
+    A successful response will be returned in JSON.  If the request failed, the response will contain an error code and a message to help understand what went wrong.
 
     Example Parameters: {
         "model": null
@@ -372,11 +387,11 @@ class computerVision extends commonService {
     };
 
     /**
-     * Generates a list of words, or tags, that are relevant to the content of the supplied image. The Computer Vision API can return tags based on objects, living beings, scenery or actions found in images. Unlike categories, tags are not organized according to a hierarchical classification system, but correspond to image content. Tags may contain hints to avoid ambiguity or provide context, for example the tag “cello” may be accompanied by the hint “musical instrument”. All tags are in English. 
-     * 
+     * Generates a list of words, or tags, that are relevant to the content of the supplied image. The Computer Vision API can return tags based on objects, living beings, scenery or actions found in images. Unlike categories, tags are not organized according to a hierarchical classification system, but correspond to image content. Tags may contain hints to avoid ambiguity or provide context, for example the tag “cello” may be accompanied by the hint “musical instrument”. All tags are in English.
+     *
      Two input methods are supported:
     - Uploading an image
-    - Specifying an image URL. 
+    - Specifying an image URL.
 
      * A successful response will be returned in JSON. If the request failed, the response will contain an error code and a message to help understand what went wrong.
     */
@@ -434,10 +449,10 @@ class computerVision extends commonService {
     };
 
     /**
-     * get the result of a Recognize Handwritten Text operation. When you use the Recognize Handwritten Text interface, the response contains a field called “Operation-Location”. The “Operation-Location” field contains the URL that you must use for your Get Handwritten Text Operation Result operation. 
- 
-    For the result of a Recognize Handwritten Text operation to be available, it requires an amount of time that depends on the length of the text. So, you may need to wait before using this Get Handwritten Text Operation Result interface. The time you need to wait may be up to a number of seconds. 
- 
+     * get the result of a Recognize Handwritten Text operation. When you use the Recognize Handwritten Text interface, the response contains a field called “Operation-Location”. The “Operation-Location” field contains the URL that you must use for your Get Handwritten Text Operation Result operation.
+
+    For the result of a Recognize Handwritten Text operation to be available, it requires an amount of time that depends on the length of the text. So, you may need to wait before using this Get Handwritten Text Operation Result interface. The time you need to wait may be up to a number of seconds.
+
     Note: this technology is currently in preview and is only available for English text.
 
     @returns {Promise.<string>}  ID of operation
