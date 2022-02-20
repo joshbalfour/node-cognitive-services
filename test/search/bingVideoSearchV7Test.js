@@ -12,7 +12,8 @@ describe('Bing video search v7', () => {
         it('should return response', (done) => {
             const parameters = {
                 "q": "cats",
-                "count": 5
+                "count": 5,
+                "freshness": "Day"
             };
 
             const headers = {};
@@ -22,7 +23,7 @@ describe('Bing video search v7', () => {
                 headers
             }).then((response) => {
                 should(response).not.be.undefined();
-                should(response).have.properties(['_type', 'instrumentation', 'nextOffset', 'pivotSuggestions', 'queryExpansions', 'readLink', 'relatedSearches', 'totalEstimatedMatches', 'value', 'webSearchUrl']);
+                should(response).have.properties(['_type', 'instrumentation', 'nextOffset', 'pivotSuggestions', 'readLink', 'relatedSearches', 'totalEstimatedMatches', 'value', 'webSearchUrl']);
                 done();
             }).catch((err) => {
                 done(err);

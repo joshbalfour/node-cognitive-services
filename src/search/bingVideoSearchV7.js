@@ -220,7 +220,7 @@ class bingVideoSearchV7 extends commonService {
             "headers": this.headers,
             "parameters": this.parameters.filter(p => {
                 return p.name == 'cc' || p.name == 'count' || p.name == 'id' || p.name == 'mkt' || p.name == 'offset' || p.name == 'q' || p.name == 'safeSearch' || p.name == 'setLang' || p.name == 'textDecorations' || p.name == 'textFormat'
-            }).concat(this.queryStringParams)
+            }).concat(this.filterQueryParams)
         };
 
         return this.makeRequest({
