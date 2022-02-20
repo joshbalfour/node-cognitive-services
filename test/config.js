@@ -64,5 +64,9 @@ module.exports = {
         apiKey: "insert-key-here",
         appID: "insert-appID-here",
         versionID: "0.1"
+    },
+    videoIndexerV2: {
+        apiKey: "insert-key-here",
+        accountId: "insert-accountId-here"
     }
 }

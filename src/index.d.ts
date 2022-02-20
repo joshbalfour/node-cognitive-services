@@ -20,6 +20,8 @@ export * from './vision/computerVision';
 export * from './vision/face';
 export * from './vision/video';
 
+export * from './vision/videoIndexerV2'
+
 export interface ContentTypeHeaders {
 	/**
 	 * Media type of the body sent to the API. 
