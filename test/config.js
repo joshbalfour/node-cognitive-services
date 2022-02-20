@@ -42,7 +42,8 @@ module.exports = {
     },
     qnaMaker: {
         endpoint: "westus.api.cognitive.microsoft.com",
-        apiKey: "insert-key-here"
+        apiKey: "insert-key-here",
+        runtimeEndpoint: "insert-here",
     },
     recommendations: {
         endpoint: "westus.api.cognitive.microsoft.com",

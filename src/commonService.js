@@ -140,6 +140,8 @@ class commonService {
         const parameters = data.parameters || {};
         const headers = data.headers || {};
         const body = data.body || null;
+        const endpoint = data.endpoint || this.endpoint;
+        const apiKeyHeaderName = data.apiKeyHeaderName || this.apiKeyHeaderName;
     
         const contentTypeHeader = headers['Content-type'] || headers['Content-Type'] || "";
     
@@ -152,10 +154,14 @@ class commonService {
                 return verifyHeaders(operation.headers, headers);
             })
             .then(() => {
-                return verifyEndpoint(this.endpoints, this.endpoint, this.validateEndpoint)
+                if (data.endpoint) {
+                    //no validations for custom endpoint
+                    return new Promise((resolve, reject) => { resolve()});
+                }
+                return verifyEndpoint(this.endpoints, endpoint, this.validateEndpoint)
             })
             .then(() => {
-                headers[this.apiKeyHeaderName] = this.apiKey;
+                headers[apiKeyHeaderName] = this.apiKey;
     
                 let path = operation.path;
     
@@ -174,7 +180,7 @@ class commonService {
                     }
                 });
     
-                let uri = `https://${this.endpoint}/${path}`;
+                let uri = `https://${endpoint}/${path}`;
     
                 var options = {
                     uri,
