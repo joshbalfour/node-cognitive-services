@@ -66,7 +66,6 @@ PRs are welcome! If you want to contribute, follow these steps:
 ## Supported APIs
 
 - Knowledge
-    - [x] Academic knowledge
     - [x] Recommendations
     - [x] QnA maker (v2 and v4)
     - [ ] Knowledge exploration
