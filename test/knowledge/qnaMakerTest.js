@@ -58,7 +58,7 @@ describe('QnA maker', () => {
 
     after(done => {
         if (!knowledgeBaseId) {
-            done();
+            return done();
         }
         console.log('Deleting knowledge base...')
         const parameters = {

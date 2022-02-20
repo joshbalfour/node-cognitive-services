@@ -17,10 +17,6 @@ module.exports = {
     bingSearchV7: {
         apiKey: "insert-key-here" 
     },
-    academicKnowledge: {
-        endpoint: "api.labs.cognitive.microsoft.com",
-        apiKey: "insert-key-here"
-    },
     bingAutosuggest: {
         apiKey: "insert-key-here"
     },

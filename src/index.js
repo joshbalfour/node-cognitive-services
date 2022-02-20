@@ -1,5 +1,4 @@
 module.exports = {
-    academicKnowledge: require('./knowledge/academicKnowledge'),
     bingAutosuggest: require('./search/bingAutosuggest'),
     bingImageSearch: require('./search/bingImageSearch'),
     bingNewsSearch: require('./search/bingNewsSearch'),

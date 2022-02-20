@@ -1,4 +1,3 @@
-export * from './knowledge/academicKnowledge';
 export * from './knowledge/qnaMaker';
 export * from './knowledge/recommendations';
 
