@@ -2,7 +2,6 @@ module.exports = {
     bingAutosuggest: require('./search/bingAutosuggest'),
     bingImageSearch: require('./search/bingImageSearch'),
     bingNewsSearch: require('./search/bingNewsSearch'),
-    bingSpellCheck: require('./language/bingSpellCheck'),
     bingVideoSearch: require('./search/bingVideoSearch'),
     bingWebSearch: require('./search/bingWebSearch'),
     bingAutosuggestV7: require('./search/bingAutosuggestV7'),
