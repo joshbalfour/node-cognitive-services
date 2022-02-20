@@ -29,15 +29,15 @@
   ],
   "repository": "https://github.com/joshbalfour/node-cognitive-services",
   "dependencies": {
-    "bluebird": "^3.5.4",
-    "fast-csv": "^2.4.1",
+    "bluebird": "^3.7.2",
+    "fast-csv": "^4.3.6",
     "p-limit": "^2.2.0",
     "promise-retry": "^1.1.1",
-    "request": "^2.88.0",
-    "request-promise": "^4.2.4",
+    "request": "^2.88.2",
+    "request-promise": "^4.2.6",
     "sleep-promise": "^8.0.1",
-    "underscore": "^1.9.1",
-    "xml2js": "^0.4.19",
+    "underscore": "^1.13.2",
+    "xml2js": "^0.4.23",
     "xmlbuilder": "^12.0.0"
   },
   "devDependencies": {

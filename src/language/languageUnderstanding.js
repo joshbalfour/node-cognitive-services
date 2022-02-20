@@ -43,7 +43,6 @@ class languageUnderstanding extends commonService {
         ];
         this.INFO = {
             APPS:"",
-            ASSISTANTS: "assistants",
             DOMAINS: "domains",
             IMPORT: "import",
             USAGESCENARIOS: "usagescenarios",
@@ -88,6 +87,7 @@ class languageUnderstanding extends commonService {
         };
         this.PREBUILTDOMAINCULTURES = [
             {"en-us" : 21}, 
+            {"en-gb" : 0},
             {"zh-cn" : 13},
             {"fr-fr" : 0}, 
             {"fr-ca" : 0}, 
@@ -98,7 +98,14 @@ class languageUnderstanding extends commonService {
             {"ja-jp" : 0}, 
             {"pt-br" : 0}, 
             {"ko-kr" : 0},
-            {"nl-nl" : 0}
+            {"nl-nl" : 0},
+            {"tr-tr" : 0},
+            {"hi-in" : 0},
+            {"ar-ar" : 0},
+            {"gu-in" : 0},
+            {"ta-in" : 0},
+            {"te-in" : 0},
+            {"mr-in" : 0},
         ];
         this.CULTURECOUNT = this.PREBUILTDOMAINCULTURES.length;
         this.PREBUILTDOMAINTOTALCOUNT=0;
@@ -130,7 +137,6 @@ class languageUnderstanding extends commonService {
     getLUIS(info, cultureOnly){
 
         const validINFO=[
-            this.INFO.ASSISTANTS,
             this.INFO.APPS,
             this.INFO.CULTURE,
             this.INFO.DOMAINS,
@@ -172,7 +178,6 @@ class languageUnderstanding extends commonService {
             case this.INFO.DOMAINS:
             case this.INFO.USAGESCENARIOS:
             case this.INFO.CUSTOMPREBUILTDOMAINS:
-            case this.INFO.ASSISTANTS:
                 break;
             default: throw Error(`error in switch - unknown info ${info}`);
 
@@ -444,7 +449,7 @@ class languageUnderstanding extends commonService {
      * Returns no data
      * @returns {Promise.<object>}    
      */
-    deleteAppInfo(body, appinfo){
+    deleteAppInfo(appinfo){
 
         const validAPPINFO=[this.APPINFO.PERMISSIONS,this.APPINFO.APP];
 
@@ -474,8 +479,7 @@ class languageUnderstanding extends commonService {
 
         return this.makeRequest({
             operation: operation,
-            headers: {'Content-type': 'application/json'},
-            body: body
+            headers: {'Content-type': 'application/json'}
         })
        
     }
@@ -694,7 +698,7 @@ class languageUnderstanding extends commonService {
         return new Promise((resolve, reject) => {
             let results = [];
             csv
-            .fromString(csvString, {headers: true})
+            .parseString(csvString, {headers: true})
             .on("data", parsedObject => {
                 results.push(parsedObject);
             })
