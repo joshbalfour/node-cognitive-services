@@ -37,9 +37,8 @@ describe('Language understanding (LUIS)', () => {
     });
 
     var deleteTestApp = () =>{
-        var body;
         return promiseDelay(client.retryInterval).then(() => {
-            return client.deleteAppInfo(body,client.APPINFO.APP);
+            return client.deleteAppInfo(client.APPINFO.APP);
         }).then((response) => {
             response.should.not.be.undefined();
             response.should.have.only.keys('code', 'message');
@@ -201,19 +200,7 @@ describe('Language understanding (LUIS)', () => {
                 done(err);
             });
         })
-        it('should get list of LUIS assistants', (done) => {
 
-            promiseDelay(client.retryInterval)
-            .then(() => {
-                return client.getLUIS(client.INFO.ASSISTANTS);
-            }).then((response) => {
-                response.should.not.be.undefined();
-                response.should.have.only.properties('endpointKeys', 'endpointUrls');
-                done();
-            }).catch((err) => {
-                done(err);
-            });
-        })
         it('should get list of LUIS domains', (done) => {
 
 
@@ -252,7 +239,7 @@ describe('Language understanding (LUIS)', () => {
             }).then((response) => {
                 response.should.not.be.undefined();
                 response.should.be.Array;
-                response.should.have.length(12);
+                response.should.have.length(20);
                 response[0].should.have.only.keys('name','code');
                 done();
             }).catch((err) => {
@@ -268,7 +255,7 @@ describe('Language understanding (LUIS)', () => {
                 response.should.not.be.undefined();
                 response.should.be.Array;
                 response.should.have.length(client.PREBUILTDOMAINTOTALCOUNT);
-                response[0].should.have.only.keys('name','culture','description','examples','intents','entities');
+                response[0].should.have.only.keys('name','culture', 'tokenizerVersion', 'description','examples','intents','entities');
                 response[0].intents.should.be.Array;
                 response[0].entities.should.be.Array;
                 response[0].intents[0].should.have.only.keys('name','description','examples');
@@ -333,7 +320,7 @@ describe('Language understanding (LUIS)', () => {
                 response.should.not.be.undefined();
                 response.should.be.Array;
                 if (response.length > 0) {
-                    response[0].should.have.only.keys('Query', 'Response', 'UTC DateTime');
+                    response[0].should.have.only.keys('Query', 'Response', 'UTC DateTime', 'SecondaryId', 'Region');
                 }
                 done();
             }).catch((err) => {
@@ -349,7 +336,7 @@ describe('Language understanding (LUIS)', () => {
                 return client.getAppInfo(info);
             }).then((response) => {
                 response.should.not.be.undefined();
-                response.should.have.only.keys('id', 'name','description','culture','usageScenario','domain','versionsCount','createdDateTime','endpoints','endpointHitsCount','activeVersion','ownerEmail');
+                response.should.have.only.keys('id', 'name','description','culture','usageScenario','domain','versionsCount','createdDateTime','endpoints','endpointHitsCount','activeVersion','ownerEmail', 'tokenizerVersion');
                 done();
             }).catch((err) => {
                 done(err);
@@ -408,7 +395,7 @@ describe('Language understanding (LUIS)', () => {
                 let filePath = path.join(__dirname,"../assets/LUIS/api_endpoints.json");
                 let testData = JSON.parse(fs.readFileSync(filePath, "utf-8"));
                 // compare key count - not data since app id changes 
-                _.difference(_.keys(response),_.keys(testData)).should.have.length(0);
+                _.difference(response,testData).should.have.length(0);
                 done();
             }).catch((err) => {
                 done(err);
@@ -515,16 +502,13 @@ describe('Language understanding (LUIS)', () => {
                 ]
             };
 
-            var deleteBody = {
-                "email":"test1@domain.com"
-            };
             promiseDelay(client.retryInterval)
             .then(() => {
                 return client.updateAppInfo(updateBody,client.APPINFO.PERMISSIONS);
             }).then(() => { 
                 return promiseDelay(client.retryInterval);
             }).then(() => {
-                return client.deleteAppInfo(deleteBody,info);
+                return client.deleteAppInfo(info);
             }).then((response) => {
                 response.should.not.be.undefined();
                 response.should.have.only.keys('code', 'message');
@@ -555,12 +539,13 @@ describe('Language understanding (LUIS)', () => {
                 return client.getVersionInfo(client.VERSIONINFO.EXPORT);
             }).then((response) => {
                 response.should.not.be.undefined();
-                response.should.have.only.keys(
+                response.should.have.keys(
                     'luis_schema_version', 
                     'versionId',
                     'name', 
                     'desc', 
                     'culture', 
+                    'tokenizerVersion',
                     'intents', 
                     'entities', 
                     'composites', 
@@ -590,7 +575,7 @@ describe('Language understanding (LUIS)', () => {
                 response.should.not.be.undefined();
                 response.should.be.Array;
                 if (response.length > 0) {
-                    response[0].should.have.only.keys('id', 'text', 'tokenizedText','intentLabel','entityLabels','intentPredictions','entityPredictions');
+                    response[0].should.have.only.keys('id', 'text', 'tokenizedText','intentLabel','entityLabels','intentPredictions','entityPredictions', 'multiIntentPredictions');
                 }
                 done();
             }).catch((err) => {
@@ -827,7 +812,7 @@ describe('Language understanding (LUIS)', () => {
                 response.should.be.Array;
                 
                 // not validating customPrebuiltModel Properties
-                response[0].should.have.only.keys('id', 'name','typeId','readableType','roles');
+                response[0].should.have.only.keys('id', 'name','typeId','readableType', 'subLists', 'roles');
                 done();
             }).catch((err) => {
                 done(err);
