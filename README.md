@@ -71,7 +71,7 @@ PRs are welcome! If you want to contribute, follow these steps:
     - [ ] Knowledge exploration
     - [ ] Custom decision service
 - Language
-    - [x] Bing spell check (v5 and v7)
+    - [x] Bing spell check (v7)
     - [x] Text analytics
     - [x] Translator Text
     - [x] LUIS
