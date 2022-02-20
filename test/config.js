@@ -23,9 +23,6 @@ module.exports = {
     bingAutosuggestV7: {
         apiKey: "insert-key-here"
     },
-    bingSpellCheck: {
-        apiKey: "insert-key-here"
-    },
     bingSpellCheckV7: {
         apiKey: "insert-key-here"
     },

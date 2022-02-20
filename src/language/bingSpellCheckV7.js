@@ -103,7 +103,7 @@ class bingSpellCheckV7 extends commonService {
     spellCheck({ parameters, headers }) {
 
         const operation = {
-            "path": "bing/v7.0/spellcheck/",
+            "path": "bing/v7.0/spellcheck",
             "method": "GET",
             "operationId": "57855119bca1df1c647bc358",
             "headers": this.headers,
