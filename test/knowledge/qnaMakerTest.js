@@ -7,7 +7,8 @@ describe('QnA maker', () => {
 
     const client = new cognitive.qnaMaker({
         apiKey: config.qnaMaker.apiKey,
-        endpoint: config.qnaMaker.endpoint
+        endpoint: config.qnaMaker.endpoint,
+        runtimeEndpoint: config.qnaMaker.runtimeEndpoint,
     });
 
     var knowledgeBaseId = false;
@@ -48,9 +49,20 @@ describe('QnA maker', () => {
           
         }).then(response => {
           should(response).not.be.undefined();
-          should(response).have.properties(['knowledgeBaseId']);
-          knowledgeBaseId = response.knowledgeBaseId;
-          done();
+          should(response).have.properties(['resourceLocation']);
+          const regex = /\/knowledgebases\/(.*)/gm;
+          knowledgeBaseId = regex.exec(response['resourceLocation'])[1];
+
+          const parameters = {
+            knowledgeBaseId: knowledgeBaseId
+          };
+
+          return client.publishKnowledgeBase({
+            parameters
+        })
+        }).then(response => {
+            should(response).be.undefined();
+            done();
         }).catch(err => {
             done(err);
         });
@@ -70,8 +82,10 @@ describe('QnA maker', () => {
         }).then(response => {
             should(response).be.undefined();
             done();
+            console.log('Deleted')
         }).catch(err => {
             done(err);
+            console.log('Not deleted')
         });
     })
 
@@ -135,22 +149,6 @@ describe('QnA maker', () => {
         })
     })
 
-    describe('Publish knowledge base', () => {
-        it('should return response', (done) => {
-            const parameters = {
-                knowledgeBaseId: knowledgeBaseId
-            };
-
-            client.publishKnowledgeBase({
-                parameters
-            }).then(response => {
-                should(response).be.undefined();
-                done();
-            }).catch(err => {
-                done(err);
-            });
-        })
-    })
 
     describe('Train knowledge base', () => {
         it('should return response', (done) => {

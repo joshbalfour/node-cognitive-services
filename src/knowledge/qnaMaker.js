@@ -16,12 +16,13 @@ class qnaMaker extends commonService {
      * @param {string} obj.apiKey
      * @param {string} obj.endpoint
      */
-    constructor({ apiKey, endpoint }) {
+    constructor({ apiKey, endpoint, runtimeEndpoint}) {
         super({ apiKey, endpoint });
         this.endpoints = [
             "westus.api.cognitive.microsoft.com"
         ];
-        this.retryInterval = 10000;
+        this.retryInterval = 20000;
+        this.runtimeEndpoint = runtimeEndpoint;
     }
 
     getOperationStatus({ parameters }) {
@@ -146,7 +147,7 @@ class qnaMaker extends commonService {
     generateAnswer({ parameters, body }) {
 
         const operation = {
-            "path": "qnamaker/4.0/knowledgebases/{knowledgeBaseId}/generateAnswer",
+            "path": "qnamaker/knowledgebases/{knowledgeBaseId}/generateAnswer",
             "method": "POST",
             "operationId": "58994a073d9e041ad42d9baa",
             "parameters": [{
@@ -175,6 +176,8 @@ class qnaMaker extends commonService {
 
         return this.makeRequest({
             operation: operation,
+            endpoint: this.runtimeEndpoint,
+            apiKeyHeaderName: "Authorization",
             parameters: parameters,
             headers: {'Content-type': 'application/json'},
             body: body
@@ -215,7 +218,7 @@ class qnaMaker extends commonService {
 
         const operation = {
             "path": "qnamaker/v4.0/knowledgebases/{knowledgeBaseId}",
-            "method": "PUT",
+            "method": "POST",
             "operationId": "589ab9223d9e041d18da6433",
             "parameters": [{
                 "name": "knowledgeBaseId",
@@ -246,8 +249,8 @@ class qnaMaker extends commonService {
     trainKnowledgeBase({ parameters, body }) {
 
         const operation = {
-            "path": "qnamaker/v2.0/knowledgebases/{knowledgeBaseId}/train",
-            "method": "PATCH",
+            "path": "qnamaker/knowledgebases/{knowledgeBaseId}/train",
+            "method": "POST",
             "operationId": "58edd31c3d9e041ffcef000f",
             "parameters": [{
                 "name": "knowledgeBaseId",
@@ -268,6 +271,8 @@ class qnaMaker extends commonService {
 
         return this.makeRequest({
             operation: operation,
+            endpoint: this.runtimeEndpoint,
+            apiKeyHeaderName: "Authorization",
             parameters: parameters,
             headers: {'Content-type': 'application/json'},
             body: body
