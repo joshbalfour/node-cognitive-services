@@ -44,7 +44,7 @@
     "babel-cli": "^6.26.0",
     "babel-preset-es2015": "^6.24.1",
     "jshint": "^2.10.2",
-    "mocha": "^7.1.0",
+    "mocha": "^10.2.0",
     "should": "^13.2.3",
     "timeout-as-promise": "^1.0.0"
   }
